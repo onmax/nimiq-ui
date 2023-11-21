@@ -1,0 +1,45 @@
+
+
+name: Update Icons
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *' # Run every day at midnight
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: icons
+  cancel-in-progress: false
+
+jobs:
+  update-icons:
+    runs-on: ubuntu-latest
+    environment: Dev
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install dependencies
+        run: bun install
+        working-directory: packages/icons
+
+      - name: Run script
+        run: bun src/index.ts
+        working-directory: packages/icons
+        env:
+          FIGMA_FILE_ID: ${{ secrets.FIGMA_FILE_ID }}
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
+
+      - working-directory: packages/icons
+        run: |
+          git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
+          git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
+          git add dist/icons.json --force
+          git commit -m "Updated icons.json"
+          git push

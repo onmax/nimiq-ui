@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+
+    "target": "esnext",
+
+    "lib": ["esnext"],
+    "moduleDetection": "force",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "types": ["bun-types"],
+    "allowImportingTsExtensions": true, // support JSX
+    "allowJs": true, // allow default imports for CommonJS modules
+
+    // best practices
+    "strict": true,
+    "noEmit": true, // allow importing `.js` from `.ts`
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  }
+}
