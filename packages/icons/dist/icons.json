@@ -1,6 +1,6 @@
 {
 	"prefix": "nimiq",
-	"lastModified": 1700840532,
+	"lastModified": 1700841241,
 	"icons": {
 		"arrow": {
 			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID1)\"><mask id=\"svgID0\" width=\"12\" height=\"11\" x=\"0\" y=\"0\" maskUnits=\"userSpaceOnUse\" style=\"mask-type:luminance\"><path fill=\"#fff\" d=\"M12 11H0V0h12z\"/></mask><g mask=\"url(#svgID0)\"><path stroke=\"#000\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m7.5 1.96 3.499 3.54-3.5 3.54m1.955-3.268h-8\"/></g></g><defs><clipPath id=\"svgID1\"><path fill=\"#fff\" d=\"M0 0h12v11H0z\"/></clipPath></defs></g>",
@@ -81,6 +81,11 @@
 			"body": "<g fill=\"none\"><g stroke=\"#000\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" clip-path=\"url(#svgID0)\"><path d=\"M9 17A8 8 0 109 .999 8 8 0 009 17\"/><path d=\"M9 6v3l3 3\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h18v18H0z\"/></clipPath></defs></g>",
 			"width": 18,
 			"height": 18
+		},
+		"yyy": {
+			"body": "<path fill=\"#888\" d=\"m16 28-5.333-5.333 1.866-1.867 2.134 2.1v-5.567c0-.733-.262-1.361-.784-1.884A2.563 2.563 0 0012 14.667H1.333V4H4v8h8c.8 0 1.544.161 2.233.484A5.352 5.352 0 0116 13.8a5.328 5.328 0 011.767-1.316A5.226 5.226 0 0120 12h8V4h2.667v10.667H20c-.733 0-1.361.261-1.884.784a2.562 2.562 0 00-.783 1.882V22.9l2.1-2.1 1.9 1.867z\"/>",
+			"width": 32,
+			"height": 32
 		}
 	},
 	"width": 12
