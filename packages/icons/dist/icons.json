@@ -1,6 +1,6 @@
 {
 	"prefix": "nimiq",
-	"lastModified": 1700840066,
+	"lastModified": 1700840532,
 	"icons": {
 		"arrow": {
 			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID1)\"><mask id=\"svgID0\" width=\"12\" height=\"11\" x=\"0\" y=\"0\" maskUnits=\"userSpaceOnUse\" style=\"mask-type:luminance\"><path fill=\"#fff\" d=\"M12 11H0V0h12z\"/></mask><g mask=\"url(#svgID0)\"><path stroke=\"#000\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m7.5 1.96 3.499 3.54-3.5 3.54m1.955-3.268h-8\"/></g></g><defs><clipPath id=\"svgID1\"><path fill=\"#fff\" d=\"M0 0h12v11H0z\"/></clipPath></defs></g>",
@@ -25,6 +25,11 @@
 			"body": "<g fill=\"none\" stroke=\"#000\" stroke-width=\"6\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M52 92h-8\"/><path d=\"M48 24c-13.255 0-24 10.745-24 24 0 7.279 4.583 13.8 10.184 18.202C36.43 67.966 38 70.548 38 73.404V76a4 4 0 004 4h12a4 4 0 004-4v-2.596c0-2.856 1.57-5.438 3.816-7.202C67.417 61.8 72 55.279 72 48c0-13.255-10.745-24-24-24Z\"/><path stroke-linecap=\"round\" d=\"M92 48h-7M4 48h7M48 4v7m31.112 5.887-4.95 4.95m-57.274-4.95 4.95 4.95\"/></g>",
 			"width": 96,
 			"height": 96
+		},
+		"caca": {
+			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path fill=\"#888\" d=\"M15.9.413a.987.987 0 01.906-.357A6.002 6.002 0 0121.656 8H22c2.206 0 4 1.794 4 4a3.988 3.988 0 01-1.356 3h.856a4.501 4.501 0 012.75 8.063A4.496 4.496 0 0132 27.5c0 2.488-2.012 4.5-4.5 4.5h-23A4.497 4.497 0 010 27.5a4.496 4.496 0 013.75-4.437A4.501 4.501 0 016.5 15h.856A3.988 3.988 0 016 12c0-2.206 1.794-4 4-4h1.012A5 5 0 0016 3c0-.575-.094-1.119-.269-1.631a.997.997 0 01.175-.963L15.9.412\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h32v32H0z\"/></clipPath></defs></g>",
+			"width": 32,
+			"height": 32
 		},
 		"check": {
 			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path stroke=\"#A3A3A3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M10.158 1 4.603 8 1.25 5.118\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h11v9H0z\"/></clipPath></defs></g>",
