@@ -8,9 +8,4 @@ export default defineConfig({
     vue(),
     checker({ vueTsc: true, typescript: true }),
   ],
-  build: {
-    rollupOptions:{
-      external: ['vue-email'],
-    }
-  }
 })
