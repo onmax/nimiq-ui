@@ -1,13 +1,12 @@
 {
-  "name": "nimi-ui",
+  "name": "nimiq-ui",
   "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "build:email-signatures": "nx build email-signatures --outputPath=apps/email-signatures/dist"
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.0.0",
@@ -16,9 +15,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "dependencies": {
-    "vue-email": "^0.8.0-beta.8",
-    "vue-i18n": "^9.8.0"
-  }
+  ]
 }
