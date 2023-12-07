@@ -2,30 +2,42 @@
 <script setup lang="ts">
 import { EHtml, EHead, EFont, EBody, EText, EContainer, EColumn, ERow, ESection, EImg, EHeading, ELink } from "vue-email"
 import { computed, toValue, type PropType } from 'vue';
-import { Cryptocity } from "../types";
+import { Logo, SocialMediaList, Logos, SocialMedia } from "../types";
 
 const props = defineProps({
   name: { type: String },
   email: { type: String },
   phoneNumber: { type: String },
-  telegram: { type: String },
-  cryptocity: { type: String as PropType<Cryptocity>, default: Cryptocity.None },
-  facebook: { type: String },
-  youtube: { type: String },
-  instagram: { type: String },
-  twitter: { type: String },
+  socialMedia: { type: Object as PropType<SocialMediaList>, required: true },
+  logos: { type: Object as PropType<Logos>, required: true },
   disclosure: { type: String, default: '' },
 })
 
+const telegram = computed(() => props.socialMedia.telegram)
+const facebook = computed(() => props.socialMedia.facebook)
+const youtube = computed(() => props.socialMedia.youtube)
+const instagram = computed(() => props.socialMedia.instagram)
+const twitter = computed(() => props.socialMedia.twitter)
+
 const disclosure = computed(() => toValue(props.disclosure).split('\n').filter(Boolean) ?? [])
 
-const baseUrl = "https://raw.githubusercontent.com/onmax/nimiq-ui/main/apps/email-signatures/src/assets"
+const baseUrl = "https://www.nimiq.com/email-signatures"
 
-const cryptocityUrl = computed(() => ({
-  [Cryptocity.Criptociudad]: 'https://www.criptociudad.cr/',
-  [Cryptocity.Kryptostadt]: 'https://kryptostadt.info/',
-  [Cryptocity.None]: undefined
-}[toValue(props.cryptocity)]))
+const urls = {
+  [Logo.Criptociudad]: 'https://www.criptociudad.cr/',
+  [Logo.Kryptostadt]: 'https://kryptostadt.info/',
+  [Logo.Nimiq]: 'https://nimiq.com/',
+} as const
+
+const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => value).map(([logo, _]) => ({ imgUrl: `${baseUrl}/${logo}.png`, url: urls[logo as Logo] })))
+
+const socialMediaPrefix = {
+  [SocialMedia.Facebook]: '/',
+  [SocialMedia.Instagram]: '@',
+  [SocialMedia.Telegram]: '@',
+  [SocialMedia.Twitter]: '@',
+  [SocialMedia.Youtube]: '',
+} as const
 </script>
 
 <template>
@@ -48,7 +60,7 @@ const cryptocityUrl = computed(() => ({
     }">
       <EContainer>
         <ESection>
-          <EHeading style="font-size: 24px; font-weight: bold;" v-if="name"> {{ name }}</EHeading>
+          <EHeading style="font-size: 24px; font-weight: bold; color: rgb(31, 35, 72); " v-if="name"> {{ name }}</EHeading>
         </ESection>
 
         <ERow style=" color:rgba(16, 21, 49, 0.5); fontSize: 12">
@@ -65,33 +77,36 @@ const cryptocityUrl = computed(() => ({
                 <EImg width="14" :src="`${baseUrl}/telegram.png`" />
               </EColumn>
               <EColumn>
-                <EText style="color: rgba(16, 21, 49, 0.5); margin: 0">{{ telegram.split('/').at(-1) }}</EText>
+                <EText style="color: rgba(16, 21, 49, 0.5); margin: 0">{{ socialMediaPrefix[SocialMedia.Telegram] }}{{
+                  telegram.split('/').at(-1) }}</EText>
               </EColumn>
             </ERow>
           </ELink>
         </ESection>
 
-        <ELink v-if="cryptocityUrl" :href="cryptocityUrl">
-          <ERow>
+        <ERow style="min-height: 32px">
+          <ELink v-for="({ imgUrl, url }) in logos" :key="url" :href="url" style="margin-right: 24px;">
             <EColumn>
-              <EImg width="165" style="margin:-16px 0 0 -16px" :src="`${baseUrl}/${cryptocity}.png`" />
+              <EImg style="margin:-16px 0; height: 20px;" :src="imgUrl" />
             </EColumn>
-          </ERow>
-        </ELink>
+          </ELink>
+        </ERow>
 
         <ERow>
           <ELink
-            v-for="[social, url] in (Object.entries({ facebook, youtube, instagram, twitter })).filter(([_, url]) => !!url)" 
+            v-for="[social, url] in (Object.entries({ facebook, youtube, instagram, twitter })).filter(([_, url]) => !!url)"
             :href="url!" style="fontSize: 12;">
             <EColumn style="width: 18px">
               <EImg width="14" style="margin-bottom: -2px;" :src="`${baseUrl}/${social}.png`" />
             </EColumn>
             <EColumn>
-              <EText style="color: rgba(16, 21, 49, 0.5); margin: 0 12px 0 0;">{{ url!.split('/').at(-1) }}</EText>
+              <EText style="color: rgba(16, 21, 49, 0.5); margin: 0 12px 0 0;">
+                {{ socialMediaPrefix[social as SocialMedia] || '' }}{{ url!.split('/').at(-1) }}
+              </EText>
             </EColumn>
           </ELink>
         </ERow>
-        
+
         <ESection style="fontSize: 8px; color: rgba(31, 35, 72, 0.5); margin-top: 24px">
           <EText v-for="line in disclosure" :key="line" style="margin: 4px 0;">{{ line }}</EText>
         </ESection>
