@@ -19,7 +19,7 @@ const props = defineProps({
 
 const disclosure = computed(() => toValue(props.disclosure).split('\n').filter(Boolean) ?? [])
 
-const baseUrl = "https://raw.githubusercontent.com/onmax/nimiq-ui/main/packages/email-signatures/src/assets"
+const baseUrl = "https://raw.githubusercontent.com/onmax/nimiq-ui/main/apps/email-signatures/src/assets"
 
 const cryptocityUrl = computed(() => ({
   [Cryptocity.Criptociudad]: 'https://www.criptociudad.cr/',
