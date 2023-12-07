@@ -56,8 +56,8 @@ async function download() {
       <button style="margin-left:8px" @click="download">Download</button>
 
       <blockquote style="margin:0">
-        <p>
-          <strong>Important:</strong> In Safari, Download might now work. Create a new file in your computer called <code>
+        <p style="margin:0">
+          <strong>Important:</strong> In Safari, Download might not work. Create a new file in your computer called <code>
             nimiq-email-signature.html</code> and paste the HTML there.
         </p>
       </blockquote>
@@ -91,7 +91,7 @@ async function download() {
     <fieldset style="margin-top: 12px">
       <legend>Social Media</legend>
       <blockquote style="margin: 0">
-        <p>
+        <p style="margin:0">
           <strong>Important:</strong> Please only add the social media you are active on. Empty fields will not be shown in the signature. Use the full URL, including the <code>https://</code> part.
         </p>
       </blockquote>
