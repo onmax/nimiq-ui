@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "build:email-signatures": "nx build email-signatures --outputPath=apps/email-signatures/dist"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.0.0",

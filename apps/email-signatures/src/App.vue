@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, ref, watch, watchEffect } from 'vue';
+import { reactive } from 'vue';
 import Email from './components/Email.vue';
 import { useRender } from 'vue-email';
 import { Cryptocity } from './types';
@@ -66,6 +66,7 @@ async function download() {
       <ul>
         <li><a href="https://www.lokitimestwo.com/adding-custom-html-signature-email-gmail/" target="_blank">GMail</a></li>
         <li><a href="https://www.christopherbolt.com/support/knowledgebase/24/Installing-HTML-email-signatures-in-Microsoft-Outlook.html" target="_blank">Outlook</a></li>
+        <li><a href="https://docs.gandi.net/en/gandimail/sogo_webmail/signature.html" target="_blank">Nimiq Email (SOGo)</a></li>
       </ul>
     </li>
   </ol>

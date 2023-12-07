@@ -1,6 +1,6 @@
 
 <script setup lang="ts">
-import { EHtml, EHead, EFont, EBody, EText, EContainer, EColumn, ERow, ESection, EImg, EHeading, ELink, EButton } from "vue-email"
+import { EHtml, EHead, EFont, EBody, EText, EContainer, EColumn, ERow, ESection, EImg, EHeading, ELink } from "vue-email"
 import { computed, toValue, type PropType } from 'vue';
 import { Cryptocity } from "../types";
 
