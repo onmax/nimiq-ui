@@ -3,7 +3,7 @@
 
     "target": "esnext",
 
-    "lib": ["esnext"],
+    "lib": ["DOM"],
     "moduleDetection": "force",
     "module": "esnext",
     "moduleResolution": "bundler",

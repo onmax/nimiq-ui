@@ -26,10 +26,51 @@ async function copy() {
   await navigator.clipboard?.writeText(await useRender(Email, { props: emailProps }, { pretty: true }));
   alert('Copied to clipboard!');
 }
+
+async function download() {
+  const html = await useRender(Email, { props: emailProps }, { pretty: true });
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'nimiq-email-signature.html';
+  a.click();
+  URL.revokeObjectURL(url);
+}
 </script>
 
 <template>
-  Add your information below. If the field is empty, we will not show anything.
+  <h1>
+    Nimiq Email Signatures
+  </h1>
+  <p>
+    A dynamic email signature generator for Nimiq.
+  </p>
+
+  <h2>How to use it?</h2>
+  <ol>
+    <li>✒️ Fill up the form below with the information for your contact</li>
+    <li>🔬 Check the preview of the signature. You need to scroll all the way down to view it</li>
+    <li>📁 Copy or download the HTML.
+      <button @click="copy">Copy</button>
+      <button style="margin-left:8px" @click="download">Download</button>
+
+      <blockquote style="margin:0">
+        <p>
+          <strong>Important:</strong> In Safari, Download might now work. Create a new file in your computer called <code>
+            nimiq-email-signature.html</code> and paste the HTML there.
+        </p>
+      </blockquote>
+    </li>
+    <li>✉️ Read this guides to add the HTML to you email client:
+      <ul>
+        <li><a href="https://www.lokitimestwo.com/adding-custom-html-signature-email-gmail/" target="_blank">GMail</a></li>
+        <li><a href="https://www.christopherbolt.com/support/knowledgebase/24/Installing-HTML-email-signatures-in-Microsoft-Outlook.html" target="_blank">Outlook</a></li>
+      </ul>
+    </li>
+  </ol>
+  
+  <h2>Form</h2>
   <form style="padding: 24px">
     <fieldset>
       <legend>Personal info</legend>
@@ -48,6 +89,12 @@ async function copy() {
     </fieldset>
     <fieldset style="margin-top: 12px">
       <legend>Social Media</legend>
+      <blockquote style="margin: 0">
+        <p>
+          <strong>Important:</strong> Please only add the social media you are active on. Empty fields will not be shown in the signature. Use the full URL, including the <code>https://</code> part.
+        </p>
+      </blockquote>
+
       <label>Cryptocity
         <select v-model="emailProps.cryptocity">
           <option v-for="city in Object.values(Cryptocity)" :value="city">{{ city }}</option>
@@ -55,23 +102,23 @@ async function copy() {
       </label>
       <label>
         Telegram:
-        <code style="font-size: 12px;">https://t.me/</code><input v-model="emailProps.telegram" />
+        <input v-model="emailProps.telegram" />
       </label>
       <label>
         Facebook:
-        <code style="font-size: 12px;">https://facebook.com/</code><input v-model="emailProps.facebook" />
+        <input v-model="emailProps.facebook" />
       </label>
       <label>
         Youtube:
-        <code style="font-size: 12px;">https://youtube.com/</code><input v-model="emailProps.youtube" />
+        <input v-model="emailProps.youtube" />
       </label>
       <label>
         Instagram:
-        <code style="font-size: 12px;">https://instagram.com/</code><input v-model="emailProps.instagram" />
+       <input v-model="emailProps.instagram" />
       </label>
       <label>
         Twitter:
-        <code style="font-size: 12px;">https://x.com/</code><input v-model="emailProps.twitter" />
+       <input v-model="emailProps.twitter" />
       </label>
     </fieldset>
     <fieldset>
@@ -81,8 +128,8 @@ async function copy() {
     </fieldset>
   </form>
 
-  <button @click="copy">Copy HTML code</button>
 
+  <h2>Email preview</h2>
   <hr style="opacity: 0.4; margin-top: 24px">
 
   <Email v-bind="emailProps" />
