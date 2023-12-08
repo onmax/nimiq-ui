@@ -1,6 +1,6 @@
 {
 	"prefix": "nimiq",
-	"lastModified": 1701908264,
+	"lastModified": 1701994690,
 	"icons": {
 		"arrow": {
 			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID1)\"><mask id=\"svgID0\" width=\"12\" height=\"11\" x=\"0\" y=\"0\" maskUnits=\"userSpaceOnUse\" style=\"mask-type:luminance\"><path fill=\"#fff\" d=\"M12 11H0V0h12z\"/></mask><g mask=\"url(#svgID0)\"><path stroke=\"#000\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m7.5 1.96 3.499 3.54-3.5 3.54m1.955-3.268h-8\"/></g></g><defs><clipPath id=\"svgID1\"><path fill=\"#fff\" d=\"M0 0h12v11H0z\"/></clipPath></defs></g>",
