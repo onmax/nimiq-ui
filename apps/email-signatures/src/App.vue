@@ -60,8 +60,8 @@ async function download() {
 
     <h2>How to use it?</h2>
     <ol>
-      <li>✒️ Fill up the form below with the information for your contact</li>
-      <li>🔬 Check the preview of the signature. You can check the email prewiew to see the canges</li>
+      <li>✒️ Fill up the form below with the information for your contact.</li>
+      <li>🔬 Check the preview of the signature.</li>
       <li>📁 Copy or download the HTML.
         <button @click="copy">Copy</button>
         <button style="margin-left:8px" @click="download">Download</button>
@@ -85,6 +85,8 @@ async function download() {
               (SOGo)</a></li>
         </ul>
       </li>
+
+      <li>🪄 Send an email to yourself to test if it works</li>
     </ol>
   </div>
 

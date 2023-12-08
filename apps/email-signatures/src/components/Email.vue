@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import { EHtml, EHead, EFont, EBody, EText, EContainer, EColumn, ERow, ESection, EImg, EHeading, ELink } from "vue-email"
 import { computed, toValue, type PropType } from 'vue';
-import { Logo, SocialMediaList, Logos, SocialMedia } from "../types";
+import { Logo, SocialMediaList, Logos } from "../types";
 
 const props = defineProps({
   name: { type: String },
@@ -13,11 +13,11 @@ const props = defineProps({
   disclosure: { type: String, default: '' },
 })
 
-const telegram = computed(() => props.socialMedia.telegram)
-const facebook = computed(() => props.socialMedia.facebook)
-const youtube = computed(() => props.socialMedia.youtube)
-const instagram = computed(() => props.socialMedia.instagram)
-const twitter = computed(() => props.socialMedia.twitter)
+const telegram = computed(() => ({ username: '@' + props.socialMedia.telegram.split('/').at(-1), url: props.socialMedia.telegram }))
+const facebook = computed(() => ({ username: '/' + props.socialMedia.facebook.split('/').at(-1), url: props.socialMedia.facebook }))
+const youtube = computed(() => ({ username: props.socialMedia.youtube.split('/').at(-1), url: props.socialMedia.youtube }))
+const instagram = computed(() => ({ username: '@' + props.socialMedia.instagram.split('/').at(-1), url: props.socialMedia.instagram }))
+const twitter = computed(() => ({ username: '@' + props.socialMedia.twitter.split('/').at(-1), url: props.socialMedia.twitter }))
 
 const disclosure = computed(() => toValue(props.disclosure).split('\n').filter(Boolean) ?? [])
 
@@ -30,14 +30,6 @@ const urls = {
 } as const
 
 const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => value).map(([logo, _]) => ({ imgUrl: `${baseUrl}/${logo}.png`, url: urls[logo as Logo] })))
-
-const socialMediaPrefix = {
-  [SocialMedia.Facebook]: '/',
-  [SocialMedia.Instagram]: '@',
-  [SocialMedia.Telegram]: '@',
-  [SocialMedia.Twitter]: '@',
-  [SocialMedia.Youtube]: '',
-} as const
 </script>
 
 <template>
@@ -60,7 +52,8 @@ const socialMediaPrefix = {
     }">
       <EContainer>
         <ESection>
-          <EHeading style="font-size: 24px; font-weight: bold; color: rgb(31, 35, 72); " v-if="name"> {{ name }}</EHeading>
+          <EHeading style="font-size: 24px; font-weight: bold; color: rgb(31, 35, 72); " v-if="name"> {{ name }}
+          </EHeading>
         </ESection>
 
         <ERow style=" color:rgba(16, 21, 49, 0.5); fontSize: 12">
@@ -70,42 +63,37 @@ const socialMediaPrefix = {
           </EColumn>
         </ERow>
 
-        <ESection style="margin-bottom: 40px">
-          <ELink v-if="telegram" :href="telegram" style="fontSize: 12;">
-            <ERow>
-              <EColumn style="width: 18px">
-                <EImg width="14" :src="`${baseUrl}/telegram.png`" />
-              </EColumn>
-              <EColumn>
-                <EText style="color: rgba(16, 21, 49, 0.5); margin: 0">{{ socialMediaPrefix[SocialMedia.Telegram] }}{{
-                  telegram.split('/').at(-1) }}</EText>
-              </EColumn>
-            </ERow>
-          </ELink>
+         <ESection style="margin-bottom: 40px;">
+          <ERow>
+            <EColumn v-if="telegram" style="vertical-align: middle;">
+              <EImg :src="`${baseUrl}/telegram.png`" alt="Telegram" width="14" height="14" style="margin: 4px 4px 0 0; border: none; display: inline; outline: none; textDecoration: none" />
+              <ELink :href="telegram.url" style="color: rgba(16, 21, 49, 0.5); text-decoration: none;">
+                {{ telegram.username }}
+              </ELink>
+            </EColumn>
+          </ERow>
         </ESection>
 
         <ERow style="min-height: 32px" v-if="logos.length > 0">
           <ELink v-for="({ imgUrl, url }) in logos" :key="url" :href="url" style="margin-right: 24px;">
             <EColumn>
-              <EImg style="margin:-16px 0; height: 20px;" :src="imgUrl" />
+              <EImg style="margin:-16px 0; height: 20px;" :src="imgUrl" alt="Logo" />
             </EColumn>
           </ELink>
         </ERow>
 
-        <ERow>
-          <ELink
-            v-for="[social, url] in (Object.entries({ facebook, youtube, instagram, twitter })).filter(([_, url]) => !!url)"
-            :href="url!" style="fontSize: 12;">
-            <EColumn style="width: 18px">
-              <EImg width="14" style="margin-bottom: -2px;" :src="`${baseUrl}/${social}.png`" />
+        <ESection>
+          <ERow>
+            <EColumn
+              v-for="[social, { url, username }] in (Object.entries({ facebook, youtube, instagram, twitter })).filter(([_, url]) => !!url)"
+              :key="social" style="vertical-align: middle; margin: 0 12px 0 0">
+              <EImg :src="`${baseUrl}/${social}.png`" :alt="social" width="14" height="14" style="margin: 2px 4px 0 0; border: none; display: inline; outline: none; textDecoration: none" />
+              <ELink :href="url" style="color: rgba(16, 21, 49, 0.5); text-decoration: none;">
+                {{ username }}
+              </ELink>
             </EColumn>
-            <EColumn>
-              <EText style="color: rgba(16, 21, 49, 0.5); margin: 0 12px 0 0;">
-                {{ socialMediaPrefix[social as SocialMedia] || '' }}{{ url!.split('/').at(-1) }}
-              </EText>
-            </EColumn>
-          </ELink>
-        </ERow>
+          </ERow>
+        </ESection>
 
         <ESection style="fontSize: 8px; color: rgba(31, 35, 72, 0.5); margin-top: 24px">
           <EText v-for="line in disclosure" :key="line" style="margin: 8px 0;">{{ line }}</EText>
