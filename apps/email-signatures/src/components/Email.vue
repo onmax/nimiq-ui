@@ -84,7 +84,7 @@ const socialMediaPrefix = {
           </ELink>
         </ESection>
 
-        <ERow style="min-height: 32px">
+        <ERow style="min-height: 32px" v-if="logos.length > 0">
           <ELink v-for="({ imgUrl, url }) in logos" :key="url" :href="url" style="margin-right: 24px;">
             <EColumn>
               <EImg style="margin:-16px 0; height: 20px;" :src="imgUrl" />
@@ -108,7 +108,7 @@ const socialMediaPrefix = {
         </ERow>
 
         <ESection style="fontSize: 8px; color: rgba(31, 35, 72, 0.5); margin-top: 24px">
-          <EText v-for="line in disclosure" :key="line" style="margin: 4px 0;">{{ line }}</EText>
+          <EText v-for="line in disclosure" :key="line" style="margin: 8px 0;">{{ line }}</EText>
         </ESection>
       </EContainer>
     </EBody>

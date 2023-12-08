@@ -88,11 +88,11 @@ async function download() {
     </ol>
   </div>
 
-  <div style="display: flex; gap: 32px; justify-content: center; margin: 0 auto">
+  <div style="display: flex; gap: 32px; justify-content: center; margin: 12px auto">
     <div style="width: min(300px, 500px, 600px)">
       <h2>Your data</h2>
       <form>
-        <fieldset style="display: flex; flex-direction:column">
+        <fieldset style="display: flex; flex-direction:column; margin-bottom: 24px">
           <legend>Personal info</legend>
           <label>
             Name:
@@ -107,24 +107,24 @@ async function download() {
             <input v-model="emailProps.phoneNumber" />
           </label>
         </fieldset>
-        <fieldset style="margin-top: 12px; user-select: none; display: flex; flex-direction: column">
+        <fieldset style="margin-bottom: 24px; user-select: none; display: flex; flex-direction: column">
           <legend>Logos</legend>
 
           <label>
             <input type="checkbox" :name="Logo.Nimiq"  :value="Logo.Nimiq" v-model="emailProps.logos[Logo.Nimiq]" />
-            Nimiq
+            Nimiq (nimiq.com)
           </label>
           <label>
             <input type="checkbox" :name="Logo.Criptociudad" :value="Logo.Criptociudad" v-model="emailProps.logos[Logo.Criptociudad]" />
-            Criptociudad
+            Criptociudad (criptociudad.cr)
           </label>
           <label>
             <input type="checkbox" :name="Logo.Kryptostadt" :value="Logo.Kryptostadt" v-model="emailProps.logos[Logo.Kryptostadt]" />
-            Kryptostadt
+            Kryptostadt (kryptostadt.info)
           </label>
         </fieldset>
 
-        <fieldset style="margin-top: 12px; display: flex; flex-direction: column">
+        <fieldset style="margin-bottom: 24px; display: flex; flex-direction: column">
           <legend>Social Media</legend>
           <blockquote style="margin: 0">
             <p style="margin:0">
@@ -154,7 +154,7 @@ async function download() {
             <input v-model="emailProps.socialMedia.twitter" />
           </label>
         </fieldset>
-        <fieldset>
+        <fieldset style="margin-top: 24px">
           <legend>Disclosure</legend>
           <textarea v-model="emailProps.disclosure"
             style="width: 100%; height: 100px; min-height: 400px; resize: none; box-sizing: border-box; padding: 12px; margin-top: 12px; font-size:12px;"></textarea>
