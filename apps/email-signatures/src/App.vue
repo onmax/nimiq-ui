@@ -179,7 +179,7 @@ function resetData() {
 
     <div>
       <h2>Preview</h2>
-      <div style="border: 1px solid rgba(225, 225, 232, 0.5); margin: 0 auto; min-width: 400px">
+      <div style="border: 1px solid rgba(225, 225, 232, 0.5); margin: 0 auto; width: 600px">
         <Email v-bind="input" />
       </div>
     </div>

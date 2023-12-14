@@ -20,7 +20,7 @@ const props = defineProps({
 
 const telegram = computed(() => ({ username: '@' + props.telegram.split('/').at(-1), url: props.telegram }))
 const facebook = computed(() => ({ username: '/' + props.facebook.split('/').at(-1), url: props.facebook }))
-const youtube = computed(() => ({ username: props.youtube.split('/').at(-1), url: props.youtube }))
+const youtube = computed(() => ({ username: '@' + props.youtube.split('/').at(-1), url: props.youtube }))
 const instagram = computed(() => ({ username: '@' + props.instagram.split('/').at(-1), url: props.instagram }))
 const twitter = computed(() => ({ username: '@' + props.twitter.split('/').at(-1), url: props.twitter }))
 
@@ -80,7 +80,7 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
           </EColumn>
         </ERow>
 
-        <ESection v-if="telegram">
+        <ESection v-if="telegram.url">
           <EText style="vertical-align: middle; display: inline-block; margin:0;line-height: 1;">
             <ELink :href="telegram.url" style="font-size:12px;color:rgba(16,21,49,0.5);margin:0;line-height: 1;">
               <EImg :src="`${baseUrl}/telegram.png`" alt="Telegram" width="14" height="14"
@@ -115,7 +115,9 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
           </EText>
         </ESection>
 
-        <ESection style="font-size: 8px; color: rgba(31, 35, 72, 0.5); margin-top: 24px">
+                <ESection style="margin-top: 40px" v-if="disclosure" />
+
+        <ESection v-if="disclosure" style="font-size: 8px; color: rgba(31, 35, 72, 0.5)">
           <EText v-for="line in disclosure" :key="line" style="margin: 8px 0;font-style: normal;">{{ line }}</EText>
         </ESection>
       </EContainer>
