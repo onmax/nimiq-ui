@@ -77,20 +77,17 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
               {{ email }}
             </ELink>
             <EText v-if="phoneNumber" style="font-size: 12px; margin: 0;line-height: 1;margin-top:6px">{{ phoneNumber }}</EText>
+
+            <EText v-if="telegram.url" style="vertical-align: middle; display: inline-block; margin:0;margin-top:5px;line-height: 1;">
+              <ELink :href="telegram.url" style="font-size:12px;color:rgba(16,21,49,0.5);margin:0;line-height: 1;">
+                <EImg :src="`${baseUrl}/telegram.png`" alt="Telegram" width="14" height="14"
+                  style="border: none; display: inline; outline: none; text-decoration: none; position:relative;bottom:-3px" />
+                &nbsp;{{ telegram.username }}
+              </ELink>
+              &nbsp;&nbsp;&nbsp;
+            </EText>
           </EColumn>
         </ERow>
-
-        <ESection v-if="telegram.url">
-          <EText style="vertical-align: middle; display: inline-block; margin:0;line-height: 1;">
-            <ELink :href="telegram.url" style="font-size:12px;color:rgba(16,21,49,0.5);margin:0;line-height: 1;">
-              <EImg :src="`${baseUrl}/telegram.png`" alt="Telegram" width="14" height="14"
-                style="border: none; display: inline; outline: none; text-decoration: none; position:relative;bottom:-3px" />
-              &nbsp;{{ telegram.username }}
-            </ELink>
-            &nbsp;&nbsp;&nbsp;
-          </EText>
-        </ESection>
-
 
         <ESection style="margin-top: 40px" />
 

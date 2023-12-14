@@ -87,9 +87,11 @@ function resetData() {
           <li><a
               href="https://www.christopherbolt.com/support/knowledgebase/24/Installing-HTML-email-signatures-in-Microsoft-Outlook.html"
               target="_blank">Outlook</a></li>
-          <li><a href="https://docs.gandi.net/en/gandimail/sogo_webmail/signature.html" target="_blank">Nimiq Email
+          <li><a href="/sogo-instructions.pdf" target="_blank">Nimiq Email
               (SOGo)</a></li>
         </ul>
+
+        
       </li>
 
       <li>🪄 Send an email to yourself to test if it works</li>
