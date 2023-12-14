@@ -9,6 +9,11 @@ Nimiq's Email signatures
  The template for Nimiq's email signatures.
 <p>
 
+<p align="center">
+<a href="https://frabjous-pothos-386060.netlify.app/" target="__blank"><img src="https://img.shields.io/badge/See-Online-blue?style=flat&colorA=1F2348&colorB=f6c430" alt="Online Tool"></a>
+<a href="https://www.vuemail.net/" target="__blank"><img src="https://img.shields.io/badge/Vue-Email-blue?style=flat&colorA=1F2348&colorB=f6c430" alt="Vue Email"></a>
+</p>
+
 <details>
 <summary>See the HTML Code</summary>
 
