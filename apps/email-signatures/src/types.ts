@@ -7,11 +7,11 @@ export enum Logo {
 export type Logos = Record<Logo, boolean>
 
 export enum SocialMedia { 
-  Telegram = 'telegram',
-  Facebook = 'facebook',
-  Youtube = 'youtube',
-  Instagram = 'instagram',
-  Twitter = 'twitter',
+  Telegram = 'Telegram',
+  Facebook = 'Facebook',
+  Youtube = 'Youtube',
+  Instagram = 'Instagram',
+  Twitter = 'Twitter',
 }
 
 export type SocialMediaList = Record<SocialMedia, string>

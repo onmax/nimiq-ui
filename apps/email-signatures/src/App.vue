@@ -1,43 +1,35 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 import Email from './components/Email.vue';
 import { useRender } from 'vue-email';
-import { SocialMediaList, Logos, SocialMedia, Logo } from './types';
+import { Logo } from './types';
+import { useLocalStorage } from '@vueuse/core';
+import { profile as defaultProfile } from './profiles';
+import GithubButton from 'vue-github-button'
 
-const socialMedia = ref<SocialMediaList>({
-  [SocialMedia.Telegram]: 'https://t.me/johndoe',
-  [SocialMedia.Facebook]: 'https://facebook.com/johndoe',
-  [SocialMedia.Youtube]: 'https://youtube.com/johndoe',
-  [SocialMedia.Instagram]: 'https://instagram.com/johndoe',
-  [SocialMedia.Twitter]: 'https://twitter.com/johndoe',
-})
+const name = useLocalStorage('name', defaultProfile.name, { writeDefaults: false });
+const role = useLocalStorage('role', defaultProfile.role, { writeDefaults: false });
+const email = useLocalStorage('email', defaultProfile.email, { writeDefaults: false });
+const phoneNumber = useLocalStorage('phoneNumber', defaultProfile.phoneNumber, { writeDefaults: false });
+const logos = useLocalStorage('logos', defaultProfile.logos, { writeDefaults: false });
+const telegram = useLocalStorage('telegram', defaultProfile.telegram, { writeDefaults: false });
+const facebook = useLocalStorage('facebook', defaultProfile.facebook, { writeDefaults: false });
+const youtube = useLocalStorage('youtube', defaultProfile.youtube, { writeDefaults: false });
+const instagram = useLocalStorage('instagram', defaultProfile.instagram, { writeDefaults: false });
+const twitter = useLocalStorage('twitter', defaultProfile.twitter, { writeDefaults: false });
+const disclosure = useLocalStorage('disclosure', defaultProfile.disclosure, { writeDefaults: false });
 
-const logos = ref<Logos>({
-  [Logo.Nimiq]: true,
-  [Logo.Kryptostadt]: false,
-  [Logo.Criptociudad]: false,
-})
+const input = reactive({ name, role, email, phoneNumber, logos, telegram, facebook, youtube, instagram, twitter, disclosure });
 
-const emailProps = reactive({
-  name: 'John Doe',
-  email: 'johndoe@nimiq.com',
-  phoneNumber: '+1 123 456 7890',
-  socialMedia,
-  logos,
-  disclosure: `
-Disclosure:
-Message test class font face subscriber mail video cross-campaign email lotus transactional, week the double selective html exactly authentication help uce reverse, signature ecoa group sends none rich domainkeys mailing delivery. Targeting content confirmation html crm rental is &, important client figuring line rate pushed handling, try started avoid alt be digest.
-Email worm clients of never challenge pretty market subscribers, flawless verification effective segment read uce div get, msp want an pre forward right subscriber. Great place denial-of-service cost uniform folder market snail bring dpi relay, opt-in call hygiene open treat line blacklist address.
-  `.trim(),
-})
+const pretty = useLocalStorage('pretty', false);
 
 async function copy() {
-  await navigator.clipboard?.writeText(await useRender(Email, { props: emailProps }, { pretty: true }));
+  await navigator.clipboard?.writeText(await useRender(Email, { props: input }, { pretty: pretty.value }));
   alert('Copied to clipboard!');
 }
 
 async function download() {
-  const html = await useRender(Email, { props: emailProps }, { pretty: true });
+  const html = await useRender(Email, { props: input }, { pretty: pretty.value });
   const blob = new Blob([html], { type: 'text/html' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -46,6 +38,15 @@ async function download() {
   a.click();
   URL.revokeObjectURL(url);
 }
+
+function resetData() {
+  if (confirm('Are you sure you want to reset the data?')) {
+    localStorage.clear();
+    window.location.reload();
+  }
+}
+
+
 </script>
 
 <template>
@@ -56,6 +57,8 @@ async function download() {
     </h1>
     <p>
       A dynamic email signature generator for Nimiq.
+      <github-button href="https://github.com/onmax/nimiq-ui/tree/main/apps/email-signatures"
+        aria-label="Source code on GitHub" style="float:right">See source code</github-button>
     </p>
 
     <h2>How to use it?</h2>
@@ -70,8 +73,11 @@ async function download() {
           <p style="margin:0">
             <strong>Important:</strong> Download might not work. Create a new file in your computer called
             <code>
-                "nimiq-email-signature.html"</code> and paste the HTML there.
+                  "nimiq-email-signature.html"</code> and paste the HTML there.
           </p>
+          <label style="margin-left:8px">
+            <input type="checkbox" v-model="pretty" /> Pretty output (leave unchecked for better output)
+          </label>
         </blockquote>
       </li>
       <li>✉️ Read this guides to add the HTML to you email client:
@@ -92,41 +98,48 @@ async function download() {
 
   <div style="display: flex; gap: 32px; justify-content: center; margin: 12px auto">
     <div style="width: min(300px, 500px, 600px)">
-      <h2>Your data</h2>
+      <div style="display: flex; gap: 8px; justify-content: space-between; align-items: center;">
+        <h2>Your data</h2> <button style="height: max-content;" @click="resetData">Reset data</button>
+      </div>
       <form>
-        <fieldset style="display: flex; flex-direction:column; margin-bottom: 24px">
+        <fieldset>
           <legend>Personal info</legend>
           <label>
             Name:
-            <input v-model="emailProps.name" />
+            <input v-model="name" />
+          </label>
+          <label>
+            Role:
+            <input v-model="role" />
           </label>
           <label>
             Email:
-            <input v-model="emailProps.email" />
+            <input v-model="email" />
           </label>
           <label>
             Phone Number:
-            <input v-model="emailProps.phoneNumber" />
+            <input v-model="phoneNumber" />
           </label>
         </fieldset>
-        <fieldset style="margin-bottom: 24px; user-select: none; display: flex; flex-direction: column">
+        <fieldset style="user-select: none; ">
           <legend>Logos</legend>
 
           <label>
-            <input type="checkbox" :name="Logo.Nimiq"  :value="Logo.Nimiq" v-model="emailProps.logos[Logo.Nimiq]" />
+            <input type="checkbox" :name="Logo.Nimiq" :value="Logo.Nimiq" v-model="logos[Logo.Nimiq]" />
             Nimiq (nimiq.com)
           </label>
           <label>
-            <input type="checkbox" :name="Logo.Criptociudad" :value="Logo.Criptociudad" v-model="emailProps.logos[Logo.Criptociudad]" />
+            <input type="checkbox" :name="Logo.Criptociudad" :value="Logo.Criptociudad"
+              v-model="logos[Logo.Criptociudad]" />
             Criptociudad (criptociudad.cr)
           </label>
           <label>
-            <input type="checkbox" :name="Logo.Kryptostadt" :value="Logo.Kryptostadt" v-model="emailProps.logos[Logo.Kryptostadt]" />
+            <input type="checkbox" :name="Logo.Kryptostadt" :value="Logo.Kryptostadt" v-model="logos[Logo.Kryptostadt]" />
             Kryptostadt (kryptostadt.info)
           </label>
         </fieldset>
 
-        <fieldset style="margin-bottom: 24px; display: flex; flex-direction: column">
+        <fieldset>
           <legend>Social Media</legend>
           <blockquote style="margin: 0">
             <p style="margin:0">
@@ -137,28 +150,28 @@ async function download() {
 
           <label style="margin-top: 12px">
             Telegram:
-            <input v-model="emailProps.socialMedia.telegram" />
+            <input v-model="telegram" />
           </label>
           <label>
             Facebook:
-            <input v-model="emailProps.socialMedia.facebook" />
+            <input v-model="facebook" />
           </label>
           <label>
             Youtube:
-            <input v-model="emailProps.socialMedia.youtube" />
+            <input v-model="youtube" />
           </label>
           <label>
             Instagram:
-            <input v-model="emailProps.socialMedia.instagram" />
+            <input v-model="instagram" />
           </label>
           <label>
             Twitter:
-            <input v-model="emailProps.socialMedia.twitter" />
+            <input v-model="twitter" />
           </label>
         </fieldset>
-        <fieldset style="margin-top: 24px">
+        <fieldset>
           <legend>Disclosure</legend>
-          <textarea v-model="emailProps.disclosure"
+          <textarea v-model="disclosure"
             style="width: 100%; height: 100px; min-height: 400px; resize: none; box-sizing: border-box; padding: 12px; margin-top: 12px; font-size:12px;"></textarea>
         </fieldset>
       </form>
@@ -166,11 +179,19 @@ async function download() {
 
     <div>
       <h2>Preview</h2>
-      <div style="border: 1px solid #ccc; margin: 0 auto; min-width: 400px">
-        <Email v-bind="emailProps" />
+      <div style="border: 1px solid rgba(225, 225, 232, 0.5); margin: 0 auto; min-width: 400px">
+        <Email v-bind="input" />
       </div>
     </div>
 
   </div>
 </template>
 
+<style scoped>
+fieldset {
+  border-color: rgba(225, 225, 232, 0.5);
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+}
+</style>
