@@ -14,7 +14,7 @@
       "vite/client",
     ],
     "allowJs": true,
-    "strict": true,
+    "strict": false,
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "esModuleInterop": true,

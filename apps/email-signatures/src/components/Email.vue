@@ -41,7 +41,7 @@ watch(() => props, async () => {
   await nextTick()
   primarySocial.value = getPrimarySocial()
   restSocial.value = getRestSocial(primarySocial.value?.social)
-}, {deep: true})
+}, { deep: true })
 
 const disclosure = computed(() => toValue(props.disclosure).split('\n').filter(Boolean) ?? [])
 
@@ -68,32 +68,31 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
     </EHead>
 
     <EBody :style="{
-      backgroundColor: '#fff',
       fontFamily: 'Mulish,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji',
       padding: '24px',
       fontStyle: 'normal',
     }">
       <EContainer>
         <ESection>
-          <EHeading style="font-size: 24px; font-weight: bold; color: rgb(31, 35, 72); margin: 0;padding-left:3px" v-if="name"> {{ name }}
+          <EHeading style="font-size: 24px; font-weight: bold;  margin: 0;padding-left:3px" v-if="name"> {{ name }}
           </EHeading>
         </ESection>
 
         <ESection>
           <EHeading as="h4"
-            style="font-size: 12px; color: rgba(16, 21, 49, 0.5); font-weight: 400; margin-top: 2px; margin-bottom: 0px;padding-left:3px"
-            v-if="role"> {{ role }}
+            style="font-size: 12px; font-weight: 400; margin-top: 2px; margin-bottom: 0px;padding-left:3px" v-if="role">
+            {{ role }}
           </EHeading>
         </ESection>
 
 
-        <ERow style=" color:rgba(16, 21, 49, 0.5); margin-top:24px">
+        <ERow style=" margin-top:24px">
           <EColumn>
-            <ELink :href="`mailto:${email}`"
-              style="font-size:12px; margin: 0; color: rgba(16, 21, 49, 0.5); text-decoration: none;padding-left:3px">
+            <ELink :href="`mailto:${email}`" style="font-size:12px; margin: 0; text-decoration: none;padding-left:3px">
               {{ email }}
             </ELink>
-            <EText v-if="phoneNumber" style="font-size: 12px; margin: 0;line-height: 1;margin-top:8px;padding-left:3px">{{ phoneNumber }}
+            <EText v-if="phoneNumber" style="font-size: 12px; margin: 0;line-height: 1;margin-top:8px;padding-left:3px">{{
+              phoneNumber }}
             </EText>
 
             <EText v-if="primarySocial"
@@ -119,9 +118,8 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
         </ERow>
 
         <ESection>
-          <EText v-for="social in restSocial"
-            style="vertical-align: middle; display: inline-block; margin:0">
-            <ELink :href="social.url" style="font-size:12px;color:rgba(16,21,49,0.5);margin:0;line-height: 1;">
+          <EText v-for="social in restSocial" style="vertical-align: middle; display: inline-block; margin:0">
+            <ELink :href="social.url" style="font-size:12px;margin:0;line-height: 1;">
               <EImg :src="social.img" :alt="social.social" width="24" height="20"
                 style="border: none; display: inline; outline: none; text-decoration: none; position:relative;bottom:-6px" />
               {{ social.username }}
@@ -132,10 +130,39 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
 
         <ESection style="margin-top: 40px" v-if="disclosure" />
 
-        <ESection v-if="disclosure" style="font-size: 8px; color: rgba(31, 35, 72, 0.5)">
-          <EText v-for="line in disclosure" :key="line" style="margin: 8px 0;font-style: normal;padding-left:3px">{{ line }}</EText>
+        <ESection v-if="disclosure" style=" color: ">
+          <EText v-for="line in disclosure" :key="line" style="margin: 8px 0;font-style: normal;padding-left:3px;font-size: 12px;">{{ line
+          }}</EText>
         </ESection>
       </EContainer>
     </EBody>
   </EHtml>
 </template>
+
+<style scoped>
+h1 {
+  color: rgba(15, 21, 49) !important;
+}
+
+p,
+a,
+h4 {
+  color: rgba(15, 21, 49, 0.5) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #12163c !important;
+  }
+
+  h1 {
+    color: rgba(255, 255, 255) !important;
+  }
+
+  p,
+  a,
+  h4 {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+}
+</style>
