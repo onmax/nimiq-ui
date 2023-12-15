@@ -1,8 +1,8 @@
 
 <script setup lang="ts">
 import { EHtml, EHead, EFont, EBody, EText, EContainer, EColumn, ERow, ESection, EImg, EHeading, ELink } from "vue-email"
-import { computed, toValue, type PropType } from 'vue';
-import { Logo, Logos } from "../types";
+import { computed, toValue, type PropType, ref, watch, nextTick } from 'vue';
+import { Logo, Logos, SocialMedia } from "../types";
 
 const props = defineProps({
   name: { type: String },
@@ -16,17 +16,34 @@ const props = defineProps({
   instagram: { type: String, default: '' },
   logos: { type: Object as PropType<Logos>, required: true },
   disclosure: { type: String, default: '' },
+  primarySocial: { type: String as PropType<SocialMedia> },
 })
 
-const telegram = computed(() => ({ username: '@' + props.telegram.split('/').at(-1), url: props.telegram }))
-const facebook = computed(() => ({ username: '/' + props.facebook.split('/').at(-1), url: props.facebook }))
-const youtube = computed(() => ({ username: '@' + props.youtube.split('/').at(-1), url: props.youtube }))
-const instagram = computed(() => ({ username: '@' + props.instagram.split('/').at(-1), url: props.instagram }))
-const twitter = computed(() => ({ username: '@' + props.twitter.split('/').at(-1), url: props.twitter }))
+const baseUrl = "https://www.nimiq.com/email-signatures"
+
+const socials = computed(() => ([
+  { username: '@' + props.twitter.split('/').at(-1), url: props.twitter, img: baseUrl + '/twitter.png', social: SocialMedia.Twitter },
+  { username: '@' + props.telegram.split('/').at(-1), url: props.telegram, img: baseUrl + '/telegram.png', social: SocialMedia.Telegram },
+  { username: '/' + props.facebook.split('/').at(-1), url: props.facebook, img: baseUrl + '/facebook.png', social: SocialMedia.Facebook },
+  { username: '@' + props.youtube.split('/').at(-1), url: props.youtube, img: baseUrl + '/youtube.png', social: SocialMedia.Youtube },
+  { username: '@' + props.instagram.split('/').at(-1), url: props.instagram, img: baseUrl + '/instagram.png', social: SocialMedia.Instagram },
+] as const))
+
+const getPrimarySocial = () => props.primarySocial ? socials.value.find(social => social.social === props.primarySocial && social.url) : undefined
+const getRestSocial = (primary?: SocialMedia) => Object.entries(socials.value).filter(([_, value]) => value.social !== primary && value.url).map(([_, value]) => value)
+
+const primarySocial = ref(getPrimarySocial())
+const restSocial = ref(getRestSocial(primarySocial.value?.social))
+
+watch(() => props, async () => {
+  primarySocial.value = undefined
+  restSocial.value = []
+  await nextTick()
+  primarySocial.value = getPrimarySocial()
+  restSocial.value = getRestSocial(primarySocial.value?.social)
+}, {deep: true})
 
 const disclosure = computed(() => toValue(props.disclosure).split('\n').filter(Boolean) ?? [])
-
-const baseUrl = "https://www.nimiq.com/email-signatures"
 
 const urls = {
   [Logo.Criptociudad]: 'https://www.criptociudad.cr/',
@@ -58,13 +75,13 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
     }">
       <EContainer>
         <ESection>
-          <EHeading style="font-size: 24px; font-weight: bold; color: rgb(31, 35, 72); margin: 0;" v-if="name"> {{ name }}
+          <EHeading style="font-size: 24px; font-weight: bold; color: rgb(31, 35, 72); margin: 0;padding-left:3px" v-if="name"> {{ name }}
           </EHeading>
         </ESection>
 
         <ESection>
           <EHeading as="h4"
-            style="font-size: 12px; color: rgba(16, 21, 49, 0.5); font-weight: 400; margin-top: 2px; margin-bottom: 0px"
+            style="font-size: 12px; color: rgba(16, 21, 49, 0.5); font-weight: 400; margin-top: 2px; margin-bottom: 0px;padding-left:3px"
             v-if="role"> {{ role }}
           </EHeading>
         </ESection>
@@ -73,16 +90,18 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
         <ERow style=" color:rgba(16, 21, 49, 0.5); margin-top:24px">
           <EColumn>
             <ELink :href="`mailto:${email}`"
-              style="font-size:12px; margin: 0; color: rgba(16, 21, 49, 0.5); text-decoration: none;">
+              style="font-size:12px; margin: 0; color: rgba(16, 21, 49, 0.5); text-decoration: none;padding-left:3px">
               {{ email }}
             </ELink>
-            <EText v-if="phoneNumber" style="font-size: 12px; margin: 0;line-height: 1;margin-top:6px">{{ phoneNumber }}</EText>
+            <EText v-if="phoneNumber" style="font-size: 12px; margin: 0;line-height: 1;margin-top:8px;padding-left:3px">{{ phoneNumber }}
+            </EText>
 
-            <EText v-if="telegram.url" style="vertical-align: middle; display: inline-block; margin:0;margin-top:5px;line-height: 1;">
-              <ELink :href="telegram.url" style="font-size:12px;color:rgba(16,21,49,0.5);margin:0;line-height: 1;">
-                <EImg :src="`${baseUrl}/telegram.png`" alt="Telegram" width="14" height="14"
-                  style="border: none; display: inline; outline: none; text-decoration: none; position:relative;bottom:-3px" />
-                &nbsp;{{ telegram.username }}
+            <EText v-if="primarySocial"
+              style="vertical-align: middle; display: inline-block; margin:0;box-sizing: border-box;">
+              <ELink :href="primarySocial.url" style="font-size:12px;color:rgba(16,21,49,0.5);margin:0;line-height: 1;">
+                <EImg :src="primarySocial.img" :alt="primarySocial.social" width="24" height="20"
+                  style="border: none; display: inline; outline: none; text-decoration: none; position:relative;bottom:-6px" />
+                {{ primarySocial.username }}
               </ELink>
               &nbsp;&nbsp;&nbsp;
             </EText>
@@ -100,22 +119,21 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
         </ERow>
 
         <ESection>
-          <EText
-            v-for="[social, { url, username }] in Object.entries({ facebook, youtube, instagram, twitter }).filter(([_, { url }]) => !!url)"
+          <EText v-for="social in restSocial"
             style="vertical-align: middle; display: inline-block; margin:0">
-            <ELink :href="url" style="font-size:12px;color:rgba(16,21,49,0.5);margin:0;line-height: 1;">
-              <EImg :src="`${baseUrl}/${social}.png`" :alt="social" width="14" height="14"
-                style="border: none; display: inline; outline: none; text-decoration: none; position:relative;bottom:-3px" />
-              &nbsp;{{ username }}
+            <ELink :href="social.url" style="font-size:12px;color:rgba(16,21,49,0.5);margin:0;line-height: 1;">
+              <EImg :src="social.img" :alt="social.social" width="24" height="20"
+                style="border: none; display: inline; outline: none; text-decoration: none; position:relative;bottom:-6px" />
+              {{ social.username }}
             </ELink>
             &nbsp;&nbsp;&nbsp;
           </EText>
         </ESection>
 
-                <ESection style="margin-top: 40px" v-if="disclosure" />
+        <ESection style="margin-top: 40px" v-if="disclosure" />
 
         <ESection v-if="disclosure" style="font-size: 8px; color: rgba(31, 35, 72, 0.5)">
-          <EText v-for="line in disclosure" :key="line" style="margin: 8px 0;font-style: normal;">{{ line }}</EText>
+          <EText v-for="line in disclosure" :key="line" style="margin: 8px 0;font-style: normal;padding-left:3px">{{ line }}</EText>
         </ESection>
       </EContainer>
     </EBody>

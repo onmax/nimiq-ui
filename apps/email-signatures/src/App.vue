@@ -2,7 +2,7 @@
 import { reactive } from 'vue';
 import Email from './components/Email.vue';
 import { useRender } from 'vue-email';
-import { Logo } from './types';
+import { Logo, SocialMedia } from './types';
 import { useLocalStorage } from '@vueuse/core';
 import { profile as defaultProfile } from './profiles';
 import GithubButton from 'vue-github-button'
@@ -17,9 +17,10 @@ const facebook = useLocalStorage('facebook', defaultProfile.facebook, { writeDef
 const youtube = useLocalStorage('youtube', defaultProfile.youtube, { writeDefaults: false });
 const instagram = useLocalStorage('instagram', defaultProfile.instagram, { writeDefaults: false });
 const twitter = useLocalStorage('twitter', defaultProfile.twitter, { writeDefaults: false });
+const primarySocial = useLocalStorage<SocialMedia>('primarySocial', SocialMedia.Telegram, { writeDefaults: false });
 const disclosure = useLocalStorage('disclosure', defaultProfile.disclosure, { writeDefaults: false });
 
-const input = reactive({ name, role, email, phoneNumber, logos, telegram, facebook, youtube, instagram, twitter, disclosure });
+const input = reactive({ name, role, email, phoneNumber, logos, telegram, facebook, youtube, instagram, twitter, disclosure, primarySocial });
 
 const pretty = useLocalStorage('pretty', false);
 
@@ -46,7 +47,7 @@ function resetData() {
   }
 }
 
-
+const showDarkPreview = useLocalStorage('showDarkPreview', false); 
 </script>
 
 <template>
@@ -73,7 +74,7 @@ function resetData() {
           <p style="margin:0">
             <strong>Important:</strong> Download might not work. Create a new file in your computer called
             <code>
-                  "nimiq-email-signature.html"</code> and paste the HTML there.
+                    "nimiq-email-signature.html"</code> and paste the HTML there.
           </p>
           <label style="margin-left:8px">
             <input type="checkbox" v-model="pretty" /> Pretty output (leave unchecked for better output)
@@ -91,7 +92,7 @@ function resetData() {
               (SOGo)</a></li>
         </ul>
 
-        
+
       </li>
 
       <li>🪄 Send an email to yourself to test if it works</li>
@@ -151,6 +152,14 @@ function resetData() {
           </blockquote>
 
           <label style="margin-top: 12px">
+            Primary Social Media:
+
+            <select v-model="primarySocial">
+              <option v-for="social in Object.values(SocialMedia)" :value="social">{{ social }}</option>
+            </select>
+          </label>
+
+          <label style="margin-top: 12px">
             Telegram:
             <input v-model="telegram" />
           </label>
@@ -180,8 +189,17 @@ function resetData() {
     </div>
 
     <div>
-      <h2>Preview</h2>
-      <div style="border: 1px solid rgba(225, 225, 232, 0.5); margin: 0 auto; width: 600px">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>Preview</h2>
+        <button @click="showDarkPreview = !showDarkPreview">
+          <svg v-if="showDarkPreview" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path fill="#888888" d="M16 12.005a4 4 0 1 1-4 4a4.005 4.005 0 0 1 4-4m0-2a6 6 0 1 0 6 6a6 6 0 0 0-6-6M5.394 6.813L6.81 5.399l3.505 3.506L8.9 10.319zM2 15.005h5v2H2zm3.394 10.193L8.9 21.692l1.414 1.414l-3.505 3.506zM15 25.005h2v5h-2zm6.687-1.9l1.414-1.414l3.506 3.506l-1.414 1.414zm3.313-8.1h5v2h-5zm-3.313-6.101l3.506-3.506l1.414 1.414l-3.506 3.506zM15 2.005h2v5h-2z"/></svg>
+
+          <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path fill="#888888" d="M13.503 5.414a15.076 15.076 0 0 0 11.593 18.194a11.113 11.113 0 0 1-7.975 3.39c-.138 0-.278.005-.418 0a11.094 11.094 0 0 1-3.2-21.584M14.98 3a1.002 1.002 0 0 0-.175.016a13.096 13.096 0 0 0 1.825 25.981c.164.006.328 0 .49 0a13.072 13.072 0 0 0 10.703-5.555a1.01 1.01 0 0 0-.783-1.565A13.08 13.08 0 0 1 15.89 4.38A1.015 1.015 0 0 0 14.98 3"/></svg>
+        </button>
+
+
+      </div>
+      <div style="border: 1px solid rgba(225, 225, 232, 0.5); margin: 0 auto; width: 600px" :class="showDarkPreview ? 'dark' : ''">
         <Email v-bind="input" />
       </div>
     </div>
@@ -189,11 +207,16 @@ function resetData() {
   </div>
 </template>
 
-<style scoped>
+<style>
 fieldset {
   border-color: rgba(225, 225, 232, 0.5);
   margin-top: 16px;
   display: flex;
   flex-direction: column;
+}
+
+.dark   {
+  background-color: #1f2338 !important;
+  color: #fff !important;
 }
 </style>
