@@ -12,6 +12,7 @@ export enum SocialMedia {
   Youtube = 'Youtube',
   Instagram = 'Instagram',
   Twitter = 'Twitter',
+  None = 'none'
 }
 
 export type SocialMediaList = Record<SocialMedia, string>
