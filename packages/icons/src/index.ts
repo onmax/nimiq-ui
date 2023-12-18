@@ -32,7 +32,7 @@ iconSet.list().forEach((iconName) => {
   if (svg) {
     cleanupSVG(svg)
     runSVGO(svg)
-    parseColorsSync(svg, { defaultColor: 'currentColor' })
+    parseColorsSync(svg, { defaultColor: 'currentColor', callback: () => 'currentColor' })
     iconSet.setIcon(iconName, svg.getIcon())
   }
 })
