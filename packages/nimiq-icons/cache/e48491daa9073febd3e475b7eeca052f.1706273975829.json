@@ -1,5 +1,0 @@
-{
-    "version": 1,
-    "expires": 1706273975829,
-    "data": "<svg width=\"96\" height=\"96\" viewBox=\"0 0 96 96\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M52 92H44\" stroke=\"black\" stroke-width=\"6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<path d=\"M48 24C34.745 24 24 34.745 24 48C24 55.279 28.583 61.8 34.184 66.202C36.43 67.966 38 70.548 38 73.404V76C38 77.0609 38.4214 78.0783 39.1716 78.8284C39.9217 79.5786 40.9391 80 42 80H54C55.0609 80 56.0783 79.5786 56.8284 78.8284C57.5786 78.0783 58 77.0609 58 76V73.404C58 70.548 59.57 67.966 61.816 66.202C67.417 61.8 72 55.279 72 48C72 34.745 61.255 24 48 24Z\" stroke=\"black\" stroke-width=\"6\"/>\n<path d=\"M92 48H85M4 48H11M48 4V11M79.112 16.887L74.162 21.837M16.888 16.887L21.838 21.837\" stroke=\"black\" stroke-width=\"6\" stroke-linecap=\"round\"/>\n</svg>\n"
-}

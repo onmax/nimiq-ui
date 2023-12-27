@@ -10,7 +10,6 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.0.0",
-    "@unocss/preset-attributify": "^0.58.0",
     "bun-types": "^1.0.13",
     "eslint": "^8.54.0"
   },

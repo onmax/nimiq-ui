@@ -1,8 +1,6 @@
 import { exit } from 'node:process'
-import { exists, mkdir } from 'node:fs/promises'
-import { cleanupSVG, exportIconPackage, exportJSONPackage, importFromFigma, parseColorsSync, runSVGO } from '@iconify/tools'
-import { compareColors, stringToColor } from '@iconify/utils/lib/colors';
-import { IconSet, parseColors, isEmptyColor } from '@iconify/tools';
+import { cleanupSVG, exportJSONPackage, importFromFigma, isEmptyColor, parseColorsSync, runSVGO } from '@iconify/tools'
+import { compareColors, stringToColor } from '@iconify/utils/lib/colors'
 
 // Get Figma file ID and API token from environment variables
 const file = Bun.env.FIGMA_FILE_ID
@@ -45,34 +43,32 @@ iconSet.list().forEach((iconName) => {
 
       // Callback to parse each color
       callback: (attr, colorStr, color) => {
-          if (!color) {
-              // color === null, so color cannot be parsed
-              // Return colorStr to keep old value
-              return colorStr;
-          }
+        if (!color) {
+          // color === null, so color cannot be parsed
+          // Return colorStr to keep old value
+          return colorStr
+        }
 
-          if (isEmptyColor(color)) {
-              // Color is empty: 'none' or 'transparent'
-              // Return color object to keep old value
-              return color;
-          }
+        if (isEmptyColor(color)) {
+          // Color is empty: 'none' or 'transparent'
+          // Return color object to keep old value
+          return color
+        }
 
-          // Black color: change to 'currentColor'
-          if (compareColors(color, stringToColor('black')!)) {
-              return 'currentColor';
-          }
+        // Black color: change to 'currentColor'
+        if (compareColors(color, stringToColor('black')!))
+          return 'currentColor'
 
-          // White color: belongs to white background rectangle: remove rectangle
-          if (compareColors(color, stringToColor('white')!)) {
-              return 'remove';
-          }
+        // White color: belongs to white background rectangle: remove rectangle
+        if (compareColors(color, stringToColor('white')!))
+          return 'remove'
 
-          return color;
+        return color
       },
-  });
+    })
 
-  console.log(`Exporting ${name}...`)
-  iconSet.setIcon(name, svg.getIcon())
+    console.log(`Exporting ${name}...`)
+    iconSet.setIcon(name, svg.getIcon())
   }
 })
 
