@@ -27,19 +27,19 @@ jobs:
 
       - name: Install dependencies
         run: bun install
-        working-directory: packages/icons
+        working-directory: packages/nimiq-icons
 
       - name: Run script
         run: bun src/index.ts
-        working-directory: packages/icons
+        working-directory: packages/nimiq-icons
         env:
           FIGMA_FILE_ID: ${{ secrets.FIGMA_FILE_ID }}
           FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
 
-      - working-directory: packages/icons
+      - working-directory: packages/nimiq-icons
         run: |
           git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
           git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
-          git add dist/icons.json --force
-          git commit -m "Updated icons.json"
+          git add dist --force
+          git commit -m "Updated icons"
           git push
