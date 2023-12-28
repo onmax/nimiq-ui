@@ -1,5 +1,0 @@
-{
-  "version": 1,
-  "expires": 1706276083139,
-  "data": "<svg width=\"12\" height=\"11\" viewBox=\"0 0 12 11\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_12_2)\">\n<mask id=\"mask0_12_2\" style=\"mask-type:luminance\" maskUnits=\"userSpaceOnUse\" x=\"0\" y=\"0\" width=\"12\" height=\"11\">\n<path d=\"M12 11H0V0H12V11Z\" fill=\"white\"/>\n</mask>\n<g mask=\"url(#mask0_12_2)\">\n<path d=\"M7.49998 1.95999L10.999 5.49999L7.49898 9.03999M9.45398 5.77199H1.45398\" stroke=\"black\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</g>\n</g>\n<defs>\n<clipPath id=\"clip0_12_2\">\n<rect width=\"12\" height=\"11\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n"
-}
