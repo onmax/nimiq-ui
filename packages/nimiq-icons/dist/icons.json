@@ -2,104 +2,108 @@
 	"prefix": "nimiq",
 	"icons": {
 		"arrow-left": {
-			"body": "<path fill=\"none\" stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4.666 10 1 6l3.667-4M2.619 6H11\"/>"
+			"body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4.666 10 1 6l3.667-4M2.619 6H11\"/>"
 		},
 		"arrow-right": {
-			"body": "<path fill=\"none\" stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M7.334 2 11 6l-3.667 4m2.048-4H1\"/>"
+			"body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M7.334 2 11 6l-3.667 4m2.048-4H1\"/>"
 		},
 		"arrow-top-right": {
-			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3.657 1.887h6.363V8.25M8.91 3.279l-7.497 7.5\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
+			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3.657 1.887h6.363V8.25M8.91 3.279l-7.497 7.5\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
 		},
 		"bolt": {
-			"body": "<path fill=\"#1F2348\" d=\"m4.458 4.298.779-4.04C5.289.025 4.925-.1 4.769.096L.055 5.972a.236.236 0 00-.018.277.29.29 0 00.115.104.352.352 0 00.162.037h2.43c.312 0 .561.25.52.516l-.748 3.837c-.052.231.312.356.467.16L7.47 5.304a.393.393 0 00.03-.456.482.482 0 00-.19-.173.585.585 0 00-.265-.065H4.759a.356.356 0 01-.132-.024.312.312 0 01-.109-.07.257.257 0 01-.063-.102.23.23 0 01-.007-.116z\"/>",
+			"body": "<path fill=\"currentColor\" d=\"m4.458 4.298.779-4.04C5.289.025 4.925-.1 4.769.096L.055 5.972a.236.236 0 00-.018.277.29.29 0 00.115.104.352.352 0 00.162.037h2.43c.312 0 .561.25.52.516l-.748 3.837c-.052.231.312.356.467.16L7.47 5.304a.393.393 0 00.03-.456.482.482 0 00-.19-.173.585.585 0 00-.265-.065H4.759a.356.356 0 01-.132-.024.312.312 0 01-.109-.07.257.257 0 01-.063-.102.23.23 0 01-.007-.116z\"/>",
 			"width": 8,
 			"height": 11
 		},
 		"check": {
-			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M11.082 1.111 5.022 8.89 1.363 5.687\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v10H0z\"/></clipPath></defs></g>",
+			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M11.082 1.111 5.022 8.89 1.363 5.687\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v10H0z\"/></clipPath></defs></g>",
 			"height": 10
 		},
 		"chevron-down": {
-			"body": "<path fill=\"none\" stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M11 4 6 9 1 4\"/>"
+			"body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M11 4 6 9 1 4\"/>"
 		},
 		"cross": {
-			"body": "<g fill=\"none\"><g stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" clip-path=\"url(#svgID0)\"><path d=\"m1 1 10 10m0-10L1 11\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
+			"body": "<g fill=\"none\"><g stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" clip-path=\"url(#svgID0)\"><path d=\"m1 1 10 10m0-10L1 11\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
 		},
 		"filter": {
-			"body": "<path fill=\"none\" stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-width=\"2\" d=\"M1 1h10M3 6h6m-4 5h2\"/>"
+			"body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-width=\"2\" d=\"M1 1h10M3 6h6m-4 5h2\"/>"
 		},
 		"flag": {
-			"body": "<defs><path id=\"svgID0\" d=\"M.75 11.25V.75m0 0h6.417a.583.583 0 01.583.583V6a.583.583 0 01-.583.583H.75\"/><path id=\"svgID1\" d=\"M7.75 3.083h2.917a.583.583 0 01.583.584v4.666a.583.583 0 01-.583.584h-3.5a.583.583 0 01-.584-.584v-1.75\"/><path id=\"svgID2\" fill=\"#fff\" d=\"M0 0h12v12H0z\"/></defs><g fill=\"none\"><g stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-linejoin=\"round\" clip-path=\"url(#svgID3)\"><use href=\"#svgID0\" stroke-width=\"1.5\"/><use href=\"#svgID1\" stroke-width=\"1.5\"/><g stroke-width=\"1.5\" clip-path=\"url(#svgID4)\"><use href=\"#svgID0\"/><use href=\"#svgID1\"/></g><g clip-path=\"url(#svgID5)\"><use href=\"#svgID0\"/><use href=\"#svgID1\"/></g></g><defs><clipPath id=\"svgID3\"><use href=\"#svgID2\"/></clipPath><clipPath id=\"svgID4\"><use href=\"#svgID2\"/></clipPath><clipPath id=\"svgID5\"><use href=\"#svgID2\"/></clipPath></defs></g>"
+			"body": "<defs><path id=\"svgID0\" d=\"M.75 11.25V.75m0 0h6.417a.583.583 0 01.583.583V6a.583.583 0 01-.583.583H.75\"/><path id=\"svgID1\" d=\"M7.75 3.083h2.917a.583.583 0 01.583.584v4.666a.583.583 0 01-.583.584h-3.5a.583.583 0 01-.584-.584v-1.75\"/><path id=\"svgID2\" fill=\"#fff\" d=\"M0 0h12v12H0z\"/></defs><g fill=\"none\"><g stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" clip-path=\"url(#svgID3)\"><use href=\"#svgID0\" stroke-width=\"1.5\"/><use href=\"#svgID1\" stroke-width=\"1.5\"/><g stroke-width=\"1.5\" clip-path=\"url(#svgID4)\"><use href=\"#svgID0\"/><use href=\"#svgID1\"/></g><g clip-path=\"url(#svgID5)\"><use href=\"#svgID0\"/><use href=\"#svgID1\"/></g></g><defs><clipPath id=\"svgID3\"><use href=\"#svgID2\"/></clipPath><clipPath id=\"svgID4\"><use href=\"#svgID2\"/></clipPath><clipPath id=\"svgID5\"><use href=\"#svgID2\"/></clipPath></defs></g>"
 		},
 		"flame": {
-			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path fill=\"#1F2348\" d=\"M3.668.074a.658.658 0 00-.756.108.616.616 0 00-.12.736 5.017 5.017 0 01.02 4.628.127.127 0 01-.113.063.13.13 0 01-.113-.066 2.766 2.766 0 01-.288-.789.376.376 0 00-.247-.28.393.393 0 00-.373.06A4.348 4.348 0 00.176 6.727a4.256 4.256 0 00.07 2.637 3.94 3.94 0 001.547 1.964c.723.476 1.579.71 2.443.669 2.178 0 3.7-1.08 4.18-2.96.71-2.773-1.033-7.04-4.748-8.962m2.439 8.993a1.658 1.658 0 01-.618 1.057 1.734 1.734 0 01-1.188.365c-.411 0-.81-.14-1.128-.4a1.705 1.705 0 01-.6-1.014.246.246 0 01.076-.226.259.259 0 01.236-.063 1.564 1.564 0 001.287-.709 1.133 1.133 0 00.234-1.238.247.247 0 01.029-.286.259.259 0 01.285-.072c.493.219.897.592 1.147 1.06.252.468.336 1.005.24 1.525z\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h9v12H0z\"/></clipPath></defs></g>",
+			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path fill=\"currentColor\" d=\"M3.668.074a.658.658 0 00-.756.108.616.616 0 00-.12.736 5.017 5.017 0 01.02 4.628.127.127 0 01-.113.063.13.13 0 01-.113-.066 2.766 2.766 0 01-.288-.789.376.376 0 00-.247-.28.393.393 0 00-.373.06A4.348 4.348 0 00.176 6.727a4.256 4.256 0 00.07 2.637 3.94 3.94 0 001.547 1.964c.723.476 1.579.71 2.443.669 2.178 0 3.7-1.08 4.18-2.96.71-2.773-1.033-7.04-4.748-8.962m2.439 8.993a1.658 1.658 0 01-.618 1.057 1.734 1.734 0 01-1.188.365c-.411 0-.81-.14-1.128-.4a1.705 1.705 0 01-.6-1.014.246.246 0 01.076-.226.259.259 0 01.236-.063 1.564 1.564 0 001.287-.709 1.133 1.133 0 00.234-1.238.247.247 0 01.029-.286.259.259 0 01.285-.072c.493.219.897.592 1.147 1.06.252.468.336 1.005.24 1.525z\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h9v12H0z\"/></clipPath></defs></g>",
 			"width": 9
 		},
 		"gear": {
-			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path fill=\"#1F2348\" d=\"m11.263 4.655.655.225c.243.08.453.232.602.432a1.154 1.154 0 010 1.376 1.23 1.23 0 01-.602.432l-.66.225a.717.717 0 00-.25.15.683.683 0 00-.22.514c.003.096.027.19.07.276l.296.61c.107.221.14.468.096.708-.045.24-.165.461-.344.634a1.281 1.281 0 01-1.395.238l-.635-.285a.735.735 0 00-.823.147.682.682 0 00-.154.243l-.234.63c-.086.23-.244.43-.453.571a1.272 1.272 0 01-1.424 0 1.196 1.196 0 01-.453-.571l-.234-.63a.682.682 0 00-.154-.243.713.713 0 00-.535-.213.736.736 0 00-.288.066l-.635.285a1.281 1.281 0 01-1.395-.238c-.18-.173-.3-.394-.344-.634a1.149 1.149 0 01.096-.708l.296-.61a.664.664 0 00-.153-.791.718.718 0 00-.252-.149l-.655-.225a1.233 1.233 0 01-.594-.435 1.159 1.159 0 010-1.37c.146-.2.354-.352.594-.435l.655-.225a.723.723 0 00.25-.15.69.69 0 00.222-.513.668.668 0 00-.067-.277l-.296-.605a1.149 1.149 0 01-.102-.71c.043-.241.162-.464.34-.638a1.283 1.283 0 011.4-.242l.634.29a.741.741 0 00.822-.149.686.686 0 00.156-.241L5.33.785c.086-.23.244-.43.453-.571a1.272 1.272 0 011.424 0c.208.14.366.34.453.571l.234.635a.68.68 0 00.154.243.714.714 0 00.535.213.736.736 0 00.288-.066l.635-.29a1.282 1.282 0 011.399.238c.18.173.3.396.343.637a1.15 1.15 0 01-.1.71l-.296.6a.665.665 0 00.15.8.71.71 0 00.256.15zM4.191 6.92a2.52 2.52 0 001.363 1.278c.608.242 1.289.25 1.903.022a2.455 2.455 0 001.351-1.301 2.32 2.32 0 000-1.839 2.488 2.488 0 00-1.357-1.288 2.626 2.626 0 00-1.908-.012 2.455 2.455 0 00-1.351 1.301 2.32 2.32 0 000 1.839\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h13v12H0z\"/></clipPath></defs></g>",
+			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path fill=\"currentColor\" d=\"m11.263 4.655.655.225c.243.08.453.232.602.432a1.154 1.154 0 010 1.376 1.23 1.23 0 01-.602.432l-.66.225a.717.717 0 00-.25.15.683.683 0 00-.22.514c.003.096.027.19.07.276l.296.61c.107.221.14.468.096.708-.045.24-.165.461-.344.634a1.281 1.281 0 01-1.395.238l-.635-.285a.735.735 0 00-.823.147.682.682 0 00-.154.243l-.234.63c-.086.23-.244.43-.453.571a1.272 1.272 0 01-1.424 0 1.196 1.196 0 01-.453-.571l-.234-.63a.682.682 0 00-.154-.243.713.713 0 00-.535-.213.736.736 0 00-.288.066l-.635.285a1.281 1.281 0 01-1.395-.238c-.18-.173-.3-.394-.344-.634a1.149 1.149 0 01.096-.708l.296-.61a.664.664 0 00-.153-.791.718.718 0 00-.252-.149l-.655-.225a1.233 1.233 0 01-.594-.435 1.159 1.159 0 010-1.37c.146-.2.354-.352.594-.435l.655-.225a.723.723 0 00.25-.15.69.69 0 00.222-.513.668.668 0 00-.067-.277l-.296-.605a1.149 1.149 0 01-.102-.71c.043-.241.162-.464.34-.638a1.283 1.283 0 011.4-.242l.634.29a.741.741 0 00.822-.149.686.686 0 00.156-.241L5.33.785c.086-.23.244-.43.453-.571a1.272 1.272 0 011.424 0c.208.14.366.34.453.571l.234.635a.68.68 0 00.154.243.714.714 0 00.535.213.736.736 0 00.288-.066l.635-.29a1.282 1.282 0 011.399.238c.18.173.3.396.343.637a1.15 1.15 0 01-.1.71l-.296.6a.665.665 0 00.15.8.71.71 0 00.256.15zM4.191 6.92a2.52 2.52 0 001.363 1.278c.608.242 1.289.25 1.903.022a2.455 2.455 0 001.351-1.301 2.32 2.32 0 000-1.839 2.488 2.488 0 00-1.357-1.288 2.626 2.626 0 00-1.908-.012 2.455 2.455 0 00-1.351 1.301 2.32 2.32 0 000 1.839\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h13v12H0z\"/></clipPath></defs></g>",
 			"width": 13
 		},
 		"geolocation": {
-			"body": "<path fill=\"none\" stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M10.746 6.999a3.747 3.747 0 11-7.494 0 3.747 3.747 0 017.494 0M7 .778v1.696m0 9.05v1.696m6.222-6.212h-1.697m-9.051 0H.778\"/>",
+			"body": "<path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" d=\"M10.746 6.999a3.747 3.747 0 11-7.494 0 3.747 3.747 0 017.494 0M7 .778v1.696m0 9.05v1.696m6.222-6.212h-1.697m-9.051 0H.778\"/>",
 			"width": 14,
 			"height": 14
 		},
 		"globe": {
-			"body": "<defs><path id=\"svgID0\" fill=\"#fff\" d=\"M0 0h12v12H0z\"/></defs><g fill=\"none\"><g clip-path=\"url(#svgID3)\"><mask id=\"svgID1\" width=\"12\" height=\"12\" x=\"0\" y=\"0\" maskUnits=\"userSpaceOnUse\" style=\"mask-type:luminance\"><use href=\"#svgID0\"/></mask><g mask=\"url(#svgID1)\"><mask id=\"svgID2\" width=\"12\" height=\"12\" x=\"0\" y=\"0\" maskUnits=\"userSpaceOnUse\" style=\"mask-type:luminance\"><use href=\"#svgID0\"/></mask><g stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-linejoin=\"round\" mask=\"url(#svgID2)\"><path d=\"M11.5 6a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0\"/><path d=\"M1.059 4.235h9.882m-9.882 3.53h9.882M6 .706S3.53 1.765 3.53 6c0 4.235 2.47 5.294 2.47 5.294S8.47 10.235 8.47 6C8.47 1.765 6 .706 6 .706\"/></g></g></g><defs><clipPath id=\"svgID3\"><use href=\"#svgID0\"/></clipPath></defs></g>"
+			"body": "<defs><path id=\"svgID0\" fill=\"#fff\" d=\"M0 0h12v12H0z\"/></defs><g fill=\"none\"><g clip-path=\"url(#svgID3)\"><mask id=\"svgID1\" width=\"12\" height=\"12\" x=\"0\" y=\"0\" maskUnits=\"userSpaceOnUse\" style=\"mask-type:luminance\"><use href=\"#svgID0\"/></mask><g mask=\"url(#svgID1)\"><mask id=\"svgID2\" width=\"12\" height=\"12\" x=\"0\" y=\"0\" maskUnits=\"userSpaceOnUse\" style=\"mask-type:luminance\"><use href=\"#svgID0\"/></mask><g stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" mask=\"url(#svgID2)\"><path d=\"M11.5 6a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0\"/><path d=\"M1.059 4.235h9.882m-9.882 3.53h9.882M6 .706S3.53 1.765 3.53 6c0 4.235 2.47 5.294 2.47 5.294S8.47 10.235 8.47 6C8.47 1.765 6 .706 6 .706\"/></g></g></g><defs><clipPath id=\"svgID3\"><use href=\"#svgID0\"/></clipPath></defs></g>"
 		},
 		"hand": {
-			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path fill=\"#1F2348\" d=\"M9.35 8.8c0-.47.12-.93.35-1.34l1.18-2.1a.75.75 0 00.1-.59.79.79 0 00-.37-.48.87.87 0 00-.63-.1.82.82 0 00-.51.36l-1.5 2.23.89-4.6a.74.74 0 00-.09-.62.85.85 0 00-.87-.36.85.85 0 00-.54.35c-.06.1-.1.2-.11.3l-.93 3.89V.78c0-.2-.09-.4-.24-.55A.85.85 0 005.49 0a.85.85 0 00-.58.23.76.76 0 00-.24.55v4.96l-.93-4.08a.8.8 0 00-.66-.64.87.87 0 00-.63.13.8.8 0 00-.34.53c-.02.1 0 .2.02.31l.89 5.84-1.64-1.36a.86.86 0 00-1.16.05.76.76 0 00.04 1.1l2.9 3.65a2.49 2.49 0 001.79.73h1.93c1.95 0 2.47-1.45 2.47-3.2\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
+			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path fill=\"currentColor\" d=\"M9.35 8.8c0-.47.12-.93.35-1.34l1.18-2.1a.75.75 0 00.1-.59.79.79 0 00-.37-.48.87.87 0 00-.63-.1.82.82 0 00-.51.36l-1.5 2.23.89-4.6a.74.74 0 00-.09-.62.85.85 0 00-.87-.36.85.85 0 00-.54.35c-.06.1-.1.2-.11.3l-.93 3.89V.78c0-.2-.09-.4-.24-.55A.85.85 0 005.49 0a.85.85 0 00-.58.23.76.76 0 00-.24.55v4.96l-.93-4.08a.8.8 0 00-.66-.64.87.87 0 00-.63.13.8.8 0 00-.34.53c-.02.1 0 .2.02.31l.89 5.84-1.64-1.36a.86.86 0 00-1.16.05.76.76 0 00.04 1.1l2.9 3.65a2.49 2.49 0 001.79.73h1.93c1.95 0 2.47-1.45 2.47-3.2\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
 		},
 		"info": {
-			"body": "<g fill=\"none\"><rect width=\"1.368\" height=\"3.649\" x=\"7.184\" y=\"9.693\" fill=\"#1F2348\" rx=\".643\" transform=\"rotate(-180 7.184 9.693)\"/><rect width=\"1.825\" height=\"1.825\" x=\"7.412\" y=\"4.904\" fill=\"#1F2348\" rx=\".857\" transform=\"rotate(-180 7.412 4.904)\"/><path stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-width=\"1.5\" d=\"M6.5 12.202A5.7 5.7 0 116.5.8a5.7 5.7 0 010 11.402z\"/></g>",
+			"body": "<g fill=\"none\"><rect width=\"1.368\" height=\"3.649\" x=\"7.184\" y=\"9.693\" fill=\"currentColor\" rx=\".643\" transform=\"rotate(-180 7.184 9.693)\"/><rect width=\"1.825\" height=\"1.825\" x=\"7.412\" y=\"4.904\" fill=\"currentColor\" rx=\".857\" transform=\"rotate(-180 7.412 4.904)\"/><path stroke=\"currentColor\" stroke-linecap=\"round\" stroke-width=\"1.5\" d=\"M6.5 12.202A5.7 5.7 0 116.5.8a5.7 5.7 0 010 11.402z\"/></g>",
 			"width": 13,
 			"height": 13
 		},
 		"kebab-vertical": {
-			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path fill=\"#1F2348\" d=\"M1 2a1 1 0 100-2 1 1 0 000 2m0 4a1 1 0 100-2 1 1 0 000 2m0 4a1 1 0 100-2 1 1 0 000 2\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h2v10H0z\"/></clipPath></defs></g>",
+			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path fill=\"currentColor\" d=\"M1 2a1 1 0 100-2 1 1 0 000 2m0 4a1 1 0 100-2 1 1 0 000 2m0 4a1 1 0 100-2 1 1 0 000 2\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h2v10H0z\"/></clipPath></defs></g>",
 			"width": 2,
 			"height": 10
 		},
 		"magnifying-glass": {
-			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path stroke=\"#1F2348\" stroke-width=\"1.5\" d=\"M8.25 4.5a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0Z\"/><path fill=\"#1F2348\" d=\"M8.53 7.47 8 6.94 6.94 8l.53.53zm1.94 4.06a.75.75 0 101.06-1.06zm-3-3 3 3 1.06-1.06-3-3z\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
+			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path stroke=\"currentColor\" stroke-width=\"1.5\" d=\"M8.25 4.5a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0Z\"/><path fill=\"currentColor\" d=\"M8.53 7.47 8 6.94 6.94 8l.53.53zm1.94 4.06a.75.75 0 101.06-1.06zm-3-3 3 3 1.06-1.06-3-3z\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
 		},
 		"minus": {
-			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2.133\" d=\"M11 6H1\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
+			"body": "<g fill=\"none\"><g clip-path=\"url(#svgID0)\"><path stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2.133\" d=\"M11 6H1\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
 		},
 		"nodes": {
-			"body": "<path fill=\"none\" stroke=\"#1F2348\" stroke-width=\"1.5\" d=\"m4.12 3.54 5.186 2.706m-5.15 4.332 4.667-2.699M4.407 2.672c0-.503-.19-.984-.531-1.34A1.777 1.777 0 002.593.778c-.482 0-.943.2-1.284.554a1.94 1.94 0 00-.531 1.34c0 .502.191.983.531 1.339.34.355.802.554 1.284.554.48 0 .943-.2 1.283-.554a1.94 1.94 0 00.531-1.34Zm0 8.657c0-.503-.19-.984-.531-1.34a1.777 1.777 0 00-1.283-.554c-.482 0-.943.2-1.284.554a1.94 1.94 0 00-.531 1.34c0 .502.191.983.531 1.339.34.355.802.554 1.284.554.48 0 .943-.2 1.283-.554a1.94 1.94 0 00.531-1.34ZM12.185 7c0-.502-.191-.984-.531-1.34a1.777 1.777 0 00-1.284-.554c-.481 0-.943.2-1.283.555-.34.355-.531.837-.531 1.339s.19.984.531 1.34c.34.354.802.554 1.283.554.482 0 .943-.2 1.284-.555.34-.355.531-.837.531-1.339Z\"/>",
+			"body": "<path fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" d=\"m4.12 3.54 5.186 2.706m-5.15 4.332 4.667-2.699M4.407 2.672c0-.503-.19-.984-.531-1.34A1.777 1.777 0 002.593.778c-.482 0-.943.2-1.284.554a1.94 1.94 0 00-.531 1.34c0 .502.191.983.531 1.339.34.355.802.554 1.284.554.48 0 .943-.2 1.283-.554a1.94 1.94 0 00.531-1.34Zm0 8.657c0-.503-.19-.984-.531-1.34a1.777 1.777 0 00-1.283-.554c-.482 0-.943.2-1.284.554a1.94 1.94 0 00-.531 1.34c0 .502.191.983.531 1.339.34.355.802.554 1.284.554.48 0 .943-.2 1.283-.554a1.94 1.94 0 00.531-1.34ZM12.185 7c0-.502-.191-.984-.531-1.34a1.777 1.777 0 00-1.284-.554c-.481 0-.943.2-1.283.555-.34.355-.531.837-.531 1.339s.19.984.531 1.34c.34.354.802.554 1.283.554.482 0 .943-.2 1.284-.555.34-.355.531-.837.531-1.339Z\"/>",
 			"width": 13,
 			"height": 14
 		},
 		"plus": {
-			"body": "<g fill=\"none\"><g stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2.133\" clip-path=\"url(#svgID0)\"><path d=\"M6 1v10m5-5H1\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
+			"body": "<g fill=\"none\"><g stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2.133\" clip-path=\"url(#svgID0)\"><path d=\"M6 1v10m5-5H1\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
 		},
 		"spinner": {
-			"body": "<g fill=\"none\"><g stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-width=\"1.667\" clip-path=\"url(#svgID0)\"><path d=\"M6 1a5 5 0 015 5\"/><path d=\"M3.038 2A4.963 4.963 0 001 6.014 4.985 4.985 0 005.986 11c1.652 0 3.11-.804 4.014-2.038\" opacity=\".3\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
+			"body": "<g fill=\"none\"><g stroke=\"currentColor\" stroke-linecap=\"round\" stroke-width=\"1.667\" clip-path=\"url(#svgID0)\"><path d=\"M6 1a5 5 0 015 5\"/><path d=\"M3.038 2A4.963 4.963 0 001 6.014 4.985 4.985 0 005.986 11c1.652 0 3.11-.804 4.014-2.038\" opacity=\".3\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
 		},
 		"star": {
-			"body": "<path fill=\"#1F2348\" d=\"M5.886 10.22a.23.23 0 01.227 0l2.875 1.618a1.178 1.178 0 001.385-.153 1.16 1.16 0 00.292-1.339L9.54 7.751a.23.23 0 01.058-.264L11.64 5.67a1.164 1.164 0 00.277-1.272 1.137 1.137 0 00-1.08-.706H8.53a.231.231 0 01-.213-.14L7.076.677 7.063.65a1.195 1.195 0 00-2.14.026L3.68 3.551a.23.23 0 01-.213.14H1.16a1.135 1.135 0 00-1.077.7 1.17 1.17 0 00.294 1.292l2.027 1.804a.232.232 0 01.058.264l-1.13 2.598a1.156 1.156 0 00.29 1.34 1.18 1.18 0 001.391.152z\"/>"
+			"body": "<path fill=\"currentColor\" d=\"M5.886 10.22a.23.23 0 01.227 0l2.875 1.618a1.178 1.178 0 001.385-.153 1.16 1.16 0 00.292-1.339L9.54 7.751a.23.23 0 01.058-.264L11.64 5.67a1.164 1.164 0 00.277-1.272 1.137 1.137 0 00-1.08-.706H8.53a.231.231 0 01-.213-.14L7.076.677 7.063.65a1.195 1.195 0 00-2.14.026L3.68 3.551a.23.23 0 01-.213.14H1.16a1.135 1.135 0 00-1.077.7 1.17 1.17 0 00.294 1.292l2.027 1.804a.232.232 0 01.058.264l-1.13 2.598a1.156 1.156 0 00.29 1.34 1.18 1.18 0 001.391.152z\"/>"
 		},
 		"tools": {
-			"body": "<g fill=\"none\"><g fill=\"#1F2348\" clip-path=\"url(#svgID0)\"><path d=\"M9.057 1.231c-.519.52-1.487.47-2.323-.366L6 1.598 9.913 5.51l1.711-1.71zM5.97 4.991 4.115 3.138A1.956 1.956 0 001.527.55l1.05 1.049v.978h-.979l-1.05-1.05a1.956 1.956 0 002.589 2.59L4.992 5.97M6.03 7.008l1.855 1.855a1.956 1.956 0 002.588 2.589L9.423 10.4v-.978h.979l1.05 1.05a1.956 1.956 0 00-2.589-2.589L7.008 6.03\"/><path d=\"M7.682 3.28.59 10.372a.734.734 0 001.038 1.037L8.72 4.318\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
+			"body": "<g fill=\"none\"><g fill=\"currentColor\" clip-path=\"url(#svgID0)\"><path d=\"M9.057 1.231c-.519.52-1.487.47-2.323-.366L6 1.598 9.913 5.51l1.711-1.71zM5.97 4.991 4.115 3.138A1.956 1.956 0 001.527.55l1.05 1.049v.978h-.979l-1.05-1.05a1.956 1.956 0 002.589 2.59L4.992 5.97M6.03 7.008l1.855 1.855a1.956 1.956 0 002.588 2.589L9.423 10.4v-.978h.979l1.05 1.05a1.956 1.956 0 00-2.589-2.589L7.008 6.03\"/><path d=\"M7.682 3.28.59 10.372a.734.734 0 001.038 1.037L8.72 4.318\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
 		},
 		"triangle-down": {
-			"body": "<path fill=\"#1F2348\" d=\"M10.587 1a.8.8 0 01.686 1.212L6.686 9.857a.8.8 0 01-1.372 0L.727 2.212A.8.8 0 011.413 1z\"/>"
+			"body": "<path fill=\"currentColor\" d=\"M10.587 1a.8.8 0 01.686 1.212L6.686 9.857a.8.8 0 01-1.372 0L.727 2.212A.8.8 0 011.413 1z\"/>"
 		},
 		"triangle-left": {
-			"body": "<path fill=\"#1F2348\" d=\"M11 10.587a.8.8 0 01-1.212.686L2.143 6.686a.8.8 0 010-1.372L9.788.727A.8.8 0 0111 1.413z\"/>"
+			"body": "<path fill=\"currentColor\" d=\"M11 10.587a.8.8 0 01-1.212.686L2.143 6.686a.8.8 0 010-1.372L9.788.727A.8.8 0 0111 1.413z\"/>"
 		},
 		"triangle-right": {
-			"body": "<path fill=\"#1F2348\" d=\"M2 1.413A.8.8 0 013.212.727l7.645 4.587a.8.8 0 010 1.372l-7.645 4.587A.8.8 0 012 10.587z\"/>"
+			"body": "<path fill=\"currentColor\" d=\"M2 1.413A.8.8 0 013.212.727l7.645 4.587a.8.8 0 010 1.372l-7.645 4.587A.8.8 0 012 10.587z\"/>"
 		},
 		"triangle-up": {
-			"body": "<path fill=\"#1F2348\" d=\"M1.413 11a.8.8 0 01-.686-1.212l4.587-7.645a.8.8 0 011.372 0l4.587 7.645A.8.8 0 0110.587 11z\"/>"
+			"body": "<path fill=\"currentColor\" d=\"M1.413 11a.8.8 0 01-.686-1.212l4.587-7.645a.8.8 0 011.372 0l4.587 7.645A.8.8 0 0110.587 11z\"/>"
 		},
 		"watch": {
-			"body": "<g fill=\"none\"><g stroke=\"#1F2348\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" clip-path=\"url(#svgID0)\"><path d=\"M6 11.333A5.333 5.333 0 106 .667a5.333 5.333 0 000 10.666\"/><path d=\"M6 4v2l2 2\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
+			"body": "<g fill=\"none\"><g stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" clip-path=\"url(#svgID0)\"><path d=\"M6 11.333A5.333 5.333 0 106 .667a5.333 5.333 0 000 10.666\"/><path d=\"M6 4v2l2 2\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
 		}
 	},
+<<<<<<< HEAD
 	"lastModified": 1703792595,
+=======
+	"lastModified": 1703799257,
+>>>>>>> 8ff6b5f (remove color)
 	"width": 12,
 	"height": 12
 }
