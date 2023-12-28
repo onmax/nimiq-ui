@@ -99,11 +99,7 @@
 			"body": "<g fill=\"none\"><g stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\" clip-path=\"url(#svgID0)\"><path d=\"M6 11.333A5.333 5.333 0 106 .667a5.333 5.333 0 000 10.666\"/><path d=\"M6 4v2l2 2\"/></g><defs><clipPath id=\"svgID0\"><path fill=\"#fff\" d=\"M0 0h12v12H0z\"/></clipPath></defs></g>"
 		}
 	},
-<<<<<<< HEAD
-	"lastModified": 1703792595,
-=======
-	"lastModified": 1703799257,
->>>>>>> 8ff6b5f (remove color)
+	"lastModified": 1703799322,
 	"width": 12,
 	"height": 12
 }
