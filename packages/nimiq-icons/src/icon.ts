@@ -8,26 +8,37 @@ type OptimiseIconSetOptions = {
   resetColors?: boolean,
 }
 
-export function optimizeIconSet(iconSet: IconSet, options?: OptimiseIconSetOptions) {
-  iconSet.list().forEach(iconName => handleIcon(iconSet, iconName, options))
+export function optimizeIconSet(iconSet: IconSet, pkg: string, options?: OptimiseIconSetOptions) {
+  for (const icon of iconSet.list()) {
+    const newName = renameIcon(iconSet, pkg, icon)
+    processIcon(iconSet, newName, options)
+  }
 }
 
-function handleIcon(iconSet: IconSet, name: string, { resetColors = false }: OptimiseIconSetOptions = {}) {
+function renameIcon(iconSet: IconSet, pkg: string, name: string) {
+  // No need to rename icons in the icons package
+  if (pkg === 'icons') return name
+
+  const newName = `${pkg}-${name}`
+  iconSet.rename(name, newName)
+
+  return newName
+}
+
+function processIcon(iconSet: IconSet, name: string, { resetColors = false }: OptimiseIconSetOptions = {}) {
   let svg = iconSet.toSVG(name)
 
   if (!svg)
     throw new Error(`Icon ${name} is not an SVG in the ${iconSet.prefix} icon set.`);
+
+  if (name === 'spinner')
+    svg = addSpinnerAnimation(svg)
 
   cleanupSVG(svg)
   runSVGO(svg)
 
   if (resetColors)
     parseColors(svg, { defaultColor: 'currentColor', callback: handleColors })
-
-  if (name === 'spinner')
-    svg = addSpinnerAnimation(svg)
-
-  iconSet.setIcon(name, svg.getIcon())
 }
 
 function handleColors(_: ColorAttributes, colorStr: string, color: Color | null): Color | string | 'remove' | 'unset' {
@@ -59,7 +70,6 @@ function addSpinnerAnimation(_svg: SVG) {
   animateTransform.setAttribute('to', `360 0 0`);
   animateTransform.setAttribute('repeatCount', 'indefinite');
   svg.appendChild(animateTransform);
-  console.log(svg.outerHTML);
 
   return new SVG(svg.outerHTML);
 }

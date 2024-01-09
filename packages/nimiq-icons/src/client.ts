@@ -1,15 +1,41 @@
 import { exit, env } from 'node:process'
 import {  IconSet, exportJSONPackage, importFromFigma } from '@iconify/tools'
-import { FigmaImportNodeData, FigmaParentNodeData } from '@iconify/tools/lib/import/figma/types/nodes'
 
-export async function getFigma(frameName: string) {
+export const sanitizeName = (name: string) => name.toLocaleLowerCase().replace(/ /g, '-')
+
+function getFigmaSecrets() {
   const file = env.FIGMA_FILE_ID
   const token = env.FIGMA_API_TOKEN
   if (!file || !token) {
     console.error('Please provide FIGMA_FILE_ID and FIGMA_API_TOKEN environment variables.')
     exit(1)
   }
+  return { file, token }
+}
 
+// Gets all the top level frames in the Figma file that do not start with an underscore
+export async function getIconPackages() {
+ const { file, token } = getFigmaSecrets()
+  const figma = await importFromFigma({
+    file,
+    pages: ['Main'],
+    token,
+    prefix: 'nimiq',
+    depth: 2,
+    ifModifiedSince: '2021-01-01T00:00:00Z',
+    iconNameForNode: node => node.name.startsWith('_') ? null : node.name
+  })
+
+  if (figma === 'not_modified') {
+    console.log('Figma file has not been modified since last import.')
+    exit(1)
+  }
+
+  return figma.iconSet.list()
+}
+
+export async function getFigma(frameName: string) {
+  const { file, token } = getFigmaSecrets()
   const figma = await importFromFigma({
     file,
     pages: ['Main'],
@@ -29,7 +55,7 @@ export async function getFigma(frameName: string) {
 			) {
 				return null;
 			}
-      return node.name.toLocaleLowerCase().replace(/ /g, '-')
+      return sanitizeName(node.name)
     } 
   })
 
