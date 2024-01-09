@@ -16,8 +16,9 @@ onMounted(() => {
   <h1 text-gray-600 text-4xl font-bold>Nimiq Icons</h1>
 
   <ul flex flex-wrap select-none justify-center text-2xl text-dark-600 dark:text-dark-900>
-    <li flex m-2 v-for="icon in iconList" :key="icon" w-max>
+    <li flex="~ col gap-x-2 items-center" m-2 v-for="icon in iconList" :key="icon" w-max>
       <Icon :icon="icon" />
+      <span text-xs op40>{{ icon.replace('nimiq:','') }}</span>
     </li>
   </ul>
 </template>
