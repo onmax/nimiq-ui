@@ -23,7 +23,8 @@ export async function getIconVariants() {
     prefix: 'nimiq',
     depth: 2,
     ifModifiedSince: '2021-01-01T00:00:00Z',
-    iconNameForNode: node => node.name.startsWith('_') ? null : node.name
+    iconNameForNode: node => node.name.startsWith('_') ? null : node.name,
+    simplifyStroke: true,
   })
 
   if (figma === 'not_modified') {
@@ -43,6 +44,7 @@ export async function getFigma(frameName: string) {
     prefix: 'nimiq',
     depth: 3,
     ifModifiedSince: '2021-01-01T00:00:00Z',
+    simplifyStroke: true,
     iconNameForNode: node => {
       if (
 				// Icons are stored after 2 parents: page -> container frame -> icon
