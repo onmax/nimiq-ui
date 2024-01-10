@@ -14,7 +14,7 @@ function getFigmaSecrets() {
 }
 
 // Gets all the top level frames in the Figma file that do not start with an underscore
-export async function getIconPackages() {
+export async function getIconVariants() {
  const { file, token } = getFigmaSecrets()
   const figma = await importFromFigma({
     file,

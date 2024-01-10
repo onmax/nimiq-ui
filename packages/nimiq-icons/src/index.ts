@@ -1,21 +1,20 @@
 import { optimizeIconSet } from './icon'
-import { getFigma, prepareNpmPackage, getIconPackages, sanitizeName } from './client'
+import { getFigma, prepareNpmPackage, getIconVariants, sanitizeName } from './client'
 import { IconSet, mergeIconSets } from '@iconify/tools'
 
 
-
-const packages = await getIconPackages()
-console.log(`Found ${packages.length} icon packages: ${packages.join(', ')}`)
+const variants = await getIconVariants()
+console.log(`Found ${variants.length} icon variants: ${variants.join(', ')}`)
 
 const iconsSets: IconSet[] = []
 
-for (const pkg of packages) {
-  const figma = await getFigma(pkg)
-  const pkgName = sanitizeName(pkg)  
+for (const variant of variants) {
+  const figma = await getFigma(variant)
+  const variantName = sanitizeName(variant)  
   console.log(`Icons: ${figma.iconSet.list().join(', ')}`)
-  optimizeIconSet(figma.iconSet, pkgName, { resetColors: pkgName !== 'Logos' })
+  optimizeIconSet(figma.iconSet, variantName, { resetColors: variantName === 'icons' || variantName === 'icons-lg'  })
   iconsSets.push(figma.iconSet)
-  console.log(`Generated icon set for ${pkgName}: ${figma.iconSet.list().join(', ')}`)
+  console.log(`Generated icon set for ${variantName}: ${figma.iconSet.list().join(', ')}`)
 }
 
 const combinedIconSet = iconsSets.reduce((prev, curr) => mergeIconSets(prev, curr))

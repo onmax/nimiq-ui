@@ -8,24 +8,25 @@ type OptimiseIconSetOptions = {
   resetColors?: boolean,
 }
 
-export function optimizeIconSet(iconSet: IconSet, pkg: string, options?: OptimiseIconSetOptions) {
+export function optimizeIconSet(iconSet: IconSet, variant: string, options?: OptimiseIconSetOptions) {
   for (const icon of iconSet.list()) {
-    const newName = renameIcon(iconSet, pkg, icon)
+    const newName = renameIcon(iconSet, variant, icon)
     processIcon(iconSet, newName, options)
   }
 }
 
-function renameIcon(iconSet: IconSet, pkg: string, name: string) {
+function renameIcon(iconSet: IconSet, variant: string, name: string) {
   // No need to rename icons in the icons package
-  if (pkg === 'icons') return name
+  if (variant === 'icons') return name
 
-  const newName = `${pkg}-${name}`
+  const newName = `${variant}-${name}`
   iconSet.rename(name, newName)
 
   return newName
 }
 
 function processIcon(iconSet: IconSet, name: string, { resetColors = false }: OptimiseIconSetOptions = {}) {
+  console.log(`Processing ${name}...`)
   let svg = iconSet.toSVG(name)
 
   if (!svg)
@@ -42,6 +43,8 @@ function processIcon(iconSet: IconSet, name: string, { resetColors = false }: Op
 }
 
 function handleColors(_: ColorAttributes, colorStr: string, color: Color | null): Color | string | 'remove' | 'unset' {
+  console.log(colorStr, color)
+
   // Color cannot be parsed, return colorStr to keep old value
   if (!color)
     return colorStr
@@ -49,9 +52,9 @@ function handleColors(_: ColorAttributes, colorStr: string, color: Color | null)
   // Color is empty: 'none' or 'transparent', return color object to keep old value
   if (isEmptyColor(color))
     return color
-
+console.log(compareColors(color, stringToColor('#1F2348')!))
   if (compareColors(color, stringToColor('#1F2348')!))
-    return 'currentColor'
+    return 'unset'
 
   return color
 }
