@@ -1,5 +1,6 @@
 import { exit, env } from 'node:process'
-import {  IconSet, exportJSONPackage, importFromFigma } from '@iconify/tools'
+import { IconSet, exportJSONPackage, importFromFigma } from '@iconify/tools'
+import { IconVariant } from './consts'
 
 export const sanitizeName = (name: string) => name.toLocaleLowerCase().replace(/ /g, '-')
 
@@ -13,9 +14,9 @@ function getFigmaSecrets() {
   return { file, token }
 }
 
-// Gets all the top level frames in the Figma file that do not start with an underscore
-export async function getIconVariants() {
- const { file, token } = getFigmaSecrets()
+// Check that the expected variants exists on the Figma File.
+export async function checkFigmaVariants() {
+  const { file, token } = getFigmaSecrets()
   const figma = await importFromFigma({
     file,
     pages: ['Main'],
@@ -32,7 +33,16 @@ export async function getIconVariants() {
     exit(1)
   }
 
-  return figma.iconSet.list()
+  const iconSetVariants = figma.iconSet.list().map(sanitizeName)
+
+  // They must match our hardcoded Variants 
+  const ourVariants = Object.values(IconVariant)
+  const missingVariants = ourVariants.filter(variant => !iconSetVariants.includes(variant))
+  const extraUnknownVariants = iconSetVariants.filter(v => !ourVariants.includes(v as IconVariant))
+  if (missingVariants.length > 0 || extraUnknownVariants.length > 0) {
+    throw new Error(`There is an unknown variant or a missing variant: ${JSON.stringify({ extraUnknownVariants, missingVariants })}`)
+  }
+
 }
 
 export async function getFigma(frameName: string) {
@@ -47,18 +57,18 @@ export async function getFigma(frameName: string) {
     simplifyStroke: true,
     iconNameForNode: node => {
       if (
-				// Icons are stored after 2 parents: page -> container frame -> icon
-				node.parents.length !== 2 ||
-				// Icons use frames
-				node.type !== 'FRAME' ||
+        // Icons are stored after 2 parents: page -> container frame -> icon
+        node.parents.length !== 2 ||
+        // Icons use frames
+        node.type !== 'FRAME' ||
         // !node.parents.find(parent => parent.name === frameName)
         // It is direct child of the frameName
         node.parents.at(-1)?.name !== frameName
-			) {
-				return null;
-			}
+      ) {
+        return null;
+      }
       return sanitizeName(node.name)
-    } 
+    }
   })
 
   if (figma === 'not_modified') {

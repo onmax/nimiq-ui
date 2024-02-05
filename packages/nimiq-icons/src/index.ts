@@ -1,19 +1,17 @@
 import { optimizeIconSet } from './icon'
-import { getFigma, prepareNpmPackage, getIconVariants, sanitizeName } from './client'
+import { getFigma, prepareNpmPackage, sanitizeName, checkFigmaVariants } from './client'
 import { IconSet, mergeIconSets } from '@iconify/tools'
-import { icons } from '../dist'
+import { IconVariant } from './consts'
 
-
-const variants = await getIconVariants()
-console.log(`Found ${variants.length} icon variants: ${variants.join(', ')}`)
+await checkFigmaVariants()
 
 const iconsSets: IconSet[] = []
 
-for (const variant of variants) {
+for (const variant of Object.values(IconVariant)) {
   const figma = await getFigma(variant)
   const variantName = sanitizeName(variant)  
   console.log(`Icons: ${figma.iconSet.list().join(', ')}`)
-  const iconSet = optimizeIconSet(figma.iconSet, variantName, { resetColors: variantName === 'icons' || variantName === 'icons-lg'  })
+  const iconSet = optimizeIconSet(figma.iconSet, variantName as IconVariant)
   iconsSets.push(iconSet)
   console.log(`Generated icon set for ${variantName}: ${iconSet.list().join(', ')}`)
 }

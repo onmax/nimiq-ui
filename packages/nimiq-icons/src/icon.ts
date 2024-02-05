@@ -3,33 +3,27 @@ import { ColorAttributes } from "@iconify/tools/lib/colors/attribs";
 import { compareColors, stringToColor, iconToHTML, replaceIDs } from '@iconify/utils'
 import type { Color } from '@iconify/utils/lib/colors/types'
 import { JSDOM } from "jsdom";
+import { IconVariant } from "./consts";
 
-type OptimiseIconSetOptions = {
-  resetColors?: boolean,
-}
 
-export function optimizeIconSet(iconSet: IconSet, variant: string, options?: OptimiseIconSetOptions) {
-  console.log(`Processing icon ${variant} with ${JSON.stringify(options)}`)
+export function optimizeIconSet(iconSet: IconSet, variant: IconVariant) {
+  console.log(`Processing icon ${variant}`)
   for (const icon of iconSet.list()) {
-    const newName = renameIcon(iconSet, variant, icon)
-    const processed = processIcon(iconSet, newName, options)
-    iconSet.setIcon(newName, processed.getIcon())
+    processIcon(iconSet, variant, icon)
   }
-
   return iconSet
 }
 
-function renameIcon(iconSet: IconSet, variant: string, name: string) {
-  // No need to rename icons in the icons package
-  if (variant === 'icons') return name
+const isIcon = (variant: IconVariant) => variant === IconVariant.Icons
+const isLarge = (variant: IconVariant) => variant === IconVariant.LargeIcons
+const isLogo = (variant: IconVariant) => variant === IconVariant.Logos
+// const isFlag = (variant: IconVariant) => variant === IconVariant.Flags
 
-  const newName = `${variant}-${name}`
+function processIcon(iconSet: IconSet, variant: IconVariant, name: string) {
+  // Rename name if it is not an icon
+  const newName =  variant === IconVariant.Icons ? name : `${variant}-${name}`
   iconSet.rename(name, newName)
 
-  return newName
-}
-
-function processIcon(iconSet: IconSet, name: string, { resetColors = false }: OptimiseIconSetOptions = {}) {
   let svg = iconSet.toSVG(name)
 
   if (!svg)
@@ -41,14 +35,26 @@ function processIcon(iconSet: IconSet, name: string, { resetColors = false }: Op
   cleanupSVG(svg)
   runSVGO(svg)
   
-  if (resetColors) {
+  if (isIcon(variant) || isLarge(variant)) {
     parseColors(svg, { defaultColor: 'currentColor', callback: handleColors, fixErrors: true })
   }
   
   const randomId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-  const newSvg = replaceIDs(svg.toMinifiedString(), () => `${iconSet.prefix}-${name}-${randomId}`)
+  const newSvg = replaceIDs(svg.toMinifiedString(), () => `${iconSet.prefix}-${newName}-${randomId}`)
+  const processed = new SVG(newSvg)
+  iconSet.setIcon(newName, processed.getIcon())
 
-  return new SVG(newSvg)
+  // We also include a monochrome version of the logos
+  if(isLogo(variant)){
+    const monoSvg = new SVG(svg.toMinifiedString())
+    parseColors(monoSvg, { defaultColor: 'currentColor', callback: handleColors, fixErrors: true })
+    const randomId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+    const newMonoName = `${newName}-mono`
+    const newSvg = replaceIDs(svg.toMinifiedString(), () => `${iconSet.prefix}-${newMonoName}-${randomId}`)
+    const processed = new SVG(newSvg)
+    iconSet.setIcon(newMonoName, processed.getIcon())
+  }
+
 }
 
 function handleColors(_: ColorAttributes, colorStr: string, color: Color | null): Color | string | 'remove' | 'unset' {
