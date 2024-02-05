@@ -22,14 +22,15 @@ const isLogo = (variant: IconVariant) => variant === IconVariant.Logos
 function processIcon(iconSet: IconSet, variant: IconVariant, name: string) {
   // Rename name if it is not an icon
   const newName =  variant === IconVariant.Icons ? name : `${variant}-${name}`
-  iconSet.rename(name, newName)
+  if(newName !== name)
+    iconSet.rename(name, newName)
 
-  let svg = iconSet.toSVG(name)
+  let svg = iconSet.toSVG(newName)
 
   if (!svg)
-    throw new Error(`Icon ${name} is not an SVG in the ${iconSet.prefix} icon set.`);
+    throw new Error(`Icon ${newName} is not an SVG in the ${iconSet.prefix} icon set.`);
 
-  if (name === 'spinner')
+  if (newName === 'spinner')
     svg = addSpinnerAnimation(svg)
 
   cleanupSVG(svg)
@@ -47,10 +48,11 @@ function processIcon(iconSet: IconSet, variant: IconVariant, name: string) {
   // We also include a monochrome version of the logos
   if(isLogo(variant)){
     const monoSvg = new SVG(svg.toMinifiedString())
-    parseColors(monoSvg, { defaultColor: 'currentColor', callback: handleColors, fixErrors: true })
+    // Replace all colors with #1f2348
+    parseColors(monoSvg, { defaultColor: 'currentColor', callback: () => 'currentColor', fixErrors: true }) 
     const randomId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
     const newMonoName = `${newName}-mono`
-    const newSvg = replaceIDs(svg.toMinifiedString(), () => `${iconSet.prefix}-${newMonoName}-${randomId}`)
+    const newSvg = replaceIDs(monoSvg.toMinifiedString(), () => `${iconSet.prefix}-${newMonoName}-${randomId}`)
     const processed = new SVG(newSvg)
     iconSet.setIcon(newMonoName, processed.getIcon())
   }

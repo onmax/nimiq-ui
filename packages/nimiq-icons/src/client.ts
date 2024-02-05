@@ -43,6 +43,8 @@ export async function checkFigmaVariants() {
     throw new Error(`There is an unknown variant or a missing variant: ${JSON.stringify({ extraUnknownVariants, missingVariants })}`)
   }
 
+  console.log('🥳 Figma variants are correct.')
+
 }
 
 export async function getFigma(frameName: string) {
@@ -63,7 +65,7 @@ export async function getFigma(frameName: string) {
         node.type !== 'FRAME' ||
         // !node.parents.find(parent => parent.name === frameName)
         // It is direct child of the frameName
-        node.parents.at(-1)?.name !== frameName
+        sanitizeName(node.parents.at(-1)?.name || '') !== frameName
       ) {
         return null;
       }
