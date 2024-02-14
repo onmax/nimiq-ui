@@ -1,4 +1,34 @@
 .prose {
+  --white: #FFFFFF;
+  --gray: #f8f8f8;
+  --darkgray: #EAE9EA;
+  --darkblue: #1F2348;
+
+
+  --darkblue-10: #e2e3e6;
+  --darkblue-20: #d2d3da;
+  --darkblue-30: #bcbdc8;
+  --darkblue-60: #76798f;
+
+  --green: #21bca5;
+  --blue: #0CA6FE;
+
+  --primary: var(--darkblue);
+}
+
+.dark .prose {
+  --gray: #1b1d33;
+  --darkgray: #292b3f;
+  --darkblue-10: #494a5c;
+  --darkblue-20: #494A5C;
+  --darkblue-30: #5F6170;
+  --darkblue-60: #A4A5AD;
+  --green: #24CCA2;
+
+  --primary: var(--white);
+}
+
+.prose {
   font-family: Mulish,
     ui-sans-serif,
     system-ui,
@@ -36,31 +66,10 @@
     margin-top: 0;
   }
 
-  --white: #FFFFFF;
-  --gray: #f8f8f8;
-  --darkgray: #EAE9EA;
-  --darkblue: #1F2348;
-
-
-  --darkblue-10: #e2e3e6;
-  --darkblue-20: #d2d3da;
-  --darkblue-30: #bcbdc8;
-  --darkblue-60: #76798f;
-
-  --green: #21bca5;
-  --blue: #0CA6FE;
-
-  .dark & {
-    --darkblue-20: #494A5C;
-    --darkblue-30: #5F6170;
-    --darkblue-60: #A4A5AD;
-    --green: #24CCA2;
-  }
-
   background-color: var(--gray);
 
   :is(h1, h2, h3, h4, h5, h6) {
-    color: var(--darkblue);
+    color: var(--primary);
   }
 
   * {

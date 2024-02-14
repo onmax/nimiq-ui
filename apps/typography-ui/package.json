@@ -11,11 +11,14 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
+    "@vueuse/core": "^10.7.2",
     "unplugin-vue-markdown": "^0.26.0",
     "vue": "^3.4.15"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.4",
+    "@iconify-json/carbon": "^1.1.30",
+    "@iconify-json/logos": "^1.1.42",
     "@tsconfig/node20": "^20.1.2",
     "@types/node": "^20.11.10",
     "@unocss/preset-rem-to-px": "^0.58.5",

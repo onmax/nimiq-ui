@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 import UnoCSS from 'unocss/vite'
-import { presetWebFonts, presetAttributify, presetUno } from 'unocss'
+import { presetWebFonts, presetAttributify, presetUno, presetIcons } from 'unocss'
 import presetRemToPx from '@unocss/preset-rem-to-px'
 import Markdown from 'unplugin-vue-markdown/vite'
 
@@ -20,6 +20,15 @@ export default defineConfig({
       presets: [
         presetUno(),
         presetAttributify(),
+        presetIcons({
+          extraProperties: {
+            'font-size': '1.2em',
+          },
+          collections: {
+            carbon: () => import('@iconify-json/carbon/icons.json').then(i => i.default),
+            logos: () => import('@iconify-json/logos/icons.json').then(i => i.default),
+          }
+        }),
         presetWebFonts({
           provider: 'bunny',
           fonts: {
