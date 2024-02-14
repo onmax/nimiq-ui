@@ -4,7 +4,6 @@
   --darkgray: #EAE9EA;
   --darkblue: #1F2348;
 
-
   --darkblue-10: #e2e3e6;
   --darkblue-20: #d2d3da;
   --darkblue-30: #bcbdc8;
@@ -45,7 +44,8 @@
 
   * {
     max-width: 700px;
-    margin: inherit auto;
+    margin-left: auto;
+    margin-right: auto;
     text-wrap: pretty;
   }
 
