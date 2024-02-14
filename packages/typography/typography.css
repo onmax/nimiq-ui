@@ -1,4 +1,5 @@
-.prose {
+/* TODO Remove vp-doc. It is just a work around for vitepress  */
+.prose, .vp-doc {
   --white: #FFFFFF;
   --gray: #f8f8f8;
   --darkgray: #EAE9EA;
@@ -15,7 +16,7 @@
   --primary: var(--darkblue);
 }
 
-.dark .prose {
+.dark .prose, .dark .vp-doc {
   --gray: #1b1d33;
   --darkgray: #292b3f;
   --darkblue-10: #494a5c;
@@ -27,7 +28,7 @@
   --primary: var(--white);
 }
 
-.prose {
+.prose, .vp-doc {
   font-family: Mulish,
     ui-sans-serif,
     system-ui,

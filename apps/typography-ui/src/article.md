@@ -7,13 +7,13 @@ Pixel, a curious little byte, had always dreamed of exploring the vast and myste
 
 #### The Preparation
 
-Armed with a digital map and a sturdy backpack filled with essential coding tools, Pixel was ready to delve into the secrets of blockchain technology.
+Armed with a digital map and a sturdy backpack filled with essential coding tools, Pixel was ready to delve into the secrets of blockchain technology. The journey was fraught with challenges, but Pixel was determined to uncover the truth about the future of money.
 
 <figure>
 
 > "To the moon!" 
   
-<figcaption>Pixel exclaimed, stepping into the realm of endless possibilities.</figcaption>
+<figcaption>Pixel exclaimed</figcaption>
 </figure>
 
 
