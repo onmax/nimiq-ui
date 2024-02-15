@@ -1,26 +1,26 @@
 .prose {
-  --darkgray: #EAE9EA;
-  --neutral: #1F2348;
-  --neutral-10: #e2e3e6;
-  --neutral-20: #d2d3da;
-  --neutral-30: #bcbdc8;
-  --neutral-60: #76798f;
-  --green: #21bca5;
-  --blue: #0CA6FE;
+  --n-typography-darkgray: #EAE9EA;
+  --n-typography-neutral: #1F2348;
+  --n-typography-neutral-10: #e2e3e6;
+  --n-typography-neutral-20: #d2d3da;
+  --n-typography-neutral-30: #bcbdc8;
+  --n-typography-neutral-60: #76798f;
+  --n-typography-green: #21bca5;
+  --n-typography-blue: #0CA6FE;
 }
 
 .dark .prose {
-  --darkgray: #292b3f;
-  --neutral: #ffffff;
-  --neutral-10: #494a5c;
-  --neutral-20: #494A5C;
-  --neutral-30: #5F6170;
-  --neutral-60: #A4A5AD;
-  --green: #24CCA2;
-  --blue: #0ca6fe;
+  --n-typography-darkgray: #292b3f;
+  --n-typography-neutral: #ffffff;
+  --n-typography-neutral-10: #494a5c;
+  --n-typography-neutral-20: #494A5C;
+  --n-typography-neutral-30: #5F6170;
+  --n-typography-neutral-60: #A4A5AD;
+  --n-typography-green: #24CCA2;
+  --n-typography-blue: #0ca6fe;
 }
 
-.prose {
+.prose :not(.not-prose) {
   font-family: Mulish,
     ui-sans-serif,
     system-ui,
@@ -60,28 +60,28 @@
   }
 
   :is(h1, h2, h3, h4, h5, h6) {
-    color: var(--neutral);
+    color: var(--n-typography-neutral);
   }
 
   * {
-    color: var(--neutral-60);
+    color: var(--n-typography-neutral-60);
   }
 
   p a {
-    color: var(--blue);
+    color: var(--n-typography-blue);
   }
 
   blockquote :is(p, p > em) {
-    color: var(--green);
+    color: var(--n-typography-green);
   }
 
   figure figcaption {
-    color: var(--neutral-60);
+    color: var(--n-typography-neutral-60);
   }
 
   code,
   pre {
-    background-color: var(--darkgray);
+    background-color: var(--n-typography-darkgray);
   }
 
 
@@ -223,7 +223,7 @@
         display: block;
         width: 100%;
         height: 2px;
-        background-color: var(--neutral-10);
+        background-color: var(--n-typography-neutral-10);
         border-radius: 1px;
       }
 
@@ -271,7 +271,7 @@
         display: block;
         width: 100%;
         height: 2px;
-        background-color: var(--neutral-10);
+        background-color: var(--n-typography-neutral-10);
         border-radius: 1px;
       }
 
@@ -337,7 +337,7 @@
         top: -2px;
         position: relative;
         border-radius: 3px;
-        background-color: var(--neutral-20);
+        background-color: var(--n-typography-neutral-20);
         margin-right: 13px;
 
         @media (min-width: 769px) {
@@ -363,7 +363,7 @@
 
       &::before {
         content: counter(item);
-        color: var(--neutral-30);
+        color: var(--n-typography-neutral-30);
         font-weight: 700;
         display: inline-block;
         margin-right: 12px;
