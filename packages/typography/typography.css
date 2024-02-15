@@ -71,7 +71,7 @@
     color: var(--blue);
   }
 
-  blockquote p {
+  blockquote :is(p, p > em) {
     color: var(--green);
   }
 
