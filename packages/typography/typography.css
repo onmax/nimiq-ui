@@ -21,7 +21,7 @@
 }
 
 .prose {
-  *:not(:where(.not-prose, .not-prose *)) {
+  * {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
@@ -56,7 +56,7 @@
     color: var(--n-typography-neutral);
   }
 
-  *:not(:where(.not-prose, .not-prose *)) {
+  * {
     color: var(--n-typography-neutral-60);
   }
 
@@ -77,7 +77,6 @@
   }
 
   :is(h1, h2, h3, h4, h5, h6):not(:where(.not-prose, .not-prose *)) {
-    margin: 0;
     font-weight: bold;
     text-wrap: balance;
   }
@@ -178,7 +177,8 @@
   p:not(:where(.not-prose, .not-prose *)) {
     font-size: 16px;
     line-height: 24px;
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 
     a {
       text-decoration: none;
@@ -199,10 +199,9 @@
   }
 
   blockquote:not(:where(.not-prose, .not-prose *)) {
-    margin: 0;
-
     &:not(figure > &) {
-      margin: 24px 0;
+      margin-top: 0;
+      margin-bottom: 0;
 
       /*
         We add the borders to blockquote if is not a children of figure
@@ -245,8 +244,6 @@
   }
 
   figure:not(:where(.not-prose, .not-prose *)) {
-    margin: 0px;
-
     figcaption {
       font-size: 14px;
       font-weight: 700;
@@ -254,7 +251,8 @@
     }
 
     &:has(blockquote) {
-      margin: 24px 0;
+      margin-top: 24px;
+      margin-bottom: 24px;
 
       &::after,
       &::before {
