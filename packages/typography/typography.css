@@ -1,34 +1,31 @@
-/* TODO Remove vp-doc. It is just a work around for vitepress  */
-.prose, .vp-doc {
-  --white: #FFFFFF;
-  --gray: #f8f8f8;
+.prose {
   --darkgray: #EAE9EA;
-  --darkblue: #1F2348;
 
-  --darkblue-10: #e2e3e6;
-  --darkblue-20: #d2d3da;
-  --darkblue-30: #bcbdc8;
-  --darkblue-60: #76798f;
+  --neutral: #1F2348;
+  --neutral-10: #e2e3e6;
+  --neutral-20: #d2d3da;
+  --neutral-30: #bcbdc8;
+  --neutral-60: #76798f;
 
   --green: #21bca5;
   --blue: #0CA6FE;
 
-  --primary: var(--darkblue);
+  --neutral: var(--neutral);
 }
 
-.dark .prose, .dark .vp-doc {
-  --gray: #1b1d33;
+.dark .prose {
   --darkgray: #292b3f;
-  --darkblue-10: #494a5c;
-  --darkblue-20: #494A5C;
-  --darkblue-30: #5F6170;
-  --darkblue-60: #A4A5AD;
-  --green: #24CCA2;
 
-  --primary: var(--white);
+  --neutral: #ffffff;
+  --neutral-10: #494a5c;
+  --neutral-20: #494A5C;
+  --neutral-30: #5F6170;
+  --neutral-60: #A4A5AD;
+  --green: #24CCA2;
+  --blue: #0ca6fe;
 }
 
-.prose, .vp-doc {
+.prose {
   font-family: Mulish,
     ui-sans-serif,
     system-ui,
@@ -67,14 +64,12 @@
     margin-top: 0;
   }
 
-  background-color: var(--gray);
-
   :is(h1, h2, h3, h4, h5, h6) {
-    color: var(--primary);
+    color: var(--neutral);
   }
 
   * {
-    color: var(--darkblue-60);
+    color: var(--neutral-60);
   }
 
   p a {
@@ -86,7 +81,7 @@
   }
 
   figure figcaption {
-    color: var(--darkblue-60);
+    color: var(--neutral-60);
   }
 }
 
@@ -234,7 +229,7 @@ blockquote {
       display: block;
       width: 100%;
       height: 2px;
-      background-color: var(--darkblue-10);
+      background-color: var(--neutral-10);
       border-radius: 1px;
     }
 
@@ -282,7 +277,7 @@ figure {
       display: block;
       width: 100%;
       height: 2px;
-      background-color: var(--darkblue-10);
+      background-color: var(--neutral-10);
       border-radius: 1px;
     }
 
@@ -348,7 +343,7 @@ ul {
       top: -2px;
       position: relative;
       border-radius: 3px;
-      background-color: var(--darkblue-20);
+      background-color: var(--neutral-20);
       margin-right: 13px;
 
       @media (min-width: 769px) {
@@ -374,7 +369,7 @@ ol {
 
     &::before {
       content: counter(item);
-      color: var(--darkblue-30);
+      color: var(--neutral-30);
       font-weight: 700;
       display: inline-block;
       margin-right: 12px;
