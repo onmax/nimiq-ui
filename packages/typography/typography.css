@@ -20,7 +20,7 @@
   --n-typography-blue: #0ca6fe;
 }
 
-.prose :not(.not-prose) {
+.prose :not(:where(.not-prose, .not-prose *)) {
   font-family: Mulish,
     ui-sans-serif,
     system-ui,
