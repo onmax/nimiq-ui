@@ -9,8 +9,6 @@
 
   --green: #21bca5;
   --blue: #0CA6FE;
-
-  --neutral: var(--neutral);
 }
 
 .dark .prose {
