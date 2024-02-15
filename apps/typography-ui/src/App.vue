@@ -43,6 +43,11 @@ const isDark = useDark()
 
   <main class="prose" min-h-screen>
     <Article />
+
+    <details>
+      <summary>Not Prose</summary>
+      <Article class="not-prose"/>
+    </details>
   </main>
 </template>
 
