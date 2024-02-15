@@ -1,19 +1,16 @@
 .prose {
   --darkgray: #EAE9EA;
-
   --neutral: #1F2348;
   --neutral-10: #e2e3e6;
   --neutral-20: #d2d3da;
   --neutral-30: #bcbdc8;
   --neutral-60: #76798f;
-
   --green: #21bca5;
   --blue: #0CA6FE;
 }
 
 .dark .prose {
   --darkgray: #292b3f;
-
   --neutral: #ffffff;
   --neutral-10: #494a5c;
   --neutral-20: #494A5C;
