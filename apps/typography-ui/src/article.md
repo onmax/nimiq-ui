@@ -23,8 +23,11 @@ Armed with a digital map and a sturdy backpack filled with essential coding tool
 
 On the journey, Pixel met Sage Scripto, a wise old code wizard, who shared valuable knowledge about the art of cryptography. Scripto gifted Pixel a magical scroll containing the **ancient code** of blockchain:
 
+<pre>
+  <span>// The Genesis Block</span>
+</pre>
+
 ```javascript
-// The Genesis Block
 const genesisBlock = {
   index: 0,
   timestamp: "2021-01-01",
@@ -34,6 +37,7 @@ const genesisBlock = {
 };
 console.log("Behold the Genesis Block:", genesisBlock);
 ```
+
 
 ## The Dark Forest of Bugs
 
