@@ -1,27 +1,15 @@
-.prose {
-  --n-typography-darkgray: #EAE9EA;
-  --n-typography-neutral: #1F2348;
-  --n-typography-neutral-10: #e2e3e6;
-  --n-typography-neutral-20: #d2d3da;
-  --n-typography-neutral-30: #bcbdc8;
-  --n-typography-neutral-60: #76798f;
-  --n-typography-green: #21bca5;
-  --n-typography-blue: #0CA6FE;
-}
-
-.dark .prose {
-  --n-typography-darkgray: #292b3f;
-  --n-typography-neutral: #ffffff;
-  --n-typography-neutral-10: #494a5c;
-  --n-typography-neutral-20: #494A5C;
-  --n-typography-neutral-30: #5F6170;
-  --n-typography-neutral-60: #A4A5AD;
-  --n-typography-green: #24CCA2;
-  --n-typography-blue: #0ca6fe;
-}
+@import url(./colors.css);
 
 @layer nimiq-typography {
   .prose {
+    >*:not(:where(.not-prose, .not-prose *)):last-child {
+      padding-bottom: 96px;
+
+      @media (min-width: 1153px) {
+        padding-bottom: 128px;
+      }
+    }
+
     *:not(:where(.not-prose, .not-prose *)) {
       max-width: 700px;
       margin-left: auto;
@@ -54,27 +42,24 @@
     }
 
     :is(h1, h2, h3, h4, h5, h6):not(:where(.not-prose, .not-prose *)) {
-      color: var(--n-typography-neutral);
+      color: var(--neutral);
     }
 
     * {
-      color: var(--n-typography-neutral-60);
+      color: var(--neutral-800);
     }
 
     p a:not(:where(.not-prose, .not-prose *)) {
-      color: var(--n-typography-blue);
+      color: var(--blue);
     }
 
     blockquote :is(p, p > em):not(:where(.not-prose, .not-prose *)) {
-      color: var(--n-typography-green);
-    }
-
-    figure figcaption:not(:where(.not-prose, .not-prose *)) {
-      color: var(--n-typography-neutral-60);
+      color: var(--green);
     }
 
     :is(code, pre):not(:where(.not-prose, .not-prose *)) {
-      background-color: var(--n-typography-darkgray);
+      background-color: var(--neutral-300);
+      color: var(--neutral-900);
     }
 
     :is(h1, h2, h3, h4, h5, h6):not(:where(.not-prose, .not-prose *)) {
@@ -200,21 +185,24 @@
     }
 
     blockquote:not(:where(.not-prose, .not-prose *)) {
+      margin-top: 0;
+      margin-left: 0;
+
       &:not(figure > &) {
-        margin-top: 0;
-        margin-bottom: 0;
+        margin-top: 24px;
+        margin-bottom: 24px;
 
         /*
         We add the borders to blockquote if is not a children of figure
         Otherwise, figure will have the borders
-      */
+        */
         &::after,
         &::before {
           content: '';
           display: block;
           width: 100%;
           height: 2px;
-          background-color: var(--n-typography-neutral-10);
+          background-color: var(--neutral-400);
           border-radius: 1px;
         }
 
@@ -261,7 +249,7 @@
           display: block;
           width: 100%;
           height: 2px;
-          background-color: var(--n-typography-neutral-10);
+          background-color: var(--neutral-400);
           border-radius: 1px;
         }
 
