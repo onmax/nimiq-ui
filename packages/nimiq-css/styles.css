@@ -1,0 +1,4 @@
+@layer nimiq-styles {
+  @import url(./colors.css);
+  @import url(./typography.css);
+}
