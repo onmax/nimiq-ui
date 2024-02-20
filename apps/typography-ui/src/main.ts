@@ -1,5 +1,5 @@
 import 'virtual:uno.css'
-import '../../../packages/typography/typography.css'
+import '../../../packages/nimiq-css/typography.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
