@@ -1,0 +1,355 @@
+/**
+ * Make sure to import also nimiq-colors layer found in this package
+ **/
+.prose {
+  >*:not(:where(.raw, .raw *)):last-child {
+    padding-bottom: 6rem;
+
+    @media (min-width: 1153px) {
+      padding-bottom: 8rem;
+    }
+  }
+
+  *:not(:where(.raw, .raw *)) {
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  >*:not(:where(.raw, .raw *)) {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+
+  *:is(iframe, img, video):not(:where(.raw, .raw *)) {
+    @media (max-width: 768px) {
+      margin-left: -1.5rem;
+      width: min(calc(100% + 3rem), 700px);
+    }
+  }
+
+  &>*:first-child:not(:where(.raw, .raw *)) {
+    margin-top: 0;
+  }
+
+
+  h1:not(:where(.raw, .raw *)) {
+    font-size: 2.75rem;
+    line-height: 3.3125rem;
+    font-weight: 700;
+
+    @media (min-width: 1153px) {
+      font-size: 3rem;
+    }
+
+    margin-top: 9rem;
+    margin-bottom: 7rem;
+
+    @media (min-width: 769px) {
+      margin-bottom: 7.5rem;
+    }
+  }
+
+  h2:not(:where(.raw, .raw *)) {
+    font-size: 2rem;
+    line-height: 2.625rem;
+    font-weight: 700;
+
+    @media (min-width: 769px) {
+      font-size: 2.25rem;
+      line-height: 2.9375rem;
+    }
+
+    @media (min-width: 1153px) {
+      font-size: 2.375rem;
+      line-height: 3.0625rem;
+    }
+
+    margin-top: 5.5rem;
+    margin-bottom: 1.5rem;
+
+    @media (min-width: 769px) {
+      margin-top: 6rem;
+    }
+  }
+
+  h1+h2 {
+    margin-top: 3.5rem;
+
+    @media (min-width: 1153px) {
+      margin-top: 4rem;
+    }
+  }
+
+  h3:not(:where(.raw, .raw *)) {
+    font-size: 1.625rem;
+    line-height: 2.125rem;
+    font-weight: 700;
+
+    @media (min-width: 769px) {
+      font-size: 1.75rem;
+      line-height: 2.25rem;
+    }
+
+    @media (min-width: 1153px) {
+      font-size: 1.875rem;
+      line-height: 2.4375rem;
+    }
+
+    margin-top: 5.5rem;
+    margin-bottom: 1.5rem;
+
+    @media (min-width: 769px) {
+      margin-top: 4rem;
+    }
+  }
+
+  h2+h3 {
+    margin-top: 3rem;
+
+    @media (min-width: 1153px) {
+      margin-top: 3.5rem;
+    }
+  }
+
+  h4:not(:where(.raw, .raw *)) {
+    font-size: 1.375rem;
+    line-height: 1.8125rem;
+    font-weight: 700;
+
+    @media (min-width: 769px) {
+      font-size: 1.5rem;
+      line-height: 1.9375rem;
+    }
+
+    @media (min-width: 1153px) {
+      font-size: 1.625rem;
+      line-height: 2.125rem;
+    }
+
+    margin-top: 5.5rem;
+    margin-bottom: 1.5rem;
+
+    @media (min-width: 769px) {
+      margin-top: 6rem;
+    }
+  }
+
+  h3+h4 {
+    margin-top: 2.5rem;
+
+    @media (min-width: 1153px) {
+      margin-top: 3rem;
+    }
+  }
+
+  p:not(:where(.raw, .raw *)) {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    line-height: 1.75;
+
+    a {
+      text-decoration: none;
+      font-weight: 600;
+    }
+  }
+
+  h1+p {
+    margin-top: 7rem;
+
+    @media (min-width: 1153px) {
+      margin-top: 7.5rem;
+    }
+  }
+
+  :is(h2, h3, h4)+p {
+    margin-top: -7px;
+  }
+
+  blockquote:not(:where(.raw, .raw *)) {
+    margin-top: 0;
+    margin-left: 0;
+
+    &:not(figure blockquote) {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+
+      /*
+        We add the borders to blockquote if is not a children of figure
+        Otherwise, figure will have the borders
+      */
+      &::after,
+      &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--neutral-400);
+        border-radius: 1px;
+      }
+
+      &>* {
+        padding: 1.2rem 1.25em;
+
+        @media (min-width: 769px) {
+          padding: 1.5rem 2em;
+        }
+      }
+    }
+
+    p {
+      font-size: 1.3125rem;
+      font-weight: 700;
+      line-height: 2.125rem;
+
+      @media (min-width: 769px) {
+        font-size: 1.375rem;
+        line-height: 2.1875rem;
+      }
+
+      @media (min-width: 1153px) {
+        font-size: 1.5rem;
+        line-height: 2.375rem;
+      }
+    }
+  }
+
+  figure:not(:where(.raw, .raw *)) {
+    figcaption {
+      font-size: 0.875rem;
+      font-weight: 700;
+      line-height: 1.3125rem;
+    }
+
+    &:has(blockquote) {
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+
+      &::after,
+      &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--neutral-400);
+        border-radius: 1px;
+      }
+
+      blockquote {
+        padding: 1.5rem 1.25em 0 1.25em;
+
+        @media (min-width: 769px) {
+          padding: 1.5rem 2em 0 2em;
+        }
+      }
+
+      figcaption {
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.3125rem;
+        padding: 1.5rem 1.25em;
+        margin-top: -20px;
+
+        @media (min-width: 769px) {
+          padding: 1.5rem 2em;
+          margin-top: -1.5rem;
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+      }
+    }
+  }
+
+  img:not(:where(.raw, .raw *)) {
+    border-radius: 6px;
+    margin-top: 1.5rem;
+
+    &:has(+ figcaption) {
+      margin-bottom: 0.75rem;
+
+      @media (min-width: 321px) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    &:not(:has(+ figcaption)) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  ul:not(:where(.raw, .raw *)) {
+    list-style: none;
+    padding-left: 1rem;
+
+    @media (min-width: 769px) {
+      padding-left: 22px;
+    }
+
+
+    li {
+      margin: 16px 0;
+
+      &::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        display: inline-block;
+        top: -2px;
+        position: relative;
+        border-radius: 3px;
+        background-color: var(--neutral-600);
+        margin-right: 13px;
+
+        @media (min-width: 769px) {
+          margin-right: 16px;
+        }
+      }
+    }
+  }
+
+
+  ol:not(:where(.raw, .raw *)) {
+    list-style: none;
+    counter-reset: item;
+    padding-left: 13px;
+
+    @media (min-width: 769px) {
+      padding-left: 18px;
+    }
+
+    li {
+      counter-increment: item;
+      margin: 16px 0;
+
+      &::before {
+        content: counter(item);
+        color: var(--neutral-600);
+        font-weight: 700;
+        display: inline-block;
+        margin-right: 0.75rem;
+
+        @media (min-width: 769px) {
+          margin-right: 1rem;
+        }
+
+      }
+    }
+  }
+
+  code:not(:where(.raw, .raw *)) {
+    border-radius: 0.25rem;
+
+    &:not(pre > &) {
+      padding: 0px 0.5rem 1px 0.5em;
+    }
+  }
+
+  pre:not(:where(.raw, .raw *)) {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 6px;
+  }
+}

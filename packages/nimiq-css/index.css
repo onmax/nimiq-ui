@@ -1,7 +1,0 @@
-@layer nimiq-styles {
-  @layer nimiq-colors, nimiq-typography, nimiq-preflight;
-
-  @import url(./colors.css);
-  @import url(./preflight.css);
-  @import url(./typography.css);
-}

@@ -1,5 +1,47 @@
 {
   "name": "nimiq-css",
-  "version": "0.0.2",
-  "description": "Nimiq's Desing System in CSS"
+  "version": "0.0.8",
+  "description": "Nimiq's Desing System in CSS",
+  "type": "module",
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "build": "unbuild && cp -r src/css dist/css/unminified"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./css": {
+      "import": "./dist/css/"
+    },
+    "./unocss": {
+      "types": "./dist/unocss/index.d.ts",
+      "import": "./dist/unocss/index.mjs"
+    }
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@unocss/preset-rem-to-px": "^0.58.5",
+    "unbuild": "^2.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0",
+    "unocss": "^0.58.5",
+    "vite": "^2.9.0 || ^3.0.0-0 || ^4.0.0 || ^5.0.0-0"
+  },
+  "dependencies": {
+    "@unocss/reset": "^0.58.5",
+    "ts-cssjson": "^3.0.1",
+    "unocss": "^0.58.5"
+  }
 }
