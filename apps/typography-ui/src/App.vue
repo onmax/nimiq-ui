@@ -46,7 +46,7 @@ const isDark = useDark()
 
     <details>
       <summary>Not Prose</summary>
-      <Article class="not-prose"/>
+      <Article class="raw"/>
     </details>
   </main>
 </template>
