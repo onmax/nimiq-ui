@@ -12,6 +12,11 @@ const router = createRouter({
       path: '/typography',
       name: 'typography',
       component: () => import('../components/Typography.vue') 
+    },
+    {
+      path: '/components',
+      name: 'components',
+      component: () => import('../components/Components.vue')
     }
   ]
 })

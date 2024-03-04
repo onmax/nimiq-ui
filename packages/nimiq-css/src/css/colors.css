@@ -1,102 +1,195 @@
 :root {
-  --neutral: #1F2348;
-  --neutral-0: #ffffff;
-  --neutral-50: #fbfbfb;
-  --neutral-100: #f8f8f8;
-  --neutral-200: #f4f4f6;
-  --neutral-300: #EEEEF1;
-  --neutral-400: #E4E4E9;
-  --neutral-500: #D2D3DA;
-  --neutral-600: #C7C8D1;
-  --neutral-700: #8F91A4;
-  --neutral-800: #797B91;
-  --neutral-900: #4C4F6D;
-  --neutral-gradient: radial-gradient(100% 100% at 100% 100%, #260133 0%, #1F2348 100%);
+  --nq-darkblue: rgb(31, 35, 72);
 
-  --blue: #0582ca;
-  --blue-400: #E6F2FA;
-  --blue-500: #CDE6F4;
-  --blue-600: #C0E0F2;
-  --blue-gradient: radial-gradient(100% 100% at 100% 100%, #265DD7 0%, var(--blue) 100%);
+  --nq-neutral-on-light: var(--nq-darkblue);
+  --nq-neutral-on-light-0: rgb(255, 255, 255);
+  --nq-neutral-on-light-50: rgb(251, 251, 251);
+  --nq-neutral-on-light-100: rgb(248, 248, 248);
+  --nq-neutral-on-light-200: rgb(244, 244, 246);
+  --nq-neutral-on-light-300: rgb(238, 238, 241);
+  --nq-neutral-on-light-400: rgb(228, 228, 233);
+  --nq-neutral-on-light-500: rgb(210, 211, 218);
+  --nq-neutral-on-light-600: rgb(199, 200, 209);
+  --nq-neutral-on-light-700: rgb(143, 145, 164);
+  --nq-neutral-on-light-800: rgb(121, 123, 145);
+  --nq-neutral-on-light-900: rgb(76, 79, 109);
+  --nq-neutral-on-dark: rgb(255, 255, 255);
+  --nq-neutral-on-dark-0: rgb(23, 24, 43);
+  --nq-neutral-on-dark-50: rgb(28, 29, 47);
+  --nq-neutral-on-dark-100: rgb(30, 31, 49);
+  --nq-neutral-on-dark-200: rgb(35, 36, 54);
+  --nq-neutral-on-dark-300: rgb(39, 40, 58);
+  --nq-neutral-on-dark-400: rgb(46, 47, 64);
+  --nq-neutral-on-dark-500: rgb(69, 70, 85);
+  --nq-neutral-on-dark-600: rgb(81, 82, 96);
+  --nq-neutral-on-dark-700: rgb(139, 139, 149);
+  --nq-neutral-on-dark-800: rgb(162, 163, 170);
+  --nq-neutral-on-dark-900: rgb(209, 209, 213);
+  --nq-neutral-on-light-gradient: radial-gradient(100% 100% at 100% 100%, #260133 0%, #1f2348 100%);
+  --nq-neutral-on-dark-gradient: var(--nq-neutral-on-dark-0);
+  
+  --nq-blue-on-light: rgb(5, 130, 202);
+  --nq-blue-on-light-400: rgb(230, 242, 250);
+  --nq-blue-on-light-500: rgb(205, 230, 244);
+  --nq-blue-on-light-600: rgb(191, 224, 242);
+  --nq-blue-on-dark: rgb(12, 166, 254);
+  --nq-blue-on-dark-400: rgb(22, 39, 64);
+  --nq-blue-on-dark-500: rgb(20, 52, 85);
+  --nq-blue-on-dark-600: rgb(20, 60, 96);
+  --nq-blue-on-light-gradient: radial-gradient(100% 100% at 100% 100%, #0b7ff2 0%, #0582ca 100%);
+  --nq-blue-on-dark-gradient: radial-gradient(100% 100% at 100% 100%, #0b7ff2 0%, #0ca6fe 100%);
 
-  --green: #13b59d;
-  --green-400: #E7F7F5;
-  --green-500: #D0F0EB;
-  --green-600: #C4EDE7;
-  --green-gradient: radial-gradient(100% 100% at 100% 100%, #41a38e 0%, var(--green) 100%);
+  --nq-green-on-light: rgb(19, 181, 157);
+  --nq-green-on-light-400: rgb(231, 247, 245);
+  --nq-green-on-light-500: rgb(208, 240, 235);
+  --nq-green-on-light-600: rgb(196, 237, 231);
+  --nq-green-on-dark: rgb(36, 204, 162);
+  --nq-green-on-dark-400: rgb(25, 42, 55);
+  --nq-green-on-dark-500: rgb(25, 60, 66);
+  --nq-green-on-dark-600: rgb(26, 69, 73);
+  --nq-green-on-light-gradient: radial-gradient(100% 100% at 100% 100%, #41a38e 0%, #13b59d 100%);
+  --nq-green-on-dark-gradient: radial-gradient(100% 100% at 100% 100%, #00bf90 0%, #24cca2 100%);
 
-  --orange: #fc8702;
-  --orange-400: #FFF3E6;
-  --orange-500: #FEE7CC;
-  --orange-600: #fee1c0;
-  --orange-gradient: radial-gradient(100% 100% at 100% 100%, #FD6216 0%, var(--orange) 100%);
+  --nq-orange-on-light: rgb(252, 135, 2);
+  --nq-orange-on-light-400: rgb(248, 237, 223);
+  --nq-orange-on-light-500: rgb(254, 231, 204);
+  --nq-orange-on-light-600: rgb(254, 225, 191);
+  --nq-orange-on-dark: rgb(255, 153, 0);
+  --nq-orange-on-dark-400: rgb(46, 37, 39);
+  --nq-orange-on-dark-500: rgb(69, 50, 34);
+  --nq-orange-on-dark-600: rgb(81, 56, 32);
+  --nq-orange-on-light-gradient: radial-gradient(100% 100% at 100% 100%, #fd6216 0%, #fc8702 100%);
+  --nq-orange-on-dark-gradient: radial-gradient(100% 100% at 100% 100%, #ff8800 0%, #ff9900 100%);
+  
+  --nq-red-on-light: rgb(217, 68, 50);
+  --nq-red-on-light-400: rgb(251, 236, 234);
+  --nq-red-on-light-500: rgb(247, 218, 214);
+  --nq-red-on-light-600: rgb(245, 208, 204);
+  --nq-red-on-dark: rgb(255, 92, 72);
+  --nq-red-on-dark-400: rgb(47, 31, 46);
+  --nq-red-on-dark-500: rgb(69, 37, 48);
+  --nq-red-on-dark-600: rgb(81, 41, 50);
+  --nq-red-on-light-gradient: radial-gradient(100% 100% at 100% 100%, #cc3047 0%, #d94432 100%);
+  --nq-red-on-dark-gradient: radial-gradient(100% 100% at 100% 100%, #ff391f 0%, #ff5c48 100%);
 
-  --red: #d94432;
-  --red-400: #FBECEA;
-  --red-500: #F7DAD6;
-  --red-600: #F5D0CC;
-  --red-gradient: radial-gradient(100% 100% at 100% 100%, #CC3047 0%, var(--red) 100%);
+  --nq-gold-on-light: rgb(233, 178, 19);
+  --nq-gold-on-light-400: rgb(253, 247, 231);
+  --nq-gold-on-light-500: rgb(251, 240, 208);
+  --nq-gold-on-light-600: rgb(249, 236, 196);
+  --nq-gold-on-dark: rgb(255, 196, 59);
+  --nq-gold-on-dark-400: rgb(47, 42, 45);
+  --nq-gold-on-dark-500: rgb(69, 58, 46);
+  --nq-gold-on-dark-600: rgb(81, 67, 47);
+  --nq-gold-on-light-gradient: radial-gradient(100% 100% at 100% 100%, #ec991c 0%, #e9b213 100%);
+  --nq-gold-on-dark-gradient: radial-gradient(100% 100% at 100% 100%, #ffb13b 0%, #ffc43b 100%);
 
-  --gold: #e9b213;
-  --gold-400: #FDF7E7;
-  --gold-500: #fbf0d0;
-  --gold-600: #F9ECC4;
-  --gold-gradient: radial-gradient(100% 100% at 100% 100%, #EC991C 0%, var(--gold) 100%);
+  --nq-purple-on-light: rgb(95, 75, 139);
+  --nq-purple-on-light-400: rgb(239, 237, 243);
+  --nq-purple-on-light-500: rgb(223, 219, 232);
+  --nq-purple-on-light-600: rgb(215, 210, 226);
+  --nq-purple-on-dark: rgb(143, 63, 213);
+  --nq-purple-on-dark-400: #231c3c;
+  --nq-purple-on-dark-500: rgb(47, 32, 77);
+  --nq-purple-on-dark-600: #352255;
+  
+  --nq-neutral: var(--nq-neutral-on-light);
+  --nq-neutral-0: var(--nq-neutral-on-light-0);
+  --nq-neutral-50: var(--nq-neutral-on-light-50);
+  --nq-neutral-100: var(--nq-neutral-on-light-100);
+  --nq-neutral-200: var(--nq-neutral-on-light-200);
+  --nq-neutral-300: var(--nq-neutral-on-light-300);
+  --nq-neutral-400: var(--nq-neutral-on-light-400);
+  --nq-neutral-500: var(--nq-neutral-on-light-500);
+  --nq-neutral-600: var(--nq-neutral-on-light-600);
+  --nq-neutral-700: var(--nq-neutral-on-light-700);
+  --nq-neutral-800: var(--nq-neutral-on-light-800);
+  --nq-neutral-900: var(--nq-neutral-on-light-900);
+  --nq-neutral-gradient: var(--nq-neutral-on-light-gradient);
 
-  --purple: #5f4b8b;
-  --purple-400: #efedf3;
-  --purple-500: #dfdbe8;
-  --purple-600: #D7D2E2;
+  --nq-blue: var(--nq-blue-on-light);
+  --nq-blue-400: var(--nq-blue-on-light-400);
+  --nq-blue-500: var(--nq-blue-on-light-500);
+  --nq-blue-600: var(--nq-blue-on-light-600);
+  --nq-blue-gradient: var(--nq-blue-on-light-gradient);
+
+  --nq-green: var(--nq-green-on-light);
+  --nq-green-400: var(--nq-green-on-light-400);
+  --nq-green-500: var(--nq-green-on-light-500);
+  --nq-green-600: var(--nq-green-on-light-600);
+  --nq-green-gradient: var(--nq-green-on-light-gradient);
+
+  --nq-orange: var(--nq-orange-on-light);
+  --nq-orange-400: var(--nq-orange-on-light-400);
+  --nq-orange-500: var(--nq-orange-on-light-500);
+  --nq-orange-600: var(--nq-orange-on-light-600);
+  --nq-orange-gradient: var(--nq-orange-on-light-gradient);
+
+  --nq-red: var(--nq-red-on-light);
+  --nq-red-400: var(--nq-red-on-light-400);
+  --nq-red-500: var(--nq-red-on-light-500);
+  --nq-red-600: var(--nq-red-on-light-600);
+  --nq-red-gradient: var(--nq-red-on-light-gradient);
+
+  --nq-gold: var(--nq-gold-on-light);
+  --nq-gold-400: var(--nq-gold-on-light-400);
+  --nq-gold-500: var(--nq-gold-on-light-500);
+  --nq-gold-600: var(--nq-gold-on-light-600);
+  --nq-gold-gradient: var(--nq-gold-on-light-gradient);
+
+
+  --nq-purple: var(--nq-purple-on-light);
+  --nq-purple-400: var(--nq-purple-on-light-400);
+  --nq-purple-500: var(--nq-purple-on-light-500);
+  --nq-purple-600: var(--nq-purple-on-light-600);
 
   &.dark {
-    --neutral: #ffffff;
-    --neutral-0: #17182B;
-    --neutral-50: #1C1D2F;
-    --neutral-100: #1E1F31;
-    --neutral-200: #232436;
-    --neutral-300: #27283A;
-    --neutral-400: #2E2F40;
-    --neutral-500: #454655;
-    --neutral-600: #515260;
-    --neutral-700: #8B8B95;
-    --neutral-800: #A2A3AA;
-    --neutral-900: #D1D1D5;
-    --neutral-gradient: var(--neutral-0);
+    --nq-neutral: var(--nq-neutral-on-dark);
+    --nq-neutral-0: var(--nq-neutral-on-dark-0);
+    --nq-neutral-50: var(--nq-neutral-on-dark-50);
+    --nq-neutral-100: var(--nq-neutral-on-dark-100);
+    --nq-neutral-200: var(--nq-neutral-on-dark-200);
+    --nq-neutral-300: var(--nq-neutral-on-dark-300);
+    --nq-neutral-400: var(--nq-neutral-on-dark-400);
+    --nq-neutral-500: var(--nq-neutral-on-dark-500);
+    --nq-neutral-600: var(--nq-neutral-on-dark-600);
+    --nq-neutral-700: var(--nq-neutral-on-dark-700);
+    --nq-neutral-800: var(--nq-neutral-on-dark-800);
+    --nq-neutral-900: var(--nq-neutral-on-dark-900);
+    --nq-neutral-gradient: var(--nq-neutral-on-dark-gradient);
 
+    --nq-blue: var(--nq-blue-on-dark);
+    --nq-blue-400: var(--nq-blue-on-dark-400);
+    --nq-blue-500: var(--nq-blue-on-dark-500);
+    --nq-blue-600: var(--nq-blue-on-dark-600);
+    --nq-blue-gradient: var(--nq-blue-on-dark-gradient);
 
-    --blue: #0CA6FE;
-    --blue-400: #162740;
-    --blue-500: #143455;
-    --blue-600: #143C60;
-    --blue-gradient: radial-gradient(100% 100% at 100% 100%, #0B7FF2 0%, var(--blue) 100%);
+    --nq-green: var(--nq-green-on-dark);
+    --nq-green-400: var(--nq-green-on-dark-400);
+    --nq-green-500: var(--nq-green-on-dark-500);
+    --nq-green-600: var(--nq-green-on-dark-600);
+    --nq-green-gradient: var(--nq-green-on-dark-gradient);
 
-    --green: #24cca2;
-    --green-400: #192A37;
-    --green-500: #193C42;
-    --green-600: #1A4549;
-    --green-gradient: radial-gradient(100% 100% at 100% 100%, #00BF90 0%, var(--green) 100%);
+    --nq-orange: var(--nq-orange-on-dark);
+    --nq-orange-400: var(--nq-orange-on-dark-400);
+    --nq-orange-500: var(--nq-orange-on-dark-500);
+    --nq-orange-600: var(--nq-orange-on-dark-600);
+    --nq-orange-gradient: var(--nq-orange-on-dark-gradient);
 
-    --orange: #ff9900;
-    --orange-400: #2F2527;
-    --orange-500: #453222;
-    --orange-600: #513820;
-    --orange-gradient: radial-gradient(100% 100% at 100% 100%, #ff8800 0%, var(--orange) 100%);
+    --nq-red: var(--nq-red-on-dark);
+    --nq-red-400: var(--nq-red-on-dark-400);
+    --nq-red-500: var(--nq-red-on-dark-500);
+    --nq-red-600: var(--nq-red-on-dark-600);
+    --nq-red-gradient: var(--nq-red-on-dark-gradient);
 
-    --red: #ff5c48;
-    --red-400: #2F1F2E;
-    --red-500: #452530;
-    --red-600: #512932;
-    --red-gradient: radial-gradient(100% 100% at 100% 100%, #ff391f 0%, var(--red) 100%);
-
-    --gold: #ffc43b;
-    --gold-400: #2F2A2D;
-    --gold-500: #453a2e;
-    --gold-600: #51432f;
-    --gold-gradient: radial-gradient(100% 100% at 100% 100%, #ffb13b 0%, var(--gold) 100%);
-
-    --purple: #8f3fd5;
-    --purple-400: #231c3c;
-    --purple-500: #2f204d;
-    --purple-600: #352255;
+    --nq-gold: var(--nq-gold-on-dark);
+    --nq-gold-400: var(--nq-gold-on-dark-400);
+    --nq-gold-500: var(--nq-gold-on-dark-500);
+    --nq-gold-600: var(--nq-gold-on-dark-600);
+    --nq-gold-gradient: var(--nq-gold-on-dark-gradient);
+    
+    --nq-purple: var(--nq-purple-on-dark);
+    --nq-purple-400: var(--nq-purple-on-dark-400);
+    --nq-purple-500: var(--nq-purple-on-dark-500);
+    --nq-purple-600: var(--nq-purple-on-dark-600);
   }
 }

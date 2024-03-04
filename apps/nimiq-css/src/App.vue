@@ -9,7 +9,8 @@ useDark()
     <header>
       <nav flex="~ gap-x-8">
         <RouterLink to="/">Back</RouterLink>
-        <RouterLink to="/typography"></RouterLink>
+        <RouterLink to="/components">Components</RouterLink>
+        <RouterLink to="/typography">Typography</RouterLink>
       </nav>
     </header>
 
