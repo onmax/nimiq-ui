@@ -2,7 +2,7 @@ import { type Preset, type PresetFactory, definePreset, presetWebFonts, presetIc
 import { readFileSync, existsSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { toJSON, toCSS } from 'ts-cssjson'
-import { getNimiqColors } from './colors';
+import { NimiqColor, getNimiqColors } from './colors';
 import { fileURLToPath } from 'node:url';
 
 export type NimiqPresetOptions = {
@@ -95,14 +95,14 @@ function createPreset() {
       }],
     ]
 
-
     // The only way to add gradients is via rules
     for (const [key, gradient] of gradients) {
       rules.push([key, { 'background-image': gradient }])
     }
 
-    if (components)
+    if (components) {
       rules.push(...cssToRules('components'))
+    }
 
     if (typography)
       rules.push(...cssToRules('typography'))

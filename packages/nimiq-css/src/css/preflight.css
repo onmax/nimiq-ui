@@ -1,5 +1,8 @@
 :root {
   --nq-ease: cubic-bezier(0.25, 0, 0, 1);
+  --nq-shadow: 0px 18px 38px rgba(31, 35, 72, 0.07), 0px 7px 8.5px rgba(31, 35, 72, 0.04), 0px 2px 2.5px rgba(31, 35, 72, 0.02);
+
+  --nq-shadow-2: 0px 6px 20px rgba(59, 76, 106, 0.13), 0px 1.34018px 4.46726px rgba(59, 76, 106, 0.0774939), 0px 0.399006px 1.33002px rgba(59, 76, 106, 0.0525061);
 }
 
 *:not(:where(code, pre, .raw, .raw *)) {
@@ -14,7 +17,6 @@
   text-align: left;
   letter-spacing: 0;
   font-weight: 400;
-  line-height: 24px;
 }
 
 body:not(.raw) {
@@ -130,5 +132,20 @@ code:not(:where(.raw, .raw *)) {
     background-clip: padding-box;
     border: 2px solid transparent;
     transition: background-color 0.2s var(--nq-ease, ease-out);
+  }
+}
+
+/* Links & buttons clickable */
+a,button:not([disabled]) {
+  position: relative;
+
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    left: -1rem;
+    top: -1rem;
+    right: -1rem;
+    bottom: -1rem;
+    z-index: -1;
   }
 }

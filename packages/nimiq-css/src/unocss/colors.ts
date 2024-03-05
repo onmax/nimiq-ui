@@ -1,4 +1,4 @@
-enum NimiqColor {
+export enum NimiqColor {
   Darkblue = 'darkblue',
   Neutral = 'neutral',
   Blue = 'blue',

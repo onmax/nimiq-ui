@@ -10,8 +10,8 @@
 }
 
 .arrow, .arrow-back {
-  &:not(:is(.arrow-back, [arrow-back]))::after,
-  &:is(.arrow-back, [arrow-back])::before {
+  &:not(:is(.arrow-back,[arrow-back]))::after,
+  &:is(.arrow-back,[arrow-back])::before {
     content: '';
     position: relative;
     display: inline-block;
@@ -25,6 +25,11 @@
     width: 0.7em;
     height: 0.7em;
     transition: transform 0.2s var(--nq-ease, ease-out);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: inherit;
   }
   
   &[href^="http"]::after {
@@ -47,5 +52,84 @@
   &:hover::after, &:hover::before {
     transform: translateX(-.25em);
     transition-delay: 100ms;
+  }
+}
+
+.pill {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: white;
+  line-height: 1;
+  height: max-content;
+  width: max-content;
+  transition: background 0.2s var(--nq-ease, ease-out);
+
+  &:is(.small, [small]) {
+    font-size: 18px;
+    padding: 8px 16px;
+  }
+}
+
+.pill-blue {
+  background: var(--nq-blue-gradient);
+
+  &:hover, &:focus {
+    background: var(--nq-blue-gradient-darkened);
+  }
+}
+
+.pill-green {
+  background: var(--nq-green-gradient);
+
+  &:hover, &:focus {
+    background: var(--nq-green-gradient-darkened);
+  }
+}
+
+.pill-red {
+  background: var(--nq-red-gradient);
+
+  &:hover, &:focus {
+    background: var(--nq-red-gradient-darkened);
+  }
+}
+
+.pill-gold {
+  background: var(--nq-gold-gradient);
+
+  &:hover, &:focus {
+    background: var(--nq-gold-gradient-darkened);
+  }
+}
+
+.pill-orange {
+  background: var(--nq-orange-gradient);
+
+  &:hover, &:focus {
+    background: var(--nq-orange-gradient-darkened);
+  }
+}
+
+.pill-secondary {
+  background: rgb(var(--nq-neutral-300));
+  color: rgb(var(--nq-neutral));
+
+  &:hover, &:focus {
+    background: rgb(var(--nq-neutral-400));
+  }
+}
+
+.pill-tertiary {
+  box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral-500));
+  color: rgb(var(--nq-neutral));
+
+  &:hover, &:focus {
+    background-color: rgb(var(--nq-neutral-100));
   }
 }
