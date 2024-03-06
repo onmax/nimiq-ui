@@ -1,7 +1,9 @@
 <script setup lang="ts">
-
+import Article from '../../assets/article.md'
 </script>
 
 <template>
-  Hello typogr! 
+  <main class="prose" min-h-screen text-neutral>
+    <Article />
+  </main> 
 </template>

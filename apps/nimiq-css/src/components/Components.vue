@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { createReusableTemplate, useDark } from '@vueuse/core'
-
-const isDark = useDark()
+import { createReusableTemplate, useDark } from '@vueuse/core';
+import { ref } from 'vue';
 
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ html: string }>()
+const showLoading = ref(true)
 </script>
 
 <template>
@@ -15,7 +15,7 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ html: string }>
       <details p-2>
         <summary>See HTML</summary>
 
-        <div of-x-auto w-full whitespace-nowrap bg-neutral-100 text-neutral p-2 rounded-md>
+        <div  class="text-xs" of-x-auto w-full bg-neutral-100 text-neutral p-2 rounded-md>
           <code>{{ html }}</code>
         </div>
       </details>
@@ -23,8 +23,11 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ html: string }>
   </DefineTemplate>
 
   <section max-w-700 mx-auto mt-8 p-6 ring ring-neutral-400 rounded>
-    <h2>Subline</h2>
-    <ReuseTemplate :html="`<p subline>An awesome subline</p>`" />
+    <h2>Texts</h2>
+    <div grid="~ flow-col gap-2">
+      <ReuseTemplate :html="`<p subline>An awesome subline</p>`" />
+      <ReuseTemplate :html="`<p label text-3>Build</p>`" />
+    </div>
   </section>
 
   <section max-w-700 mx-auto mt-8 p-6 ring ring-neutral-400 rounded>
@@ -68,10 +71,31 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ html: string }>
     </div>
 
     <h3 mt-6>Combine it with other class</h3>
-    <div mt-3 flex="~ gap-4">
-      <a href="./" class="pill pill-blue small arrow">
-        Small pill with arrow
-      </a>
+    <div grid="~ gap-2 flow-col">
+      <ReuseTemplate :html="`<a href='./' class='pill pill-blue small arrow'>Pill with arrow</a>`" />
+
+      <div flex="~ gap-4">
+        <button @click="showLoading = !showLoading" pill pill-blue small mt-3>Toggle loading</button>
+        <ReuseTemplate :html="`<a href='./' class='pill pill-secondary small ${showLoading ? 'loading': 'not-loading'}'>Loading</a>`" />
+      </div>  
+    </div>
+  </section>
+
+  <section max-w-700 mx-auto mt-8 p-6 ring ring-neutral-400 rounded>
+    <h2>Inputs</h2>
+
+    <div grid="~ flow-col gap-2">
+      <ReuseTemplate :html="`<input type='text' placeholder='Hey, hello :)' class='input-text' rounded-full />`" /> 
+      <ReuseTemplate :html="`<input type='text' class='input-text invalid' value='Something bad' rounded-full />`" /> 
+      <ReuseTemplate :html="`<textarea class='input-text rounded-[3px]' placeholder='Hey, hello :)' />`" /> 
     </div>
   </section>
 </template>
+
+
+<style>
+
+.pill {
+  
+}
+</style>

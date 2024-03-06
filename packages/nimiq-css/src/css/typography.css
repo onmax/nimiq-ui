@@ -145,16 +145,36 @@
     }
   }
 
+  :is(h1, h2, h3, h4)[id] {
+    position: relative;
+    margin-left: -1em;
+    padding-left: 1em;
+
+    &::after {
+      content: '#';
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      transition: 50ms opacity var(--nq-ease, ease-in-out);
+      pointer-events: none;
+    }
+
+    @media (min-width: 769px) {
+      :is(&, &::after):hover {
+        &::after {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
   p:not(:where(.raw, .raw *)) {
     margin-top: 0;
     margin-bottom: 0;
     font-size: 16px;
     line-height: 1.75;
-
-    a {
-      text-decoration: none;
-      font-weight: 600;
-    }
   }
 
   h1+p {
@@ -187,7 +207,7 @@
         display: block;
         width: 100%;
         height: 2px;
-        background-color: var(--nq-neutral-400);
+        background-color: rgb(var(--nq-neutral-400));
         border-radius: 1px;
       }
 
@@ -234,7 +254,7 @@
         display: block;
         width: 100%;
         height: 2px;
-        background-color: var(--nq-neutral-400);
+        background-color: rgb(var(--nq-neutral-400));
         border-radius: 1px;
       }
 
@@ -300,7 +320,7 @@
         top: -2px;
         position: relative;
         border-radius: 3px;
-        background-color: var(--nq-neutral-600);
+        background-color: rgb(var(--nq-neutral-600));
         margin-right: 13px;
 
         @media (min-width: 769px) {
@@ -326,7 +346,7 @@
 
       &::before {
         content: counter(item);
-        color: var(--nq-neutral-600);
+        color: rgb(var(--nq-neutral-600));
         font-weight: 700;
         display: inline-block;
         margin-right: 0.75rem;
@@ -351,5 +371,10 @@
     margin-top: 1.5rem;
     padding: 1.5rem;
     border-radius: 6px;
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: 600;
   }
 }

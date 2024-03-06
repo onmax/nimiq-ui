@@ -9,22 +9,29 @@
   }
 }
 
-.arrow, .arrow-back {
-  &:not(:is(.arrow-back,[arrow-back]))::after,
-  &:is(.arrow-back,[arrow-back])::before {
+.label {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  line-height: 1;
+  color: rgb(var(--nq-neutral-700));
+}
+
+.arrow,
+.arrow-back,
+.loading,
+.not-loading {
+  &:not(:is(.arrow-back, [arrow-back]))::after,
+  &:is(.arrow-back, [arrow-back])::before {
     content: '';
     position: relative;
     display: inline-block;
-    --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=");
     -webkit-mask: var(--nq-icon) no-repeat;
     mask: var(--nq-icon) no-repeat;
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
     background-color: currentColor;
     color: inherit;
-    width: 0.7em;
-    height: 0.7em;
-    transition: transform 0.2s var(--nq-ease, ease-out);
     top: 0;
     right: 0;
     bottom: 0;
@@ -32,54 +39,92 @@
     z-index: inherit;
   }
   
-  &[href^="http"]::after {
-    margin-right: 0.5em;
-    margin-left: 0.5em;
-    rotate: 0.375turn;
+  &:is(.loading,[loading],.not-loading,[not-loading]) {
+    &::after {
+      transition: width 0.2s var(--nq-ease, ease-out);
+      width: 1em;
+      aspect-ratio: 1/1;
+      --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxnIGZpbGw9Im5vbmUiPjxnIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMS42NjciIGNsaXAtcGF0aD0idXJsKCNuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCkiPjxwYXRoIGQ9Ik02IDFDOC43NjI1IDEgMTEgMy4yMzc1IDExIDYiLz48cGF0aCBkPSJNMy4wMzgwOSAyQzEuODA0MDIgMi45MDM3NCAxIDQuMzYyMTkgMSA2LjAxMzg1QzEgOC43Njg3IDMuMjMxMyAxMSA1Ljk4NjE1IDExQzcuNjM3ODEgMTEgOS4wOTYyNiAxMC4xOTYgMTAgOC45NjE5MSIgb3BhY2l0eT0iLjMiLz48L2c+PGRlZnM+PGNsaXBQYXRoIGlkPSJuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48L2RlZnM+PC9nPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgZHVyPSIxcyIgZnJvbT0iMCAwIDAiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB0bz0iMzYwIDAgMCIgdHlwZT0icm90YXRlIi8+PC9zdmc+");
+      
+      transform: scale(1);
+    }
+    &:is(.not-loading, [not-loading])::after {
+      transform: scale(0);
+      width: 0;
+    }
   }
 
-  &:not(:is(.arrow-back,[arrow-back])):is(&[href^='/'], &[href^='./'], &[href^='../'], &[href^='#'])::after {
-    margin-left: 0.5em;
-    margin-bottom: 1px;
-    rotate: -0.5turn;
-  }
-  
-  &:is(.arrow-back,[arrow-back]):is(&[href^='/'], &[href^='./'], &[href^='../'], &[href^='#'])::before {
-    margin-right: 0.5em;
-    margin-bottom: 1px;
-  }
-  
-  &:hover::after, &:hover::before {
-    transform: translateX(-.25em);
-    transition-delay: 100ms;
+  &:is(.arrow, [arrow]),
+  &:is(.arrow-back, [arrow-back]) {
+
+    &:is(.arrow, [arrow])::after,
+    &:is(.arrow-back, [arrow-back])::before {
+      transition: transform 0.2s var(--nq-ease, ease-out);
+      width: 0.7em;
+      height: 0.7em;
+      --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=");
+    }
+
+    &[href^="http"]::after {
+      margin-right: 0.5em;
+      margin-left: 0.5em;
+      rotate: 0.375turn;
+    }
+
+    &:not(:is(.arrow-back, [arrow-back])):is(&[href^='/'], &[href^='./'], &[href^='../'], &[href^='#'])::after {
+      margin-left: 0.5em;
+      margin-bottom: 1px;
+      rotate: -0.5turn;
+    }
+
+    &:is(.arrow-back, [arrow-back]):is(&[href^='/'], &[href^='./'], &[href^='../'], &[href^='#'])::before {
+      margin-right: 0.5em;
+      margin-bottom: 1px;
+    }
+
+    &:hover::after,
+    &:hover::before {
+      transform: translateX(-.25em);
+      transition-delay: 100ms;
+    }
   }
 }
 
 .pill {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 5px 16px;
   border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2px;
   color: white;
-  line-height: 1;
+  line-height: 1.5;
   height: max-content;
   width: max-content;
   transition: background 0.2s var(--nq-ease, ease-out);
+  outline: none;
 
   &:is(.small, [small]) {
-    font-size: 18px;
-    padding: 8px 16px;
+    font-size: 14px;
+    padding: 3px 13px;
+  } 
+
+  &:focus-visible {
+    --ring-offset-width: 3px;
+    --ring-offset-color: rgba(var(--nq-neutral-0));
+    --ring-color: rgba(var(--nq-blue));
+    --ring-offset-shadow: 0 0 0 var(--ring-offset-width) var(--ring-offset-color);
+    --ring-shadow: 0 0 0 calc(2px + var(--ring-offset-width)) var(--ring-color);
+    box-shadow: var(--ring-offset-shadow),var(--ring-shadow);
   }
 }
 
 .pill-blue {
   background: var(--nq-blue-gradient);
 
-  &:hover, &:focus {
+  &:hover {
     background: var(--nq-blue-gradient-darkened);
   }
 }
@@ -87,7 +132,7 @@
 .pill-green {
   background: var(--nq-green-gradient);
 
-  &:hover, &:focus {
+  &:hover {
     background: var(--nq-green-gradient-darkened);
   }
 }
@@ -95,7 +140,7 @@
 .pill-red {
   background: var(--nq-red-gradient);
 
-  &:hover, &:focus {
+  &:hover {
     background: var(--nq-red-gradient-darkened);
   }
 }
@@ -103,7 +148,7 @@
 .pill-gold {
   background: var(--nq-gold-gradient);
 
-  &:hover, &:focus {
+  &:hover {
     background: var(--nq-gold-gradient-darkened);
   }
 }
@@ -111,25 +156,101 @@
 .pill-orange {
   background: var(--nq-orange-gradient);
 
-  &:hover, &:focus {
+  &:hover {
     background: var(--nq-orange-gradient-darkened);
   }
 }
 
 .pill-secondary {
-  background: rgb(var(--nq-neutral-300));
+  background: rgb(var(--nq-neutral-400));
   color: rgb(var(--nq-neutral));
 
-  &:hover, &:focus {
-    background: rgb(var(--nq-neutral-400));
+  &:hover {
+    background: rgb(var(--nq-neutral-500));
   }
 }
 
 .pill-tertiary {
-  box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral-500));
+  border: 1.5px solid rgb(var(--nq-neutral-600));
   color: rgb(var(--nq-neutral));
 
-  &:hover, &:focus {
-    background-color: rgb(var(--nq-neutral-100));
+  &:hover {
+    background-color: rgb(var(--nq-neutral-200));
+  }
+}
+
+
+.input-text {
+  font-size: 16px;
+  line-height: 1.5;
+  &:is(textarea) {
+    padding: 4px 12px;
+  }
+  
+  &:is(input) {
+    padding: 4.5px 14px;
+  }
+
+  background-color: transparent;
+  transition: colors 0.2s var(--nq-ease), box-shadow 0.1s var(--nq-ease);
+  outline: none;
+
+  --ring-color: rgba(var(--nq-neutral-500));
+  --color: rgb(var(--nq-neutral));
+  --placeholder-color: rgb(var(--nq-neutral-700));
+
+  box-shadow: 0 0 0 1.5px var(--ring-color);
+  color: var(--color);
+
+  &::placeholder {
+    color: var(--placeholder-color);
+  }
+  
+  &:is(:hover,:focus) {
+    --color: rgb(var(--nq-blue));
+    --ring-color: rgba(var(--nq-blue) / 0.3);
+    
+    &::placeholder {
+      --placeholder-color: rgb(var(--nq-blue) / 0.6);
+    }
+    
+    &:focus:valid {
+      --ring-color: rgba(var(--nq-blue));
+    }
+  }
+
+  &.invalid {
+    --ring-color: rgba(var(--nq-orange) / 0.4);
+    --color: rgb(var(--nq-orange));
+    &::placeholder {
+      --placeholder-color: rgb(var(--nq-orange) / 0.7);
+    }
+    &:focus:valid {
+      --ring-color: rgba(var(--nq-orange));
+    }
+  }
+}
+
+.scroll {
+  --track: rgb(var(--nq-neutral-100));
+  --thumb: rgb(var(--nq-neutral-600));
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.375rem;
+    margin: 2px;
+    scrollbar-gutter: stable;
+  } 
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: var(--thumb);
+    background-clip: padding-box;
+    border: 2px transparent solid;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--track);
+    border-radius: 8px;
   }
 }

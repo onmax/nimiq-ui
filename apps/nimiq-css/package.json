@@ -14,6 +14,7 @@
     "@unocss/reset": "^0.58.5",
     "@vueuse/core": "^10.7.2",
     "nimiq-css": "workspace:*",
+    "unplugin-vue-markdown": "^0.26.0",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },
