@@ -16,11 +16,13 @@
   text-align: left;
   letter-spacing: 0;
   font-weight: 400;
+  border-color: rgb(var(--nq-neutral-400));
 }
 
 body:not(.raw) {
   min-height: 100vh;
   min-height: 100dvh;
+  color: rgb(var(--nq-neutral));
 }
 
 :is(h1, h2, h3, h4, h5, h6):not(:where(.raw, .raw *)) {
@@ -95,10 +97,6 @@ h4:not(:where(.raw, .raw *)) {
 /* Hide empty paragraphs. This is mostly for the markdown */
 :is(p, span):not(:where(.raw, .raw *)):empty {
   display: none;
-}
-
-:is(h1,h2,h3,h4) a:not(:where(.raw, .raw *)) {
-  color: rgb(var(--nq-neutral));
 }
 
 :is(p,li) a:not(:where(.raw, .raw *)) {
