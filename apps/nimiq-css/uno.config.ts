@@ -6,7 +6,7 @@ export default defineConfig({
     presetUno(),
     presetAttributify(),
     presetNimiq({
-      components: true,
+      utilities: true,
       typography: true,
     }),
   ]

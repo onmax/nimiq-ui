@@ -14,9 +14,9 @@ const router = createRouter({
       component: () => import('../components/Typography.vue') 
     },
     {
-      path: '/components',
-      name: 'components',
-      component: () => import('../components/Components.vue')
+      path: '/utilities',
+      name: 'utilities',
+      component: () => import('../components/Utilities.vue')
     },
     {
       path: '/preflight',

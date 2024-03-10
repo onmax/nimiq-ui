@@ -4,6 +4,7 @@ import { resolve, dirname } from 'node:path'
 import { toJSON, toCSS } from 'ts-cssjson'
 import { NimiqColor, getNimiqColors } from './colors';
 import { fileURLToPath } from 'node:url';
+import { rules } from 'unocss/preset-wind';
 
 export type NimiqPresetOptions = {
   /**
@@ -29,10 +30,10 @@ export type NimiqPresetOptions = {
   typography?: boolean
 
   /**
-   * Add support for components
+   * Add support for utilities
    * @default false
    */
-  components?: boolean
+  utilities?: boolean
 
   /**
    * Whether to add a reset for the styles
@@ -53,18 +54,30 @@ function createPreset() {
   const wrapContentToLayer = (name: string) => `${readContent(p(name))}`
 
   function cssToRules(name: string) {
-    const rules: Preset["rules"] = []
+    type Setup = { css: string, re: RegExp }
+    const rulesSetup: Record<string, Setup> = {}
+
     const content = readContent(p(name)).replaceAll("data:image/svg+xml;", 'SEMICOLON_BUG_HACK')
     const json = toJSON(content, { stripComments: true, comments: false, ordered: false, split: false })
     for (const key of Object.keys(json.children)) {
       const rulesNames = key.split(',').map(s => s.trim())
       const css = toCSS(json.children[key]).replaceAll('SEMICOLON_BUG_HACK', "data:image/svg+xml;")
       for (const rule of rulesNames) {
+        if (!rule.startsWith('.'))
+          continue
         const ruleName = rule.replace(/^\./, '')
-        rules.push([new RegExp(`^${ruleName}$`), () => `${rule}, [${ruleName}] { ${css} }`, { layer: `nq-${name}` }])
+        const re = new RegExp(`^${ruleName}$`)
+        const selector = `${rule}, [${ruleName}]`
+        const setup: Setup = { css, re }
+        if (rulesSetup[selector])
+          rulesSetup[selector].css += css
+        else
+          rulesSetup[selector] = setup
       }
     }
+    const rules: Preset["rules"] = Object.entries(rulesSetup).map(([selector, { css, re }]) => ([re, () => `${selector} { ${css} }`, { layer: `nq-${name}` }]))
     return rules
+
   }
 
   return (options: NimiqPresetOptions = {}): Preset => {
@@ -86,7 +99,7 @@ function createPreset() {
     }
 
 
-    const { components = false, typography = false } = options
+    const { utilities = false, typography = false } = options
     const rules: Preset["rules"] = [
       [/^scrollbar-hide$/, (_, { constructCSS }) => {
         let res = constructCSS({ 'scrollbar-width': 'none' })
@@ -100,8 +113,8 @@ function createPreset() {
       rules.push([key, { 'background-image': gradient }])
     }
 
-    if (components) {
-      rules.push(...cssToRules('components'))
+    if (utilities) {
+      rules.push(...cssToRules('utilities'))
     }
 
     if (typography)
@@ -144,7 +157,7 @@ function createPreset() {
         'utilities': 10,
         'nq-preflight': 20,
         'nq-typography': 30,
-        'nq-components': 40
+        'nq-utilities': 40
       },
       layer: 'nq'
     }

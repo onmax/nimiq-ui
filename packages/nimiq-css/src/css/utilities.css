@@ -90,7 +90,14 @@
   }
 }
 
-.pill {
+.pill,
+.pill-blue,
+.pill-gold,
+.pill-green,
+.pill-orange,
+.pill-red,
+.pill-secondary,
+.pill-tertiary {
   font-size: 16px;
   font-weight: bold;
   padding: 5px 16px;
@@ -253,4 +260,24 @@
     background-color: var(--track);
     border-radius: 8px;
   }
+}
+
+.border-base {
+  box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral-400));
+}
+
+.border-top {
+  box-shadow: 0 -1.5px 0 0 rgb(var(--nq-neutral-400));
+}
+
+.border-bottom {
+  box-shadow: 0 1.5px 0 0 rgb(var(--nq-neutral-400));
+}
+
+.border-left {
+  box-shadow: -1.5px 0 0 0 rgb(var(--nq-neutral-400));
+}
+
+.border-right {
+  box-shadow: 1.5px 0 0 0 rgb(var(--nq-neutral-400));
 }

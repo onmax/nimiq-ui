@@ -1,4 +1,4 @@
 @import url('colors.css') layer(nq-colors);
 @import url('preflight.css') layer(nq-preflight);
 @import url('typography.css') layer(nq-typography);
-@import url('components.css') layer(nq-components);
+@import url('utilities.css') layer(nq-utilities);

@@ -12,7 +12,7 @@ const toggleDark = useToggle(isDark)
       <header flex justify-between>
         <nav flex="~ gap-x-8">
           <RouterLink to="/preflight">Preflight</RouterLink>
-          <RouterLink to="/components">Components</RouterLink>
+          <RouterLink to="/utilities">Utilities</RouterLink>
           <RouterLink to="/typography">Typography</RouterLink>
         </nav>
         <button @click="toggleDark()" px-4 py-2 rounded-full font-bold bg-neutral-400>

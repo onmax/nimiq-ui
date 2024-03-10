@@ -75,7 +75,7 @@
     }
   }
 
-  h1+h2 {
+  h1+h2:not(:where(.raw, .raw *)) {
     margin-top: 3.5rem;
 
     @media (min-width: 1153px) {
@@ -106,7 +106,7 @@
     }
   }
 
-  h2+h3 {
+  h2+h3:not(:where(.raw, .raw *)) {
     margin-top: 3rem;
 
     @media (min-width: 1153px) {
@@ -137,7 +137,7 @@
     }
   }
 
-  h3+h4 {
+  h3+h4:not(:where(.raw, .raw *)) {
     margin-top: 2.5rem;
 
     @media (min-width: 1153px) {
@@ -177,7 +177,7 @@
     line-height: 1.75;
   }
 
-  h1+p {
+  h1+p:not(:where(.raw, .raw *)) {
     margin-top: 7rem;
 
     @media (min-width: 1153px) {
