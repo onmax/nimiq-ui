@@ -23,6 +23,7 @@ body:not(.raw) {
   min-height: 100vh;
   min-height: 100dvh;
   color: rgb(var(--nq-neutral));
+  background-color: rgb(var(--nq-neutral-0));
 }
 
 :is(h1, h2, h3, h4, h5, h6):not(:where(.raw, .raw *)) {
