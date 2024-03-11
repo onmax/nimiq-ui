@@ -1,8 +1,9 @@
 :root {
   --nq-darkblue: rgb(31, 35, 72);
+  --nq-white: rgb(255, 255, 255);
 
   --nq-neutral-on-light: var(--nq-darkblue);
-  --nq-neutral-on-light-0: rgb(255, 255, 255);
+  --nq-neutral-on-light-0: var(--nq-white);
   --nq-neutral-on-light-50: rgb(251, 251, 251);
   --nq-neutral-on-light-100: rgb(248, 248, 248);
   --nq-neutral-on-light-200: rgb(244, 244, 246);
@@ -13,7 +14,7 @@
   --nq-neutral-on-light-700: rgb(143, 145, 164);
   --nq-neutral-on-light-800: rgb(121, 123, 145);
   --nq-neutral-on-light-900: rgb(76, 79, 109);
-  --nq-neutral-on-dark: rgb(255, 255, 255);
+  --nq-neutral-on-dark: var(--nq-white);
   --nq-neutral-on-dark-0: rgb(23, 24, 43);
   --nq-neutral-on-dark-50: rgb(28, 29, 47);
   --nq-neutral-on-dark-100: rgb(30, 31, 49);

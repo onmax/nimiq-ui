@@ -118,7 +118,7 @@ const showLoading = ref(true)
     <p>You might need to zoom in to see the border</p>
 
     <div grid="~ flow-col gap-2">
-      <ReuseTemplate :html="`<div size-16 rounded-2 grid bg-gold border-subtle></div>`" /> 
+      <ReuseTemplate :html="`<div size-16 rounded-2 grid bg-neutral border-subtle-light></div>`" /> 
       <ReuseTemplate :html="`<div size-16 rounded-2 grid bg-gradient-red border-subtle></div>`" /> 
     </div>
   </section>

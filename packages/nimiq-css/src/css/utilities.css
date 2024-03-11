@@ -283,7 +283,7 @@
 }
 
 .border-subtle-light {
-  box-shadow: inset 0 0 0 1.5px rgb(#ffffff / 0.15);
+  box-shadow: inset 0 0 0 1.5px rgb(var(--nq-white) / 0.15);
 }
 
 .ghost-btn {
