@@ -119,12 +119,8 @@
   } 
 
   &:focus-visible {
-    --ring-offset-width: 3px;
-    --ring-offset-color: rgba(var(--nq-neutral-0));
-    --ring-color: rgba(var(--nq-blue));
-    --ring-offset-shadow: 0 0 0 var(--ring-offset-width) var(--ring-offset-color);
-    --ring-shadow: 0 0 0 calc(2px + var(--ring-offset-width)) var(--ring-color);
-    box-shadow: var(--ring-offset-shadow),var(--ring-shadow);
+    outline: 2px solid rgba(var(--nq-blue));
+    outline-offset: 3px;
   }
 }
 
@@ -280,4 +276,27 @@
 
 .border-right {
   box-shadow: 1.5px 0 0 0 rgb(var(--nq-neutral-400));
+}
+
+.ghost-btn {
+  margin-right: 1px;
+  margin-bottom: 1px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 600;
+  color: rgb(var(--nq-neutral-700));
+  background: inherit;
+  transition: 100ms background var(--nq-ease, ease-out);
+  box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral-400));
+
+  &:hover {
+    background: rgb(var(--nq-neutral-100));
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(var(--nq-blue));
+    outline-offset: 3px;
+  }
 }

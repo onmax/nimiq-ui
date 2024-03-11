@@ -102,5 +102,14 @@ const showLoading = ref(true)
       <ReuseTemplate :html="`<div size-16 grid place-content-center border-left>Box</div>`" /> 
     </div>
   </section>
+
+  <section max-w-700 mx-auto mt-8 p-6 ring ring-neutral-400 rounded>
+    <h2>Ghost Buttons</h2>
+
+    <div grid="~ flow-col gap-2">
+      <ReuseTemplate :html="`<button ghost-btn>SVG</div>`" /> 
+      <ReuseTemplate :html="`<button ghost-btn>PNG</div>`" /> 
+    </div>
+  </section>
 </template>
 
