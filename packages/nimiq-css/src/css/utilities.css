@@ -14,7 +14,6 @@
   letter-spacing: 0.15em;
   font-weight: 700;
   line-height: 1;
-  color: rgb(var(--nq-neutral-700));
 }
 
 .arrow,
@@ -298,6 +297,7 @@
   background: inherit;
   transition: 100ms background var(--nq-ease, ease-out);
   box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral-400));
+  height: max-content;
 
   &:hover {
     background: rgb(var(--nq-neutral-100));

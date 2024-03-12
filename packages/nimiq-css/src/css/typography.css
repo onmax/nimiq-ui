@@ -175,6 +175,10 @@
     margin-bottom: 0;
     font-size: 16px;
     line-height: 1.75;
+
+    & + p {
+      margin-top: 1rem;
+    }
   }
 
   h1+p:not(:where(.raw, .raw *)) {

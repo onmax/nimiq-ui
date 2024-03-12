@@ -90,7 +90,7 @@ h4:not(:where(.raw, .raw *)) {
   }
 }
 
-:is(p,li):not(:where(.raw, .raw *)) {
+:is(p, li):not(:where(.raw, .raw *)) {
   text-wrap: pretty;
   color: rgb(var(--nq-neutral-900));
 }
@@ -100,7 +100,7 @@ h4:not(:where(.raw, .raw *)) {
   display: none;
 }
 
-:is(p,li) a:not(:where(.raw, .raw *)) {
+:is(p, li) a:not(:where(.raw, .raw *)) {
   color: rgb(var(--nq-blue));
 }
 
@@ -118,16 +118,20 @@ code:not(:where(.raw, .raw *)) {
 }
 
 /* Links & buttons clickable */
-a,button:not([disabled]) {
+a,
+button:not([disabled]) {
   position: relative;
 
-  &::before, &::after {
-    content: "";
-    position: absolute;
-    left: -1rem;
-    top: -1rem;
-    right: -1rem;
-    bottom: -1rem;
-    z-index: -1;
+  @media not all and (hover: hover) {
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: -1rem;
+      top: -1rem;
+      right: -1rem;
+      bottom: -1rem;
+      z-index: -1;
+    }
   }
 }

@@ -75,7 +75,7 @@ function createPreset() {
           rulesSetup[selector] = setup
       }
     }
-    const rules: Preset["rules"] = Object.entries(rulesSetup).map(([selector, { css, re }]) => ([re, () => `${selector} { ${css} }`, { layer: `nq-${name}` }]))
+    const rules: Preset["rules"] = Object.entries(rulesSetup).map(([selector, { css, re }]) => ([re, () => `@layer ${name} { ${selector} { ${css} } }`, { layer: `nq-${name}` }]))
     return rules
 
   }
@@ -147,7 +147,13 @@ function createPreset() {
       name: 'nimiq-preset',
       preflights,
       variants,
-      theme: { colors },
+      theme: {
+        colors,
+        boxShadow: {
+          DEFAULT: 'var(--nq-shadow)',
+          lg: 'var(--nq-shadow-lg)',
+        }
+      },
       presets,
       rules,
       layers: {

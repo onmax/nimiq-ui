@@ -30,7 +30,7 @@ const showLoading = ref(true)
     </div>
   </section>
 
-  <section max-w-700 mx-auto mt-8 p-6 ring ring-neutral-400 rounded>
+  <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
     <h2>
       Arrows links
     </h2>
@@ -42,7 +42,7 @@ const showLoading = ref(true)
     </div>
   </section>
 
-  <section max-w-700 mx-auto mt-8 p-6 ring ring-neutral-400 rounded>
+  <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
     <h2>Pills</h2>
 
     <div grid="~ gap-2 flow-col">
@@ -81,7 +81,7 @@ const showLoading = ref(true)
     </div>
   </section>
 
-  <section max-w-700 mx-auto mt-8 p-6 ring ring-neutral-400 rounded>
+  <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
     <h2>Inputs</h2>
 
     <div grid="~ flow-col gap-2">
@@ -91,7 +91,7 @@ const showLoading = ref(true)
     </div>
   </section>
 
-  <section max-w-700 mx-auto mt-8 p-6 ring ring-neutral-400 rounded>
+  <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
     <h2>Borders</h2>
 
     <div grid="~ flow-col gap-2">
@@ -103,7 +103,7 @@ const showLoading = ref(true)
     </div>
   </section>
 
-  <section max-w-700 mx-auto mt-8 p-6 ring ring-neutral-400 rounded>
+  <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
     <h2>Ghost Buttons</h2>
 
     <div grid="~ flow-col gap-2">
@@ -112,7 +112,7 @@ const showLoading = ref(true)
     </div>
   </section>
 
-  <section max-w-700 mx-auto mt-8 p-6 ring ring-neutral-400 rounded>
+  <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
     <h2>Subtle inset border</h2>
 
     <p>You might need to zoom in to see the border</p>

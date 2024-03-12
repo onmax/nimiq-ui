@@ -1,5 +1,5 @@
 <template>
-  <section p-6 ring ring-neutral-400 rounded> 
+  <section p-6 border-base rounded> 
     <h2>Scrollbar</h2>
     <div mt-8  max-h-160px max-w-420px mx-auto of-auto prose class="scroll">
       <div pb-0="!">
@@ -13,15 +13,15 @@
     </div>
   </section>
   
-    <section mt-8 p-6 ring ring-neutral-400 rounded> 
+    <section mt-8 p-6 border-base rounded> 
       <h2>Shadows</h2>
       <div flex="~ gap-8" mt-12>
-        <div size-32 bg-neutral-200 rounded-2 shadow="[--nq-shadow]"></div>
-        <div size-32 bg-neutral-200 rounded-2 shadow="[--nq-shadow-lg]"></div>
+        <div size-32 bg-neutral-200 rounded-2 shadow></div>
+        <div size-32 bg-neutral-200 rounded-2 shadow-lg></div>
       </div>
     </section>
 
-    <section mt-8 p-6 ring ring-neutral-400 rounded> 
+    <section mt-8 p-6 border-base rounded> 
       <h2>Colors</h2>
 
       <label label>Note</label>

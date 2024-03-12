@@ -170,7 +170,7 @@
     --nq-neutral-700: var(--nq-neutral-on-dark-700);
     --nq-neutral-800: var(--nq-neutral-on-dark-800);
     --nq-neutral-900: var(--nq-neutral-on-dark-900);
-    --nq-neutral-gradient: var(--nq-neutral-on-dark-gradient);
+    --nq-neutral-gradient: rgb(var(--nq-neutral-on-dark-gradient));
 
     --nq-blue: var(--nq-blue-on-dark);
     --nq-blue-400: var(--nq-blue-on-dark-400);
