@@ -86,10 +86,26 @@ function createPreset() {
     const { preflight = true, reset = true } = options
     // regex to replace all rgb(r, b, g) with "r, b, g"
     const replaceRGB = (s: string) => s.replaceAll(/rgb\((\d+), (\d+), (\d+)\)/g, '$1 $2 $3')
-    const preflights: Preset["preflights"] = [{ layer: 'nq-colors', getCSS: () => replaceRGB(wrapContentToLayer('colors')) }]
+    const preflights: Preset["preflights"] = [
+      {
+        // This is the css to define the order of the CSS layers
+        layer: 'layer-definition',
+        getCSS: () => `
+          @layer tw-reset;
+          @layer nq-colors;
+          @layer nq-preflight;
+          @layer nq-typography;
+          @layer nq-utilities;
+          @layer components;
+          @layer utilities;
+        `
+      },
+      {
+        layer: 'nq-colors',
+        getCSS: () => replaceRGB(wrapContentToLayer('colors'))
+      }
+    ]
 
-    if (preflight)
-      preflights.push({ layer: 'nq-preflight', getCSS: () => wrapContentToLayer('preflight') })
     if (reset) {
       const twReset = fetch('https://raw.githubusercontent.com/unocss/unocss/main/packages/reset/tailwind-compat.css').then(r => r.text())
       preflights.push({
@@ -97,6 +113,8 @@ function createPreset() {
         getCSS: async () => `@layer tw-reset { ${await twReset} }`
       })
     }
+    if (preflight)
+      preflights.push({ layer: 'nq-preflight', getCSS: () => wrapContentToLayer('preflight') })
 
 
     const { utilities = false, typography = false } = options

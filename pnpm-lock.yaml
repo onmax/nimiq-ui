@@ -98,6 +98,9 @@ importers:
         specifier: ^4.2.5
         version: 4.2.5(vue@3.4.19)
     devDependencies:
+      '@iconify/vue':
+        specifier: ^4.1.1
+        version: 4.1.1(vue@3.4.19)
       '@tsconfig/node20':
         specifier: ^20.1.2
         version: 20.1.2
