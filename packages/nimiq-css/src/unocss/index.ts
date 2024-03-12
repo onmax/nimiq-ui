@@ -51,11 +51,13 @@ function createPreset() {
   const cssDir = unminifiedExists ? unminifiedFolder : _cssDir
   const p = (name: string) => `${cssDir}/${name}.css`
   const readContent = (path: string) => readFileSync(path, 'utf-8')
-  const wrapContentToLayer = (name: string) => `${readContent(p(name))}`
+  const wrapContentToLayer = (name: string) => `@layer nq-${name} { ${readContent(p(name))} }`
 
   function cssToRules(name: string) {
     type Setup = { css: string, re: RegExp }
     const rulesSetup: Record<string, Setup> = {}
+    
+    const layer = `nq-${name}`
 
     const content = readContent(p(name)).replaceAll("data:image/svg+xml;", 'SEMICOLON_BUG_HACK')
     const json = toJSON(content, { stripComments: true, comments: false, ordered: false, split: false })
@@ -75,7 +77,7 @@ function createPreset() {
           rulesSetup[selector] = setup
       }
     }
-    const rules: Preset["rules"] = Object.entries(rulesSetup).map(([selector, { css, re }]) => ([re, () => `@layer ${name} { ${selector} { ${css} } }`, { layer: `nq-${name}` }]))
+    const rules: Preset["rules"] = Object.entries(rulesSetup).map(([selector, { css, re }]) => ([re, () => `@layer ${name} { ${selector} { ${css} } }`, { layer }]))
     return rules
 
   }
@@ -91,13 +93,7 @@ function createPreset() {
         // This is the css to define the order of the CSS layers
         layer: 'layer-definition',
         getCSS: () => `
-          @layer tw-reset;
-          @layer nq-colors;
-          @layer nq-preflight;
-          @layer nq-typography;
-          @layer nq-utilities;
-          @layer components;
-          @layer utilities;
+          @layer tw-reset, nq-colors, nq-preflight, nq-typography, nq-utilities;
         `
       },
       {
@@ -174,16 +170,6 @@ function createPreset() {
       },
       presets,
       rules,
-      layers: {
-        'tw-reset': -1,
-        'nq-colors': -1,
-        'components': 0,
-        'utilities': 10,
-        'nq-preflight': 20,
-        'nq-typography': 30,
-        'nq-utilities': 40
-      },
-      layer: 'nq'
     }
     return preset
   }
