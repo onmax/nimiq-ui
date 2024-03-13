@@ -116,11 +116,6 @@
     font-size: 14px;
     padding: 3px 13px;
   } 
-
-  &:focus-visible {
-    outline: 2px solid rgba(var(--nq-blue));
-    outline-offset: 3px;
-  }
 }
 
 .pill-blue {
@@ -279,6 +274,10 @@
 
 .border-subtle {
   box-shadow: inset 0 0 0 1.5px rgb(var(--nq-darkblue) / 0.15);
+}
+
+.border-subtle-sm {
+  box-shadow: inset 0 0 0 1.5px rgb(var(--nq-darkblue) / 0.02);
 }
 
 .border-subtle-light {

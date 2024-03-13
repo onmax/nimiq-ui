@@ -4,134 +4,147 @@
   --nq-shadow-lg: 0px 6px 20px rgba(59, 76, 106, 0.13), 0px 1.34018px 4.46726px rgba(59, 76, 106, 0.0774939), 0px 0.399006px 1.33002px rgba(59, 76, 106, 0.0525061);
 }
 
-*:not(:where(code, pre, .raw, .raw *)) {
-  font-family: Mulish, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-}
-
-:is(code, pre, pre *, code *):not(:where(.raw, .raw *)) {
-  font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
-
 *:not(:where(.raw, .raw *)) {
-  text-align: left;
-  letter-spacing: 0;
-  font-weight: 400;
-  border-color: rgb(var(--nq-neutral-400));
-}
-
-body:not(.raw) {
-  min-height: 100vh;
-  min-height: 100dvh;
-  color: rgb(var(--nq-neutral));
-  background-color: rgb(var(--nq-neutral-0));
-}
-
-:is(h1, h2, h3, h4, h5, h6):not(:where(.raw, .raw *)) {
-  text-wrap: balance;
-  overflow-wrap: break-word;
-  text-wrap: balance;
-}
-
-h1:not(:where(.raw, .raw *)) {
-  font-size: 44px;
-  line-height: 53px;
-  font-weight: 700;
-
-  @media (min-width: 1153px) {
-    font-size: 48px;
-  }
-}
-
-h2:not(:where(.raw, .raw *)) {
-  font-size: 32px;
-  line-height: 42px;
-  font-weight: 600;
-
-  @media (min-width: 769px) {
-    font-size: 36px;
-    line-height: 47px;
+  &:is(:not(:where(code, pre))) {
+    font-family: Mulish, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   }
 
-  @media (min-width: 1153px) {
-    font-size: 38px;
-    line-height: 49px;
-  }
-}
-
-h3:not(:where(.raw, .raw *)) {
-  font-size: 26px;
-  line-height: 34px;
-  font-weight: 600;
-
-  @media (min-width: 769px) {
-    font-size: 28px;
-    line-height: 36px;
+  &:is(code, pre, pre *, code *) {
+    font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
-  @media (min-width: 1153px) {
-    font-size: 30px;
-    line-height: 39px;
-  }
-}
-
-h4:not(:where(.raw, .raw *)) {
-  font-size: 22px;
-  line-height: 29px;
-  font-weight: 600;
-
-  @media (min-width: 769px) {
-    font-size: 24px;
-    line-height: 31px;
+  & { 
+    text-align: left;
+    letter-spacing: 0;
+    border-color: rgb(var(--nq-neutral-400));
   }
 
-  @media (min-width: 1153px) {
-    font-size: 26px;
-    line-height: 34px;
+
+  &:is(body) {
+    min-height: 100vh;
+    min-height: 100dvh;
+    color: rgb(var(--nq-neutral-900));
+    background-color: rgb(var(--nq-neutral-0));
   }
-}
-
-:is(p, li):not(:where(.raw, .raw *)) {
-  text-wrap: pretty;
-  color: rgb(var(--nq-neutral-900));
-}
-
-/* Hide empty paragraphs. This is mostly for the markdown */
-:is(p, span):not(:where(.raw, .raw *)):empty {
-  display: none;
-}
-
-:is(p, li) a:not(:where(.raw, .raw *)) {
-  color: rgb(var(--nq-blue));
-}
-
-blockquote :is(p, p > :is(em, b)):not(:where(.raw, .raw *)) {
-  color: rgb(var(--nq-green));
-}
-
-:is(code, pre):not(:where(.raw, .raw *)) {
-  background-color: rgb(var(--nq-neutral-300));
-  color: rgb(var(--nq-neutral-900));
-}
-
-code:not(:where(.raw, .raw *)) {
-  line-height: 30px;
-}
-
-/* Links & buttons clickable */
-a,
-button:not([disabled]) {
-  position: relative;
-
-  @media not all and (hover: hover) {
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      left: -1rem;
-      top: -1rem;
-      right: -1rem;
-      bottom: -1rem;
-      z-index: -1;
+  
+  &:is(h1, h2, h3, h4, h5, h6) {
+    color: rgb(var(--nq-neutral));
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    text-wrap: balance;
+  }
+  
+  &:is(h1) {
+    font-size: 44px;
+    line-height: 53px;
+    font-weight: 700;
+  
+    @media (min-width: 1153px) {
+      font-size: 48px;
     }
   }
+  
+  &:is(h2) {
+    font-size: 32px;
+    line-height: 42px;
+    font-weight: 600;
+  
+    @media (min-width: 769px) {
+      font-size: 36px;
+      line-height: 47px;
+    }
+  
+    @media (min-width: 1153px) {
+      font-size: 38px;
+      line-height: 49px;
+    }
+  }
+  
+  &:is(h3) {
+    font-size: 26px;
+    line-height: 34px;
+    font-weight: 600;
+  
+    @media (min-width: 769px) {
+      font-size: 28px;
+      line-height: 36px;
+    }
+    
+    @media (min-width: 1153px) {
+      font-size: 30px;
+      line-height: 39px;
+    }
+  }
+  
+  &:is(h4) {
+    font-size: 22px;
+    line-height: 29px;
+    font-weight: 600;
+  
+    @media (min-width: 769px) {
+      font-size: 24px;
+      line-height: 31px;
+    }
+  
+    @media (min-width: 1153px) {
+      font-size: 26px;
+      line-height: 34px;
+    }
+  }
+
+  &:is(p, li) {
+    text-wrap: pretty;
+  }
+
+  /* Hide empty paragraphs. This is mostly for the markdown */
+  &:is(p, span):empty {
+    display: none;
+  }
+
+  &:is(p a, li a) {
+    color: rgb(var(--nq-blue));
+  }
+  
+  &:is(blockquote p, blockquote p > :is(em, b)) {
+    color: rgb(var(--nq-green));
+  }
+  
+  &:is(code, pre) {
+    background-color: rgb(var(--nq-neutral-300));
+    color: rgb(var(--nq-neutral-900));
+    overflow-x: auto;
+  }
+  
+  &:is(code) {
+    line-height: 30px;
+  }
+  
+  /* Links & buttons clickable */
+  &:is(a, button:not([disabled])) {
+    position: relative;
+  
+    @media not all and (hover: hover) {
+  
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        left: -1rem;
+        top: -1rem;
+        right: -1rem;
+        bottom: -1rem;
+        z-index: -1;
+      }
+    }
+  }
+  
+  &:focus-visible {
+    outline: 2px solid rgba(var(--nq-blue));
+    outline-offset: 3px;
+  }
 }
+
+
+
+
+
