@@ -19,7 +19,7 @@
   *:not(:where(.raw, .raw *)) {
     font-size: 16px;
     line-height: 1.5;
-    max-width: calc(44rem + 2rem + 2rem);
+    max-width: calc(74ch + 2rem + 2rem);
     margin-left: auto;
     margin-right: auto;
     
