@@ -398,6 +398,7 @@
       border-radius: 6px;
       border: 1px solid rgb(var(--nq-neutral-300));
       max-height: 90dvh;
+      max-width: max-content;
 
       code,
       pre {
