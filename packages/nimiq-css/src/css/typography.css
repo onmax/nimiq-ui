@@ -138,10 +138,12 @@
       }
     }
 
-    &:is(h1, h2, h3, h4)[id] {
+    &:is(h1, h2, h3, h4, h5, h6)[id] {
       position: relative;
       margin-left: -1em;
       padding-left: 1em;
+      padding-right: 1em;
+      width: max-content;
 
       &::after {
         content: '#';
@@ -160,6 +162,10 @@
             opacity: 0.5;
           }
         }
+      }
+
+      > a {
+        --uno: absolute inset-0 border-6 outline-neutral-600;
       }
     }
 
