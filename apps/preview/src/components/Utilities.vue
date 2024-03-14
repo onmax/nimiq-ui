@@ -104,11 +104,11 @@ const showLoading = ref(true)
   </section>
 
   <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
-    <h2>Ghost Buttons</h2>
+    <h2>Buttons</h2>
 
     <div grid="~ flow-col gap-2">
-      <ReuseTemplate :html="`<button ghost-btn>SVG</div>`" /> 
-      <ReuseTemplate :html="`<button ghost-btn>PNG</div>`" /> 
+      <ReuseTemplate :html="`<button text-8 close-btn></button>`" /> 
+        <ReuseTemplate :html="`<button ghost-btn>SVG</button>`" /> 
     </div>
   </section>
 
