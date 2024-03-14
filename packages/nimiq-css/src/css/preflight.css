@@ -153,10 +153,11 @@
       margin: 2px;
       scrollbar-gutter: stable;
 
-      &.scroll-sm {
-        width: 0.5rem;
-        height: 0.7rem;
-      }
+    }
+
+    &.scroll-sm::-webkit-scrollbar {
+      width: 0.6rem;
+      height: 0.7rem;
     }
 
     &::-webkit-scrollbar-thumb {

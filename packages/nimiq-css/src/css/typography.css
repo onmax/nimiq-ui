@@ -372,15 +372,23 @@
     &:is(code) {
       border-radius: 0.25rem;
 
-      &:not(pre > &) {
-        padding: 0px 0.5rem 1px 0.5em;
+      &:not(:is(:where(:is(h1, h2, h3, h4) &), pre > &)) {
+        padding: 0px 0.5em;
       }
-    }
 
+    }
+    
     &:is(pre) {
       margin-top: 1.5rem;
       padding: 1.5rem;
       border-radius: 6px;
+    }
+
+    &:is(pre,code):where(:is(h1, h2, h3, h4) &) {
+      font-size: 0.8em;
+      padding: 0.2em 0.5em;
+      position: relative;
+      top: -1px;
     }
 
     &:is(a) {
