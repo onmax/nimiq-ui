@@ -20,7 +20,6 @@
 .arrow-back,
 .loading,
 .not-loading {
-
   &:not(:is(.arrow-back, [arrow-back]))::after,
   &:is(.arrow-back, [arrow-back])::before {
     content: '';
@@ -47,6 +46,8 @@
       --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxnIGZpbGw9Im5vbmUiPjxnIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMS42NjciIGNsaXAtcGF0aD0idXJsKCNuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCkiPjxwYXRoIGQ9Ik02IDFDOC43NjI1IDEgMTEgMy4yMzc1IDExIDYiLz48cGF0aCBkPSJNMy4wMzgwOSAyQzEuODA0MDIgMi45MDM3NCAxIDQuMzYyMTkgMSA2LjAxMzg1QzEgOC43Njg3IDMuMjMxMyAxMSA1Ljk4NjE1IDExQzcuNjM3ODEgMTEgOS4wOTYyNiAxMC4xOTYgMTAgOC45NjE5MSIgb3BhY2l0eT0iLjMiLz48L2c+PGRlZnM+PGNsaXBQYXRoIGlkPSJuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48L2RlZnM+PC9nPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgZHVyPSIxcyIgZnJvbT0iMCAwIDAiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB0bz0iMzYwIDAgMCIgdHlwZT0icm90YXRlIi8+PC9zdmc+");
 
       transform: scale(1);
+      margin-right: -0.4em;
+      margin-left: 0.4em;
     }
 
     &:is(.not-loading, [not-loading])::after {
@@ -60,7 +61,7 @@
 
     &:is(.arrow, [arrow])::after,
     &:is(.arrow-back, [arrow-back])::before {
-      transition: transform 0.2s var(--nq-ease, ease-out);
+      transition: transform 0.4s cubic-bezier(0.54, -1.12, 0.16, 2);
       width: 0.7em;
       height: 0.7em;
       --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=");
@@ -75,7 +76,7 @@
     &:not(:is(.arrow-back, [arrow-back])):is(&[href^='/'], &[href^='./'], &[href^='../'], &[href^='#'])::after {
       margin-left: 0.5em;
       margin-bottom: 1px;
-      rotate: -0.5turn;
+      rotate: 0.5turn;
     }
 
     &:is(.arrow-back, [arrow-back]):is(&[href^='/'], &[href^='./'], &[href^='../'], &[href^='#'])::before {
@@ -111,12 +112,25 @@
   height: max-content;
   width: max-content;
   color: white;
-  transition: background 0.2s var(--nq-ease, ease-out);
+  transition:
+    background 0.2s var(--nq-ease, ease-out),
+    opacity 0.5s var(--nq-ease, ease-out);
   outline: none;
 
   &:is(.small, [small]) {
     font-size: 14px;
     padding: 3px 13px;
+  }
+
+  &:is([disabled]) {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(var(--nq-blue));
+    outline-offset: 3px;
   }
 }
 

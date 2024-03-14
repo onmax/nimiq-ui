@@ -1,6 +1,6 @@
 {
   "name": "nimiq-css",
-  "version": "0.0.38",
+  "version": "0.0.39",
   "description": "Nimiq's Desing System in CSS",
   "type": "module",
   "main": "dist/index.mjs",

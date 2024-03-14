@@ -4,6 +4,7 @@ import { ref } from 'vue';
 
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ html: string }>()
 const showLoading = ref(true)
+const loadingSmall = ref(true)
 </script>
 
 <template>
@@ -75,8 +76,11 @@ const showLoading = ref(true)
       <ReuseTemplate :html="`<a href='./' class='pill-blue small arrow'>Pill with arrow</a>`" />
 
       <div flex="~ gap-4">
-        <button @click="showLoading = !showLoading" pill-blue small mt-3>Toggle loading</button>
-        <ReuseTemplate :html="`<a href='./' class='pill-secondary small ${showLoading ? 'loading': 'not-loading'}'>Loading</a>`" />
+        <div mt-3 flex="~ gap-2 col">
+          <button pill-blue small @click="showLoading = !showLoading">Toggle loading</button>
+          <button pill-blue small @click="loadingSmall = !loadingSmall">Toggle size</button>
+        </div>
+        <ReuseTemplate :html="`<a href='./' class='pill-secondary ${showLoading ? 'loading': 'not-loading'} ${loadingSmall ? 'small' : ''}' ${showLoading ? 'disabled' : ''}>Loading</a>`" />
       </div>  
     </div>
   </section>
