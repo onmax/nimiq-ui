@@ -86,8 +86,6 @@ function createPreset() {
     const { gradients, colors } = getNimiqColors()
 
     const { preflight = true, reset = true } = options
-    // regex to replace all rgb(r, b, g) with "r, b, g"
-    const replaceRGB = (s: string) => s.replaceAll(/rgb\((\d+), (\d+), (\d+)\)/g, '$1 $2 $3')
     const preflights: Preset["preflights"] = [
       {
         // This is the css to define the order of the CSS layers
@@ -98,7 +96,7 @@ function createPreset() {
       },
       {
         layer: 'nq-colors',
-        getCSS: () => replaceRGB(wrapContentToLayer('colors'))
+        getCSS: () => wrapContentToLayer('colors')
       }
     ]
 

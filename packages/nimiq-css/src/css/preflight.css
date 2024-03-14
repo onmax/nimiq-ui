@@ -13,7 +13,7 @@
     font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
-  & { 
+  & {
     text-align: left;
     letter-spacing: 0;
     border-color: rgb(var(--nq-neutral-400));
@@ -26,66 +26,66 @@
     color: rgb(var(--nq-neutral-900));
     background-color: rgb(var(--nq-neutral-0));
   }
-  
+
   &:is(h1, h2, h3, h4, h5, h6) {
     color: rgb(var(--nq-neutral));
     text-wrap: balance;
     overflow-wrap: break-word;
     text-wrap: balance;
   }
-  
+
   &:is(h1) {
     font-size: 44px;
     line-height: 53px;
     font-weight: 700;
-  
+
     @media (min-width: 1153px) {
       font-size: 48px;
     }
   }
-  
+
   &:is(h2) {
     font-size: 32px;
     line-height: 42px;
     font-weight: 600;
-  
+
     @media (min-width: 769px) {
       font-size: 36px;
       line-height: 47px;
     }
-  
+
     @media (min-width: 1153px) {
       font-size: 38px;
       line-height: 49px;
     }
   }
-  
+
   &:is(h3) {
     font-size: 26px;
     line-height: 34px;
     font-weight: 600;
-  
+
     @media (min-width: 769px) {
       font-size: 28px;
       line-height: 36px;
     }
-    
+
     @media (min-width: 1153px) {
       font-size: 30px;
       line-height: 39px;
     }
   }
-  
+
   &:is(h4) {
     font-size: 22px;
     line-height: 29px;
     font-weight: 600;
-  
+
     @media (min-width: 769px) {
       font-size: 24px;
       line-height: 31px;
     }
-  
+
     @media (min-width: 1153px) {
       font-size: 26px;
       line-height: 34px;
@@ -104,27 +104,27 @@
   &:is(p a, li a) {
     color: rgb(var(--nq-blue));
   }
-  
+
   &:is(blockquote p, blockquote p > :is(em, b)) {
     color: rgb(var(--nq-green));
   }
-  
+
   &:is(code, pre) {
     background-color: rgb(var(--nq-neutral-300));
     color: rgb(var(--nq-neutral-900));
     overflow-x: auto;
   }
-  
+
   &:is(code) {
     line-height: 30px;
   }
-  
+
   /* Links & buttons clickable */
   &:is(a, button:not([disabled])) {
     position: relative;
-  
+
     @media not all and (hover: hover) {
-  
+
       &::before,
       &::after {
         content: "";
@@ -137,14 +137,33 @@
       }
     }
   }
-  
-  &:focus-visible {
+
+  .focusable:focus-visible {
     outline: 2px solid rgba(var(--nq-blue));
     outline-offset: 3px;
   }
+
+  * {
+    --track: rgb(var(--nq-neutral-200));
+    --thumb: rgb(var(--nq-neutral-600));
+
+    &::-webkit-scrollbar {
+      width: 0.6rem;
+      height: 0.9rem;
+      margin: 2px;
+      scrollbar-gutter: stable;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      background-color: var(--thumb);
+      background-clip: padding-box;
+      border: 2px transparent solid;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: var(--track);
+      border-radius: 8px;
+    }
+  }
 }
-
-
-
-
-
