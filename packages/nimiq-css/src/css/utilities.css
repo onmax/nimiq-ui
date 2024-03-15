@@ -36,18 +36,18 @@
     bottom: 0;
     left: 0;
     z-index: inherit;
+    margin-left: 0.4em;
   }
-
+  
   &:is(.loading, [loading], .not-loading, [not-loading]) {
     &::after {
+      margin-right: -0.4em;
       transition: width 0.2s var(--nq-ease, ease-out);
       width: 1em;
       aspect-ratio: 1/1;
       --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxnIGZpbGw9Im5vbmUiPjxnIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMS42NjciIGNsaXAtcGF0aD0idXJsKCNuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCkiPjxwYXRoIGQ9Ik02IDFDOC43NjI1IDEgMTEgMy4yMzc1IDExIDYiLz48cGF0aCBkPSJNMy4wMzgwOSAyQzEuODA0MDIgMi45MDM3NCAxIDQuMzYyMTkgMSA2LjAxMzg1QzEgOC43Njg3IDMuMjMxMyAxMSA1Ljk4NjE1IDExQzcuNjM3ODEgMTEgOS4wOTYyNiAxMC4xOTYgMTAgOC45NjE5MSIgb3BhY2l0eT0iLjMiLz48L2c+PGRlZnM+PGNsaXBQYXRoIGlkPSJuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48L2RlZnM+PC9nPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgZHVyPSIxcyIgZnJvbT0iMCAwIDAiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB0bz0iMzYwIDAgMCIgdHlwZT0icm90YXRlIi8+PC9zdmc+");
 
       transform: scale(1);
-      margin-right: -0.4em;
-      margin-left: 0.4em;
     }
 
     &:is(.not-loading, [not-loading])::after {
@@ -93,6 +93,7 @@
 }
 
 .pill,
+.pill-sm,
 .pill-blue,
 .pill-gold,
 .pill-green,
@@ -117,7 +118,7 @@
     opacity 0.5s var(--nq-ease, ease-out);
   outline: none;
 
-  &:is(.small, [small]) {
+  &:is(.pill-sm, [pill-sm]) {
     font-size: 14px;
     padding: 3px 13px;
   }
@@ -249,35 +250,43 @@
 }
 
 .border-base {
-  box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral-400));
+  --border-color: rgb(var(--nq-neutral-400));
+  box-shadow: 0 0 0 1.5px var(--border-color);
 }
 
 .border-top {
-  box-shadow: 0 -1.5px 0 0 rgb(var(--nq-neutral-400));
+  --border-color: rgb(var(--nq-neutral-400));
+  box-shadow: 0 -1.5px 0 0 var(--border-color);
 }
 
 .border-bottom {
-  box-shadow: 0 1.5px 0 0 rgb(var(--nq-neutral-400));
+  --border-color: rgb(var(--nq-neutral-400));
+  box-shadow: 0 1.5px 0 0 var(--border-color);
 }
 
 .border-left {
-  box-shadow: -1.5px 0 0 0 rgb(var(--nq-neutral-400));
+  --border-color: rgb(var(--nq-neutral-400));
+  box-shadow: -1.5px 0 0 0 var(--border-color);
 }
 
 .border-right {
-  box-shadow: 1.5px 0 0 0 rgb(var(--nq-neutral-400));
+  --border-color: rgb(var(--nq-neutral-400));
+  box-shadow: 1.5px 0 0 0 var(--border-color);
 }
 
 .border-subtle {
-  box-shadow: inset 0 0 0 1.5px rgb(var(--nq-darkblue) / 0.15);
+  --border-color: rgb(var(--nq-darkblue) / 0.15);
+  box-shadow: inset 0 0 0 1.5px var(--border-color);
 }
 
 .border-subtle-sm {
-  box-shadow: inset 0 0 0 1.5px rgb(var(--nq-darkblue) / 0.02);
+  --border-color: rgb(var(--nq-darkblue) / 0.02);
+  box-shadow: inset 0 0 0 1.5px var(--border-color);
 }
 
 .border-subtle-light {
-  box-shadow: inset 0 0 0 1.5px rgb(var(--nq-white) / 0.15);
+  --border-color: rgb(var(--nq-white) / 0.02);
+  box-shadow: inset 0 0 0 1.5px var(--border-color);
 }
 
 .ghost-btn {

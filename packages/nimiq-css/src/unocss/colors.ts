@@ -69,11 +69,15 @@ export function getNimiqColors() {
     gradients: [
       [`bg-gradient-${NimiqColor.Neutral}`, `var(--nq-${NimiqColor.Neutral}-gradient)`],
       [`bg-gradient-${NimiqColor.Blue}`, `var(--nq-${NimiqColor.Blue}-gradient)`],
+      [`bg-gradient-${NimiqColor.Blue}-darkened`, `var(--nq-${NimiqColor.Blue}-gradient-darkened)`],
       [`bg-gradient-${NimiqColor.Green}`, `var(--nq-${NimiqColor.Green}-gradient)`],
+      [`bg-gradient-${NimiqColor.Green}-darkened`, `var(--nq-${NimiqColor.Green}-gradient-darkened)`],
       [`bg-gradient-${NimiqColor.Orange}`, `var(--nq-${NimiqColor.Orange}-gradient)`],
+      [`bg-gradient-${NimiqColor.Orange}-darkened`, `var(--nq-${NimiqColor.Orange}-gradient-darkened)`],
       [`bg-gradient-${NimiqColor.Red}`, `var(--nq-${NimiqColor.Red}-gradient)`],
+      [`bg-gradient-${NimiqColor.Red}-darkened`, `var(--nq-${NimiqColor.Red}-gradient-darkened)`],
       [`bg-gradient-${NimiqColor.Gold}`, `var(--nq-${NimiqColor.Gold}-gradient)`],
-      [`bg-gradient-${NimiqColor.Purple}`, `var(--nq-${NimiqColor.Purple}-gradient)`]
+      [`bg-gradient-${NimiqColor.Gold}-darkened`, `var(--nq-${NimiqColor.Gold}-gradient-darkened)`],
     ]
   } as const
 };

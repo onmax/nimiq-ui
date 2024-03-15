@@ -27,7 +27,7 @@
   --nq-neutral-on-dark-800: 162 163 170;
   --nq-neutral-on-dark-900: 209 209 213;
   --nq-neutral-on-light-gradient: radial-gradient(100% 100% at 100% 100%, #260133 0%, #1f2348 100%);
-  --nq-neutral-on-dark-gradient: var(--nq-neutral-on-dark-0);
+  --nq-neutral-on-dark-gradient: radial-gradient(100% 100% at 100% 100%, rgb(var(--nq-neutral-on-dark-0)) 0%, rgb(var(--nq-neutral-on-dark-0)) 100%);
   
   --nq-blue-on-light: 5 130 202;
   --nq-blue-on-light-400: 230 242 250;
@@ -52,7 +52,7 @@
   --nq-green-on-dark-600: 26 69 73;
   --nq-green-on-light-gradient: radial-gradient(100% 100% at 100% 100%, #41a38e 0%, #13b59d 100%);
   --nq-green-on-dark-gradient: radial-gradient(100% 100% at 100% 100%, #00bf90 0%, #24cca2 100%);
-  --nq-green-on-light-gradient-darkened: radial-gradient(100% 100% at 100% 100%, #41a38e, #20B29E);
+  --nq-green-on-light-gradient-darkened: radial-gradient(100% 100% at 100% 100%, #41a38e, #1eac96);
   --nq-green-on-dark-gradient-darkened: radial-gradient(100% 100% at 100% 100%, #00bf90 0%, #23b792 100%);
 
   --nq-orange-on-light: 252 135 2;

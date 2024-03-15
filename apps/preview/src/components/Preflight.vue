@@ -62,11 +62,11 @@
     <h3 mt-4>Gradients</h3>
     <div flex="~ gap-8">
       <div size-16 bg-gradient-neutral rounded-2></div>
-      <div size-16 bg-gradient-blue rounded-2></div>
-      <div size-16 bg-gradient-green rounded-2></div>
-      <div size-16 bg-gradient-gold rounded-2></div>
-      <div size-16 bg-gradient-red rounded-2></div>
-      <div size-16 bg-gradient-orange rounded-2></div>
+      <div size-16 bg-gradient-blue="~ hover:darkened" transition-colors rounded-2></div>
+      <div size-16 bg-gradient-green="~ hover:darkened" transition-colors rounded-2></div>
+      <div size-16 bg-gradient-gold="~ hover:darkened" transition-colors rounded-2></div>
+      <div size-16 bg-gradient-red="~ hover:darkened" transition-colors rounded-2></div>
+      <div size-16 bg-gradient-orange="~ hover:darkened" transition-colors rounded-2></div>
     </div>
   </section>
 </template>
