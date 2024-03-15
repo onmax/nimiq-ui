@@ -16,7 +16,7 @@ const loadingSmall = ref(true)
       <details p-2>
         <summary>See HTML</summary>
 
-        <div  class="text-xs" of-x-auto w-full text-neutral rounded-md of-hidden>
+        <div class="text-xs" of-x-auto w-full text-neutral rounded-md of-hidden>
           <code p-2>{{ html }}</code>
         </div>
       </details>
@@ -80,8 +80,9 @@ const loadingSmall = ref(true)
           <button pill-blue small @click="showLoading = !showLoading">Toggle loading</button>
           <button pill-blue small @click="loadingSmall = !loadingSmall">Toggle size</button>
         </div>
-        <ReuseTemplate :html="`<a href='./' class='pill-secondary ${showLoading ? 'loading': 'not-loading'} ${loadingSmall ? 'small' : ''}' ${showLoading ? 'disabled' : ''}>Loading</a>`" />
-      </div>  
+        <ReuseTemplate
+          :html="`<a href='./' class='pill-secondary ${showLoading ? 'loading' : 'not-loading'} ${loadingSmall ? 'small' : ''}' ${showLoading ? 'disabled' : ''}>Loading</a>`" />
+      </div>
     </div>
   </section>
 
@@ -89,9 +90,20 @@ const loadingSmall = ref(true)
     <h2>Inputs</h2>
 
     <div grid="~ flow-col gap-2">
-      <ReuseTemplate :html="`<input type='text' placeholder='Hey, hello :)' class='input-text' rounded-full />`" /> 
-      <ReuseTemplate :html="`<input type='text' class='input-text invalid' value='Something bad' rounded-full />`" /> 
-      <ReuseTemplate :html="`<textarea class='input-text rounded-[3px]' placeholder='Hey, hello :)' />`" /> 
+      <ReuseTemplate :html="`<input type='text' placeholder='Hey, hello :)' class='input-text' rounded-full />`" />
+      <ReuseTemplate :html="`<input type='text' class='input-text invalid' value='Something bad' rounded-full />`" />
+      <ReuseTemplate :html="`<textarea class='input-text rounded-[3px]' placeholder='Hey, hello :)' />`" />
+    </div>
+  </section>
+  
+  <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
+    <h2>Switch</h2>
+
+    <div grid="~ flow-col gap-2">
+      <ReuseTemplate :html="`<label class='switch'><input type='checkbox' /></label>`" />
+      <ReuseTemplate :html="`<label class='switch' text-6><input type='checkbox' /></label>`" />
+      <ReuseTemplate :html="`<label class='switch'><input type='checkbox' disabled checked /></label>`" />
+      <ReuseTemplate :html="`<label class='switch'><input type='checkbox' disabled /></label>`" />
     </div>
   </section>
 
@@ -99,11 +111,11 @@ const loadingSmall = ref(true)
     <h2>Borders</h2>
 
     <div grid="~ flow-col gap-2">
-      <ReuseTemplate :html="`<div size-16 rounded-sm grid place-content-center border-base>Box</div>`" /> 
-      <ReuseTemplate :html="`<div size-16 grid place-content-center border-top>Box</div>`" /> 
-      <ReuseTemplate :html="`<div size-16 grid place-content-center border-right>Box</div>`" /> 
-      <ReuseTemplate :html="`<div size-16 grid place-content-center border-bottom>Box</div>`" /> 
-      <ReuseTemplate :html="`<div size-16 grid place-content-center border-left>Box</div>`" /> 
+      <ReuseTemplate :html="`<div size-16 rounded-sm grid place-content-center border-base>Box</div>`" />
+      <ReuseTemplate :html="`<div size-16 grid place-content-center border-top>Box</div>`" />
+      <ReuseTemplate :html="`<div size-16 grid place-content-center border-right>Box</div>`" />
+      <ReuseTemplate :html="`<div size-16 grid place-content-center border-bottom>Box</div>`" />
+      <ReuseTemplate :html="`<div size-16 grid place-content-center border-left>Box</div>`" />
     </div>
   </section>
 
@@ -111,8 +123,8 @@ const loadingSmall = ref(true)
     <h2>Buttons</h2>
 
     <div grid="~ flow-col gap-2">
-      <ReuseTemplate :html="`<button text-8 close-btn></button>`" /> 
-        <ReuseTemplate :html="`<button ghost-btn>SVG</button>`" /> 
+      <ReuseTemplate :html="`<button text-8 close-btn></button>`" />
+      <ReuseTemplate :html="`<button ghost-btn>SVG</button>`" />
     </div>
   </section>
 
@@ -122,9 +134,8 @@ const loadingSmall = ref(true)
     <p>You might need to zoom in to see the border</p>
 
     <div grid="~ flow-col gap-2">
-      <ReuseTemplate :html="`<div size-16 rounded-2 grid bg-neutral border-subtle-light></div>`" /> 
-      <ReuseTemplate :html="`<div size-16 rounded-2 grid bg-gradient-red border-subtle></div>`" /> 
+      <ReuseTemplate :html="`<div size-16 rounded-2 grid bg-neutral border-subtle-light></div>`" />
+      <ReuseTemplate :html="`<div size-16 rounded-2 grid bg-gradient-red border-subtle></div>`" />
     </div>
   </section>
 </template>
-
