@@ -100,11 +100,11 @@ function createPreset() {
     ]
 
     if (reset || false) {
-      // const twReset = fetch('https://raw.githubusercontent.com/unocss/unocss/main/packages/reset/tailwind-compat.css').then(r => r.text())
-      // preflights.push({
-      //   layer: 'tw-reset',
-      //   getCSS: async () => `@layer tw-reset { ${await twReset} }`
-      // })
+      const twReset = fetch('https://raw.githubusercontent.com/unocss/unocss/main/packages/reset/tailwind-compat.css').then(r => r.text())
+      preflights.push({
+        layer: 'tw-reset',
+        getCSS: async () => `@layer tw-reset { ${await twReset} }`
+      })
     }
     if (preflight)
       preflights.push({ layer: 'nq-preflight', getCSS: () => wrapContentToLayer('preflight') })
@@ -135,11 +135,11 @@ function createPreset() {
     const presets: Preset["presets"] = []
     if (fonts) {
       presets.push(presetWebFonts({
-        // provider: 'bunny',
-        // fonts: {
-        //   sans: 'Mulish:400,600,700',
-        //   mono: 'Fira Code:400',
-        // }
+        provider: 'bunny',
+        fonts: {
+          sans: 'Mulish:400,600,700',
+          mono: 'Fira Code:400',
+        }
       }))
     }
 

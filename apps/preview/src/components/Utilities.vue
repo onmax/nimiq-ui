@@ -44,23 +44,23 @@ const loadingSmall = ref(true)
 
      <div grid="~ flow-col gap-2">
       <ReuseTemplate :html="`
-        <a class='flex flex-col gap-3 raw max-w-25 bg-neutral-200 rounded-6 p-2'>
+        <a class='flex flex-col gap-3 raw max-w-120 bg-neutral-200 rounded-2 px-6 py-4'>
           <h3 class='arrow-back flex'>Arrow</h3>
-          <p class='text-3 text-neutral-800 text-prose'>You can even nest the arrow in <code>a</code> element</p>
+          <p class='text-3 text-neutral-800 text-pretty'>You can even nest the arrow in <code>a tag</code> element</p>
         </a>
       `" />
 
       <ReuseTemplate :html="`
-        <a href='./' class='flex flex-col gap-3 raw max-w-25 bg-neutral-200 rounded-6 p-2'>
+        <a href='./' class='flex flex-col gap-3 raw max-w-120 bg-neutral-200 rounded-2 px-6 py-4'>
           <h3 class='arrow flex after:ml-auto'>Arrow</h3>
-          <p class='text-3 text-neutral-800 text-prose'>You can even nest the arrow in <code>a</code> element</p>
+          <p class='text-3 text-neutral-800 text-pretty'>You can even nest the arrow in <code>a tag</code> element</p>
         </a>
       `" />
 
       <ReuseTemplate :html="`
-        <a href='https://nimiq.com' class='flex flex-col gap-3 raw max-w-25 bg-neutral-200 rounded-6 p-2'>
+        <a href='https://nimiq.com' class='flex flex-col gap-3 raw max-w-120 bg-neutral-200 rounded-2 px-6 py-4'>
           <h3 class='arrow flex after:ml-auto'>Arrow</h3>
-          <p class='text-3 text-neutral-800 text-prose'>You can even nest the arrow in <code>a</code> element</p>
+          <p class='text-3 text-neutral-800 text-pretty'>You can even nest the arrow in <code>a tag</code> element</p>
         </a>
       `" />
     </div>
