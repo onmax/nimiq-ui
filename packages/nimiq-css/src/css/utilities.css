@@ -43,7 +43,7 @@
   &:is(.loading, [loading], .not-loading, [not-loading]) {
     &::after {
       margin-right: -0.4em;
-      transition: width 0.2s var(--nq-ease, ease-out);
+      transition: width 0.2s ease-out;
       width: 1em;
       aspect-ratio: 1/1;
       --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxnIGZpbGw9Im5vbmUiPjxnIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMS42NjciIGNsaXAtcGF0aD0idXJsKCNuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCkiPjxwYXRoIGQ9Ik02IDFDOC43NjI1IDEgMTEgMy4yMzc1IDExIDYiLz48cGF0aCBkPSJNMy4wMzgwOSAyQzEuODA0MDIgMi45MDM3NCAxIDQuMzYyMTkgMSA2LjAxMzg1QzEgOC43Njg3IDMuMjMxMyAxMSA1Ljk4NjE1IDExQzcuNjM3ODEgMTEgOS4wOTYyNiAxMC4xOTYgMTAgOC45NjE5MSIgb3BhY2l0eT0iLjMiLz48L2c+PGRlZnM+PGNsaXBQYXRoIGlkPSJuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48L2RlZnM+PC9nPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgZHVyPSIxcyIgZnJvbT0iMCAwIDAiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB0bz0iMzYwIDAgMCIgdHlwZT0icm90YXRlIi8+PC9zdmc+");
@@ -62,32 +62,38 @@
 
     &:is(.arrow, [arrow])::after,
     &:is(.arrow-back, [arrow-back])::before {
-      transition: transform 0.4s cubic-bezier(0.54, -1.12, 0.16, 2);
+      transition: transform 100ms ease-out;
       width: 0.7em;
       height: 0.7em;
       --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=");
     }
 
-    &[href^="http"]::after {
+    /* We select the arrow OR the closest parent with href to an http */
+    &:where(a[href^="http"] &, &[href^="http"])::after {
       margin-right: 0.5em;
       margin-left: 0.5em;
       rotate: 0.375turn;
     }
-
-    &:not(:is(.arrow-back, [arrow-back])):is(&[href^='/'], &[href^='./'], &[href^='../'], &[href^='#'])::after {
+    
+    /* We select the arrow OR the closest parent with href starting with /,./,../,# */
+    &:where(
+      a:is([href^='/'], [href^='./'], [href^='../'], [href^='#']) &,
+      &:is([href^='/'], [href^='./'], [href^='../'], [href^='#'])
+    )::after {
       margin-left: 0.5em;
       margin-bottom: 1px;
       rotate: 0.5turn;
     }
 
-    &:is(.arrow-back, [arrow-back]):is(&[href^='/'], &[href^='./'], &[href^='../'], &[href^='#'])::before {
+    &:is(.arrow-back, [arrow-back])::before {
       margin-right: 0.5em;
       margin-bottom: 1px;
+      rotate: 0;
     }
 
-    :is(&, .group &):hover:is(::after, ::before) {
+    &:where(a:hover &, &:hover)::after,
+    &:is(.arrow-back, [arrow-back]):where(a:hover &, &:hover)::before {
       transform: translateX(-.25em);
-      transition-delay: 100ms;
     }
   }
 }
@@ -114,8 +120,8 @@
   width: max-content;
   color: white;
   transition:
-    background 0.2s var(--nq-ease, ease-out),
-    opacity 0.5s var(--nq-ease, ease-out);
+    background 0.2s ease-out,
+    opacity 0.5s ease-out;
   outline: none;
 
   &:is(.pill-sm, [pill-sm]) {
@@ -360,7 +366,8 @@
     border-radius: 1em;
     position: relative;
     cursor: pointer;
-    transition: background 200ms var(--nq-ease, ease);
+    --active-color: rgb(var(--nq-blue));
+    transition: background 100ms ease-out;
 
     &::after {
       position: absolute;
@@ -372,7 +379,7 @@
       background-color: rgb(var(--nq-neutral-0));
       content: '';
       box-shadow: 0px 18px 38px rgba(31, 35, 72, 0.07), 0px 7px 8.5px rgba(31, 35, 72, 0.04), 0px 2px 2.5px rgba(31, 35, 72, 0.02);
-      transition: left 200ms var(--nq-ease, ease);
+      transition: left 130ms ease-out;
     }
 
     &:has(input[type="checkbox"][disabled]) {
@@ -385,11 +392,8 @@
     }
 
     &:has(input[type="checkbox"]:checked) {
-      background-image: var(--nq-blue-gradient);
-
-      &:has(input[type="checkbox"]:not([disabled])):hover {
-        background-image: var(--nq-blue-gradient-darkened);
-      }
+      background: var(--active-color);
+      transition-delay: 50ms;
 
       &::after {
         left: calc(100% - 0.9em);

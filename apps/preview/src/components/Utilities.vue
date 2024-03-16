@@ -41,6 +41,29 @@ const loadingSmall = ref(true)
       <ReuseTemplate :html="`<a href='https://nimiq.com' class='arrow'>External link</a>`" />
       <ReuseTemplate :html="`<a href='./typography' class='arrow'>Internal link</a>`" />
     </div>
+
+     <div grid="~ flow-col gap-2">
+      <ReuseTemplate :html="`
+        <a class='flex flex-col gap-3 raw max-w-25 bg-neutral-200 rounded-6 p-2'>
+          <h3 class='arrow-back flex'>Arrow</h3>
+          <p class='text-3 text-neutral-800 text-prose'>You can even nest the arrow in <code>a</code> element</p>
+        </a>
+      `" />
+
+      <ReuseTemplate :html="`
+        <a href='./' class='flex flex-col gap-3 raw max-w-25 bg-neutral-200 rounded-6 p-2'>
+          <h3 class='arrow flex after:ml-auto'>Arrow</h3>
+          <p class='text-3 text-neutral-800 text-prose'>You can even nest the arrow in <code>a</code> element</p>
+        </a>
+      `" />
+
+      <ReuseTemplate :html="`
+        <a href='https://nimiq.com' class='flex flex-col gap-3 raw max-w-25 bg-neutral-200 rounded-6 p-2'>
+          <h3 class='arrow flex after:ml-auto'>Arrow</h3>
+          <p class='text-3 text-neutral-800 text-prose'>You can even nest the arrow in <code>a</code> element</p>
+        </a>
+      `" />
+    </div>
   </section>
 
   <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
@@ -101,7 +124,7 @@ const loadingSmall = ref(true)
 
     <div grid="~ flow-col gap-2">
       <ReuseTemplate :html="`<label class='switch'><input type='checkbox' /></label>`" />
-      <ReuseTemplate :html="`<label class='switch' text-6><input type='checkbox' /></label>`" />
+      <ReuseTemplate :html="`<label class='switch' style='font-size: 24px'><input type='checkbox' /></label>`" />
       <ReuseTemplate :html="`<label class='switch'><input type='checkbox' disabled checked /></label>`" />
       <ReuseTemplate :html="`<label class='switch'><input type='checkbox' disabled /></label>`" />
     </div>

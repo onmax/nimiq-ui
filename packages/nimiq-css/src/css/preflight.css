@@ -150,20 +150,29 @@
     --thumb: rgb(var(--nq-neutral-600));
 
     &::-webkit-scrollbar {
-      width: 1rem;
-      height: 1rem;
+      width: 0.6rem;
+      height: 0.6rem;
       margin: 2px;
       scrollbar-gutter: stable;
 
+      @media screen and (min-width: 769px) {
+        width: 1rem;
+        height: 1rem;
+      }
     }
 
     &.scroll-sm::-webkit-scrollbar {
-      width: 0.6rem;
-      height: 0.7rem;
+      width: 0.3rem;
+      height: 0.3rem;
+      
+      @media screen and (min-width: 769px) {
+        width: 0.6rem;
+        height: 0.7rem;
+      }
     }
 
     &::-webkit-scrollbar-thumb {
-      border-radius: 8px;
+      border-radius: 0.3rem;
       background-color: var(--thumb);
       background-clip: padding-box;
       border: 2px transparent solid;

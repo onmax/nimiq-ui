@@ -1,10 +1,9 @@
-import { type Preset, type PresetFactory, definePreset, presetWebFonts, presetIcons } from 'unocss'
+import { type Preset, type PresetFactory, definePreset, presetWebFonts } from 'unocss'
 import { readFileSync, existsSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { toJSON, toCSS } from 'ts-cssjson'
-import { NimiqColor, getNimiqColors } from './colors';
+import { getNimiqColors } from './colors';
 import { fileURLToPath } from 'node:url';
-import { rules } from 'unocss/preset-wind';
 
 export type NimiqPresetOptions = {
   /**
@@ -100,12 +99,12 @@ function createPreset() {
       }
     ]
 
-    if (reset) {
-      const twReset = fetch('https://raw.githubusercontent.com/unocss/unocss/main/packages/reset/tailwind-compat.css').then(r => r.text())
-      preflights.push({
-        layer: 'tw-reset',
-        getCSS: async () => `@layer tw-reset { ${await twReset} }`
-      })
+    if (reset || false) {
+      // const twReset = fetch('https://raw.githubusercontent.com/unocss/unocss/main/packages/reset/tailwind-compat.css').then(r => r.text())
+      // preflights.push({
+      //   layer: 'tw-reset',
+      //   getCSS: async () => `@layer tw-reset { ${await twReset} }`
+      // })
     }
     if (preflight)
       preflights.push({ layer: 'nq-preflight', getCSS: () => wrapContentToLayer('preflight') })
@@ -136,11 +135,11 @@ function createPreset() {
     const presets: Preset["presets"] = []
     if (fonts) {
       presets.push(presetWebFonts({
-        provider: 'bunny',
-        fonts: {
-          sans: 'Mulish:400,600,700',
-          mono: 'Fira Code:400',
-        }
+        // provider: 'bunny',
+        // fonts: {
+        //   sans: 'Mulish:400,600,700',
+        //   mono: 'Fira Code:400',
+        // }
       }))
     }
 
