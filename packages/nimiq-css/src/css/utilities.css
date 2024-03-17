@@ -75,11 +75,8 @@
       rotate: 0.375turn;
     }
     
-    /* We select the arrow OR the closest parent with href starting with /,./,../,# */
-    &:where(
-      a:is([href^='/'], [href^='./'], [href^='../'], [href^='#']) &,
-      &:is([href^='/'], [href^='./'], [href^='../'], [href^='#'])
-    )::after {
+    /* We select the arrow OR the closest parent with href starting with local href */
+    &:where(a:is(:not([href^='http'])), &:is(:not([href^='http'])))::after {
       margin-left: 0.5em;
       margin-bottom: 1px;
       rotate: 0.5turn;
@@ -303,7 +300,8 @@
   color: rgb(var(--nq-neutral-700));
   background: inherit;
   transition: 100ms background var(--nq-ease, ease-out);
-  box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral-400));
+  --ring-color: rgb(var(--nq-neutral-400));
+  box-shadow: 0 0 0 1.5px var(--ring-color); 
   height: max-content;
 
   &:hover {
