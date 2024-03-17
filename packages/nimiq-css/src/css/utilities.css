@@ -203,13 +203,10 @@
 .input-text {
   font-size: 16px;
   line-height: 1.5;
+  padding: 4.5px 14px;
 
   &:is(textarea) {
     padding: 4px 12px;
-  }
-
-  &:is(input) {
-    padding: 4.5px 14px;
   }
 
   background-color: transparent;
@@ -373,7 +370,8 @@
       position: absolute;
       height: 0.8em;
       top: 0.1em;
-      left: 0.1em;
+      --left: 0.1em;
+      left: var(--left);
       aspect-ratio: 1;
       border-radius: 1em;
       background-color: rgb(var(--nq-neutral-0));
@@ -396,7 +394,7 @@
       transition-delay: 50ms;
 
       &::after {
-        left: calc(100% - 0.9em);
+        --left: calc(100% - 0.9em);
       }
     }
 
