@@ -13,7 +13,7 @@
   "dependencies": {
     "@unocss/reset": "^0.58.6",
     "@vueuse/core": "^10.9.0",
-    "nimiq-css": "workspace:*",
+    "nimiq-css": "0.0.47",
     "unplugin-vue-markdown": "^0.26.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"

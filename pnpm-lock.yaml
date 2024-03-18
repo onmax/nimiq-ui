@@ -31,7 +31,7 @@ importers:
         specifier: ^10.9.0
         version: 10.9.0(vue@3.4.21)
       nimiq-css:
-        specifier: workspace:*
+        specifier: 0.0.47
         version: link:../../packages/nimiq-css
       unplugin-vue-markdown:
         specifier: ^0.26.0
