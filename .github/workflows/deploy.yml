@@ -42,7 +42,7 @@ jobs:
       - name: Install dependencies
         run: pnpm  --filter nimiq-preview  install
       - name: Build
-        run: pnpm  --filter nimiq-preview  build
+        run: pnpm  --filter nimiq-preview  build-only
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
