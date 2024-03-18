@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import Article from '../../assets/article.md'
+// @ts-ignore this is fine
+import Article from '@/article.md'
+
 </script>
 
 <template>

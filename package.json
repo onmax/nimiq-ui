@@ -6,6 +6,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
+    "preview:build": "",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
