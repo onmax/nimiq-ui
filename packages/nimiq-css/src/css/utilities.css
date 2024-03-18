@@ -17,12 +17,91 @@
 }
 
 .arrow,
-.arrow-back,
+.loading {
+  &::after {
+    content: '';
+    position: relative;
+    display: inline-block;
+    -webkit-mask: var(--nq-icon) no-repeat;
+    mask: var(--nq-icon) no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    color: inherit;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: inherit;
+    margin-left: 0.4em;
+    transition: transform 100ms ease-out;
+    width: 0.7em;
+    height: 0.7em;
+    --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=");
+  }
+}
+
+.arrow {
+
+  /* We select the arrow OR the closest parent with href to an http */
+  &:where(a[href^="http"] &, &[href^="http"])::after {
+    margin-left: 0.5em;
+    margin-bottom: 1px;
+    rotate: 0.375turn;
+  }
+
+  /* We select the arrow OR the closest parent with href starting with local href */
+  &:where(a:not([href^='http']), &:not([href^='http']))::after {
+    margin-left: 0.5em;
+    margin-bottom: 1px;
+    rotate: 0.5turn;
+  }
+
+  &:where(a:hover &, &:hover)::after {
+    transform: translateX(-.25em);
+  }
+}
+
+.arrow-back {
+  &::before {
+    content: '';
+    position: relative;
+    display: inline-block;
+    -webkit-mask: var(--nq-icon) no-repeat;
+    mask: var(--nq-icon) no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    color: inherit;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: inherit;
+    margin-left: 0.4em;
+    transition: transform 100ms ease-out;
+    width: 0.7em;
+    height: 0.7em;
+    --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=");
+    margin-right: 0.5em;
+    margin-bottom: 1px;
+    rotate: 0;
+  }
+
+  &:where(a:hover &, &:hover)::before {
+    transform: translateX(-.25em);
+  }
+}
+
 .loading,
 .not-loading {
-
-  &:not(:is(.arrow-back, [arrow-back]))::after,
-  &:is(.arrow-back, [arrow-back])::before {
+  &::after {
+    margin-right: -0.4em;
+    transition: width 0.2s ease-out;
+    width: 1em;
+    aspect-ratio: 1/1;
+    --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxnIGZpbGw9Im5vbmUiPjxnIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMS42NjciIGNsaXAtcGF0aD0idXJsKCNuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCkiPjxwYXRoIGQ9Ik02IDFDOC43NjI1IDEgMTEgMy4yMzc1IDExIDYiLz48cGF0aCBkPSJNMy4wMzgwOSAyQzEuODA0MDIgMi45MDM3NCAxIDQuMzYyMTkgMSA2LjAxMzg1QzEgOC43Njg3IDMuMjMxMyAxMSA1Ljk4NjE1IDExQzcuNjM3ODEgMTEgOS4wOTYyNiAxMC4xOTYgMTAgOC45NjE5MSIgb3BhY2l0eT0iLjMiLz48L2c+PGRlZnM+PGNsaXBQYXRoIGlkPSJuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48L2RlZnM+PC9nPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgZHVyPSIxcyIgZnJvbT0iMCAwIDAiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB0bz0iMzYwIDAgMCIgdHlwZT0icm90YXRlIi8+PC9zdmc+");
+    transform: scale(1);
     content: '';
     position: relative;
     display: inline-block;
@@ -40,58 +119,8 @@
     margin-left: 0.4em;
   }
 
-  &:is(.loading, [loading], .not-loading, [not-loading]) {
-    &::after {
-      margin-right: -0.4em;
-      transition: width 0.2s ease-out;
-      width: 1em;
-      aspect-ratio: 1/1;
-      --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxnIGZpbGw9Im5vbmUiPjxnIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMS42NjciIGNsaXAtcGF0aD0idXJsKCNuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCkiPjxwYXRoIGQ9Ik02IDFDOC43NjI1IDEgMTEgMy4yMzc1IDExIDYiLz48cGF0aCBkPSJNMy4wMzgwOSAyQzEuODA0MDIgMi45MDM3NCAxIDQuMzYyMTkgMSA2LjAxMzg1QzEgOC43Njg3IDMuMjMxMyAxMSA1Ljk4NjE1IDExQzcuNjM3ODEgMTEgOS4wOTYyNiAxMC4xOTYgMTAgOC45NjE5MSIgb3BhY2l0eT0iLjMiLz48L2c+PGRlZnM+PGNsaXBQYXRoIGlkPSJuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48L2RlZnM+PC9nPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgZHVyPSIxcyIgZnJvbT0iMCAwIDAiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB0bz0iMzYwIDAgMCIgdHlwZT0icm90YXRlIi8+PC9zdmc+");
-
-      transform: scale(1);
-    }
-
-    &:is(.not-loading, [not-loading])::after {
-      transform: scale(0);
-      width: 0;
-    }
-  }
-
-  &:is(.arrow, [arrow]),
-  &:is(.arrow-back, [arrow-back]) {
-
-    &:is(.arrow, [arrow])::after,
-    &:is(.arrow-back, [arrow-back])::before {
-      transition: transform 100ms ease-out;
-      width: 0.7em;
-      height: 0.7em;
-      --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=");
-    }
-
-    /* We select the arrow OR the closest parent with href to an http */
-    &:where(a[href^="http"] &, &[href^="http"])::after {
-      margin-right: 0.5em;
-      margin-left: 0.5em;
-      rotate: 0.375turn;
-    }
-
-    /* We select the arrow OR the closest parent with href starting with local href */
-    &:where(a:is(:not([href^='http'])), &:is(:not([href^='http'])))::after {
-      margin-left: 0.5em;
-      margin-bottom: 1px;
-      rotate: 0.5turn;
-    }
-
-    &:is(.arrow-back, [arrow-back])::before {
-      margin-right: 0.5em;
-      margin-bottom: 1px;
-      rotate: 0;
-    }
-
-    &:where(a:hover &, &:hover)::after,
-    &:is(.arrow-back, [arrow-back]):where(a:hover &, &:hover)::before {
-      transform: translateX(-.25em);
-    }
+  &:is(.not-loading, [not-loading])::after {
+    width: 0;
   }
 }
 
@@ -375,7 +404,6 @@
       background: #ffffff;
       transition: left 100ms ease-out;
       box-shadow: var(--nq-shadow);
-
     }
 
     &:checked {

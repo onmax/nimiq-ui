@@ -39,7 +39,7 @@ const loadingSmall = ref(true)
     <div grid="~ flow-col gap-2">
       <ReuseTemplate :html="`<a href='./' class='arrow-back'>Arrow back</a>`" />
       <ReuseTemplate :html="`<a href='https://nimiq.com' class='arrow'>External link</a>`" />
-      <ReuseTemplate :html="`<a href='./typography' class='arrow'>Internal link</a>`" />
+      <ReuseTemplate :html="`<a href='/typography' class='arrow'>Internal link</a>`" />
     </div>
 
      <div grid="~ flow-col gap-2">
