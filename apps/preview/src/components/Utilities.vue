@@ -123,10 +123,10 @@ const loadingSmall = ref(true)
     <h2>Switch</h2>
 
     <div grid="~ flow-col gap-2">
-      <ReuseTemplate :html="`<label class='switch'><input type='checkbox' /></label>`" />
-      <ReuseTemplate :html="`<label class='switch' style='font-size: 24px'><input type='checkbox' /></label>`" />
-      <ReuseTemplate :html="`<label class='switch'><input type='checkbox' disabled checked /></label>`" />
-      <ReuseTemplate :html="`<label class='switch'><input type='checkbox' disabled /></label>`" />
+      <ReuseTemplate :html="`<input type='checkbox' switch />`" />
+      <ReuseTemplate :html="`<input type='checkbox' switch style='font-size: 24px' />`" />
+      <ReuseTemplate :html="`<input type='checkbox' switch disabled/>`" />
+      <ReuseTemplate :html="`<input type='checkbox' switch disabled checked/>`" />
     </div>
   </section>
 

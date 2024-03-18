@@ -74,7 +74,7 @@
       margin-left: 0.5em;
       rotate: 0.375turn;
     }
-    
+
     /* We select the arrow OR the closest parent with href starting with local href */
     &:where(a:is(:not([href^='http'])), &:is(:not([href^='http'])))::after {
       margin-left: 0.5em;
@@ -301,7 +301,7 @@
   background: inherit;
   transition: 100ms background var(--nq-ease, ease-out);
   --ring-color: rgb(var(--nq-neutral-400));
-  box-shadow: 0 0 0 1.5px var(--ring-color); 
+  box-shadow: 0 0 0 1.5px var(--ring-color);
   height: max-content;
 
   &:hover {
@@ -351,66 +351,51 @@
 }
 
 .switch {
-  &:is(label) {
-    display: block;
-    font-size: 32px;
-    background: rgb(var(--nq-neutral-200));
-    width: max-content;
-    height: 1em;
+  &:is(input[type="checkbox"]) {
+    --active-color: rgb(var(--nq-neutral-300));
+    appearance: none;
+    font-size: 1em;
+    width: 2em;
     aspect-ratio: 1.625;
-    border-radius: 1em;
+    border-radius: 2em;
+    background: var(--active-color);
     position: relative;
-    cursor: pointer;
-    --active-color: rgb(var(--nq-blue));
-    transition: background 100ms ease-out;
 
-    &::after {
+    &::before {
+      content: "";
       position: absolute;
-      height: 0.8em;
-      top: 0.1em;
-      --left: 0.1em;
-      left: var(--left);
-      aspect-ratio: 1;
-      border-radius: 1em;
-      background-color: rgb(var(--nq-neutral-0));
-      content: '';
-      box-shadow: 0px 18px 38px rgba(31, 35, 72, 0.07), 0px 7px 8.5px rgba(31, 35, 72, 0.04), 0px 2px 2.5px rgba(31, 35, 72, 0.02);
-      transition: left 130ms ease-out;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 0.6em;
+      width: 0.9em;
+      height: 0.9em;
+      border: 1px solid rgb(var(--nq-neutral) / 0.02);
+      border-radius: 50%;
+      background: rgb(var(--nq-neutral-0));
+      transition: left 100ms ease-out;
+      box-shadow: var(--nq-shadow);
+
     }
 
-    &:has(input[type="checkbox"][disabled]) {
-      background: rgb(var(--nq-neutral-100));
+    &:checked {
+      --active-color: rgb(var(--nq-blue));
+
+      &::before {
+        left: 1.4em;
+      }
+    }
+
+    @media (prefers-reduced-motion) {
+      transition-duration: 0s;
+
+      &::before {
+        transition-duration: 0s;
+      }
+    }
+
+    &[disabled] {
+      opacity: 0.6;
       cursor: not-allowed;
-
-      &:has(input[type="checkbox"]:checked) {
-        opacity: 0.4;
-      }
-    }
-
-    &:has(input[type="checkbox"]:checked) {
-      background: var(--active-color);
-      transition-delay: 50ms;
-
-      &::after {
-        --left: calc(100% - 0.9em);
-      }
-    }
-
-    &:has(input[type="checkbox"]:focus-visible) {
-      outline: 2px solid rgba(var(--nq-blue));
-      outline-offset: 3px;
-    }
-
-    input[type="checkbox"] {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border-width: 0;
     }
   }
 }
