@@ -17,7 +17,9 @@
 }
 
 .arrow,
-.loading {
+[arrow],
+.loading,
+[loading] {
   &::after {
     content: '';
     position: relative;
@@ -41,17 +43,19 @@
   }
 }
 
-.arrow {
+.arrow,
+[arrow] {
 
   /* We select the arrow OR the closest parent with href to an http */
-  &:where(a[href^="http"] &, &[href^="http"])::after {
+  &:where(a[href^="http"] &, &:is([href^="http"]))::after {
     margin-left: 0.5em;
     margin-bottom: 1px;
     rotate: 0.375turn;
   }
 
   /* We select the arrow OR the closest parent with href starting with local href */
-  &:where(a:not([href^='http']), &:not([href^='http']))::after {
+  &:where(a:is([href^='/'], [href^='./'], [href^='../'], [href^='#']) &,
+    &:is([href^='/'], [href^='./'], [href^='../'], [href^='#']))::after {
     margin-left: 0.5em;
     margin-bottom: 1px;
     rotate: 0.5turn;
@@ -62,7 +66,8 @@
   }
 }
 
-.arrow-back {
+.arrow-back,
+[arrow-back] {
   &::before {
     content: '';
     position: relative;
@@ -94,7 +99,9 @@
 }
 
 .loading,
-.not-loading {
+[loading],
+.not-loading,
+[not-loading] {
   &::after {
     margin-right: -0.4em;
     transition: width 0.2s ease-out;
