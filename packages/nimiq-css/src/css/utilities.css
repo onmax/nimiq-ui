@@ -360,6 +360,7 @@
     border-radius: 2em;
     background: var(--active-color);
     position: relative;
+    cursor: pointer;
 
     &::before {
       content: "";
@@ -371,7 +372,7 @@
       height: 0.9em;
       border: 1px solid rgb(var(--nq-neutral) / 0.02);
       border-radius: 50%;
-      background: rgb(var(--nq-neutral-0));
+      background: #ffffff;
       transition: left 100ms ease-out;
       box-shadow: var(--nq-shadow);
 
