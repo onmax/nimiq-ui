@@ -40,9 +40,9 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies
-        run: pnpm install --filter nimiq-preview 
+        run: pnpm  --filter nimiq-preview  install
       - name: Build
-        run: pnpm build --filter nimiq-preview 
+        run: pnpm  --filter nimiq-preview  build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
