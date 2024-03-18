@@ -40,8 +40,8 @@
     "vite": "^2.9.0 || ^3.0.0-0 || ^4.0.0 || ^5.0.0-0"
   },
   "dependencies": {
-    "@unocss/reset": "^0.58.5",
+    "@unocss/reset": "^0.58.6",
     "ts-cssjson": "^3.0.1",
-    "unocss": "^0.58.5"
+    "unocss": "^0.58.6"
   }
 }
