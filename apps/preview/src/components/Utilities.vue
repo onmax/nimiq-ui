@@ -79,32 +79,32 @@ const loadingSmall = ref(true)
 
     <h3 mt-6>Small pills</h3>
     <div grid="~ gap-2 flow-col">
-      <ReuseTemplate :html="`<a href='./' class='pill-blue small'>Blue pill</a>`" />
-      <ReuseTemplate :html="`<a href='./' class='pill-green small'>Green pill</a>`" />
-      <ReuseTemplate :html="`<a href='./' class='pill-orange small'>Orange pill</a>`" />
-      <ReuseTemplate :html="`<a href='./' class='pill-red small'>Red pill</a>`" />
-      <ReuseTemplate :html="`<a href='./' class='pill-gold small'>Gold pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-blue pill-sm'>Blue pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-green pill-sm'>Green pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-orange pill-sm'>Orange pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-red pill-sm'>Red pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-gold pill-sm'>Gold pill</a>`" />
     </div>
 
     <h3 mt-6>Variants</h3>
     <div grid="~ gap-2 flow-col">
       <ReuseTemplate :html="`<a href='./' class='pill-secondary'>Secondary pill</a>`" />
-      <ReuseTemplate :html="`<a href='./' class='pill-secondary small'>Secondary small pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-secondary pill-sm'>Secondary small pill</a>`" />
       <ReuseTemplate :html="`<a href='./' class='pill-tertiary'>Tertiary pill</a>`" />
-      <ReuseTemplate :html="`<a href='./' class='pill-tertiary small'>Tertiary small pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-tertiary pill-sm'>Tertiary small pill</a>`" />
     </div>
 
     <h3 mt-6>Combine it with other class</h3>
     <div grid="~ gap-2 flow-col">
-      <ReuseTemplate :html="`<a href='./' class='pill-blue small arrow'>Pill with arrow</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-blue pill-sm arrow'>Pill with arrow</a>`" />
 
       <div flex="~ gap-4">
         <div mt-3 flex="~ gap-2 col">
-          <button pill-blue small @click="showLoading = !showLoading">Toggle loading</button>
-          <button pill-blue small @click="loadingSmall = !loadingSmall">Toggle size</button>
+          <button pill-blue pill-sm @click="showLoading = !showLoading">Toggle loading</button>
+          <button pill-blue pill-sm @click="loadingSmall = !loadingSmall">Toggle size</button>
         </div>
         <ReuseTemplate
-          :html="`<a href='./' class='pill-secondary ${showLoading ? 'loading' : 'not-loading'} ${loadingSmall ? 'small' : ''}' ${showLoading ? 'disabled' : ''}>Loading</a>`" />
+          :html="`<a href='./' class='pill-secondary ${showLoading ? 'loading' : 'not-loading'} ${loadingSmall ? 'pill-sm' : ''}' ${showLoading ? 'disabled' : ''}>Loading</a>`" />
       </div>
     </div>
   </section>
