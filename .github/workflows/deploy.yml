@@ -44,7 +44,7 @@ jobs:
       - name: Build nimiq-css
         run: pnpm --filter nimiq-css build
       - name: Build
-        run: pnpm --filter nimiq-preview build
+        run: BASE_URL="/nimiq-ui" pnpm --filter nimiq-preview build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
