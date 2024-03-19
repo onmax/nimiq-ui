@@ -66,7 +66,7 @@ function createPreset() {
       for (const rule of rulesNames) {
         if (!rule.startsWith('.'))
           continue
-        const ruleName = rule.replace(/^\./, '')
+        const ruleName = rule.replace(/^\./, '').trim()
         const re = new RegExp(`^${ruleName}$`)
         const selector = `${rule}, [${ruleName}=""]`
         const setup: Setup = { css, re }
