@@ -128,6 +128,15 @@ As Pixel gazed upon the names and deeds immortalized in the ledger, he realized 
 
 > "To stand amongst the legends, one must not only explore but also innovate and inspire," Pixel pondered, inspired by the tales of those who came before.
 
+<details>
+
+<summary>Note</summary>
+
+The Ledger of Legends serves as a testament to the power of innovation and the spirit of adventure that drives Cryptoland. It reminded Pixel that while the journey might be fraught with challenges, the potential for leaving a lasting impact on the digital world is immense.
+
+</details>
+
+
 <style>
   /* Just for demo purposes */
 table {
@@ -135,5 +144,4 @@ table {
      white-space: nowrap;
    }
 }
-
 </style>

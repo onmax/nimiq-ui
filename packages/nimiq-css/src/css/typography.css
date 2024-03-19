@@ -165,11 +165,11 @@
         }
       }
 
-      > a {
+      >a {
         position: absolute;
         inset: 0;
         border-radius: 0.5rem;
-        
+
         &:focus-visible {
           outline: 2px solid rgb(var(--nq-blue));
           outline-offset: 2px;
@@ -391,14 +391,14 @@
       }
 
     }
-    
+
     &:is(pre) {
       margin-top: 1.5rem;
       padding: 1.5rem;
       border-radius: 6px;
     }
 
-    &:is(pre,code):where(:is(h1, h2, h3, h4) &) {
+    &:is(pre, code):where(:is(h1, h2, h3, h4) &) {
       font-size: 0.8em;
       padding: 0.2em 0.5em;
       position: relative;
@@ -461,6 +461,52 @@
       th:not(:last-child),
       td:not(:last-child) {
         border-right: 1px solid rgb(var(--nq-neutral-300));
+      }
+    }
+
+    details {
+      border-radius: 0.4rem;
+      background-color: rgb(var(--nq-neutral-200));
+      padding: 1rem;
+      margin: 1.5rem 0;
+      color: rgb(var(--nq-neutral-900));
+
+      ::marker {
+        color: transparent;
+      }
+
+      summary {
+        font-size: 1rem;
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-left: calc(0.7em + 0.5rem);
+        cursor: pointer;
+
+        &::before {
+          content: '';
+          --icon: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTIgMS40MTNBLjguOCAwIDAxMy4yMTIuNzI3bDcuNjQ1IDQuNTg3YS44LjggMCAwMTAgMS4zNzJsLTcuNjQ1IDQuNTg3QS44LjggMCAwMTIgMTAuNTg3eiIvPjwvc3ZnPg==);
+          -webkit-mask: var(--icon) no-repeat;
+          mask: var(--icon) no-repeat;
+          -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+          background-color: currentColor;
+          color: inherit;
+          width: 0.7em;
+          height: 0.7em;
+          transition: transform 100ms ease-out;
+          display: inline-block;
+          position: absolute;
+          left: 0;
+        }
+      }
+
+      &[open] summary {
+        margin-bottom: 1rem;
+
+        &::before {
+          transform: rotate(90deg);
+        }
       }
     }
   }
