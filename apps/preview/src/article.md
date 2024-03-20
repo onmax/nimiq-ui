@@ -14,7 +14,7 @@ Armed with a digital map and a sturdy backpack filled with essential coding tool
 
 <figure>
 
-> "To the moon!" 
+> "To the **moon**!" 
   
 <figcaption>Pixel exclaimed</figcaption>
 </figure>
@@ -104,7 +104,7 @@ In the depths of the **Archive of Ages**, Pixel stumbled upon the *Ledger of Leg
 
 | Name          | Era        | Contribution                                    | Key Innovation                     | Impact                                                         |
 |---------------|------------|-------------------------------------------------|------------------------------------|----------------------------------------------------------------|
-| ByteMaster    | 2009-2010  | Pioneered the first blockchain                  | Blockchain technology              | Laid the foundation for cryptocurrencies                       |
+| `ByteMaster`    | 2009-2010  | Pioneered the first blockchain                  | Blockchain technology              | Laid the foundation for cryptocurrencies                       |
 | ChainSage     | 2011-2012  | Advanced smart contracts                        | Smart contract framework           | Enabled complex decentralized applications                     |
 | Pixel Pioneer | 2021       | Enabled cryptocurrency access through browsers  | Web-based cryptocurrency access    | Made cryptocurrencies accessible to a wider audience           |
 | CryptoCrafter | 2023       | Revolutionized digital art with NFTs            | Non-fungible tokens (NFTs)         | Opened new markets for digital art and collectibles            |
