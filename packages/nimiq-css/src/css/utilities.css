@@ -305,21 +305,6 @@
   box-shadow: 1.5px 0 0 0 var(--border-color);
 }
 
-.border-subtle {
-  --border-color: rgb(var(--nq-darkblue) / 0.15);
-  box-shadow: inset 0 0 0 1.5px var(--border-color);
-}
-
-.border-subtle-sm {
-  --border-color: rgb(var(--nq-darkblue) / 0.02);
-  box-shadow: inset 0 0 0 1.5px var(--border-color);
-}
-
-.border-subtle-light {
-  --border-color: rgb(var(--nq-white) / 0.02);
-  box-shadow: inset 0 0 0 1.5px var(--border-color);
-}
-
 .ghost-btn {
   margin-right: 1px;
   margin-bottom: 1px;
