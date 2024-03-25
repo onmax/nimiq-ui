@@ -33,13 +33,6 @@ export type NimiqPresetOptions = {
    * @default false
    */
   utilities?: boolean
-
-  /**
-   * Whether to add a reset for the styles
-   *
-   * @default true
-   */
-  reset?: boolean
 }
 
 function createPreset() {
@@ -84,13 +77,13 @@ function createPreset() {
   return (options: NimiqPresetOptions = {}): Preset => {
     const { gradients, colors } = getNimiqColors()
 
-    const { preflight = true, reset = true } = options
+    const { preflight = true } = options
     const preflights: Preset["preflights"] = [
       {
         // This is the css to define the order of the CSS layers
         layer: 'layer-definition',
         getCSS: () => `
-          @layer tw-reset, nq-colors, nq-preflight, nq-typography, nq-utilities;
+          @layer nq-colors, nq-preflight, nq-typography, nq-utilities;
         `
       },
       {
@@ -99,13 +92,6 @@ function createPreset() {
       }
     ]
 
-    if (reset || false) {
-      const twReset = fetch('https://raw.githubusercontent.com/unocss/unocss/main/packages/reset/tailwind-compat.css').then(r => r.text())
-      preflights.push({
-        layer: 'tw-reset',
-        getCSS: async () => `@layer tw-reset { ${await twReset} }`
-      })
-    }
     if (preflight)
       preflights.push({ layer: 'nq-preflight', getCSS: () => wrapContentToLayer('preflight') })
 
