@@ -52,8 +52,8 @@
   }
 
   /* We select the arrow OR the closest parent with href starting with local href */
-  a:is([href^='/'], [href^='./'], [href^='../'], [href^='#']) &::after,
-  &:is([href^='/'], [href^='./'], [href^='../'], [href^='#'])::after {
+  a:is(:not([href^="http"])) &::after,
+  &:is(:not([href^="http"]))::after {
     margin-left: 0.5em;
     margin-bottom: 1px;
     rotate: 0.5turn;
