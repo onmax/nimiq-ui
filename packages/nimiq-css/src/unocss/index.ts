@@ -69,7 +69,7 @@ function createPreset() {
           rulesSetup[selector] = setup
       }
     }
-    const rules: Preset["rules"] = Object.entries(rulesSetup).map(([selector, { css, re }]) => ([re, () => `@layer ${name} { ${selector} { ${css} } }`, { layer }]))
+    const rules: Preset["rules"] = Object.entries(rulesSetup).map(([selector, { css, re }]) => ([re, () => `@layer nq-${name} { ${selector} { ${css} } }`, { layer }]))
     return rules
 
   }
