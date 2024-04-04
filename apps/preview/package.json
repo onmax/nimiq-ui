@@ -11,7 +11,7 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
-    "@unocss/reset": "^0.58.6",
+    "@unocss/reset": "0.59.0-beta.1",
     "@vueuse/core": "^10.7.2",
     "nimiq-css": "workspace:*",
     "unplugin-vue-markdown": "^0.26.0",

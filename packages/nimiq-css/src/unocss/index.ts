@@ -1,11 +1,18 @@
-import { type Preset, type PresetFactory, definePreset, presetWebFonts } from 'unocss'
+import { type Preset, type PresetFactory, definePreset, presetWebFonts, presetIcons } from 'unocss'
 import { readFileSync, existsSync } from 'node:fs'
-import { resolve, dirname } from 'node:path'
+import { join, dirname, resolve } from 'node:path'
 import { toJSON, toCSS } from 'ts-cssjson'
 import { getNimiqColors } from './colors';
 import { fileURLToPath } from 'node:url';
 
 export type NimiqPresetOptions = {
+  /**
+   * Whether to reset the styles of the page 
+   * 
+   * @default tailwind-compat
+   */
+  reset?: boolean | 'tailwind-compat' | 'tailwind' | 'eric-meyer' | 'normalize'
+
   /**
    * Whether to include the default Nimiq font via bunny
    * 
@@ -33,6 +40,12 @@ export type NimiqPresetOptions = {
    * @default false
    */
   utilities?: boolean
+
+  /**
+   * Add Nimiq Icons
+   * @default true
+   */
+  icons?: boolean
 }
 
 function createPreset() {
@@ -77,8 +90,22 @@ function createPreset() {
   return (options: NimiqPresetOptions = {}): Preset => {
     const { gradients, colors } = getNimiqColors()
 
+    const { reset = 'tailwind-compat' } = options
+    const resetCss: Preset["preflights"] = []
+    if (reset) {
+      resetCss.push({
+        getCSS() {
+          const fileName = reset === true ? 'tailwind-compat' : reset
+          const url = resolve(`node_modules/@unocss/reset/${fileName}.css`)
+          const content = readFileSync(url, 'utf-8')
+          return `@layer nq-reset { ${content} }`
+        }
+      })
+    }
+
     const { preflight = true } = options
     const preflights: Preset["preflights"] = [
+      ...resetCss,
       {
         // This is the css to define the order of the CSS layers
         layer: 'layer-definition',
@@ -126,6 +153,17 @@ function createPreset() {
           sans: 'Mulish:400,600,700',
           mono: 'Fira Code:400',
         }
+      }))
+    }
+
+    const { icons = true } = options
+    if(icons) {
+      presets.push(presetIcons({
+        collections: {
+          nimiq: async () => {
+            return await fetch('https://raw.githubusercontent.com/onmax/nimiq-ui/main/packages/nimiq-icons/dist/icons.json').then(res => res.json() as any)
+          },
+        },
       }))
     }
 

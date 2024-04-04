@@ -15,18 +15,21 @@ importers:
       '@antfu/eslint-config':
         specifier: ^2.0.0
         version: 2.6.4(@vue/compiler-sfc@3.4.21)(eslint@8.56.0)(typescript@5.3.3)
-      bun-types:
-        specifier: ^1.0.13
-        version: 1.0.28
       eslint:
         specifier: ^8.54.0
         version: 8.56.0
+      nimiq-css:
+        specifier: workspace:*
+        version: link:packages/nimiq-css
+      nimiq-icons:
+        specifier: workspace:*
+        version: link:packages/nimiq-icons
 
   apps/preview:
     dependencies:
       '@unocss/reset':
-        specifier: ^0.58.6
-        version: 0.58.6
+        specifier: 0.59.0-beta.1
+        version: 0.59.0-beta.1
       '@vueuse/core':
         specifier: ^10.7.2
         version: 10.9.0(vue@3.4.21)
@@ -76,6 +79,9 @@ importers:
 
   packages/nimiq-css:
     dependencies:
+      '@unocss/reset':
+        specifier: 0.59.0-beta.1
+        version: 0.59.0-beta.1
       ts-cssjson:
         specifier: ^3.0.1
         version: 3.0.1
@@ -1563,6 +1569,10 @@ packages:
   /@unocss/reset@0.58.6:
     resolution: {integrity: sha512-mYyOe5QDRHc1BBRff+G97j3SGGC8s3Vk7cCcXc/l48FvPHKtLCphMZaBS+KkGkzWqwAtxv0QRbGhTixJCVDRug==}
 
+  /@unocss/reset@0.59.0-beta.1:
+    resolution: {integrity: sha512-FswTFLBOaeWGs3+Lj/0ozT8LR95OTNrVX9KfaGcRl3yVf3CAyXZmB7IiL171niThL+Uk4qITXVxLxXQg1Kvy8g==}
+    dev: false
+
   /@unocss/rule-utils@0.58.6:
     resolution: {integrity: sha512-qbVDeyKzExFY/YeoIbMw/lu8PXEGJzSHrFXRumNHX5lvTu8ggAjH6p9xyvYa/YnuNU0+pFKuYxG8LNK2F8f1EQ==}
     engines: {node: '>=14'}
@@ -1940,13 +1950,6 @@ packages:
     resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
     dependencies:
       semver: 7.6.0
-    dev: true
-
-  /bun-types@1.0.28:
-    resolution: {integrity: sha512-wQqbLYRM0YnsXZMFujbCr/9YxlEl51jshMXcJ2Y9wEuU7k6TKcX2KDh032k9oHfB1wH8/SleXboIsULMtFaAaA==}
-    dependencies:
-      '@types/node': 20.11.28
-      '@types/ws': 8.5.10
     dev: true
 
   /bun-types@1.0.29:

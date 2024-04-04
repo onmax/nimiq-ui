@@ -7,13 +7,15 @@
   "main": "index.js",
   "scripts": {
     "preview:build": "",
+    "build": "rimraf packages/*/dist --glob && pnpm -r --filter=./packages/* run build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.0.0",
-    "bun-types": "^1.0.13",
-    "eslint": "^8.54.0"
+    "eslint": "^8.54.0",
+    "nimiq-css": "workspace:*",
+    "nimiq-icons": "workspace:*"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
