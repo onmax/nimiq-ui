@@ -1,4 +1,4 @@
-import { type Preset, type PresetFactory, definePreset, presetWebFonts, presetIcons } from 'unocss'
+import { type Preset, type PresetFactory, definePreset, presetWebFonts, presetIcons, type Preflight } from 'unocss'
 import { readFileSync, existsSync } from 'node:fs'
 import { join, dirname, resolve } from 'node:path'
 import { toJSON, toCSS } from 'ts-cssjson'
@@ -90,29 +90,26 @@ function createPreset() {
   return (options: NimiqPresetOptions = {}): Preset => {
     const { gradients, colors } = getNimiqColors()
 
+    // This is the css to define the order of the CSS layers
+    const layerDefinition: Preflight = {
+      getCSS: () => '@layer nq-reset, nq-colors, nq-preflight, nq-typography, nq-utilities;'
+    }
+
     const { reset = 'tailwind-compat' } = options
-    const resetCss: Preset["preflights"] = []
-    if (reset) {
-      resetCss.push({
-        getCSS() {
-          const fileName = reset === true ? 'tailwind-compat' : reset
-          const url = resolve(`node_modules/@unocss/reset/${fileName}.css`)
-          const content = readFileSync(url, 'utf-8')
-          return `@layer nq-reset { ${content} }`
-        }
-      })
+    const resetLayer: Preflight = {
+      getCSS() {
+        if(reset === false) return ''
+        const fileName = reset === true ? 'tailwind-compat' : reset
+        const url = resolve(`node_modules/@unocss/reset/${fileName}.css`)
+        const content = readFileSync(url, 'utf-8')
+        return `@layer nq-reset { /* CSS Reset ${fileName}*/ ${content} }`
+      }
     }
 
     const { preflight = true } = options
     const preflights: Preset["preflights"] = [
-      ...resetCss,
-      {
-        // This is the css to define the order of the CSS layers
-        layer: 'layer-definition',
-        getCSS: () => `
-          @layer nq-colors, nq-preflight, nq-typography, nq-utilities;
-        `
-      },
+      layerDefinition,
+      resetLayer,
       {
         layer: 'nq-colors',
         getCSS: () => wrapContentToLayer('colors')
