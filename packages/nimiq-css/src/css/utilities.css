@@ -43,11 +43,11 @@
 
 
 .arrow {
+  overflow-x: hidden;
+
   /* We select the arrow OR the closest parent with href to an http */
-  padding-right: 0.4em; /* Avoid overflow */
   a[href^="http"] &::after,
   &[href^="http"]::after {
-    margin-left: 0.5em;
     margin-bottom: 1px;
     rotate: 0.375turn;
   }
@@ -55,7 +55,6 @@
   /* We select the arrow OR the closest parent with href starting with local href */
   a:is(:not([href^="http"])) &::after,
   &:is(:not([href^="http"]))::after {
-    margin-left: 0.5em;
     margin-bottom: 1px;
     rotate: 0.5turn;
   }
@@ -70,7 +69,8 @@
 }
 
 .arrow-back {
-  padding-left: 0.4em; /* Avoid overflow */
+  overflow-x: hidden;
+
   &::before {
     content: '';
     position: relative;
