@@ -466,6 +466,12 @@
       }
     }
 
+    hr {
+      margin: 2rem auto;
+      width: 8rem;
+      border-color: rgb(var(--nq-neutral-500));
+    }
+
     details {
       border-radius: 0.4rem;
       background-color: rgb(var(--nq-neutral-200));
