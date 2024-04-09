@@ -103,7 +103,8 @@ function createPreset() {
         const url = resolve(`node_modules/@unocss/reset/${fileName}.css`)
         const content = readFileSync(url, 'utf-8')
         return `@layer nq-reset { /* CSS Reset ${fileName}*/ ${content} }`
-      }
+      },
+      layer: 'nq-reset'
     }
 
     const { preflight = true } = options
@@ -188,6 +189,9 @@ function createPreset() {
       },
       presets,
       rules,
+      layers: {
+        'nq-reset': -1,
+      }
     }
     return preset
   }
