@@ -112,6 +112,9 @@
     background-color: rgb(var(--nq-neutral-300));
     color: rgb(var(--nq-neutral-900));
     overflow-x: auto;
+    /* Scroll colors */
+    --track: rgb(var(--nq-neutral-500));
+    --thumb: rgb(var(--nq-neutral-700) / 0.75);
   }
 
   &:is(code) {

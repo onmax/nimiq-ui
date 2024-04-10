@@ -357,7 +357,8 @@
         }
 
         > * {
-          flex: 1;
+          flex: 0 0 auto;
+          margin: 0;
         }
       }
     }
