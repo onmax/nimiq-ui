@@ -43,8 +43,6 @@
 
 
 .arrow {
-  overflow-x: hidden;
-
   /* We select the arrow OR the closest parent with href to an http */
   a[href^="http"] &::after,
   &[href^="http"]::after {
@@ -69,8 +67,6 @@
 }
 
 .arrow-back {
-  overflow-x: hidden;
-
   &::before {
     content: '';
     position: relative;
