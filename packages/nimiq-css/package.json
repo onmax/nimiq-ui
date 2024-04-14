@@ -17,6 +17,7 @@
     "build": "unbuild && cp -r src/css dist/css/unminified",
     "publish": "npx np --no-tests"
   },
+  "packageManager": "pnpm@8.15.5",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
