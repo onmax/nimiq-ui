@@ -349,7 +349,6 @@
           border-radius: 0.1875rem;
           background-color: rgb(var(--nq-neutral-600));
           margin-right: 0.8125rem;
-          flex-shrink: 0;
 
           @media (min-width: 769px) {
             margin-right: 1rem;
