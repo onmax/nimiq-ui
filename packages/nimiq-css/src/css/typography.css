@@ -344,7 +344,6 @@
           width: 0.375rem;
           height: 0.375rem;
           display: inline-block;
-          top: calc(1.75rem / 2 - 0.375rem / 2); /* 1.75rem is the line-height + 0.375rem of height */
           position: relative;
           border-radius: 0.1875rem;
           background-color: rgb(var(--nq-neutral-600));
