@@ -303,7 +303,8 @@
   }
 }
 
-.border-base, .ring {
+:is([class*="ring"], [ring]),
+.border-base {
   --border-color: rgb(var(--nq-neutral-400));
   --atomic-css-framework: var(var(--un-ring-color), var(--tw-ring-color));
   box-shadow: 0 0 0 1.5px var(--atomic-css-framework, var(--border-color));
