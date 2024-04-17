@@ -9,7 +9,7 @@ const loadingSmall = ref(true)
 
 <template>
   <DefineTemplate v-slot="{ html }">
-    <div mt-3 flex="~ gap-4 col">
+    <div mt-3 flex="~ gap-4 col" w-full>
       <div v-html="html">
       </div>
 
@@ -94,6 +94,12 @@ const loadingSmall = ref(true)
       <ReuseTemplate :html="`<a href='./' class='pill-tertiary pill-sm'>Tertiary small pill</a>`" />
     </div>
 
+    <h3 mt-6>Bold pills</h3>
+    <div grid="~ gap-2 flow-col">
+      <ReuseTemplate :html="`<a href='./' class='pill-bold pill-blue'>Send</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-bold pill-tertiary'>Next step</a>`" />
+    </div>
+
     <h3 mt-6>Combine it with other class</h3>
     <div grid="~ gap-2 flow-col">
       <ReuseTemplate :html="`<a href='./' class='pill-blue pill-sm arrow'>Pill with arrow</a>`" />
@@ -105,7 +111,8 @@ const loadingSmall = ref(true)
         </div>
         <ReuseTemplate
           :html="`<a href='./' class='pill-secondary ${showLoading ? 'loading' : 'not-loading'} ${loadingSmall ? 'pill-sm' : ''}' ${showLoading ? 'disabled' : ''}>Loading</a>`" />
-      </div>
+        </div>
+        <ReuseTemplate :html="`<a href='./' class='pill-bold pill-green label'>Awesome</a>`" />
     </div>
   </section>
 
@@ -132,6 +139,13 @@ const loadingSmall = ref(true)
 
   <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
     <h2>Borders</h2>
+
+    <p>
+      Recommended: In Tailwind/UnoCSS, use just <code>ring-{COLOR}</code> instead
+    </p>
+    <p>
+      Like this: <code>.ring-neutral-700</code>. No need to do <code>.ring-neutral-700.ring-1</code>
+    </p>
 
     <div grid="~ flow-col gap-2">
       <ReuseTemplate :html="`<div size-16 rounded-sm grid place-content-center border-base>Box</div>`" />

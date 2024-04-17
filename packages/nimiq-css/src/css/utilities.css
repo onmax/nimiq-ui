@@ -11,9 +11,10 @@
 
 .label {
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.17em;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.2;
+  color: rgb(var(--nq-neutral-700));
 }
 
 .arrow,
@@ -132,6 +133,7 @@
 
 .pill,
 .pill-sm,
+.pill-bold,
 .pill-blue,
 .pill-gold,
 .pill-green,
@@ -159,6 +161,17 @@
   &:is(.pill-sm, [pill-sm]) {
     font-size: 14px;
     padding: 3px 13px;
+  }
+
+  &:is(.pill-bold, [pill-bold]) {
+    width: 100%;
+    flex: 1;
+    padding: 1rem 0.625rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
   }
 
   &:is([disabled]) {
@@ -225,10 +238,16 @@
 .pill-tertiary {
   border: 1.5px solid rgb(var(--nq-neutral-600));
   color: rgb(var(--nq-neutral));
+  background-color: rgb(var(--nq-neutral-0));
 
   &:hover {
-    background-color: rgb(var(--nq-neutral-200));
+    background-color: rgb(var(--nq-neutral-50));
+
+    .dark & {
+      background-color: rgb(var(--nq-neutral-200));
+    }
   }
+
 }
 
 
@@ -284,9 +303,10 @@
   }
 }
 
-.border-base {
+.border-base, .ring {
   --border-color: rgb(var(--nq-neutral-400));
-  box-shadow: 0 0 0 1.5px var(--border-color);
+  --atomic-css-framework: var(var(--un-ring-color), var(--tw-ring-color));
+  box-shadow: 0 0 0 1.5px var(--atomic-css-framework, var(--border-color));
 }
 
 .border-top {

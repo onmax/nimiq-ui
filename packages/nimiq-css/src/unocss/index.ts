@@ -61,7 +61,7 @@ function createPreset() {
   function cssToRules(name: string) {
     type Setup = { css: string, re: RegExp }
     const rulesSetup: Record<string, Setup> = {}
-    
+
     const layer = `nq-${name}`
 
     const content = readContent(p(name)).replaceAll("data:image/svg+xml;", 'SEMICOLON_BUG_HACK')
@@ -98,7 +98,7 @@ function createPreset() {
     const { reset = 'tailwind-compat' } = options
     const resetLayer: Preflight = {
       getCSS() {
-        if(reset === false) return ''
+        if (reset === false) return ''
         const fileName = reset === true ? 'tailwind-compat' : reset
         const url = resolve(`node_modules/@unocss/reset/${fileName}.css`)
         const content = readFileSync(url, 'utf-8')
@@ -155,7 +155,7 @@ function createPreset() {
     }
 
     const { icons = true } = options
-    if(icons) {
+    if (icons) {
       presets.push(presetIcons({
         collections: {
           nimiq: async () => {
@@ -172,6 +172,14 @@ function createPreset() {
         return {
           matcher: matcher.slice(9),
           selector: s => `:is([data-inverted],.inverted) ${s}`,
+        }
+      },
+      (matcher) => {
+        if (!matcher.startsWith('hocus:'))
+          return matcher
+        return {
+          matcher: matcher.replace(/^hocus:/, ''),
+          selector: s => `${s}:hover, ${s}:focus-visible`,
         }
       },
     ]

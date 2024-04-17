@@ -41,6 +41,8 @@ const genesisBlock = {
 console.log("Behold the Genesis Block:", genesisBlock);
 ```
 
+With this ancient code, Pixel learned the importance of the Genesis Block and the foundational role it played in the creation of every blockchain.
+
 
 ## The Dark Forest of Bugs
 
