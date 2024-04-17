@@ -27,43 +27,49 @@ export function getNimiqColors() {
         600: `rgb(var(--nq-${NimiqColor.Neutral}-600))`,
         700: `rgb(var(--nq-${NimiqColor.Neutral}-700))`,
         800: `rgb(var(--nq-${NimiqColor.Neutral}-800))`,
-        900: `rgb(var(--nq-${NimiqColor.Neutral}-900))`
+        900: `rgb(var(--nq-${NimiqColor.Neutral}-900))`,
       },
       [NimiqColor.Blue]: {
         DEFAULT: `rgb(var(--nq-${NimiqColor.Blue}))`,
         400: `rgb(var(--nq-${NimiqColor.Blue}-400))`,
         500: `rgb(var(--nq-${NimiqColor.Blue}-500))`,
         600: `rgb(var(--nq-${NimiqColor.Blue}-600))`,
+        1100: `rgb(var(--nq-${NimiqColor.Blue}-1100))`,
       },
       [NimiqColor.Green]: {
         DEFAULT: `rgb(var(--nq-${NimiqColor.Green}))`,
         400: `rgb(var(--nq-${NimiqColor.Green}-400))`,
         500: `rgb(var(--nq-${NimiqColor.Green}-500))`,
         600: `rgb(var(--nq-${NimiqColor.Green}-600))`,
+        1100: `rgb(var(--nq-${NimiqColor.Green}-1100))`,
       },
       [NimiqColor.Orange]: {
         DEFAULT: `rgb(var(--nq-${NimiqColor.Orange}))`,
         400: `rgb(var(--nq-${NimiqColor.Orange}-400))`,
         500: `rgb(var(--nq-${NimiqColor.Orange}-500))`,
         600: `rgb(var(--nq-${NimiqColor.Orange}-600))`,
+        1100: `rgb(var(--nq-${NimiqColor.Orange}-1100))`,
       },
       [NimiqColor.Red]: {
         DEFAULT: `rgb(var(--nq-${NimiqColor.Red}))`,
         400: `rgb(var(--nq-${NimiqColor.Red}-400))`,
         500: `rgb(var(--nq-${NimiqColor.Red}-500))`,
         600: `rgb(var(--nq-${NimiqColor.Red}-600))`,
+        1100: `rgb(var(--nq-${NimiqColor.Red}-1100))`,
       },
       [NimiqColor.Gold]: {
         DEFAULT: `rgb(var(--nq-${NimiqColor.Gold}))`,
         400: `rgb(var(--nq-${NimiqColor.Gold}-400))`,
         500: `rgb(var(--nq-${NimiqColor.Gold}-500))`,
         600: `rgb(var(--nq-${NimiqColor.Gold}-600))`,
+        1100: `rgb(var(--nq-${NimiqColor.Gold}-1100))`,
       },
       [NimiqColor.Purple]: {
         DEFAULT: `rgb(var(--nq-${NimiqColor.Purple}))`,
         400: `rgb(var(--nq-${NimiqColor.Purple}-400))`,
         500: `rgb(var(--nq-${NimiqColor.Purple}-500))`,
         600: `rgb(var(--nq-${NimiqColor.Purple}-600))`,
+        1100: `rgb(var(--nq-${NimiqColor.Purple}-1100))`,
       }
     },
     gradients: [
