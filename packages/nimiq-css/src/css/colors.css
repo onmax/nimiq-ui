@@ -33,7 +33,7 @@
   --nq-blue-on-light-400: 230 242 250;
   --nq-blue-on-light-500: 205 230 244;
   --nq-blue-on-light-600: 191 224 242;
-  --nq-blue-on-light-1100: 4, 99, 154;
+  --nq-blue-on-light-1100: 4 99 154;
   --nq-blue-on-dark: 12 166 254;
   --nq-blue-on-dark-400: 22 39 64;
   --nq-blue-on-dark-500: 20 52 85;
@@ -48,7 +48,7 @@
   --nq-green-on-light-400: 231 247 245;
   --nq-green-on-light-500: 208 240 235;
   --nq-green-on-light-600: 196 237 231;
-  --nq-green-on-light-1100: 14, 134, 116;
+  --nq-green-on-light-1100: 14 134 116;
   --nq-green-on-dark: 36 204 162;
   --nq-green-on-dark-400: 25 42 55;
   --nq-green-on-dark-500: 25 60 66;
@@ -63,7 +63,7 @@
   --nq-orange-on-light-400: 248 237 223;
   --nq-orange-on-light-500: 254 231 204;
   --nq-orange-on-light-600: 254 225 191;
-  --nq-orange-on-dark-1100: 224, 120, 2;
+  --nq-orange-on-dark-1100: 224 120 2;
   --nq-orange-on-dark: 255 153 0;
   --nq-orange-on-dark-400: 46 37 39;
   --nq-orange-on-dark-500: 69 50 34;
@@ -78,7 +78,7 @@
   --nq-red-on-light-400: 251 236 234;
   --nq-red-on-light-500: 247 218 214;
   --nq-red-on-light-600: 245 208 204;
-  --nq-red-on-light-1100: 181, 49, 33;
+  --nq-red-on-light-1100: 181 49 33;
   --nq-red-on-dark: 255 92 72;
   --nq-red-on-dark-400: 47 31 46;
   --nq-red-on-dark-500: 69 37 48;
@@ -93,7 +93,7 @@
   --nq-gold-on-light-400: 253 247 231;
   --nq-gold-on-light-500: 251 240 208;
   --nq-gold-on-light-600: 249 236 196;
-  --nq-gold-on-light-1100: 184, 140, 15;
+  --nq-gold-on-light-1100: 184 140 15;
   --nq-gold-on-dark: 255 196 59;
   --nq-gold-on-dark-400: 47 42 45;
   --nq-gold-on-dark-500: 69 58 46;
@@ -108,11 +108,11 @@
   --nq-purple-on-light-400: 239 237 243;
   --nq-purple-on-light-500: 223 219 232;
   --nq-purple-on-light-600: 215 210 226;
-  --nq-purple-on-light-1100: 72, 57, 106;
+  --nq-purple-on-light-1100: 72 57 106;
   --nq-purple-on-dark: 143 63 213;
-  --nq-purple-on-dark-400: 35, 28, 60;
+  --nq-purple-on-dark-400: 35 28 60;
   --nq-purple-on-dark-500: 47 32 77;
-  --nq-purple-on-dark-600: 53, 34, 85;
+  --nq-purple-on-dark-600: 53 34 85;
   --nq-purple-on-dark-1100: 143 63 213;
   
   --nq-neutral: var(--nq-neutral-on-light);
