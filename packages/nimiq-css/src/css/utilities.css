@@ -255,12 +255,14 @@
   font-size: 16px;
   line-height: 1.5;
   padding: 4.5px 14px;
-  border-radius: 6px;
-
+  
+  
   &:is(textarea) {
     padding: 4px 12px;
   }
-
+  
+  border-radius: 6px;
+  width: 100%;
   background-color: transparent;
   transition: colors 0.2s var(--nq-ease),
   box-shadow 0.1s var(--nq-ease);
