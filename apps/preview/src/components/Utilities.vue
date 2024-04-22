@@ -120,9 +120,9 @@ const loadingSmall = ref(true)
     <h2>Inputs</h2>
 
     <div grid="~ flow-col gap-2">
-      <ReuseTemplate :html="`<input type='text' placeholder='Hey, hello :)' class='input-text' rounded-full />`" />
-      <ReuseTemplate :html="`<input type='text' class='input-text invalid' value='Something bad' rounded-full />`" />
-      <ReuseTemplate :html="`<textarea class='input-text rounded-[3px]' placeholder='Hey, hello :)' />`" />
+      <ReuseTemplate :html="`<input type='text' placeholder='Hey, hello :)' class='input-box' rounded-full />`" />
+      <ReuseTemplate :html="`<input type='text' class='input-box invalid' value='Something bad' rounded-full />`" />
+      <ReuseTemplate :html="`<textarea class='input-box rounded-[3px]' placeholder='Hey, hello :)' />`" />
     </div>
   </section>
   
