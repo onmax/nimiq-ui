@@ -74,7 +74,7 @@ function createPreset() {
           continue
         const ruleName = rule.replace(/^\./, '').trim()
         const re = new RegExp(`^${ruleName}$`)
-        const selector = `${rule}, [${ruleName}=""]`
+        const selector = `${rule}, [${ruleName}=""], [${ruleName}="true"]`
         const setup: Setup = { css, re }
         if (rulesSetup[selector])
           rulesSetup[selector].css += css
