@@ -11,6 +11,7 @@
   letter-spacing: 0;
   border-color: rgb(var(--nq-neutral-400));
   outline-color: rgb(var(--nq-blue));
+  outline-width: 0;
 
   &:is(:not(:where(code, pre))) {
     font-family: Mulish, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
@@ -129,7 +130,6 @@
     position: relative;
 
     @media not all and (hover: hover) {
-
       &::before,
       &::after {
         content: "";
@@ -138,7 +138,6 @@
         top: -1rem;
         right: -1rem;
         bottom: -1rem;
-        z-index: -1;
       }
     }
   }
