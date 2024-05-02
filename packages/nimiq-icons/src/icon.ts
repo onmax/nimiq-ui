@@ -87,8 +87,8 @@ function addSpinnerAnimation(_svg: SVG) {
   animateTransform.setAttribute('attributeName', 'transform');
   animateTransform.setAttribute('dur', '1s');
   animateTransform.setAttribute('type', 'rotate');
-  animateTransform.setAttribute('from', `0 ${_svg.viewBox.width / 2} ${_svg.viewBox.height / 2}`);
-  animateTransform.setAttribute('to', `360 ${_svg.viewBox.width / 2} ${_svg.viewBox.height / 2}`);
+  animateTransform.setAttribute('from', '0 0 0');
+  animateTransform.setAttribute('to', '360 0 0');
   animateTransform.setAttribute('repeatCount', 'indefinite');
   svg.appendChild(animateTransform);
 
