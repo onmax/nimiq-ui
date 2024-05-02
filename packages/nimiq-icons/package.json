@@ -7,7 +7,7 @@
     "dev": "bun src/index.ts"
   },
   "dependencies": {
-    "@iconify/tools": "^4.0.0",
+    "@iconify/tools": "^4.0.4",
     "jsdom": "^23.2.0"
   },
   "devDependencies": {

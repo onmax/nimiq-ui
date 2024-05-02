@@ -17,7 +17,7 @@
     "build": "unbuild && cp -r src/css dist/css/unminified",
     "publish": "npx np --no-tests"
   },
-  "packageManager": "pnpm@8.15.5",
+  "packageManager": "pnpm@8.15.8",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -44,6 +44,6 @@
   "dependencies": {
     "@unocss/reset": "0.59.0-beta.1",
     "ts-cssjson": "^3.0.1",
-    "unocss": "^0.58.6"
+    "unocss": "^0.58.9"
   }
 }
