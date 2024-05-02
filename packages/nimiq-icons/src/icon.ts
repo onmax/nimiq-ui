@@ -1,4 +1,4 @@
-import { IconSet, cleanupSVG, parseColors, runSVGO, isEmptyColor, SVG } from "@iconify/tools";
+import { IconSet, cleanupSVG, parseColors, runSVGO, isEmptyColor, SVG, removeFigmaClipPathFromSVG } from "@iconify/tools";
 import { ColorAttributes } from "@iconify/tools/lib/colors/attribs";
 import { compareColors, stringToColor, iconToHTML, replaceIDs } from '@iconify/utils'
 import type { Color } from '@iconify/utils/lib/colors/types'
@@ -34,6 +34,7 @@ function processIcon(iconSet: IconSet, variant: IconVariant, name: string) {
     svg = addSpinnerAnimation(svg)
 
   cleanupSVG(svg)
+  removeFigmaClipPathFromSVG(svg)
   runSVGO(svg)
   
   if (isIcon(variant) || isLarge(variant)) {
@@ -86,8 +87,8 @@ function addSpinnerAnimation(_svg: SVG) {
   animateTransform.setAttribute('attributeName', 'transform');
   animateTransform.setAttribute('dur', '1s');
   animateTransform.setAttribute('type', 'rotate');
-  animateTransform.setAttribute('from', `0 0 0`);
-  animateTransform.setAttribute('to', `360 0 0`);
+  animateTransform.setAttribute('from', `0 ${_svg.viewBox.width / 2} ${_svg.viewBox.height / 2}`);
+  animateTransform.setAttribute('to', `360 ${_svg.viewBox.width / 2} ${_svg.viewBox.height / 2}`);
   animateTransform.setAttribute('repeatCount', 'indefinite');
   svg.appendChild(animateTransform);
 

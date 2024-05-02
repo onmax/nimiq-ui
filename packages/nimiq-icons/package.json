@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@iconify/tools": "^4.0.4",
+    "@iconify/utils": "^2.1.23",
     "jsdom": "^23.2.0"
   },
   "devDependencies": {
