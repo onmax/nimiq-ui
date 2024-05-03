@@ -173,7 +173,7 @@ function createPreset() {
           return matcher
         return {
           matcher: matcher.slice(9),
-          selector: s => `:is([data-inverted],.inverted) ${s}`,
+          selector: s => `:is([data-inverted],.inverted):is(&:is(${s}),& ${s})`,
         }
       },
       (matcher) => {
