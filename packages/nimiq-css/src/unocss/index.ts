@@ -132,7 +132,7 @@ function createPreset() {
 
     // The only way to add gradients is via rules
     for (const [key, gradient, color] of gradients) {
-      const backgroundImage= { 'background-image': gradient }
+      const backgroundImage = { 'background-image': gradient }
       const background = { 'background-color': colors[color].DEFAULT } // This is the fallback color
       rules.push([key, { ...background, ...backgroundImage }, { layer: 'nq-colors' }])
     }
@@ -173,7 +173,7 @@ function createPreset() {
           return matcher
         return {
           matcher: matcher.slice(9),
-          selector: s => `:is([data-inverted],.inverted):is(&:is(${s}),& ${s})`,
+          selector: (s) => `:is(.inverted,[data-inverted])${s}, :is(.inverted,[data-inverted]) ${s}`,
         }
       },
       (matcher) => {
