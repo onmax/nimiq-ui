@@ -368,6 +368,7 @@
   background-color: rgb(var(--nq-neutral-300));
   border-radius: 1em;
   transition: 100ms background var(--nq-ease, ease-out);
+  position: relative;
 
   &::after {
     content: '';
@@ -380,10 +381,10 @@
     color: inherit;
     width: 0.35em;
     height: 0.35em;
-    margin: 0 auto;
+    margin: auto;
     display: block;
-    position: relative;
-    bottom: -1px;
+    position: absolute;
+    inset: 0;
     right: -1px;
   }
 
