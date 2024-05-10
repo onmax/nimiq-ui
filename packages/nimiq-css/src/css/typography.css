@@ -394,7 +394,7 @@
       margin-bottom: 1.75rem;
       padding: 1.5rem;
       border-radius: 0.375rem;
-      box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral-800) / 0.08);
+      box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.08);
     }
 
     &:is(pre, code):where(:is(h1, h2, h3, h4) &) {
@@ -474,7 +474,7 @@
       background-color: rgb(var(--nq-neutral-200));
       margin: 1.5rem 0;
       color: rgb(var(--nq-neutral-900));
-      box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral-800) / 0.1);
+      box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.1);
 
       ::marker {
         color: transparent;
