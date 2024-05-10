@@ -474,6 +474,7 @@
       background-color: rgb(var(--nq-neutral-200));
       margin: 1.5rem 0;
       color: rgb(var(--nq-neutral-900));
+      box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral-800) / 0.1);
 
       ::marker {
         color: transparent;

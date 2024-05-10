@@ -1,6 +1,6 @@
 {
   "name": "nimiq-css",
-  "version": "0.0.90",
+  "version": "0.0.91",
   "description": "Nimiq's Design System in CSS",
   "type": "module",
   "main": "dist/index.mjs",
@@ -14,10 +14,8 @@
     "node": ">=14"
   },
   "scripts": {
-    "build": "unbuild && cp -r src/css dist/css/unminified",
-    "publish": "npx np --no-tests"
+    "build": "unbuild && cp -r src/css dist/css/unminified"
   },
-  "packageManager": "pnpm@8.15.8",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
