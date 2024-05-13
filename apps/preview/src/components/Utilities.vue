@@ -42,7 +42,7 @@ const loadingSmall = ref(true)
       <ReuseTemplate :html="`<a href='/typography' class='arrow'>Internal link</a>`" />
     </div>
 
-     <div grid="~ flow-col gap-2">
+    <div grid="~ flow-col gap-2">
       <ReuseTemplate :html="`
         <a class='flex flex-col gap-3 raw max-w-120 bg-neutral-200 rounded-2 px-6 py-4'>
           <h3 class='arrow-back flex'>Arrow</h3>
@@ -111,8 +111,8 @@ const loadingSmall = ref(true)
         </div>
         <ReuseTemplate
           :html="`<a href='./' class='pill-secondary ${showLoading ? 'loading' : 'not-loading'} ${loadingSmall ? 'pill-sm' : ''}' ${showLoading ? 'disabled' : ''}>Loading</a>`" />
-        </div>
-        <ReuseTemplate :html="`<a href='./' class='pill-bold pill-green label'>Awesome</a>`" />
+      </div>
+      <ReuseTemplate :html="`<a href='./' class='pill-bold pill-green label'>Awesome</a>`" />
     </div>
   </section>
 
@@ -125,7 +125,7 @@ const loadingSmall = ref(true)
       <ReuseTemplate :html="`<textarea class='input-box rounded-[3px]' placeholder='Hey, hello :)' />`" />
     </div>
   </section>
-  
+
   <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
     <h2>Switch</h2>
 
@@ -139,6 +139,8 @@ const loadingSmall = ref(true)
 
   <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
     <h2>Borders</h2>
+
+    <p>Borders might change. I would like to update the API</p>
 
     <p>
       Recommended: In Tailwind/UnoCSS, use just <code>ring-{COLOR}</code> instead
@@ -162,6 +164,24 @@ const loadingSmall = ref(true)
     <div grid="~ flow-col gap-2">
       <ReuseTemplate :html="`<button text-8 close-btn></button>`" />
       <ReuseTemplate :html="`<button ghost-btn>SVG</button>`" />
+    </div>
+  </section>
+
+  <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
+    <h2>Flex Cards</h2>
+
+    <div grid="~ flow-col gap-2">
+      <ReuseTemplate :html="`<div flex-card><h2>An awesome card</h2></div>`" />
+      <ReuseTemplate :html="`<a href='/' flex-card><h2>An awesome card</h2><p>with a link!</p></a>`" />
+    </div>
+  </section>
+
+  <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
+    <h2>Curtain</h2>
+
+    <div grid="~ flow-col gap-2">
+      <ReuseTemplate
+        :html="`<div class='prose curtain-y max-h-96 of-auto'><p>You can use the class <code>.curtain-y</code> to add the curtains. You can change the heigth of the curtain using <code>--mask-size</code></p><p>Only works if the browser supports animation-timeline</p>${Array.from({ length: 6 }).fill('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet animi consequatur atque accusantium soluta cumque, temporibus ipsam eos voluptas porro architecto expedita quisquam eum et necessitatibus culpa odio, laudantium reprehenderit.').map(p => `<p>${p}</p>`).join('')}</div>`" />
     </div>
   </section>
 </template>

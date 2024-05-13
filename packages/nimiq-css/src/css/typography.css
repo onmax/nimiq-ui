@@ -36,8 +36,8 @@
         font-size: 3rem;
       }
 
-      margin-top: 9rem;
       margin-bottom: 7rem;
+      margin-top: 9rem;
 
       @media (min-width: 769px) {
         margin-bottom: 7.5rem;

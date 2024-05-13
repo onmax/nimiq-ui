@@ -44,6 +44,7 @@
 
 
 .arrow {
+
   /* We select the arrow OR the closest parent with href to an http */
   a[href^="http"] &::after,
   &[href^="http"]::after {
@@ -255,12 +256,12 @@
   font-size: 16px;
   line-height: 1.5;
   padding: 4.5px 14px;
-  
-  
+
+
   &:is(textarea) {
     padding: 4px 12px;
   }
-  
+
   border-radius: 6px;
   width: 100%;
   background-color: transparent;
@@ -279,7 +280,7 @@
     color: var(--placeholder-color);
   }
 
-  &:is(:hover, :focus) {
+  &:not(.invalid, [invalid]):is(:hover, :focus) {
     --color: rgb(var(--nq-blue));
     --ring-color: rgba(var(--nq-blue) / 0.3);
 
@@ -292,22 +293,24 @@
     }
   }
 
-  &:is(:hover,:focus-visible){
-    outline: 1.5px solid rgba(var(--nq-blue));
-  }
-
   &.invalid {
-    --ring-color: rgba(var(--nq-orange) / 0.4);
     --color: rgb(var(--nq-orange));
+    --ring-color: rgba(var(--nq-orange) / 0.4);
 
     &::placeholder {
       --placeholder-color: rgb(var(--nq-orange) / 0.7);
     }
 
-    &:focus:valid {
+    &:hover,
+    &:focus {
       --ring-color: rgba(var(--nq-orange));
     }
   }
+
+  &:is(:hover, :focus-visible) {
+    outline: 1.5px solid rgba(var(--ring-color));
+  }
+
 }
 
 :is([class*="ring"], [ring]),
@@ -446,5 +449,61 @@
       opacity: 0.6;
       cursor: not-allowed;
     }
+  }
+}
+
+.flex-card {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgb(var(--nq-neutral-200));
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral/2));
+  transition: background 0.2s var(--nq-ease), transform 0.2s ease-out, box-shadow 0.2s ease-out, color 0.2s ease-out;
+  color: rgb(var(--nq-neutral));
+
+  &:is(a):hover,
+  &:is(a):focus-visible {
+    background: white;
+    transform: translateY(-6px);
+    box-shadow: var(--nq-shadow);
+
+    &,
+    * {
+      color: rgb(var(--nq-darkblue));
+    }
+  }
+
+  @media (min-width: 768px) {
+    padding: 24px;
+  }
+}
+
+.curtain-y {
+  @supports (animation-timeline: scroll()) {
+    & {
+      --mask-size: 2rem;
+      mask: linear-gradient(white, transparent) 50% 0 / 100% 0 no-repeat,
+        linear-gradient(white, white) 50% 50% / 100% 100% no-repeat,
+        linear-gradient(transparent, white) 50% 100% / 100% 100px no-repeat;
+      mask-composite: exclude;
+      animation: mask-up both linear, mask-down both linear;
+      animation-timeline: scroll(self);
+      animation-range: 0 var(--mask-size), calc(100% - var(--mask-size)) 100%;
+    }
+  }
+}
+
+@keyframes mask-up {
+  100% {
+    mask-size: 100% var(--mask-size), 100% 100%, 100% var(--mask-size);
+  }
+}
+
+@keyframes mask-down {
+  100% {
+    mask-size: 100% var(--mask-size), 100% 100%, 100% 0;
   }
 }
