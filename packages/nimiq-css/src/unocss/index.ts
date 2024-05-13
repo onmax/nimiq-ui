@@ -84,7 +84,18 @@ function createPreset() {
     }
     const rules: Preset["rules"] = Object.entries(rulesSetup).map(([selector, { css, re }]) => ([re, () => `@layer nq-${name} { ${selector} { ${css} } }`, { layer }]))
     return rules
+  }
 
+  function extractKeyframes(name: string) {
+    const content = readContent(p(name)).replaceAll("data:image/svg+xml;", 'SEMICOLON_BUG_HACK')
+    const json = toJSON(content, { stripComments: true, comments: false, ordered: false, split: false })
+    let keyframesStr = ''
+    for (const key of Object.keys(json.children)) {
+      const keyframes = key.split(',').map(s => s.trim()).filter(s => s.startsWith('@keyframes'))
+      const css = toCSS(json.children[key]).replaceAll('SEMICOLON_BUG_HACK', "data:image/svg+xml;")
+      keyframesStr += `${keyframes.join(', ')} { ${css} }\n`
+    }
+    return keyframesStr
   }
 
   return (options: NimiqPresetOptions = {}): Preset => {
@@ -139,6 +150,10 @@ function createPreset() {
 
     if (utilities) {
       rules.push(...cssToRules('utilities'))
+      // keyframes
+      const getCSS = () => extractKeyframes('utilities')
+      console.log(getCSS())
+      preflights.push({ layer: 'nq-utilities', getCSS })
     }
 
     if (typography)

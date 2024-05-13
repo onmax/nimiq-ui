@@ -482,7 +482,6 @@
 }
 
 .curtain-y {
-  @supports (animation-timeline: scroll()) {
     & {
       --mask-size: 2rem;
       mask: linear-gradient(white, transparent) 50% 0 / 100% 0 no-repeat,
@@ -492,7 +491,6 @@
       animation: mask-up both linear, mask-down both linear;
       animation-timeline: scroll(self);
       animation-range: 0 var(--mask-size), calc(100% - var(--mask-size)) 100%;
-    }
   }
 }
 
