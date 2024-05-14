@@ -152,7 +152,6 @@ function createPreset() {
       rules.push(...cssToRules('utilities'))
       // keyframes
       const getCSS = () => extractKeyframes('utilities')
-      console.log(getCSS())
       preflights.push({ layer: 'nq-utilities', getCSS })
     }
 
