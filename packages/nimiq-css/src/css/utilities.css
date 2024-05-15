@@ -259,7 +259,12 @@
 
 
   &:is(textarea) {
-    padding: 4px 12px;
+    --padding: 4px;
+    min-height: calc(3lh + 2 * var(--padding));
+    max-height: calc(5lh + 2 * var(--padding));
+    field-sizing: content;
+    line-height: 1.5;
+    padding: var(--padding) calc(var(--padding) + ((1lh - 1ex) / 2));
   }
 
   border-radius: 6px;
@@ -482,15 +487,15 @@
 }
 
 .curtain-y {
-    & {
-      --mask-size: 2rem;
-      mask: linear-gradient(white, transparent) 50% 0 / 100% 0 no-repeat,
-        linear-gradient(white, white) 50% 50% / 100% 100% no-repeat,
-        linear-gradient(transparent, white) 50% 100% / 100% 100px no-repeat;
-      mask-composite: exclude;
-      animation: mask-up both linear, mask-down both linear;
-      animation-timeline: scroll(self);
-      animation-range: 0 var(--mask-size), calc(100% - var(--mask-size)) 100%;
+  & {
+    --mask-size: 2rem;
+    mask: linear-gradient(white, transparent) 50% 0 / 100% 0 no-repeat,
+      linear-gradient(white, white) 50% 50% / 100% 100% no-repeat,
+      linear-gradient(transparent, white) 50% 100% / 100% 100px no-repeat;
+    mask-composite: exclude;
+    animation: mask-up both linear, mask-down both linear;
+    animation-timeline: scroll(self);
+    animation-range: 0 var(--mask-size), calc(100% - var(--mask-size)) 100%;
   }
 }
 
