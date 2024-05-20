@@ -237,7 +237,7 @@
 }
 
 .pill-tertiary {
-  border: 1.5px solid rgb(var(--nq-neutral-600));
+  box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral-600));
   color: rgb(var(--nq-neutral));
   background-color: rgb(var(--nq-neutral-0));
 
@@ -282,7 +282,7 @@
     color: var(--placeholder-color);
   }
 
-  &:not(.invalid, [invalid]):is(:hover, :focus) {
+  &:not(.invalid, ::user-invalid):is(:hover, :focus) {
     --color: rgb(var(--nq-blue));
     --ring-color: rgba(var(--nq-blue) / 0.3);
 
@@ -295,7 +295,7 @@
     }
   }
 
-  &.invalid {
+  &:is(.invalid, ::user-invalid) {
     --color: rgb(var(--nq-orange));
     --ring-color: rgba(var(--nq-orange) / 0.4);
 

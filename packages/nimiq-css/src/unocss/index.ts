@@ -58,7 +58,9 @@ function createPreset() {
   const readContent = (path: string) => readFileSync(path, 'utf-8')
   const wrapContentToLayer = (name: string) => `@layer nq-${name} { ${readContent(p(name))} }`
 
-  function cssToRules(name: string) {
+  type CssToRulesOptions = { convertToAttributes?: boolean }
+
+  function cssToRules(name: string, { convertToAttributes = true }: CssToRulesOptions = {}) {
     type Setup = { css: string, re: RegExp }
     const rulesSetup: Record<string, Setup> = {}
 
@@ -74,7 +76,7 @@ function createPreset() {
           continue
         const ruleName = rule.replace(/^\./, '').trim()
         const re = new RegExp(`^${ruleName}$`)
-        const selector = `${rule}, [${ruleName}=""], [${ruleName}="true"]`
+        const selector = convertToAttributes ? `${rule}, [${ruleName}=""], [${ruleName}="true"]` : rule
         const setup: Setup = { css, re }
         if (rulesSetup[selector])
           rulesSetup[selector].css += css
@@ -156,7 +158,7 @@ function createPreset() {
     }
 
     if (typography)
-      rules.push(...cssToRules('typography'))
+      rules.push(...cssToRules('typography', { convertToAttributes: false }))
 
     const { fonts = true } = options
     const presets: Preset["presets"] = []

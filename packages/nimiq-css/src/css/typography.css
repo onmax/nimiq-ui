@@ -2,7 +2,7 @@
  * Make sure to import also nimiq-colors layer found in this package
  **/
 .prose {
-  >*:not(:where(.raw, .raw *)):last-child {
+  >*:not(:where(.raw, .raw *, .no-prose, .no-prose *)):last-child {
     padding-bottom: 6rem;
 
     @media (min-width: 1153px) {
@@ -10,7 +10,7 @@
     }
   }
 
-  >*:not(:where(.raw, .raw *)) {
+  >*:not(:where(.raw, .raw *, .no-prose, .no-prose *)) {
     padding-right: 2rem;
     padding-left: 2rem;
   }
@@ -19,7 +19,7 @@
     margin-top: 0;
   }
 
-  *:not(:where(.raw, .raw *)) {
+  *:not(:where(.raw, .raw *, .no-prose, .no-prose *)) {
     font-size: 1rem;
     line-height: 1.5;
     max-width: calc(74ch + 2rem + 2rem);
