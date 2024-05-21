@@ -96,8 +96,8 @@ const loadingSmall = ref(true)
 
     <h3 mt-6>Bold pills</h3>
     <div grid="~ gap-2 flow-col">
-      <ReuseTemplate :html="`<a href='./' class='pill-bold pill-blue'>Send</a>`" />
-      <ReuseTemplate :html="`<a href='./' class='pill-bold pill-tertiary'>Next step</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-xl pill-blue'>Send</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-xl pill-tertiary'>Next step</a>`" />
     </div>
 
     <h3 mt-6>Combine it with other class</h3>
@@ -112,7 +112,7 @@ const loadingSmall = ref(true)
         <ReuseTemplate
           :html="`<a href='./' class='pill-secondary ${showLoading ? 'loading' : 'not-loading'} ${loadingSmall ? 'pill-sm' : ''}' ${showLoading ? 'disabled' : ''}>Loading</a>`" />
       </div>
-      <ReuseTemplate :html="`<a href='./' class='pill-bold pill-green label'>Awesome</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-xl pill-green label'>Awesome</a>`" />
     </div>
   </section>
 
