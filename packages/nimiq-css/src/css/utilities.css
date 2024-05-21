@@ -411,6 +411,7 @@
     appearance: none;
     font-size: 1em;
     width: 2em;
+    height: max-content;
     aspect-ratio: 1.625;
     border-radius: 2em;
     background: var(--active-color);
