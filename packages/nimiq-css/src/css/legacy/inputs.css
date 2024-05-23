@@ -1,0 +1,242 @@
+.nq-input,
+.nq-input-s {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    padding: 1.25rem 2.25rem;
+    border: none;
+    --border-color: rgba(31, 35, 72, 0.1); /* Based on Nimiq Blue */
+    box-shadow: inset 0 0 0 0.25rem var(--border-color);
+    color: var(--nimiq-blue);
+    background: transparent;
+    border-radius: 0.5rem;
+    outline: none;
+    transition: color .2s ease, box-shadow .2s ease;
+    background-clip: padding-box; /* Remove top inset box shadow in iOS */
+}
+
+.nq-input-s {
+    padding: 0.6875rem 1.4375rem;
+    box-shadow: inset 0 0 0 0.1875rem var(--border-color); /* 1.5px */
+}
+
+.nq-input.vanishing,
+.nq-input-s.vanishing {
+    /* Cannot use transparent because of iOS */
+    --border-color: rgba(31, 35, 72, 0); /* Based on Nimiq Blue */
+}
+
+.nq-input::placeholder,
+.nq-input-s::placeholder {
+    color: rgba(31, 35, 72, 0.5); /* Based on Nimiq Blue */
+    transition: color .2s ease;
+}
+
+.nq-input:hover,
+.nq-input-s:hover {
+    --border-color: rgba(31, 35, 72, 0.14); /* Based on Nimiq Blue */
+}
+
+.nq-input:hover::placeholder,
+.nq-input:focus::placeholder,
+.nq-input-s:hover::placeholder,
+.nq-input-s:focus::placeholder {
+    color: rgba(5, 130, 202, 0.7); /* Based on Nimiq Light Blue */
+}
+
+.nq-input:focus,
+.nq-input.vanishing:focus,
+.nq-input-s:focus,
+.nq-input-s.vanishing:focus {
+    --border-color: rgba(5, 130, 202, 0.2); /* Based on Nimiq Light Blue */
+    color: var(--nimiq-light-blue);
+}
+
+
+/* Text Inputs */
+
+/* input[type="text"],
+input.password,
+input[type="number"] {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    width: 168px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0;
+    font-size: 15px;
+    font-family: inherit;
+    font-style: inherit;
+    font-variant: inherit;
+    padding: 1px;
+} */
+
+/* .nimiq-dark input[type="text"],
+.nimiq-dark input.password,
+.nimiq-dark input[type="number"] {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    color: #3b3b3b;
+} */
+
+/* input[type="text"]::placeholder,
+input.password::placeholder,
+input[type="number"]::placeholder,
+input[type="number"]::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    display: block;
+} */
+
+/* .nimiq-dark input[type="text"]::placeholder,
+.nimiq-dark input.password::placeholder,
+.nimiq-dark input[type="number"]::placeholder,
+.nimiq-dark input[type="number"]::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.3);
+} */
+
+/* input[type="text"]:focus,
+input.password:focus {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+} */
+
+/* .nimiq-dark input[type="text"]:focus,
+.nimiq-dark input[type="number"]:focus,
+.nimiq-dark input.password:focus {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+} */
+
+/* input[type="text"].small {
+    font-size: 15px;
+}
+
+input[type="text"].small:placeholder-shown {
+    font-size: 56px;
+}
+
+input[type="number"] {
+    font-size: 56px;
+    padding-bottom: 0;
+} */
+
+/* input[type="number"]::-webkit-input-placeholder,
+input[type="number"]::placeholder {
+    font-size: 56px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.nimiq-dark input[type="number"]::-webkit-input-placeholder,
+.nimiq-dark input[type="number"]::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+} */
+
+/* input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input.password {
+    font-size: 18px;
+    line-height: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+    max-width: 368px;
+    margin: 16px 0;
+}
+
+.nimiq-dark input.password {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+} */
+
+/* select {
+    height: 35px;
+} */
+
+/* Range Slider */
+
+/* input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    height: 5px;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-moz-range-track {
+    height: 5px;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: var(--main-button-background);
+    margin-top: -6px;
+}
+
+input[type=range]::-moz-range-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: var(--main-button-background);
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+input[type=range]:focus::-moz-range-track {
+    background: rgba(0, 0, 0, 0.2);
+} */
+
+/* input[type=range]::-ms-track {
+    height: 5px; */
+
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    /* background: transparent; */
+
+    /*leave room for the larger thumb to overflow with a transparent border */
+    /* border-color: transparent;
+    border-width: 6px 0; */
+
+    /*remove default tick marks*/
+    /* color: transparent;
+} */
+
+/* input[type=range]::-ms-fill-lower,
+input[type=range]::-ms-fill-upper {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+input[type=range]::-ms-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: var(--main-button-background);
+}
+
+input[type=range]:focus::-ms-fill-lower,
+input[type=range]:focus::-ms-fill-upper {
+    background: rgba(0, 0, 0, 0.2);
+} */

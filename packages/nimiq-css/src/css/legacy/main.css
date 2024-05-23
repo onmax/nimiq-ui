@@ -1,0 +1,13 @@
+@import url('typography.css') layer(nq-legacy-typography);
+@import url('buttons.css') layer(nq-legacy-buttons);
+@import url('inputs.css') layer(nq-legacy-inputs);
+@import url('layout.css') layer(nq-legacy-layout);
+@import url('theme.css') layer(nq-legacy-theme);
+@import url('dark-adaptions.css') layer(nq-legacy-dark-adaptions);
+@import url('icons.css') layer(nq-legacy-icons);
+
+html {
+    --nq-ease: cubic-bezier(0.25, 0, 0, 1);
+    --attr-duration: .2s;
+    --movement-duration: .4s;
+}
