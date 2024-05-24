@@ -189,10 +189,10 @@ const loadingSmall = ref(true)
     <h2>Notices</h2>
 
     <div grid="~ flow-col gap-2"> 
-      <ReuseTemplate :html="`<p class='notice text-blue'>Info notice</p></ReuseTemplate>`" />
-      <ReuseTemplate :html="`<p class='notice text-green'>Success notice</p></ReuseTemplate>`" />
-      <ReuseTemplate :html="`<p class='notice text-orange'>Warning notice</p></ReuseTemplate>`" />
-      <ReuseTemplate :html="`<p class='notice text-red'>Error notice</p></ReuseTemplate>`" />
+      <ReuseTemplate :html="`<p class='notice text-blue'>Info notice</p>`" />
+      <ReuseTemplate :html="`<p class='notice text-green'>Success notice</p>`" />
+      <ReuseTemplate :html="`<p class='notice text-orange'>Warning notice</p>`" />
+      <ReuseTemplate :html="`<p class='notice text-red'>Error notice</p>`" />
     </div>
   </section>
 
