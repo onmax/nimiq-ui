@@ -101,9 +101,7 @@ One of the goals of `nimiq-css` is to allow classes to be used in a more explici
 
 ```html
 
-<details>
-
-<summary>Before</summary>
+Before:
 
 ```html
 <div class="nq-card">
@@ -118,11 +116,8 @@ One of the goals of `nimiq-css` is to allow classes to be used in a more explici
     </div>
 </div>
 ```
-</details>
 
-<details>
-
-<summary>After</summary>
+After
 
 ```html
 <div class="card">
@@ -137,8 +132,6 @@ One of the goals of `nimiq-css` is to allow classes to be used in a more explici
     </footer>
 </div>
 ```
-
-</details>
 
 #### Text inputs
 
