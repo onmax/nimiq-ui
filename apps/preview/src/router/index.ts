@@ -27,6 +27,11 @@ const router = createRouter({
       path: '/preflight',
       name: 'preflight',
       component: () => import('../components/Preflight.vue')
+    },
+    {
+      path: '/migrate',
+      name: 'migrate',
+      component: () => import('../components/Migrate.vue')
     }
   ]
 })

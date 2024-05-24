@@ -208,10 +208,6 @@ function createPreset() {
       variants,
       theme: {
         colors,
-        boxShadow: {
-          DEFAULT: 'var(--nq-shadow)',
-          lg: 'var(--nq-shadow-lg)',
-        }
       },
       presets,
       rules,

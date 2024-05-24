@@ -1,0 +1,59 @@
+/* 
+This file contains atomic CSS classes for styling elements. These classes are very powerful for applying styles, but are only available when using CSS directly. If you're using a library with plugin integration, such as TailwindCSS or UnoCSS, you'll need to use the classes provided by those libraries.
+*/
+
+.flex-grow {
+  flex-grow: 1
+}
+
+.flex-grow-half {
+  flex-grow: 0.5
+}
+
+.flex-grow-double {
+  flex-grow: 2
+}
+
+.hidden {
+  visibility: hidden
+}
+
+.display-none {
+  display: none;
+}
+
+.margin-top-5 {
+  margin-top: 2.5rem;
+}
+
+.margin-top-4 {
+  margin-top: 2rem;
+}
+
+.margin-top-3 {
+  margin-top: 1.5rem;
+}
+
+.margin-top-2 {
+  margin-top: 1rem;
+}
+
+.margin-top-1 {
+  margin-top: 0.5rem;
+}
+
+.notice.success {
+  color: rgb(var(--nq-green));
+}
+
+.notice.warning {
+  color: rgb(var(--nq-orange));
+}
+
+.notice.error {
+  color: rgb(var(--nq-red));
+}
+
+.notice.info {
+  color: var(--nq-blue);
+}

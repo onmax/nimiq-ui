@@ -2,3 +2,5 @@
 @import url('preflight.css') layer(nq-preflight);
 @import url('typography.css') layer(nq-typography);
 @import url('utilities.css') layer(nq-utilities);
+@import url('animations.css') layer(nq-animations);
+@import url('atomic.css') layer(nq-atomic);

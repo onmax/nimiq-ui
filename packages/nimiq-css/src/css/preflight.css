@@ -2,16 +2,19 @@
   --nq-ease: cubic-bezier(0.25, 0, 0, 1);
   --nq-shadow: 0px 18px 38px rgba(31 35 72 / 0.07), 0px 7px 8.5px rgba(31 35 72 / 0.04), 0px 2px 2.5px rgba(31 35 72 / 0.02);
   --nq-shadow-lg: 0px 6px 20px rgba(59 76 106 / 0.13), 0px 1.34018px 4.46726px rgba(59 76 106 / 0.0774939), 0px 0.399006px 1.33002px rgba(59 76 106 / 0.0525061);
+  /* This is the old box-shadox from nimiq-style framework. It stays here for reference */
+  /* box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15); */
+  /* box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.15); */
   --track: rgb(var(--nq-neutral-200));
   --thumb: rgb(var(--nq-neutral-600));
 }
 
 *:not(:where(.raw, .raw *)) {
-  text-align: left;
   letter-spacing: 0;
   border-color: rgb(var(--nq-neutral-400));
   outline-color: rgb(var(--nq-blue));
   outline-width: 0;
+  overscroll-behavior: contain;
 
   &:is(:not(:where(code, pre))) {
     font-family: Mulish, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
@@ -21,7 +24,14 @@
     font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
+  &:is(*, *:before, *:after) {
+    box-sizing: inherit;
+  }
+
   &:is(body) {
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    min-width: 300px;
     min-height: 100vh;
     min-height: 100dvh;
     color: rgb(var(--nq-neutral-900));
@@ -29,70 +39,34 @@
   }
 
   &:is(h1, h2, h3, h4, h5, h6) {
+    /* TODO Currently heading is always same font size. Once design system is finished, we need to review it */
     color: rgb(var(--nq-neutral));
-    text-wrap: balance;
     overflow-wrap: break-word;
     text-wrap: balance;
     width: 100%;
+    line-height: 1.2;
     max-width: 100%;
+    font-weight: bold;
+    margin: 1em 0;
   }
 
   &:is(h1) {
-    font-size: 44px;
-    line-height: 53px;
-    font-weight: 700;
-
-    @media (min-width: 1153px) {
-      font-size: 48px;
-    }
+    font-size: 1.5rem;
   }
 
   &:is(h2) {
-    font-size: 32px;
-    line-height: 42px;
-    font-weight: 600;
-
-    @media (min-width: 769px) {
-      font-size: 36px;
-      line-height: 47px;
-    }
-
-    @media (min-width: 1153px) {
-      font-size: 38px;
-      line-height: 49px;
-    }
+    font-size: 1.25rem;
   }
 
   &:is(h3) {
-    font-size: 26px;
-    line-height: 34px;
-    font-weight: 600;
-
-    @media (min-width: 769px) {
-      font-size: 28px;
-      line-height: 36px;
-    }
-
-    @media (min-width: 1153px) {
-      font-size: 30px;
-      line-height: 39px;
-    }
+    font-size: 1rem;
   }
 
-  &:is(h4) {
-    font-size: 22px;
-    line-height: 29px;
-    font-weight: 600;
-
-    @media (min-width: 769px) {
-      font-size: 24px;
-      line-height: 31px;
-    }
-
-    @media (min-width: 1153px) {
-      font-size: 26px;
-      line-height: 34px;
-    }
+  &:is(p) {
+    font-size: 1rem;
+    line-height: 1.3125;
+    color: rgb(var(--nq-neutral-800));
+    margin: 1rem 0;
   }
 
   &:is(p, li) {
@@ -104,8 +78,14 @@
     display: none;
   }
 
-  &:is(p a, li a) {
+  /* Select a elements inside p, li or <a> elements containing only text */
+  &:is(p a, li a, a:not(:has(*))) {
     color: rgb(var(--nq-blue));
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &:is(blockquote p, blockquote p > :is(em, b)) {
@@ -123,7 +103,7 @@
   }
 
   &:is(code) {
-    line-height: 30px;
+    line-height: 1.875rem;
   }
 
   /* Links & buttons clickable */
@@ -131,6 +111,7 @@
     position: relative;
 
     @media not all and (hover: hover) {
+
       &::before,
       &::after {
         content: "";
@@ -143,6 +124,7 @@
     }
   }
 
+  /* TODO Maybe Remove this or move it to utilities */
   .focusable {
     outline-color: rgb(var(--nq-blue));
 

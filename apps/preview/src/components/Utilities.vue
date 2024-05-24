@@ -184,4 +184,34 @@ const loadingSmall = ref(true)
         :html="`<div class='prose curtain-y max-h-96 of-auto'><p>You can use the class <code>.curtain-y</code> to add the curtains. You can change the heigth of the curtain using <code>--mask-size</code></p><p>Only works if the browser supports animation-timeline</p>${Array.from({ length: 6 }).fill('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet animi consequatur atque accusantium soluta cumque, temporibus ipsam eos voluptas porro architecto expedita quisquam eum et necessitatibus culpa odio, laudantium reprehenderit.').map(p => `<p>${p}</p>`).join('')}</div>`" />
     </div>
   </section>
+
+  <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
+    <h2>Notices</h2>
+
+    <div grid="~ flow-col gap-2"> 
+      <ReuseTemplate :html="`<p class='notice text-blue'>Info notice</p></ReuseTemplate>`" />
+      <ReuseTemplate :html="`<p class='notice text-green'>Success notice</p></ReuseTemplate>`" />
+      <ReuseTemplate :html="`<p class='notice text-orange'>Warning notice</p></ReuseTemplate>`" />
+      <ReuseTemplate :html="`<p class='notice text-red'>Error notice</p></ReuseTemplate>`" />
+    </div>
+  </section>
+
+  <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
+    <h2>Card</h2>
+
+    <div grid="~ flow-col gap-2">
+      <ReuseTemplate :html="`<div class='card'>
+   <header>
+       <h1>Card Header</h1>
+       <p class='notice text-orange'>Warning under the headline.</p>
+    </header>
+    <section>
+        <p>Card Body</p>
+    </section>
+    <footer>
+        <a>Card Footer</a>
+    </footer>
+</div>`" />
+    </div>
+  </section>
 </template>
