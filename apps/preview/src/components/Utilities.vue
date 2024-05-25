@@ -9,12 +9,12 @@ const loadingSmall = ref(true)
 
 <template>
   <DefineTemplate v-slot="{ html }">
-    <div mt-3 flex="~ gap-4 col" w-full>
+    <div mt-3 flex="~ gap-4 col" w-max>
       <div v-html="html">
       </div>
 
       <details p-2>
-        <summary>See HTML</summary>
+        <summary text-neutral-800>See HTML</summary>
 
         <div class="text-xs" of-x-auto w-full text-neutral rounded-md of-hidden>
           <code p-2>{{ html }}</code>
@@ -77,14 +77,24 @@ const loadingSmall = ref(true)
       <ReuseTemplate :html="`<a href='./' class='pill-gold'>Gold pill</a>`" />
     </div>
 
-    <h3 mt-6>Small pills</h3>
+    <h3 mt-6>Pills LG</h3>
     <div grid="~ gap-2 flow-col">
-      <ReuseTemplate :html="`<a href='./' class='pill-blue pill-sm'>Blue pill</a>`" />
-      <ReuseTemplate :html="`<a href='./' class='pill-green pill-sm'>Green pill</a>`" />
-      <ReuseTemplate :html="`<a href='./' class='pill-orange pill-sm'>Orange pill</a>`" />
-      <ReuseTemplate :html="`<a href='./' class='pill-red pill-sm'>Red pill</a>`" />
-      <ReuseTemplate :html="`<a href='./' class='pill-gold pill-sm'>Gold pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-blue pill-lg'>Blue pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-green pill-lg'>Green pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-orange pill-lg'>Orange pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-red pill-lg'>Red pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-gold pill-lg'>Gold pill</a>`" />
     </div>
+
+    <h3 mt-6>Pills XL</h3>
+    <div flex="~ gap-2 wrap flex-row">
+      <ReuseTemplate :html="`<a href='./' class='pill-xl pill-blue'>Send</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-xl pill-green'>Next step</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-xl pill-orange'>Next step</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-xl pill-red'>Next step</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-xl pill-gold'>Next step</a>`" />
+    </div>
+
 
     <h3 mt-6>Variants</h3>
     <div grid="~ gap-2 flow-col">
@@ -94,10 +104,17 @@ const loadingSmall = ref(true)
       <ReuseTemplate :html="`<a href='./' class='pill-tertiary pill-sm'>Tertiary small pill</a>`" />
     </div>
 
-    <h3 mt-6>Bold pills</h3>
-    <div grid="~ gap-2 flow-col">
-      <ReuseTemplate :html="`<a href='./' class='pill-xl pill-blue'>Send</a>`" />
-      <ReuseTemplate :html="`<a href='./' class='pill-xl pill-tertiary'>Next step</a>`" />
+    <h3 mt-6>Inverse</h3>
+    <p>Make sure to use <code>.dark</code> in the parent element</p>
+    <div flex="~ gap-2 wrap" bg-gradient-neutral class="dark" p-6 rounded-2>
+      <ReuseTemplate :html="`<a href='./' class='pill-blue'>Blue pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-green'>Green pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-orange'>Orange pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-red'>Red pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-gold'>Gold pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-secondary'>Secondary pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-secondary' disabled>Secondary pill</a>`" />
+      <ReuseTemplate :html="`<a href='./' class='pill-tertiary'>Tertiary pill</a>`" />
     </div>
 
     <h3 mt-6>Combine it with other class</h3>
@@ -112,19 +129,8 @@ const loadingSmall = ref(true)
         <ReuseTemplate
           :html="`<a href='./' class='pill-secondary ${showLoading ? 'loading' : 'not-loading'} ${loadingSmall ? 'pill-sm' : ''}' ${showLoading ? 'disabled' : ''}>Loading</a>`" />
       </div>
-      <ReuseTemplate :html="`<a href='./' class='pill-xl pill-green label'>Awesome</a>`" />
     </div>
-  </section>
-
-  <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
-    <h2>Inputs</h2>
-
-    <div grid="~ flow-col gap-2">
-      <ReuseTemplate :html="`<input type='text' placeholder='Hey, hello :)' class='input-box' rounded-full />`" />
-      <ReuseTemplate :html="`<input type='text' class='input-box invalid' value='Something bad' rounded-full />`" />
-      <ReuseTemplate :html="`<textarea class='input-box rounded-[3px]' placeholder='Hey, hello :)' />`" />
-    </div>
-  </section>
+  </section> 
 
   <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
     <h2>Switch</h2>
@@ -188,7 +194,7 @@ const loadingSmall = ref(true)
   <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
     <h2>Notices</h2>
 
-    <div grid="~ flow-col gap-2"> 
+    <div grid="~ flow-col gap-2">
       <ReuseTemplate html="<p class='notice text-blue'>Info notice</p>" />
       <ReuseTemplate html="<p class='notice text-green'>Success notice</p>" />
       <ReuseTemplate html="<p class='notice text-orange'>Warning notice</p>" />

@@ -1,4 +1,23 @@
 <template>
+  <section p-6 border-base rounded flex="~ col">
+    <h2>Default Typography</h2>
+
+    <h1>Heading H1</h1>
+    <h2>Heading H2</h2>
+    <h3>Heading H3</h3>
+
+    <p>
+      Paragraph: Nimiq is the blockchain designed for simplicity. Nimiq aims to be the best performing and
+      easiest-to-use decentralized payment protocol & ecosystem. The project is striving to combine state-of-the-art
+      blockchain research and web technology. Nano clients synchronize in seconds. Nimiq is browser-based and
+      installation-free.
+    </p>
+
+    <small>
+      This is small text.
+    </small>
+  </section>
+
   <section p-6 border-base rounded>
     <h2>Scrollbar</h2>
     <div flex="~">
@@ -68,6 +87,16 @@
       <div size-16 bg-gradient-red="~ hover:darkened" transition-colors rounded-2></div>
       <div size-16 bg-gradient-orange="~ hover:darkened" transition-colors rounded-2></div>
     </div>
+
+    <section max-w-700 mx-auto mt-8 p-6 border-base rounded>
+      <h2>Inputs</h2>
+
+      <div grid="~ gap-2">
+        <input type="text" placeholder="Hey, hello :)" class="rounded-full" />
+        <input type="text" placeholder="Hey, hello :)" class="rounded-3 invalid" />
+        <textarea placeholder="Hey, hello :)" class="rounded-3" />
+      </div>
+    </section>
   </section>
 </template>
 

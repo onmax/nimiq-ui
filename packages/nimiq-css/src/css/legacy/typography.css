@@ -1,6 +1,6 @@
 html {
-    font-size: 8px;
     --nimiq-size: 8px;
+    font-size: var(--nimiq-size, 16px);
 
     font-family: Muli, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;

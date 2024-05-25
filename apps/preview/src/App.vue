@@ -16,6 +16,7 @@ const toggleDark = useToggle(isDark)
           <RouterLink to="/typography">Typography</RouterLink>
           <RouterLink to="/icons">Icons</RouterLink>
           <RouterLink to="/migrate">Migrate</RouterLink>
+          <RouterLink to="/atomic">Atomic</RouterLink>
         </nav>
         <button @click="toggleDark()" px-4 py-2 rounded-full font-bold bg-neutral-400 w-max>
           {{ !isDark ? 'Dark' : 'Light' }}          
