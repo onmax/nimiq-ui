@@ -22,6 +22,11 @@
 
   &:is(code, pre, pre *, code *) {
     font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    /* font-size-adjust: from-font;
+    TODO
+    Remove all font-sizes for Fira Code and instead using font-size-adjust to adjust the font-size to the parent element.
+    https://developer.mozilla.org/en-US/docs/Web/CSS/font-size-adjust
+    */
   }
 
   &:is(*, *:before, *:after) {
@@ -48,6 +53,8 @@
     max-width: 100%;
     font-weight: bold;
     margin: 1em 0;
+    /* text-box-trim: both;
+    text-box-edge: cap alphabetic; */
   }
 
   &:is(h1) {
@@ -196,7 +203,7 @@
       color: var(--placeholder-color);
     }
 
-    &:not(.invalid, ::user-invalid):is(:hover, :focus) {
+    &:not(.invalid, :user-invalid):is(:hover, :focus) {
       --color: rgb(var(--nq-blue));
       --ring-color: rgba(var(--nq-blue) / 0.3);
 
@@ -209,7 +216,7 @@
       }
     }
 
-    &:is(.invalid, ::user-invalid) {
+    &:is(.invalid, :user-invalid) {
       --color: rgb(var(--nq-orange));
       --ring-color: rgba(var(--nq-orange) / 0.4);
 

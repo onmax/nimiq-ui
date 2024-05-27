@@ -2,6 +2,8 @@
  * Make sure to import also nimiq-colors layer found in this package
  **/
 .prose {
+  margin-trim: block;
+
   >*:not(:where(.raw, .raw *, .no-prose, .no-prose *)):last-child {
     padding-bottom: 6rem;
 
@@ -17,6 +19,7 @@
 
   >*:first-child {
     margin-top: 0;
+    /* TODO Remove margin-top and margin-bottom on last element when margin-trim is widely supported */
   }
 
   *:not(:where(.raw, .raw *, .no-prose, .no-prose *)) {
@@ -165,14 +168,19 @@
         }
       }
 
-      >a {
-        position: absolute;
-        inset: 0;
-        border-radius: 0.5rem;
+      &:has(a:focus-visible) {
+        outline: 0.125rem solid rgb(var(--nq-blue));
+        outline-offset: 0.125rem;
+      }
 
-        &:focus-visible {
-          outline: 0.125rem solid rgb(var(--nq-blue));
-          outline-offset: 0.125rem;
+      >a {
+        position: relative;
+
+        ::after {
+          position: absolute;
+          inset: 0;
+          border-radius: 0.5rem;
+
         }
       }
     }
