@@ -23,11 +23,13 @@
   }
 
   *:not(:where(.raw, .raw *, .no-prose, .no-prose *)) {
-    font-size: 1rem;
-    line-height: 1.5;
-    max-width: calc(74ch + 2rem + 2rem);
-    margin-left: auto;
-    margin-right: auto;
+    > * {
+      font-size: 1rem;
+      line-height: 1.5;
+      max-width: calc(74ch + 2rem + 2rem);
+      margin-left: auto;
+      margin-right: auto;
+    }
 
 
     &:is(h1) {
