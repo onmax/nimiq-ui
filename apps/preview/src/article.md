@@ -2,13 +2,17 @@
 
 ## Chapter 1: The Quest Begins
 
-### Setting Off
+<h3 id="setting-off">
+<a href="#setting-off" aria-hidden="true" class="header-anchor">
+Setting Off
+</a>
+</h3>
 
 Pixel, a curious little byte, lived in the bustling heart of a digital city and always dreamed of exploring the vast world of Cryptoland. Intrigued by the mysteries of cryptocurrencies, especially the legendary Nimiq, Pixel decided it was time to go on a quest.
 
 Little did he know that his journey would take him to the far reaches of the blockchain, where he would encounter ancient codes, treacherous bugs and the wisdom of code wizards.
 
-#### The Preparation
+<h4 id="the-preparation" tabindex="-1">The preparation <a href="#the-preparation">&ZeroWidthSpace;</a></h4>
 
 Armed with a digital map and a sturdy backpack filled with essential coding tools, Pixel was ready to delve into the secrets of blockchain technology. The journey was fraught with challenges, but Pixel was determined to uncover the truth about the future of money.
 

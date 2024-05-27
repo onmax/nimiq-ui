@@ -23,14 +23,11 @@
   }
 
   *:not(:where(.raw, .raw *, .no-prose, .no-prose *)) {
-    > * {
-      font-size: 1rem;
-      line-height: 1.5;
-      max-width: calc(74ch + 2rem + 2rem);
-      margin-left: auto;
-      margin-right: auto;
-    }
-
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: calc(74ch + 2rem + 2rem);
+    margin-left: auto;
+    margin-right: auto;
 
     &:is(h1) {
       font-size: 2.75rem;
@@ -149,7 +146,8 @@
       margin-left: -1em;
       padding-left: 1em;
       padding-right: 1em;
-      width: max-content;
+      width: 100%;
+      min-height: 1em;
 
       &::after {
         content: '#';
@@ -176,13 +174,17 @@
       }
 
       >a {
-        position: relative;
-
-        ::after {
+        position: absolute;
+        inset: 0;
+        padding-left: 2rem;
+        font-size: inherit;
+        font-weight: inherit;
+        top: -6px;
+     
+        &::after {
           position: absolute;
           inset: 0;
           border-radius: 0.5rem;
-
         }
       }
     }
