@@ -65,7 +65,7 @@ You can always "opt-out" of the styles by adding the `raw` class to the element.
 The following components are automatically styled in the [preflight.css](https://github.com/onmax/nimiq-ui/tree/main/packages/nimiq-css/src/css/preflight.css) file:
 
 - Body with some default styles.
-- Headings `h1`, `h2` and `h3`. You can remove `.nq-h1`, `.nq-h2` and `.nq-h3`.
+- Headings `h1`, `h2` and `h3`. You can remove `.nq-h1`, `.nq-h2` and `.nq-h3`. But, be aware that the `margin-top` and `margin-bottom` have been removed. You need to add them again using `margin: 1rem 0`.
 - Paragraphs `p`. You can remove `.nq-text`.
 - `<small>` elements. You can remove `.nq-text-s`.
 - `<code>` and `<pre>` elements.
@@ -191,7 +191,7 @@ After
 | `.nq-input` | `<input type="text">` or `<textarea>` |
 | `.vanishing` | Deleted |
 
-#### 4. Removed classes
+#### 4. Removed classes and styles
 
 Everything deleted in the new library is because it is not being used anymore, or not used it much. My main research has been done in the Nimiq Wallet + Hub + Keyguard, which it is our main product. If you think this is a mistake, we can add them back. But remember, you always have them in the `legacy.css` file.
 
@@ -200,6 +200,7 @@ There are two types of classes that have been removed. The ones replaced by defa
 - `.nq-text`, `.nq-style p`: Now, all the `<p>` will have this styles.
 - `.nq-link`, `.nq-text a`, `.nq-style a`: I don't think this is pretty useful as link are always super different.
 - `.nq-text-s` has been deleted. Instead use the `<small>` HTML element.
+- Heading elements like `h1`, `h2`, `h3`, `h4`, `h5`, `h6` now do not have `margin-top` and `margin-bottom`. You need to add them again using `margin: 1rem 0`.
 
 ### 5. Atomic CSS in `nimiq-css`
 

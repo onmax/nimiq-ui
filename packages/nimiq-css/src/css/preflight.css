@@ -52,7 +52,7 @@
     line-height: 1.2;
     max-width: 100%;
     font-weight: bold;
-    margin: 1em 0;
+    /* margin: 1em 0; */
     /* text-box-trim: both;
     text-box-edge: cap alphabetic; */
   }
