@@ -67,6 +67,7 @@ The following components are automatically styled in the [preflight.css](https:/
 - Body with some default styles.
 - Headings `h1`, `h2` and `h3`. You can remove `.nq-h1`, `.nq-h2` and `.nq-h3`. But, be aware that the `margin-top` and `margin-bottom` have been removed. You need to add them again using `margin: 1rem 0`.
 - Paragraphs `p`. You can remove `.nq-text`.
+- Paragraphs `p` and `small` do not have `margin-top` and `margin-bottom` anymore. You need to add them again using `margin: 1rem 0` or `margin: 0.5rem 0` respectively.
 - `<small>` elements. You can remove `.nq-text-s`.
 - `<code>` and `<pre>` elements.
 - `<input type="text">` and `<textarea>` elements. You can remove `.nq-input`.
@@ -201,6 +202,7 @@ There are two types of classes that have been removed. The ones replaced by defa
 - `.nq-link`, `.nq-text a`, `.nq-style a`: I don't think this is pretty useful as link are always super different.
 - `.nq-text-s` has been deleted. Instead use the `<small>` HTML element.
 - Heading elements like `h1`, `h2`, `h3`, `h4`, `h5`, `h6` now do not have `margin-top` and `margin-bottom`. You need to add them again using `margin: 1rem 0`.
+- `p` and `small` elements do not have `margin-top` and `margin-bottom` anymore. You need to add them again using `margin: 1rem 0` or `margin: 0.5rem 0` respectively.
 
 ### 5. Atomic CSS in `nimiq-css`
 
