@@ -175,6 +175,7 @@
   }
 
   .input-box,
+  [input-box],
   input[type="text"],
   textarea {
     font-size: 16px;
