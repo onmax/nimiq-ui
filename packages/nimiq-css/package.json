@@ -1,6 +1,6 @@
 {
   "name": "nimiq-css",
-  "version": "0.0.107",
+  "version": "0.0.108",
   "description": "Nimiq's Design System in CSS",
   "type": "module",
   "main": "dist/index.mjs",
@@ -32,6 +32,7 @@
   "devDependencies": {
     "@iconify/types": "^2.0.0",
     "@types/bun": "latest",
+    "@unocss/preset-web-fonts": "^0.61.5",
     "unbuild": "^2.0.0"
   },
   "peerDependencies": {
