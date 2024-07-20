@@ -12,13 +12,13 @@
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.16.1",
-    "eslint": "^8.57.0",
+    "@antfu/eslint-config": "^2.23.0",
+    "eslint": "^9.7.0",
     "nimiq-css": "workspace:*",
     "nimiq-icons": "workspace:*"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
-  "packageManager": "pnpm@8.15.8"
+  "packageManager": "pnpm@8.15.9"
 }
