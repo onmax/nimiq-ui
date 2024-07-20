@@ -7,7 +7,7 @@ import {
   type Preflight,
 } from "unocss";
 import { readFileSync, existsSync } from "node:fs";
-import { join, dirname, resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 import { toJSON, toCSS } from "ts-cssjson";
 import { getNimiqColors } from "./colors";
 import { fileURLToPath } from "node:url";
