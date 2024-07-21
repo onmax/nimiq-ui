@@ -10,10 +10,9 @@
 }
 
 *:not(:where(.raw, .raw *)) {
-  letter-spacing: 0;
   border-color: rgb(var(--nq-neutral-400));
   outline-color: rgb(var(--nq-blue));
-  outline-width: 0;
+  /* outline-width: 0; */
   overscroll-behavior-x: contain;
 
   &:is(:not(:where(code, pre))) {
