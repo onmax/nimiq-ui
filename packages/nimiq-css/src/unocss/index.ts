@@ -2,16 +2,16 @@ import {
   type Preset,
   type PresetFactory,
   definePreset,
-  presetWebFonts,
   presetIcons,
   type Preflight,
 } from "unocss";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, copyFileSync, readdirSync, mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { toJSON, toCSS } from "ts-cssjson";
 import { getNimiqColors } from "./colors";
 import { fileURLToPath } from "node:url";
-import { createLocalFontProcessor } from "@unocss/preset-web-fonts/local";
+import { cwd} from "node:process";
+import { name } from '../../package.json'
 
 export type NimiqPresetOptions = {
   /**
@@ -22,11 +22,23 @@ export type NimiqPresetOptions = {
   reset?: boolean | "tailwind-compat" | "tailwind" | "eric-meyer" | "normalize";
 
   /**
-   * Whether to include the default Nimiq font via bunny
-   *
-   * @default true
+   * Whether to include the default Nimiq font locally
    */
-  fonts?: boolean;
+  fonts?: {
+    /**
+     * The path to the fonts folder
+     *
+     * @default "public/assets/fonts"
+     */
+    path?: string;
+
+    /**
+     * The url to the fonts folder. The URL that the client will use to fetch the fonts
+     *
+     * @default "/assets/fonts"
+     */
+    url?: string
+  } | boolean;
 
   /**
    * Whether to include the preflight styles of Nimiq.
@@ -212,29 +224,31 @@ function createPreset() {
     if (typography)
       rules.push(...cssToRules("typography", { convertToAttributes: false }));
 
-    const { fonts = true } = options;
+    const defaultFontOptions = { path: "public/assets/fonts", url: "/assets/fonts" }
+    let { fonts = defaultFontOptions } = options;
     const presets: Preset["presets"] = [];
     if (fonts) {
-      presets.push(
-        presetWebFonts({
-          provider: "none",
-          fonts: {
-            sans: "Mulish:400,600,700",
-            mono: "Fira Code:400",
-          },
-          // This will download the fonts and serve them locally
-          processors: createLocalFontProcessor({
-            // Directory to cache the fonts
-            cacheDir: "node_modules/.cache/unocss/fonts",
+      if (fonts === true) fonts = defaultFontOptions;
+      const projectRoot = cwd();
+      const destPath = resolve(projectRoot, fonts.path as string);
+      if (!existsSync(destPath)) mkdirSync(destPath, { recursive: true });
+      
+      const fontPath = resolve(projectRoot, `node_modules/${name}/dist/assets/fonts`);
+      const fontFiles = readdirSync(fontPath).filter((f) => f.endsWith(".ttf"));
+      const missingFonts = fontFiles.some((f) => !existsSync(resolve(destPath, f)));
+      if (missingFonts) {
+        for (const file of fontFiles) {
+          copyFileSync(resolve(fontPath, file), resolve(destPath, file));
+          console.log(`Copied font ${file} to ${destPath}`);
+        }
+      }
 
-            // Directory to save the fonts assets
-            fontAssetsDir: "public/assets/fonts",
+      const url = fonts.url!;
 
-            // Base URL to serve the fonts from the client
-            fontServeBaseUrl: "/assets/fonts",
-          }),
-        }),
-      );
+      preflights.push({
+        layer: "nq-fonts",
+        getCSS: () => wrapContentToLayer("fonts").replaceAll(/src: url\(\'\/assets\/fonts\/(.*?)'/g, `src: url('${url}/$1'`),
+      });
     }
 
     const { icons = true } = options;
