@@ -347,22 +347,23 @@
 .close-btn {
   width: 1em;
   height: 1em;
-  background-color: rgb(var(--nq-neutral-300));
+  background-color: rgb(var(--nq-neutral-500));
   border-radius: 1em;
   transition: 100ms background var(--nq-ease, ease-out);
   position: relative;
 
+
   &::after {
     content: '';
-    --cross-icon: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 12 12' width='1em' height='1em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 1 10 10m0-10L1 11'/%3E%3C/svg%3E");
+    --cross-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0ibTEgMSAxMCAxMG0wLTEwTDEgMTEiLz48L3N2Zz4=");
     -webkit-mask: var(--cross-icon) no-repeat;
     mask: var(--cross-icon) no-repeat;
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
     background-color: currentColor;
-    color: inherit;
-    width: 0.35em;
-    height: 0.35em;
+    color: rgb(var(--nq-neutral-0));
+    width: 0.42em;
+    height: 0.42em;
     margin: auto;
     display: block;
     position: absolute;
@@ -372,7 +373,7 @@
 
 
   &:is(:hover, :focus) {
-    background-color: rgb(var(--nq-neutral-400));
+    background-color: rgb(var(--nq-neutral-600));
   }
 
   &:focus-visible {
