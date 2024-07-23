@@ -293,8 +293,6 @@ function createPreset() {
       },
     ];
 
-    console.log(autocompleteRules)
-
     const preset: Preset = {
       name: "nimiq-preset",
       preflights,
