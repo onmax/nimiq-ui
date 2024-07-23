@@ -100,8 +100,10 @@ function createPreset() {
       ordered: false,
       split: false,
     });
+    const allRulesNames: string[] = []
     for (const key of Object.keys(json.children)) {
       const rulesNames = key.split(",").map((s) => s.trim());
+      allRulesNames.push(...rulesNames.filter(r => r.startsWith(".")).map(r => r.replace(/^\./, "").trim()))
       const css = toCSS(json.children[key]).replaceAll(
         "SEMICOLON_BUG_HACK",
         "data:image/svg+xml;",
@@ -125,7 +127,7 @@ function createPreset() {
         { layer },
       ],
     );
-    return rules;
+    return { rules, rulesNames: allRulesNames };
   }
 
   function extractKeyframes(name: string) {
@@ -214,15 +216,22 @@ function createPreset() {
       ]);
     }
 
+    const autocompleteRules: string[] = []
+
     if (utilities) {
-      rules.push(...cssToRules("utilities"));
+      const { rulesNames, rules } = cssToRules("utilities")
+      rules.push(...rules)
+      autocompleteRules.push(...rulesNames)
       // keyframes
       const getCSS = () => extractKeyframes("utilities");
       preflights.push({ layer: "nq-utilities", getCSS });
     }
 
-    if (typography)
-      rules.push(...cssToRules("typography", { convertToAttributes: false }));
+    if (typography) {
+      const { rules, rulesNames } = cssToRules("typography", { convertToAttributes: false })
+      rulesNames.forEach((r) => autocompleteRules.push(r))
+      rules.push(...rules)
+    }
 
     const defaultFontOptions = { path: "public/assets/fonts", url: "/assets/fonts" }
     let { fonts = defaultFontOptions } = options;
@@ -284,6 +293,8 @@ function createPreset() {
       },
     ];
 
+    console.log(autocompleteRules)
+
     const preset: Preset = {
       name: "nimiq-preset",
       preflights,
@@ -292,6 +303,9 @@ function createPreset() {
         colors,
       },
       presets,
+      autocomplete: {
+        templates: [...new Set(autocompleteRules)],
+      },
       rules,
       layers: {
         "nq-reset": -1,
