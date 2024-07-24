@@ -250,7 +250,7 @@ function createPreset() {
           provider: 'google', // We fetch the fonts the google but store them locally
           fonts: {
             sans: 'Mulish:400,600',
-            mono: 'Fira Code',
+            mono: 'Fira Code:400',
           },
           // This will download the fonts and serve them locally
           processors: createLocalFontProcessor(options.fonts === true ? undefined : options.fonts as LocalFontProcessorOptions),
