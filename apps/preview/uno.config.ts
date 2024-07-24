@@ -9,6 +9,7 @@ export default defineConfig({
     presetNimiq({
       utilities: true,
       typography: true,
+      attributifyUtilities: true
     }),
   ],
 })

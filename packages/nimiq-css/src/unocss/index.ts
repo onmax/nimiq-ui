@@ -60,6 +60,12 @@ export interface NimiqPresetOptions {
    * @default true
    */
   icons?: boolean
+
+  /**
+   * If you want to use the attributify mode
+   * @default false
+   */
+  attributifyUtilities?: boolean
 }
 
 function createPreset() {
@@ -221,7 +227,7 @@ function createPreset() {
     const rulesNames: string[] = []
 
     if (utilities) {
-      const { rules:_rules, rulesNames: _rulesNames} = cssToRules('utilities', { prefix })
+      const { rules:_rules, rulesNames: _rulesNames} = cssToRules('utilities', { convertToAttributes: options.attributifyUtilities, prefix })
       rulesNames.push(..._rulesNames)
       rules.push(..._rules)
       // keyframes
