@@ -10,6 +10,5 @@ export default defineConfig({
       utilities: true,
       typography: true,
     }),
-    presetIcons(),
   ],
 })
