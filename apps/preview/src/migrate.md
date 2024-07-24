@@ -2,7 +2,7 @@
 
 In this page, we show how we suggest the new classes to be used [Nimiq Style Framework](https://nimiq.github.io/nimiq-style/demo.html) with the new `nimiq-css` library.
 
-`nimiq-css` also supports UnoCSS now and will suport Tailwind v4 in the future. 
+`nimiq-css` also supports UnoCSS now and will suport Tailwind v4 in the future.
 
 The [Nimiq Styles Framework](https://github.com/nimiq/nimiq-style/tree/master) is the current main CSS framework used at Nimiq. This library has been the main inspipration for the new `nimiq-css` library. This library has has been built with that in mind. It is designed to be as compatible as possible with a clear path for migration. However, there are some breaking changes due to the lack of usage of classes/features implemented by the old Library. These breaking changes are highly opinioned, so if you don't agree with some of the changes or you have better ideas, please let me know and we let's change it.
 
@@ -76,23 +76,20 @@ The following components are automatically styled in the [preflight.css](https:/
 
 | Old Class | New Class |
 | --- | --- |
-| `.nq-label` | `.label` |
-| `.nq-shadow` | `.shadow` |
-| `.nq-shadow-l` | `.shadow-lg` |
+| `.nq-shadow-l` | `.nq-shadow-lg` |
 
 There are more "atomic" classes. You can see it in [atomic.css](https://github.com/onmax/nimiq-ui/tree/main/packages/nimiq-css/src/css/atomic.css).
 
 #### 3.1 Explicit classes
 
-One of the goals of `nimiq-css` is to allow classes to be used in a more explicit way. So it is always preferable to use the classes in a more explicit way.  
+One of the goals of `nimiq-css` is to allow classes to be used in a more explicit way. So it is always preferable to use the classes in a more explicit way.
 
 | Old Class | New Class |
 | --- | --- |
-| `.nq-notice` | `.notice` |
-| `.nq-notice.success` | `.notice.text-green` |
-| `.nq-notice.warning` | `.notice.text-orange` |
-| `.nq-notice.error` | `.notice.text-red` |
-| `.nq-notice.info` | `.notice.text-blue` |
+| `.nq-notice.success` | `.nq-notice.text-green` |
+| `.nq-notice.warning` | `.nq-notice.text-orange` |
+| `.nq-notice.error` | `.nq-notice.text-red` |
+| `.nq-notice.info` | `.nq-notice.text-blue` |
 | `.nq-blue` | `.text-neutral` (darkblue in light mode and white in dark mode) |
 | `.nq-light-blue` | `.text-blue` |
 | `.nq-gold` | `.text-gold` |
@@ -103,8 +100,8 @@ One of the goals of `nimiq-css` is to allow classes to be used in a more explici
 | `.nq-pink` | Deleted since it is only used in the wallet |
 | `.nq-light-green` | Deleted since it is only used in the wallet |
 | `.nq-brown` | Deleted since it is only used in the wallet |
-| `.nq-blue-bg` | `.bg-gradient-neutral` (darkblue in light mode and white in dark mode) | 
-| `.nq-grey` | `.bg-neutral-200` (You can see all the neutral options: 50,100,200, ... ,800, 900,1100) |  
+| `.nq-blue-bg` | `.bg-gradient-neutral` (darkblue in light mode and white in dark mode) |
+| `.nq-grey` | `.bg-neutral-200` (You can see all the neutral options: 50,100,200, ... ,800, 900,1100) |
 | `.nq-light-blue-bg` | `.bg-blue` |
 | `.nq-gold-bg` | `.bg-gold` |
 | `.nq-green-bg` | `.bg-green` |
@@ -121,34 +118,33 @@ With `nimiq-css`, a new palette of colors has been implemented. You can also use
 
 | Old Class | New Class |
 | --- | --- |
-| `.nq-button` | `pill-xl` + `pill-{COLOR}` |
-| `.nq-button-s` | `.pill-secondary` |
+| `.nq-button` | `.nq-pill-xl` + `.nq-pill-{COLOR}` |
+| `.nq-button-s` | `.nq-pill-secondary` |
 | `.nq-button-s.light-blue` | Deleted |
 | `.nq-button-s.green` | Deleted |
 | `.nq-button-s.orange` | Deleted |
 | `.nq-button-s.red` | Deleted |
-| N/A | `.pill-tertiary` |
+| N/A | `.nq-pill-tertiary` |
 | `.nq-button-pill` | Deleted |
-| `.nq-button-pill.light-blue` | `pill-blue` |
-| `.nq-button-pill.green` | `pill-green` |
-| `.nq-button-pill.orange` | `pill-orange` |
-| `.nq-button-pill.red` | `pill-red` |
-| `.nq-button-pill.gold` | `pill-gold` |
+| `.nq-button-pill.light-blue` | `.nq-pill-blue` |
+| `.nq-button-pill.green` | `.nq-pill-green` |
+| `.nq-button-pill.orange` | `.nq-pill-orange` |
+| `.nq-button-pill.red` | `.nq-pill-red` |
+| `.nq-button-pill.gold` | `.nq-pill-gold` |
 | `.nq-button-pill.disabled` | Use the `disabled` state in `<button>` |
 | `.nq-button-{s\|pill}.inverse` | Add `.dark` in any parent element or self element |
 
-* There are 3 pill sizes. The default pill just use `pill-{COLOR|VARIANT}` like pill-green or pill-secondary. If you need other sizes you can use pill-lg or pill-xl.
+* There are 3 pill sizes. The default pill just use `.nq-pill-{COLOR|VARIANT}` like pill-green or pill-secondary. If you need other sizes you can use pill-lg or pill-xl.
 
 #### 3.3 Card
 
 | Old Class | New Class | Comments |
-| --- | --- | --- | 
-| `.nq-card` | `.card` | |
-| `.nq-card-header` | `.card <header>` | A container with `.card` and a children with `<header>` | 
-| `.nq-card-header .nq-h1` | `.card <header> h1` | A container with `.card` and a children with `<header>` and a children with `h1` |
-| `.nq-card-header .nq-notice` | `.card <header> .nq-notice` | A container with `.card` and a children with `<header>` and a children with `.nq-notice` |
-| `.nq-card-body` | `section` | A container with `.card` and a children with `<section>` |
-| `.nq-card-footer` | `.card <footer>` | A container with `.card` and a children with `<footer>` |
+| --- | --- | --- |
+| `.nq-card-header` | `.nq-card <header>` | A container with `.nq-card` and a children with `<header>` |
+| `.nq-card-header .nq-h1` | `.nq-card <header> h1` | A container with `.nq-card` and a children with `<header>` and a children with `h1` |
+| `.nq-card-header .nq-notice` | `.nq-card <header> .nq-notice` | A container with `.nq-card` and a children with `<header>` and a children with `.nq-notice` |
+| `.nq-card-body` | `section` | A container with `.nq-card` and a children with `<section>` |
+| `.nq-card-footer` | `.nq-card <footer>` | A container with `.nq-card` and a children with `<footer>` |
 
 ```html
 
@@ -171,7 +167,7 @@ Before:
 After
 
 ```html
-<div class="card">
+<div class="nq-card">
    <header>
        <h1>Card Header</h1>
     </header>
@@ -206,8 +202,8 @@ There are two types of classes that have been removed. The ones replaced by defa
 
 ### 5. Atomic CSS in `nimiq-css`
 
-The old `Nimiq Styles Framework` used to have some atomic classes like `flex-grow` or `hidden`. Those classes still available in the new library. See more in the [atomic.css](https://github.com/onmax/nimiq-ui/tree/main/packages/nimiq-css/src/css/atomic.css) file.
+The old `Nimiq Styles Framework` used to have some atomic classes like `flex-grow` or `hidden`. Those classes still available in the new library. See more in the [atomic.css](https://github.com/onmax/nimiq-ui/tree/main/packages/nimiq-css/src/css/atomic.css) file. This file is only used in native CSS. In framework like UnoCSS is not included.
 
 ### 6. Prose
 
-`nimiq-css` comes with a new class `prose` that it is useful to style the prose content. It is based on the Tailwind CSS Prose plugin. Just add `.prose` to you mardown wrapper and you are ready to go. You can also use this for smaller parts of your app.
+`nimiq-css` comes with a new class `nq-prose` that it is useful to style the prose content. It is based on the Tailwind CSS Prose plugin. Just add `.prose` to you mardown wrapper and you are ready to go. You can also use this for smaller parts of your app.

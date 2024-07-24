@@ -2,8 +2,9 @@
   "name": "nimiq-ui",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
   "private": true,
+  "packageManager": "pnpm@8.15.9",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "preview:build": "",
@@ -11,14 +12,13 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^2.23.0",
     "eslint": "^9.7.0",
     "nimiq-css": "workspace:*",
     "nimiq-icons": "workspace:*"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "packageManager": "pnpm@8.15.9"
+  }
 }

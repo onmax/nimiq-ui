@@ -1,5 +1,6 @@
-import { exit, env } from 'node:process'
-import { IconSet, exportJSONPackage, importFromFigma } from '@iconify/tools'
+import { env, exit } from 'node:process'
+import type { IconSet } from '@iconify/tools'
+import { exportJSONPackage, importFromFigma } from '@iconify/tools'
 import { IconVariant } from './consts'
 
 export const sanitizeName = (name: string) => name.toLocaleLowerCase().replace(/ /g, '-')
@@ -35,7 +36,7 @@ export async function checkFigmaVariants() {
 
   const iconSetVariants = figma.iconSet.list().map(sanitizeName)
 
-  // They must match our hardcoded Variants 
+  // They must match our hardcoded Variants
   const ourVariants = Object.values(IconVariant)
   const missingVariants = ourVariants.filter(variant => !iconSetVariants.includes(variant))
   const extraUnknownVariants = iconSetVariants.filter(v => !ourVariants.includes(v as IconVariant))
@@ -44,7 +45,6 @@ export async function checkFigmaVariants() {
   }
 
   console.log('🥳 Figma variants are correct.')
-
 }
 
 export async function getFigma(frameName: string) {
@@ -57,20 +57,20 @@ export async function getFigma(frameName: string) {
     depth: 3,
     ifModifiedSince: '2021-01-01T00:00:00Z',
     simplifyStroke: true,
-    iconNameForNode: node => {
+    iconNameForNode: (node) => {
       if (
         // Icons are stored after 2 parents: page -> container frame -> icon
-        node.parents.length !== 2 ||
+        node.parents.length !== 2
         // Icons use frames
-        node.type !== 'FRAME' ||
+        || node.type !== 'FRAME'
         // !node.parents.find(parent => parent.name === frameName)
         // It is direct child of the frameName
-        sanitizeName(node.parents.at(-1)?.name || '') !== frameName
+        || sanitizeName(node.parents.at(-1)?.name || '') !== frameName
       ) {
-        return null;
+        return null
       }
       return sanitizeName(node.name)
-    }
+    },
   })
 
   if (figma === 'not_modified') {

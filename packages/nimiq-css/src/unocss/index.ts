@@ -1,30 +1,38 @@
+import { existsSync, readFileSync } from 'node:fs'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { toCSS, toJSON } from 'ts-cssjson'
 import {
+  type Preflight,
   type Preset,
   type PresetFactory,
   definePreset,
   presetIcons,
-  type Preflight,
   presetWebFonts,
-} from "unocss";
-import { readFileSync, existsSync, copyFileSync, readdirSync, mkdirSync } from "node:fs";
-import { dirname, resolve } from "node:path";
-import { toJSON, toCSS } from "ts-cssjson";
-import { getNimiqColors } from "./colors";
-import { fileURLToPath } from "node:url";
-import { createLocalFontProcessor, type LocalFontProcessorOptions } from '@unocss/preset-web-fonts/local'
+} from 'unocss'
+import { type LocalFontProcessorOptions, createLocalFontProcessor } from '@unocss/preset-web-fonts/local'
+import { getNimiqColors } from './colors'
 
-export type NimiqPresetOptions = {
+const DEFAULT_PREFIX = 'nq-'
+
+export interface NimiqPresetOptions {
+  /**
+   * Prefix to use for the Nimiq classes and CSS layers. You must include the dash.
+   * @default "nq-"
+   */
+  prefix?: string
+
   /**
    * Whether to reset the styles of the page
    *
    * @default tailwind-compat
    */
-  reset?: boolean | "tailwind-compat" | "tailwind" | "eric-meyer" | "normalize";
+  reset?: boolean | 'tailwind-compat' | 'tailwind' | 'eric-meyer' | 'normalize'
 
   /**
    * Whether to include the default Nimiq font locally and its paths
    */
-  fonts?: LocalFontProcessorOptions | boolean;
+  fonts?: LocalFontProcessorOptions | boolean
 
   /**
    * Whether to include the preflight styles of Nimiq.
@@ -32,196 +40,204 @@ export type NimiqPresetOptions = {
    *
    * @default true
    */
-  preflight?: boolean;
+  preflight?: boolean
 
   /**
    * Add support for `prose` class which adds Nimiq styles for articles
    *
    * @default false
    */
-  typography?: boolean;
+  typography?: boolean
 
   /**
    * Add support for utilities
    * @default false
    */
-  utilities?: boolean;
+  utilities?: boolean
 
   /**
    * Add Nimiq Icons
    * @default true
    */
-  icons?: boolean;
-};
+  icons?: boolean
+}
 
 function createPreset() {
-  const __dirname = dirname(fileURLToPath(import.meta.url));
-  const _cssDir = resolve(__dirname, "../css");
-  const unminifiedFolder = resolve(_cssDir, "unminified");
-  const unminifiedExists = existsSync(unminifiedFolder);
-  const cssDir = unminifiedExists ? unminifiedFolder : _cssDir;
-  const p = (name: string) => `${cssDir}/${name}.css`;
-  const readContent = (path: string) => readFileSync(path, "utf-8");
-  const wrapContentToLayer = (name: string) =>
-    `@layer nq-${name} { ${readContent(p(name))} }`;
+  const __dirname = dirname(fileURLToPath(import.meta.url))
+  const _cssDir = resolve(__dirname, '../css')
+  const unminifiedFolder = resolve(_cssDir, 'unminified')
+  const unminifiedExists = existsSync(unminifiedFolder)
+  const cssDir = unminifiedExists ? unminifiedFolder : _cssDir
+  const p = (name: string) => `${cssDir}/${name}.css`
+  const readContent = (path: string) => readFileSync(path, 'utf-8')
+  const wrapContentToLayer = (name: string, prefix: string) =>
+    `@layer ${prefix}${name} { ${readContent(p(name))} }`
 
-  type CssToRulesOptions = { convertToAttributes?: boolean };
+  interface CssToRulesOptions { convertToAttributes?: boolean, prefix?: string }
 
   function cssToRules(
     name: string,
-    { convertToAttributes = true }: CssToRulesOptions = {},
+    { convertToAttributes = true, prefix = DEFAULT_PREFIX }: CssToRulesOptions = {},
   ) {
-    type Setup = { css: string; re: RegExp };
-    const rulesSetup: Record<string, Setup> = {};
+    interface Setup { css: string, re: RegExp }
+    const rulesSetup: Record<string, Setup> = {}
 
-    const layer = `nq-${name}`;
+    const layer = `${prefix}${name}`
 
     const content = readContent(p(name)).replaceAll(
-      "data:image/svg+xml;",
-      "SEMICOLON_BUG_HACK",
-    );
+      'data:image/svg+xml;',
+      'SEMICOLON_BUG_HACK',
+    )
     const json = toJSON(content, {
       stripComments: true,
       comments: false,
       ordered: false,
       split: false,
-    });
-    const allRulesNames: string[] = []
+    })
+    const rulesNamesStr: string[] = []
     for (const key of Object.keys(json.children)) {
-      const rulesNames = key.split(",").map((s) => s.trim());
-      allRulesNames.push(...rulesNames.filter(r => r.startsWith(".")).map(r => r.replace(/^\./, "").trim()))
+      const rulesNames = key.split(',').map(s => s.trim())
       const css = toCSS(json.children[key]).replaceAll(
-        "SEMICOLON_BUG_HACK",
-        "data:image/svg+xml;",
-      );
-      for (const rule of rulesNames) {
-        if (!rule.startsWith(".")) continue;
+        'SEMICOLON_BUG_HACK',
+        'data:image/svg+xml;',
+      )
+      for (const _rule of rulesNames) {
+        if (!_rule.startsWith('.'))
+          continue
+        const rule = _rule.replace(new RegExp(`^${DEFAULT_PREFIX}`), "")
         const ruleName = rule.replace(/^\./, "").trim();
+        rulesNamesStr.push(ruleName)
         const re = new RegExp(`^${ruleName}$`);
         const selector = convertToAttributes
           ? `${rule}, [${ruleName}=""], [${ruleName}="true"]`
-          : rule;
-        const setup: Setup = { css, re };
-        if (rulesSetup[selector]) rulesSetup[selector].css += css;
-        else rulesSetup[selector] = setup;
+          : rule
+        const setup: Setup = { css, re }
+        if (rulesSetup[selector])
+          rulesSetup[selector].css += css
+        else rulesSetup[selector] = setup
       }
     }
-    const rules: Preset["rules"] = Object.entries(rulesSetup).map(
+
+    const rules: Preset['rules'] = Object.entries(rulesSetup).map(
       ([selector, { css, re }]) => [
         re,
-        () => `@layer nq-${name} { ${selector} { ${css} } }`,
+        () => `@layer ${layer} { ${selector} { ${css} } }`,
         { layer },
       ],
-    );
-    return { rules, rulesNames: allRulesNames };
+    )
+    return { rules, rulesNames: rulesNamesStr }
   }
 
   function extractKeyframes(name: string) {
     const content = readContent(p(name)).replaceAll(
-      "data:image/svg+xml;",
-      "SEMICOLON_BUG_HACK",
-    );
+      'data:image/svg+xml;',
+      'SEMICOLON_BUG_HACK',
+    )
     const json = toJSON(content, {
       stripComments: true,
       comments: false,
       ordered: false,
       split: false,
-    });
-    let keyframesStr = "";
+    })
+    let keyframesStr = ''
     for (const key of Object.keys(json.children)) {
       const keyframes = key
-        .split(",")
-        .map((s) => s.trim())
-        .filter((s) => s.startsWith("@keyframes"));
+        .split(',')
+        .map(s => s.trim())
+        .filter(s => s.startsWith('@keyframes'))
       const css = toCSS(json.children[key]).replaceAll(
-        "SEMICOLON_BUG_HACK",
-        "data:image/svg+xml;",
-      );
-      keyframesStr += `${keyframes.join(", ")} { ${css} }\n`;
+        'SEMICOLON_BUG_HACK',
+        'data:image/svg+xml;',
+      )
+      keyframesStr += `${keyframes.join(', ')} { ${css} }\n`
     }
-    return keyframesStr;
+    return keyframesStr
   }
 
   return (options: NimiqPresetOptions = {}): Preset => {
-    const { gradients, colors } = getNimiqColors();
+    const { prefix = DEFAULT_PREFIX } = options
+    const { gradients, colors } = getNimiqColors()
 
     // This is the css to define the order of the CSS layers
     const layerDefinition: Preflight = {
       getCSS: () =>
-        "@layer nq-reset, nq-colors, nq-preflight, nq-typography, nq-utilities;",
-    };
+        `@layer ${['reset', 'colors', 'preflight', 'typography', 'utilities'].map(layer => `${prefix}${layer}`).join(', ')};`,
+    }
 
-    const { reset = "tailwind-compat" } = options;
+    const { reset = 'tailwind-compat' } = options
     const resetLayer: Preflight = {
       getCSS() {
-        if (reset === false) return "";
-        const fileName = reset === true ? "tailwind-compat" : reset;
-        const url = resolve(`node_modules/@unocss/reset/${fileName}.css`);
-        const content = readFileSync(url, "utf-8");
-        return `@layer nq-reset { /* CSS Reset ${fileName}*/ ${content} }`;
+        if (reset === false)
+          return ''
+        const fileName = reset === true ? 'tailwind-compat' : reset
+        const url = resolve(`node_modules/@unocss/reset/${fileName}.css`)
+        const content = readFileSync(url, 'utf-8')
+        return `@layer ${prefix}reset { /* CSS Reset ${fileName}*/ ${content} }`
       },
-      layer: "nq-reset",
-    };
+      layer: `${prefix}reset`,
+    }
 
-    const { preflight = true } = options;
-    const preflights: Preset["preflights"] = [
+    const { preflight = true } = options
+    const preflights: Preset['preflights'] = [
       layerDefinition,
       resetLayer,
       {
-        layer: "nq-colors",
-        getCSS: () => wrapContentToLayer("colors"),
+        layer: `${prefix}colors`,
+        getCSS: () => wrapContentToLayer('colors', prefix),
       },
-    ];
+    ]
 
-    if (preflight)
+    if (preflight) {
       preflights.push({
-        layer: "nq-preflight",
-        getCSS: () => wrapContentToLayer("preflight"),
-      });
+        layer: `${prefix}preflight`,
+        getCSS: () => wrapContentToLayer('preflight', prefix),
+      })
+    }
 
-    const { utilities = false, typography = false } = options;
-    const rules: Preset["rules"] = [
+    const { utilities = false, typography = false } = options
+    const rules: Preset['rules'] = [
       [
-        /^scrollbar-hide$/,
+        new RegExp(`^${prefix}scrollbar-hide$`),
         (_, { constructCSS }) => {
-          let res = constructCSS({ "scrollbar-width": "none" });
-          res += `\n${res.replace("{scrollbar-width:none;}", "::-webkit-scrollbar{display: none;}")}`;
-          return res;
+          let res = constructCSS({ 'scrollbar-width': 'none' })
+          res += `\n${res.replace('{scrollbar-width:none;}', '::-webkit-scrollbar{display: none;}')}`
+          return res
         },
+        { layer: `${prefix}utilities` },
       ],
-    ];
-
+    ]
+    
     // The only way to add gradients is via rules
     for (const [key, gradient, color] of gradients) {
-      const backgroundImage = { "background-image": gradient };
-      const background = { "background-color": colors[color].DEFAULT }; // This is the fallback color
+      const backgroundImage = { 'background-image': gradient }
+      const background = { 'background-color': colors[color].DEFAULT } // This is the fallback color
       rules.push([
         key,
         { ...background, ...backgroundImage },
-        { layer: "nq-colors" },
-      ]);
+        { layer: `${prefix}colors` },
+      ])
     }
 
-    const autocompleteRules: string[] = []
+    const rulesNames: string[] = []
 
     if (utilities) {
-      const { rulesNames, rules } = cssToRules("utilities")
-      rules.push(...rules)
-      autocompleteRules.push(...rulesNames)
+      const { rules:_rules, rulesNames: _rulesNames} = cssToRules('utilities', { prefix })
+      rulesNames.push(..._rulesNames)
+      rules.push(..._rules)
       // keyframes
-      const getCSS = () => extractKeyframes("utilities");
-      preflights.push({ layer: "nq-utilities", getCSS });
+      const getCSS = () => extractKeyframes('utilities')
+      preflights.push({ layer: `${prefix}utilities`, getCSS })
     }
 
     if (typography) {
-      const { rules, rulesNames } = cssToRules("typography", { convertToAttributes: false })
-      rulesNames.forEach((r) => autocompleteRules.push(r))
-      rules.push(...rules)
+      const {rules: _rules, rulesNames:_rulesNames} = cssToRules('typography', { convertToAttributes: false, prefix })
+      rulesNames.push(..._rulesNames)
+      rules.push(..._rules)
     }
 
-    const defaultFontOptions = { path: "public/assets/fonts", url: "/assets/fonts" }
-    let { fonts = defaultFontOptions } = options;
-    const presets: Preset["presets"] = [];
+    const defaultFontOptions = { path: 'public/assets/fonts', url: '/assets/fonts' }
+    const { fonts = defaultFontOptions } = options
+    const presets: Preset['presets'] = []
     if (fonts) {
       presets.push(
         presetWebFonts({
@@ -236,59 +252,59 @@ function createPreset() {
       )
     }
 
-    const { icons = true } = options;
+    const { icons = true } = options
     if (icons) {
       presets.push(
         presetIcons({
           collections: {
             nimiq: async () => {
               return await fetch(
-                "https://raw.githubusercontent.com/onmax/nimiq-ui/main/packages/nimiq-icons/dist/icons.json",
-              ).then((res) => res.json() as any);
+                'https://raw.githubusercontent.com/onmax/nimiq-ui/main/packages/nimiq-icons/dist/icons.json',
+              ).then(res => res.json() as any)
             },
           },
         }),
-      );
+      )
     }
 
-    const variants: Preset["variants"] = [
+    const variants: Preset['variants'] = [
       (matcher) => {
-        if (!matcher.startsWith("inverted:")) return matcher;
+        if (!matcher.startsWith('inverted:'))
+          return matcher
         return {
           matcher: matcher.slice(9),
-          selector: (s) =>
+          selector: s =>
             `:is(.inverted,[data-inverted])${s}, :is(.inverted,[data-inverted]) ${s}`,
-        };
+        }
       },
       (matcher) => {
-        if (!matcher.startsWith("hocus:")) return matcher;
+        if (!matcher.startsWith('hocus:'))
+          return matcher
         return {
-          matcher: matcher.replace(/^hocus:/, ""),
-          selector: (s) => `${s}:hover, ${s}:focus-visible`,
-        };
+          matcher: matcher.replace(/^hocus:/, ''),
+          selector: s => `${s}:hover, ${s}:focus-visible`,
+        }
       },
-    ];
-
+    ]
     const preset: Preset = {
-      name: "nimiq-preset",
+      name: 'nimiq-preset',
       preflights,
       variants,
       theme: {
         colors,
       },
-      presets,
       autocomplete: {
-        templates: [...new Set(autocompleteRules)],
-
+        templates: rulesNames
       },
+      presets,
       rules,
       layers: {
-        "nq-reset": -1,
+        [`${prefix}reset`]: -1,
       },
-    };
-    return preset;
-  };
+    }
+    return preset
+  }
 }
 
-export const presetNimiq: PresetFactory<object, NimiqPresetOptions> =
-  definePreset(createPreset());
+export const presetNimiq: PresetFactory<object, NimiqPresetOptions>
+  = definePreset(createPreset())

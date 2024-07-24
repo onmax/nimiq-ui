@@ -1,4 +1,4 @@
-.subline {
+.nq-subline {
   font-size: 1.375rem;
   line-height: 1.2;
   margin-top: 20px;
@@ -9,7 +9,7 @@
   }
 }
 
-.label {
+.nq-label {
   text-transform: uppercase;
   letter-spacing: 0.17em;
   font-weight: 700;
@@ -17,8 +17,8 @@
   color: rgb(var(--nq-neutral-700));
 }
 
-.arrow,
-.loading {
+.nq-arrow,
+.nq-loading {
   &::after {
     content: '';
     position: relative;
@@ -43,7 +43,7 @@
 }
 
 
-.arrow {
+.nq-arrow {
 
   /* We select the arrow OR the closest parent with href to an http */
   a[href^="http"] &::after,
@@ -68,7 +68,7 @@
   }
 }
 
-.arrow-back {
+.nq-arrow-back {
   &::before {
     content: '';
     position: relative;
@@ -101,8 +101,8 @@
   }
 }
 
-.loading,
-.not-loading {
+.nq-loading,
+.nq-not-loading {
   &::after {
     margin-right: -0.4em;
     transition: width 0.2s ease-out;
@@ -132,16 +132,16 @@
   }
 }
 
-.pill,
-.pill-lg,
-.pill-xl,
-.pill-blue,
-.pill-gold,
-.pill-green,
-.pill-orange,
-.pill-red,
-.pill-secondary,
-.pill-tertiary {
+.nq-pill,
+.nq-pill-lg,
+.nq-pill-xl,
+.nq-pill-blue,
+.nq-pill-gold,
+.nq-pill-green,
+.nq-pill-orange,
+.nq-pill-red,
+.nq-pill-secondary,
+.nq-pill-tertiary {
   position: relative;
   font-weight: bold;
   font-size: 0.875rem;
@@ -161,12 +161,12 @@
   transition: background-color 300ms var(--nq-ease);
   will-change: color, background-color;
 
-  &:is(.pill-lg, [pill-lg]) {
+  &:is(.nq-pill-lg, [nq-pill-lg]) {
     font-size: 1rem;
     padding: 0.3125rem 1rem;
   }
 
-  &:is(.pill-xl, [pill-xl]) {
+  &:is(.nq-pill-xl, [nq-pill-xl]) {
     box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
     cursor: pointer;
     transition: transform 450ms var(--nq-ease), box-shadow 450ms var(--nq-ease);
@@ -223,7 +223,7 @@
   }
 }
 
-.pill-blue {
+.nq-pill-blue {
   background: rgb(var(--nq-blue));
   background-image: var(--nq-blue-gradient);
 
@@ -232,7 +232,7 @@
   }
 }
 
-.pill-green {
+.nq-pill-green {
   background: rgb(var(--nq-green));
   background-image: var(--nq-green-gradient);
 
@@ -241,7 +241,7 @@
   }
 }
 
-.pill-red {
+.nq-pill-red {
   background: rgb(var(--nq-red));
   background-image: var(--nq-red-gradient);
 
@@ -250,7 +250,7 @@
   }
 }
 
-.pill-gold {
+.nq-pill-gold {
   background: rgb(var(--nq-gold));
   background-image: var(--nq-gold-gradient);
 
@@ -259,7 +259,7 @@
   }
 }
 
-.pill-orange {
+.nq-pill-orange {
   background: rgb(var(--nq-orange));
   background-image: var(--nq-orange-gradient);
 
@@ -268,7 +268,7 @@
   }
 }
 
-.pill-secondary {
+.nq-pill-secondary {
   background: rgb(var(--nq-neutral-400));
   color: rgb(var(--nq-neutral));
 
@@ -277,7 +277,7 @@
   }
 }
 
-.pill-tertiary {
+.nq-pill-tertiary {
   box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral-600));
   color: rgb(var(--nq-neutral));
   background: rgb(var(--nq-neutral-0));
@@ -292,33 +292,33 @@
 }
 
 :is([class*="ring"], [ring]),
-.border-base {
+.nq-border-base {
   --border-color: rgb(var(--nq-neutral-400));
   --atomic-css-framework: var(var(--un-ring-color), var(--tw-ring-color));
   box-shadow: 0 0 0 1.5px var(--atomic-css-framework, var(--border-color));
 }
 
-.border-top {
+.nq-border-top {
   --border-color: rgb(var(--nq-neutral-400));
   box-shadow: 0 -1.5px 0 0 var(--border-color);
 }
 
-.border-bottom {
+.nq-border-bottom {
   --border-color: rgb(var(--nq-neutral-400));
   box-shadow: 0 1.5px 0 0 var(--border-color);
 }
 
-.border-left {
+.nq-border-left {
   --border-color: rgb(var(--nq-neutral-400));
   box-shadow: -1.5px 0 0 0 var(--border-color);
 }
 
-.border-right {
+.nq-border-right {
   --border-color: rgb(var(--nq-neutral-400));
   box-shadow: 1.5px 0 0 0 var(--border-color);
 }
 
-.ghost-btn {
+.nq-ghost-btn {
   margin-right: 1px;
   margin-bottom: 1px;
   padding: 6px 8px;
@@ -344,7 +344,7 @@
   }
 }
 
-.close-btn {
+.nq-close-btn {
   width: 1em;
   height: 1em;
   background-color: rgb(var(--nq-neutral-500));
@@ -382,7 +382,7 @@
   }
 }
 
-.switch {
+.nq-switch {
   &:is(input[type="checkbox"]) {
     --active-color: rgb(var(--nq-neutral-300));
     appearance: none;
@@ -433,7 +433,7 @@
   }
 }
 
-.flex-card {
+.nq-flex-card {
   position: relative;
   border-radius: 6px;
   overflow: hidden;
@@ -462,7 +462,7 @@
   }
 }
 
-.curtain-y {
+.nq-curtain-y {
   overflow: auto;
   --mask-size: 2rem;
   transition: mask-size 0.25s linear(
@@ -497,20 +497,20 @@
   }
 }
 
-.shadow {
+.nq-shadow {
   box-shadow: var(--nq-shadow);
 }
 
-.shadow-lg {
+.nq-shadow-lg {
   box-shadow: var(--nq-shadow-lg);
 }
 
-.notice {
+.nq-notice {
   font-weight: 600;
   font-size: 1rem;
 }
 
-.card {
+.nq-card {
   max-width: 37.5rem;
   background: var(--nq-neutral-0);
   color: var(--nq-neutral);
@@ -535,7 +535,7 @@
       margin: 0;
     }
 
-    .notice {
+    .nq-notice {
       margin: 1.5rem 0 0;
     }
   }

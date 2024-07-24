@@ -1,10 +1,10 @@
 /**
  * Make sure to import also nimiq-colors layer found in this package
  **/
-.prose {
+.nq-prose {
   margin-trim: block;
 
-  >*:not(:where(.raw, .raw *, .no-prose, .no-prose *)):last-child {
+  >*:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)):last-child {
     padding-bottom: 6rem;
 
     @media (min-width: 1153px) {
@@ -12,7 +12,7 @@
     }
   }
 
-  >*:not(:where(.raw, .raw *, .no-prose, .no-prose *)) {
+  >*:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)) {
     padding-right: 2rem;
     padding-left: 2rem;
   }
@@ -22,7 +22,7 @@
     /* TODO Remove margin-top and margin-bottom on last element when margin-trim is widely supported */
   }
 
-  *:not(:where(.raw, .raw *, .no-prose, .no-prose *)) {
+  *:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)) {
     font-size: 1rem;
     line-height: 1.5;
     max-width: calc(74ch + 2rem + 2rem);

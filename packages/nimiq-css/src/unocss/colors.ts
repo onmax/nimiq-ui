@@ -6,7 +6,7 @@ export enum NimiqColor {
   Orange = 'orange',
   Red = 'red',
   Gold = 'gold',
-  Purple = 'purple'
+  Purple = 'purple',
 }
 
 export function getNimiqColors() {
@@ -70,7 +70,7 @@ export function getNimiqColors() {
         500: `rgb(var(--nq-${NimiqColor.Purple}-500))`,
         600: `rgb(var(--nq-${NimiqColor.Purple}-600))`,
         1100: `rgb(var(--nq-${NimiqColor.Purple}-1100))`,
-      }
+      },
     },
     gradients: [
       [`bg-gradient-${NimiqColor.Neutral}`, `var(--nq-${NimiqColor.Neutral}-gradient)`, NimiqColor.Neutral],
@@ -84,6 +84,6 @@ export function getNimiqColors() {
       [`bg-gradient-${NimiqColor.Red}-darkened`, `var(--nq-${NimiqColor.Red}-gradient-darkened)`, NimiqColor.Red],
       [`bg-gradient-${NimiqColor.Gold}`, `var(--nq-${NimiqColor.Gold}-gradient)`, NimiqColor.Gold],
       [`bg-gradient-${NimiqColor.Gold}-darkened`, `var(--nq-${NimiqColor.Gold}-gradient-darkened)`, NimiqColor.Gold],
-    ]
+    ],
   } as const
 };

@@ -25,9 +25,9 @@ const loadingSmall = ref(true)
 
   <section max-w-700 mx-auto mt-8 p-6 class="border-base" rounded>
     <h2>Texts</h2>
-    <div grid="~ flow-col gap-2">
-      <ReuseTemplate :html="`<p subline>An awesome subline</p>`" />
-      <ReuseTemplate :html="`<p label text-3>Build</p>`" />
+    <div grid="~ flow-col gap-2" class="pill">
+      <ReuseTemplate :html="`<p nq-subline>An awesome subline</p>`" />
+      <ReuseTemplate :html="`<p nq-label text-3>Build</p>`" />
     </div>
   </section>
 

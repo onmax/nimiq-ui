@@ -60,7 +60,6 @@ The following components are automatically styled
 
 - Headings `h1`, `h2` and `h3`. You can remove `.nq-h1`, `.nq-h2` and `.nq-h3`.
 
-
 ### 3. Replace the classes
 
 | Old Class | New Class |

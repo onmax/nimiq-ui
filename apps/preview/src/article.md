@@ -18,11 +18,10 @@ Armed with a digital map and a sturdy backpack filled with essential coding tool
 
 <figure>
 
-> "To the **moon**!" 
-  
+> "To the **moon**!"
+
 <figcaption>Pixel exclaimed</figcaption>
 </figure>
-
 
 ## The Allies and Challenges
 
@@ -37,16 +36,15 @@ On the journey, Pixel met Sage Scripto, a wise old code wizard, who shared valua
 ```javascript
 const genesisBlock = {
   index: 0,
-  timestamp: "2021-01-01",
+  timestamp: '2021-01-01',
   transactions: [],
   proof: 1,
-  previousHash: "0"
-};
-console.log("Behold the Genesis Block:", genesisBlock);
+  previousHash: '0'
+}
+console.log('Behold the Genesis Block:', genesisBlock)
 ```
 
 With this ancient code, Pixel learned the importance of the Genesis Block and the foundational role it played in the creation of every blockchain.
-
 
 ## The Dark Forest of Bugs
 
@@ -83,13 +81,12 @@ As Pixel returned home, the adventure was far from over. With a heart full of me
 
 [Join Pixel and the Nimiq community](https://nimiq.com/) on this incredible adventure, where the possibilities are as limitless as the blockchain itself.
 
-
 *Remember, in the world of cryptocurrency, knowledge is the currency of the realm.*
 
 <figure>
 <img src="../assets/scripto.webp" alt="Pixel the Crypto Explorer" />
 <figcaption>Pixel the Crypto Explorer</figcaption>
-</figure> 
+</figure>
 
 ## Chapter 2: The Ledger of Legends
 
@@ -127,7 +124,6 @@ In the depths of the **Archive of Ages**, Pixel stumbled upon the *Ledger of Leg
 
 This detailed *Ledger of Legends* not only captures the essence of each explorer's contribution but also highlights the key innovations and their impact on Cryptoland, providing a comprehensive view into the journey of digital exploration and innovation.
 
-
 #### Reflecting on the Past to Illuminate the Future
 
 As Pixel gazed upon the names and deeds immortalized in the ledger, he realized that his journey was more than a quest for knowledge—it was a path to becoming part of Cryptoland's ever-evolving history.
@@ -141,7 +137,6 @@ As Pixel gazed upon the names and deeds immortalized in the ledger, he realized 
 The Ledger of Legends serves as a testament to the power of innovation and the spirit of adventure that drives Cryptoland. It reminded Pixel that while the journey might be fraught with challenges, the potential for leaving a lasting impact on the digital world is immense.
 
 </details>
-
 
 <style>
   /* Just for demo purposes */

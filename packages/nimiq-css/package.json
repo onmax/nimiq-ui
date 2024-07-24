@@ -1,21 +1,9 @@
 {
   "name": "nimiq-css",
+  "type": "module",
   "version": "0.0.116",
   "description": "Nimiq's Design System in CSS",
-  "type": "module",
-  "main": "dist/index.mjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
   "sideEffects": false,
-  "files": [
-    "dist"
-  ],
-  "engines": {
-    "node": ">=14"
-  },
-  "scripts": {
-    "build": "unbuild && cp -r src/css dist/css/unminified && cp -r src/assets/ dist"
-  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -29,11 +17,17 @@
       "import": "./dist/unocss/index.mjs"
     }
   },
-  "devDependencies": {
-    "@iconify/types": "^2.0.0",
-    "@types/bun": "latest",
-    "@unocss/preset-web-fonts": "^0.61.5",
-    "unbuild": "^2.0.0"
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "build": "unbuild && cp -r src/css dist/css/unminified && cp -r src/assets/ dist"
   },
   "peerDependencies": {
     "typescript": "^5.0.0",
@@ -44,5 +38,11 @@
     "@unocss/reset": "0.61.5",
     "ts-cssjson": "^3.0.1",
     "unocss": "^0.61.5"
+  },
+  "devDependencies": {
+    "@iconify/types": "^2.0.0",
+    "@types/bun": "latest",
+    "@unocss/preset-web-fonts": "^0.61.5",
+    "unbuild": "^2.0.0"
   }
 }
