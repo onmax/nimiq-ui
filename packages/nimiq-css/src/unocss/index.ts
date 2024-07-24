@@ -83,7 +83,7 @@ function createPreset() {
 
   function cssToRules(
     name: string,
-    { convertToAttributes = true, prefix = DEFAULT_PREFIX }: CssToRulesOptions = {},
+    { convertToAttributes = false, prefix = DEFAULT_PREFIX }: CssToRulesOptions = {},
   ) {
     interface Setup { css: string, re: RegExp }
     const rulesSetup: Record<string, Setup> = {}
@@ -249,7 +249,7 @@ function createPreset() {
         presetWebFonts({
           provider: 'google', // We fetch the fonts the google but store them locally
           fonts: {
-            sans: 'Mulish:400,600',
+            sans: 'Mulish:400,600,700',
             mono: 'Fira Code:400',
           },
           // This will download the fonts and serve them locally
