@@ -200,7 +200,6 @@ function createPreset() {
         layer: `${prefix}preflight`,
         getCSS: () => wrapContentToLayer('preflight', prefix).replaceAll(/nq-/g, prefix),
       })
-      rulesNames.push(...[`${prefix}input-box`, `${prefix}scroll-sm`, `${prefix}focusable`, `${prefix}invalid`])
     }
 
     const { utilities = false, typography = false } = options

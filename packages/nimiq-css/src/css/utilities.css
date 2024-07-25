@@ -465,15 +465,13 @@
 .nq-curtain-y {
   overflow: auto;
   --mask-size: 2rem;
-  transition: mask-size 0.25s linear(
-	  0 0%, 0.0027 3.64%, 0.0106 7.29%,
-	  0.0425 14.58%, 0.0957 21.87%,
-	  0.1701 29.16%, 0.2477 35.19%,
-	  0.3401 41.23%, 0.5982 55.18%,
-	  0.7044 61.56%, 0.7987 68.28%, 0.875 75%,
-	  0.9297 81.25%, 0.9687 87.5%,
-	  0.9922 93.75%, 1 100%
-	);
+  transition: mask-size 0.25s linear(0 0%, 0.0027 3.64%, 0.0106 7.29%,
+      0.0425 14.58%, 0.0957 21.87%,
+      0.1701 29.16%, 0.2477 35.19%,
+      0.3401 41.23%, 0.5982 55.18%,
+      0.7044 61.56%, 0.7987 68.28%, 0.875 75%,
+      0.9297 81.25%, 0.9687 87.5%,
+      0.9922 93.75%, 1 100%);
   scroll-timeline: --scroller;
   mask: linear-gradient(white, transparent) 0 0 / 100% 0 no-repeat,
     linear-gradient(white, white) 0 50% / 100% 100% no-repeat,
@@ -566,5 +564,92 @@
     section+& {
       padding-top: 0;
     }
+  }
+}
+
+.nq-input-box,
+[nq-input-box] {
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 4.5px 14px;
+  height: max-content;
+  min-width: 128px;
+
+  border-radius: 2px;
+  width: 100%;
+  background-color: transparent;
+  transition: colors 0.2s var(--nq-ease),
+    box-shadow 0.1s var(--nq-ease);
+  outline: 0;
+
+  --ring-color: rgba(var(--nq-neutral-500));
+  --color: rgb(var(--nq-neutral));
+  --placeholder-color: rgb(var(--nq-neutral-700));
+
+  box-shadow: 0 0 0 1.5px var(--ring-color);
+  color: var(--color);
+
+  &::placeholder {
+    color: var(--placeholder-color);
+  }
+
+  &:not(.nq-invalid, :user-invalid):is(:hover, :focus, :focus-within) {
+    --color: rgb(var(--nq-blue));
+    --ring-color: rgba(var(--nq-blue) / 0.3);
+
+    &::placeholder {
+      --placeholder-color: rgb(var(--nq-blue) / 0.6);
+    }
+
+    &:focus:valid,
+    &:focus-within:valid {
+      --ring-color: rgba(var(--nq-blue));
+    }
+  }
+
+  &:is(.nq-invalid, :user-invalid) {
+    --color: rgb(var(--nq-orange));
+    --ring-color: rgba(var(--nq-orange) / 0.4);
+
+    &::placeholder {
+      --placeholder-color: rgb(var(--nq-orange) / 0.7);
+    }
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+      --ring-color: rgba(var(--nq-orange));
+    }
+  }
+
+  &:is(:hover, :focus-visible, :focus-within) {
+    outline: 1.5px solid rgba(var(--ring-color));
+  }
+
+  &:is(textarea, :has(textarea)) {
+    --padding: 4px;
+    min-height: calc(3lh + 2 * var(--padding));
+    max-height: calc(5lh + 2 * var(--padding));
+    field-sizing: content;
+    padding: var(--padding) calc(var(--padding) + ((1lh - 1ex) / 2));
+  }
+}
+
+.focusable {
+  outline-color: rgb(var(--nq-blue));
+
+  &:focus-visible {
+    outline: 2px solid;
+    outline-offset: 3px;
+  }
+}
+
+.scroll-sm::-webkit-scrollbar {
+  width: 0.3rem;
+  height: 0.3rem;
+
+  @media screen and (min-width: 769px) {
+    width: 0.6rem;
+    height: 0.7rem;
   }
 }
