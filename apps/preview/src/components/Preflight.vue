@@ -93,7 +93,7 @@
 
       <div grid="~ gap-2">
         <input type="text" placeholder="Hey, hello :)" class="rounded-full" />
-        <input type="text" placeholder="Hey, hello :)" class="rounded-3 invalid" />
+        <input type="text" placeholder="Hey, hello :)" class="rounded-3 nq-invalid" />
         <textarea placeholder="Hey, hello :)" class="rounded-3" />
       </div>
     </section>

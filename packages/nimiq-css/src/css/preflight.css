@@ -175,8 +175,7 @@
 
   .nq-input-box,
   [nq-input-box],
-  input[type="text"],
-  textarea {
+  :is(input[type="text"],textarea):not(:is([nq-input-box], .nq-input-box) &) {
     font-size: 16px;
     line-height: 1.5;
     padding: 4.5px 14px;
@@ -201,7 +200,7 @@
       color: var(--placeholder-color);
     }
 
-    &:not(.invalid, :user-invalid):is(:hover, :focus) {
+    &:not(.nq-invalid, :user-invalid):is(:hover, :focus, :focus-within) {
       --color: rgb(var(--nq-blue));
       --ring-color: rgba(var(--nq-blue) / 0.3);
 
@@ -209,12 +208,12 @@
         --placeholder-color: rgb(var(--nq-blue) / 0.6);
       }
 
-      &:focus:valid {
+      &:focus:valid, &:focus-within:valid {
         --ring-color: rgba(var(--nq-blue));
       }
     }
 
-    &:is(.invalid, :user-invalid) {
+    &:is(.nq-invalid, :user-invalid) {
       --color: rgb(var(--nq-orange));
       --ring-color: rgba(var(--nq-orange) / 0.4);
 
@@ -223,12 +222,12 @@
       }
 
       &:hover,
-      &:focus {
+      &:focus, &:focus-within {
         --ring-color: rgba(var(--nq-orange));
       }
     }
 
-    &:is(:hover, :focus-visible) {
+    &:is(:hover, :focus-visible, :focus-within) {
       outline: 1.5px solid rgba(var(--ring-color));
     }
   }
