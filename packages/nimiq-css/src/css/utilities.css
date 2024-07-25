@@ -464,6 +464,7 @@
 
 .nq-curtain-y {
   overflow: auto;
+  position: sticky; /* You need to set top-0 or bottom-0! */
   --mask-size: 2rem;
   transition: mask-size 0.25s linear(0 0%, 0.0027 3.64%, 0.0106 7.29%,
       0.0425 14.58%, 0.0957 21.87%,
@@ -473,9 +474,10 @@
       0.9297 81.25%, 0.9687 87.5%,
       0.9922 93.75%, 1 100%);
   scroll-timeline: --scroller;
-  mask: linear-gradient(white, transparent) 0 0 / 100% 0 no-repeat,
-    linear-gradient(white, white) 0 50% / 100% 100% no-repeat,
-    linear-gradient(transparent, white) 0 100% / 100% var(--mask-size) no-repeat;
+  --curtain-color: var(--nq-neutral);
+  mask: linear-gradient(var(--curtain-color), transparent) 0 0 / 100% 0 no-repeat,
+    linear-gradient(var(--curtain-color), var(--curtain-color)) 0 50% / 100% 100% no-repeat,
+    linear-gradient(transparent, var(--curtain-color)) 0 100% / 100% var(--mask-size) no-repeat;
   mask-composite: exclude;
   mask-repeat: none;
   animation: mask-up both linear, mask-down both linear;
