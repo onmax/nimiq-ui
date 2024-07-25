@@ -164,6 +164,8 @@ function createPreset() {
     const { prefix = DEFAULT_PREFIX } = options
     const { gradients, colors } = getNimiqColors()
 
+    const rulesNames: string[] = []
+
     // This is the css to define the order of the CSS layers
     const layerDefinition: Preflight = {
       getCSS: () =>
@@ -196,8 +198,9 @@ function createPreset() {
     if (preflight) {
       preflights.push({
         layer: `${prefix}preflight`,
-        getCSS: () => wrapContentToLayer('preflight', prefix),
+        getCSS: () => wrapContentToLayer('preflight', prefix).replaceAll(/nq-/g, prefix),
       })
+      rulesNames.push(...[`${prefix}-input-box`, `${prefix}scroll-sm`, `${prefix}focusable`])
     }
 
     const { utilities = false, typography = false } = options
@@ -209,7 +212,7 @@ function createPreset() {
           res += `\n${res.replace('{scrollbar-width:none;}', '::-webkit-scrollbar{display: none;}')}`
           return res
         },
-        { layer: `${prefix}utilities` },
+        { layer: `${prefix}utilities`, autocomplete: `${prefix}scrollbar-hide` },
       ],
     ]
     
@@ -223,8 +226,6 @@ function createPreset() {
         { layer: `${prefix}colors` },
       ])
     }
-
-    const rulesNames: string[] = []
 
     if (utilities) {
       const { rules:_rules, rulesNames: _rulesNames} = cssToRules('utilities', { convertToAttributes: options.attributifyUtilities, prefix })

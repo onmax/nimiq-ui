@@ -173,8 +173,8 @@
     }
   }
 
-  .input-box,
-  [input-box],
+  .nq-input-box,
+  [nq-input-box],
   input[type="text"],
   textarea {
     font-size: 16px;
