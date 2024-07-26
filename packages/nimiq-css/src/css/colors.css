@@ -88,7 +88,7 @@
   --nq-orange-on-dark-500: 69 50 34;
   --nq-orange-on-dark-600: 81 56 32;
   --nq-orange-on-dark-1100: 255 153 0;
-  --nq-orange-on-light-gradient: radial-gradient(100% 100% at bottom right, #FD6216, rgb(var(--nimiq-orange-on-light)));
+  --nq-orange-on-light-gradient: radial-gradient(100% 100% at bottom right, #FD6216, rgb(var(--nq-orange-on-light)));
   --nq-orange-on-light-gradient-darkened: radial-gradient(100% 100% at bottom right, #EA5200, #FC7500);
   --nq-orange-on-dark-gradient: radial-gradient(100% 100% at 100% 100%, #ff8800 0%, #ff9900 100%);
   --nq-orange-on-dark-gradient-darkened: radial-gradient(100% 100% at 100% 100%, #ff8800 0%, #f29202 100%);
@@ -103,7 +103,7 @@
   --nq-red-on-dark-500: 69 37 48;
   --nq-red-on-dark-600: 81 41 50;
   --nq-red-on-dark-1100: 255 92 72;
-  --nq-red-on-light-gradient: radial-gradient(100% 100% at bottom right, #CC3047, rgb(var(--nimiq-red-on-light)));
+  --nq-red-on-light-gradient: radial-gradient(100% 100% at bottom right, #CC3047, rgb(var(--nq-red-on-light)));
   --nq-red-on-light-gradient-darkened: radial-gradient(100% 100% at 100% 100%, #BF2D46 0%, #D13030 100%);
   --nq-red-on-dark-gradient: radial-gradient(100% 100% at 100% 100%, #ff391f 0%, #ff5c48 100%);
   --nq-red-on-dark-gradient-darkened: radial-gradient(100% 100% at 100% 100%, #ff391f 0%, #ef5c48 100%);
