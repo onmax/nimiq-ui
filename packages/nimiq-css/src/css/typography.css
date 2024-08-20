@@ -356,12 +356,13 @@
           content: '';
           width: 0.375rem;
           height: 0.375rem;
-          top: -0.1875rem;
-          display: inline-block;
           position: relative;
           border-radius: 0.1875rem;
           background-color: rgb(var(--nq-neutral-600));
           margin-right: 0.6em;
+          float: left;
+          margin-left: -1em;
+          top: 0.625rem;
         }
       }
     }
