@@ -201,20 +201,8 @@
     opacity: 0.5;
   }
 
-  &:not([disabled]) {
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 9999px;
-      opacity: 0;
-      transition: opacity 300ms var(--nq-ease);
-      z-index: -1;
-    }
-
-    &:is(:hover, :active, :focus)::before {
-      opacity: 1;
-    }
+  &:not([disabled]):is(:hover, :active, :focus)::before {
+    opacity: 1;
   }
 
   &:focus-visible {
