@@ -24,10 +24,16 @@ export interface NimiqPresetOptions {
 
   /**
    * Whether to reset the styles of the page
-   *
-   * @default tailwind-compat
+   * Can be a boolean, a preset name, or a path to a custom reset CSS file
+   * @default 'tailwind-compat'
    */
-  reset?: boolean | 'tailwind-compat' | 'tailwind' | 'eric-meyer' | 'normalize'
+  reset?: boolean | 'tailwind-compat' | 'tailwind' | 'eric-meyer' | 'normalize' | string
+
+  /**
+   * Custom path to the @unocss/reset directory
+   * @default undefined
+   */
+  resetPath?: string
 
   /**
    * Whether to include the default Nimiq font locally and its paths
@@ -172,15 +178,37 @@ function createPreset() {
         `@layer ${['reset', 'colors', 'preflight', 'typography', 'utilities'].map(layer => `${prefix}${layer}`).join(', ')};`,
     }
 
-    const { reset = 'tailwind-compat' } = options
+    const { reset = 'tailwind-compat', resetPath } = options
     const resetLayer: Preflight = {
       getCSS() {
-        if (reset === false)
-          return ''
+        if (reset === false) return ''
+
+        let content: string
         const fileName = reset === true ? 'tailwind-compat' : reset
-        const url = resolve(`node_modules/@unocss/reset/${fileName}.css`)
-        const content = readFileSync(url, 'utf-8')
-        return `@layer ${prefix}reset { /* CSS Reset ${fileName}*/ ${content} }`
+
+        try {
+          if (typeof reset === 'string' && reset.endsWith('.css')) {
+            // User provided a custom CSS file path
+            if (!existsSync(reset)) {
+              throw new Error(`Custom reset CSS file not found: ${reset}`)
+            }
+            content = readFileSync(reset, 'utf-8')
+          } else {
+            if (!resetPath) {
+              throw new Error('resetPath must be provided when using a preset reset name')
+            }
+            const resetFilePath = resolve(resetPath, `${fileName}.css`)
+            if (!existsSync(resetFilePath)) {
+              throw new Error(`Reset CSS file not found: ${resetFilePath}`)
+            }
+            content = readFileSync(resetFilePath, 'utf-8')
+          }
+        } catch (error) {
+          console.error(`Error reading reset CSS file: ${error}`)
+          throw error // Re-throw to stop the process if reset file is critical
+        }
+
+        return `@layer ${prefix}reset { /* CSS Reset ${fileName} */ ${content} }`
       },
       layer: `${prefix}reset`,
     }
@@ -306,6 +334,7 @@ function createPreset() {
       rules,
       layers: {
         [`${prefix}reset`]: -1,
+        [`${prefix}my-layer`]: 1000,
       },
     }
     return preset
