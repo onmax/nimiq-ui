@@ -195,7 +195,7 @@
   --nq-purple-500: var(--nq-purple-on-light-500);
   --nq-purple-600: var(--nq-purple-on-light-600);
 
-  &.dark {
+  :is(&.dark, & .dark) {
     --nq-neutral: var(--nq-neutral-on-dark);
     --nq-neutral-0: var(--nq-neutral-on-dark-0);
     --nq-neutral-50: var(--nq-neutral-on-dark-50);
