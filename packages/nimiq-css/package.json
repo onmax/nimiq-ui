@@ -29,11 +29,6 @@
   "scripts": {
     "build": "unbuild && cp -r src/css dist/css/unminified && cp -r src/assets/ dist"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0",
-    "unocss": "^0.58.5",
-    "vite": "^2.9.0 || ^3.0.0-0 || ^4.0.0 || ^5.0.0-0"
-  },
   "dependencies": {
     "@unocss/reset": "0.62.3",
     "ts-cssjson": "^3.0.1",
