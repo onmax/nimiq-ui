@@ -26,7 +26,7 @@ export interface NimiqPresetOptions {
    * Whether to reset the styles of the page
    * @default 'tailwind-compat'
    */
-  reset?: boolean | 'tailwind-compat' | 'tailwind' | 'eric-meyer' | 'normalize'
+  reset?: boolean | 'tailwind-compat' | 'tailwind' | 'eric-meyer' | 'normalize' | string
 
   /**
    * Whether to include the default Nimiq font locally and its paths
@@ -180,17 +180,23 @@ function createPreset() {
         const fileName = reset === true ? 'tailwind-compat' : reset
 
         try {
-          if (typeof reset !== 'boolean' && !['tailwind-compat', 'tailwind', 'eric-meyer', 'normalize'].includes(reset)) {
-            throw new Error(`Invalid reset option: ${reset}`)
+          if (typeof reset === 'string' && !['tailwind-compat', 'tailwind', 'eric-meyer', 'normalize'].includes(reset)) {
+            // Custom file path provided
+            const customFilePath = resolve(process.cwd(), fileName)
+            if (!existsSync(customFilePath)) {
+              throw new Error(`Custom reset CSS file not found: ${customFilePath}`)
+            }
+            content = readFileSync(customFilePath, 'utf-8')
+          } else {
+            // Default reset options
+            const resetFilePath = resolve(__dirname, '../css', `${fileName}.css`)
+            if (!existsSync(resetFilePath)) {
+              throw new Error(`Reset CSS file not found: ${resetFilePath}`)
+            }
+            content = readFileSync(resetFilePath, 'utf-8')
           }
-
-          const resetFilePath = resolve(__dirname, '../css', `${fileName}.css`)
-          if (!existsSync(resetFilePath)) {
-            throw new Error(`Reset CSS file not found: ${resetFilePath}`)
-          }
-          content = readFileSync(resetFilePath, 'utf-8')
         } catch (error) {
-          console.warn(`Error reading reset CSS file: ${error}. Leaving reset CSS empty.`)
+          console.warn(`Error reading reset CSS file: ${fileName}. Error: ${JSON.stringify(error)}`)
           return ''
         }
 
