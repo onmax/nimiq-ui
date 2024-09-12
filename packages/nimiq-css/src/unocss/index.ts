@@ -24,16 +24,9 @@ export interface NimiqPresetOptions {
 
   /**
    * Whether to reset the styles of the page
-   * Can be a boolean, a preset name, or a path to a custom reset CSS file
    * @default 'tailwind-compat'
    */
-  reset?: boolean | 'tailwind-compat' | 'tailwind' | 'eric-meyer' | 'normalize' | string
-
-  /**
-   * Custom path to the @unocss/reset directory
-   * @default undefined
-   */
-  resetPath?: string
+  reset?: boolean | 'tailwind-compat' | 'tailwind' | 'eric-meyer' | 'normalize'
 
   /**
    * Whether to include the default Nimiq font locally and its paths
@@ -72,6 +65,13 @@ export interface NimiqPresetOptions {
    * @default false
    */
   attributifyUtilities?: boolean
+
+  /**
+   * Includes the CSS designed for static content like blog posts or information pages.
+   * 
+   * @default false
+   */
+  staticContent?: boolean
 }
 
 function createPreset() {
@@ -82,8 +82,7 @@ function createPreset() {
   const cssDir = unminifiedExists ? unminifiedFolder : _cssDir
   const p = (name: string) => `${cssDir}/${name}.css`
   const readContent = (path: string) => readFileSync(path, 'utf-8')
-  const wrapContentToLayer = (name: string, prefix: string) =>
-    `@layer ${prefix}${name} { ${readContent(p(name))} }`
+  const wrapContentToLayer = (name: string, prefix: string) => readContent(p(name))
 
   interface CssToRulesOptions { convertToAttributes?: boolean, prefix?: string }
 
@@ -133,7 +132,7 @@ function createPreset() {
     const rules: Preset['rules'] = Object.entries(rulesSetup).map(
       ([selector, { css, re }]) => [
         re,
-        () => `@layer ${layer} { ${selector} { ${css} } }`,
+        () => `${selector} { ${css} }`,
         { layer },
       ],
     )
@@ -172,13 +171,7 @@ function createPreset() {
 
     const rulesNames: string[] = []
 
-    // This is the css to define the order of the CSS layers
-    const layerDefinition: Preflight = {
-      getCSS: () =>
-        `@layer ${['reset', 'colors', 'preflight', 'typography', 'utilities'].map(layer => `${prefix}${layer}`).join(', ')};`,
-    }
-
-    const { reset = 'tailwind-compat', resetPath } = options
+    const { reset = 'tailwind-compat' } = options
     const resetLayer: Preflight = {
       getCSS() {
         if (reset === false) return ''
@@ -187,35 +180,27 @@ function createPreset() {
         const fileName = reset === true ? 'tailwind-compat' : reset
 
         try {
-          if (typeof reset === 'string' && reset.endsWith('.css')) {
-            // User provided a custom CSS file path
-            if (!existsSync(reset)) {
-              throw new Error(`Custom reset CSS file not found: ${reset}`)
-            }
-            content = readFileSync(reset, 'utf-8')
-          } else {
-            if (!resetPath) {
-              throw new Error('resetPath must be provided when using a preset reset name')
-            }
-            const resetFilePath = resolve(resetPath, `${fileName}.css`)
-            if (!existsSync(resetFilePath)) {
-              throw new Error(`Reset CSS file not found: ${resetFilePath}`)
-            }
-            content = readFileSync(resetFilePath, 'utf-8')
+          if (typeof reset !== 'boolean' && !['tailwind-compat', 'tailwind', 'eric-meyer', 'normalize'].includes(reset)) {
+            throw new Error(`Invalid reset option: ${reset}`)
           }
+
+          const resetFilePath = resolve(__dirname, '../css', `${fileName}.css`)
+          if (!existsSync(resetFilePath)) {
+            throw new Error(`Reset CSS file not found: ${resetFilePath}`)
+          }
+          content = readFileSync(resetFilePath, 'utf-8')
         } catch (error) {
-          console.error(`Error reading reset CSS file: ${error}`)
-          throw error // Re-throw to stop the process if reset file is critical
+          console.warn(`Error reading reset CSS file: ${error}. Leaving reset CSS empty.`)
+          return ''
         }
 
-        return `@layer ${prefix}reset { /* CSS Reset ${fileName} */ ${content} }`
+        return `/* CSS Reset ${fileName} */\n${content}`
       },
       layer: `${prefix}reset`,
     }
 
-    const { preflight = true } = options
+    const { preflight = true, staticContent = false } = options
     const preflights: Preset['preflights'] = [
-      layerDefinition,
       resetLayer,
       {
         layer: `${prefix}colors`,
@@ -227,6 +212,13 @@ function createPreset() {
       preflights.push({
         layer: `${prefix}preflight`,
         getCSS: () => wrapContentToLayer('preflight', prefix).replaceAll(/nq-/g, prefix),
+      })
+    }
+
+    if (staticContent) {
+      preflights.push({
+        layer: `${prefix}static-content`,
+        getCSS: () => wrapContentToLayer('static-content', prefix).replaceAll(/nq-/g, prefix),
       })
     }
 
@@ -327,19 +319,23 @@ function createPreset() {
       theme: {
         colors,
       },
+      outputToCssLayers: true,
       autocomplete: {
         templates: rulesNames
       },
       presets,
       rules,
       layers: {
-        [`${prefix}reset`]: -1,
-        [`${prefix}my-layer`]: 1000,
+        [`${prefix}reset`]: -10,
+        [`${prefix}colors`]: 0,
+        [`${prefix}preflight`]: 10,
+        [`${prefix}static-content`]: 20,
+        [`${prefix}utilities`]: 30,
       },
     }
     return preset
   }
 }
 
-export const presetNimiq: PresetFactory<object, NimiqPresetOptions>
-  = definePreset(createPreset())
+export const presetNimiq: PresetFactory<object, NimiqPresetOptions> = definePreset(createPreset())
+
