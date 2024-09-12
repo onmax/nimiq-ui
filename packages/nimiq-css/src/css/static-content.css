@@ -85,9 +85,9 @@ section {
   justify-content: center;
 
   --px: 32px;
-  padding: var(--pt, 0) var(--px) var(--pb, 0);
-  padding-right: var(--px);
-  padding-left: var(--px);
+  --pt: 0;
+  --pb: 0;
+  padding: var(--pt, 0) var(--px, 0) var(--pb, 0) var(--px, 0);
 
   @media screen and (min-width: 768px) {
     --px: 64px;
@@ -109,7 +109,6 @@ section {
       @media screen and (min-width: 1024px) {
         --pt: 200px;
       }
-      
     }
 
     &.dark + section.dark,

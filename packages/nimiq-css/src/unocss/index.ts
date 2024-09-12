@@ -81,8 +81,7 @@ function createPreset() {
   const unminifiedExists = existsSync(unminifiedFolder)
   const cssDir = unminifiedExists ? unminifiedFolder : _cssDir
   const p = (name: string) => `${cssDir}/${name}.css`
-  const readContent = (path: string) => readFileSync(path, 'utf-8')
-  const wrapContentToLayer = (name: string, prefix: string) => readContent(p(name))
+  const readContent = (name: string) => readFileSync(p(name), 'utf-8')
 
   interface CssToRulesOptions { convertToAttributes?: boolean, prefix?: string }
 
@@ -95,7 +94,7 @@ function createPreset() {
 
     const layer = `${prefix}${name}`
 
-    const content = readContent(p(name)).replaceAll(
+    const content = readContent(name).replaceAll(
       'data:image/svg+xml;',
       'SEMICOLON_BUG_HACK',
     )
@@ -140,7 +139,7 @@ function createPreset() {
   }
 
   function extractKeyframes(name: string) {
-    const content = readContent(p(name)).replaceAll(
+    const content = readContent(name).replaceAll(
       'data:image/svg+xml;',
       'SEMICOLON_BUG_HACK',
     )
@@ -210,21 +209,21 @@ function createPreset() {
       resetLayer,
       {
         layer: `${prefix}colors`,
-        getCSS: () => wrapContentToLayer('colors', prefix),
+        getCSS: () => readContent('colors'),
       },
     ]
 
     if (preflight) {
       preflights.push({
         layer: `${prefix}preflight`,
-        getCSS: () => wrapContentToLayer('preflight', prefix).replaceAll(/nq-/g, prefix),
+        getCSS: () => readContent('preflight').replaceAll(/nq-/g, prefix),
       })
     }
 
     if (staticContent) {
       preflights.push({
         layer: `${prefix}static-content`,
-        getCSS: () => wrapContentToLayer('static-content', prefix).replaceAll(/nq-/g, prefix),
+        getCSS: () => readContent('static-content').replaceAll(/nq-/g, prefix),
       })
     }
 
@@ -332,11 +331,12 @@ function createPreset() {
       presets,
       rules,
       layers: {
-        [`${prefix}reset`]: -10,
+        [`${prefix}reset`]: -100,
         [`${prefix}colors`]: 0,
-        [`${prefix}preflight`]: 10,
-        [`${prefix}static-content`]: 20,
-        [`${prefix}utilities`]: 30,
+        [`${prefix}preflight`]: 100,
+        [`${prefix}static-content`]: 200,
+        [`${prefix}typography`]: 250,
+        [`${prefix}utilities`]: 300,
       },
     }
     return preset
