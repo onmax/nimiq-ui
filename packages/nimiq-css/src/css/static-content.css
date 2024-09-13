@@ -164,8 +164,8 @@ section {
   }
 
   &:not(.no-py) {
-    &.dark + section.light,
-    &.light + section.dark {
+    &.dark + section:not(.dark),
+    &:not(.dark) + section.dark {
       --pt: 160px;
 
       @media screen and (min-width: 1024px) {
@@ -174,7 +174,7 @@ section {
     }
 
     &.dark + section.dark,
-    &.light + section.light {
+    &:not(.dark) + section:not(.dark) {
         --pt: 72px;
 
       @media screen and (min-width: 1024px) {
@@ -182,8 +182,8 @@ section {
       }
     }
 
-    &.dark:has(+ section.light),
-    &.light:has(+ section.dark) {
+    &.dark:has(+ section:not(.dark)),
+    &:not(.dark):has(+ section.dark) {
       --pb: 160px;
 
       @media screen and (min-width: 1024px) {
