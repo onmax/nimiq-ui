@@ -332,8 +332,8 @@ function createPreset() {
       rules,
       layers: {
         [`${prefix}reset`]: -100,
-        [`${prefix}colors`]: 0,
-        [`${prefix}preflight`]: 100,
+        [`${prefix}colors`]: -50,
+        [`${prefix}preflight`]: -50,
         [`${prefix}static-content`]: 200,
         [`${prefix}typography`]: 250,
         [`${prefix}utilities`]: 300,
