@@ -59,7 +59,7 @@ h1 + p {
   font-weight: 600;
   color: rgb(var(--nq-neutral-700) / 1);
   line-height: 1.5;
-  max-width: 70ch;
+  max-width: 40ch;
 
   /* Adjusted font sizes */
   --font-size-min: 20;
