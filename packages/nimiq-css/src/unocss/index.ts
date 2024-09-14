@@ -208,7 +208,7 @@ function createPreset() {
 
         return `/* CSS Reset ${fileName} */\n${content}`
       },
-      layer: `${prefix}reset`,
+      layer: `@layer ${prefix}reset`, 
     }
 
     const { preflight = true, staticContent = false } = options
@@ -357,8 +357,11 @@ function createPreset() {
         [`${prefix}reset`]: -100,
         [`${prefix}colors`]: -50,
         [`${prefix}preflight`]: -50,
+        'components': -1,
+        'default': 1,
         [`${prefix}static-content`]: 200,
         [`${prefix}typography`]: 250,
+        'utilities': 2,
         [`${prefix}utilities`]: 300,
       },
     }
