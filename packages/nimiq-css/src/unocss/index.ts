@@ -81,7 +81,8 @@ function createPreset() {
   const unminifiedExists = existsSync(unminifiedFolder)
   const cssDir = unminifiedExists ? unminifiedFolder : _cssDir
   const p = (name: string) => `${cssDir}/${name}.css`
-  const readContent = (name: string) => `@layer nq-${name} { \n${readFileSync(p(name), 'utf-8')}\n}`
+  const wrapToLayer = (prefix: string, name: string, content: string) => `@layer ${prefix}${name} { \n${content}\n}`
+  const readContent = (name: string) => readFileSync(p(name), 'utf-8')
 
   interface CssToRulesOptions { convertToAttributes?: boolean, prefix?: string }
 
@@ -206,9 +207,9 @@ function createPreset() {
           return ''
         }
 
-        return `/* CSS Reset ${fileName} */\n${content}`
+        return wrapToLayer(prefix, 'reset', content)
       },
-      layer: `@layer ${prefix}reset`, 
+      layer: `${prefix}reset`, 
     }
 
     const { preflight = true, staticContent = false } = options
@@ -217,21 +218,21 @@ function createPreset() {
       resetLayer,
       {
         layer: `${prefix}colors`,
-        getCSS: () => readContent('colors'),
+        getCSS: () => wrapToLayer(prefix, 'colors', readContent('colors')),
       },
     ]
 
     if (preflight) {
       preflights.push({
         layer: `${prefix}preflight`,
-        getCSS: () => readContent('preflight').replaceAll(/nq-/g, prefix),
+        getCSS: () => wrapToLayer(prefix, 'preflight', readContent('preflight').replaceAll(/nq-/g, prefix)),
       })
     }
 
     if (staticContent) {
       preflights.push({
         layer: `${prefix}static-content`,
-        getCSS: () => readContent('static-content').replaceAll(/nq-/g, prefix),
+        getCSS: () => wrapToLayer(prefix, 'static-content', readContent('static-content').replaceAll(/nq-/g, prefix)),
       })
     }
 
