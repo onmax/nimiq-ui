@@ -362,8 +362,8 @@ function createPreset() {
         'default': 1,
         [`${prefix}static-content`]: 200,
         [`${prefix}typography`]: 250,
-        'utilities': 2,
         [`${prefix}utilities`]: 300,
+        'utilities': 400,
       },
     }
     return preset
