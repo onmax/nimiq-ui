@@ -324,6 +324,22 @@ function createPreset() {
           selector: s => `${s}:hover, ${s}:focus-visible`,
         }
       },
+      (matcher) => {
+        if (!matcher.startsWith('selected:'))
+          return matcher
+        return {
+          matcher: matcher.slice(9),
+          selector: s => `[data-selected] ${s}`,
+        }
+      },
+      (matcher) => {
+        if (!matcher.startsWith('not-selected:'))
+          return matcher
+        return {
+          matcher: matcher.slice(13),
+          selector: s => `:not([data-selected]) ${s}`,
+        }
+      },
     ]
     const preset: Preset = {
       name: 'nimiq-preset',
@@ -332,7 +348,6 @@ function createPreset() {
       theme: {
         colors,
       },
-      outputToCssLayers: true,
       autocomplete: {
         templates: rulesNames
       },
