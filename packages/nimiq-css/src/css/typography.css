@@ -5,16 +5,16 @@
   margin-trim: block;
 
   >*:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)):last-child {
-    padding-bottom: 6rem;
+    padding-bottom: 6em;
 
     @media (min-width: 1153px) {
-      padding-bottom: 8rem;
+      padding-bottom: 8em;
     }
   }
 
   >*:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)) {
-    padding-right: 2rem;
-    padding-left: 2rem;
+    padding-right: 2em;
+    padding-left: 2em;
   }
 
   >*:first-child {
@@ -23,120 +23,120 @@
   }
 
   *:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)) {
-    font-size: 1rem;
+    font-size: 1em;
     line-height: 1.5;
-    max-width: calc(74ch + 2rem + 2rem);
+    max-width: calc(74ch + 2em + 2em);
     margin-left: auto;
     margin-right: auto;
 
     &:is(h1) {
-      font-size: 2.75rem;
-      line-height: 3.3125rem;
+      font-size: 2.75em;
+      line-height: 3.3125em;
       font-weight: 700;
 
       @media (min-width: 1153px) {
-        font-size: 3rem;
+        font-size: 3em;
       }
 
-      margin-bottom: 7rem;
-      margin-top: 9rem;
+      margin-bottom: 7em;
+      margin-top: 9em;
 
       @media (min-width: 769px) {
-        margin-bottom: 7.5rem;
+        margin-bottom: 7.5em;
       }
     }
 
     &:is(h2) {
-      font-size: 2rem;
-      line-height: 2.625rem;
+      font-size: 2em;
+      line-height: 2.625em;
       font-weight: 700;
 
       @media (min-width: 769px) {
-        font-size: 2.25rem;
-        line-height: 2.9375rem;
+        font-size: 2.25em;
+        line-height: 2.9375em;
       }
 
       @media (min-width: 1153px) {
-        font-size: 2.375rem;
-        line-height: 3.0625rem;
+        font-size: 2.375em;
+        line-height: 3.0625em;
       }
 
-      margin-top: 5.5rem;
-      margin-bottom: 1.5rem;
+      margin-top: 5.5em;
+      margin-bottom: 1.5em;
 
       @media (min-width: 769px) {
-        margin-top: 6rem;
+        margin-top: 6em;
       }
     }
 
     &:is(h1+h2) {
-      margin-top: 3.5rem;
+      margin-top: 3.5em;
 
       @media (min-width: 1153px) {
-        margin-top: 4rem;
+        margin-top: 4em;
       }
     }
 
 
     &:is(h3) {
-      font-size: 1.625rem;
-      line-height: 2.125rem;
+      font-size: 1.625em;
+      line-height: 2.125em;
       font-weight: 700;
 
       @media (min-width: 769px) {
-        font-size: 1.75rem;
-        line-height: 2.25rem;
+        font-size: 1.75em;
+        line-height: 2.25em;
       }
 
       @media (min-width: 1153px) {
-        font-size: 1.875rem;
-        line-height: 2.4375rem;
+        font-size: 1.875em;
+        line-height: 2.4375em;
       }
 
-      margin-top: 5.5rem;
-      margin-bottom: 1.5rem;
+      margin-top: 5.5em;
+      margin-bottom: 1.5em;
 
       @media (min-width: 769px) {
-        margin-top: 4rem;
+        margin-top: 4em;
       }
     }
 
     &:is(h2+h3) {
-      margin-top: 3rem;
+      margin-top: 3em;
 
       @media (min-width: 1153px) {
-        margin-top: 3.5rem;
+        margin-top: 3.5em;
       }
     }
 
     &:is(h4) {
-      font-size: 1.375rem;
-      line-height: 1.8125rem;
+      font-size: 1.375em;
+      line-height: 1.8125em;
       font-weight: 700;
 
       @media (min-width: 769px) {
-        font-size: 1.5rem;
-        line-height: 1.9375rem;
+        font-size: 1.5em;
+        line-height: 1.9375em;
       }
 
       @media (min-width: 1153px) {
-        font-size: 1.625rem;
-        line-height: 2.125rem;
+        font-size: 1.625em;
+        line-height: 2.125em;
       }
 
-      margin-top: 5.5rem;
-      margin-bottom: 1.5rem;
+      margin-top: 5.5em;
+      margin-bottom: 1.5em;
 
       @media (min-width: 769px) {
-        margin-top: 6rem;
+        margin-top: 6em;
       }
     }
 
     &:is(h3+h4) {
-      margin-top: 2.5rem;
+      margin-top: 2.5em;
 
       @media (min-width: 1153px) {
-        margin-top: 3rem;
+        margin-top: 3em;
       }
     }
 
@@ -176,7 +176,7 @@
       >a {
         position: absolute;
         inset: 0;
-        padding-left: 2rem;
+        padding-left: 2em;
         font-size: inherit;
         font-weight: inherit;
         top: -6px;
@@ -184,7 +184,7 @@
         &::after {
           position: absolute;
           inset: 0;
-          border-radius: 0.5rem;
+          border-radius: 0.5em;
         }
       }
     }
@@ -192,24 +192,24 @@
     &:is(p) {
       margin-top: 0;
       margin-bottom: 0;
-      font-size: 1rem;
+      font-size: 1em;
       line-height: 1.75;
 
       &+p {
-        margin-top: 1.5rem;
+        margin-top: 1.5em;
       }
     }
 
     &:is(h1+p) {
-      margin-top: 7rem;
+      margin-top: 7em;
 
       @media (min-width: 1153px) {
-        margin-top: 7.5rem;
+        margin-top: 7.5em;
       }
     }
 
     &:is(h2, h3, h4)+p {
-      margin-top: -0.4375rem;
+      margin-top: -0.4375em;
     }
 
     &:is(blockquote) {
@@ -217,8 +217,8 @@
       margin-left: 0;
 
       &:not(figure blockquote) {
-        margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
 
         /*
           We add the borders to blockquote if is not a children of figure
@@ -229,97 +229,97 @@
           content: '';
           display: block;
           width: 100%;
-          height: 0.125rem;
+          height: 0.125em;
           background-color: rgb(var(--nq-neutral-400));
           border-radius: 1px;
         }
 
         &>* {
-          padding: 1.2rem 1.25em;
+          padding: 1.2em 1.25em;
 
           @media (min-width: 769px) {
-            padding: 1.5rem 2em;
+            padding: 1.5em 2em;
           }
         }
       }
 
       * {
-        font-size: 1.3125rem;
+        font-size: 1.3125em;
         font-weight: 700;
-        line-height: 2.125rem;
+        line-height: 2.125em;
 
         @media (min-width: 769px) {
-          font-size: 1.375rem;
-          line-height: 2.1875rem;
+          font-size: 1.375em;
+          line-height: 2.1875em;
         }
 
         @media (min-width: 1153px) {
-          font-size: 1.5rem;
-          line-height: 2.375rem;
+          font-size: 1.5em;
+          line-height: 2.375em;
         }
       }
     }
 
     &:is(figure) {
       figcaption {
-        font-size: 0.875rem;
+        font-size: 0.875em;
         font-weight: 700;
-        line-height: 1.3125rem;
+        line-height: 1.3125em;
       }
 
       &:has(blockquote) {
-        margin-top: 2rem;
-        margin-bottom: 1.5rem;
+        margin-top: 2em;
+        margin-bottom: 1.5em;
 
         &::after,
         &::before {
           content: '';
           display: block;
           width: 100%;
-          height: 0.125rem;
+          height: 0.125em;
           background-color: rgb(var(--nq-neutral-400));
           border-radius: 1px;
         }
 
         blockquote {
-          padding: 1.5rem 1.25em 0 1.25em;
+          padding: 1.5em 1.25em 0 1.25em;
 
           @media (min-width: 769px) {
-            padding: 1.5rem 2em 0 2em;
+            padding: 1.5em 2em 0 2em;
           }
         }
 
         figcaption {
-          font-size: 0.875rem;
+          font-size: 0.875em;
           font-weight: 400;
-          line-height: 1.3125rem;
-          padding: 1.5rem 1.25em;
-          margin-top: -1.25rem;
+          line-height: 1.3125em;
+          padding: 1.5em 1.25em;
+          margin-top: -1.25em;
 
           @media (min-width: 769px) {
-            padding: 1.5rem 2em;
-            margin-top: -1.5rem;
-            font-size: 1rem;
-            line-height: 1.5rem;
+            padding: 1.5em 2em;
+            margin-top: -1.5em;
+            font-size: 1em;
+            line-height: 1.5em;
           }
         }
       }
     }
 
     &:is(img, video, iframe) {
-      border-radius: 0.375rem;
-      margin-top: 1.5rem;
+      border-radius: 0.375em;
+      margin-top: 1.5em;
 
       &:has(+ figcaption) {
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.75em;
 
         @media (min-width: 321px) {
-          margin-bottom: 1rem;
+          margin-bottom: 1em;
         }
       }
 
       &:not(:has(+ figcaption)) {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.5em;
       }
     }
 
@@ -327,7 +327,7 @@
     &:is(img, video, iframe, table),
     /* Select code and pre that are not child of p,ul,ol... */
     &:is(code, pre):not(:where(:is(p, ul, ol, pre, code, table) :is(pre, code))) {
-      margin-left: -1.5rem;
+      margin-left: -1.5em;
       width: min(calc(100% + 3rem), 700px);
 
       @media (min-width: 768px) {
@@ -339,30 +339,30 @@
 
     &:is(ul) {
       list-style: none;
-      padding-left: 1rem;
-      margin-top: 1rem;
-      margin-bottom: 1.75rem;
+      padding-left: 1em;
+      margin-top: 1em;
+      margin-bottom: 1.75em;
 
       @media (min-width: 769px) {
-        padding-left: 1.375rem;
+        padding-left: 1.375em;
       }
 
 
       li {
-        margin: 1rem 0;
+        margin: 1em 0;
         display: block;
 
         &::before {
           content: '';
-          width: 0.375rem;
-          height: 0.375rem;
+          width: 0.375em;
+          height: 0.375em;
           position: relative;
-          border-radius: 0.1875rem;
+          border-radius: 0.1875em;
           background-color: rgb(var(--nq-neutral-600));
           margin-right: 0.6em;
           float: left;
           margin-left: -1em;
-          top: 0.625rem;
+          top: 0.625em;
         }
       }
     }
@@ -370,17 +370,17 @@
     &:is(ol) {
       list-style: none;
       counter-reset: item;
-      padding-left: 0.8125rem;
-      margin-top: 1rem;
-      margin-bottom: 1.75rem;
+      padding-left: 0.8125em;
+      margin-top: 1em;
+      margin-bottom: 1.75em;
 
       @media (min-width: 769px) {
-        padding-left: 1.125rem;
+        padding-left: 1.125em;
       }
 
       li {
-        counter-increment: item;
-        margin: 1rem 0;
+        counter-incement: item;
+        margin: 1em 0;
 
         &::before {
           content: counter(item);
@@ -394,7 +394,7 @@
 
     &:is(code) {
       font-size: 0.9em;
-      border-radius: 0.25rem;
+      border-radius: 0.25em;
 
       &:not(:is(:where(:is(h1, h2, h3, h4) &), pre > &)) {
         padding: 0px 0.5em;
@@ -403,10 +403,10 @@
 
     &:is(pre) {
       font-size: 1em;
-      margin-top: 1.5rem;
-      margin-bottom: 1.75rem;
-      padding: 1.5rem;
-      border-radius: 0.375rem;
+      margin-top: 1.5em;
+      margin-bottom: 1.75em;
+      padding: 1.5em;
+      border-radius: 0.375em;
       box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.08);
     }
 
@@ -423,13 +423,13 @@
     }
 
     table {
-      margin-top: 2.5rem;
-      margin-bottom: 2.5rem;
+      margin-top: 2.5em;
+      margin-bottom: 2.5em;
       display: block;
       overflow-x: auto;
       border-spacing: 0;
       border-collapse: separate;
-      border-radius: 0.375rem;
+      border-radius: 0.375em;
       border: 1px solid rgb(var(--nq-neutral-300));
       max-height: 90dvh;
       max-width: max-content;
@@ -438,13 +438,13 @@
       code,
       pre {
         line-height: 1.3;
-        padding: 0.25rem;
+        padding: 0.25em;
         position: relative;
       }
 
       th,
       td {
-        padding: 0.75rem;
+        padding: 0.75em;
       }
 
       thead th {
@@ -477,15 +477,15 @@
     }
 
     hr {
-      margin: 2rem auto;
-      width: 8rem;
+      margin: 2em auto;
+      width: 8em;
       border-color: rgb(var(--nq-neutral-500));
     }
 
     details {
-      border-radius: 0.4rem;
+      border-radius: 0.4em;
       background-color: rgb(var(--nq-neutral-200));
-      margin: 1.5rem 0;
+      margin: 1.5em 0;
       color: rgb(var(--nq-neutral-900));
       box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.1);
 
@@ -494,8 +494,8 @@
       }
 
       summary {
-        padding: 1rem 2rem 1rem calc(0.7em + 2.3rem);
-        font-size: 1rem;
+        padding: 1em 2em 1em calc(0.7em + 2.3em);
+        font-size: 1em;
         position: relative;
         display: flex;
         align-items: center;
@@ -516,7 +516,7 @@
           display: inline-block;
           position: absolute;
           left: 0;
-          padding-left: 4rem;
+          padding-left: 4em;
         }
       }
 
@@ -527,7 +527,7 @@
       }
 
       >*:not(summary) {
-        padding: 0 1rem 1rem 1rem;
+        padding: 0 1em 1em 1em;
       }
     }
   }
