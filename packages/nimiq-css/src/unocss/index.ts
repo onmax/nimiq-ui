@@ -81,7 +81,7 @@ function createPreset() {
   const unminifiedExists = existsSync(unminifiedFolder)
   const cssDir = unminifiedExists ? unminifiedFolder : _cssDir
   const p = (name: string) => `${cssDir}/${name}.css`
-  const readContent = (name: string) => readFileSync(p(name), 'utf-8')
+  const readContent = (name: string) => `@layer nq-${name} { \n${readFileSync(p(name), 'utf-8')}\n}`
 
   interface CssToRulesOptions { convertToAttributes?: boolean, prefix?: string }
 
