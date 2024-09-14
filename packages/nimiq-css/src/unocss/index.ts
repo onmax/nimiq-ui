@@ -170,6 +170,13 @@ function createPreset() {
 
     const rulesNames: string[] = []
 
+     // This is the css to define the order of the CSS layers
+    const layerDefinition: Preflight = {
+      getCSS: () =>
+        `@layer ${['reset', 'colors', 'preflight', 'static-content', 'typography', 'utilities'].map(layer => `${prefix}${layer}`).join(', ')};`,
+    }
+
+
     const { reset = 'tailwind-compat' } = options
     const resetLayer: Preflight = {
       getCSS() {
@@ -206,6 +213,7 @@ function createPreset() {
 
     const { preflight = true, staticContent = false } = options
     const preflights: Preset['preflights'] = [
+      layerDefinition,
       resetLayer,
       {
         layer: `${prefix}colors`,
