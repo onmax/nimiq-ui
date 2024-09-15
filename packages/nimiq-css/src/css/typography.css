@@ -370,24 +370,38 @@
     &:is(ol) {
       list-style: none;
       counter-reset: item;
-      padding-left: 0.8125rem;
       margin-top: 1em;
       margin-bottom: 1.75em;
-
-      @media (min-width: 769px) {
-        padding-left: 1.125rem;
-      }
 
       li {
         counter-increment: item;
         margin: 1em 0;
+        position: relative;
 
         &::before {
-          content: counter(item);
+          content: counters(item, ".");
           color: rgb(var(--nq-neutral-600));
           font-weight: 700;
           display: inline-block;
           margin-right: 0.75em;
+          position: absolute;
+          left: -1.5rem;
+        }
+
+        > ol {
+          counter-reset: subitem;
+          margin-top: 0.5em;
+          margin-bottom: 0.5em;
+          padding-left: 1.5rem;
+
+          li {
+            counter-increment: subitem;
+
+            &::before {
+              content: counters(item, ".") "." counter(subitem) ". ";
+              left: -2.5rem;
+            }
+          }
         }
       }
     }
