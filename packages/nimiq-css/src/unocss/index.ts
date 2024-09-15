@@ -115,6 +115,9 @@ function createPreset() {
       for (const _rule of rulesNames) {
         if (!_rule.startsWith('.'))
           continue
+        // nq-shadow
+        if (_rule === '.nq-shadow')
+          continue
         const rule = _rule.replace(new RegExp(`^${DEFAULT_PREFIX}`), "")
         const ruleName = rule.replace(/^\./, "").trim();
         rulesNamesStr.push(ruleName)
@@ -169,14 +172,7 @@ function createPreset() {
     const { prefix = DEFAULT_PREFIX } = options
     const { gradients, colors } = getNimiqColors()
 
-    const rulesNames: string[] = []
-
-     // This is the css to define the order of the CSS layers
-    const layerDefinition: Preflight = {
-      getCSS: () =>
-        `@layer ${['reset', 'colors', 'preflight', 'static-content', 'typography', 'utilities'].map(layer => `${prefix}${layer}`).join(', ')};`,
-    }
-
+    const rulesNames: string[] = [] 
 
     const { reset = 'tailwind-compat' } = options
     const resetLayer: Preflight = {
@@ -196,14 +192,14 @@ function createPreset() {
             content = readFileSync(customFilePath, 'utf-8')
           } else {
             // Default reset options
-            const resetFilePath = resolve(__dirname, '../css', `${fileName}.css`)
-            if (!existsSync(resetFilePath)) {
-              throw new Error(`Reset CSS file not found: ${resetFilePath}`)
-            }
-            content = readFileSync(resetFilePath, 'utf-8')
+             const resetFilePath = resolve(`node_modules/@unocss/reset/${fileName}.css`)
+             if (!existsSync(resetFilePath)) {
+               throw new Error(`Reset CSS file not found: ${resetFilePath}`)
+              }
+             content = readFileSync(resetFilePath, 'utf-8')
           }
         } catch (error) {
-          console.warn(`Error reading reset CSS file: ${fileName}. Error: ${JSON.stringify(error)}`)
+          console.warn(`Error reading reset CSS file: ${fileName}. ${JSON.stringify({error})}`)
           return ''
         }
 
@@ -214,7 +210,6 @@ function createPreset() {
 
     const { preflight = true, staticContent = false } = options
     const preflights: Preset['preflights'] = [
-      layerDefinition,
       resetLayer,
       {
         layer: `${prefix}colors`,
@@ -342,12 +337,35 @@ function createPreset() {
         }
       },
     ]
+
+    // Define the order of the CSS layers
+    const layerDefinition: Preflight = {
+      getCSS: () => {
+        const layers = [
+          reset && 'reset',
+          'colors',
+          preflight && 'preflight',
+          staticContent && 'static-content',
+          typography && 'typography',
+          utilities && 'utilities',
+        ].filter(Boolean) as string[];
+
+        return `@layer ${layers.map(layer => `${prefix}${layer}`).join(', ')};`;
+      }
+    }
+    preflights.unshift(layerDefinition)
+    
+
     const preset: Preset = {
       name: 'nimiq-preset',
       preflights,
       variants,
       theme: {
         colors,
+        boxShadow:{
+          DEFAULT: 'var(--nq-shadow)',
+          lg: 'var(--nq-shadow-lg)',
+        }
       },
       autocomplete: {
         templates: rulesNames
@@ -357,7 +375,7 @@ function createPreset() {
       layers: {
         [`${prefix}reset`]: -100,
         [`${prefix}colors`]: -50,
-        [`${prefix}preflight`]: -50,
+        [`${prefix}preflight`]: -40,
         'components': -1,
         'default': 1,
         [`${prefix}static-content`]: 200,

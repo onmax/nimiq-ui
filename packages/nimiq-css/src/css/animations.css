@@ -131,5 +131,5 @@
 .shake, .fade-in, .fade-out, .move-left-in, .move-left-out, .move-right-in, .move-right-out,
 .shrink-in, .shrink-out, .grow-in, .grow-out, .from-left-in, .from-left-out, .from-right-in, .from-right-out,
 .from-bottom-in, .from-bottom-out {
-    animation-duration: 0.4s;
+    animation-duration: 400ms;
 }

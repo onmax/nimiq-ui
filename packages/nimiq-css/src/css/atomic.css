@@ -138,3 +138,11 @@ This file contains atomic CSS classes for styling elements. These classes are ve
 .bg-orange {
   background: rgb(var(--nq-orange));
 }
+
+.nq-shadow {
+  box-shadow: var(--nq-shadow);
+}
+
+.nq-shadow-lg {
+  box-shadow: var(--nq-shadow-lg);
+}

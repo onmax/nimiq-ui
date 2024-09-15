@@ -1,7 +1,7 @@
 {
   "name": "nimiq-css",
   "type": "module",
-  "version": "0.1.35",
+  "version": "0.1.38",
   "description": "Nimiq's Design System in CSS",
   "sideEffects": false,
   "exports": {
@@ -33,6 +33,9 @@
     "@unocss/reset": "0.62.3",
     "ts-cssjson": "^3.0.1",
     "unocss": "^0.62.3"
+  },
+  "peerDependencies": {
+    "@unocss/reset": "^0.62.3"
   },
   "devDependencies": {
     "@iconify/types": "^2.0.0",
