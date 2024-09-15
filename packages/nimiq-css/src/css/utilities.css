@@ -631,12 +631,13 @@
   outline-offset: 0.125rem;
   display: flex;
   flex-direction: column;
+  --ring-color: rgb(var(--nq-neutral-200));
   transition: background-color 0.2s var(--nq-ease), transform 0.2s ease-out, box-shadow 0.2s ease-out;
   
   &:hover,
   &:focus-visible {
     background-color: rgb(var(--nq-white) / 1);
-    box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral-200)), var(--nq-shadow);
+    box-shadow: 0 0 0 1.5px var(--ring-color), var(--nq-shadow);
     transform: translateY(-0.375rem);
   }
 }

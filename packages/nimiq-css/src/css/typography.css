@@ -1,7 +1,13 @@
 /**
  * Make sure to import also nimiq-colors layer found in this package
  **/
+:root {
+  --nq-prose-max-width: 780px;
+}
+
+
 .nq-prose {
+
   margin-trim: block;
 
   >*:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)):last-child {
@@ -25,7 +31,7 @@
   *:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)) {
     font-size: 1em;
     line-height: 1.5;
-    max-width: 780px;
+    max-width: var(--nq-prose-max-width);
     margin-left: auto;
     margin-right: auto;
 
