@@ -220,14 +220,14 @@ function createPreset() {
     if (preflight) {
       preflights.push({
         layer: `${prefix}preflight`,
-        getCSS: () => wrapToLayer(prefix, 'preflight', readContent('preflight').replaceAll(/nq-/g, prefix)),
+        getCSS: () => wrapToLayer(prefix, 'preflight', readContent('preflight').replaceAll(/\.nq-/g, `.${prefix}`)),
       })
     }
 
     if (staticContent) {
       preflights.push({
         layer: `${prefix}static-content`,
-        getCSS: () => wrapToLayer(prefix, 'static-content', readContent('static-content').replaceAll(/nq-/g, prefix)),
+        getCSS: () => wrapToLayer(prefix, 'static-content', readContent('static-content').replaceAll(/\.nq-/g, `.${prefix}`)),
       })
     }
 

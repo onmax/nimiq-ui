@@ -193,6 +193,14 @@ const loadingSmall = ref(true)
     </div>
   </section>
 
+   <section max-w-700 mx-auto mt-8 p-6 nq-border-base rounded>
+    <h2>Hoverable</h2>
+
+    <div grid="~ flow-col gap-2">
+      <ReuseTemplate :html="`<a href='#' text-3 nq-hoverable><p>Use this for cards with some interaction</p><div nq-hoverable-cta>Look at me</div></a>`" />
+    </div>
+  </section>
+
   <section max-w-700 mx-auto mt-8 p-6 nq-border-base rounded>
     <h2>Curtain</h2>
 

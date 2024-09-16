@@ -452,7 +452,8 @@
 
 .nq-curtain-y {
   overflow: auto;
-  position: sticky; /* You need to set top-0 or bottom-0! */
+  position: sticky;
+  /* You need to set top-0 or bottom-0! */
   --mask-size: 2rem;
   transition: mask-size 0.25s linear(0 0%, 0.0027 3.64%, 0.0106 7.29%,
       0.0425 14.58%, 0.0957 21.87%,
@@ -632,13 +633,73 @@
   display: flex;
   flex-direction: column;
   --ring-color: rgb(var(--nq-neutral-200));
-  transition: background-color 0.2s var(--nq-ease), transform 0.2s ease-out, box-shadow 0.2s ease-out;
-  
+  padding: 1.5rem;
+  transition: background-color 200ms var(--nq-ease), transform 0.2s ease-out, box-shadow 0.2s ease-out;
+
   &:hover,
   &:focus-visible {
     background-color: rgb(var(--nq-white) / 1);
+    color: rgb(var(--nq-darkblue) / 1);
     box-shadow: 0 0 0 1.5px var(--ring-color), var(--nq-shadow);
     transform: translateY(-0.375rem);
+  }
+}
+
+.nq-hoverable-cta {
+  transform-style: preserve-3d;
+  position: relative;
+  width: max-content;
+
+  &::before {
+    content: 'Learn more';
+    white-space: nowrap;
+    background-color: rgb(var(--nq-neutral-400) / 0);
+  }
+
+  &::after {
+    content: '';
+    position: relative;
+    display: inline-block;
+    -webkit-mask: var(--nq-icon) no-repeat;
+    mask: var(--nq-icon) no-repeat;
+    background-color: rgb(var(--nq-darkblue) / 0.8);
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    z-index: inherit;
+    margin-left: calc(100% + 0.5rem);
+    margin-bottom: 0.25rem;
+    left: 0;
+    transition: transform 100ms ease-out;
+    width: 0.75em;
+    height: 0.75em;
+    rotate: 0.375turn;
+    --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=");
+  }
+  
+  &::after, &::before {
+    font-weight: bold;
+    text-transform: none;
+    letter-spacing: normal;
+    color: rgb(var(--nq-darkblue) / 1);
+    position: absolute;
+    bottom: -1lh;
+    opacity: 0;
+    transition:
+      opacity 150ms ease-out,
+      bottom 150ms ease-out,
+      background-color 200ms var(--nq-ease);
+  }
+  
+  :is(.nq-hoverable, [nq-hoverable]):is(:hover, :focus-visible) & {
+    &::before {
+      background-color: rgb(var(--nq-white) / 1);
+
+    }
+
+    &::before, &::after {
+      opacity: 1;
+      bottom: 0;
+    }
   }
 }
 
