@@ -115,9 +115,7 @@
     position: relative;
 
     @media not all and (hover: hover) {
-
-      &::before,
-      &::after {
+      &::before {
         content: "";
         position: absolute;
         left: -1rem;

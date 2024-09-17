@@ -172,7 +172,7 @@ function createPreset() {
     const { prefix = DEFAULT_PREFIX } = options
     const { gradients, colors } = getNimiqColors()
 
-    const rulesNames: string[] = [] 
+    const rulesNames: string[] = []
 
     const { reset = 'tailwind-compat' } = options
     const resetLayer: Preflight = {
@@ -192,20 +192,20 @@ function createPreset() {
             content = readFileSync(customFilePath, 'utf-8')
           } else {
             // Default reset options
-             const resetFilePath = resolve(`node_modules/@unocss/reset/${fileName}.css`)
-             if (!existsSync(resetFilePath)) {
-               throw new Error(`Reset CSS file not found: ${resetFilePath}`)
-              }
-             content = readFileSync(resetFilePath, 'utf-8')
+            const resetFilePath = resolve(`node_modules/@unocss/reset/${fileName}.css`)
+            if (!existsSync(resetFilePath)) {
+              throw new Error(`Reset CSS file not found: ${resetFilePath}`)
+            }
+            content = readFileSync(resetFilePath, 'utf-8')
           }
         } catch (error) {
-          console.warn(`Error reading reset CSS file: ${fileName}. ${JSON.stringify({error})}`)
+          console.warn(`Error reading reset CSS file: ${fileName}. ${JSON.stringify({ error })}`)
           return ''
         }
 
         return wrapToLayer(prefix, 'reset', content)
       },
-      layer: `${prefix}reset`, 
+      layer: `${prefix}reset`,
     }
 
     const { preflight = true, staticContent = false } = options
@@ -243,7 +243,7 @@ function createPreset() {
         { layer: `${prefix}utilities`, autocomplete: `${prefix}scrollbar-hide` },
       ],
     ]
-    
+
     // The only way to add gradients is via rules
     for (const [key, gradient, color] of gradients) {
       const backgroundImage = { 'background-image': gradient }
@@ -256,7 +256,7 @@ function createPreset() {
     }
 
     if (utilities) {
-      const { rules:_rules, rulesNames: _rulesNames} = cssToRules('utilities', { convertToAttributes: options.attributifyUtilities, prefix })
+      const { rules: _rules, rulesNames: _rulesNames } = cssToRules('utilities', { convertToAttributes: options.attributifyUtilities, prefix })
       rulesNames.push(..._rulesNames)
       rules.push(..._rules)
       // keyframes
@@ -265,7 +265,7 @@ function createPreset() {
     }
 
     if (typography) {
-      const {rules: _rules, rulesNames:_rulesNames} = cssToRules('typography', { convertToAttributes: false, prefix })
+      const { rules: _rules, rulesNames: _rulesNames } = cssToRules('typography', { convertToAttributes: false, prefix })
       rulesNames.push(..._rulesNames)
       rules.push(..._rules)
     }
@@ -321,11 +321,19 @@ function createPreset() {
         }
       },
       (matcher) => {
+        if (!matcher.startsWith('group-hocus:'))
+          return matcher
+        return {
+          matcher: matcher.slice(12),
+          selector: s => `:is(.group,[group]):hover ${s}, :is(.group,[group]):focus ${s}`,
+        }
+      },
+      (matcher) => {
         if (!matcher.startsWith('selected:'))
           return matcher
         return {
           matcher: matcher.slice(9),
-          selector: s => `[data-selected] ${s}`,
+          selector: s => `[data-selected]${s}, [data-selected] ${s}`,
         }
       },
       (matcher) => {
@@ -333,9 +341,18 @@ function createPreset() {
           return matcher
         return {
           matcher: matcher.slice(13),
-          selector: s => `:not([data-selected]) ${s}`,
+          selector: s => `:not([data-selected]), :not([data-selected]) ${s}`,
         }
       },
+      (matcher) => {
+        // open-
+        if (!matcher.startsWith('data-open:'))
+          return matcher
+        return {
+          matcher: matcher.slice(10),
+          selector: s => `[data-state=open]${s}, [data-state=open] ${s}`,
+        }
+      }
     ]
 
     // Define the order of the CSS layers
@@ -354,7 +371,7 @@ function createPreset() {
       }
     }
     preflights.unshift(layerDefinition)
-    
+
 
     const preset: Preset = {
       name: 'nimiq-preset',
@@ -362,7 +379,7 @@ function createPreset() {
       variants,
       theme: {
         colors,
-        boxShadow:{
+        boxShadow: {
           DEFAULT: 'var(--nq-shadow)',
           lg: 'var(--nq-shadow-lg)',
         }

@@ -125,6 +125,11 @@ body {
       --px: 80px;
     }
 
+    &:not(.no-max-w) {
+      max-width: 90rem;
+      margin: 0 auto;
+    }
+
     &:not(.no-py) {
 
       &.dark+:is(section, [data-section]):not(.dark),
