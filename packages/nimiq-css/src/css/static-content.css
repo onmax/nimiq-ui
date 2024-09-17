@@ -125,9 +125,11 @@ body {
       --px: 80px;
     }
 
-    &:not(.no-max-w) {
-      max-width: 90rem;
-      margin: 0 auto;
+    &:not(.no-px) {
+      --max-width: 90rem;
+      max-width: var(--max-width);
+      padding-left: calc((100vw - var(--max-width)) / 2);
+      padding-right: calc((100vw - var(--max-width)) / 2);
     }
 
     &:not(.no-py) {
