@@ -38,3 +38,11 @@ jobs:
 
       - name: Release
         run: pnpm dlx pkg-pr-new publish --pnpm './packages/*'
+      
+      - working-directory: packages/nimiq-icons
+        run: |
+          git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
+          git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
+          git add dist --force
+          git commit -m "Updated icons"
+          git push
