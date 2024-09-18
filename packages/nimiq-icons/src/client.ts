@@ -8,7 +8,6 @@ export const sanitizeName = (name: string) => name.toLocaleLowerCase().replace(/
 function getFigmaSecrets() {
   const file = env.FIGMA_FILE_ID
   const token = env.FIGMA_API_TOKEN
-  console.log({file,token})
   if (!file || !token) {
     console.error('Please provide FIGMA_FILE_ID and FIGMA_API_TOKEN environment variables.')
     exit(1)

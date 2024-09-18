@@ -43,8 +43,6 @@
   }
 
   &:is(h1, h2, h3, h4, h5, h6) {
-    /* TODO Currently heading is always same font size. Once design system is finished, we need to review it */
-    color: rgb(var(--nq-neutral));
     overflow-wrap: break-word;
     text-wrap: balance;
     width: 100%;
