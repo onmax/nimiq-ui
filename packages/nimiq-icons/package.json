@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "bun src/index.ts",
-    "build": "bun src/index.ts"
+    "build": "esno src/index.ts"
   },
   "dependencies": {
     "@iconify/tools": "^4.0.4",
