@@ -372,7 +372,7 @@ function createPreset() {
     }
     preflights.unshift(layerDefinition)
 
-    const autocompleteUtils: string[] = staticContent ? ['no-max-width', 'no-px', 'no-py', 'no-mx'].map(u => `${prefix}${u}`) : []
+    const autocompleteUtils: string[] = staticContent ? ['no-max-width', 'no-px', 'no-py', 'no-mx', 'heading-lg'].map(u => `${prefix}${u}`) : []
 
     const preset: Preset = {
       name: 'nimiq-preset',
