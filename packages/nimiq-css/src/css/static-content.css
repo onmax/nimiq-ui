@@ -1,10 +1,7 @@
 :root {
   /* Base font sizes */
-  --font-size-min-base: 1rem;
-  --font-size-max-base: 1rem;
-
-  --_font-size-min: var(--font-size-min, var(--font-size-min-base));
-  --_font-size-max: var(--font-size-max, var(--font-size-max-base));
+  --font-size-min: var(--font-size-min, 1rem);
+  --font-size-max: var(--font-size-max, 1rem);
 
   /* Viewport widths */
   --font-width-min: 320;
@@ -29,14 +26,14 @@ body {
     margin: 0;
 
     &:is(.nq-heading-lg, [nq-heading-lg]) {
-      --_font-size-min: 44;
-      --_font-size-max: 64;
+      --font-size-min: 44;
+      --font-size-max: 64;
 
     }
 
     &:not(:is(.nq-heading-lg, [nq-heading-lg])) {
-      --_font-size-min: 40;
-      --_font-size-max: 48;
+      --font-size-min: 40;
+      --font-size-max: 48;
     }
 
     @media screen and (min-width: 768px) {
@@ -50,8 +47,8 @@ body {
       line-height: 1.5;
       --max-width: 42ch;
 
-      --_font-size-min: 20;
-      --_font-size-max: 22;
+      --font-size-min: 20;
+      --font-size-max: 22;
 
       @media screen and (min-width: 768px) {
         text-align: center;
@@ -68,8 +65,8 @@ body {
     text-align: left;
     margin: 0;
 
-    --_font-size-min: 32;
-    --_font-size-max: 40;
+    --font-size-min: 32;
+    --font-size-max: 40;
 
 
 
@@ -84,8 +81,8 @@ body {
       line-height: 1.5;
       --max-width: 70ch;
 
-      --_font-size-min: 20;
-      --_font-size-max: 22;
+      --font-size-min: 20;
+      --font-size-max: 22;
 
       @media screen and (min-width: 768px) {
         text-align: center;
@@ -96,15 +93,15 @@ body {
   h3:not(:is(.nq-prose, [nq-prose]) *) {
     font-weight: 700;
     line-height: 1.3;
-    --_font-size-min: 22;
-    --_font-size-min: 28;
+    --font-size-min: 22;
+    --font-size-min: 28;
   }
   
   h4:not(:is(.nq-prose, [nq-prose]) *) {
     font-weight: 700;
     line-height: 1.3;
-    --_font-size-min: 20;
-    --_font-size-min: 24;
+    --font-size-min: 20;
+    --font-size-min: 24;
   }
 
   section,
@@ -138,8 +135,8 @@ body {
       margin-left: auto;
       margin-right: auto;
 
-      --fluid-slope: calc((var(--_font-size-max) - var(--_font-size-min)) / (var(--font-width-max) - var(--font-width-min)));
-      --fluid-intercept: calc(var(--_font-size-min) - (var(--fluid-slope) * var(--font-width-min)));
+      --fluid-slope: calc((var(--font-size-max) - var(--font-size-min)) / (var(--font-width-max) - var(--font-width-min)));
+      --fluid-intercept: calc(var(--font-size-min) - (var(--fluid-slope) * var(--font-width-min)));
       font-size: calc((var(--fluid-slope) * 100vw) + var(--fluid-intercept) * 1px);
     }
 
@@ -164,8 +161,12 @@ body {
       }
     }
 
-    &.dark+:is(section, [data-section]):not(.dark),
-    &:not(.dark)+:is(section, [data-section]).dark {
+    &.darkblue+:is(section, [data-section]):is(.grey,.white),
+    &:is(.grey,.white)+:is(section, [data-section]).darkblue,
+    &.white+:is(section, [data-section]):is(.grey,.darkblue),
+    &:is(.grey,.darkblue)+:is(section, [data-section]).white,
+    &.grey+:is(section, [data-section]):is(.white,.darkblue),
+    &:is(.white,.darkblue)+:is(section, [data-section]).grey {
       --pt: 72px;
 
       @media screen and (min-width: 1024px) {
@@ -173,8 +174,12 @@ body {
       }
     }
 
-    &.dark:has(+ :is(section, [data-section]):not(.dark)),
-    &:not(.dark):has(+ :is(section, [data-section]).dark) {
+    &.darkblue:has(+ :is(section, [data-section]):is(.grey,.white)),
+    &:is(.white,.grey):has(+ :is(section, [data-section]).darkblue),
+    &.white:has(+ :is(section, [data-section]):is(.grey,.darkblue)),
+    &:is(.darkblue,.grey):has(+ :is(section, [data-section]).white),
+    &.grey:has(+ :is(section, [data-section]):is(.darkblue,.white)),
+    &:is(.white,.darkblue):has(+ :is(section, [data-section]).grey) {
       --pb: 160px;
 
       @media screen and (min-width: 1024px) {
