@@ -4,6 +4,11 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "exports": {
+    "./icons.json": {
+      "import": "./dist/icons.json"
+    }
+  },
   "scripts": {
     "dev": "bun src/index.ts",
     "build": "esno src/index.ts"
