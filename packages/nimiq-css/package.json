@@ -27,7 +27,8 @@
     "node": ">=14"
   },
   "scripts": {
-    "build": "unbuild && cp -r src/css dist/css/unminified && cp -r src/assets/ dist"
+    "build": "unbuild",
+    "build:full": "unbuild && cp -r src/css dist/css/unminified"
   },
   "dependencies": {
     "@unocss/reset": "0.62.3",

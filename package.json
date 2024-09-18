@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "preview:build": "",
-    "build": "rimraf packages/*/dist --glob && pnpm -r --filter=./packages/* run build",
+    "build": "rimraf packages/*/dist --glob && pnpm -r --filter=./packages/* run build  && cp -r ./packages/nimiq-css/src/css ./packages/nimiq-css/dist/css/unminified",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
