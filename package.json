@@ -19,6 +19,7 @@
     "@antfu/eslint-config": "^3.6.0",
     "eslint": "^9.10.0",
     "nimiq-css": "workspace:*",
-    "nimiq-icons": "workspace:*"
+    "nimiq-icons": "workspace:*",
+    "rimraf": "^6.0.1"
   }
 }

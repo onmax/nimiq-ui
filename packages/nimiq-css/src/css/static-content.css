@@ -161,12 +161,21 @@ body {
       }
     }
 
-    &.darkblue+:is(section, [data-section]):is(.grey,.white),
+    /* &.darkblue+:is(section, [data-section]):is(.grey,.white),
     &:is(.grey,.white)+:is(section, [data-section]).darkblue,
     &.white+:is(section, [data-section]):is(.grey,.darkblue),
     &:is(.grey,.darkblue)+:is(section, [data-section]).white,
     &.grey+:is(section, [data-section]):is(.white,.darkblue),
     &:is(.white,.darkblue)+:is(section, [data-section]).grey {
+      --pt: 72px;
+
+      @media screen and (min-width: 1024px) {
+        --pt: 96px;
+      }
+    } */
+    &.darkblue+:is(section,[data-section]).darkblue,
+    &.grey+:is(section,[data-section]).grey,
+    &.white+:is(section,[data-section]).white {
       --pt: 72px;
 
       @media screen and (min-width: 1024px) {
