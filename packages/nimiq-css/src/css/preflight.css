@@ -51,6 +51,11 @@
     line-height: 1.2;
     max-width: 100%;
     font-weight: bold;
+
+    /* We change the color except if there is parent that change the color */
+    :not(:is(.nq-no-color, [class*="text-"], [text]) *) & {
+      color: rgb(var(--nq-neutral) / 1);
+    }
     /* margin: 1em 0; */
     /* text-box-trim: both;
     text-box-edge: cap alphabetic; */
