@@ -405,36 +405,6 @@
   }
 }
 
-/* DEPRECATED - Use hoverable */
-.nq-flex-card {
-  position: relative;
-  border-radius: 6px;
-  overflow: hidden;
-  background: rgb(var(--nq-neutral-200));
-  display: flex;
-  flex-direction: column;
-  padding: 12px;
-  box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral/2));
-  transition: background 0.2s var(--nq-ease), transform 0.2s ease-out, box-shadow 0.2s ease-out, color 0.2s ease-out;
-  color: rgb(var(--nq-neutral));
-
-  &:is(a):hover,
-  &:is(a):focus-visible {
-    background: white;
-    transform: translateY(-6px);
-    box-shadow: var(--nq-shadow);
-
-    &,
-    * {
-      color: rgb(var(--nq-darkblue));
-    }
-  }
-
-  @media (min-width: 768px) {
-    padding: 24px;
-  }
-}
-
 .nq-curtain-y {
   overflow: auto;
   position: sticky;
@@ -536,16 +506,17 @@
 }
 
 .nq-input-box {
-  font-size: 16px;
+  font-size: 1em;
   line-height: 1.5;
-  padding: 4.5px 14px;
+  padding: 0.28125em 0.875em;
   height: max-content;
-  min-width: 128px;
+  min-width: min(8em, 220px);
 
-  border-radius: 2px;
+  border-radius: 0.125em;
   width: 100%;
   background-color: transparent;
-  transition: colors 0.2s var(--nq-ease),
+  transition:
+    colors 0.2s var(--nq-ease),
     box-shadow 0.1s var(--nq-ease);
   outline: 0;
 
@@ -598,7 +569,7 @@
   }
 
   &:is(textarea, :has(textarea)) {
-    --padding: 4px;
+    --padding: 0.25em;
     min-height: calc(3lh + 2 * var(--padding));
     max-height: calc(5lh + 2 * var(--padding));
     field-sizing: content;
@@ -616,21 +587,21 @@
 }
 
 .nq-hoverable {
-  --bg-c: rgb(var(--nq-white));
-  --text-c: rgb(var(--nq-darkblue));
   background-color: rgb(var(--nq-neutral-400));
-  color: rgb(var(--nq-darkblue));
+  background-image: var(--nq-neutral-gradient-subtle);
+  color: rgb(var(--nq-neutral));
   border-radius: 0.5rem;
   outline-offset: 2px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   --ring-color: rgb(var(--nq-neutral-200));
   padding: 1.5rem;
-  transition: background-color 200ms var(--nq-ease), transform 200ms ease-out, box-shadow 200ms ease-out;
+  transition: background 200ms var(--nq-ease), transform 200ms ease-out, box-shadow 200ms ease-out;
 
   &:is(:hover, :focus-visible) {
-    background-color: var(--bg-c);
-    color: var(--text-c);
+    background-color: rgb(var(--nq-white));
+    color: rgb(var(--nq-darkblue));
     box-shadow: 0 0 0 1.5px var(--ring-color), var(--nq-shadow);
     transform: translateY(-0.375rem);
   }

@@ -47,6 +47,7 @@
   --nq-neutral-on-dark-900: 209 209 213;
   --nq-neutral-on-light-gradient: radial-gradient(100% 100% at 100% 100%, #260133 0%, var(--nq-darkblue) 100%);
   --nq-neutral-on-dark-gradient: radial-gradient(100% 100% at bottom right, #180021, #151833);
+  --_nq-neutral-subtle-gradient: linear-gradient(180deg, rgb(var(--nq-neutral-200)) 0%, rgb(var(--nq-neutral-300)) 100%);
 
   --nq-blue-on-light: 5 130 202;
   --nq-blue-on-light-400: 230 242 250;
@@ -149,6 +150,7 @@
   --nq-neutral-900: var(--nq-neutral-on-light-900);
   --nq-neutral-1100: var(--nq-neutral-on-light-1100);
   --nq-neutral-gradient: var(--nq-neutral-on-light-gradient);
+  --nq-neutral-subtle-gradient: var(--_nq-neutral-subtle-gradient);
 
   --nq-blue: var(--nq-blue-on-light);
   --nq-blue-400: var(--nq-blue-on-light-400);
@@ -194,6 +196,8 @@
   --nq-purple-400: var(--nq-purple-on-light-400);
   --nq-purple-500: var(--nq-purple-on-light-500);
   --nq-purple-600: var(--nq-purple-on-light-600);
+
+
 
   :is(&.dark, & .dark) {
     --nq-neutral: var(--nq-neutral-on-dark);

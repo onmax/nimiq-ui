@@ -47,13 +47,7 @@
   }
 
   &:is(h1, h2, h3, h4, h5, h6) {
-    color: rgb(var(--nq-neutral));
-
-    :is([data-inverted] *) & {
-      color: rgb(var(--nq-neutral-0));
-    }
-
-    overflow-wrap: break-word;
+    
     text-wrap: balance;
     width: 100%;
     line-height: 1.2;
@@ -61,8 +55,8 @@
     font-weight: bold;
 
     /* We change the color except if there is parent that change the color */
-    :not(:is(.nq-no-color, [class*="text-"], [text], [data-inverted]) *) & {
-      color: rgb(var(--nq-neutral) / 1);
+    :where(:not(.nq-no-color, [nq-no-color], [class*="text-"], [text])):not(:has(.nq-no-color, [nq-no-color], [class*="text-"], [text])) {
+      color: rgb(var(--nq-neutral));
     }
 
     /* margin: 1em 0; */
@@ -70,22 +64,20 @@
     text-box-edge: cap alphabetic; */
   }
 
-  /* We use `--nq-font-size`, so others submodule of this library can change the font-size if they use a selector with lower specificity */
-
   &:is(h1) {
-    font-size: var(--nq-font-size,1.5rem);
+    font-size: 1.5rem;
   }
-  
+
   &:is(h2) {
-    font-size: var(--nq-font-size,1.25rem);
+    font-size: 1.25rem;
   }
 
   &:is(p) {
-    font-size: var(--nq-font-size,1.3125rem);
+    line-height: 1.3125;
   }
-  
+
   small {
-    font-size: var(--nq-font-size,0.875rem);
+    font-size: 0.875rem;
     line-height: 1.2;
     font-weight: 600;
     /* margin: 0.5rem 0; */
@@ -136,5 +128,5 @@
         bottom: -1rem;
       }
     }
-  } 
+  }
 }

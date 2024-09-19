@@ -12,7 +12,7 @@ import {
   presetIcons,
   presetWebFonts,
 } from 'unocss'
-import { getNimiqColors } from './colors'
+import { getNimiqColors, NimiqColor } from './colors'
 
 const DEFAULT_PREFIX = 'nq-'
 
@@ -224,6 +224,13 @@ function createPreset() {
       },
     ]
 
+    if (staticContent) {
+      preflights.push({
+        layer: `${prefix}static-content`,
+        getCSS: () => wrapToLayer(prefix, 'static-content', readContent('static-content').replaceAll(/\.nq-/g, `.${prefix}`)),
+      })
+    }
+
     if (preflight) {
       preflights.push({
         layer: `${prefix}preflight`,
@@ -238,12 +245,6 @@ function createPreset() {
       })
     }
 
-    if (staticContent) {
-      preflights.push({
-        layer: `${prefix}static-content`,
-        getCSS: () => wrapToLayer(prefix, 'static-content', readContent('static-content').replaceAll(/\.nq-/g, `.${prefix}`)),
-      })
-    }
 
     const { utilities = false, typography = false } = options
     const rules: Preset['rules'] = [
@@ -261,7 +262,7 @@ function createPreset() {
     // The only way to add gradients is via rules
     for (const [key, gradient, color] of gradients) {
       const backgroundImage = { 'background-image': gradient }
-      const background = { 'background-color': colors[color].DEFAULT } // This is the fallback color
+      const background = { 'background-color': colors[color as NimiqColor]?.DEFAULT || color } // This is the fallback color
       rules.push([
         key,
         { ...background, ...backgroundImage },
@@ -371,6 +372,7 @@ function createPreset() {
 
     // Define the order of the CSS layers
     const layerDefinition: Preflight = {
+      layer: `${prefix}layer-definition`,
       getCSS: () => {
         const layers = [
           reset && 'reset',
@@ -386,7 +388,7 @@ function createPreset() {
     }
     preflights.unshift(layerDefinition)
 
-    const autocompleteStaticContent: string[] = staticContent ? ['no-max-width', 'no-px', 'no-py', 'no-mx', 'heading-lg'].map(u => `${prefix}${u}`) : []
+    const autocompleteStaticContent: string[] = staticContent ? ['no-max-width', 'no-px', 'no-color', 'no-py', 'no-mx', 'heading-lg', 'section-gap'].map(u => `${prefix}${u}`) : []
     const autocompleteScrollbar: string[] = scrollbar ? ['scroll-sm'].map(u => `${prefix}${u}`) : []
     const autocompletePreflight = ['nq-no-color']
 
@@ -407,6 +409,7 @@ function createPreset() {
       presets,
       rules,
       layers: {
+        [`${prefix}layer-definition`]: -101,
         [`${prefix}reset`]: -100,
         [`${prefix}colors`]: -50,
         [`${prefix}preflight`]: -40,
