@@ -218,55 +218,31 @@
 .nq-pill-blue {
   background: rgb(var(--nq-blue));
   background-image: var(--nq-blue-gradient);
-
-  &::before {
-    background-image: var(--nq-blue-gradient-darkened);
-  }
 }
 
 .nq-pill-green {
   background: rgb(var(--nq-green));
   background-image: var(--nq-green-gradient);
-
-  &::before {
-    background-image: var(--nq-green-gradient-darkened);
-  }
 }
 
 .nq-pill-red {
   background: rgb(var(--nq-red));
   background-image: var(--nq-red-gradient);
-
-  &::before {
-    background-image: var(--nq-red-gradient-darkened);
-  }
 }
 
 .nq-pill-gold {
   background: rgb(var(--nq-gold));
   background-image: var(--nq-gold-gradient);
-
-  &::before {
-    background-image: var(--nq-gold-gradient-darkened);
-  }
 }
 
 .nq-pill-orange {
   background: rgb(var(--nq-orange));
   background-image: var(--nq-orange-gradient);
-
-  &::before {
-    background-image: var(--nq-orange-gradient-darkened);
-  }
 }
 
 .nq-pill-secondary {
   background: rgb(var(--nq-neutral-400));
   color: rgb(var(--nq-neutral));
-
-  &:hover {
-    background: rgb(var(--nq-neutral-500));
-  }
 }
 
 .nq-pill-tertiary {

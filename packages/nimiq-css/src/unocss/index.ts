@@ -123,7 +123,6 @@ function createPreset() {
           continue
         const rule = _rule.replace(new RegExp(`^${DEFAULT_PREFIX}`), '')
         const ruleName = rule.replace(/^\./, '').trim().split(/[:*]/).at(0)?.split(/\s/).at(0);
-        console.log({ rule, ruleName })
         if(!ruleName) throw new Error(`Rule name not found for ${rule}`)
         rulesNamesStr.push(ruleName)
         const re = new RegExp(`^${ruleName}$`)
