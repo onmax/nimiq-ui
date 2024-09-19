@@ -14,9 +14,9 @@
 body {
   background-color: rgb(var(--nq-neutral-100) / 1);
   color: rgb(var(--nq-neutral) / 1);
-   :is([data-inverted] *) & {
-      color: rgb(var(--nq-neutral-0));
-    }
+  :is([data-inverted] *) {
+    color: rgb(var(--nq-neutral-0));
+  }
   --max-width: 90rem;
 
   /* We avoid rewriting typography rules */
