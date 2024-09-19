@@ -13,13 +13,13 @@
 
   &::-webkit-scrollbar-thumb {
     border-radius: 0.4rem;
-    background-color: var(--thumb);
+    background-color: var(--nq-thumb);
     background-clip: padding-box;
     border: 2px transparent solid;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: var(--track);
+    background-color: var(--nq-track);
   }
 
   &.nq-scroll-sm::-webkit-scrollbar {

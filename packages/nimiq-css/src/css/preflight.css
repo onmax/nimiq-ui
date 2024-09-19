@@ -5,8 +5,8 @@
   /* This is the old box-shadox from nimiq-style framework. It stays here for reference */
   /* box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15); */
   /* box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.15); */
-  --track: rgb(var(--nq-neutral-200));
-  --thumb: rgb(var(--nq-neutral-600));
+  --nq-track: rgb(var(--nq-neutral-200));
+  --nq-thumb: rgb(var(--nq-neutral-600));
 }
 
 *:not(:where(.raw, .raw *)) {
@@ -70,20 +70,22 @@
     text-box-edge: cap alphabetic; */
   }
 
-  &:is(h1) {
-    font-size: 1.5rem;
-  }
+  /* We use `--nq-font-size`, so others submodule of this library can change the font-size if they use a selector with lower specificity */
 
+  &:is(h1) {
+    font-size: var(--nq-font-size,1.5rem);
+  }
+  
   &:is(h2) {
-    font-size: 1.25rem;
+    font-size: var(--nq-font-size,1.25rem);
   }
 
   &:is(p) {
-    line-height: 1.3125;
+    font-size: var(--nq-font-size,1.3125rem);
   }
-
+  
   small {
-    font-size: 0.875rem;
+    font-size: var(--nq-font-size,0.875rem);
     line-height: 1.2;
     font-weight: 600;
     /* margin: 0.5rem 0; */
@@ -112,8 +114,8 @@
     font-size: 0.9em;
     overflow-x: auto;
     /* Scroll colors */
-    --track: rgb(var(--nq-neutral-500));
-    --thumb: rgb(var(--nq-neutral-700) / 0.75);
+    --nq-track: rgb(var(--nq-neutral-500));
+    --nq-thumb: rgb(var(--nq-neutral-700) / 0.75);
   }
 
   &:is(code) {
