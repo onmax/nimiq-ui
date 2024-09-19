@@ -1,5 +1,5 @@
-import { defineConfig, presetAttributify, presetMini, presetUno } from 'unocss'
 import { presetNimiq } from 'nimiq-css'
+import { defineConfig, presetAttributify, presetUno } from 'unocss'
 
 export default defineConfig({
   presets: [

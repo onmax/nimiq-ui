@@ -1,16 +1,17 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
+import process from 'node:process'
 import { fileURLToPath } from 'node:url'
+import { createLocalFontProcessor, type LocalFontProcessorOptions } from '@unocss/preset-web-fonts/local'
 import { toCSS, toJSON } from 'ts-cssjson'
 import {
+  definePreset,
   type Preflight,
   type Preset,
   type PresetFactory,
-  definePreset,
   presetIcons,
   presetWebFonts,
 } from 'unocss'
-import { type LocalFontProcessorOptions, createLocalFontProcessor } from '@unocss/preset-web-fonts/local'
 import { getNimiqColors } from './colors'
 
 const DEFAULT_PREFIX = 'nq-'
@@ -68,7 +69,7 @@ export interface NimiqPresetOptions {
 
   /**
    * Includes the CSS designed for static content like blog posts or information pages.
-   * 
+   *
    * @default false
    */
   staticContent?: boolean
@@ -118,10 +119,10 @@ function createPreset() {
         // nq-shadow
         if (_rule === '.nq-shadow')
           continue
-        const rule = _rule.replace(new RegExp(`^${DEFAULT_PREFIX}`), "")
-        const ruleName = rule.replace(/^\./, "").trim();
+        const rule = _rule.replace(new RegExp(`^${DEFAULT_PREFIX}`), '')
+        const ruleName = rule.replace(/^\./, '').trim()
         rulesNamesStr.push(ruleName)
-        const re = new RegExp(`^${ruleName}$`);
+        const re = new RegExp(`^${ruleName}$`)
         const selector = convertToAttributes
           ? `${rule}, [${ruleName}=""], [${ruleName}="true"]`
           : rule
@@ -177,7 +178,8 @@ function createPreset() {
     const { reset = 'tailwind-compat' } = options
     const resetLayer: Preflight = {
       getCSS() {
-        if (reset === false) return ''
+        if (reset === false)
+          return ''
 
         let content: string
         const fileName = reset === true ? 'tailwind-compat' : reset
@@ -190,7 +192,8 @@ function createPreset() {
               throw new Error(`Custom reset CSS file not found: ${customFilePath}`)
             }
             content = readFileSync(customFilePath, 'utf-8')
-          } else {
+          }
+          else {
             // Default reset options
             const resetFilePath = resolve(`node_modules/@unocss/reset/${fileName}.css`)
             if (!existsSync(resetFilePath)) {
@@ -198,7 +201,8 @@ function createPreset() {
             }
             content = readFileSync(resetFilePath, 'utf-8')
           }
-        } catch (error) {
+        }
+        catch (error) {
           console.warn(`Error reading reset CSS file: ${fileName}. ${JSON.stringify({ error })}`)
           return ''
         }
@@ -352,7 +356,7 @@ function createPreset() {
           matcher: matcher.slice(10),
           selector: s => `[data-state=open]${s}, [data-state=open] ${s}`,
         }
-      }
+      },
     ]
 
     // Define the order of the CSS layers
@@ -365,10 +369,10 @@ function createPreset() {
           staticContent && 'static-content',
           typography && 'typography',
           utilities && 'utilities',
-        ].filter(Boolean) as string[];
+        ].filter(Boolean) as string[]
 
-        return `@layer ${layers.map(layer => `${prefix}${layer}`).join(', ')};`;
-      }
+        return `@layer ${layers.map(layer => `${prefix}${layer}`).join(', ')};`
+      },
     }
     preflights.unshift(layerDefinition)
 
@@ -384,7 +388,7 @@ function createPreset() {
         boxShadow: {
           DEFAULT: 'var(--nq-shadow)',
           lg: 'var(--nq-shadow-lg)',
-        }
+        },
       },
       autocomplete: {
         templates: [...rulesNames, ...autocompletePreflight, ...autocompleteStaticContent],
@@ -395,12 +399,12 @@ function createPreset() {
         [`${prefix}reset`]: -100,
         [`${prefix}colors`]: -50,
         [`${prefix}preflight`]: -40,
-        'components': -1,
-        'default': 1,
+        components: -1,
+        default: 1,
         [`${prefix}static-content`]: 200,
         [`${prefix}typography`]: 250,
         [`${prefix}utilities`]: 300,
-        'utilities': 400,
+        utilities: 400,
       },
     }
     return preset
@@ -408,4 +412,3 @@ function createPreset() {
 }
 
 export const presetNimiq: PresetFactory<object, NimiqPresetOptions> = definePreset(createPreset())
-

@@ -1,8 +1,8 @@
 import type { IconSet } from '@iconify/tools'
 import { mergeIconSets } from '@iconify/tools'
-import { optimizeIconSet } from './icon'
 import { checkFigmaVariants, getFigma, prepareNpmPackage, sanitizeName } from './client'
 import { IconVariant } from './consts'
+import { optimizeIconSet } from './icon'
 
 await checkFigmaVariants()
 

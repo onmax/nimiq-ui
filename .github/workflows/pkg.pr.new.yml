@@ -38,7 +38,7 @@ jobs:
 
       - name: Release
         run: pnpm dlx pkg-pr-new publish --pnpm './packages/*'
-      
+
       - working-directory: packages/nimiq-icons
         run: |
           git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"

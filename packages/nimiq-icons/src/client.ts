@@ -1,5 +1,5 @@
-import { env, exit } from 'node:process'
 import type { IconSet } from '@iconify/tools'
+import { env, exit } from 'node:process'
 import { exportJSONPackage, importFromFigma } from '@iconify/tools'
 import { IconVariant } from './consts'
 

@@ -1,14 +1,14 @@
 {
   "name": "nimiq-icons",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
   "exports": {
     "./icons.json": {
       "import": "./dist/icons.json"
     }
   },
+  "main": "index.js",
   "scripts": {
     "dev": "bun src/index.ts",
     "build": "esno src/index.ts"

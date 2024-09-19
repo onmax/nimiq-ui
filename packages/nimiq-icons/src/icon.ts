@@ -1,8 +1,8 @@
 import type { IconSet } from '@iconify/tools'
-import { SVG, cleanupSVG, isEmptyColor, parseColors, removeFigmaClipPathFromSVG, runSVGO } from '@iconify/tools'
 import type { ColorAttributes } from '@iconify/tools/lib/colors/attribs'
-import { compareColors, iconToHTML, replaceIDs, stringToColor } from '@iconify/utils'
 import type { Color } from '@iconify/utils/lib/colors/types'
+import { cleanupSVG, isEmptyColor, parseColors, removeFigmaClipPathFromSVG, runSVGO, SVG } from '@iconify/tools'
+import { compareColors, iconToHTML, replaceIDs, stringToColor } from '@iconify/utils'
 import { JSDOM } from 'jsdom'
 import { IconVariant } from './consts'
 

@@ -61,7 +61,7 @@
     font-weight: bold;
 
     /* We change the color except if there is parent that change the color */
-    :not(:is(.nq-no-color, [class*="text-"], [text]) *) & {
+    :not(:is(.nq-no-color, [class*="text-"], [text], [data-inverted]) *) & {
       color: rgb(var(--nq-neutral) / 1);
     }
 
