@@ -1,7 +1,7 @@
 {
   "name": "nimiq-css",
   "type": "module",
-  "version": "0.1.75",
+  "version": "0.1.79",
   "description": "Nimiq's Design System in CSS",
   "sideEffects": false,
   "exports": {
@@ -27,8 +27,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "build": "unbuild",
-    "build:full": "unbuild && cp -r src/css dist/css/unminified"
+    "build": "unbuild && cp -r src/css dist/css/unminified"
   },
   "peerDependencies": {
     "@unocss/reset": "^0.62.3"

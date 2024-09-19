@@ -84,9 +84,9 @@ export interface NimiqPresetOptions {
 function createPreset() {
   const __dirname = dirname(fileURLToPath(import.meta.url))
   const _cssDir = resolve(__dirname, '../css')
-  const unminifiedFolder = resolve(_cssDir, 'unminified')
-  const unminifiedExists = existsSync(unminifiedFolder)
-  const cssDir = unminifiedExists ? unminifiedFolder : _cssDir
+  const cssDir = resolve(_cssDir, 'unminified')
+  if (!existsSync(cssDir))
+    throw new Error('[Nimiq-CSS]: Unminified CSS folder not found.')
   const p = (name: string) => `${cssDir}/${name}.css`
   const wrapToLayer = (prefix: string, name: string, content: string) => `@layer ${prefix}${name} { \n${content}\n}`
   const readContent = (name: string) => readFileSync(p(name), 'utf-8')
@@ -115,18 +115,16 @@ function createPreset() {
     const rulesNamesStr: string[] = []
     for (const key of Object.keys(json.children)) {
       const rulesNames = key.split(',').map(s => s.trim())
-      const css = toCSS(json.children[key]).replaceAll(
-        'SEMICOLON_BUG_HACK',
-        'data:image/svg+xml;',
-      )
+      const css = toCSS(json.children[key]).replaceAll('SEMICOLON_BUG_HACK', 'data:image/svg+xml;')
       for (const _rule of rulesNames) {
         if (!_rule.startsWith('.'))
           continue
-        // nq-shadow
-        if (_rule === '.nq-shadow')
+        if (_rule === '.nq-shadow') // we define the shadow in the theme
           continue
         const rule = _rule.replace(new RegExp(`^${DEFAULT_PREFIX}`), '')
-        const ruleName = rule.replace(/^\./, '').trim()
+        const ruleName = rule.replace(/^\./, '').trim().split(/[:*]/).at(0)?.split(/\s/).at(0);
+        console.log({ rule, ruleName })
+        if(!ruleName) throw new Error(`Rule name not found for ${rule}`)
         rulesNamesStr.push(ruleName)
         const re = new RegExp(`^${ruleName}$`)
         const selector = convertToAttributes
@@ -308,13 +306,13 @@ function createPreset() {
     if (icons) {
       presets.push(
         presetIcons({
-          collections: {
-            nimiq: async () => {
-              return await fetch(
-                'https://raw.githubusercontent.com/onmax/nimiq-ui/main/packages/nimiq-icons/dist/icons.json',
-              ).then(res => res.json() as any)
-            },
-          },
+          // collections: {
+          //   nimiq: async () => {
+          //     return await fetch(
+          //       'https://raw.githubusercontent.com/onmax/nimiq-ui/main/packages/nimiq-icons/dist/icons.json',
+          //     ).then(res => res.json() as any)
+          //   },
+          // },
         }),
       )
     }
