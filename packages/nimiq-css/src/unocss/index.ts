@@ -390,6 +390,7 @@ function createPreset() {
     preflights.unshift(layerDefinition)
 
     const autocompleteStaticContent: string[] = staticContent ? ['no-max-width', 'no-px', 'no-py', 'no-mx', 'heading-lg'].map(u => `${prefix}${u}`) : []
+    const autocompleteScrollbar: string[] = scrollbar ? ['scroll-sm'].map(u => `${prefix}${u}`) : []
     const autocompletePreflight = ['nq-no-color']
 
     const preset: Preset = {
@@ -404,7 +405,7 @@ function createPreset() {
         },
       },
       autocomplete: {
-        templates: [...rulesNames, ...autocompletePreflight, ...autocompleteStaticContent],
+        templates: [...rulesNames, ...autocompletePreflight, ...autocompleteStaticContent, ...autocompleteScrollbar],
       },
       presets,
       rules,
