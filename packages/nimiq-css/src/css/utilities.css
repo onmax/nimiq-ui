@@ -421,6 +421,7 @@
   }
 }
 
+/* DEPRECATED - Use hoverable */
 .nq-flex-card {
   position: relative;
   border-radius: 6px;
@@ -627,19 +628,21 @@
 }
 
 .nq-hoverable {
+  --bg-c: rgb(var(--nq-white));
+  --text-c: rgb(var(--nq-darkblue));
+  background-color: rgb(var(--nq-neutral-400));
+  color: rgb(var(--nq-darkblue));
   border-radius: 0.5rem;
-  background-color: rgb(var(--nq-neutral-400) / 1);
-  outline-offset: 0.125rem;
+  outline-offset: 2px;
   display: flex;
   flex-direction: column;
   --ring-color: rgb(var(--nq-neutral-200));
   padding: 1.5rem;
-  transition: background-color 200ms var(--nq-ease), transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  transition: background-color 200ms var(--nq-ease), transform 200ms ease-out, box-shadow 200ms ease-out;
 
-  &:hover,
-  &:focus-visible {
-    background-color: rgb(var(--nq-white) / 1);
-    color: rgb(var(--nq-darkblue) / 1);
+  &:is(:hover, :focus-visible) {
+    background-color: var(--bg-c);
+    color: var(--text-c);
     box-shadow: 0 0 0 1.5px var(--ring-color), var(--nq-shadow);
     transform: translateY(-0.375rem);
   }
