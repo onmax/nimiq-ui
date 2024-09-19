@@ -15,6 +15,10 @@
   font-weight: 700;
   line-height: 1.2;
   color: rgb(var(--nq-neutral-700));
+
+   :is([data-inverted] *) & {
+    color: rgb(var(--nq-neutral-0) / 0.8);
+  }
 }
 
 .nq-arrow,
@@ -322,6 +326,10 @@
   height: max-content;
   width: max-content;
 
+  :is([data-inverted] *) & {
+    color: rgb(var(--nq-neutral-0) / 0.8);
+  }
+
   &:hover {
     background: rgb(var(--nq-neutral-100));
   }
@@ -568,6 +576,10 @@
   --ring-color: rgba(var(--nq-neutral-500));
   --color: rgb(var(--nq-neutral));
   --placeholder-color: rgb(var(--nq-neutral-700));
+
+  :is([data-inverted] *) & {
+    --placeholder-color: rgb(var(--nq-neutral-0) / 0.8);
+  }
 
   box-shadow: 0 0 0 1.5px var(--ring-color);
   color: var(--color);

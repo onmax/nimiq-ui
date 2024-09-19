@@ -40,11 +40,19 @@
     min-height: 100dvh;
     color: rgb(var(--nq-neutral-900));
     background-color: rgb(var(--nq-neutral-0));
-    --heading-color: rgb(var(--nq-neutral));
+
+    :is([data-inverted] *) & {
+      color: rgb(var(--nq-neutral-0) / 0.8);
+    }
   }
 
   &:is(h1, h2, h3, h4, h5, h6) {
-    color: var(--heading-color);
+    color: rgb(var(--nq-neutral));
+
+    :is([data-inverted] *) & {
+      color: rgb(var(--nq-neutral-0));
+    }
+
     overflow-wrap: break-word;
     text-wrap: balance;
     width: 100%;
@@ -56,6 +64,7 @@
     :not(:is(.nq-no-color, [class*="text-"], [text]) *) & {
       color: rgb(var(--nq-neutral) / 1);
     }
+
     /* margin: 1em 0; */
     /* text-box-trim: both;
     text-box-edge: cap alphabetic; */
