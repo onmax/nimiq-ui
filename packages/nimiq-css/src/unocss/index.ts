@@ -73,6 +73,12 @@ export interface NimiqPresetOptions {
    * @default false
    */
   staticContent?: boolean
+
+  /**
+   * Wethere to include the reset for the scrollbar
+   * @default false
+   */
+  scrollbar?: boolean
 }
 
 function createPreset() {
@@ -212,7 +218,7 @@ function createPreset() {
       layer: `${prefix}reset`,
     }
 
-    const { preflight = true, staticContent = false } = options
+    const { preflight = true, staticContent = false, scrollbar } = options
     const preflights: Preset['preflights'] = [
       resetLayer,
       {
@@ -225,6 +231,13 @@ function createPreset() {
       preflights.push({
         layer: `${prefix}preflight`,
         getCSS: () => wrapToLayer(prefix, 'preflight', readContent('preflight').replaceAll(/\.nq-/g, `.${prefix}`)),
+      })
+    }
+
+    if (scrollbar) {
+      preflights.push({
+        layer: `${prefix}preflight`,
+        getCSS: () => wrapToLayer(prefix, 'preflight', readContent('scrollbar').replaceAll(/\.nq-/g, `.${prefix}`)),
       })
     }
 
