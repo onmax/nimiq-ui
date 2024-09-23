@@ -248,18 +248,16 @@
           }
         }
 
-        &.darkblue:has(+ :is(section, [data-section]):is(.grey, .white)),
-        &:is(.white, .grey):has(+ :is(section, [data-section]).darkblue),
-        &.white:has(+ :is(section, [data-section]):is(.grey, .darkblue)),
-        &:is(.darkblue, .grey):has(+ :is(section, [data-section]).white),
-        &.grey:has(+ :is(section, [data-section]):is(.darkblue, .white)),
-        &:is(.white, .darkblue):has(+ :is(section, [data-section]).grey) {
-          &:not(:is(.nq-section-gap, [nq-section-gap])) {
-            --pb: 160px;
+        &.darkblue:has(+ :is(section, [data-section]):is(.grey, .white, .nq-section-gap, [nq-section-gap])),
+        &:is(.white, .grey):has(+ :is(section, [data-section]).darkblue, .nq-section-gap, [nq-section-gap]),
+        &.white:has(+ :is(section, [data-section]):is(.grey, .darkblue, .nq-section-gap, [nq-section-gap])),
+        &:is(.darkblue, .grey):has(+ :is(section, [data-section]).white, .nq-section-gap, [nq-section-gap]),
+        &.grey:has(+ :is(section, [data-section]):is(.darkblue, .white, .nq-section-gap, [nq-section-gap])),
+        &:is(.white, .darkblue):has(+ :is(section, [data-section]).grey, .nq-section-gap, [nq-section-gap]) {
+          --pb: 160px;
 
-            @media screen and (min-width: 1024px) {
-              --pb: 200px;
-            }
+          @media screen and (min-width: 1024px) {
+            --pb: 200px;
           }
         }
       }
