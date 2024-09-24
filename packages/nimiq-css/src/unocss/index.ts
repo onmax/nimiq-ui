@@ -13,6 +13,7 @@ import {
   presetWebFonts,
 } from 'unocss'
 import { getNimiqColors, NimiqColor } from './colors'
+import { shortcuts } from 'unocss/preset-wind'
 
 const DEFAULT_PREFIX = 'nq-'
 
@@ -57,6 +58,7 @@ export interface NimiqPresetOptions {
 
   /**
    * Add Nimiq Icons
+   * @deprecated - Use `presetIcons` instead and add the Nimiq icons collection as "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317"
    * @default true
    */
   icons?: boolean
@@ -123,7 +125,7 @@ function createPreset() {
           continue
         const rule = _rule.replace(new RegExp(`^${DEFAULT_PREFIX}`), '')
         const ruleName = rule.replace(/^\./, '').trim().split(/[:*]/).at(0)?.split(/\s/).at(0);
-        if(!ruleName) throw new Error(`Rule name not found for ${rule}`)
+        if (!ruleName) throw new Error(`Rule name not found for ${rule}`)
         rulesNamesStr.push(ruleName)
         const re = new RegExp(`^${ruleName}$`)
         const selector = convertToAttributes
@@ -247,6 +249,7 @@ function createPreset() {
 
 
     const { utilities = false, typography = false } = options
+    const shortcuts: Preset['shortcuts'] = []
     const rules: Preset['rules'] = [
       [
         new RegExp(`^${prefix}scrollbar-hide$`),
@@ -258,6 +261,26 @@ function createPreset() {
         { layer: `${prefix}utilities`, autocomplete: `${prefix}scrollbar-hide` },
       ],
     ]
+
+    if (staticContent) {
+      shortcuts.push(
+        [/^nq-(mt|mb|pt|pb|py|my)-12$/, ([, t]) => `${t}-8 xl:${t}-12`],
+        [/^nq-(mt|mb|pt|pb|py|my)-16$/, ([, t]) => `${t}-12 xl:${t}-16`],
+        [/^nq-(mt|mb|pt|pb|py|my)-24$/, ([, t]) => `${t}-16 md:${t}-24`],
+        [/^nq-(mt|mb|pt|pb|py|my)-32$/, ([, t]) => `${t}-24 md:${t}-32`],
+        [/^nq-(mt|mb|pt|pb|py|my)-40$/, ([, t]) => `${t}-32 xl:${t}-40`],
+        [/^nq-(mt|mb|pt|pb|py|my)-48$/, ([, t]) => `${t}-32 xl:${t}-40 2xl:${t}-48`],
+        [/^nq-(mt|mb|pt|pb|py|my)-96$/, ([, t]) => `${t}-80 xl:${t}-96`],
+        ['text-xs', 'text-min-12 text-max-14 lh-[1.3]'],
+        ['text-sm', 'text-min-14 text-max-16 lh-[1.3]'],
+        ['text-xl', 'text-18|21 lh-[1.3]'],
+      )
+      rules.push(
+        [/^text-min-(.*)$/, ([, t]) => ({ '--nq-font-size-min': t })],
+        [/^text-max-(.*)$/, ([, t]) => ({ '--nq-font-size-max': t })],
+        [/^text-(\d+(?:\.\d+)?[a-z]*)\|(\d+(?:\.\d+)?[a-z]*)$/, ([, min, max]) => ({ '--nq-font-size-min': min, '--nq-font-size-max': max })],
+      )
+    }
 
     // The only way to add gradients is via rules
     for (const [key, gradient, color] of gradients) {
@@ -304,17 +327,7 @@ function createPreset() {
 
     const { icons = true } = options
     if (icons) {
-      presets.push(
-        presetIcons({
-          // collections: {
-          //   nimiq: async () => {
-          //     return await fetch(
-          //       'https://raw.githubusercontent.com/onmax/nimiq-ui/main/packages/nimiq-icons/dist/icons.json',
-          //     ).then(res => res.json() as any)
-          //   },
-          // },
-        }),
-      )
+      console.warn('The `icons` option is deprecated. Use `presetIcons` instead and add the Nimiq icons collection as "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317"')
     }
 
     const variants: Preset['variants'] = [
@@ -360,12 +373,37 @@ function createPreset() {
         }
       },
       (matcher) => {
-        // open-
-        if (!matcher.startsWith('data-open:'))
+        if (!matcher.startsWith('global-dark:'))
           return matcher
         return {
-          matcher: matcher.slice(10),
-          selector: s => `[data-state=open]${s}, [data-state=open] ${s}`,
+          matcher: matcher.slice('global-dark:'.length),
+          selector: s => `html.dark ${s}`,
+        }
+      },
+
+      // For Radix. Maybe they should be in a separate preset
+      (matcher) => {
+        const motionVariants = ['from-start', 'to-start', 'from-end', 'to-end']
+        for (const variant of motionVariants) {
+          if (matcher.startsWith(`motion-${variant}:`)) {
+            return {
+              matcher: matcher.slice(`motion-${variant}:`.length),
+              selector: s => `[data-motion=${variant}]${s}`,
+            }
+          }
+        }
+        return matcher
+      },
+      (matcher) => {
+        const dataStates = ['open', 'visible', 'hidden', 'closed', 'active']
+        for (const state of dataStates) {
+          const prefix = `data-${state}:`
+          if (matcher.startsWith(prefix)) {
+            return {
+              matcher: matcher.slice(prefix.length),
+              selector: s => `[data-state=${state}]${s}, [data-state=${state}] ${s}`,
+            }
+          }
         }
       },
     ]
@@ -388,7 +426,7 @@ function createPreset() {
     }
     preflights.unshift(layerDefinition)
 
-    const autocompleteStaticContent: string[] = staticContent ? ['no-max-width', 'no-px', 'no-color', 'no-py', 'no-mx', 'heading-lg', 'section-gap'].map(u => `${prefix}${u}`) : []
+    const autocompleteStaticContent: string[] = staticContent ? ['no-max-width', 'no-px', 'no-color', 'no-py', 'no-mx', 'heading-lg', 'section-gap', 'wide'].map(u => `${prefix}${u}`) : []
     const autocompleteScrollbar: string[] = scrollbar ? ['scroll-sm'].map(u => `${prefix}${u}`) : []
     const autocompletePreflight = ['nq-no-color']
 
@@ -396,12 +434,16 @@ function createPreset() {
       name: 'nimiq-preset',
       preflights,
       variants,
+      shortcuts,
       theme: {
         colors,
         boxShadow: {
           DEFAULT: 'var(--nq-shadow)',
           lg: 'var(--nq-shadow-lg)',
         },
+        transitionTimingFunction: {
+          'nq': 'var(--nq-ease)',
+        }
       },
       autocomplete: {
         templates: [...rulesNames, ...autocompletePreflight, ...autocompleteStaticContent, ...autocompleteScrollbar],
