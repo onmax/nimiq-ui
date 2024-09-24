@@ -9,7 +9,6 @@ import {
   type Preflight,
   type Preset,
   type PresetFactory,
-  presetIcons,
   presetWebFonts,
 } from 'unocss'
 import { getNimiqColors, NimiqColor } from './colors'
@@ -325,8 +324,7 @@ function createPreset() {
       )
     }
 
-    const { icons = true } = options
-    if (icons) {
+    if (options.icons) {
       console.warn('The `icons` option is deprecated. Use `presetIcons` instead and add the Nimiq icons collection as "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317"')
     }
 
