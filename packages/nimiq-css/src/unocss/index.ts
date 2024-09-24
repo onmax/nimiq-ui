@@ -441,7 +441,7 @@ function createPreset() {
           DEFAULT: 'var(--nq-shadow)',
           lg: 'var(--nq-shadow-lg)',
         },
-        transitionTimingFunction: {
+        easing: {
           'nq': 'var(--nq-ease)',
         }
       },
