@@ -1,10 +1,8 @@
 :root {
-  --nq-darkblue: 31 35 72;
-  --nq-white: 255 255 255;
-
   /* Background gradients */
 
-  --nimiq-light-blue-bg: radial-gradient(100% 100% at bottom right, #265DD7, var(--nimiq-light-blue));
+  /* Legacy colors */
+  /* --nimiq-light-blue-bg: radial-gradient(100% 100% at bottom right, #265DD7, var(--nimiq-light-blue));
   --nimiq-gold-bg: radial-gradient(100% 100% at bottom right, #EC991C, var(--nimiq-gold));
   --nimiq-green-bg: radial-gradient(100% 100% at bottom right, #41A38E, var(--nimiq-green));
   --nimiq-orange-bg: radial-gradient(100% 100% at bottom right, #FD6216, var(--nimiq-orange));
@@ -12,14 +10,19 @@
   --nimiq-purple-bg: radial-gradient(100% 100% at bottom right, #4D4C96, var(--nimiq-purple));
   --nimiq-pink-bg: radial-gradient(100% 100% at bottom right, #E0516B, var(--nimiq-pink));
   --nimiq-light-green-bg: radial-gradient(100% 100% at bottom right, #70B069, var(--nimiq-light-green));
-  --nimiq-brown-bg: radial-gradient(100% 100% at bottom right, #724147, var(--nimiq-brown));
+  --nimiq-brown-bg: radial-gradient(100% 100% at bottom right, #724147, var(--nimiq-brown)); */
+
 
   /* Background gradients darkened (hover states) */
-  --nimiq-light-blue-bg-darkened: radial-gradient(100% 100% at bottom right, #2355C4, var(--nimiq-light-blue-darkened));
+  /* --nimiq-light-blue-bg-darkened: radial-gradient(100% 100% at bottom right, #2355C4, var(--nimiq-light-blue-darkened));
   --nimiq-gold-bg-darkened: radial-gradient(100% 100% at bottom right, #E58A1B, var(--nimiq-gold-darkened));
   --nimiq-green-bg-darkened: radial-gradient(100% 100% at bottom right, #3D9988, var(--nimiq-green-darkened));
   --nimiq-orange-bg-darkened: radial-gradient(100% 100% at bottom right, #EA5200, var(--nimiq-orange-darkened));
-  --nimiq-red-bg-darkened: radial-gradient(100% 100% at bottom right, #BF2D46, var(--nimiq-red-darkened));
+  --nimiq-red-bg-darkened: radial-gradient(100% 100% at bottom right, #BF2D46, var(--nimiq-red-darkened)); */
+  
+  --nq-darkblue: 31 35 72;
+  --nq-white: 255 255 255;
+  --nq-blue-s3: #2c72c7;
 
   --nq-neutral-on-light: var(--nq-darkblue);
   --nq-neutral-on-light-0: var(--nq-white);
