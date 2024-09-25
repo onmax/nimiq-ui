@@ -16,7 +16,7 @@
   line-height: 1.2;
   color: rgb(var(--nq-neutral-700));
 
-   :is([data-inverted] *) & {
+  :is([data-inverted] *) & {
     color: rgb(var(--nq-neutral-0) / 0.8);
   }
 }
@@ -173,7 +173,7 @@
   &:is(.nq-pill-xl, [nq-pill-xl]) {
     box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    transition: transform 450ms var(--nq-ease), box-shadow 450ms var(--nq-ease);
+    transition: transform 450ms var(--nq-ease), box-shadow 450ms var(--nq-ease), background-color 250ms var(--nq-ease);
     will-change: box-shadow;
     text-transform: uppercase;
     letter-spacing: 0.094em;
@@ -196,7 +196,7 @@
     outline: none;
     box-shadow: 0 .2rem .3rem rgba(0, 0, 0, 0.2);
     transform: translate3D(0, 1px, 0);
-    transition: transform 200ms cubic-bezier(.41, .34, .26, 1.55), box-shadow 200ms cubic-bezier(.41, .34, .26, 1.55) !important;
+    transition: transform 200ms cubic-bezier(.41, .34, .26, 1.55), box-shadow 200ms cubic-bezier(.41, .34, .26, 1.55), background-color 200ms var(--nq-ease);
   }
 
   &:is([disabled]) {
@@ -218,31 +218,67 @@
 .nq-pill-blue {
   background: rgb(var(--nq-blue));
   background-image: var(--nq-blue-gradient);
+
+  &:hover,
+  &:focus-visible {
+    background: rgb(var(--nq-blue-1100));
+    background-image: rgb(var(--nq-blue-gradient-darkened));
+  }
 }
 
 .nq-pill-green {
   background: rgb(var(--nq-green));
   background-image: var(--nq-green-gradient);
+
+  &:hover,
+  &:focus-visible {
+    background: rgb(var(--nq-green-1100));
+    background-image: rgb(var(--nq-green-gradient-darkened));
+  }
 }
 
 .nq-pill-red {
   background: rgb(var(--nq-red));
   background-image: var(--nq-red-gradient);
+
+  &:hover,
+  &:focus-visible {
+    background: rgb(var(--nq-red-1100));
+    background-image: rgb(var(--nq-red-gradient-darkened));
+  }
 }
 
 .nq-pill-gold {
   background: rgb(var(--nq-gold));
   background-image: var(--nq-gold-gradient);
+
+  &:hover,
+  &:focus-visible {
+    background: rgb(var(--nq-gold-1100));
+    background-image: rgb(var(--nq-gold-gradient-darkened));
+  }
 }
 
 .nq-pill-orange {
   background: rgb(var(--nq-orange));
   background-image: var(--nq-orange-gradient);
+
+  &:hover,
+  &:focus-visible {
+    background: rgb(var(--nq-orange-1100));
+    background-image: rgb(var(--nq-orange-gradient-darkened));
+  }
 }
 
 .nq-pill-secondary {
   background: rgb(var(--nq-neutral-400));
   color: rgb(var(--nq-neutral));
+
+  &:hover,
+  &:focus-visible {
+    background: rgb(var(--nq-neutral-1100));
+    background-image: rgb(var(--nq-neutral-gradient-darkened));
+  }
 }
 
 .nq-pill-tertiary {
@@ -612,8 +648,8 @@
   position: relative;
 
   &::after {
-    width: 100%;  
-    content: var(--nq-content,'Learn more');
+    width: 100%;
+    content: var(--nq-content, 'Learn more');
     font-size: 1rem;
     white-space: nowrap;
     background-color: rgb(var(--nq-neutral-400) / 0);
