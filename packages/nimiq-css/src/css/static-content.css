@@ -19,11 +19,10 @@
 
     --nq-max-width: 90rem;
 
-    /* Change color except for elements inside an ancestor with nq-no-color */
-    *:not(.nq-no-color):not([nq-no-color]):not(.nq-no-color *):not([nq-no-color] *) {
+    /* Change color of body text except for elements inside an ancestor with nq-no-color */
+    &:not(.nq-no-color):not([nq-no-color]):not(.nq-no-color *):not([nq-no-color] *) {
       color: rgb(var(--nq-neutral-800));
     }
-
 
     /* We avoid rewriting typography rules */
     h1:not(:is(.nq-prose, [nq-prose]) *) {
