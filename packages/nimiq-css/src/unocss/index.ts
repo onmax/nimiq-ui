@@ -324,7 +324,7 @@ function createPreset() {
       )
     }
 
-    if (options.icons) {
+    if (options.icons === true) {
       console.warn('The `icons` option is deprecated. Use `presetIcons` instead and add the Nimiq icons collection as "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317"')
     }
 
