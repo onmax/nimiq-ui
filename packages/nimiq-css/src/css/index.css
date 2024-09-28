@@ -1,7 +1,9 @@
 @import url('colors.css') layer(nq-colors);
+@import url('fluid-font-sizes.css') layer(nq-fluid-font-sizes);
 @import url('preflight.css') layer(nq-preflight);
 @import url('typography.css') layer(nq-typography);
 /* @import url('static-content.css') layer(nq-static-content); You need to import it yourself. This layer is useful for static websites like nimiq.com  */
+@import url('spacing.css') layer(nq-spacing);
 @import url('utilities.css') layer(nq-utilities);
 @import url('animations.css') layer(nq-animations);
 @import url('atomic.css') layer(nq-atomic);

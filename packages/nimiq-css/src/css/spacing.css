@@ -1,0 +1,79 @@
+:root {
+  /* Viewport widths */
+  --nq-space-width-min: 320;
+  --nq-space-width-max: 1440;
+}
+
+* {
+  --nq-space-width-range: calc(var(--nq-space-width-max) - var(--nq-space-width-min));
+  --nq-space-scale-factor: calc((100vw - (1px * var(--nq-space-width-min))) / var(--nq-space-width-range));
+  --nq-space-size-range: calc(var(--nq-space-size-max) - var(--nq-space-size-min));
+  --nq-space-size-fluid: calc(1px * var(--nq-space-size-min) + var(--nq-space-size-range) * var(--nq-space-scale-factor));
+  --nq-space-size: clamp(calc(1px * var(--nq-space-size-min)), var(--nq-space-size-fluid), calc(var(--nq-space-size-max) * 1px));
+}
+
+.nq-mt-12, .nq-mb-12, .nq-pt-12, .nq-pb-12, .nq-py-12, .nq-my-12 {
+  --nq-space-size-min: 8;
+  --nq-space-size-max: 12;
+}
+
+.nq-mt-16, .nq-mb-16, .nq-pt-16, .nq-pb-16, .nq-py-16, .nq-my-16 {
+  --nq-space-size-min: 12;
+  --nq-space-size-max: 16;
+}
+
+.nq-mt-24, .nq-mb-24, .nq-pt-24, .nq-pb-24, .nq-py-24, .nq-my-24 {
+  --nq-space-size-min: 16;
+  --nq-space-size-max: 24;
+}
+
+.nq-mt-32, .nq-mb-32, .nq-pt-32, .nq-pb-32, .nq-py-32, .nq-my-32 {
+  --nq-space-size-min: 24;
+  --nq-space-size-max: 32;
+}
+
+.nq-mt-40, .nq-mb-40, .nq-pt-40, .nq-pb-40, .nq-py-40, .nq-my-40 {
+  --nq-space-size-min: 32;
+  --nq-space-size-max: 40;
+}
+
+.nq-mt-48, .nq-mb-48, .nq-pt-48, .nq-pb-48, .nq-py-48, .nq-my-48 {
+  --nq-space-size-min: 32;
+  --nq-space-size-max: 48;
+}
+
+.nq-mt-72, .nq-mb-72, .nq-pt-72, .nq-pb-72, .nq-py-72, .nq-my-72 {
+  --nq-space-size-min: 48;
+  --nq-space-size-max: 72;
+}
+
+.nq-mt-96, .nq-mb-96, .nq-pt-96, .nq-pb-96, .nq-py-96, .nq-my-96 {
+  --nq-space-size-min: 80;
+  --nq-space-size-max: 96;
+}
+
+.nq-mt-12, .nq-mt-16, .nq-mt-24, .nq-mt-32, .nq-mt-40, .nq-mt-48, .nq-mt-72, .nq-mt-96 {
+  margin-top: var(--nq-space-size);
+}
+
+.nq-mb-12, .nq-mb-16, .nq-mb-24, .nq-mb-32, .nq-mb-48, .nq-mb-48, .nq-mb-72, .nq-mb-96 {
+  margin-bottom: var(--nq-space-size);
+}
+
+.nq-pt-12, .nq-pt-16, .nq-pt-24, .nq-pt-32, .nq-pt-48, .nq-pt-48, .nq-pt-72, .nq-pt-96 {
+  padding-top: var(--nq-space-size);
+}
+
+.nq-pb-12, .nq-pb-16, .nq-pb-24, .nq-pb-32, .nq-pb-48, .nq-pb-48, .nq-pb-72, .nq-pb-96 {
+  padding-bottom: var(--nq-space-size);
+}
+
+.nq-py-12, .nq-py-16, .nq-py-24, .nq-py-32, .nq-py-48, .nq-py-48, .nq-py-72, .nq-py-96 {
+  padding-top: var(--nq-space-size);
+  padding-bottom: var(--nq-space-size);
+}
+
+.nq-my-12, .nq-my-16, .nq-my-24, .nq-my-32, .nq-my-48, .nq-my-48, .nq-my-72, .nq-my-96 {
+  margin-top: var(--nq-space-size);
+  margin-bottom: var(--nq-space-size);
+}

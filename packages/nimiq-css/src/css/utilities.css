@@ -623,7 +623,7 @@
 }
 
 .nq-hoverable {
-  background-color: rgb(var(--nq-neutral-400));
+  background-color: rgb(var(--nq-neutral-300));
   background-image: var(--nq-neutral-gradient-subtle);
   color: rgb(var(--nq-neutral));
   border-radius: 0.5rem;
@@ -681,4 +681,8 @@
     width: 0.6rem;
     height: 0.7rem;
   }
+}
+
+.nq-scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

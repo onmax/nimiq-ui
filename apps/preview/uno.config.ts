@@ -10,7 +10,6 @@ export default defineConfig({
       utilities: true,
       typography: true,
       attributifyUtilities: true,
-      prefix: '',
     }),
   ],
 })

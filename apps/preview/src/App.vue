@@ -23,7 +23,7 @@ const toggleDark = useToggle(isDark)
         </button>
       </header>
       
-      <main max-w-700 mx-auto mt-12 pb-16>
+      <main max-w-700 mx-auto nq-mt-12 pb-16>
         <RouterView />
       </main>
     </div>

@@ -7,6 +7,8 @@
   /* box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.15); */
   --nq-track: rgb(var(--nq-neutral-200));
   --nq-thumb: rgb(var(--nq-neutral-600));
+
+  interpolate-size: allow-keywords;
 }
 
 *:not(:where(.raw, .raw *)) {
@@ -47,15 +49,15 @@
   }
 
   &:is(h1, h2, h3, h4, h5, h6) {
-    
+
     text-wrap: balance;
     width: 100%;
-    line-height: 1.2;
+    --nq-line-height: 1.2;
     max-width: 100%;
     font-weight: bold;
 
     /* We change the color except if there is parent that change the color */
-    :where(:not(.nq-no-color, [nq-no-color], [class*="text-"], [text])):not(:has(.nq-no-color, [nq-no-color], [class*="text-"], [text])) {
+    :where(:not(.nq-no-color, [nq-no-color])):not(:has(.nq-no-color, [nq-no-color])) {
       color: rgb(var(--nq-neutral));
     }
 
@@ -65,22 +67,24 @@
   }
 
   &:is(h1) {
-    font-size: 1.5rem;
+    --nq-font-size-min: 24;
+    --nq-font-size-max: 32;
   }
 
   &:is(h2) {
-    font-size: 1.25rem;
+    --nq-font-size-max: 20;
+    --nq-font-size-min: 24;
   }
 
   &:is(p) {
-    line-height: 1.3125;
+    --nq-line-height: 1.3125;
   }
 
   small {
-    font-size: 0.875rem;
-    line-height: 1.2;
+    --nq-font-size-min: 12;
+    --nq-font-size-max: 14;
+    --nq-line-height: 1.2;
     font-weight: 600;
-    /* margin: 0.5rem 0; */
   }
 
   &:is(p, li) {
@@ -104,6 +108,8 @@
     background-color: rgb(var(--nq-neutral-300));
     color: rgb(var(--nq-neutral-900));
     font-size: 0.9em;
+    --nq-font-size-min: 14;
+    --nq-font-size-max: 16;
     overflow-x: auto;
     /* Scroll colors */
     --nq-track: rgb(var(--nq-neutral-500));

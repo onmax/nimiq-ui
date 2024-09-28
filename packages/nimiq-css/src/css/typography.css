@@ -25,120 +25,94 @@
   }
 
   *:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)) {
-    font-size: 1em;
-    line-height: 1.5;
+    --nq-font-size-min: 1em;
+    --nq-font-size-max: 1em;
+    --nq-line-height: 1.5;
     max-width: 780px;
     margin-left: auto;
     margin-right: auto;
 
     &:is(h1) {
-      font-size: 2.75em;
-      line-height: 3.3125rem;
+      --nq-font-size-max: 2.75em;
+      --nq-font-size-max: 3em;
+      --nq-line-height: 3.3125;
       font-weight: 700;
 
-      @media (min-width: 1153px) {
-        font-size: 3em;
-      }
-
-      margin-bottom: 7em;
-      margin-top: 9em;
+      margin-bottom: 6.222em;
+      margin-top: 8em;
 
       @media (min-width: 769px) {
-        margin-bottom: 7.5em;
+        margin-bottom: 6.666em;
       }
     }
 
     &:is(h2) {
-      font-size: 2em;
-      line-height: 2.625rem;
+      --nq-font-size-max: 2em;
+      --nq-font-size-max: 2.375em;
+      --nq-line-height-min: 2.625;
+      --nq-line-height-max: 3.0625;
       font-weight: 700;
 
-      @media (min-width: 769px) {
-        font-size: 2.25em;
-        line-height: 2.9375rem;
-      }
-
-      @media (min-width: 1153px) {
-        font-size: 2.375em;
-        line-height: 3.0625rem;
-      }
-
-      margin-top: 5.5em;
-      margin-bottom: 1.5em;
+      margin-top: 4.888em;
+      margin-bottom: 1.333em;
 
       @media (min-width: 769px) {
-        margin-top: 6em;
+        margin-top: 5.333em;
       }
     }
 
     &:is(h1+h2) {
-      margin-top: 3.5em;
+      margin-top: 3.111em;
 
       @media (min-width: 1153px) {
-        margin-top: 4em;
+        margin-top: 3.555em;
       }
     }
 
 
     &:is(h3) {
-      font-size: 1.625em;
-      line-height: 2.125rem;
+      --nq-font-size-max: 1.625em;
+      --nq-font-size-max: 1.875em;
+      --nq-line-height-min: 2.125;
+      --nq-line-height-max: 2.4375;
       font-weight: 700;
 
-      @media (min-width: 769px) {
-        font-size: 1.75em;
-        line-height: 2.25rem;
-      }
-
-      @media (min-width: 1153px) {
-        font-size: 1.875em;
-        line-height: 2.4375rem;
-      }
-
-      margin-top: 5.5em;
-      margin-bottom: 1.5em;
+      margin-top: 4.888em;
+      margin-bottom: 1.333em;
 
       @media (min-width: 769px) {
-        margin-top: 4em;
+        margin-top: 3.555em;
       }
     }
 
     &:is(h2+h3) {
-      margin-top: 3em;
+      margin-top: 2.666em;
 
       @media (min-width: 1153px) {
-        margin-top: 3.5em;
+        margin-top: 3.111em;
       }
     }
 
     &:is(h4) {
-      font-size: 1.375em;
-      line-height: 1.8125rem;
+      --nq-font-size-min: 1.375em;
+      --nq-font-size-max: 1.875em;
+      --nq-line-height-min: 1.8125;
+      --nq-line-height-max: 2.125;
       font-weight: 700;
 
-      @media (min-width: 769px) {
-        font-size: 1.5em;
-        line-height: 1.9375rem;
-      }
-
-      @media (min-width: 1153px) {
-        font-size: 1.625em;
-        line-height: 2.125rem;
-      }
-
-      margin-top: 5.5em;
-      margin-bottom: 1.5em;
+      margin-top: 4.888em;
+      margin-bottom: 1.333em;
 
       @media (min-width: 769px) {
-        margin-top: 6em;
+        margin-top: 5.333em;
       }
     }
 
     &:is(h3+h4) {
-      margin-top: 2.5em;
+      margin-top: 2.222em;
 
       @media (min-width: 1153px) {
-        margin-top: 3em;
+        margin-top: 2.666em;
       }
     }
 
@@ -155,6 +129,7 @@
         content: '#';
         opacity: 0;
         position: absolute;
+        z-index: 1;
         top: 0;
         left: 0;
         height: 100%;
@@ -163,7 +138,7 @@
       }
 
       @media (min-width: 769px) {
-        :is(&, &::after):hover {
+        :where(&, &::after):hover {
           &::after {
             opacity: 0.5;
           }
@@ -194,24 +169,24 @@
     &:is(p) {
       margin-top: 0;
       margin-bottom: 0;
-      font-size: 1em;
-      line-height: 1.75;
+      --nq-font-size: 1em;
+      --nq-line-height: 1.75;
 
       &+p {
-        margin-top: 1.5em;
+        margin-top: 1.333em;
       }
     }
 
     &:is(h1+p) {
-      margin-top: 7em;
+      margin-top: 6.222em;
 
       @media (min-width: 1153px) {
-        margin-top: 7.5em;
+        margin-top: 6.666em;
       }
     }
 
     &:is(h2, h3, h4)+p {
-      margin-top: -0.4375em;
+      margin-top: -0.388em;
     }
 
     &:is(blockquote) {
@@ -219,8 +194,8 @@
       margin-left: 0;
 
       &:not(figure blockquote) {
-        margin-top: 1.5em;
-        margin-bottom: 1.5em;
+        margin-top: 1.333em;
+        margin-bottom: 1.333em;
 
         /*
           We add the borders to blockquote if is not a children of figure
@@ -240,38 +215,30 @@
           padding: 1.2em 1.25rem;
 
           @media (min-width: 769px) {
-            padding: 1.5em 2rem;
+            padding: 1.066em 2rem;
           }
         }
       }
 
       * {
-        font-size: 1.3125em;
+        --nq-font-size-min: 1.3125em;
+        --nq-font-size-max: 1.5em;
+        --nq-line-height-min: 2.125;
+        --nq-line-height-max: 2.375;
         font-weight: 700;
-        line-height: 2.125rem;
-
-        @media (min-width: 769px) {
-          font-size: 1.375em;
-          line-height: 2.1875rem;
-        }
-
-        @media (min-width: 1153px) {
-          font-size: 1.5em;
-          line-height: 2.375em;
-        }
       }
     }
 
     &:is(figure) {
       figcaption {
-        font-size: 0.875em;
+        --nq-font-size: 0.875em;
         font-weight: 700;
-        line-height: 1.3125em;
+        --nq-line-height: 1.3125;
       }
 
       &:has(blockquote) {
-        margin-top: 2em;
-        margin-bottom: 1.5em;
+        margin-top: 1.777em;
+        margin-bottom: 1.333em;
 
         &::after,
         &::before {
@@ -284,44 +251,44 @@
         }
 
         blockquote {
-          padding: 1.5em 1.25rem 0 1.25rem;
+          padding: 1.333em 1.25rem 0 1.25rem;
 
           @media (min-width: 769px) {
-            padding: 1.5em 2rem 0 2rem;
+            padding: 1.333em 2rem 0 1.777rem;
           }
         }
 
         figcaption {
-          font-size: 0.875em;
+          --nq-font-size-min: 0.875em;
+          --nq-font-size-max: 1em;
+          --nq-line-height-min: 1.3125;
+          --nq-line-height-max: 1.5;
           font-weight: 400;
-          line-height: 1.3125em;
-          padding: 1.5em 1.25rem;
-          margin-top: -1.25em;
+          padding: 1.333em 1.25rem;
+          margin-top: -1.111em;
 
           @media (min-width: 769px) {
-            padding: 1.5em 2rem;
-            margin-top: -1.5em;
-            font-size: 1em;
-            line-height: 1.5em;
+            padding: 1.333em 2rem;
+            margin-top: -1.333em;
           }
         }
       }
     }
 
-    &:is(img, video, iframe) {
-      border-radius: 0.375em;
-      margin-top: 1.5em;
+    &:where(img, video, iframe) {
+      border-radius: 0.333em;
+      margin-top: 1.333em;
 
       &:has(+ figcaption) {
-        margin-bottom: 0.75em;
+        margin-bottom: 0.666em;
 
         @media (min-width: 321px) {
-          margin-bottom: 1em;
+          margin-bottom: 0.888em;
         }
       }
 
       &:not(:has(+ figcaption)) {
-        margin-bottom: 1.5em;
+        margin-bottom: 1.333em;
       }
     }
 
@@ -329,7 +296,7 @@
     &:is(img, video, iframe, table),
     /* Select code and pre that are not child of p,ul,ol... */
     &:is(code, pre):not(:where(:is(p, ul, ol, pre, code, table) :is(pre, code))) {
-      margin-left: -1.5em;
+      margin-left: -1.5rem;
       width: min(calc(100% + 3rem), 700px);
 
       @media (min-width: 768px) {
@@ -341,9 +308,9 @@
 
     &:is(ul) {
       list-style: none;
-      margin-top: 1em;
-      margin-bottom: 1.75em;
-      
+      margin-top: 0.888em;
+      margin-bottom: 1.555em;
+
       padding-left: 3rem;
 
       :where(.nq-prose-compact, [nq-prose-compact]) & {
@@ -351,19 +318,19 @@
       }
 
       li {
-        margin: 1em 0;
+        margin: 0.888em 0;
         display: block;
 
         &::before {
           content: '';
-          width: 0.375em;
-          height: 0.375em;
+          width: 0.333em;
+          height: 0.333em;
           position: relative;
-          border-radius: 0.1875em;
-          margin-right: 0.6em;
+          border-radius: 0.1666em;
+          margin-right: 0.5333em;
           float: left;
-          margin-left: -1em;
-          top: 0.625em;
+          margin-left: -0.888em;
+          top: 0.555em;
           background-color: currentColor;
           opacity: 0.6
         }
@@ -373,19 +340,19 @@
     &:is(ol) {
       list-style: none;
       counter-reset: item;
-      margin-top: 1em;
-      margin-bottom: 1.75em;
+      margin-top: 0.888em;
+      margin-bottom: 1.555em;
 
       li {
         counter-increment: item;
-        margin: 1em 0;
+        margin: 0.888em 0;
         position: relative;
 
         &::before {
           content: counters(item, ".");
           font-weight: 700;
           display: inline-block;
-          margin-right: 0.75em;
+          margin-right: 0.666em;
           position: absolute;
           left: -1.5rem;
           color: currentColor;
@@ -394,8 +361,8 @@
 
         >ol {
           counter-reset: subitem;
-          margin-top: 0.5em;
-          margin-bottom: 0.5em;
+          margin-top: 0.444em;
+          margin-bottom: 0.444em;
           padding-left: 1.5rem;
 
           li {
@@ -411,26 +378,26 @@
     }
 
     &:is(code) {
-      font-size: 0.9em;
-      border-radius: 0.25em;
+      --nq-font-size: 0.9em;
+      border-radius: 0.222em;
 
       &:not(:is(:where(:is(h1, h2, h3, h4) &), pre > &)) {
-        padding: 0 0.5rem;
+        padding: 0 0.444em;
       }
     }
 
     &:is(pre) {
-      font-size: 1em;
-      margin-top: 1.5em;
-      margin-bottom: 1.75em;
-      padding: 1.5rem;
-      border-radius: 0.375em;
+      --nq-font-size: 1em;
+      margin-top: 1.333em;
+      margin-bottom: 1.555em;
+      padding: 1.333em 1.5rem;
+      border-radius: 0.333em;
       box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.08);
     }
 
     &:is(pre, code):where(:is(h1, h2, h3, h4) &) {
-      font-size: 0.8em;
-      padding: 0.2em 0.5rem;
+      --nq-font-size: 0.8em;
+      padding: 0.1777em 0.5rem;
       position: relative;
       top: -1px;
     }
@@ -442,13 +409,13 @@
     }
 
     table {
-      margin-top: 2.5em;
-      margin-bottom: 2.5em;
+      margin-top: 2.222em;
+      margin-bottom: 2.222em;
       display: block;
       overflow-x: auto;
       border-spacing: 0;
       border-collapse: separate;
-      border-radius: 0.375em;
+      border-radius: 0.333em;
       border: 1px solid rgb(var(--nq-neutral-300));
       max-height: 90dvh;
       max-width: max-content;
@@ -456,14 +423,14 @@
 
       code,
       pre {
-        line-height: 1.3;
-        padding: 0.25em 0.25rem;
+        --nq-line-height: 1.3;
+        padding: 0.222em 0.25rem;
         position: relative;
       }
 
       th,
       td {
-        padding: 0.75em 0.75rem;
+        padding: 0.666em 0.75rem;
       }
 
       thead th {
@@ -496,15 +463,16 @@
     }
 
     hr {
-      margin: 2em auto;
-      width: 8em;
+      margin: 1.777em auto;
+      width: 7.111em;
       border-color: rgb(var(--nq-neutral-500));
     }
 
     details {
-      border-radius: 0.4em;
+      /* TODO Animate open/closing https://developer.chrome.com/docs/css-ui/animate-to-height-auto#animate_the_details_element */
+      border-radius: 0.355em;
       background-color: rgb(var(--nq-neutral-200));
-      margin: 1.5em 0;
+      margin: 1.333em 0;
       color: rgb(var(--nq-neutral-900));
       box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.1);
 
@@ -513,8 +481,8 @@
       }
 
       summary {
-        padding: 1em 2rem 1em calc(0.7rem + 2.3em);
-        font-size: 1em;
+        padding: 0.888em 2rem 0.888em calc(0.7rem + 2.3em);
+        --nq-font-size: 1em;
         position: relative;
         display: flex;
         align-items: center;
@@ -529,8 +497,8 @@
           mask-size: 100% 100%;
           background-color: currentColor;
           color: inherit;
-          width: 0.7em;
-          height: 0.7em;
+          width: 0.622em;
+          height: 0.622em;
           transition: transform 100ms ease-out;
           display: inline-block;
           position: absolute;
@@ -546,7 +514,7 @@
       }
 
       >*:not(summary) {
-        padding: 0 1rem 1em 1rem;
+        padding: 0 1rem 0.888em 1rem;
       }
     }
   }

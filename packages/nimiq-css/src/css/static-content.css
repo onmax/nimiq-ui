@@ -1,16 +1,4 @@
-:root {
-  /* Base font sizes */
-  --nq-font-size-min: var(--nq-font-size-min, 1rem);
-  --nq-font-size-max: var(--nq-font-size-max, 1rem);
-
-  /* Viewport widths */
-  --nq-font-width-min: 320;
-  /* Minimum viewport width in px */
-  --nq-font-width-max: 1280;
-
-  /* Maximum viewport width in px */
-}
-
+/* TODO Remove font-size fluid */
 *:not(:where(.nq-raw, .nq-raw *)) {
 
   /* Base styles */
@@ -25,7 +13,7 @@
     }
 
     /* Move nq-prose check to the top level */
-    :not(:is(.nq-prose, [nq-prose])) {
+    :not(:where(.nq-prose, [nq-prose])) {
 
       /* We avoid rewriting typography rules */
       h1 {
@@ -37,16 +25,16 @@
           color: rgb(var(--nq-neutral));
         }
 
-        --nq-max-width: 26ch;
+        max-width: 26ch;
         text-align: left;
         margin: 0;
 
-        &:is(.nq-heading-lg, [nq-heading-lg]) {
+        &:where(.nq-heading-lg, [nq-heading-lg]) {
           --nq-font-size-min: 44;
           --nq-font-size-max: 64;
         }
 
-        &:not(:is(.nq-heading-lg, [nq-heading-lg])) {
+        &:not(:where(.nq-heading-lg, [nq-heading-lg])) {
           --nq-font-size-min: 40;
           --nq-font-size-max: 48;
         }
@@ -61,7 +49,7 @@
 
 
           line-height: 1.5;
-          --nq-max-width: 42ch;
+          max-width: 42ch;
 
           --nq-font-size-min: 20;
           --nq-font-size-max: 22;
@@ -82,7 +70,7 @@
           color: rgb(var(--nq-neutral));
         }
 
-        --nq-max-width: 33ch;
+        max-width: 33ch;
         margin: 0;
 
         --nq-font-size-min: 32;
@@ -97,9 +85,10 @@
         &+p {
           margin-top: 16px;
           font-weight: 600;
+          color: rgb(var(--nq-neutral-800) / 0.85);
 
           line-height: 1.5;
-          --nq-max-width: 70ch;
+          max-width: 70ch;
 
           --nq-font-size-min: 20;
           --nq-font-size-max: 22;
@@ -158,7 +147,7 @@
 
       --nq-max-width: 73rem;
 
-      &:is(.nq-wide, [nq-wide]) {
+      &:where(.nq-wide, [nq-wide]) {
         --nq-max-width: 90rem;
       }
 
@@ -191,50 +180,22 @@
         max-width: var(--nq-max-width);
       }
 
-      &:is(.nq-no-max-width, [nq-no-max-width]) {
+      &:where(.nq-no-max-width, [nq-no-max-width]),
+      > :where(.nq-no-max-width, [nq-no-max-width]) {
         --nq-max-width: none;
       }
 
-      > :is(.nq-no-max-width, [nq-no-max-width]) {
-        --nq-max-width: none;
-      }
-
-      &:is(.nq-no-mx, [nq-no-max]) {
+      &:where(.nq-no-mx, [nq-no-max]) {
         margin-left: 0;
         margin-right: 0;
       }
 
-      &:is(.nq-no-px, [nq-no-px]) {
-        --px: 0;
-      }
+      &:not(:where(.nq-no-py, [nq-no-py])) {
 
-      &:not(:is(.nq-no-py, [nq-no-py])) {
-        --pt: 160px;
-
-        @media screen and (min-width: 1024px) {
-          --pt: 200px;
-        }
-      }
-
-      /* &.darkblue+:is(section, [data-section]):is(.grey,.white),
-    &:is(.grey,.white)+:is(section, [data-section]).darkblue,
-    &.white+:is(section, [data-section]):is(.grey,.darkblue),
-    &:is(.grey,.darkblue)+:is(section, [data-section]).white,
-    &.grey+:is(section, [data-section]):is(.white,.darkblue),
-    &:is(.white,.darkblue)+:is(section, [data-section]).grey {
-      --pt: 72px;
-
-      @media screen and (min-width: 1024px) {
-        --pt: 96px;
-      }
-    } */
-
-      &:not(:is(.nq-no-py, [nq-no-py])) {
-
-        &.darkblue+:is(section, [data-section]).darkblue,
-        &.grey+:is(section, [data-section]).grey,
-        &.white+:is(section, [data-section]).white {
-          &:not(:is(.nq-section-gap, [nq-section-gap])) {
+        &.darkblue+:where(section, [data-section]).darkblue,
+        &.grey+:where(section, [data-section]).grey,
+        &.white+:where(section, [data-section]).white {
+          &:not(:where(.nq-section-gap, [nq-section-gap])) {
             --pt: 72px;
 
             @media screen and (min-width: 1024px) {
@@ -243,12 +204,12 @@
           }
         }
 
-        &.darkblue:has(+ :is(section, [data-section]):is(.grey, .white, .nq-section-gap, [nq-section-gap])),
-        &:is(.white, .grey):has(+ :is(section, [data-section]).darkblue, .nq-section-gap, [nq-section-gap]),
-        &.white:has(+ :is(section, [data-section]):is(.grey, .darkblue, .nq-section-gap, [nq-section-gap])),
-        &:is(.darkblue, .grey):has(+ :is(section, [data-section]).white, .nq-section-gap, [nq-section-gap]),
-        &.grey:has(+ :is(section, [data-section]):is(.darkblue, .white, .nq-section-gap, [nq-section-gap])),
-        &:is(.white, .darkblue):has(+ :is(section, [data-section]).grey, .nq-section-gap, [nq-section-gap]) {
+        &.darkblue:has(+ :where(section, [data-section]):where(.grey, .white, .nq-section-gap, [nq-section-gap])),
+        &:where(.white, .grey):has(+ :where(section, [data-section]).darkblue, .nq-section-gap, [nq-section-gap]),
+        &.white:has(+ :where(section, [data-section]):where(.grey, .darkblue, .nq-section-gap, [nq-section-gap])),
+        &:where(.darkblue, .grey):has(+ :where(section, [data-section]).white, .nq-section-gap, [nq-section-gap]),
+        &.grey:has(+ :where(section, [data-section]):where(.darkblue, .white, .nq-section-gap, [nq-section-gap])),
+        &:where(.white, .darkblue):has(+ :where(section, [data-section]).grey, .nq-section-gap, [nq-section-gap]) {
           --pb: 160px;
 
           @media screen and (min-width: 1024px) {

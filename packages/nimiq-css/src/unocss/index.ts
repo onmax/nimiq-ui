@@ -12,7 +12,6 @@ import {
   presetWebFonts,
 } from 'unocss'
 import { getNimiqColors, NimiqColor } from './colors'
-import { shortcuts } from 'unocss/preset-wind'
 
 const DEFAULT_PREFIX = 'nq-'
 
@@ -31,6 +30,7 @@ export interface NimiqPresetOptions {
 
   /**
    * Whether to include the default Nimiq font locally and its paths
+   * @default true
    */
   fonts?: LocalFontProcessorOptions | boolean
 
@@ -56,11 +56,10 @@ export interface NimiqPresetOptions {
   utilities?: boolean
 
   /**
-   * Add Nimiq Icons
-   * @deprecated - Use `presetIcons` instead and add the Nimiq icons collection as "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317"
+   * Add support for the Nimiq Spacing fluid utilities
    * @default true
    */
-  icons?: boolean
+  spacing?: boolean
 
   /**
    * If you want to use the attributify mode
@@ -101,6 +100,9 @@ function createPreset() {
     interface Setup { css: string, re: RegExp }
     const rulesSetup: Record<string, Setup> = {}
 
+    let preflightCss = ''
+    const preflightCssKeys = [':root', 'body', '*']
+
     const layer = `${prefix}${name}`
 
     const content = readContent(name).replaceAll(
@@ -113,11 +115,19 @@ function createPreset() {
       ordered: false,
       split: false,
     })
+
     const rulesNamesStr: string[] = []
     for (const key of Object.keys(json.children)) {
       const rulesNames = key.split(',').map(s => s.trim())
       const css = toCSS(json.children[key]).replaceAll('SEMICOLON_BUG_HACK', 'data:image/svg+xml;')
       for (const _rule of rulesNames) {
+
+        if (preflightCssKeys.includes(_rule)) {
+          const _css = `${_rule} { ${css} }`
+          preflightCss += _rule === ':root' ? _css : `@layer ${layer} { ${_css} }`
+          continue
+        }
+        
         if (!_rule.startsWith('.'))
           continue
         if (_rule === '.nq-shadow') // we define the shadow in the theme
@@ -144,7 +154,9 @@ function createPreset() {
         { layer },
       ],
     )
-    return { rules, rulesNames: rulesNamesStr }
+
+    const preflight: Preflight = { layer, getCSS: () => preflightCss }
+    return { rules, rulesNames: rulesNamesStr, preflight }
   }
 
   function extractKeyframes(name: string) {
@@ -216,7 +228,7 @@ function createPreset() {
       layer: `${prefix}reset`,
     }
 
-    const { preflight = true, staticContent = false, scrollbar } = options
+    const { preflight = true, staticContent = false, scrollbar, spacing = true } = options
     const preflights: Preset['preflights'] = [
       resetLayer,
       {
@@ -246,40 +258,23 @@ function createPreset() {
       })
     }
 
-
     const { utilities = false, typography = false } = options
-    const shortcuts: Preset['shortcuts'] = []
+
     const rules: Preset['rules'] = [
-      [
-        new RegExp(`^${prefix}scrollbar-hide$`),
-        (_, { constructCSS }) => {
-          let res = constructCSS({ 'scrollbar-width': 'none' })
-          res += `\n${res.replace('{scrollbar-width:none;}', '::-webkit-scrollbar{display: none;}')}`
-          return res
-        },
-        { layer: `${prefix}utilities`, autocomplete: `${prefix}scrollbar-hide` },
-      ],
+      [/^text-min-(.*)$/, ([, t]) => ({ '--nq-font-size-min': t })],
+      [/^text-max-(.*)$/, ([, t]) => ({ '--nq-font-size-max': t })],
+      [/^text-(\d+(?:\.\d+)?[a-z]*)\|(\d+(?:\.\d+)?[a-z]*)$/, ([, min, max]) => ({ '--nq-font-size-min': min, '--nq-font-size-max': max })],
     ]
 
-    if (staticContent) {
-      shortcuts.push(
-        [/^nq-(mt|mb|pt|pb|py|my)-12$/, ([, t]) => `${t}-8 xl:${t}-12`],
-        [/^nq-(mt|mb|pt|pb|py|my)-16$/, ([, t]) => `${t}-12 xl:${t}-16`],
-        [/^nq-(mt|mb|pt|pb|py|my)-24$/, ([, t]) => `${t}-16 md:${t}-24`],
-        [/^nq-(mt|mb|pt|pb|py|my)-32$/, ([, t]) => `${t}-24 md:${t}-32`],
-        [/^nq-(mt|mb|pt|pb|py|my)-40$/, ([, t]) => `${t}-32 xl:${t}-40`],
-        [/^nq-(mt|mb|pt|pb|py|my)-48$/, ([, t]) => `${t}-32 xl:${t}-40 2xl:${t}-48`],
-        [/^nq-(mt|mb|pt|pb|py|my)-96$/, ([, t]) => `${t}-80 xl:${t}-96`],
-        ['text-xs', 'text-min-12 text-max-14 lh-[1.3]'],
-        ['text-sm', 'text-min-14 text-max-16 lh-[1.3]'],
-        ['text-xl', 'text-18|21 lh-[1.3]'],
-      )
-      rules.push(
-        [/^text-min-(.*)$/, ([, t]) => ({ '--nq-font-size-min': t })],
-        [/^text-max-(.*)$/, ([, t]) => ({ '--nq-font-size-max': t })],
-        [/^text-(\d+(?:\.\d+)?[a-z]*)\|(\d+(?:\.\d+)?[a-z]*)$/, ([, min, max]) => ({ '--nq-font-size-min': min, '--nq-font-size-max': max })],
-      )
-    }
+    const shortcuts: Preset['shortcuts'] = [
+      ['text-3xs', 'text-9|11'],
+      ['text-2xs', 'text-10|12'],
+      ['text-xs', 'text-12|14'],
+      ['text-sm', 'text-14|16'],
+      ['text-md', 'text-16'],
+      ['text-xl', 'text-18|21'],
+      ['text-2xl', 'text-20|24'],
+    ]
 
     // The only way to add gradients is via rules
     for (const [key, gradient, color] of gradients) {
@@ -290,6 +285,20 @@ function createPreset() {
         { ...background, ...backgroundImage },
         { layer: `${prefix}colors` },
       ])
+    }
+
+    {
+      const { rules: _rules, rulesNames: _rulesNames, preflight } = cssToRules('fluid-font-sizes', { convertToAttributes: options.attributifyUtilities, prefix })
+      rulesNames.push(..._rulesNames)
+      rules.push(..._rules)
+      preflights.push(preflight)
+    }
+
+    if (spacing) {
+      const { rules: _rules, rulesNames: _rulesNames, preflight } = cssToRules('spacing', { convertToAttributes: options.attributifyUtilities, prefix })
+      rulesNames.push(..._rulesNames)
+      rules.push(..._rules)
+      preflights.push(preflight)
     }
 
     if (utilities) {
@@ -307,25 +316,21 @@ function createPreset() {
       rules.push(..._rules)
     }
 
-    const defaultFontOptions = { path: 'public/assets/fonts', url: '/assets/fonts' }
-    const { fonts = defaultFontOptions } = options
+    const { fonts = true } = options
     const presets: Preset['presets'] = []
-    if (fonts) {
+    if (fonts !== false) {
+      const processors = fonts === true ? createLocalFontProcessor() : createLocalFontProcessor(fonts)
       presets.push(
         presetWebFonts({
-          provider: 'google', // We fetch the fonts the google but store them locally
+          provider: 'google',
           fonts: {
             sans: 'Mulish:400,600,700',
             mono: 'Fira Code:400',
           },
           // This will download the fonts and serve them locally
-          processors: createLocalFontProcessor(options.fonts === true ? undefined : options.fonts as LocalFontProcessorOptions),
+          processors
         }),
       )
-    }
-
-    if (Boolean(options.icons)) {
-      console.warn('The `icons` option is deprecated. Use `presetIcons` instead and add the Nimiq icons collection as "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317"')
     }
 
     const variants: Preset['variants'] = [
@@ -413,8 +418,10 @@ function createPreset() {
         const layers = [
           reset && 'reset',
           'colors',
+          'fluid-font-sizes',
           preflight && 'preflight',
           staticContent && 'static-content',
+          spacing && 'spacing',
           typography && 'typography',
           utilities && 'utilities',
         ].filter(Boolean) as string[]
@@ -452,13 +459,15 @@ function createPreset() {
         [`${prefix}layer-definition`]: -101,
         [`${prefix}reset`]: -100,
         [`${prefix}colors`]: -50,
+        [`${prefix}fluid-font-sizes`]: -50,
         [`${prefix}preflight`]: -40,
         components: -1,
-        default: 1,
         [`${prefix}static-content`]: 200,
+        [`${prefix}spacing`]: 230,
         [`${prefix}typography`]: 250,
         [`${prefix}utilities`]: 300,
-        utilities: 400,
+        default: 400,
+        utilities: 500,
       },
     }
     return preset
