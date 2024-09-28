@@ -16,49 +16,59 @@
   --nq-font-size-range: calc(var(--nq-font-size-max) - var(--nq-font-size-min));
   --nq-font-size-fluid: calc(1px * var(--nq-font-size-min) + var(--nq-font-size-range) * var(--nq-font-scale-factor));
   --nq-font-size: clamp(calc(1px * var(--nq-font-size-min)), var(--nq-font-size-fluid), calc(var(--nq-font-size-max) * 1px));
-  
+
   /* Line height calculation */
   --nq-line-height-min: 1.3;
   --nq-line-height-max: 1.3;
   --nq-line-height-range: calc(var(--nq-line-height-max) - var(--nq-line-height-min));
   --nq-line-height-fluid: calc(var(--nq-line-height-min) + var(--nq-line-height-range) * var(--nq-font-scale-factor));
   --nq-line-height: clamp(var(--nq-line-height-min), var(--nq-line-height-fluid), var(--nq-line-height-max));
-
-  font-size: var(--nq-font-size);
-  line-height: var(--nq-line-height);
 }
 
 .nq-text-3xs {
   --nq-font-size-min: 9;
   --nq-font-size-max: 11;
+  font-size: var(--nq-font-size);
 }
 
 .nq-text-2xs {
   --nq-font-size-min: 10;
   --nq-font-size-max: 12;
+  font-size: var(--nq-font-size);
 }
 
 .nq-text-xs {
   --nq-font-size-min: 12;
   --nq-font-size-max: 14;
+  font-size: var(--nq-font-size);
 }
 
 .nq-text-sm {
   --nq-font-size-min: 14;
   --nq-font-size-max: 16;
+  font-size: var(--nq-font-size);
 }
 
 .nq-text-md {
   --nq-font-size-min: 16;
   --nq-font-size-max: 16;
+  font-size: var(--nq-font-size);
+}
+
+.nq-text-lg {
+  --nq-font-size-min: 16;
+  --nq-font-size-max: 18;
+  font-size: var(--nq-font-size);
 }
 
 .nq-text-xl {
   --nq-font-size-min: 18;
   --nq-font-size-max: 21;
+  font-size: var(--nq-font-size);
 }
 
 .nq-text-2xl {
   --nq-font-size-min: 20;
   --nq-font-size-max: 24;
+  font-size: var(--nq-font-size);
 }

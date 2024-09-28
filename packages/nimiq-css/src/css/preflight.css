@@ -52,9 +52,10 @@
 
     text-wrap: balance;
     width: 100%;
-    --nq-line-height: 1.2;
     max-width: 100%;
     font-weight: bold;
+     font-size: var(--nq-font-size);
+    line-height: 1.2;
 
     /* We change the color except if there is parent that change the color */
     :where(:not(.nq-no-color, [nq-no-color])):not(:has(.nq-no-color, [nq-no-color])) {
@@ -83,7 +84,8 @@
   small {
     --nq-font-size-min: 12;
     --nq-font-size-max: 14;
-    --nq-line-height: 1.2;
+    font-size: var(--nq-font-size);
+    line-height: 1.2;
     font-weight: 600;
   }
 
@@ -107,9 +109,9 @@
   &:is(code, pre) {
     background-color: rgb(var(--nq-neutral-300));
     color: rgb(var(--nq-neutral-900));
-    font-size: 0.9em;
     --nq-font-size-min: 14;
     --nq-font-size-max: 16;
+    font-size: var(--nq-font-size);
     overflow-x: auto;
     /* Scroll colors */
     --nq-track: rgb(var(--nq-neutral-500));

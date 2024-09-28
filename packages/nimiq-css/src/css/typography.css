@@ -27,7 +27,8 @@
   *:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)) {
     --nq-font-size-min: 1em;
     --nq-font-size-max: 1em;
-    --nq-line-height: 1.5;
+    font-size: var(--nq-font-size);
+    line-height: 1.5;
     max-width: 780px;
     margin-left: auto;
     margin-right: auto;
@@ -35,7 +36,8 @@
     &:is(h1) {
       --nq-font-size-max: 2.75em;
       --nq-font-size-max: 3em;
-      --nq-line-height: 3.3125;
+      font-size: var(--nq-font-size);
+      line-height: 3.3125;
       font-weight: 700;
 
       margin-bottom: 6.222em;
@@ -49,8 +51,10 @@
     &:is(h2) {
       --nq-font-size-max: 2em;
       --nq-font-size-max: 2.375em;
+      font-size: var(--nq-font-size);
       --nq-line-height-min: 2.625;
       --nq-line-height-max: 3.0625;
+      line-height: var(--nq-line-height);
       font-weight: 700;
 
       margin-top: 4.888em;
@@ -73,8 +77,10 @@
     &:is(h3) {
       --nq-font-size-max: 1.625em;
       --nq-font-size-max: 1.875em;
+      font-size: var(--nq-font-size);
       --nq-line-height-min: 2.125;
       --nq-line-height-max: 2.4375;
+      line-height: var(--nq-line-height);
       font-weight: 700;
 
       margin-top: 4.888em;
@@ -96,8 +102,10 @@
     &:is(h4) {
       --nq-font-size-min: 1.375em;
       --nq-font-size-max: 1.875em;
+      font-size: var(--nq-font-size);
       --nq-line-height-min: 1.8125;
       --nq-line-height-max: 2.125;
+      line-height: var(--nq-line-height);
       font-weight: 700;
 
       margin-top: 4.888em;
@@ -169,8 +177,8 @@
     &:is(p) {
       margin-top: 0;
       margin-bottom: 0;
-      --nq-font-size: 1em;
-      --nq-line-height: 1.75;
+      font-size: 1em;
+      line-height: 1.75;
 
       &+p {
         margin-top: 1.333em;
@@ -223,17 +231,19 @@
       * {
         --nq-font-size-min: 1.3125em;
         --nq-font-size-max: 1.5em;
+        font-size: var(--nq-font-size);
         --nq-line-height-min: 2.125;
         --nq-line-height-max: 2.375;
+        line-height: var(--nq-line-height);
         font-weight: 700;
       }
     }
 
     &:is(figure) {
       figcaption {
-        --nq-font-size: 0.875em;
+        font-size: 0.875em;
         font-weight: 700;
-        --nq-line-height: 1.3125;
+        line-height: 1.3125;
       }
 
       &:has(blockquote) {
@@ -261,8 +271,10 @@
         figcaption {
           --nq-font-size-min: 0.875em;
           --nq-font-size-max: 1em;
+          font-size: var(--nq-font-size);
           --nq-line-height-min: 1.3125;
           --nq-line-height-max: 1.5;
+          line-height: var(--nq-line-height);
           font-weight: 400;
           padding: 1.333em 1.25rem;
           margin-top: -1.111em;
@@ -378,7 +390,7 @@
     }
 
     &:is(code) {
-      --nq-font-size: 0.9em;
+      font-size: 0.9em;
       border-radius: 0.222em;
 
       &:not(:is(:where(:is(h1, h2, h3, h4) &), pre > &)) {
@@ -387,7 +399,7 @@
     }
 
     &:is(pre) {
-      --nq-font-size: 1em;
+      font-size: 1em;
       margin-top: 1.333em;
       margin-bottom: 1.555em;
       padding: 1.333em 1.5rem;
@@ -396,7 +408,7 @@
     }
 
     &:is(pre, code):where(:is(h1, h2, h3, h4) &) {
-      --nq-font-size: 0.8em;
+      font-size: 0.8em;
       padding: 0.1777em 0.5rem;
       position: relative;
       top: -1px;
@@ -482,7 +494,7 @@
 
       summary {
         padding: 0.888em 2rem 0.888em calc(0.7rem + 2.3em);
-        --nq-font-size: 1em;
+        font-size: 1em;
         position: relative;
         display: flex;
         align-items: center;
