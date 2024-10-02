@@ -73,12 +73,6 @@ export interface NimiqPresetOptions {
    * @default false
    */
   staticContent?: boolean
-
-  /**
-   * Wethere to include the reset for the scrollbar
-   * @default false
-   */
-  scrollbar?: boolean
 }
 
 function createPreset() {
@@ -228,7 +222,7 @@ function createPreset() {
       layer: `${prefix}reset`,
     }
 
-    const { preflight = true, staticContent = false, scrollbar, spacing = true } = options
+    const { preflight = true, staticContent = false, spacing = true } = options
     const preflights: Preset['preflights'] = [
       resetLayer,
       {
@@ -248,13 +242,6 @@ function createPreset() {
       preflights.push({
         layer: `${prefix}preflight`,
         getCSS: () => wrapToLayer(prefix, 'preflight', readContent('preflight').replaceAll(/\.nq-/g, `.${prefix}`)),
-      })
-    }
-
-    if (scrollbar) {
-      preflights.push({
-        layer: `${prefix}preflight`,
-        getCSS: () => wrapToLayer(prefix, 'preflight', readContent('scrollbar').replaceAll(/\.nq-/g, `.${prefix}`)),
       })
     }
 
@@ -432,7 +419,6 @@ function createPreset() {
     preflights.unshift(layerDefinition)
 
     const autocompleteStaticContent: string[] = staticContent ? ['no-max-width', 'no-px', 'no-color', 'no-py', 'no-mx', 'heading-lg', 'section-gap', 'wide'].map(u => `${prefix}${u}`) : []
-    const autocompleteScrollbar: string[] = scrollbar ? ['scroll-sm'].map(u => `${prefix}${u}`) : []
     const autocompletePreflight = ['nq-no-color']
 
     const preset: Preset = {
@@ -451,7 +437,7 @@ function createPreset() {
         }
       },
       autocomplete: {
-        templates: [...rulesNames, ...autocompletePreflight, ...autocompleteStaticContent, ...autocompleteScrollbar],
+        templates: [...rulesNames, ...autocompletePreflight, ...autocompleteStaticContent],
       },
       presets,
       rules,
