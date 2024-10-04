@@ -1,3 +1,13 @@
+:root {
+  /* Base font sizes */
+  --nq-m-min: 0;
+  --nq-m-max: 0;
+
+  /* Viewport widths */
+  --nq-margin-width-min: 320;
+  --nq-margin-width-max: 1152;
+}
+
 /**
  * Make sure to import also nimiq-colors layer found in this package
  **/
@@ -10,13 +20,22 @@
       padding-left: 2rem;
 
       &:last-child {
-        padding-bottom: 6em;
+        padding-bottom: 6rem;
 
         @media (min-width: 1153px) {
-          padding-bottom: 8em;
+          padding-bottom: 8rem;
         }
       }
     }
+  }
+
+  * {
+    /* Margin calculation */
+    --nq-margin-width-range: calc(var(--nq-margin-width-max) - var(--nq-margin-width-min));
+    --nq-margin-scale-factor: calc((100vw - (1px * var(--nq-margin-width-min))) / var(--nq-margin-width-range));
+    --nq-m-range: calc(var(--nq-m-max) - var(--nq-m-min));
+    --nq-m-fluid: calc(1px * var(--nq-m-min) + var(--nq-m-range) * var(--nq-margin-scale-factor));
+    --nq-m-size: clamp(calc(1px * var(--nq-m-min)), var(--nq-m-fluid), calc(var(--nq-m-max) * 1px));
   }
 
   >*:first-child {
@@ -24,110 +43,87 @@
     /* TODO Remove margin-top and margin-bottom on last element when margin-trim is widely supported */
   }
 
+
   *:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)) {
-    --nq-font-size-min: 1em;
-    --nq-font-size-max: 1em;
-    font-size: var(--nq-font-size);
     line-height: 1.5;
     max-width: 780px;
     margin-left: auto;
     margin-right: auto;
 
-    &:is(h1) {
-      --nq-font-size-max: 2.75em;
-      --nq-font-size-max: 3em;
+    &:where(h1) {
+      --nq-font-size-min: 44;
+      --nq-font-size-max: 48;
       font-size: var(--nq-font-size);
-      line-height: 3.3125;
+      line-height: 1.5;
       font-weight: 700;
 
-      margin-bottom: 6.222em;
-      margin-top: 8em;
-
-      @media (min-width: 769px) {
-        margin-bottom: 6.666em;
-      }
+      margin-top: 144px;
     }
 
-    &:is(h2) {
-      --nq-font-size-max: 2em;
-      --nq-font-size-max: 2.375em;
+    &:where(h1+*:not(:where(h1, h2, h3, h4))) {
+      --nq-m-min: 112;
+      --nq-m-max: 120;
+      margin-top: var(--nq-m-size);
+    }
+
+    &:where(h2) {
+      --nq-font-size-min: 32;
+      --nq-font-size-max: 38;
       font-size: var(--nq-font-size);
-      --nq-line-height-min: 2.625;
-      --nq-line-height-max: 3.0625;
-      line-height: var(--nq-line-height);
+      line-height: 1.3;
       font-weight: 700;
 
-      margin-top: 4.888em;
-      margin-bottom: 1.333em;
+      margin-top: var(--nq-m-size);
+      margin-bottom: 24px;
+      --nq-m-min: 88;
+      --nq-m-max: 96;
 
-      @media (min-width: 769px) {
-        margin-top: 5.333em;
+      &:where(h1+h2) {
+        --nq-m-min: 40;
+        --nq-m-max: 48;
       }
     }
 
-    &:is(h1+h2) {
-      margin-top: 3.111em;
-
-      @media (min-width: 1153px) {
-        margin-top: 3.555em;
-      }
-    }
-
-
-    &:is(h3) {
-      --nq-font-size-max: 1.625em;
-      --nq-font-size-max: 1.875em;
+    &:where(h3) {
+      --nq-font-size-min: 26;
+      --nq-font-size-max: 30;
       font-size: var(--nq-font-size);
-      --nq-line-height-min: 2.125;
-      --nq-line-height-max: 2.4375;
-      line-height: var(--nq-line-height);
+      line-height: 1.3;
       font-weight: 700;
 
-      margin-top: 4.888em;
-      margin-bottom: 1.333em;
+      margin-bottom: 24px;
+      margin-top: var(--nq-m-size);
+      --nq-m-min: 88;
+      --nq-m-max: 96;
 
-      @media (min-width: 769px) {
-        margin-top: 3.555em;
+      &:where(h2+h3) {
+        --nq-m-min: 32;
+        --nq-m-max: 36;
       }
     }
 
-    &:is(h2+h3) {
-      margin-top: 2.666em;
-
-      @media (min-width: 1153px) {
-        margin-top: 3.111em;
-      }
-    }
-
-    &:is(h4) {
-      --nq-font-size-min: 1.375em;
-      --nq-font-size-max: 1.875em;
+    &:where(h4) {
+      --nq-font-size-min: 22;
+      --nq-font-size-max: 26;
       font-size: var(--nq-font-size);
-      --nq-line-height-min: 1.8125;
-      --nq-line-height-max: 2.125;
-      line-height: var(--nq-line-height);
+      line-height: 1.3;
       font-weight: 700;
 
-      margin-top: 4.888em;
-      margin-bottom: 1.333em;
-
-      @media (min-width: 769px) {
-        margin-top: 5.333em;
-      }
+      margin-top: var(--nq-m-size);
+      margin-bottom: 24px;
+      --nq-m-min: 88;
+      --nq-m-max: 96;
     }
 
-    &:is(h3+h4) {
-      margin-top: 2.222em;
-
-      @media (min-width: 1153px) {
-        margin-top: 2.666em;
-      }
+    &:where(h3+h4) {
+      --nq-m-min: 32;
+      --nq-m-max: 36;
     }
 
     /* Anchors in headings */
-    &:is(h1, h2, h3, h4, h5, h6)[id] {
+    &:where(h1, h2, h3, h4, h5, h6)[id] {
       position: relative;
-      margin-left: -1rem;
+      margin-left: -1.25rem;
       padding-left: 1rem;
       padding-right: 1rem;
       width: 100%;
@@ -161,49 +157,39 @@
       >a {
         position: absolute;
         inset: 0;
-        padding-left: 2rem;
+        padding-left: 20px;
         font-size: inherit;
         font-weight: inherit;
         top: -6px;
+        color: rgb(var(--nq-neutral) / 1);
 
         &::after {
           position: absolute;
           inset: 0;
-          border-radius: 0.5em;
         }
       }
     }
 
-    &:is(p) {
+    &:where(p) {
       margin-top: 0;
       margin-bottom: 0;
-      font-size: 1em;
-      line-height: 1.75;
+      --nq-font-size-min: 14;
+      --nq-font-size-max: 16;
+      font-size: var(--nq-font-size);
+      line-height: 1.5;
 
       &+p {
-        margin-top: 1.333em;
+        margin-top: 16px;
       }
     }
 
-    &:is(h1+p) {
-      margin-top: 6.222em;
-
-      @media (min-width: 1153px) {
-        margin-top: 6.666em;
-      }
-    }
-
-    &:is(h2, h3, h4)+p {
-      margin-top: -0.388em;
-    }
-
-    &:is(blockquote) {
+    &:where(blockquote) {
       margin-top: 0;
       margin-left: 0;
 
       &:not(figure blockquote) {
-        margin-top: 1.333em;
-        margin-bottom: 1.333em;
+        margin-top: 24px;
+        margin-bottom: 24px;
 
         /*
           We add the borders to blockquote if is not a children of figure
@@ -214,100 +200,98 @@
           content: '';
           display: block;
           width: 100%;
-          height: 0.125em;
+          height: 1.5px;
           background-color: rgb(var(--nq-neutral-400));
           border-radius: 1px;
         }
 
         &>* {
-          padding: 1.2em 1.25rem;
+          padding: 20px 24px;
 
           @media (min-width: 769px) {
-            padding: 1.066em 2rem;
+            padding: 24px 32px;
           }
         }
       }
 
       * {
-        --nq-font-size-min: 1.3125em;
-        --nq-font-size-max: 1.5em;
+        --nq-font-size-min: 21;
+        --nq-font-size-max: 24;
         font-size: var(--nq-font-size);
-        --nq-line-height-min: 2.125;
-        --nq-line-height-max: 2.375;
-        line-height: var(--nq-line-height);
+        line-height: 1.6;
         font-weight: 700;
       }
     }
 
-    &:is(figure) {
+    &:where(figure) {
       figcaption {
-        font-size: 0.875em;
+        color: rgb(var(--nq-neutral-700));
+        font-size: 0.875;
         font-weight: 700;
         line-height: 1.3125;
       }
 
       &:has(blockquote) {
-        margin-top: 1.777em;
-        margin-bottom: 1.333em;
+        margin-top: 24px;
+        margin-bottom: 24px;
 
         &::after,
         &::before {
           content: '';
           display: block;
           width: 100%;
-          height: 0.125em;
+          height: 2px;
           background-color: rgb(var(--nq-neutral-400));
           border-radius: 1px;
         }
 
         blockquote {
-          padding: 1.333em 1.25rem 0 1.25rem;
+          padding: 24px 20px 0;
 
           @media (min-width: 769px) {
-            padding: 1.333em 2rem 0 1.777rem;
+            padding: 24px 32px 0;
           }
         }
 
         figcaption {
-          --nq-font-size-min: 0.875em;
-          --nq-font-size-max: 1em;
+          --nq-font-size-min: 14;
+          --nq-font-size-max: 16;
           font-size: var(--nq-font-size);
-          --nq-line-height-min: 1.3125;
-          --nq-line-height-max: 1.5;
-          line-height: var(--nq-line-height);
+          line-height: 1.5;
           font-weight: 400;
-          padding: 1.333em 1.25rem;
-          margin-top: -1.111em;
+          color: rgb(var(--nq-neutral-700));
+          margin: 8px 24px 24px;
 
           @media (min-width: 769px) {
-            padding: 1.333em 2rem;
-            margin-top: -1.333em;
+            margin: 8px 32px 24px;
           }
         }
       }
     }
 
     &:where(img, video, iframe) {
-      border-radius: 0.333em;
-      margin-top: 1.333em;
+      border-radius: 6px;
+      --nq-m-min: 18;
+      --nq-m-max: 22;
+      margin-top: var(--nq-m-size);
 
       &:has(+ figcaption) {
-        margin-bottom: 0.666em;
-
-        @media (min-width: 321px) {
-          margin-bottom: 0.888em;
-        }
+        --nq-m-min: 12;
+        --nq-m-max: 16;
+        margin-bottom: var(--nq-m-size);
       }
 
       &:not(:has(+ figcaption)) {
-        margin-bottom: 1.333em;
+        --nq-m-min: 18;
+        --nq-m-max: 22;
+        margin-bottom: var(--nq-m-size);
       }
     }
 
     /* Rules to use a wider container (8px on the sides). Mainly for phones */
-    &:is(img, video, iframe, table),
+    &:where(img, video, iframe, table),
     /* Select code and pre that are not child of p,ul,ol... */
-    &:is(code, pre):not(:where(:is(p, ul, ol, pre, code, table) :is(pre, code))) {
+    &:where(code, pre):not(:where(:where(p, ul, ol, pre, code, table) :where(pre, code))) {
       margin-left: -1.5rem;
       width: min(calc(100% + 3rem), 700px);
 
@@ -318,216 +302,255 @@
       }
     }
 
-    &:is(ul) {
+    &:where(ul) {
       list-style: none;
-      margin-top: 0.888em;
-      margin-bottom: 1.555em;
-
-      padding-left: 3rem;
-
-      :where(.nq-prose-compact, [nq-prose-compact]) & {
-        padding-left: 1rem;
-      }
+      margin-top: 24px;
+      margin-bottom: 24px;
 
       li {
-        margin: 0.888em 0;
         display: block;
+        position: relative;
+        margin: 16px 0 16px 20px;
 
-        &::before {
+        @media screen and (min-width: 769px) {
+          margin-left: 32px;
+        }
+
+        @media screen and (min-width: 1153px) {
+          margin-left: 40px;
+        }
+
+        >ol li {
+          margin-left: 0;
+        }
+
+        :not(ul ol) &::before {
           content: '';
-          width: 0.333em;
-          height: 0.333em;
-          position: relative;
-          border-radius: 0.1666em;
-          margin-right: 0.5333em;
-          float: left;
-          margin-left: -0.888em;
-          top: 0.555em;
+          width: 6px;
+          height: 6px;
+          border-radius: 3px;
           background-color: currentColor;
-          opacity: 0.6
+          opacity: 0.2;
+          display: inline-block;
+          margin-right: 12px;
+          position: absolute;
+          left: -20px;
+          top: 8px;
         }
       }
     }
 
-    &:is(ol) {
+    &:where(ol) {
       list-style: none;
       counter-reset: item;
-      margin-top: 0.888em;
-      margin-bottom: 1.555em;
+      margin-top: 24px;
+      margin-bottom: 24px;
 
       li {
         counter-increment: item;
-        margin: 0.888em 0;
         position: relative;
+        margin: 16px 0 16px 20px;
+
+        @media screen and (min-width: 769px) {
+          margin-left: 32px;
+        }
+
+        @media screen and (min-width: 1153px) {
+          margin-left: 40px;
+        }
 
         &::before {
           content: counters(item, ".");
           font-weight: 700;
           display: inline-block;
-          margin-right: 0.666em;
+          margin-right: 12px;
           position: absolute;
-          left: -1.5rem;
+          left: -20px;
           color: currentColor;
-          opacity: 0.6;
+          opacity: 0.5;
+          top: 2px;
         }
 
         >ol {
           counter-reset: subitem;
-          margin-top: 0.444em;
-          margin-bottom: 0.444em;
-          padding-left: 1.5rem;
 
           li {
             counter-increment: subitem;
 
             &::before {
-              content: counters(item, ".") "." counter(subitem) ". ";
-              left: -2.5rem;
+              content: counters(item, ".") "." counter(subitem);
+              top: 0;
+              left: -32px;
             }
           }
         }
       }
     }
 
-    &:is(code) {
-      font-size: 0.9em;
-      border-radius: 0.222em;
+    :where(ol, ul) ol,
+    ul ul {
+      margin-top: 8px;
+      margin-bottom: 16px;
+      padding-left: 20px;
 
-      &:not(:is(:where(:is(h1, h2, h3, h4) &), pre > &)) {
-        padding: 0 0.444em;
+      li {
+        margin-top: 0;
+        margin-left: 12px;
       }
     }
 
-    &:is(pre) {
-      font-size: 1em;
-      margin-top: 1.333em;
-      margin-bottom: 1.555em;
-      padding: 1.333em 1.5rem;
-      border-radius: 0.333em;
+    &:where(code) {
+      --nq-font-size-min: 13;
+      --nq-font-size-max: 15;
+      font-size: var(--nq-font-size);
+      border-radius: 4px;
+
+      &:not(:where(:where(:where(h1, h2, h3, h4) &), pre > &)) {
+        padding: 0 8px;
+      }
+    }
+
+    &:where(pre) {
+      --nq-font-size-min: 14;
+      --nq-font-size-max: 16;
+      font-size: var(--nq-font-size);
+      --nq-m-min: 20;
+      --nq-m-max: 24;
+      margin-top: var(--nq-m-size);
+      margin-bottom: var(--nq-m-size);
+      padding: 20px 24px;
+      border-radius: 6px;
       box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.08);
     }
 
-    &:is(pre, code):where(:is(h1, h2, h3, h4) &) {
+    &:where(pre, code):where(h1, h2, h3, h4 &) {
       font-size: 0.8em;
-      padding: 0.1777em 0.5rem;
+      padding: 2px 0.5rem;
       position: relative;
       top: -1px;
     }
 
-    &:is(a) {
-      text-decoration: none;
+    &:where(a) {
       font-weight: 600;
-      color: rgb(var(--nq-blue) / 1);
+      text-decoration: none;
+        color: rgb(var(--nq-blue) / 1);
+    }
+  }
+
+  table {
+    --nq-m-min: 24;
+    --nq-m-max: 32;
+    margin-bottom: var(--nq-m-size);
+    margin-top: var(--nq-m-size);
+    display: block;
+    overflow-x: auto;
+    border-spacing: 0;
+    border-collapse: separate;
+    border-radius: 6px;
+    border: 1px solid rgb(var(--nq-neutral-300));
+    max-height: 90dvh;
+    max-width: max-content;
+    scroll-behavior: smooth;
+
+    code,
+    pre {
+      --nq-line-height: 1.3;
+      padding: 4px 0.25rem;
+      position: relative;
     }
 
-    table {
-      margin-top: 2.222em;
-      margin-bottom: 2.222em;
-      display: block;
-      overflow-x: auto;
-      border-spacing: 0;
-      border-collapse: separate;
-      border-radius: 0.333em;
-      border: 1px solid rgb(var(--nq-neutral-300));
-      max-height: 90dvh;
-      max-width: max-content;
-      scroll-behavior: smooth;
+    th,
+    td {
+      padding: 12px 0.75rem;
+    }
 
-      code,
-      pre {
-        --nq-line-height: 1.3;
-        padding: 0.222em 0.25rem;
-        position: relative;
-      }
+    thead th {
+      z-index: 1;
+      position: sticky;
+      top: -1px;
+      text-wrap: balance;
+      white-space: nowrap;
+      font-weight: 400;
+      color: rgb(var(--nq-neutral-800));
+      background-color: rgb(var(--nq-neutral-100));
+    }
 
-      th,
+    tbody {
       td {
-        padding: 0.666em 0.75rem;
-      }
-
-      thead th {
-        z-index: 1;
-        position: sticky;
-        top: -1px;
+        vertical-align: initial;
         text-wrap: balance;
-        white-space: nowrap;
-        font-weight: 400;
-        color: rgb(var(--nq-neutral-800));
-        background-color: rgb(var(--nq-neutral-100));
       }
 
-      tbody {
-        td {
-          vertical-align: initial;
-          text-wrap: balance;
-        }
-
-        >tr:not(:last-child) td {
-          border-bottom: 1px solid rgb(var(--nq-neutral-300));
-        }
-      }
-
-      /* Apply a border to the right of all but the last column */
-      th:not(:last-child),
-      td:not(:last-child) {
-        border-right: 1px solid rgb(var(--nq-neutral-300));
+      >tr:not(:last-child) td {
+        border-bottom: 1px solid rgb(var(--nq-neutral-300));
       }
     }
 
-    hr {
-      margin: 1.777em auto;
-      width: 7.111em;
-      border-color: rgb(var(--nq-neutral-500));
+    /* Apply a border to the right of all but the last column */
+    th:not(:last-child),
+    td:not(:last-child) {
+      border-right: 1px solid rgb(var(--nq-neutral-300));
+    }
+  }
+
+  hr {
+    --nq-m-min: 20;
+    --nq-m-max: 24;
+    margin: var(--nq-m-size) auto;
+    width: 128px;
+    border-color: rgb(var(--nq-neutral-500));
+  }
+
+  details {
+    /* TODO Animate open/closing https://developer.chrome.com/docs/css-ui/animate-to-height-auto#animate_the_details_element */
+    border-radius: 6px;
+    background-color: rgb(var(--nq-neutral-200));
+    --nq-m-min: 18;
+    --nq-m-max: 22;
+    margin-top: var(--nq-m-size);
+    margin-bottom: var(--nq-m-size);
+    color: rgb(var(--nq-neutral-900));
+    box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.1);
+
+    ::marker {
+      color: transparent;
     }
 
-    details {
-      /* TODO Animate open/closing https://developer.chrome.com/docs/css-ui/animate-to-height-auto#animate_the_details_element */
-      border-radius: 0.355em;
-      background-color: rgb(var(--nq-neutral-200));
-      margin: 1.333em 0;
-      color: rgb(var(--nq-neutral-900));
-      box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.1);
+    summary {
+      padding: 14px 2rem 14px calc(0.7rem + 2.3em);
+      font-size: 1em;
+      position: relative;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
 
-      ::marker {
-        color: transparent;
+      &::before {
+        content: '';
+        --icon: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTIgMS40MTNBLjguOCAwIDAxMy4yMTIuNzI3bDcuNjQ1IDQuNTg3YS44LjggMCAwMTAgMS4zNzJsLTcuNjQ1IDQuNTg3QS44LjggMCAwMTIgMTAuNTg3eiIvPjwvc3ZnPg==);
+        -webkit-mask: var(--icon) no-repeat;
+        mask: var(--icon) no-repeat;
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        background-color: currentColor;
+        color: inherit;
+        width: 0.622em;
+        height: 0.622em;
+        transition: transform 100ms ease-out;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        padding-left: 4rem;
       }
+    }
 
-      summary {
-        padding: 0.888em 2rem 0.888em calc(0.7rem + 2.3em);
-        font-size: 1em;
-        position: relative;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-
-        &::before {
-          content: '';
-          --icon: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTIgMS40MTNBLjguOCAwIDAxMy4yMTIuNzI3bDcuNjQ1IDQuNTg3YS44LjggMCAwMTAgMS4zNzJsLTcuNjQ1IDQuNTg3QS44LjggMCAwMTIgMTAuNTg3eiIvPjwvc3ZnPg==);
-          -webkit-mask: var(--icon) no-repeat;
-          mask: var(--icon) no-repeat;
-          -webkit-mask-size: 100% 100%;
-          mask-size: 100% 100%;
-          background-color: currentColor;
-          color: inherit;
-          width: 0.622em;
-          height: 0.622em;
-          transition: transform 100ms ease-out;
-          display: inline-block;
-          position: absolute;
-          left: 0;
-          padding-left: 4rem;
-        }
+    &[open] summary {
+      &::before {
+        transform: rotate(90deg);
       }
+    }
 
-      &[open] summary {
-        &::before {
-          transform: rotate(90deg);
-        }
-      }
-
-      >*:not(summary) {
-        padding: 0 1rem 0.888em 1rem;
-      }
+    >*:not(summary) {
+      padding: 0 1rem 14px 1rem;
     }
   }
 }

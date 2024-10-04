@@ -179,23 +179,23 @@
         }
       }
 
-      &:not(:is(.nq-no-py, [nq-no-py])) {
+      &:not(:where(.nq-no-py, [nq-no-py])) {
         --pt: 160px;
 
         @media screen and (min-width: 1024px) {
           --pt: 200px;
         }
 
-        :is(&.darkblue:has(+ :is(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])).darkblue),
-          &.grey:has(+ :is(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])).grey),
-          &.white:has(+ :is(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])).white)) {
+        :where(&.darkblue:has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])).darkblue),
+          &.grey:has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])).grey),
+          &.white:has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])).white)) {
           --pb: 36px;
 
           @media screen and (min-width: 1024px) {
             --pb: 48px;
           }
 
-          + :is(section, [data-section]) {
+          + :where(section, [data-section]) {
             --pt: 36px;
 
             @media screen and (min-width: 1024px) {
@@ -204,12 +204,12 @@
           }
         }
 
-        &.darkblue:has(+ :is(section, [data-section]):is(.grey, .white, .nq-section-gap, [nq-section-gap])),
-        &:is(.white, .grey):has(+ :is(section, [data-section]).darkblue, .nq-section-gap, [nq-section-gap]),
-        &.white:has(+ :is(section, [data-section]):is(.grey, .darkblue, .nq-section-gap, [nq-section-gap])),
-        &:is(.darkblue, .grey):has(+ :is(section, [data-section]).white, .nq-section-gap, [nq-section-gap]),
-        &.grey:has(+ :is(section, [data-section]):is(.darkblue, .white, .nq-section-gap, [nq-section-gap])),
-        &:is(.white, .darkblue):has(+ :is(section, [data-section]).grey, .nq-section-gap, [nq-section-gap]) {
+        &.darkblue:has(+ :where(section, [data-section]):where(.grey, .white, .nq-section-gap, [nq-section-gap])),
+        &:where(.white, .grey):has(+ :where(section, [data-section]).darkblue, .nq-section-gap, [nq-section-gap]),
+        &.white:has(+ :where(section, [data-section]):where(.grey, .darkblue, .nq-section-gap, [nq-section-gap])),
+        &:where(.darkblue, .grey):has(+ :where(section, [data-section]).white, .nq-section-gap, [nq-section-gap]),
+        &.grey:has(+ :where(section, [data-section]):where(.darkblue, .white, .nq-section-gap, [nq-section-gap])),
+        &:where(.white, .darkblue):has(+ :where(section, [data-section]).grey, .nq-section-gap, [nq-section-gap]) {
           --pb: 160px;
 
           @media screen and (min-width: 1024px) {

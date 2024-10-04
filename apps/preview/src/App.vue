@@ -10,7 +10,7 @@ const toggleDark = useToggle(isDark)
   <div bg-neutral-0 dark="text-white" min-h="100dvh">
     <div w-screen max-w-4xl pt-6 mx-auto>
       <header flex="~ col md:row gap-6" justify-between px-4>
-        <nav flex="~ gap-x-8">
+        <nav flex="~ gap-x-8 wrap">
           <RouterLink to="/preflight">Preflight</RouterLink>
           <RouterLink to="/utilities">Utilities</RouterLink>
           <RouterLink to="/typography">Typography</RouterLink>

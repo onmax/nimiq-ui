@@ -61,8 +61,14 @@ Unveiling the Power of Nimiq
 Through trials and tribulations, Pixel discovered the unique simplicity and beauty of **Nimiq**. Nimiq's mission was clear and noble: to make cryptocurrency accessible to everyone, everywhere.
 
 - Accessibility: Nimiq thrives on being user-friendly and easy to integrate.
+  - Browser-based: No need for additional software installations.
+  - Mobile-friendly: Access your wallet on the go.
 - Decentralization: A core principle that ensures security and fairness.
+  1. Peer-to-peer network: Direct transactions without intermediaries.
+  2. Open-source: Transparent and community-driven development.
 - Easy Integration: Just run `npm install @nimiq/core` and start building.
+  - Comprehensive documentation: Guides for developers of all levels.
+  - Active community support: Get help from experienced Nimiq developers.
 
 Pixel was amazed at how Nimiq could be accessed directly from a web browser without the need for third-party plugins or installations.
 
@@ -70,8 +76,17 @@ Pixel was amazed at how Nimiq could be accessed directly from a web browser with
 At the journey's end, Pixel found the greatest treasure was not a pile of digital coins but the knowledge and experiences gained along the way.
 
 1. Cryptography is not just about security; it's an art.
+   1. Understanding encryption algorithms.
+   2. Mastering the balance between security and efficiency.
+
 2. The true value of cryptocurrency lies in its potential to empower individuals. It is at [Nimiq](https://nimiq.com/)'s core mission to make this a reality.
+   1. Financial inclusion for the unbanked.
+   2. Borderless transactions and global accessibility.
+   3. Democratizing access to financial services.
 3. Community and collaboration are the bedrock of innovation.
+   1. Open-source contributions drive progress.
+   2. Knowledge sharing accelerates technological advancements.
+   3. Diverse perspectives lead to more robust solutions.
 
 ## The Journey Continues
 

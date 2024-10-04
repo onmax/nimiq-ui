@@ -16,7 +16,7 @@
   line-height: 1.2;
   color: rgb(var(--nq-neutral-700));
 
-  :is([data-inverted] *) & {
+  :where([data-inverted] *) & {
     color: rgb(var(--nq-neutral-0) / 0.8);
   }
 }
@@ -57,8 +57,8 @@
   }
 
   /* We select the arrow OR the closest parent with href starting with local href */
-  a:is(:not([href^="http"])) &::after,
-  &:is(:not([href^="http"]))::after {
+  a:where(:not([href^="http"])) &::after,
+  &:where(:not([href^="http"]))::after {
     margin-bottom: 1px;
     rotate: 0.5turn;
   }
@@ -131,7 +131,7 @@
     margin-left: 0.4em;
   }
 
-  &:is(.not-loading, [not-loading])::after {
+  &:where(.not-loading, [not-loading])::after {
     width: 0;
   }
 }
@@ -165,12 +165,12 @@
   transition: background-color 300ms var(--nq-ease);
   will-change: color, background-color;
 
-  &:is(.nq-pill-lg, [nq-pill-lg]) {
+  &:where(.nq-pill-lg, [nq-pill-lg]) {
     font-size: 1rem;
     padding: 0.3125rem 1rem;
   }
 
-  &:is(.nq-pill-xl, [nq-pill-xl]) {
+  &:where(.nq-pill-xl, [nq-pill-xl]) {
     box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
     cursor: pointer;
     transition: transform 450ms var(--nq-ease), box-shadow 450ms var(--nq-ease), background-color 250ms var(--nq-ease);
@@ -186,7 +186,7 @@
     border-radius: 9999px;
     margin: 1rem;
 
-    &:is(:hover, :focus) {
+    &:where(:hover, :focus) {
       box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.2);
       transform: translate3D(0, -2px, 0);
     }
@@ -199,13 +199,13 @@
     transition: transform 200ms cubic-bezier(.41, .34, .26, 1.55), box-shadow 200ms cubic-bezier(.41, .34, .26, 1.55), background-color 200ms var(--nq-ease);
   }
 
-  &:is([disabled]) {
+  &:where([disabled]) {
     pointer-events: none;
     cursor: not-allowed;
     opacity: 0.5;
   }
 
-  &:not([disabled]):is(:hover, :active, :focus)::before {
+  &:not([disabled]):where(:hover, :active, :focus)::before {
     opacity: 1;
   }
 
@@ -295,7 +295,7 @@
   }
 }
 
-:is([class*="ring"], [ring]),
+:where([class*="ring"], [ring]),
 .nq-border-base {
   --border-color: rgb(var(--nq-neutral-400));
   --atomic-css-framework: var(var(--un-ring-color), var(--tw-ring-color));
@@ -338,7 +338,7 @@
   height: max-content;
   width: max-content;
 
-  :is([data-inverted] *) & {
+  :where([data-inverted] *) & {
     color: rgb(var(--nq-neutral-0) / 0.8);
   }
 
@@ -380,7 +380,7 @@
   }
 
 
-  &:is(:hover, :focus) {
+  &:where(:hover, :focus) {
     background-color: rgb(var(--nq-neutral-600));
   }
 
@@ -391,7 +391,7 @@
 }
 
 .nq-switch {
-  &:is(input[type="checkbox"]) {
+  &:where(input[type="checkbox"]) {
     --active-color: rgb(var(--nq-neutral-300));
     appearance: none;
     font-size: 1em;
@@ -560,7 +560,7 @@
   --color: rgb(var(--nq-neutral));
   --placeholder-color: rgb(var(--nq-neutral-700));
 
-  :is([data-inverted] *) & {
+  :where([data-inverted] *) & {
     --placeholder-color: rgb(var(--nq-neutral-0) / 0.8);
   }
 
@@ -571,7 +571,7 @@
     color: var(--placeholder-color);
   }
 
-  &:not(.nq-invalid, :user-invalid):is(:hover, :focus, :focus-within) {
+  &:not(.nq-invalid, :user-invalid):where(:hover, :focus, :focus-within) {
     --color: rgb(var(--nq-blue));
     --ring-color: rgba(var(--nq-blue) / 0.3);
 
@@ -585,7 +585,7 @@
     }
   }
 
-  &:is(.nq-invalid, :user-invalid) {
+  &:where(.nq-invalid, :user-invalid) {
     --color: rgb(var(--nq-orange));
     --ring-color: rgba(var(--nq-orange) / 0.4);
 
@@ -600,11 +600,11 @@
     }
   }
 
-  &:is(:hover, :focus-visible, :focus-within) {
+  &:where(:hover, :focus-visible, :focus-within) {
     outline: 1.5px solid rgba(var(--ring-color));
   }
 
-  &:is(textarea, :has(textarea)) {
+  &:where(textarea, :has(textarea)) {
     --padding: 0.25em;
     min-height: calc(3lh + 2 * var(--padding));
     max-height: calc(5lh + 2 * var(--padding));
@@ -635,7 +635,7 @@
   padding: 1.5rem;
   transition: background 200ms var(--nq-ease), transform 200ms ease-out, box-shadow 200ms ease-out;
 
-  &:is(:hover, :focus-visible) {
+  &:where(:hover, :focus-visible) {
     background-color: rgb(var(--nq-white));
     color: rgb(var(--nq-darkblue));
     box-shadow: 0 0 0 1.5px var(--ring-color), var(--nq-shadow);
@@ -666,7 +666,7 @@
       background-color 200ms var(--nq-ease);
   }
 
-  :is(.nq-hoverable, [nq-hoverable]):is(:hover, :focus-visible) &::after {
+  :where(.nq-hoverable, [nq-hoverable]):where(:hover, :focus-visible) &::after {
     background-color: rgb(var(--nq-white) / 1);
     opacity: 1;
     bottom: 0;

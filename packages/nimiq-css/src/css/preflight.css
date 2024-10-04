@@ -7,8 +7,6 @@
   /* box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.15); */
   --nq-track: rgb(var(--nq-neutral-200));
   --nq-thumb: rgb(var(--nq-neutral-600));
-
-  interpolate-size: allow-keywords;
 }
 
 *:not(:where(.raw, .raw *)) {
@@ -17,11 +15,11 @@
   /* outline-width: 0; */
   overscroll-behavior-x: contain;
 
-  &:is(:not(:where(code, pre))) {
+  &:where(:not(:where(code, pre))) {
     font-family: 'Mulish', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   }
 
-  &:is(code, pre, pre *, code *) {
+  &:where(code, pre, pre *, code *) {
     font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     /* font-size-adjust: from-font;
     TODO
@@ -30,11 +28,11 @@
     */
   }
 
-  &:is(*, *:before, *:after) {
+  &:where(*, *:before, *:after) {
     box-sizing: inherit;
   }
 
-  &:is(body) {
+  &:where(body) {
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
     min-width: 300px;
@@ -43,12 +41,12 @@
     color: rgb(var(--nq-neutral-900));
     background-color: rgb(var(--nq-neutral-0));
 
-    :is([data-inverted] *) & {
+    :where([data-inverted] *) & {
       color: rgb(var(--nq-neutral-0) / 0.8);
     }
   }
 
-  &:is(h1, h2, h3, h4, h5, h6) {
+  &:where(h1, h2, h3, h4, h5, h6) {
 
     text-wrap: balance;
     width: 100%;
@@ -67,17 +65,17 @@
     text-box-edge: cap alphabetic; */
   }
 
-  &:is(h1) {
+  &:where(h1) {
     --nq-font-size-min: 24;
     --nq-font-size-max: 32;
   }
 
-  &:is(h2) {
+  &:where(h2) {
     --nq-font-size-max: 20;
     --nq-font-size-min: 24;
   }
 
-  &:is(p) {
+  &:where(p) {
     --nq-line-height: 1.3125;
   }
 
@@ -89,24 +87,24 @@
     font-weight: 600;
   }
 
-  &:is(p, li) {
+  &:where(p, li) {
     text-wrap: pretty;
   }
 
   /* Hide empty paragraphs. This is mostly for the markdown */
-  &:is(p, span):empty {
+  &:where(p, span):empty {
     display: none;
   }
 
-  &:is(a) {
+  &:where(a) {
     cursor: pointer;
   }
 
-  &:is(blockquote p, blockquote p > :is(em, b)) {
+  &:where(blockquote p, blockquote p > :where(em, b)) {
     color: rgb(var(--nq-green));
   }
 
-  &:is(code, pre) {
+  &:where(code, pre) {
     background-color: rgb(var(--nq-neutral-300));
     color: rgb(var(--nq-neutral-900));
     --nq-font-size-min: 14;
@@ -118,12 +116,12 @@
     --nq-thumb: rgb(var(--nq-neutral-700) / 0.75);
   }
 
-  &:is(code) {
+  &:where(code) {
     line-height: 1.875rem;
   }
 
   /* Links & buttons clickable */
-  &:is(a, button:not([disabled])) {
+  &:where(a, button:not([disabled])) {
     position: relative;
 
     @media not all and (hover: hover) {

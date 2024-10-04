@@ -1,3 +1,4 @@
+import type { NimiqColor } from './colors'
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import process from 'node:process'
@@ -11,7 +12,7 @@ import {
   type PresetFactory,
   presetWebFonts,
 } from 'unocss'
-import { getNimiqColors, NimiqColor } from './colors'
+import { getNimiqColors } from './colors'
 
 const DEFAULT_PREFIX = 'nq-'
 
@@ -115,20 +116,20 @@ function createPreset() {
       const rulesNames = key.split(',').map(s => s.trim())
       const css = toCSS(json.children[key]).replaceAll('SEMICOLON_BUG_HACK', 'data:image/svg+xml;')
       for (const _rule of rulesNames) {
-
         if (preflightCssKeys.includes(_rule)) {
           const _css = `${_rule} { ${css} }`
           preflightCss += _rule === ':root' ? _css : `@layer ${layer} { ${_css} }`
           continue
         }
-        
+
         if (!_rule.startsWith('.'))
           continue
         if (_rule === '.nq-shadow') // we define the shadow in the theme
           continue
         const rule = _rule.replace(new RegExp(`^${DEFAULT_PREFIX}`), '')
-        const ruleName = rule.replace(/^\./, '').trim().split(/[:*]/).at(0)?.split(/\s/).at(0);
-        if (!ruleName) throw new Error(`Rule name not found for ${rule}`)
+        const ruleName = rule.replace(/^\./, '').trim().split(/[:*]/).at(0)?.split(/\s/).at(0)
+        if (!ruleName)
+          throw new Error(`Rule name not found for ${rule}`)
         rulesNamesStr.push(ruleName)
         const re = new RegExp(`^${ruleName}$`)
         const selector = convertToAttributes
@@ -298,9 +299,10 @@ function createPreset() {
     }
 
     if (typography) {
-      const { rules: _rules, rulesNames: _rulesNames } = cssToRules('typography', { convertToAttributes: false, prefix })
+      const { rules: _rules, rulesNames: _rulesNames, preflight } = cssToRules('typography', { convertToAttributes: false, prefix })
       rulesNames.push(..._rulesNames)
       rules.push(..._rules)
+      preflights.push(preflight)
     }
 
     const { fonts = true } = options
@@ -315,7 +317,7 @@ function createPreset() {
             mono: 'Fira Code:400',
           },
           // This will download the fonts and serve them locally
-          processors
+          processors,
         }),
       )
     }
@@ -327,7 +329,7 @@ function createPreset() {
         return {
           matcher: matcher.slice(9),
           selector: s =>
-            `:is(.inverted,[data-inverted])${s}, :is(.inverted,[data-inverted]) ${s}`,
+            `:where(.inverted,[data-inverted])${s}, :where(.inverted,[data-inverted]) ${s}`,
         }
       },
       (matcher) => {
@@ -343,7 +345,7 @@ function createPreset() {
           return matcher
         return {
           matcher: matcher.slice(12),
-          selector: s => `:is(.group,[group]):hover ${s}, :is(.group,[group]):focus ${s}`,
+          selector: s => `:where(.group,[group]):hover ${s}, :where(.group,[group]):focus ${s}`,
         }
       },
       (matcher) => {
@@ -433,8 +435,8 @@ function createPreset() {
           lg: 'var(--nq-shadow-lg)',
         },
         easing: {
-          'nq': 'var(--nq-ease)',
-        }
+          nq: 'var(--nq-ease)',
+        },
       },
       autocomplete: {
         templates: [...rulesNames, ...autocompletePreflight, ...autocompleteStaticContent],
