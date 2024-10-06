@@ -12,8 +12,8 @@ export enum NimiqColor {
 export function getNimiqColors() {
   return {
     colors: {
-      [NimiqColor.Darkblue]: {
-        DEFAULT: `rgb(var(--nq-${NimiqColor.Darkblue}))`,
+      [NimiqColor.bg-darkblue]: {
+        DEFAULT: `rgb(var(--nq-${NimiqColor.bg-darkblue}))`,
       },
       [NimiqColor.Neutral]: {
         DEFAULT: `rgb(var(--nq-${NimiqColor.Neutral}))`,
@@ -76,7 +76,7 @@ export function getNimiqColors() {
     },
     gradients: [
       [`bg-gradient-${NimiqColor.Neutral}`, `var(--nq-${NimiqColor.Neutral}-gradient)`, NimiqColor.Neutral],
-      [`bg-gradient-subtle-${NimiqColor.Neutral}`, `var(--nq-${NimiqColor.Neutral}-subtle-gradient)`, `rgb(var(--nq-${NimiqColor.Darkblue}-200))`],
+      [`bg-gradient-subtle-${NimiqColor.Neutral}`, `var(--nq-${NimiqColor.Neutral}-subtle-gradient)`, `rgb(var(--nq-${NimiqColor.bg-darkblue}-200))`],
       [`bg-gradient-${NimiqColor.Blue}`, `var(--nq-${NimiqColor.Blue}-gradient)`, NimiqColor.Blue],
       [`bg-gradient-${NimiqColor.Blue}-darkened`, `var(--nq-${NimiqColor.Blue}-gradient-darkened)`, NimiqColor.Blue],
       [`bg-gradient-${NimiqColor.Green}`, `var(--nq-${NimiqColor.Green}-gradient)`, NimiqColor.Green],

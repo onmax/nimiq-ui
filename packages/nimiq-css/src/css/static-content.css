@@ -153,68 +153,54 @@
         max-width: var(--nq-max-width);
       }
 
-      &:where(.nq-no-max-width, [nq-no-max-width]),
-      > :where(.nq-no-max-width, [nq-no-max-width]) {
-        --nq-max-width: none;
+      --px: 32px;
+
+      @media screen and (min-width: 768px) {
+        --px: 64px;
       }
 
-      &:where(.nq-no-mx, [nq-no-max]) {
-        margin-left: 0;
-        margin-right: 0;
+      @media screen and (min-width: 1024px) {
+        --px: 72px;
       }
 
-      &:not(:where(.nq-no-px, [nq-no-px])) {
-        --px: 32px;
+      @media screen and (min-width: 1280px) {
+        --px: 80px;
+      }
 
-        @media screen and (min-width: 768px) {
-          --px: 64px;
-        }
+      --pt: 160px;
+
+      @media screen and (min-width: 1024px) {
+        --pt: 200px;
+      }
+
+      :where(&.bg-darkblue:has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])).bg-darkblue),
+        &.bg-neutral-100:has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])).bg-neutral-100),
+        &.bg-neutral-0:has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])).bg-neutral-0)) {
+        --pb: 36px;
 
         @media screen and (min-width: 1024px) {
-          --px: 72px;
+          --pb: 48px;
         }
 
-        @media screen and (min-width: 1280px) {
-          --px: 80px;
+        + :where(section, [data-section]) {
+          --pt: 36px;
+
+          @media screen and (min-width: 1024px) {
+            --pt: 48px;
+          }
         }
       }
 
-      &:not(:where(.nq-no-py, [nq-no-py])) {
-        --pt: 160px;
+      &.bg-darkblue:has(+ :where(section, [data-section]):where(.bg-neutral-100, .bg-neutral-0, .nq-section-gap, [nq-section-gap])),
+      &:where(.bg-neutral-0, .bg-neutral-100):has(+ :where(section, [data-section]).bg-darkblue, .nq-section-gap, [nq-section-gap]),
+      &.bg-neutral-0:has(+ :where(section, [data-section]):where(.bg-neutral-100, .bg-darkblue, .nq-section-gap, [nq-section-gap])),
+      &:where(.bg-darkblue, .bg-neutral-100):has(+ :where(section, [data-section]).bg-neutral-0, .nq-section-gap, [nq-section-gap]),
+      &.bg-neutral-100:has(+ :where(section, [data-section]):where(.bg-darkblue, .bg-neutral-0, .nq-section-gap, [nq-section-gap])),
+      &:where(.bg-neutral-0, .bg-darkblue):has(+ :where(section, [data-section]).bg-neutral-100, .nq-section-gap, [nq-section-gap]) {
+        --pb: 160px;
 
         @media screen and (min-width: 1024px) {
-          --pt: 200px;
-        }
-
-        :where(&.darkblue:has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])).darkblue),
-          &.grey:has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])).grey),
-          &.white:has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])).white)) {
-          --pb: 36px;
-
-          @media screen and (min-width: 1024px) {
-            --pb: 48px;
-          }
-
-          + :where(section, [data-section]) {
-            --pt: 36px;
-
-            @media screen and (min-width: 1024px) {
-              --pt: 48px;
-            }
-          }
-        }
-
-        &.darkblue:has(+ :where(section, [data-section]):where(.grey, .white, .nq-section-gap, [nq-section-gap])),
-        &:where(.white, .grey):has(+ :where(section, [data-section]).darkblue, .nq-section-gap, [nq-section-gap]),
-        &.white:has(+ :where(section, [data-section]):where(.grey, .darkblue, .nq-section-gap, [nq-section-gap])),
-        &:where(.darkblue, .grey):has(+ :where(section, [data-section]).white, .nq-section-gap, [nq-section-gap]),
-        &.grey:has(+ :where(section, [data-section]):where(.darkblue, .white, .nq-section-gap, [nq-section-gap])),
-        &:where(.white, .darkblue):has(+ :where(section, [data-section]).grey, .nq-section-gap, [nq-section-gap]) {
-          --pb: 160px;
-
-          @media screen and (min-width: 1024px) {
-            --pb: 200px;
-          }
+          --pb: 200px;
         }
       }
     }
