@@ -33,14 +33,14 @@
     "@unocss/reset": "^0.62.3"
   },
   "dependencies": {
-    "@unocss/reset": "0.63.0",
+    "@unocss/reset": "0.63.3",
     "ts-cssjson": "^3.0.1",
-    "unocss": "^0.63.0"
+    "unocss": "^0.63.3"
   },
   "devDependencies": {
     "@iconify/types": "^2.0.0",
     "@types/bun": "latest",
-    "@unocss/preset-web-fonts": "^0.63.0",
+    "@unocss/preset-web-fonts": "^0.63.3",
     "unbuild": "^2.0.0"
   }
 }
