@@ -6,7 +6,10 @@ import { fileURLToPath } from 'node:url'
 import { createLocalFontProcessor, type LocalFontProcessorOptions } from '@unocss/preset-web-fonts/local'
 import { toCSS, toJSON } from 'ts-cssjson'
 import {
+  type CSSObject,
+  type CSSValueInput,
   definePreset,
+  type DynamicMatcher,
   type Preflight,
   type Preset,
   type PresetFactory,
@@ -94,7 +97,7 @@ function createPreset() {
   ) {
     prefix ??= DEFAULT_PREFIX
 
-    interface Setup { css: string, re: RegExp }
+    interface Setup { css: string, re: RegExp, json: object }
     const rulesSetup: Record<string, Setup> = {}
 
     let preflightCss = ''
@@ -137,7 +140,7 @@ function createPreset() {
         const selector = convertToAttributes
           ? `${rule}, [${ruleName}=""], [${ruleName}="true"]`
           : rule
-        const setup: Setup = { css, re }
+        const setup: Setup = { css, re, json: json.children[key].attributes }
         if (rulesSetup[selector])
           rulesSetup[selector].css += css
         else rulesSetup[selector] = setup
@@ -145,9 +148,9 @@ function createPreset() {
     }
 
     const rules: Preset['rules'] = Object.entries(rulesSetup).map(
-      ([selector, { css, re }]) => [
+      ([selector, { css, re, json }]) => [
         re,
-        () => `@layer ${layer} { ${selector} { ${css} } }`,
+        css.includes('{') ? () => `${selector} { ${css} }` : ()=>json as CSSObject,
         { layer },
       ],
     )
