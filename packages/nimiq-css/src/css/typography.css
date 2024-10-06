@@ -11,7 +11,7 @@
 /**
  * Make sure to import also nimiq-colors layer found in this package
  **/
-.nq-prose {
+.nq-prose, .nq-prose-compact {
   margin-trim: block;
 
   &:not(:where(.nq-prose-compact, [nq-prose-compact])) {
