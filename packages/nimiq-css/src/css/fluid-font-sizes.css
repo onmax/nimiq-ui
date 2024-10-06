@@ -63,12 +63,18 @@
 
 .nq-text-xl {
   --nq-font-size-min: 18;
-  --nq-font-size-max: 21;
+  --nq-font-size-max: 22;
   font-size: var(--nq-font-size);
 }
 
 .nq-text-2xl {
-  --nq-font-size-min: 20;
-  --nq-font-size-max: 24;
+  --nq-font-size-min: 22;
+  --nq-font-size-max: 26;
+  font-size: var(--nq-font-size);
+}
+
+.nq-text-3xl {
+  --nq-font-size-min: 26;
+  --nq-font-size-max: 32;
   font-size: var(--nq-font-size);
 }
