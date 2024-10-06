@@ -90,8 +90,10 @@ function createPreset() {
 
   function cssToRules(
     name: string,
-    { convertToAttributes = false, prefix = DEFAULT_PREFIX }: CssToRulesOptions = {},
+    { convertToAttributes = false, prefix }: CssToRulesOptions = {},
   ) {
+    prefix ??= DEFAULT_PREFIX
+
     interface Setup { css: string, re: RegExp }
     const rulesSetup: Record<string, Setup> = {}
 
@@ -126,7 +128,7 @@ function createPreset() {
           continue
         if (_rule === '.nq-shadow') // we define the shadow in the theme
           continue
-        const rule = _rule.replace(new RegExp(`^${DEFAULT_PREFIX}`), '')
+        const rule = _rule.replace(new RegExp(`^\.${DEFAULT_PREFIX}`), `.${prefix}`)
         const ruleName = rule.replace(/^\./, '').trim().split(/[:*]/).at(0)?.split(/\s/).at(0)
         if (!ruleName)
           throw new Error(`Rule name not found for ${rule}`)
@@ -181,7 +183,7 @@ function createPreset() {
   }
 
   return (options: NimiqPresetOptions = {}): Preset => {
-    const { prefix = DEFAULT_PREFIX } = options
+    const prefix = options.prefix ?? DEFAULT_PREFIX
     const { gradients, colors } = getNimiqColors()
 
     const rulesNames: string[] = []
@@ -248,22 +250,20 @@ function createPreset() {
 
     const { utilities = false, typography = false } = options
 
+    
+    
     const rules: Preset['rules'] = [
       [/^text-min-(.*)$/, ([, t]) => ({ '--nq-font-size-min': t })],
       [/^text-max-(.*)$/, ([, t]) => ({ '--nq-font-size-max': t })],
       [/^text-(\d+(?:\.\d+)?[a-z]*)\|(\d+(?:\.\d+)?[a-z]*)$/, ([, min, max]) => ({ '--nq-font-size-min': min, '--nq-font-size-max': max })],
     ]
-
-    const shortcuts: Preset['shortcuts'] = [
-      ['text-3xs', 'text-9|11'],
-      ['text-2xs', 'text-10|12'],
-      ['text-xs', 'text-12|14'],
-      ['text-sm', 'text-14|16'],
-      ['text-md', 'text-16'],
-      ['text-xl', 'text-18|21'],
-      ['text-2xl', 'text-20|24'],
-    ]
-
+    {
+      const { rules: _rules, rulesNames: _rulesNames, preflight } = cssToRules('fluid-font-sizes', { convertToAttributes: options.attributifyUtilities, prefix: '' /* we don't respect the prefix here */ })
+      rulesNames.push(..._rulesNames)
+      rules.push(..._rules)
+      preflights.push(preflight)
+    }
+    
     // The only way to add gradients is via rules
     for (const [key, gradient, color] of gradients) {
       const backgroundImage = { 'background-image': gradient }
@@ -273,13 +273,6 @@ function createPreset() {
         { ...background, ...backgroundImage },
         { layer: `${prefix}colors` },
       ])
-    }
-
-    {
-      const { rules: _rules, rulesNames: _rulesNames, preflight } = cssToRules('fluid-font-sizes', { convertToAttributes: options.attributifyUtilities, prefix })
-      rulesNames.push(..._rulesNames)
-      rules.push(..._rules)
-      preflights.push(preflight)
     }
 
     if (spacing) {
@@ -427,9 +420,9 @@ function createPreset() {
       name: 'nimiq-preset',
       preflights,
       variants,
-      shortcuts,
       theme: {
         colors,
+        fontSize: {}, // We define the font sizes in the fluid-font-sizes
         boxShadow: {
           DEFAULT: 'var(--nq-shadow)',
           lg: 'var(--nq-shadow-lg)',

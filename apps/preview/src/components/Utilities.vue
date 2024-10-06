@@ -97,7 +97,7 @@ const loadingSmall = ref(true)
 
 
     <h3 mt-6>Variants</h3>
-    <div grid="~ gap-2 flow-col">
+    <div grid="~ gap-2 flow-col text-xl">
       <ReuseTemplate :html="`<a href='./' class='nq-pill-secondary'>Secondary pill</a>`" />
       <ReuseTemplate :html="`<a href='./' class='nq-pill-secondary nq-pill-sm'>Secondary small pill</a>`" />
       <ReuseTemplate :html="`<a href='./' class='nq-pill-tertiary'>Tertiary pill</a>`" />
