@@ -150,7 +150,7 @@ function createPreset() {
     const rules: Preset['rules'] = Object.entries(rulesSetup).map(
       ([selector, { css, re, json }]) => [
         re,
-        css.includes('{') ? () => `${selector} { ${css} }` : () => json as CSSObject,
+        css.includes('{') ? () => `@layer ${layer} { ${selector} { ${css} } }` : () => json as CSSObject,
         { layer },
       ],
     )
