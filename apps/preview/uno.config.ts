@@ -7,9 +7,14 @@ export default defineConfig({
     presetUno(),
     presetAttributify(),
     presetNimiq({
-      utilities: true,
-      typography: true,
+      // utilities: true,
+      // typography: true,
+      // attributifyUtilities: true,
+       utilities: true,
       attributifyUtilities: true,
+      typography: true,
+      staticContent: true,
+      fonts: false,
     }),
   ],
 })

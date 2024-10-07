@@ -7,9 +7,7 @@ import { createLocalFontProcessor, type LocalFontProcessorOptions } from '@unocs
 import { toCSS, toJSON } from 'ts-cssjson'
 import {
   type CSSObject,
-  type CSSValueInput,
   definePreset,
-  type DynamicMatcher,
   type Preflight,
   type Preset,
   type PresetFactory,
@@ -141,8 +139,10 @@ function createPreset() {
           ? `${rule}, [${ruleName}=""], [${ruleName}="true"]`
           : rule
         const setup: Setup = { css, re, json: json.children[key].attributes }
-        if (rulesSetup[selector])
+        if (rulesSetup[selector]) {
           rulesSetup[selector].css += css
+          rulesSetup[selector].json = { ...rulesSetup[selector].json, ...json.children[key].attributes }
+        }
         else rulesSetup[selector] = setup
       }
     }
@@ -150,7 +150,7 @@ function createPreset() {
     const rules: Preset['rules'] = Object.entries(rulesSetup).map(
       ([selector, { css, re, json }]) => [
         re,
-        css.includes('{') ? () => `${selector} { ${css} }` : ()=>json as CSSObject,
+        css.includes('{') ? () => `${selector} { ${css} }` : () => json as CSSObject,
         { layer },
       ],
     )
@@ -253,8 +253,6 @@ function createPreset() {
 
     const { utilities = false, typography = false } = options
 
-    
-    
     const rules: Preset['rules'] = [
       [/^text-min-(.*)$/, ([, t]) => ({ '--nq-font-size-min': t })],
       [/^text-max-(.*)$/, ([, t]) => ({ '--nq-font-size-max': t })],
@@ -266,7 +264,7 @@ function createPreset() {
       rules.push(..._rules)
       preflights.push(preflight)
     }
-    
+
     // The only way to add gradients is via rules
     for (const [key, gradient, color] of gradients) {
       const backgroundImage = { 'background-image': gradient }
@@ -426,6 +424,10 @@ function createPreset() {
       theme: {
         colors,
         fontSize: {}, // We define the font sizes in the fluid-font-sizes
+        fontFamily: {
+          sans: 'Mulish',
+          mono: 'Fira Code',
+        },
         boxShadow: {
           DEFAULT: 'var(--nq-shadow)',
           lg: 'var(--nq-shadow-lg)',
