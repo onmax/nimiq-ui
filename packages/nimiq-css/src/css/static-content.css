@@ -128,8 +128,7 @@
       line-height: var(--nq-line-height);
     }
 
-    section,
-    [data-section] {
+    :where(section, [data-section]) {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -173,9 +172,11 @@
         --pt: 200px;
       }
 
-      :is(&:where([bg-darkblue],.bg-darkblue):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-darkblue,[bg-darkblue]))),
+      :is(
+        &:where(.bg-darkblue,[bg-darkblue]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-darkblue,[bg-darkblue])),
         &:where(.bg-neutral-100, [bg-neutral-100]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-neutral-100,[bg-neutral-100])),
-        &:where(.bg-neutral-0, [bg-neutral-0]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-neutral-0,[bg-neutral-0])) {
+        &:where(.bg-neutral-0, [bg-neutral-0]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-neutral-0,[bg-neutral-0]))
+      ) {
         --pb: 36px;
 
         @media screen and (min-width: 1024px) {
@@ -201,6 +202,14 @@
 
         @media screen and (min-width: 1024px) {
           --pb: 200px;
+        }
+      }
+
+      &:last-child {
+        --pb: var(--pb, 32px);
+
+        @media screen and (min-width: 1024px) {
+          --pb: var(--pb, 48px);
         }
       }
     }
