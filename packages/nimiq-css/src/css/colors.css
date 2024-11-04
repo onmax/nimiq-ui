@@ -21,6 +21,7 @@
   --nimiq-red-bg-darkened: radial-gradient(100% 100% at bottom right, #BF2D46, var(--nimiq-red-darkened)); */
   
   --nq-darkblue: 31 35 72;
+  --nq-darkerblue: 23 24 43;
   --nq-white: 255 255 255;
   --nq-blue-s3: #2c72c7;
 
@@ -37,7 +38,7 @@
   --nq-neutral-on-light-800: 121 123 145;
   --nq-neutral-on-light-900: 76 79 109;
   --nq-neutral-on-dark: var(--nq-white);
-  --nq-neutral-on-dark-0: 23 24 43;
+  --nq-neutral-on-dark-0: var(--nq-darkerblue);
   --nq-neutral-on-dark-50: 28 29 47;
   --nq-neutral-on-dark-100: 30 31 49;
   --nq-neutral-on-dark-200: 35 36 54;

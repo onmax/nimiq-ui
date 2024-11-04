@@ -1,5 +1,6 @@
 export enum NimiqColor {
   Darkblue = 'darkblue',
+  Darkerblue = 'darkerblue',
   Neutral = 'neutral',
   Blue = 'blue',
   Green = 'green',
@@ -14,6 +15,9 @@ export function getNimiqColors() {
     colors: {
       [NimiqColor.Darkblue]: {
         DEFAULT: `rgb(var(--nq-${NimiqColor.Darkblue}))`,
+      },
+      [NimiqColor.Darkerblue]: {
+        DEFAULT: `rgb(var(--nq-${NimiqColor.Darkerblue}))`,
       },
       [NimiqColor.Neutral]: {
         DEFAULT: `rgb(var(--nq-${NimiqColor.Neutral}))`,

@@ -175,6 +175,7 @@
       }
 
       :is(&:where(.bg-darkblue, [bg-darkblue]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-darkblue, [bg-darkblue])),
+        &:where(.bg-darkerblue, [bg-darkerblue]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-darkerblue, [bg-darkerblue])),
         &:where(.bg-neutral-100, [bg-neutral-100]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-neutral-100, [bg-neutral-100])),
         &:where(.bg-neutral-0, [bg-neutral-0]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-neutral-0, [bg-neutral-0]))) {
         --pb: 36px;
@@ -192,12 +193,12 @@
         }
       }
 
-      &:where(.bg-darkblue, [bg-darkblue]):has(+ :where(section, [data-section]):where(.bg-neutral-100, .bg-neutral-0, [bg-neutral-100], [bg-neutral-0], .nq-section-gap, [nq-section-gap])),
-      &:where(.bg-neutral-0, [bg-neutral-0], .bg-neutral-100, [bg-neutral-100]):has(+ :where(section, [data-section]):where(.bg-darkblue, [bg-darkblue], .nq-section-gap, [nq-section-gap])),
-      &:where(.bg-neutral-0, [bg-neutral-0]):has(+ :where(section, [data-section]):where(.bg-neutral-100, [bg-neutral-100], .bg-darkblue, [bg-darkblue], .nq-section-gap, [nq-section-gap])),
-      &:where(.bg-darkblue, [bg-darkblue], .bg-neutral-100, [bg-neutral-100]):has(+ :where(section, [data-section]):where(.bg-neutral-0, [bg-neutral-0], .nq-section-gap, [nq-section-gap])),
-      &:where(.bg-neutral-100, [bg-neutral-100]):has(+ :where(section, [data-section]):where(.bg-darkblue, [bg-darkblue], .bg-neutral-0, [bg-neutral-0], .nq-section-gap, [nq-section-gap])),
-      &:where(.bg-neutral-0, [bg-neutral-0], .bg-darkblue, [bg-darkblue]):has(+ :where(section, [data-section]):where(.bg-neutral-100, [bg-neutral-100], .nq-section-gap, [nq-section-gap])) {
+      &:where(.bg-darkblue, [bg-darkblue], .bg-darkerblue, [bg-darkerblue]):has(+ :where(section, [data-section]):where(.bg-neutral-100, .bg-neutral-0, [bg-neutral-100], [bg-neutral-0], .nq-section-gap, [nq-section-gap])),
+      &:where(.bg-neutral-0, [bg-neutral-0], .bg-neutral-100, [bg-neutral-100]):has(+ :where(section, [data-section]):where(.bg-darkblue, [bg-darkblue], .bg-darkerblue, [bg-darkerblue], .nq-section-gap, [nq-section-gap])),
+      &:where(.bg-neutral-0, [bg-neutral-0]):has(+ :where(section, [data-section]):where(.bg-neutral-100, [bg-neutral-100], .bg-darkblue, [bg-darkblue], .bg-darkerblue, [bg-darkerblue], .nq-section-gap, [nq-section-gap])),
+      &:where(.bg-darkblue, [bg-darkblue], .bg-neutral-100, [bg-neutral-100], .bg-darkerblue, [bg-darkerblue]):has(+ :where(section, [data-section]):where(.bg-neutral-0, [bg-neutral-0], .nq-section-gap, [nq-section-gap])),
+      &:where(.bg-neutral-100, [bg-neutral-100]):has(+ :where(section, [data-section]):where(.bg-darkblue, [bg-darkblue], .bg-neutral-0, [bg-neutral-0], .bg-darkerblue, [bg-darkerblue], .nq-section-gap, [nq-section-gap])),
+      &:where(.bg-neutral-0, [bg-neutral-0], .bg-darkblue, [bg-darkblue], .bg-darkerblue, [bg-darkerblue]):has(+ :where(section, [data-section]):where(.bg-neutral-100, [bg-neutral-100], .nq-section-gap, [nq-section-gap])) {
         --pb: 160px;
 
         @media screen and (min-width: 1024px) {
