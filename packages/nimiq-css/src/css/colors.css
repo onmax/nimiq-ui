@@ -19,7 +19,7 @@
   --nimiq-green-bg-darkened: radial-gradient(100% 100% at bottom right, #3D9988, var(--nimiq-green-darkened));
   --nimiq-orange-bg-darkened: radial-gradient(100% 100% at bottom right, #EA5200, var(--nimiq-orange-darkened));
   --nimiq-red-bg-darkened: radial-gradient(100% 100% at bottom right, #BF2D46, var(--nimiq-red-darkened)); */
-  
+
   --nq-darkblue: 31 35 72;
   --nq-darkerblue: 23 24 43;
   --nq-white: 255 255 255;
@@ -200,73 +200,73 @@
   --nq-purple-400: var(--nq-purple-on-light-400);
   --nq-purple-500: var(--nq-purple-on-light-500);
   --nq-purple-600: var(--nq-purple-on-light-600);
+}
 
 
+.dark,
+.dark *,
+&[data-theme="dark"],
+:where(.bg-darkblue &, &.bg-darkblue, [bg-darkblue], & [bg-darkblue]),
+:where(.bg-neutral &, &.bg-neutral, [bg-neutral], & [bg-neutral]),
+:where(.bg-darkerblue &, &.bg-darkerblue, [bg-darkerblue], & [bg-darkerblue]) {
+  --nq-neutral: var(--nq-neutral-on-dark);
+  --nq-neutral-0: var(--nq-neutral-on-dark-0);
+  --nq-neutral-50: var(--nq-neutral-on-dark-50);
+  --nq-neutral-100: var(--nq-neutral-on-dark-100);
+  --nq-neutral-200: var(--nq-neutral-on-dark-200);
+  --nq-neutral-300: var(--nq-neutral-on-dark-300);
+  --nq-neutral-400: var(--nq-neutral-on-dark-400);
+  --nq-neutral-500: var(--nq-neutral-on-dark-500);
+  --nq-neutral-600: var(--nq-neutral-on-dark-600);
+  --nq-neutral-700: var(--nq-neutral-on-dark-700);
+  --nq-neutral-800: var(--nq-neutral-on-dark-800);
+  --nq-neutral-900: var(--nq-neutral-on-dark-900);
+  --nq-neutral-1100: var(--nq-neutral-on-dark-1100);
+  --nq-neutral-gradient: var(--nq-neutral-on-dark-gradient);
 
-  &.dark, .dark &,
-  :where(.bg-darkblue &, &.bg-darkblue, [bg-darkblue], & [bg-darkblue]),
-  :where(.bg-neutral &, &.bg-neutral, [bg-neutral], & [bg-neutral]),
-  :where(.bg-darkerblue & , &.bg-darkerblue, [bg-darkerblue], & [bg-darkerblue])
-  {
-    --nq-neutral: var(--nq-neutral-on-dark);
-    --nq-neutral-0: var(--nq-neutral-on-dark-0);
-    --nq-neutral-50: var(--nq-neutral-on-dark-50);
-    --nq-neutral-100: var(--nq-neutral-on-dark-100);
-    --nq-neutral-200: var(--nq-neutral-on-dark-200);
-    --nq-neutral-300: var(--nq-neutral-on-dark-300);
-    --nq-neutral-400: var(--nq-neutral-on-dark-400);
-    --nq-neutral-500: var(--nq-neutral-on-dark-500);
-    --nq-neutral-600: var(--nq-neutral-on-dark-600);
-    --nq-neutral-700: var(--nq-neutral-on-dark-700);
-    --nq-neutral-800: var(--nq-neutral-on-dark-800);
-    --nq-neutral-900: var(--nq-neutral-on-dark-900);
-    --nq-neutral-1100: var(--nq-neutral-on-dark-1100);
-    --nq-neutral-gradient: var(--nq-neutral-on-dark-gradient);
+  --nq-blue: var(--nq-blue-on-dark);
+  --nq-blue-400: var(--nq-blue-on-dark-400);
+  --nq-blue-500: var(--nq-blue-on-dark-500);
+  --nq-blue-600: var(--nq-blue-on-dark-600);
+  --nq-blue-1100: var(--nq-blue-on-dark-1100);
+  --nq-blue-gradient: var(--nq-blue-on-dark-gradient);
+  --nq-blue-gradient-darkened: var(--nq-blue-on-dark-gradient-darkened);
 
-    --nq-blue: var(--nq-blue-on-dark);
-    --nq-blue-400: var(--nq-blue-on-dark-400);
-    --nq-blue-500: var(--nq-blue-on-dark-500);
-    --nq-blue-600: var(--nq-blue-on-dark-600);
-    --nq-blue-1100: var(--nq-blue-on-dark-1100);
-    --nq-blue-gradient: var(--nq-blue-on-dark-gradient);
-    --nq-blue-gradient-darkened: var(--nq-blue-on-dark-gradient-darkened);
+  --nq-green: var(--nq-green-on-dark);
+  --nq-green-400: var(--nq-green-on-dark-400);
+  --nq-green-500: var(--nq-green-on-dark-500);
+  --nq-green-600: var(--nq-green-on-dark-600);
+  --nq-green-1100: var(--nq-green-on-dark-1100);
+  --nq-green-gradient: var(--nq-green-on-dark-gradient);
+  --nq-green-gradient-darkened: var(--nq-green-on-dark-gradient-darkened);
 
-    --nq-green: var(--nq-green-on-dark);
-    --nq-green-400: var(--nq-green-on-dark-400);
-    --nq-green-500: var(--nq-green-on-dark-500);
-    --nq-green-600: var(--nq-green-on-dark-600);
-    --nq-green-1100: var(--nq-green-on-dark-1100);
-    --nq-green-gradient: var(--nq-green-on-dark-gradient);
-    --nq-green-gradient-darkened: var(--nq-green-on-dark-gradient-darkened);
+  --nq-orange: var(--nq-orange-on-dark);
+  --nq-orange-400: var(--nq-orange-on-dark-400);
+  --nq-orange-500: var(--nq-orange-on-dark-500);
+  --nq-orange-600: var(--nq-orange-on-dark-600);
+  --nq-orange-1100: var(--nq-orange-on-dark-1100);
+  --nq-orange-gradient: var(--nq-orange-on-dark-gradient);
+  --nq-orange-gradient-darkened: var(--nq-orange-on-dark-gradient-darkened);
 
-    --nq-orange: var(--nq-orange-on-dark);
-    --nq-orange-400: var(--nq-orange-on-dark-400);
-    --nq-orange-500: var(--nq-orange-on-dark-500);
-    --nq-orange-600: var(--nq-orange-on-dark-600);
-    --nq-orange-1100: var(--nq-orange-on-dark-1100);
-    --nq-orange-gradient: var(--nq-orange-on-dark-gradient);
-    --nq-orange-gradient-darkened: var(--nq-orange-on-dark-gradient-darkened);
+  --nq-red: var(--nq-red-on-dark);
+  --nq-red-400: var(--nq-red-on-dark-400);
+  --nq-red-500: var(--nq-red-on-dark-500);
+  --nq-red-600: var(--nq-red-on-dark-600);
+  --nq-red-1100: var(--nq-red-on-dark-1100);
+  --nq-red-gradient: var(--nq-red-on-dark-gradient);
+  --nq-red-gradient-darkened: var(--nq-red-on-dark-gradient-darkened);
 
-    --nq-red: var(--nq-red-on-dark);
-    --nq-red-400: var(--nq-red-on-dark-400);
-    --nq-red-500: var(--nq-red-on-dark-500);
-    --nq-red-600: var(--nq-red-on-dark-600);
-    --nq-red-1100: var(--nq-red-on-dark-1100);
-    --nq-red-gradient: var(--nq-red-on-dark-gradient);
-    --nq-red-gradient-darkened: var(--nq-red-on-dark-gradient-darkened);
+  --nq-gold: var(--nq-gold-on-dark);
+  --nq-gold-400: var(--nq-gold-on-dark-400);
+  --nq-gold-500: var(--nq-gold-on-dark-500);
+  --nq-gold-600: var(--nq-gold-on-dark-600);
+  --nq-gold-1100: var(--nq-gold-on-dark-1100);
+  --nq-gold-gradient: var(--nq-gold-on-dark-gradient);
+  --nq-gold-gradient-darkened: var(--nq-gold-on-dark-gradient-darkened);
 
-    --nq-gold: var(--nq-gold-on-dark);
-    --nq-gold-400: var(--nq-gold-on-dark-400);
-    --nq-gold-500: var(--nq-gold-on-dark-500);
-    --nq-gold-600: var(--nq-gold-on-dark-600);
-    --nq-gold-1100: var(--nq-gold-on-dark-1100);
-    --nq-gold-gradient: var(--nq-gold-on-dark-gradient);
-    --nq-gold-gradient-darkened: var(--nq-gold-on-dark-gradient-darkened);
-
-    --nq-purple: var(--nq-purple-on-dark);
-    --nq-purple-400: var(--nq-purple-on-dark-400);
-    --nq-purple-500: var(--nq-purple-on-dark-500);
-    --nq-purple-600: var(--nq-purple-on-dark-600);
-    --nq-purple-1100: var(--nq-purple-on-dark-1100);
-  }
+  --nq-purple: var(--nq-purple-on-dark);
+  --nq-purple-400: var(--nq-purple-on-dark-400);
+  --nq-purple-500: var(--nq-purple-on-dark-500);
+  --nq-purple-600: var(--nq-purple-on-dark-600);
+  --nq-purple-1100: var(--nq-purple-on-dark-1100);
 }
