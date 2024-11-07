@@ -203,7 +203,11 @@
 
 
 
-  :is(&.dark, & .dark, &.bg-darkblue, & .bg-darkblue, &[bg-neutral], & [bg-neutral]) {
+  &.dark, .dark &,
+  :where(.bg-darkblue &, &.bg-darkblue, [bg-darkblue], & [bg-darkblue]),
+  :where(.bg-neutral &, &.bg-neutral, [bg-neutral], & [bg-neutral]),
+  :where(.bg-darkerblue & , &.bg-darkerblue, [bg-darkerblue], & [bg-darkerblue])
+  {
     --nq-neutral: var(--nq-neutral-on-dark);
     --nq-neutral-0: var(--nq-neutral-on-dark-0);
     --nq-neutral-50: var(--nq-neutral-on-dark-50);

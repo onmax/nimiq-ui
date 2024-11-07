@@ -10,7 +10,7 @@ export default defineConfig({
       // utilities: true,
       // typography: true,
       // attributifyUtilities: true,
-       utilities: true,
+      utilities: true,
       attributifyUtilities: true,
       typography: true,
       staticContent: true,

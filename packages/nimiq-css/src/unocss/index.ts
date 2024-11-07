@@ -143,7 +143,9 @@ function createPreset() {
           rulesSetup[selector].css += css
           rulesSetup[selector].json = { ...rulesSetup[selector].json, ...json.children[key].attributes }
         }
-        else rulesSetup[selector] = setup
+        else {
+          rulesSetup[selector] = setup
+        }
       }
     }
 
