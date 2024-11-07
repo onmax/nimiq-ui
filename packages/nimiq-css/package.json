@@ -28,7 +28,7 @@
   },
   "scripts": {
     "build": "unbuild && cp -r src/css dist/css/unminified",
-    "release": "bumpp --commit --push --tag && pnpm publish"
+    "release": "pnpm run build && bumpp --commit --push --tag && pnpm publish"
   },
   "dependencies": {
     "@unocss/reset": "0.63.2",
