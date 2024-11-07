@@ -10,7 +10,7 @@
 
   --nq-mt-range: calc(var(--nq-mt-max) - var(--nq-mt-min));
   --nq-mt-fluid: calc(1px * var(--nq-mt-min) + var(--nq-mt-range) * var(--nq-space-scale-factor));
-  --nq-mt-size: clamp(calc(1px * var(--nq-mt-min)), var(--nq-mb-fluid), calc(var(--nq-mt-max) * 1px));
+  --nq-mt-size: clamp(calc(1px * var(--nq-mt-min)), var(--nq-mt-fluid), calc(var(--nq-mt-max) * 1px));
   
   --nq-mb-range: calc(var(--nq-mb-max) - var(--nq-mb-min));
   --nq-mb-fluid: calc(1px * var(--nq-mb-min) + var(--nq-mb-range) * var(--nq-space-scale-factor));
@@ -18,7 +18,7 @@
   
   --nq-pt-range: calc(var(--nq-pt-max) - var(--nq-pt-min));
   --nq-pt-fluid: calc(1px * var(--nq-pt-min) + var(--nq-pt-range) * var(--nq-space-scale-factor));
-  --nq-pt-size: clamp(calc(1px * var(--nq-pt-min)), var(--nq-mb-fluid), calc(var(--nq-pt-max) * 1px));
+  --nq-pt-size: clamp(calc(1px * var(--nq-pt-min)), var(--nq-pt-fluid), calc(var(--nq-pt-max) * 1px));
 
   --nq-pb-range: calc(var(--nq-pb-max) - var(--nq-pb-min));
   --nq-pb-fluid: calc(1px * var(--nq-pb-min) + var(--nq-pb-range) * var(--nq-space-scale-factor));
