@@ -13,7 +13,7 @@
   text-transform: uppercase;
   letter-spacing: 0.17em;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1;
   color: rgb(var(--nq-neutral-700));
 
   :where([data-inverted] *) & {
