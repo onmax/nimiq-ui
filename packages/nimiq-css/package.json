@@ -1,7 +1,7 @@
 {
   "name": "nimiq-css",
   "type": "module",
-  "version": "0.2.40",
+  "version": "0.2.41",
   "description": "Nimiq's Design System in CSS",
   "sideEffects": false,
   "exports": {
