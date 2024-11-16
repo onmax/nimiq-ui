@@ -286,9 +286,8 @@ function createPreset() {
 
       // This could be done with preset-mini/utils but no energy to do it now
 
-
       rules.push([/^nq-(mt|mb|my|pt|pb|py)-(\d+)-(\d+)$/, ([, p, min, max]) => {
-        let css: Record<string, any> = {}
+        const css: Record<string, any> = {}
         if (p === 'my' || p === 'py') {
           const pp = p.charAt(0)
           css[`--nq-${pp}t-min`] = min
@@ -298,12 +297,13 @@ function createPreset() {
           const cssProperty = pp === 'm' ? 'margin' : 'padding'
           css[`${cssProperty}-top`] = `var(--nq-${pp}t-size)`
           css[`${cssProperty}-bottom`] = `var(--nq-${pp}b-size)`
-        } else {
+        }
+        else {
           css[`--nq-${p}-min`] = min
           css[`--nq-${p}-max`] = max
           css[p] = `var(--nq-${p}-size)`
         }
-        return css;
+        return css
       }])
     }
 
