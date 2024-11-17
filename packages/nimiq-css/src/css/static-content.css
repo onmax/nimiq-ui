@@ -120,12 +120,12 @@ body:not(.nq-raw) {
     }
   }
 
-  &:where(h1, h2, h3, h4, h1+p, h2+p, h3+p, h4+p) {
+  :where(h1, h2, h3, h4, h1+p, h2+p, h3+p, h4+p) {
     font-size: var(--nq-font-size);
     line-height: var(--nq-line-height);
   }
 
-  &:where(section, [data-section]) {
+  :where(section, [data-section]) {
     display: flex;
     flex-direction: column;
     justify-content: center;
