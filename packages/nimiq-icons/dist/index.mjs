@@ -1,4 +1,4 @@
-import icons from './icons.json' with { type: 'json' };
+import icons from './icons.json' assert { type: 'json' };
 
 const info = {};
 const metadata = {};
