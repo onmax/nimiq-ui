@@ -1,5 +1,5 @@
 /* TODO Remove font-size fluid and use dynamic line-height */
-body:not(:where(.nq-raw, [nq-raw])) {
+body:not(.nq-raw) {
 
   /* Base styles */
   background-color: rgb(var(--nq-neutral-100) / 1);
@@ -10,7 +10,6 @@ body:not(:where(.nq-raw, [nq-raw])) {
     color: rgb(var(--nq-neutral-800));
   }
 
-  /* :not(:has(.nq-raw *)):not(.nq-raw *) */
   :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose]) *)):not(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose]) *) {
     &:is(h1) {
       font-weight: 700;
@@ -51,7 +50,6 @@ body:not(:where(.nq-raw, [nq-raw])) {
         }
       }
     }
-
 
     &:is(h2){
       font-weight: 700;
