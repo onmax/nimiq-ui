@@ -206,9 +206,9 @@
 .dark,
 .dark *,
 &[data-theme="dark"],
-:where(.bg-darkblue &, &.bg-darkblue, [bg-darkblue]),
-:where(.bg-neutral &, &.bg-neutral, [bg-neutral]),
-:where(.bg-darkerblue &, &.bg-darkerblue, [bg-darkerblue]) {
+:where(.bg-darkblue &, &:where(.bg-darkblue,[bg-darkblue])),
+:where(.bg-neutral &, &:where(.bg-neutral, [bg-neutral])),
+:where(.bg-darkerblue &, &:where(.bg-darkerblue, [bg-darkerblue])) {
   --nq-neutral: var(--nq-neutral-on-dark);
   --nq-neutral-0: var(--nq-neutral-on-dark-0);
   --nq-neutral-50: var(--nq-neutral-on-dark-50);
