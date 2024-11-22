@@ -41,3 +41,6 @@ jobs:
           git add dist --force
           git commit -m "Updated icons"
           git push
+  trigger-pkg-pr-new:
+    needs: update-icons
+    uses: ./.github/workflows/pkg.pr.new.yml

@@ -7,6 +7,7 @@ on:
       - '**'
     tags:
       - '!**'
+  workflow_call:
 
 jobs:
   build:
@@ -46,3 +47,4 @@ jobs:
           git add dist --force
           git commit -m "Updated icons"
           git push
+   
