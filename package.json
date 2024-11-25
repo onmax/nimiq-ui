@@ -9,6 +9,8 @@
   "scripts": {
     "preview:build": "",
     "build": "rimraf packages/*/dist --glob && pnpm -r --filter=./packages/* run build  && cp -r ./packages/nimiq-css/src/css ./packages/nimiq-css/dist/css/unminified",
+    "dev": "pnpm run dev:packages && pnpm run --filter=./apps/preview dev",
+    "dev:packages": "pnpm --filter=./packages/nimiq-css --parallel run dev",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

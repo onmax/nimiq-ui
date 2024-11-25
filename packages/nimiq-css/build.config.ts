@@ -2,10 +2,9 @@ import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig([
   {
-    entries: [{
-      builder: 'mkdist',
-      input: './src',
-    }],
+    entries: [
+      './src/unocss/index.ts',
+    ],
     outDir: 'dist',
     declaration: true,
     clean: true,
@@ -14,10 +13,9 @@ export default defineBuildConfig([
     },
   },
   {
-    entries: [{
-      builder: 'mkdist',
-      input: './src/css',
-    }],
+    entries: [
+      './src/css',
+    ],
     outDir: 'dist/css',
     clean: true,
   },

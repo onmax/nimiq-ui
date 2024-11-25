@@ -6,8 +6,8 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs"
+      "types": "./dist/unocss/index.d.ts",
+      "import": "./dist/unocss/index.mjs"
     },
     "./css": {
       "import": "./dist/css/*"
@@ -28,6 +28,7 @@
   },
   "scripts": {
     "build": "unbuild && cp -r src/css dist/css/unminified",
+    "dev": "unbuild --stub",
     "release": "pnpm run build && bumpp --commit --push --tag && pnpm publish"
   },
   "dependencies": {
