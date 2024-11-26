@@ -434,8 +434,8 @@ function createPreset() {
             return {
               matcher: matcher.slice(prefix.length),
               // Ensures styles apply only to elements with data-state=${state} that don't contain nested data-state elements.  
-              selector: s =>
-                  `[data-state=${state}]:not(:has([data-state]))${s}, [data-state=${state}]:not(:has([data-state])) ${s}`,
+              selector: (s) => `[data-state=${state}]:not(:has([data-state])) ${s}, [data-state=${state}]:not(:has([data-state]))${s}`
+
             }
           }
         }
