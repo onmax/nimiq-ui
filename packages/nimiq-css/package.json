@@ -27,7 +27,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "build": "unbuild && cp -r src/css dist/css/unminified",
+    "build": "unbuild",
     "dev": "unbuild --stub",
     "release": "pnpm run build && bumpp --commit --push --tag && pnpm publish"
   },

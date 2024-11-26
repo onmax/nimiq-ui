@@ -3,8 +3,10 @@ import {copy} from 'fs-extra'
 
 export default defineBuildConfig([
   {
-    entries: [
-      './src/unocss/index.ts',
+    entries: [ {
+      builder: 'mkdist',
+      input: './src',
+    }
     ],
     outDir: 'dist',
     declaration: true,
@@ -13,10 +15,10 @@ export default defineBuildConfig([
       emitCJS: true,
     },
     hooks: {
-    'build:done': async () => {
-      await copy('src/css', 'dist/css')
+      'build:done': async () => {
+        await copy('src/css', 'dist/css')
+      },
     },
-  },
   // {
   //   entries: [
   //     './src/css',
