@@ -43,4 +43,4 @@ jobs:
           git push
       - name: Release
         working-directory: packages/nimiq-icons
-        run: pnpm dlx pkg-pr-new publish 
+        run: bunx pkg-pr-new publish 
