@@ -136,6 +136,24 @@
   }
 }
 
+
+@property --nq-gradient-from {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000;
+}
+
+@property --nq-gradient-to {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000;
+}
+
+@property --nq-gradient-stops {
+  syntax: "*";
+  inherits: false;
+}
+
 .nq-pill,
 .nq-pill-lg,
 .nq-pill-xl,
@@ -162,8 +180,9 @@
   text-decoration: none;
   color: white;
   outline: none;
-  transition: background-color 300ms var(--nq-ease);
-  will-change: color, background-color;
+  background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
+  --transitions: --nq-gradient-from 200ms var(--nq-ease), --nq-gradient-to 200ms var(--nq-ease);
+  transition: var(--transitions);
 
   &:where(.nq-pill-lg, [nq-pill-lg]) {
     font-size: 1rem;
@@ -173,7 +192,7 @@
   &:where(.nq-pill-xl, [nq-pill-xl]) {
     box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    transition: transform 450ms var(--nq-ease), box-shadow 450ms var(--nq-ease), background-color 250ms var(--nq-ease);
+    transition: transform 450ms var(--nq-ease), box-shadow 450ms var(--nq-ease), background-color 250ms var(--nq-ease), var(--transitions);
     will-change: box-shadow;
     text-transform: uppercase;
     letter-spacing: 0.094em;
@@ -196,7 +215,7 @@
     outline: none;
     box-shadow: 0 .2rem .3rem rgba(0, 0, 0, 0.2);
     transform: translate3D(0, 1px, 0);
-    transition: transform 200ms cubic-bezier(.41, .34, .26, 1.55), box-shadow 200ms cubic-bezier(.41, .34, .26, 1.55), background-color 200ms var(--nq-ease);
+    transition: transform 200ms cubic-bezier(.41, .34, .26, 1.55), box-shadow 200ms cubic-bezier(.41, .34, .26, 1.55), background-color 200ms var(--nq-ease), var(--transitions);
   }
 
   &:where([disabled]) {
@@ -215,69 +234,71 @@
   }
 }
 
+
 .nq-pill-blue {
-  background: rgb(var(--nq-blue));
-  background-image: var(--nq-blue-gradient);
+  --nq-gradient-from: var(--nq-blue-gradient-from);
+  --nq-gradient-to: var(--nq-blue-gradient-to);
 
   &:hover,
   &:focus-visible {
-    background: rgb(var(--nq-blue-1100));
-    background-image: rgb(var(--nq-blue-gradient-darkened));
+    --nq-gradient-from: var(--nq-blue-gradient-darkened-from);
+    --nq-gradient-to: var(--nq-blue-gradient-darkened-to);
   }
 }
 
 .nq-pill-green {
-  background: rgb(var(--nq-green));
-  background-image: var(--nq-green-gradient);
+  --nq-gradient-from: var(--nq-green-gradient-from);
+  --nq-gradient-to: var(--nq-green-gradient-to);
 
   &:hover,
   &:focus-visible {
-    background: rgb(var(--nq-green-1100));
-    background-image: rgb(var(--nq-green-gradient-darkened));
+    --nq-gradient-from: var(--nq-green-gradient-darkened-from);
+    --nq-gradient-to: var(--nq-green-gradient-darkened-to);
   }
 }
 
 .nq-pill-red {
-  background: rgb(var(--nq-red));
-  background-image: var(--nq-red-gradient);
+  --nq-gradient-from: var(--nq-red-gradient-from);
+  --nq-gradient-to: var(--nq-red-gradient-to);
 
   &:hover,
   &:focus-visible {
-    background: rgb(var(--nq-red-1100));
-    background-image: rgb(var(--nq-red-gradient-darkened));
+    --nq-gradient-from: var(--nq-red-gradient-darkened-from);
+    --nq-gradient-to: var(--nq-red-gradient-darkened-to);
   }
 }
 
 .nq-pill-gold {
-  background: rgb(var(--nq-gold));
-  background-image: var(--nq-gold-gradient);
+  --nq-gradient-from: var(--nq-gold-gradient-from);
+  --nq-gradient-to: var(--nq-gold-gradient-to);
 
   &:hover,
   &:focus-visible {
-    background: rgb(var(--nq-gold-1100));
-    background-image: rgb(var(--nq-gold-gradient-darkened));
+    --nq-gradient-from: var(--nq-gold-gradient-darkened-from);
+    --nq-gradient-to: var(--nq-gold-gradient-darkened-to);
   }
 }
 
 .nq-pill-orange {
-  background: rgb(var(--nq-orange));
-  background-image: var(--nq-orange-gradient);
+  --nq-gradient-from: var(--nq-orange-gradient-from);
+  --nq-gradient-to: var(--nq-orange-gradient-to);
 
   &:hover,
   &:focus-visible {
-    background: rgb(var(--nq-orange-1100));
-    background-image: rgb(var(--nq-orange-gradient-darkened));
+    --nq-gradient-from: var(--nq-orange-gradient-darkened-from);
+    --nq-gradient-to: var(--nq-orange-gradient-darkened-to);
   }
 }
 
 .nq-pill-secondary {
   background: rgb(var(--nq-neutral-400));
   color: rgb(var(--nq-neutral));
+  transition: background 200ms ease-in-out;
+
 
   &:hover,
   &:focus-visible {
-    background: rgb(var(--nq-neutral-1100));
-    background-image: rgb(var(--nq-neutral-gradient-darkened));
+    background: rgb(var(--nq-neutral-500));
   }
 }
 

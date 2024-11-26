@@ -1,4 +1,5 @@
 import { defineBuildConfig } from 'unbuild'
+import {copy} from 'fs-extra'
 
 export default defineBuildConfig([
   {
@@ -11,12 +12,17 @@ export default defineBuildConfig([
     rollup: {
       emitCJS: true,
     },
+    hooks: {
+    'build:done': async () => {
+      await copy('src/css', 'dist/css')
+    },
   },
-  {
-    entries: [
-      './src/css',
-    ],
-    outDir: 'dist/css',
-    clean: true,
-  },
+  // {
+  //   entries: [
+  //     './src/css',
+  //   ],
+  //   outDir: 'dist/css',
+  //   clean: true,
+  // },
+}
 ])

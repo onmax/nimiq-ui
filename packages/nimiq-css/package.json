@@ -40,6 +40,7 @@
     "@iconify/types": "^2.0.0",
     "@types/bun": "latest",
     "@unocss/preset-web-fonts": "^0.63.3",
+    "fs-extra": "^11.2.0",
     "unbuild": "^2.0.0"
   }
 }

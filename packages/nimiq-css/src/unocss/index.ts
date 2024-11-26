@@ -80,9 +80,12 @@ export interface NimiqPresetOptions {
 function createPreset() {
   const __dirname = dirname(fileURLToPath(import.meta.url))
   const _cssDir = resolve(__dirname, '../css')
-  const cssDir = resolve(_cssDir, 'unminified')
+  let cssDir = resolve(_cssDir, 'unminified')
+  if (!existsSync(cssDir)) {
+    cssDir = _cssDir // fallback to source
+  }
   if (!existsSync(cssDir))
-    throw new Error('[Nimiq-CSS]: Unminified CSS folder not found.')
+    throw new Error(`[Nimiq-CSS]: Unminified CSS folder not found. ${cssDir}`)
   const p = (name: string) => `${cssDir}/${name}.css`
   const wrapToLayer = (prefix: string, name: string, content: string) => `@layer ${prefix}${name} { \n${content}\n}`
   const readContent = (name: string) => readFileSync(p(name), 'utf-8')
@@ -161,31 +164,50 @@ function createPreset() {
     return { rules, rulesNames: rulesNamesStr, preflight }
   }
 
-  function extractKeyframes(name: string) {
-    const content = readContent(name).replaceAll(
-      'data:image/svg+xml;',
+  function extractAtRule(name: string) {
+  const content = readContent(name).replaceAll(
+    'data:image/svg+xml;',
+    'SEMICOLON_BUG_HACK',
+  );
+  const json = toJSON(content, {
+    stripComments: true,
+    comments: false,
+    ordered: false,
+    split: false,
+  });
+
+  let extractedStr = '';
+
+  for (const key of Object.keys(json.children)) {
+    // Extract @keyframes
+    const keyframes = key
+      .split(',')
+      .map(s => s.trim())
+      .filter(s => s.startsWith('@keyframes'));
+    const keyframesCSS = toCSS(json.children[key]).replaceAll(
       'SEMICOLON_BUG_HACK',
-    )
-    const json = toJSON(content, {
-      stripComments: true,
-      comments: false,
-      ordered: false,
-      split: false,
-    })
-    let keyframesStr = ''
-    for (const key of Object.keys(json.children)) {
-      const keyframes = key
-        .split(',')
-        .map(s => s.trim())
-        .filter(s => s.startsWith('@keyframes'))
-      const css = toCSS(json.children[key]).replaceAll(
-        'SEMICOLON_BUG_HACK',
-        'data:image/svg+xml;',
-      )
-      keyframesStr += `${keyframes.join(', ')} { ${css} }\n`
+      'data:image/svg+xml;',
+    );
+    if (keyframes.length > 0) {
+      extractedStr += `${keyframes.join(', ')} { ${keyframesCSS} }\n`;
     }
-    return keyframesStr
+
+    // Extract @property
+    const properties = key
+      .split(',')
+      .map(s => s.trim())
+      .filter(s => s.startsWith('@property'));
+    const propertiesCSS = toCSS(json.children[key]).replaceAll(
+      'SEMICOLON_BUG_HACK',
+      'data:image/svg+xml;',
+    );
+    if (properties.length > 0) {
+      extractedStr += `${properties.join(', ')} { ${propertiesCSS} }\n`;
+    }
   }
+
+  return extractedStr;
+}
 
   return (options: NimiqPresetOptions = {}): Preset => {
     const prefix = options.prefix ?? DEFAULT_PREFIX
@@ -312,7 +334,7 @@ function createPreset() {
       rulesNames.push(..._rulesNames)
       rules.push(..._rules)
       // keyframes
-      const getCSS = () => extractKeyframes('utilities')
+      const getCSS = () => extractAtRule('utilities')
       preflights.push({ layer: `${prefix}utilities`, getCSS })
     }
 
