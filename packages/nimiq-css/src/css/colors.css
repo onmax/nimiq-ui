@@ -48,8 +48,8 @@
   --nq-blue-on-dark-500: 20 52 85;
   --nq-blue-on-dark-600: 20 60 96;
   --nq-blue-on-dark-1100: 12 166 254;
-  --nq-blue-on-light-gradient-from: oklch(58.49% 0.1438 244.29);
-  --nq-blue-on-light-gradient-to: oklch(51.82% 0.1965 263.04);
+  --nq-blue-on-light-gradient-from: oklch(51.82% 0.1965 263.04);
+  --nq-blue-on-light-gradient-to: oklch(58.49% 0.1438 244.29);
   --nq-blue-on-light-gradient: radial-gradient(at 100% 100%, var(--nq-blue-on-light-gradient-from) 0%, var(--nq-blue-on-light-gradient-to) 100%);
   --nq-blue-on-light-gradient-darkened-from: oklch(48.57% 0.182 263.07);
   --nq-blue-on-light-gradient-darkened-to: oklch(54.04% 0.153 250.02);
