@@ -362,6 +362,7 @@ function createPreset() {
       )
     }
 
+    const variantLayer = `${prefix}variants`
     const variants: Preset['variants'] = [
       (matcher) => {
         if (!matcher.startsWith('inverted:'))
@@ -370,6 +371,7 @@ function createPreset() {
           matcher: matcher.slice(9),
           selector: s =>
             `:where(.inverted,[data-inverted])${s}, :where(.inverted,[data-inverted]) ${s}`,
+          layer: variantLayer,
         }
       },
       (matcher) => {
@@ -378,6 +380,7 @@ function createPreset() {
         return {
           matcher: matcher.replace(/^hocus:/, ''),
           selector: s => `${s}:hover, ${s}:focus-visible`,
+          layer: variantLayer,
         }
       },
       (matcher) => {
@@ -386,6 +389,7 @@ function createPreset() {
         return {
           matcher: matcher.slice(12),
           selector: s => `:where(.group,[group]):hover ${s}, :where(.group,[group]):focus ${s}`,
+          layer: variantLayer,
         }
       },
       (matcher) => {
@@ -394,6 +398,7 @@ function createPreset() {
         return {
           matcher: matcher.slice(9),
           selector: s => `[data-selected]${s}, [data-selected] ${s}`,
+          layer: variantLayer,
         }
       },
       (matcher) => {
@@ -402,6 +407,7 @@ function createPreset() {
         return {
           matcher: matcher.slice(13),
           selector: s => `:not([data-selected]), :not([data-selected]) ${s}`,
+          layer: variantLayer,
         }
       },
       (matcher) => {
@@ -410,6 +416,7 @@ function createPreset() {
         return {
           matcher: matcher.slice('global-dark:'.length),
           selector: s => `html.dark ${s}`,
+          layer: variantLayer,
         }
       },
 
@@ -421,6 +428,7 @@ function createPreset() {
             return {
               matcher: matcher.slice(`motion-${variant}:`.length),
               selector: s => `[data-motion=${variant}]${s}`,
+              layer: variantLayer,
             }
           }
         }
@@ -434,8 +442,8 @@ function createPreset() {
             return {
               matcher: matcher.slice(prefix.length),
               // Ensures styles apply only to elements with data-state=${state} that don't contain nested data-state elements.  
-              selector: (s) => `[data-state=${state}]:not(:has([data-state])) ${s}, [data-state=${state}]:not(:has([data-state]))${s}`
-
+              selector: (s) => `[data-state=${state}]:not(:has([data-state])) ${s}, [data-state=${state}]:not(:has([data-state]))${s}`,
+              layer: variantLayer,
             }
           }
         }
@@ -455,6 +463,7 @@ function createPreset() {
           spacing && 'spacing',
           typography && 'typography',
           utilities && 'utilities',
+          'variants', // To ensure that the rules that have variants are applied after the rules that don't have variants
         ].filter(Boolean) as string[]
 
         return `@layer ${layers.map(layer => `${prefix}${layer}`).join(', ')};`
@@ -502,6 +511,7 @@ function createPreset() {
         [`${prefix}utilities`]: 300,
         default: 400,
         utilities: 500,
+        [`${prefix}variants`]: 600,
       },
     }
     return preset
