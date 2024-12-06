@@ -92,7 +92,7 @@ At the journey's end, Pixel found the greatest treasure was not a pile of digita
 
 As Pixel returned home, the adventure was far from over. With a heart full of memories and a backpack filled with insights, Pixel was ready to spread the word about Nimiq and the future of cryptocurrency.
 
-> "The journey of a thousand blocks begins with a single transaction," Pixel mused.
+> "The journey of a thousand blocks begins with a `single transaction`" Pixel mused.
 
 [Join Pixel and the Nimiq community](https://nimiq.com/) on this incredible adventure, where the possibilities are as limitless as the blockchain itself.
 

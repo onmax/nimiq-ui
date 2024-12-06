@@ -222,6 +222,14 @@
         line-height: 1.6;
         font-weight: 700;
       }
+      
+      code {
+        background-color: rgb(var(--nq-green-400) / 1);
+        color: rgb(var(--nq-green) / 0.9);
+        --nq-font-size-min: 21;
+        --nq-font-size-max: 24;
+        font-size: var(--nq-font-size);
+      }
     }
 
     &:where(figure) {
