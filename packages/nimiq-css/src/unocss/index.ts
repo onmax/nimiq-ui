@@ -323,7 +323,9 @@ function createPreset() {
         else {
           css[`--nq-${p}-min`] = min
           css[`--nq-${p}-max`] = max
-          css[p] = `var(--nq-${p}-size)`
+          const cssProperty = p === 'm' ? 'margin' : 'padding'
+          const side = p.charAt(1) === 't' ? 'top' : 'bottom'
+          css[`${cssProperty}-${side}`] = `var(--nq-${p}-size)`
         }
         return css
       }])
