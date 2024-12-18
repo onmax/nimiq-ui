@@ -137,12 +137,14 @@ body:not(.nq-raw) {
     margin-left: auto;
     margin-right: auto;
 
-    --nq-max-width: min(73rem, calc(100vw - 4rem));
+    --nq-max-width: clamp(100vw - 4rem, 73rem, 100vw - 17rem /* 136px * 2 */);
 
     &:is(.nq-wide, [nq-wide]) {
-      --nq-max-width: min(90rem, calc(100vw - 4rem));
+      --nq-max-width: none;
       --px: 0;
       width: 100%;
+      margin: 0 auto;
+      align-items: center;
     }
 
     padding: var(--pt, 0) var(--px, 0) var(--pb, 0) var(--px, 0);
