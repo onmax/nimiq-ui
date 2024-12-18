@@ -317,15 +317,15 @@ function createPreset() {
           css[`--nq-${pp}t-max`] = max
           css[`--nq-${pp}b-max`] = max
           const cssProperty = pp === 'm' ? 'margin' : 'padding'
-          css[`${cssProperty}-top`] = `var(--nq-${pp}t-size)`
-          css[`${cssProperty}-bottom`] = `var(--nq-${pp}b-size)`
+          css[`${cssProperty}-top`] = `var(--nq-${pp}t)`
+          css[`${cssProperty}-bottom`] = `var(--nq-${pp}b)`
         }
         else {
           css[`--nq-${p}-min`] = min
           css[`--nq-${p}-max`] = max
           const cssProperty = p === 'm' ? 'margin' : 'padding'
           const side = p.charAt(1) === 't' ? 'top' : 'bottom'
-          css[`${cssProperty}-${side}`] = `var(--nq-${p}-size)`
+          css[`${cssProperty}-${side}`] = `var(--nq-${p})`
         }
         return css
       }])
