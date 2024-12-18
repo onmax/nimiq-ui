@@ -134,8 +134,15 @@ body:not(.nq-raw) {
     margin-left: auto;
     margin-right: auto;
 
-    width: calc(100vw - 17rem);
-    --nq-max-width: min(calc(100vw - 4rem), 73rem) !important;
+    --nq-max-width: calc(100vw - 4rem);
+
+    @media screen and (min-width: 1152px) {
+      --nq-max-width: calc(100vw - 9rem);
+    }
+
+    @media screen and (min-width: 1440px) {
+      --nq-max-width: 73rem;
+    }
 
     &:is(.nq-wide, [nq-wide]) {
       --nq-max-width: none;
