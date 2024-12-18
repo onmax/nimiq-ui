@@ -4,7 +4,7 @@ body:not(.nq-raw) {
   /* Base styles */
   background-color: rgb(var(--nq-neutral-100) / 1);
 
-  --nq-max-width: 90rem;
+  --nq-max-width: 73rem;
 
   &:not(:where(.nq-no-color, [nq-no-color])) {
     color: rgb(var(--nq-neutral-800));
@@ -134,7 +134,8 @@ body:not(.nq-raw) {
     margin-left: auto;
     margin-right: auto;
 
-    --nq-max-width: clamp(100vw - 4rem, 73rem, 100vw - 17rem /* 136px * 2 */);
+    width: calc(100vw - 17rem);
+    --nq-max-width: min(calc(100vw - 4rem), 73rem) !important;
 
     &:is(.nq-wide, [nq-wide]) {
       --nq-max-width: none;
