@@ -37,8 +37,6 @@ body:not(.nq-raw) {
 
       &+p {
         margin-top: 24px;
-        font-weight: 600;
-
         max-width: 42ch;
 
         --nq-line-height: 1.5;
@@ -73,7 +71,6 @@ body:not(.nq-raw) {
 
       &+p {
         margin-top: 16px;
-        font-weight: 600;
         color: rgb(var(--nq-neutral-800) / 0.85);
 
         max-width: 70ch;
