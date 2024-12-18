@@ -78,3 +78,9 @@
   --nq-font-size-max: 32;
   font-size: var(--nq-font-size);
 }
+
+.nq-text-4xl {
+  --nq-font-size-min: 32;
+  --nq-font-size-max: 44;
+  font-size: var(--nq-font-size);
+}
