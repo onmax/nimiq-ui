@@ -9,7 +9,7 @@
   --nq-thumb: rgb(var(--nq-neutral-600));
 }
 
-:not(:has(:is(.nq-raw, [nq-raw]) *)):not(:is(.nq-raw, [nq-raw]) *){
+:not(:where([nq-raw], .nq-raw)){
   border-color: rgb(var(--nq-neutral-400));
   outline-color: rgb(var(--nq-blue));
   /* outline-width: 0; */
