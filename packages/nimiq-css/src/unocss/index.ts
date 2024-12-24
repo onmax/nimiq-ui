@@ -308,23 +308,44 @@ function createPreset() {
 
       // This could be done with preset-mini/utils but no energy to do it now
 
-      rules.push([/^nq-(mt|mb|my|pt|pb|py)-(\d+)-(\d+)$/, ([, p, min, max]) => {
+      rules.push([/^nq-(mt|mb|my|pt|pb|py|pl|pr|px|ml|mr|mx|p|m)-(\d+)-(\d+)$/, ([, p, min, max]) => {
         const css: Record<string, any> = {}
-        if (p === 'my' || p === 'py') {
+        if (p === 'my' || p === 'py' || p === 'mx' || p === 'px') {
           const pp = p.charAt(0)
-          css[`--nq-${pp}t-min`] = min
-          css[`--nq-${pp}b-min`] = min
-          css[`--nq-${pp}t-max`] = max
-          css[`--nq-${pp}b-max`] = max
-          const cssProperty = pp === 'm' ? 'margin' : 'padding'
-          css[`${cssProperty}-top`] = `var(--nq-${pp}t)`
-          css[`${cssProperty}-bottom`] = `var(--nq-${pp}b)`
-        }
-        else {
+          const isX = p === 'mx' || p === 'px'
+          if (isX) {
+            css[`--nq-${pp}l-min`] = min
+            css[`--nq-${pp}r-min`] = min
+            css[`--nq-${pp}l-max`] = max
+            css[`--nq-${pp}r-max`] = max
+            const cssProperty = pp === 'm' ? 'margin' : 'padding'
+            css[`${cssProperty}-left`] = `var(--nq-${pp}l)`
+            css[`${cssProperty}-right`] = `var(--nq-${pp}r)`
+          } else {
+            css[`--nq-${pp}t-min`] = min
+            css[`--nq-${pp}b-min`] = min
+            css[`--nq-${pp}t-max`] = max
+            css[`--nq-${pp}b-max`] = max
+            const cssProperty = pp === 'm' ? 'margin' : 'padding'
+            css[`${cssProperty}-top`] = `var(--nq-${pp}t)`
+            css[`${cssProperty}-bottom`] = `var(--nq-${pp}b)`
+          }
+        } else if (p === 'p' || p === 'm') {
           css[`--nq-${p}-min`] = min
           css[`--nq-${p}-max`] = max
           const cssProperty = p === 'm' ? 'margin' : 'padding'
-          const side = p.charAt(1) === 't' ? 'top' : 'bottom'
+          css[cssProperty] = `var(--nq-${p})`
+        } else {
+          css[`--nq-${p}-min`] = min
+          css[`--nq-${p}-max`] = max
+          const cssProperty = p.charAt(0) === 'm' ? 'margin' : 'padding'
+          const sideMap: Record<string, string> = {
+            t: 'top',
+            b: 'bottom',
+            l: 'left',
+            r: 'right'
+          }
+          const side = sideMap[p.charAt(1)]
           css[`${cssProperty}-${side}`] = `var(--nq-${p})`
         }
         return css
