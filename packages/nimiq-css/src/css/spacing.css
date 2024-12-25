@@ -69,6 +69,7 @@
 .nq-mr-16 { --nq-mr-min: 12; --nq-mr-max: 16; }
 .nq-mx-16 { --nq-ml-min: 12; --nq-ml-max: 16; --nq-mr-min: 12; --nq-mr-max: 16; }
 .nq-m-16 { --nq-ml-min: 12; --nq-ml-max: 16; --nq-mr-min: 12; --nq-mr-max: 16; --nq-mt-min: 12; --nq-mt-max: 16; --nq-mb-min: 12; --nq-mb-max: 16; }
+.nq-p-16 { --nq-pl-min: 12; --nq-pl-max: 16; --nq-pr-min: 12; --nq-pr-max: 16; --nq-pt-min: 12; --nq-pt-max: 16; --nq-pb-min: 12; --nq-pb-max: 16; }
 
 .nq-mt-24 { --nq-mt-min: 16; --nq-mt-max: 24; }
 .nq-mb-24 { --nq-mb-min: 16; --nq-mb-max: 24; }
@@ -83,6 +84,7 @@
 .nq-mr-24 { --nq-mr-min: 16; --nq-mr-max: 24; }
 .nq-mx-24 { --nq-ml-min: 16; --nq-ml-max: 24; --nq-mr-min: 16; --nq-mr-max: 24; }
 .nq-m-24 { --nq-ml-min: 16; --nq-ml-max: 24; --nq-mr-min: 16; --nq-mr-max: 24; --nq-mt-min: 16; --nq-mt-max: 24; --nq-mb-min: 16; --nq-mb-max: 24; }
+.nq-p-24 { --nq-pl-min: 16; --nq-pl-max: 24; --nq-pr-min: 16; --nq-pr-max: 24; --nq-pt-min: 16; --nq-pt-max: 24; --nq-pb-min: 16; --nq-pb-max: 24; }
 
 .nq-mt-32 { --nq-mt-min: 24; --nq-mt-max: 32; }
 .nq-mb-32 { --nq-mb-min: 24; --nq-mb-max: 32; }
@@ -97,6 +99,7 @@
 .nq-ml-32 { --nq-ml-min: 24; --nq-ml-max: 32; }
 .nq-mx-32 { --nq-ml-min: 24; --nq-ml-max: 32; --nq-mr-min: 24; --nq-mr-max: 32; }
 .nq-m-32 { --nq-ml-min: 24; --nq-ml-max: 32; --nq-mr-min: 24; --nq-mr-max: 32; --nq-mt-min: 24; --nq-mt-max: 32; --nq-mb-min: 24; --nq-mb-max: 32; }
+.nq-p-32 { --nq-pl-min: 24; --nq-pl-max: 32; --nq-pr-min: 24; --nq-pr-max: 32; --nq-pt-min: 24; --nq-pt-max: 32; --nq-pb-min: 24; --nq-pb-max: 32; }
 
 .nq-mt-40 { --nq-mt-min: 32; --nq-mt-max: 40; }
 .nq-mb-40 { --nq-mb-min: 32; --nq-mb-max: 40; }
@@ -111,6 +114,7 @@
 .nq-ml-40 { --nq-ml-min: 32; --nq-ml-max: 40; }
 .nq-mx-40 { --nq-ml-min: 32; --nq-ml-max: 40; --nq-mr-min: 32; --nq-mr-max: 40; }
 .nq-m-40 { --nq-ml-min: 32; --nq-ml-max: 40; --nq-mr-min: 32; --nq-mr-max: 40; --nq-mt-min: 32; --nq-mt-max: 40; --nq-mb-min: 32; --nq-mb-max: 40; }
+.nq-p-40 { --nq-pl-min: 32; --nq-pl-max: 40; --nq-pr-min: 32; --nq-pr-max: 40; --nq-pt-min: 32; --nq-pt-max: 40; --nq-pb-min: 32; --nq-pb-max: 40; }
 
 .nq-mt-48 { --nq-mt-min: 32; --nq-mt-max: 48; }
 .nq-mb-48 { --nq-mb-min: 32; --nq-mb-max: 48; }
@@ -125,6 +129,7 @@
 .nq-ml-48 { --nq-ml-min: 32; --nq-ml-max: 48; }
 .nq-mx-48 { --nq-ml-min: 32; --nq-ml-max: 48; --nq-mr-min: 32; --nq-mr-max: 48; }
 .nq-m-48 { --nq-ml-min: 32; --nq-ml-max: 48; --nq-mr-min: 32; --nq-mr-max: 48; --nq-mt-min: 32; --nq-mt-max: 48; --nq-mb-min: 32; --nq-mb-max: 48; }
+.nq-p-48 { --nq-pl-min: 32; --nq-pl-max: 48; --nq-pr-min: 32; --nq-pr-max: 48; --nq-pt-min: 32; --nq-pt-max: 48; --nq-pb-min: 32; --nq-pb-max: 48; }
 
 .nq-mt-72 { --nq-mt-min: 48; --nq-mt-max: 72; }
 .nq-mb-72 { --nq-mb-min: 48; --nq-mb-max: 72; }
@@ -139,6 +144,7 @@
 .nq-ml-72 { --nq-ml-min: 48; --nq-ml-max: 72; }
 .nq-mx-72 { --nq-ml-min: 48; --nq-ml-max: 72; --nq-mr-min: 48; --nq-mr-max: 72; }
 .nq-m-72 { --nq-ml-min: 48; --nq-ml-max: 72; --nq-mr-min: 48; --nq-mr-max: 72; --nq-mt-min: 48; --nq-mt-max: 72; --nq-mb-min: 48; --nq-mb-max: 72; }
+.nq-p-72 { --nq-pl-min: 48; --nq-pl-max: 72; --nq-pr-min: 48; --nq-pr-max: 72; --nq-pt-min: 48; --nq-pt-max: 72; --nq-pb-min: 48; --nq-pb-max: 72; }
 
 .nq-mt-96 { --nq-mt-min: 80; --nq-mt-max: 96; }
 .nq-mb-96 { --nq-mb-min: 80; --nq-mb-max: 96; }
@@ -153,6 +159,7 @@
 .nq-ml-96 { --nq-ml-min: 80; --nq-ml-max: 96; }
 .nq-mx-96 { --nq-ml-min: 80; --nq-ml-max: 96; --nq-mr-min: 80; --nq-mr-max: 96; }
 .nq-m-96 { --nq-ml-min: 80; --nq-ml-max: 96; --nq-mr-min: 80; --nq-mr-max: 96; --nq-mt-min: 80; --nq-mt-max: 96; --nq-mb-min: 80; --nq-mb-max: 96; }
+.nq-p-96 { --nq-pl-min: 80; --nq-pl-max: 96; --nq-pr-min: 80; --nq-pr-max: 96; --nq-pt-min: 80; --nq-pt-max: 96; --nq-pb-min: 80; --nq-pb-max: 96; }
 
 .nq-mt-200 { --nq-mt-min: 144; --nq-mt-max: 200; }
 .nq-mb-200 { --nq-mb-min: 144; --nq-mb-max: 200; }
@@ -167,6 +174,7 @@
 .nq-ml-200 { --nq-ml-min: 144; --nq-ml-max: 200; }
 .nq-mx-200 { --nq-ml-min: 144; --nq-ml-max: 200; --nq-mr-min: 144; --nq-mr-max: 200; }
 .nq-m-200 { --nq-ml-min: 144; --nq-ml-max: 200; --nq-mr-min: 144; --nq-mr-max: 200; --nq-mt-min: 144; --nq-mt-max: 200; --nq-mb-min: 144; --nq-mb-max: 200; }
+.nq-p-200 { --nq-pl-min: 144; --nq-pl-max: 200; --nq-pr-min: 144; --nq-pr-max: 200; --nq-pt-min: 144; --nq-pt-max: 200; --nq-pb-min: 144; --nq-pb-max: 200; }
 
 
 .nq-mt-12, .nq-mt-16, .nq-mt-24, .nq-mt-32, .nq-mt-40, .nq-mt-48, .nq-mt-72, .nq-mt-96, .nq-mt-200 {

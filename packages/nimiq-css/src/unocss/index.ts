@@ -165,49 +165,49 @@ function createPreset() {
   }
 
   function extractAtRule(name: string) {
-  const content = readContent(name).replaceAll(
-    'data:image/svg+xml;',
-    'SEMICOLON_BUG_HACK',
-  );
-  const json = toJSON(content, {
-    stripComments: true,
-    comments: false,
-    ordered: false,
-    split: false,
-  });
-
-  let extractedStr = '';
-
-  for (const key of Object.keys(json.children)) {
-    // Extract @keyframes
-    const keyframes = key
-      .split(',')
-      .map(s => s.trim())
-      .filter(s => s.startsWith('@keyframes'));
-    const keyframesCSS = toCSS(json.children[key]).replaceAll(
-      'SEMICOLON_BUG_HACK',
+    const content = readContent(name).replaceAll(
       'data:image/svg+xml;',
+      'SEMICOLON_BUG_HACK',
     );
-    if (keyframes.length > 0) {
-      extractedStr += `${keyframes.join(', ')} { ${keyframesCSS} }\n`;
+    const json = toJSON(content, {
+      stripComments: true,
+      comments: false,
+      ordered: false,
+      split: false,
+    });
+
+    let extractedStr = '';
+
+    for (const key of Object.keys(json.children)) {
+      // Extract @keyframes
+      const keyframes = key
+        .split(',')
+        .map(s => s.trim())
+        .filter(s => s.startsWith('@keyframes'));
+      const keyframesCSS = toCSS(json.children[key]).replaceAll(
+        'SEMICOLON_BUG_HACK',
+        'data:image/svg+xml;',
+      );
+      if (keyframes.length > 0) {
+        extractedStr += `${keyframes.join(', ')} { ${keyframesCSS} }\n`;
+      }
+
+      // Extract @property
+      const properties = key
+        .split(',')
+        .map(s => s.trim())
+        .filter(s => s.startsWith('@property'));
+      const propertiesCSS = toCSS(json.children[key]).replaceAll(
+        'SEMICOLON_BUG_HACK',
+        'data:image/svg+xml;',
+      );
+      if (properties.length > 0) {
+        extractedStr += `${properties.join(', ')} { ${propertiesCSS} }\n`;
+      }
     }
 
-    // Extract @property
-    const properties = key
-      .split(',')
-      .map(s => s.trim())
-      .filter(s => s.startsWith('@property'));
-    const propertiesCSS = toCSS(json.children[key]).replaceAll(
-      'SEMICOLON_BUG_HACK',
-      'data:image/svg+xml;',
-    );
-    if (properties.length > 0) {
-      extractedStr += `${properties.join(', ')} { ${propertiesCSS} }\n`;
-    }
+    return extractedStr;
   }
-
-  return extractedStr;
-}
 
   return (options: NimiqPresetOptions = {}): Preset => {
     const prefix = options.prefix ?? DEFAULT_PREFIX
@@ -308,48 +308,40 @@ function createPreset() {
 
       // This could be done with preset-mini/utils but no energy to do it now
 
-      rules.push([/^nq-(mt|mb|my|pt|pb|py|pl|pr|px|ml|mr|mx|p|m)-(\d+)-(\d+)$/, ([, p, min, max]) => {
-        const css: Record<string, any> = {}
-        if (p === 'my' || p === 'py' || p === 'mx' || p === 'px') {
-          const pp = p.charAt(0)
-          const isX = p === 'mx' || p === 'px'
-          if (isX) {
-            css[`--nq-${pp}l-min`] = min
-            css[`--nq-${pp}r-min`] = min
-            css[`--nq-${pp}l-max`] = max
-            css[`--nq-${pp}r-max`] = max
-            const cssProperty = pp === 'm' ? 'margin' : 'padding'
-            css[`${cssProperty}-left`] = `var(--nq-${pp}l)`
-            css[`${cssProperty}-right`] = `var(--nq-${pp}r)`
-          } else {
-            css[`--nq-${pp}t-min`] = min
-            css[`--nq-${pp}b-min`] = min
-            css[`--nq-${pp}t-max`] = max
-            css[`--nq-${pp}b-max`] = max
-            const cssProperty = pp === 'm' ? 'margin' : 'padding'
-            css[`${cssProperty}-top`] = `var(--nq-${pp}t)`
-            css[`${cssProperty}-bottom`] = `var(--nq-${pp}b)`
-          }
-        } else if (p === 'p' || p === 'm') {
-          css[`--nq-${p}-min`] = min
-          css[`--nq-${p}-max`] = max
-          const cssProperty = p === 'm' ? 'margin' : 'padding'
-          css[cssProperty] = `var(--nq-${p})`
-        } else {
-          css[`--nq-${p}-min`] = min
-          css[`--nq-${p}-max`] = max
-          const cssProperty = p.charAt(0) === 'm' ? 'margin' : 'padding'
-          const sideMap: Record<string, string> = {
-            t: 'top',
-            b: 'bottom',
-            l: 'left',
-            r: 'right'
-          }
-          const side = sideMap[p.charAt(1)]
-          css[`${cssProperty}-${side}`] = `var(--nq-${p})`
-        }
-        return css
-      }])
+      // rules.push([
+      //   /^nq-(p|m)-(\d+)-(\d+)$/,
+      //   ([, p, min, max]) => {
+      //     const css: Record<string, string> = {}
+
+      //     // Define shorthand `--nq-{p|m}-{min,max}` variables
+      //     css[`--nq-${p}-min`] = min;
+      //     css[`--nq-${p}-max`] = max;
+
+      //     // Define side-specific `--nq-{pt|pb|pl|pr}-{min,max}` variables
+      //     const sidePrefixes = p === "p" ? ["pt", "pb", "pl", "pr"] : ["mt", "mb", "ml", "mr"];
+      //     for (const side of sidePrefixes) {
+      //       css[`--nq-${side}-min`] = min;
+      //       css[`--nq-${side}-max`] = max;
+      //     }
+
+      //     // Define final shorthand property
+      //     const cssProperty = p === "m" ? "margin" : "padding";
+      //     if (p.at(1) === 't' || p.at(1) === '-' || p.at(1) === 'y')
+      //       css[`${cssProperty}-top`] = `var(--nq-${p}t)`;
+
+      //     if (p.at(1) === 'b' || p.at(1) === '-' || p.at(1) === 'y')
+      //       css[`${cssProperty}-bottom`] = `var(--nq-${p}b)`;
+
+      //     if (p.at(1) === 'l' || p.at(1) === '-' || p.at(1) === 'x')
+      //       css[`${cssProperty}-left`] = `var(--nq-${p}l)`;
+
+      //     if (p.at(1) === 'r' || p.at(1) === '-' || p.at(1) === 'x')
+      //       css[`${cssProperty}-right`] = `var(--nq-${p}r)`;
+
+      //     return css;
+      //   }
+      // ]);
+
     }
 
     if (utilities) {
