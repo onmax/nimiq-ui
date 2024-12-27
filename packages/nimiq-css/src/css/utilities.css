@@ -669,8 +669,9 @@
 }
 
 .nq-hoverable {
-  background-color: rgb(var(--nq-neutral-300));
-  background-image: var(--nq-neutral-gradient-subtle);
+  --nq-gradient-from: rgb(var(--nq-neutral-200) / 1);
+  --nq-gradient-to: rgb(var(--nq-neutral-50) / 1);
+  background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
   color: rgb(var(--nq-neutral));
   border-radius: 0.5rem;
   outline-offset: 2px;
@@ -680,21 +681,13 @@
   position: relative;
   --ring-color: rgb(var(--nq-neutral-0) / 0.3);
   padding: 1.5rem;
-  transition: background 200ms var(--nq-ease), transform 200ms ease-out, box-shadow 200ms ease-out;
+  transition: --nq-gradient-from 300ms var(--nq-ease), --nq-gradient-to 300ms var(--nq-ease), transform 200ms ease-out, box-shadow 200ms ease-out;
 
   @media (hover: hover) {
-    &:before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgb(var(--nq-neutral-0));
-      background-image: linear-gradient(0, var(--nq-neutral-0), var(--nq-neutral-0));
-      opacity: 0;
-      transition: opacity 300ms var(--nq-ease);
-    }
-
     &:where(:hover, :focus-visible) {
-      color: rgb(var(--nq-darkblue));
+      --nq-gradient-from: rgb(var(--nq-white) / 1);
+      --nq-gradient-to: rgb(var(--nq-white) / 1);
+      color: rgb(var(--nq-neutral));
       box-shadow: 0 0 0 1.5px var(--ring-color), var(--nq-shadow);
       transform: translateY(-0.375rem);
 
