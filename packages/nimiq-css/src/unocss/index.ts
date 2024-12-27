@@ -79,7 +79,7 @@ export interface NimiqPresetOptions {
 
   /**
    * 1rem = n px
-   * @default 4
+   * @default 16
    */
   baseFontSize?: number
 }
@@ -172,7 +172,7 @@ function createPreset() {
           new RegExp(`^${ruleName}$`),
           async (_match, { generator, rawSelector, variantHandlers }) => {
             // @ts-ignore
-            const { parent, selector: s } = await generator.applyVariants([0, rawSelector, css, undefined, variantHandlers])
+            const { selector: s } = await generator.applyVariants([0, rawSelector, css, undefined, variantHandlers])
             return `@layer ${layer} { ${s?.split(' $$ ').join(' ')}{${css}} }`
           },
           { layer },
@@ -232,7 +232,7 @@ function createPreset() {
   }
 
   return (options: NimiqPresetOptions = {}): Preset => {
-    const { prefix = DEFAULT_PREFIX, baseFontSize = 4 } = options
+    const { prefix = DEFAULT_PREFIX, baseFontSize = 16 } = options
 
     const { gradients, colors } = getNimiqColors()
 
@@ -553,6 +553,9 @@ function createPreset() {
       },
 
       postprocess: (util) => {
+        if (!util.entries || typeof util.entries.forEach !== 'function')
+          return
+
         util.entries?.forEach((i) => {
           const value = i[1]
           if (typeof value === 'string' && remRE.test(value))
