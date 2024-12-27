@@ -152,16 +152,30 @@ function createPreset() {
       }
     }
 
+
     const rules: Preset['rules'] = Object.entries(rulesSetup).map(
-      ([selector, { css, re, json }]) => [
-        re,
-        css.includes('{') ? () => `@layer ${layer} { ${selector} { ${css} } }` : () => json as CSSObject,
-        { layer },
-      ],
-    )
+      ([selector, { css, re, json }]) => {
+        if (!css.includes('{')) {
+          return [re, () => json as CSSObject, { layer }];
+        }
+
+        return [
+          re,
+          async (_match, {generator,rawSelector,variantHandlers}) => {
+            const wrappedCss = `@layer ${layer} { ${css} }`;
+            // @ts-ignore
+            const {parent,selector:s} = await generator.applyVariants([0, rawSelector, wrappedCss, undefined, variantHandlers])
+            return `@layer ${layer} { ${s?.split(' $$ ').join(' ')}{${css}} }`
+          },
+          { layer },
+        ];
+      }
+    );
 
     const preflight: Preflight = { layer, getCSS: () => preflightCss }
     return { rules, rulesNames: rulesNamesStr, preflight }
+
+
   }
 
   function extractAtRule(name: string) {
