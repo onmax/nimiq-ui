@@ -255,7 +255,7 @@
 
   &:hover,
   &:focus-visible {
-    background: rgb(var(--nq-neutral-100));
+    background: rgb(250, 250, 250);
   }
 }
 
