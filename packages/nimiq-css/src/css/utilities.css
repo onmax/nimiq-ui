@@ -308,10 +308,22 @@
   color: rgb(var(--nq-neutral));
   transition: background 200ms ease-in-out;
 
-
   &:hover,
   &:focus-visible {
     background: rgb(var(--nq-neutral-500));
+  }
+
+  :where(.dark,
+  [data-theme="dark"],
+  :where(.bg-darkblue &, &:where(.bg-darkblue, [bg-darkblue])),
+  :where(.bg-neutral &, &:where(.bg-neutral, [bg-neutral])),
+  :where(.bg-darkerblue &, &:where(.bg-darkerblue, [bg-darkerblue]))) & {
+    background: rgb(var(--nq-white), 0.1);
+
+    &:hover,
+    &:focus-visible {
+      background: rgb(var(--nq-white), 0.2);
+    }
   }
 }
 
