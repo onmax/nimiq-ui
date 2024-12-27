@@ -318,11 +318,11 @@
   :where(.bg-darkblue &, &:where(.bg-darkblue, [bg-darkblue])),
   :where(.bg-neutral &, &:where(.bg-neutral, [bg-neutral])),
   :where(.bg-darkerblue &, &:where(.bg-darkerblue, [bg-darkerblue]))) & {
-    background: rgb(var(--nq-white), 0.1);
+    background: rgb(var(--nq-white) / 0.1);
 
     &:hover,
     &:focus-visible {
-      background: rgb(var(--nq-white), 0.2);
+      background: rgb(var(--nq-white) / 0.2);
     }
   }
 }
