@@ -12,6 +12,7 @@ import {
   type Preset,
   type PresetFactory,
   presetWebFonts,
+  type PresetUnoTheme
 } from 'unocss'
 import { getNimiqColors } from './colors'
 
@@ -75,7 +76,15 @@ export interface NimiqPresetOptions {
    * @default false
    */
   staticContent?: boolean
+
+  /**
+   * 1rem = n px
+   * @default 4
+   */
+  baseFontSize?: number
 }
+
+const remRE = /(-?[.\d]+)rem/g
 
 function createPreset() {
   const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -98,7 +107,7 @@ function createPreset() {
   ) {
     prefix ??= DEFAULT_PREFIX
 
-    interface Setup { css: string, re: RegExp, json: object }
+    interface Setup { css: string, ruleName: string, json: object }
     const rulesSetup: Record<string, Setup> = {}
 
     let preflightCss = ''
@@ -137,11 +146,10 @@ function createPreset() {
         if (!ruleName)
           throw new Error(`Rule name not found for ${rule}`)
         rulesNamesStr.push(ruleName)
-        const re = new RegExp(`^${ruleName}$`)
         const selector = convertToAttributes
           ? `${rule}, [${ruleName}=""], [${ruleName}="true"]`
           : rule
-        const setup: Setup = { css, re, json: json.children[key].attributes }
+        const setup: Setup = { css, ruleName, json: json.children[key].attributes }
         if (rulesSetup[selector]) {
           rulesSetup[selector].css += css
           rulesSetup[selector].json = { ...rulesSetup[selector].json, ...json.children[key].attributes }
@@ -154,17 +162,17 @@ function createPreset() {
 
 
     const rules: Preset['rules'] = Object.entries(rulesSetup).map(
-      ([selector, { css, re, json }]) => {
+      ([_selector, { css, ruleName, json }]) => {
         if (!css.includes('{')) {
+          const re = new RegExp(`^${ruleName}$`)
           return [re, () => json as CSSObject, { layer }];
         }
 
         return [
-          re,
-          async (_match, {generator,rawSelector,variantHandlers}) => {
-            const wrappedCss = `@layer ${layer} { ${css} }`;
+          new RegExp(`^${ruleName}$`),
+          async (_match, { generator, rawSelector, variantHandlers }) => {
             // @ts-ignore
-            const {parent,selector:s} = await generator.applyVariants([0, rawSelector, wrappedCss, undefined, variantHandlers])
+            const { parent, selector: s } = await generator.applyVariants([0, rawSelector, css, undefined, variantHandlers])
             return `@layer ${layer} { ${s?.split(' $$ ').join(' ')}{${css}} }`
           },
           { layer },
@@ -224,7 +232,8 @@ function createPreset() {
   }
 
   return (options: NimiqPresetOptions = {}): Preset => {
-    const prefix = options.prefix ?? DEFAULT_PREFIX
+    const { prefix = DEFAULT_PREFIX, baseFontSize = 4 } = options
+
     const { gradients, colors } = getNimiqColors()
 
     const rulesNames: string[] = []
@@ -542,9 +551,18 @@ function createPreset() {
         utilities: 500,
         [`${prefix}variants`]: 600,
       },
+
+      postprocess: (util) => {
+        util.entries?.forEach((i) => {
+          const value = i[1]
+          if (typeof value === 'string' && remRE.test(value))
+            i[1] = value.replace(remRE, (_, p1) => `${p1 * baseFontSize}px`)
+
+        })
+      },
     }
     return preset
   }
 }
 
-export const presetNimiq: PresetFactory<object, NimiqPresetOptions> = definePreset(createPreset())
+export const presetNimiq: PresetFactory<PresetUnoTheme, NimiqPresetOptions> = definePreset(createPreset())
