@@ -217,5 +217,24 @@ body:not(.nq-raw) {
         --pb: var(--pb, 48px);
       }
     }
+
+    &[nq-overlaps] {
+      --pb: 0;
+
+      >* {
+        --nq-mb-min: 16;
+        --nq-mb-max: 32;
+        z-index: 2;
+
+        position: relative;
+        bottom: calc(var(--nq-mb) * -1);
+      }
+
+      + :where(section, [data-section]) {
+        --nq-pt-min: 16;
+        --nq-pt-max: 32;
+        padding-top: calc(var(--nq-pt) + var(--pt));
+      }
+    }
   }
 }

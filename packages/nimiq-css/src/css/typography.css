@@ -43,6 +43,10 @@
     /* TODO Remove margin-top and margin-bottom on last element when margin-trim is widely supported */
   }
 
+  >*:last-child {
+    margin-bottom: 0;
+  }
+
 
   *:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)) {
     line-height: 1.5;
