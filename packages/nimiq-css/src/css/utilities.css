@@ -158,6 +158,7 @@
 .nq-pill-lg,
 .nq-pill-xl,
 .nq-pill-blue,
+.nq-pill-white,
 .nq-pill-gold,
 .nq-pill-green,
 .nq-pill-orange,
@@ -243,6 +244,18 @@
   &:focus-visible {
     --nq-gradient-from: var(--nq-blue-gradient-darkened-from);
     --nq-gradient-to: var(--nq-blue-gradient-darkened-to);
+  }
+}
+
+.nq-pill-white {
+  background: rgb(var(--nq-white));
+  background-image: none;
+  color: rgb(var(--nq-blue));
+  --transitions: background 200ms var(--nq-ease);
+
+  &:hover,
+  &:focus-visible {
+    background: rgb(var(--nq-neutral-100));
   }
 }
 
