@@ -509,7 +509,7 @@ function createPreset() {
     }
     preflights.unshift(layerDefinition)
 
-    const autocompleteStaticContent: string[] = staticContent ? ['no-max-width', 'no-px', 'no-color', 'no-py', 'no-mx', 'heading-lg', 'section-gap', 'wide'].map(u => `${prefix}${u}`) : []
+    const autocompleteStaticContent: string[] = staticContent ? ['no-max-width', 'no-color', 'overlaps', 'heading-lg', 'section-gap'].map(u => `${prefix}${u}`) : []
     const autocompletePreflight = ['nq-no-color']
 
     const preset: Preset = {
