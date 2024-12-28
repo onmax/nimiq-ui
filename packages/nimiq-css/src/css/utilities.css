@@ -19,6 +19,10 @@
   :where([data-inverted] *) & {
     color: rgb(var(--nq-neutral-0) / 0.8);
   }
+
+  :where(.dark, [data-theme="dark"]) & {
+    color: rgb(var(--nq-white) / 0.7);
+  }
 }
 
 .nq-arrow,
@@ -384,6 +388,7 @@
   height: max-content;
   width: max-content;
 
+  :where(.dark, [data-theme="dark"]) &,
   :where([data-inverted] *) & {
     color: rgb(var(--nq-neutral-0) / 0.8);
   }

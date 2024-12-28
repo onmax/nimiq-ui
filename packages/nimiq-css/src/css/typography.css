@@ -11,7 +11,8 @@
 /**
  * Make sure to import also nimiq-colors layer found in this package
  **/
-.nq-prose, .nq-prose-compact {
+.nq-prose,
+.nq-prose-compact {
   margin-trim: block;
 
   &:not(:where(.nq-prose-compact, [nq-prose-compact])) {
@@ -226,7 +227,7 @@
         line-height: 1.6;
         font-weight: 700;
       }
-      
+
       code {
         background-color: rgb(var(--nq-green-400) / 1);
         color: rgb(var(--nq-green) / 0.9);
@@ -242,6 +243,10 @@
         font-size: 0.875;
         font-weight: 700;
         line-height: 1.3125;
+
+        :where(.dark, [data-theme="dark"]) & {
+          color: rgb(var(--nq-white) / 0.8);
+        }
       }
 
       &:has(blockquote) {
@@ -274,6 +279,10 @@
           font-weight: 400;
           color: rgb(var(--nq-neutral-700));
           margin: 8px 24px 24px;
+
+          :where(.dark, [data-theme="dark"]) & {
+            color: rgb(var(--nq-white) / 0.8);
+          }
 
           @media (min-width: 769px) {
             margin: 8px 32px 24px;
@@ -446,7 +455,7 @@
     &:where(a) {
       font-weight: 600;
       text-decoration: none;
-        color: rgb(var(--nq-blue) / 1);
+      color: rgb(var(--nq-blue) / 1);
     }
   }
 

@@ -251,7 +251,6 @@
 
 
 .dark,
-.dark *,
 &[data-theme="dark"],
 :where(.bg-darkblue &, &:where(.bg-darkblue,[bg-darkblue])),
 :where(.bg-neutral &, &:where(.bg-neutral, [bg-neutral])),
