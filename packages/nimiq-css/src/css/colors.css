@@ -1,10 +1,10 @@
 :root {
   /* Background gradients */
 
-    --nq-darkblue: 31 35 72;
+  --nq-darkblue: 31 35 72;
   --nq-darkerblue: 23 24 43;
   --nq-white: 255 255 255;
-  --nq-blue-s3: #2c72c7;
+  --nq-blue-sss: 44 114 199;
 
   --nq-neutral-on-light: var(--nq-darkblue);
   --nq-neutral-on-light-0: var(--nq-white);
