@@ -434,7 +434,7 @@ function createPreset() {
         if (!matcher.startsWith('leader-hocus:'))
           return matcher
         return {
-          matcher: matcher.slice(10),
+          matcher: matcher.slice(13),
           selector: (s) =>
             `*:has(> [leader]:where(:hover,:focus-visible)) ${s}`,
         }
