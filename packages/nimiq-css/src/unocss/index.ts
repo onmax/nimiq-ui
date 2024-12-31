@@ -431,12 +431,12 @@ function createPreset() {
         }
       },
       (matcher) => {
-        if (!matcher.startsWith('kin-hocus:'))
+        if (!matcher.startsWith('leader-hocus:'))
           return matcher
         return {
           matcher: matcher.slice(10),
           selector: (s) =>
-            `*:has(> [kin]:where(:hover,:focus-visible)) ${s}`,
+            `*:has(> [leader]:where(:hover,:focus-visible)) ${s}`,
         }
       },
       (matcher) => {
