@@ -94,6 +94,9 @@ importers:
       unocss:
         specifier: ^0.65.1
         version: 0.65.1(postcss@8.4.49)(rollup@3.29.5)(vite@5.4.8(@types/node@22.7.4))(vue@3.5.11(typescript@5.7.2))
+      unocss-preset-scale-px:
+        specifier: ^0.0.1
+        version: 0.0.1
     devDependencies:
       '@iconify/types':
         specifier: ^2.0.0
@@ -101,18 +104,12 @@ importers:
       '@types/bun':
         specifier: latest
         version: 1.1.16
-      '@unocss/preset-web-fonts':
-        specifier: ^0.65.1
-        version: 0.65.1
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
       unbuild:
         specifier: ^2.0.0
         version: 2.0.0(typescript@5.7.2)(vue-tsc@2.1.6(typescript@5.7.2))
-      unocss-preset-scale-px:
-        specifier: ^0.0.1
-        version: 0.0.1
 
   packages/nimiq-icons:
     dependencies:
