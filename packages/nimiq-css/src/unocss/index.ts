@@ -16,6 +16,7 @@ import {
   type PresetUnoTheme
 } from 'unocss'
 import { getNimiqColors } from './colors'
+import type { Theme } from 'unocss/preset-mini'
 
 const DEFAULT_PREFIX = 'nq-'
 
@@ -162,7 +163,7 @@ function createPreset() {
     }
 
 
-    const rules: Preset['rules'] = Object.entries(rulesSetup).map(
+    const rules: Preset<Theme>['rules'] = Object.entries(rulesSetup).map(
       ([_selector, { css, ruleName, json }]) => {
         if (!css.includes('{')) {
           const re = new RegExp(`^${ruleName}$`)

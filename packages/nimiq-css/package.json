@@ -32,10 +32,11 @@
     "release": "pnpm run build && bumpp --commit --push --tag && pnpm publish"
   },
   "dependencies": {
+    "@unocss/preset-web-fonts": "^65.4.0",
     "@unocss/reset": "0.65.1",
     "ts-cssjson": "^3.0.1",
-    "unocss-preset-scale-px": "^0.0.1",
-    "unocss": "^0.65.1"
+    "unocss": "^0.65.1",
+    "unocss-preset-scale-px": "^0.0.1"
   },
   "devDependencies": {
     "@iconify/types": "^2.0.0",
