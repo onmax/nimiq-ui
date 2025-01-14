@@ -13,7 +13,8 @@ import {
   type Preset,
   type PresetFactory,
   presetWebFonts,
-  type PresetUnoTheme
+  type PresetUnoTheme,
+  type DynamicRule
 } from 'unocss'
 import { getNimiqColors } from './colors'
 import type { Theme } from 'unocss/preset-mini'
@@ -178,7 +179,7 @@ function createPreset() {
             return `@layer ${layer} { ${s?.split(' $$ ').join(' ')}{${css}} }`
           },
           { layer },
-        ];
+        ] satisfies DynamicRule<Theme>
       }
     );
 
