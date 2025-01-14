@@ -1,4 +1,5 @@
 import type { NimiqColor } from './colors'
+import { presetScalePx } from 'unocss-preset-scale-px'
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import process from 'node:process'
@@ -78,13 +79,13 @@ export interface NimiqPresetOptions {
   staticContent?: boolean
 
   /**
-   * 1rem = n px
-   * @default 16
+   * Use [unocss-preset-scale-px](https://github.com/onmax/unocss-preset-scale-px) to modify numeric values.
+   * px-4 becomes 0.25rem and not 1rem.
+   * 
+   * @default true
    */
-  baseFontSize?: number
+  scalePx?: boolean
 }
-
-const remRE = /(-?[.\d]+)rem/g
 
 function createPreset() {
   const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -232,7 +233,7 @@ function createPreset() {
   }
 
   return (options: NimiqPresetOptions = {}): Preset => {
-    const { prefix = DEFAULT_PREFIX, baseFontSize = 16 } = options
+    const { prefix = DEFAULT_PREFIX, scalePx = true } = options
 
     const { gradients, colors } = getNimiqColors()
 
@@ -399,6 +400,11 @@ function createPreset() {
         }),
       )
     }
+    if (scalePx !== false) {
+      // @ts-expect-error Something weird is happening here
+      // Wait until someone fixes it also in https://unocss.dev/presets/rem-to-px
+      presets.push(presetScalePx())
+    }
 
     const variantLayer = `${prefix}variants`
     const variants: Preset['variants'] = [
@@ -436,7 +442,7 @@ function createPreset() {
         return {
           matcher: matcher.slice(13),
           selector: (s) =>
-            `*:has(> [leader]:where(:hover,:focus-visible)) ${s}`,
+            `*:has(> :where(.leader,[leader]):where(:hover,:focus-visible)) ${s}`,
         }
       },
       (matcher) => {
@@ -559,18 +565,6 @@ function createPreset() {
         default: 400,
         utilities: 500,
         [`${prefix}variants`]: 600,
-      },
-
-      postprocess: (util) => {
-        if (!util.entries || typeof util.entries.forEach !== 'function')
-          return
-
-        util.entries?.forEach((i) => {
-          const value = i[1]
-          if (typeof value === 'string' && remRE.test(value))
-            i[1] = value.replace(remRE, (_, p1) => `${p1 * baseFontSize}px`)
-
-        })
       },
     }
     return preset
