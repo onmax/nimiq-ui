@@ -185,8 +185,6 @@ function createPreset() {
 
     const preflight: Preflight = { layer, getCSS: () => preflightCss }
     return { rules, rulesNames: rulesNamesStr, preflight }
-
-
   }
 
   function extractAtRule(name: string) {
@@ -303,7 +301,7 @@ function createPreset() {
 
     const { utilities = false, typography = false } = options
 
-    const rules: Preset['rules'] = [
+    const rules: Preset<Theme>['rules'] = [
       [/^text-min-(.*)$/, ([, t]) => ({ '--nq-font-size-min': t })],
       [/^text-max-(.*)$/, ([, t]) => ({ '--nq-font-size-max': t })],
       [/^text-(\d+(?:\.\d+)?[a-z]*)\|(\d+(?:\.\d+)?[a-z]*)$/, ([, min, max]) => ({ '--nq-font-size-min': min, '--nq-font-size-max': max })],
