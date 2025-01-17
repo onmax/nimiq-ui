@@ -50,7 +50,7 @@ function processIcon(iconSet: IconSet, variant: IconVariant, name: string) {
   if (isLogo(variant)) {
     const monoSvg = new SVG(svg.toMinifiedString())
     // Replace all colors with #1f2348
-    parseColors(monoSvg, { defaultColor: 'currentColor', callback: () => 'currentColor', fixErrors: true })
+    parseColors(monoSvg, { callback: () => 'currentColor', fixErrors: true })
     const randomId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
     const newMonoName = `${newName}-mono`
     const newSvg = replaceIDs(monoSvg.toMinifiedString(), () => `${iconSet.prefix}-${newMonoName}-${randomId}`)
