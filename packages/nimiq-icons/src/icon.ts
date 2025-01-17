@@ -48,8 +48,18 @@ function processIcon(iconSet: IconSet, variant: IconVariant, name: string) {
 
   // We also include a monochrome version of the logos
   if (isLogo(variant)) {
-    const monoSvg = new SVG(svg.toMinifiedString().replaceAll('fill="none"', ''))
-    parseColors(monoSvg, { callback: () => 'currentColor', fixErrors: true })
+    const monoSvg = new SVG(svg.toMinifiedString())
+    parseColors(monoSvg, {
+      callback: (attr, colorStr, color) => {
+        if (!color) // color === null, so color cannot be parsed. Return colorStr to keep old value
+          return colorStr;
+
+        if (isEmptyColor(color))// Color is empty: 'none' or 'transparent'. Return color object to keep old value
+          return color;
+
+        return 'currentColor'
+      }, fixErrors: true
+    })
     const randomId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
     const newMonoName = `${newName}-mono`
     const newSvg = replaceIDs(monoSvg.toMinifiedString(), () => `${iconSet.prefix}-${newMonoName}-${randomId}`)
