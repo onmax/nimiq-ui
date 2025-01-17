@@ -3,7 +3,7 @@ import { env, exit } from 'node:process'
 import { exportJSONPackage, importFromFigma } from '@iconify/tools'
 import { IconVariant } from './consts'
 
-export const sanitizeName = (name: string) => name.toLocaleLowerCase().replace(/ /g, '-')
+export const sanitizeName = (name: string) => name.toLocaleLowerCase().trim().replace(/ /g, '-')
 
 function getFigmaSecrets() {
   const file = env.FIGMA_FILE_ID
