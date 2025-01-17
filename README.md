@@ -1,3 +1,3 @@
 # Nimiq UI
 
-Nimiq styles yay.
+Nimiq styles yay
