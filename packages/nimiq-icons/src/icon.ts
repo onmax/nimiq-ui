@@ -50,6 +50,7 @@ function processIcon(iconSet: IconSet, variant: IconVariant, name: string) {
   if (isLogo(variant)) {
     const monoSvg = new SVG(svg.toMinifiedString())
     parseColors(monoSvg, {
+      defaultColor:  'currentColor',
       callback: (attr, colorStr, color) => {
         if (!color) // color === null, so color cannot be parsed. Return colorStr to keep old value
           return colorStr;
