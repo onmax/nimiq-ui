@@ -714,9 +714,9 @@
   &::after {
     width: 100%;
     content: var(--nq-content, 'Learn more');
-    --nq-font-size-min: 0.75;
-    --nq-font-size-max: 1;
-    font-size: var(--nq-font-size);
+    --font-size-min: 0.75;
+    --font-size-max: 1;
+    font-size: var(--font-size);
     white-space: nowrap;
     background-color: rgb(var(--nq-neutral-400) / 0);
     font-weight: bold;

@@ -56,9 +56,9 @@
     margin-right: auto;
 
     &:where(h1) {
-      --nq-font-size-min: 44;
-      --nq-font-size-max: 48;
-      font-size: var(--nq-font-size);
+      --font-size-min: 44;
+      --font-size-max: 48;
+      font-size: var(--font-size);
       line-height: 1.5;
       font-weight: 700;
 
@@ -72,9 +72,9 @@
     }
 
     &:where(h2) {
-      --nq-font-size-min: 32;
-      --nq-font-size-max: 38;
-      font-size: var(--nq-font-size);
+      --font-size-min: 32;
+      --font-size-max: 38;
+      font-size: var(--font-size);
       line-height: 1.3;
       font-weight: 700;
 
@@ -90,9 +90,9 @@
     }
 
     &:where(h3) {
-      --nq-font-size-min: 26;
-      --nq-font-size-max: 30;
-      font-size: var(--nq-font-size);
+      --font-size-min: 26;
+      --font-size-max: 30;
+      font-size: var(--font-size);
       line-height: 1.3;
       font-weight: 700;
 
@@ -108,9 +108,9 @@
     }
 
     &:where(h4) {
-      --nq-font-size-min: 22;
-      --nq-font-size-max: 26;
-      font-size: var(--nq-font-size);
+      --font-size-min: 22;
+      --font-size-max: 26;
+      font-size: var(--font-size);
       line-height: 1.3;
       font-weight: 700;
 
@@ -179,9 +179,9 @@
     &:where(p) {
       margin-top: 0;
       margin-bottom: 0;
-      --nq-font-size-min: 14;
-      --nq-font-size-max: 16;
-      font-size: var(--nq-font-size);
+      --font-size-min: 14;
+      --font-size-max: 16;
+      font-size: var(--font-size);
       line-height: 1.5;
 
       &+p {
@@ -221,9 +221,9 @@
       }
 
       * {
-        --nq-font-size-min: 21;
-        --nq-font-size-max: 24;
-        font-size: var(--nq-font-size);
+        --font-size-min: 21;
+        --font-size-max: 24;
+        font-size: var(--font-size);
         line-height: 1.6;
         font-weight: 700;
       }
@@ -231,9 +231,9 @@
       code {
         background-color: rgb(var(--nq-green-400) / 1);
         color: rgb(var(--nq-green) / 0.9);
-        --nq-font-size-min: 21;
-        --nq-font-size-max: 24;
-        font-size: var(--nq-font-size);
+        --font-size-min: 21;
+        --font-size-max: 24;
+        font-size: var(--font-size);
       }
     }
 
@@ -272,9 +272,9 @@
         }
 
         figcaption {
-          --nq-font-size-min: 14;
-          --nq-font-size-max: 16;
-          font-size: var(--nq-font-size);
+          --font-size-min: 14;
+          --font-size-max: 16;
+          font-size: var(--font-size);
           line-height: 1.5;
           font-weight: 400;
           color: rgb(var(--nq-neutral-700));
@@ -422,9 +422,9 @@
     }
 
     &:where(code) {
-      --nq-font-size-min: 13;
-      --nq-font-size-max: 15;
-      font-size: var(--nq-font-size);
+      --font-size-min: 13;
+      --font-size-max: 15;
+      font-size: var(--font-size);
       border-radius: 4px;
 
       &:not(:where(:where(:where(h1, h2, h3, h4) &), pre > &)) {
@@ -433,9 +433,9 @@
     }
 
     &:where(pre) {
-      --nq-font-size-min: 14;
-      --nq-font-size-max: 16;
-      font-size: var(--nq-font-size);
+      --font-size-min: 14;
+      --font-size-max: 16;
+      font-size: var(--font-size);
       --nq-m-min: 20;
       --nq-m-max: 24;
       margin-top: var(--nq-m-size);
@@ -476,7 +476,7 @@
 
     code,
     pre {
-      --nq-line-height: 1.3;
+      --line-height: 1.3;
       padding: 4px 0.25rem;
       position: relative;
     }
