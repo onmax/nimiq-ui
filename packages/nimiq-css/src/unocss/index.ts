@@ -328,7 +328,10 @@ function createPreset() {
 
     const { fonts = true } = options
     const presets: Preset['presets'] = [
-      presetFluidSizing({ prefix: DEFAULT_PREFIX.slice(0, 2) }) 
+      presetFluidSizing({
+        prefix: DEFAULT_PREFIX,
+        fontSizePrefix: '' // we overwrite text-<sm|md|lg...> utilities to use the fluid-font-sizes
+      }) 
     ]
 
     if (fonts !== false) {
