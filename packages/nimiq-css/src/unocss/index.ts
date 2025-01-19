@@ -329,7 +329,7 @@ function createPreset() {
     const { fonts = true } = options
     const presets: Preset['presets'] = [
       presetFluidSizing({
-        fontSizePrefix: '' // we overwrite text-<sm|md|lg...> utilities to use the fluid-typography: text-sm becomes text-12/14
+        prefixFontSize: '' // we overwrite text-<sm|md|lg...> utilities to use the fluid-typography: text-sm becomes text-12/14
       }) 
     ]
 
