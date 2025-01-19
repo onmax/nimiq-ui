@@ -329,7 +329,7 @@ function createPreset() {
     const { fonts = true } = options
     const presets: Preset['presets'] = [
       presetFluidSizing({
-        fontSizePrefix: '' // we overwrite text-<sm|md|lg...> utilities to use the fluid-font-sizes: text-sm becomes text-12/14
+        fontSizePrefix: '' // we overwrite text-<sm|md|lg...> utilities to use the fluid-typography: text-sm becomes text-12/14
       }) 
     ]
 
@@ -457,7 +457,7 @@ function createPreset() {
         const layers = [
           reset && 'reset',
           'colors',
-          'fluid-font-sizes',
+          'fluid-typography',
           preflight && 'preflight',
           staticContent && 'static-content',
           typography && 'typography',
@@ -469,6 +469,13 @@ function createPreset() {
       },
     }
     preflights.unshift(layerDefinition)
+    
+    const fluidParameters: Preflight = {
+      layer: `${prefix}layer-definition`,
+      getCSS: () => readContent('fluid-typography') // Required for fluid typography
+    }
+    preflights.unshift(fluidParameters)
+    
 
     const autocompleteStaticContent: string[] = staticContent ? ['no-max-width', 'no-color', 'overlaps', 'heading-lg', 'section-gap'].map(u => `${prefix}${u}`) : []
     const autocompletePreflight = ['nq-no-color']
@@ -479,7 +486,7 @@ function createPreset() {
       variants,
       theme: {
         colors,
-        fontSize: {}, // We define the font sizes in the fluid-font-sizes
+        fontSize: {}, // We define the font sizes in the fluid-typography
         fontFamily: {
           sans: 'Mulish',
           mono: 'Fira Code',
@@ -501,7 +508,7 @@ function createPreset() {
         [`${prefix}layer-definition`]: -101,
         [`${prefix}reset`]: -100,
         [`${prefix}colors`]: -50,
-        [`${prefix}fluid-font-sizes`]: -50,
+        [`${prefix}fluid-typography`]: -50,
         [`${prefix}preflight`]: -40,
         components: -1,
         [`${prefix}static-content`]: 200,
