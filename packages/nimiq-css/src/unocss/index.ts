@@ -18,6 +18,7 @@ import {
 } from 'unocss'
 import { getNimiqColors } from './colors'
 import type { Theme } from 'unocss/preset-mini'
+import { presetFluidSizing } from 'unocss-preset-fluid-sizing'
 
 const DEFAULT_PREFIX = 'nq-'
 
@@ -60,12 +61,6 @@ export interface NimiqPresetOptions {
    * @default false
    */
   utilities?: boolean
-
-  /**
-   * Add support for the Nimiq Spacing fluid utilities
-   * @default true
-   */
-  spacing?: boolean
 
   /**
    * If you want to use the attributify mode
@@ -276,7 +271,7 @@ function createPreset() {
       layer: `${prefix}reset`,
     }
 
-    const { preflight = true, staticContent = false, spacing = true } = options
+    const { preflight = true, staticContent = false } = options
     const preflights: Preset['preflights'] = [
       resetLayer,
       {
@@ -301,17 +296,8 @@ function createPreset() {
 
     const { utilities = false, typography = false } = options
 
-    const rules: Preset<Theme>['rules'] = [
-      [/^text-min-(.*)$/, ([, t]) => ({ '--nq-font-size-min': t })],
-      [/^text-max-(.*)$/, ([, t]) => ({ '--nq-font-size-max': t })],
-      [/^text-(\d+(?:\.\d+)?[a-z]*)\|(\d+(?:\.\d+)?[a-z]*)$/, ([, min, max]) => ({ '--nq-font-size-min': min, '--nq-font-size-max': max })],
-    ]
-    {
-      const { rules: _rules, rulesNames: _rulesNames, preflight } = cssToRules('fluid-font-sizes', { convertToAttributes: options.attributifyUtilities, prefix: '' /* we don't respect the prefix here */ })
-      rulesNames.push(..._rulesNames)
-      rules.push(..._rules)
-      preflights.push(preflight)
-    }
+    const rules: Preset<Theme>['rules'] = []
+  
 
     // The only way to add gradients is via rules
     for (const [key, gradient, color] of gradients) {
@@ -322,50 +308,6 @@ function createPreset() {
         { ...background, ...backgroundImage },
         { layer: `${prefix}colors` },
       ])
-    }
-
-    if (spacing) {
-      const { rules: _rules, rulesNames: _rulesNames, preflight } = cssToRules('spacing', { convertToAttributes: options.attributifyUtilities, prefix })
-      rulesNames.push(..._rulesNames)
-      rules.push(..._rules)
-      preflights.push(preflight)
-
-      // This could be done with preset-mini/utils but no energy to do it now
-
-      // rules.push([
-      //   /^nq-(p|m)-(\d+)-(\d+)$/,
-      //   ([, p, min, max]) => {
-      //     const css: Record<string, string> = {}
-
-      //     // Define shorthand `--nq-{p|m}-{min,max}` variables
-      //     css[`--nq-${p}-min`] = min;
-      //     css[`--nq-${p}-max`] = max;
-
-      //     // Define side-specific `--nq-{pt|pb|pl|pr}-{min,max}` variables
-      //     const sidePrefixes = p === "p" ? ["pt", "pb", "pl", "pr"] : ["mt", "mb", "ml", "mr"];
-      //     for (const side of sidePrefixes) {
-      //       css[`--nq-${side}-min`] = min;
-      //       css[`--nq-${side}-max`] = max;
-      //     }
-
-      //     // Define final shorthand property
-      //     const cssProperty = p === "m" ? "margin" : "padding";
-      //     if (p.at(1) === 't' || p.at(1) === '-' || p.at(1) === 'y')
-      //       css[`${cssProperty}-top`] = `var(--nq-${p}t)`;
-
-      //     if (p.at(1) === 'b' || p.at(1) === '-' || p.at(1) === 'y')
-      //       css[`${cssProperty}-bottom`] = `var(--nq-${p}b)`;
-
-      //     if (p.at(1) === 'l' || p.at(1) === '-' || p.at(1) === 'x')
-      //       css[`${cssProperty}-left`] = `var(--nq-${p}l)`;
-
-      //     if (p.at(1) === 'r' || p.at(1) === '-' || p.at(1) === 'x')
-      //       css[`${cssProperty}-right`] = `var(--nq-${p}r)`;
-
-      //     return css;
-      //   }
-      // ]);
-
     }
 
     if (utilities) {
@@ -385,7 +327,10 @@ function createPreset() {
     }
 
     const { fonts = true } = options
-    const presets: Preset['presets'] = []
+    const presets: Preset['presets'] = [
+      presetFluidSizing({ prefix: DEFAULT_PREFIX.slice(0, 2) }) 
+    ]
+
     if (fonts !== false) {
       const processors = fonts === true ? createLocalFontProcessor() : createLocalFontProcessor(fonts)
       presets.push(
@@ -513,7 +458,6 @@ function createPreset() {
           'fluid-font-sizes',
           preflight && 'preflight',
           staticContent && 'static-content',
-          spacing && 'spacing',
           typography && 'typography',
           utilities && 'utilities',
           'variants', // To ensure that the rules that have variants are applied after the rules that don't have variants

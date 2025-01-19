@@ -53,10 +53,10 @@ function processIcon(iconSet: IconSet, variant: IconVariant, name: string) {
       defaultColor:  'currentColor',
       callback: (attr, colorStr, color) => {
         if (!color) // color === null, so color cannot be parsed. Return colorStr to keep old value
-          return colorStr;
+          return colorStr
 
         if (isEmptyColor(color))// Color is empty: 'none' or 'transparent'. Return color object to keep old value
-          return color;
+          return color
 
         return 'currentColor'
       }, fixErrors: true
