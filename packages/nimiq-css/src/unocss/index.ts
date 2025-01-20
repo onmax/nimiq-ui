@@ -1,5 +1,4 @@
 import type { NimiqColor } from './colors'
-import { presetScalePx } from 'unocss-preset-scale-px'
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import process from 'node:process'
@@ -19,7 +18,6 @@ import {
 } from 'unocss'
 import { getNimiqColors } from './colors'
 import type { Theme } from 'unocss/preset-mini'
-import { presetFluidSizing } from 'unocss-preset-fluid-sizing'
 
 const DEFAULT_PREFIX = 'nq-'
 
@@ -75,21 +73,6 @@ export interface NimiqPresetOptions {
    * @default false
    */
   staticContent?: boolean
-
-  /**
-   * Use [unocss-preset-scale-px](https://github.com/onmax/unocss-preset-scale-px) to modify numeric values.
-   * px-4 becomes 0.25rem and not 1rem.
-   * 
-   * @default true
-   */
-  scalePx?: boolean
-
-  /**
-   * Use [unocss-preset-fluid-sizing](https://github.com/onmax/unocss-preset-fluid-sizing) to modify text sizes and spacings.
-   * 
-   * @default true
-   */ 
-  fluidSizing?: boolean | ArgumentType<typeof presetFluidSizing>[0]
 }
 
 function createPreset() {
@@ -336,13 +319,6 @@ function createPreset() {
     const { fonts = true } = options
     const presets: Preset['presets'] = []
 
-    if (Boolean(options.fluidSizing)) {
-      const optionsFluidSizing = typeof options.fluidSizing === 'object' ? options.fluidSizing : {
-        prefixFontSize: '' // we overwrite text-<sm|md|lg...> utilities to use the fluid-typography: text-sm becomes text-12/14
-      }
-      presets.push(presetFluidSizing(optionsFluidSizing))
-    }
-
     if (fonts !== false) {
       const processors = fonts === true ? createLocalFontProcessor() : createLocalFontProcessor(fonts)
       presets.push(
@@ -356,13 +332,6 @@ function createPreset() {
           processors,
         }),
       )
-    }
-    
-    const { scalePx = true } = options
-    if (scalePx !== false) {
-      // @ts-expect-error Something weird is happening here
-      // Wait until someone fixes it also in https://unocss.dev/presets/rem-to-px
-      presets.push(presetScalePx())
     }
 
     const variantLayer = `${prefix}variants`

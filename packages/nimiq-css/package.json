@@ -35,9 +35,7 @@
     "@unocss/preset-web-fonts": "^65.4.2",
     "@unocss/reset": "65.4.2",
     "ts-cssjson": "^3.0.1",
-    "unocss": "^65.4.2",
-    "unocss-preset-fluid-sizing": "^0.0.6",
-    "unocss-preset-scale-px": "^0.0.1"
+    "unocss": "^65.4.2"
   },
   "devDependencies": {
     "@iconify/types": "^2.0.0",
