@@ -14,7 +14,8 @@ import {
   type PresetFactory,
   presetWebFonts,
   type PresetUnoTheme,
-  type DynamicRule
+  type DynamicRule,
+  type ArgumentType
 } from 'unocss'
 import { getNimiqColors } from './colors'
 import type { Theme } from 'unocss/preset-mini'
@@ -82,6 +83,13 @@ export interface NimiqPresetOptions {
    * @default true
    */
   scalePx?: boolean
+
+  /**
+   * Use [unocss-preset-fluid-sizing](https://github.com/onmax/unocss-preset-fluid-sizing) to modify text sizes and spacings.
+   * 
+   * @default true
+   */ 
+  fluidSizing?: boolean | ArgumentType<typeof presetFluidSizing>[0]
 }
 
 function createPreset() {
@@ -158,7 +166,6 @@ function createPreset() {
       }
     }
 
-
     const rules: Preset<Theme>['rules'] = Object.entries(rulesSetup).map(
       ([_selector, { css, ruleName, json }]) => {
         if (!css.includes('{')) {
@@ -228,7 +235,7 @@ function createPreset() {
   }
 
   return (options: NimiqPresetOptions = {}): Preset => {
-    const { prefix = DEFAULT_PREFIX, scalePx = true } = options
+    const { prefix = DEFAULT_PREFIX } = options
 
     const { gradients, colors } = getNimiqColors()
 
@@ -327,11 +334,14 @@ function createPreset() {
     }
 
     const { fonts = true } = options
-    const presets: Preset['presets'] = [
-      presetFluidSizing({
+    const presets: Preset['presets'] = []
+
+    if (Boolean(options.fluidSizing)) {
+      const optionsFluidSizing = typeof options.fluidSizing === 'object' ? options.fluidSizing : {
         prefixFontSize: '' // we overwrite text-<sm|md|lg...> utilities to use the fluid-typography: text-sm becomes text-12/14
-      }) 
-    ]
+      }
+      presets.push(presetFluidSizing(optionsFluidSizing))
+    }
 
     if (fonts !== false) {
       const processors = fonts === true ? createLocalFontProcessor() : createLocalFontProcessor(fonts)
@@ -347,6 +357,8 @@ function createPreset() {
         }),
       )
     }
+    
+    const { scalePx = true } = options
     if (scalePx !== false) {
       // @ts-expect-error Something weird is happening here
       // Wait until someone fixes it also in https://unocss.dev/presets/rem-to-px
