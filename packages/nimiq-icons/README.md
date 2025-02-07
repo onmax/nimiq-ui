@@ -1,4 +1,7 @@
 # Nimiq Icons
+
+[Explorer](https://www.nimiq.com/developers/build/ui/design/icons).
+
 This package is designed to retrieve and process icons from a Figma file, and subsequently package them in the Iconify format.
 
 ## How it works
