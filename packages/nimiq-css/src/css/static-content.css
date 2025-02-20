@@ -1,3 +1,4 @@
+
 /* TODO Remove font-size fluid and use dynamic line-height */
 body:not(.nq-raw) {
 
@@ -134,6 +135,31 @@ body:not(.nq-raw) {
     margin-left: auto;
     margin-right: auto;
 
+    --f-space-width-range: calc(var(--f-space-width-max) - var(--f-space-width-min));
+    --f-space-scale-factor: calc((100vw - (1px * var(--f-space-width-min))) / var(--f-space-width-range));
+    --f-space-width-min: 320;
+    --f-space-width-max: 1440;
+
+    --f-pt-range: calc(var(--f-pt-max) - var(--f-pt-min));
+    --f-pt-fluid: calc(1px * var(--f-pt-min) + var(--f-pt-range) * var(--f-space-scale-factor));
+    --f-pt: clamp(calc(1px * var(--f-pt-min)), var(--f-pt-fluid), calc(var(--f-pt-max) * 1px));
+    --pt: var(--f-pt);
+
+    --f-pb-range: calc(var(--f-pb-max) - var(--f-pb-min));
+    --f-pb-fluid: calc(1px * var(--f-pb-min) + var(--f-pb-range) * var(--f-space-scale-factor));
+    --f-pb: clamp(calc(1px * var(--f-pb-min)), var(--f-pb-fluid), calc(var(--f-pb-max) * 1px));
+    --pb: var(--f-pb);
+
+    --f-pl-range: calc(var(--f-pl-max) - var(--f-pl-min));
+    --f-pl-fluid: calc(1px * var(--f-pl-min) + var(--f-pl-range) * var(--f-space-scale-factor));
+    --f-pl: clamp(calc(1px * var(--f-pl-min)), var(--f-pl-fluid), calc(var(--f-pl-max) * 1px));
+    --pl: var(--f-pl);
+
+    --f-pr-range: calc(var(--f-pr-max) - var(--f-pr-min));
+    --f-pr-fluid: calc(1px * var(--f-pr-min) + var(--f-pr-range) * var(--f-space-scale-factor));
+    --f-pr: clamp(calc(1px * var(--f-pr-min)), var(--f-pr-fluid), calc(var(--f-pr-max) * 1px));
+    --pr: var(--f-pr);
+
     --nq-max-width: calc(100vw - 4rem);
 
     @media screen and (min-width: 1152px) {
@@ -158,43 +184,23 @@ body:not(.nq-raw) {
       max-width: var(--nq-max-width);
     }
 
-    --px: 32px;
 
-    @media screen and (min-width: 768px) {
-      --px: 64px;
-    }
+    --f-pl-min: 32;
+    --f-pl-max: 80;
+    --f-pr-min: 32;
+    --f-pr-max: 80;
 
-    @media screen and (min-width: 1024px) {
-      --px: 72px;
-    }
 
-    @media screen and (min-width: 1280px) {
-      --px: 80px;
-    }
-
-    --pt: 160px;
-
-    @media screen and (min-width: 1024px) {
-      --pt: 200px;
-    }
-
-    :is(
-      &:where(.bg-darkblue, [bg-darkblue]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-darkblue, [bg-darkblue])),
+    :is(&:where(.bg-darkblue, [bg-darkblue]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-darkblue, [bg-darkblue])),
       &:where(.bg-darkerblue, [bg-darkerblue]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-darkerblue, [bg-darkerblue])),
       &:where(.bg-neutral-100, [bg-neutral-100]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-neutral-100, [bg-neutral-100])),
       &:where(.bg-neutral-0, [bg-neutral-0]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-neutral-0, [bg-neutral-0]))) {
-      --pb: 36px;
-
-      @media screen and (min-width: 1024px) {
-        --pb: 48px;
-      }
+      --f-pb-min: 36;
+      --f-pb-max: 48;
 
       + :where(section, [data-section]) {
-        --pt: 36px;
-
-        @media screen and (min-width: 1024px) {
-          --pt: 48px;
-        }
+        --f-pt-min: 36;
+        --f-pt-max: 48;
       }
     }
 
@@ -204,37 +210,33 @@ body:not(.nq-raw) {
     &:where(.bg-darkblue, [bg-darkblue], .bg-neutral-100, [bg-neutral-100], .bg-darkerblue, [bg-darkerblue]):has(+ :where(section, [data-section]):where(.bg-neutral-0, [bg-neutral-0], .nq-section-gap, [nq-section-gap])),
     &:where(.bg-neutral-100, [bg-neutral-100]):has(+ :where(section, [data-section]):where(.bg-darkblue, [bg-darkblue], .bg-neutral-0, [bg-neutral-0], .bg-darkerblue, [bg-darkerblue], .nq-section-gap, [nq-section-gap])),
     &:where(.bg-neutral-0, [bg-neutral-0], .bg-darkblue, [bg-darkblue], .bg-darkerblue, [bg-darkerblue]):has(+ :where(section, [data-section]):where(.bg-neutral-100, [bg-neutral-100], .nq-section-gap, [nq-section-gap])) {
-      --pb: 160px;
-
-      @media screen and (min-width: 1024px) {
-        --pb: 200px;
-      }
+      --f-pb-min: 160;
+      --f-pb-max: 200;
     }
 
     &:last-child {
-      --pb: var(--pb, 32px);
-
-      @media screen and (min-width: 1024px) {
-        --pb: var(--pb, 48px);
-      }
+      --f-pb-min: 32;
+      --f-pb-max: 48;
     }
 
     &[nq-overlaps] {
       --pb: 0;
 
       >* {
-         --f-mb-min: 16;
-         --f-mb-max: 32;
+        position: relative;
         z-index: 2;
 
-        position: relative;
-        bottom: calc(var( --f-mb) * -1);
+        --f-mb-min: 48;
+        --f-mb-max: 64;
+        --f-mb-range: calc(var(--f-mb-max) - var(--f-mb-min));
+        --f-mb-fluid: calc(1px * var(--f-mb-min) + var(--f-mb-range) * var(--f-space-scale-factor));
+        --f-mb: clamp(calc(1px * var(--f-mb-min)), var(--f-mb-fluid), calc(var(--f-mb-max) * 1px));
+        bottom: calc(var(--f-mb) * -1);
       }
 
       + :where(section, [data-section]) {
-         --f-pt-min: 16;
-         --f-pt-max: 32;
-        padding-top: calc(var( --f-pt, 0) + var(--pt, 0));
+        --f-pt-min: 224;
+        --f-pt-max: 272;
       }
     }
   }
