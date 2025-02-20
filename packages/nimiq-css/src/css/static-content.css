@@ -190,6 +190,8 @@ body:not(.nq-raw) {
     --f-pr-min: 32;
     --f-pr-max: 80;
 
+    --f-pt-min: 160;
+    --f-pt-max: 200;
 
     :is(&:where(.bg-darkblue, [bg-darkblue]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-darkblue, [bg-darkblue])),
       &:where(.bg-darkerblue, [bg-darkerblue]):has(+ :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(.bg-darkerblue, [bg-darkerblue])),
