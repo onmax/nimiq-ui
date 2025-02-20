@@ -439,7 +439,6 @@ export const presetNimiq = definePreset((_options: NimiqPresetOptions = {}) => {
         const layers = [
           reset && 'reset',
           'colors',
-          'fluid-typography',
           preflight && 'preflight',
           staticContent && 'static-content',
           typography && 'typography',
@@ -452,13 +451,6 @@ export const presetNimiq = definePreset((_options: NimiqPresetOptions = {}) => {
     }
     preflights.unshift(layerDefinition)
     
-    const fluidParameters: Preflight = {
-      layer: `${prefix}layer-definition`,
-      getCSS: () => readContent('fluid-typography') // Required for fluid typography
-    }
-    preflights.unshift(fluidParameters)
-    
-
     const autocompleteStaticContent: string[] = staticContent ? ['no-max-width', 'no-color', 'overlaps', 'heading-lg', 'section-gap'].map(u => `${prefix}${u}`) : []
     const autocompletePreflight = ['nq-no-color']
 
@@ -468,7 +460,6 @@ export const presetNimiq = definePreset((_options: NimiqPresetOptions = {}) => {
       variants,
       theme: {
         colors,
-        fontSize: {}, // We define the font sizes in the fluid-typography
         fontFamily: {
           sans: 'Mulish',
           mono: 'Fira Code',
@@ -490,7 +481,6 @@ export const presetNimiq = definePreset((_options: NimiqPresetOptions = {}) => {
         [`${prefix}layer-definition`]: -101,
         [`${prefix}reset`]: -100,
         [`${prefix}colors`]: -50,
-        [`${prefix}fluid-typography`]: -50,
         [`${prefix}preflight`]: -40,
         components: -1,
         [`${prefix}static-content`]: 200,
@@ -505,3 +495,5 @@ export const presetNimiq = definePreset((_options: NimiqPresetOptions = {}) => {
     return preset
   }
 })
+
+export default presetNimiq
