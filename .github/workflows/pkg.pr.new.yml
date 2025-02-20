@@ -20,7 +20,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - run: corepack enable
+      - uses: pnpm/action-setup@v4
+
+      # https://vercel.com/guides/corepack-errors-github-actions
+      - name: Use Latest Corepack
+        run: |
+          echo "Before: corepack version => $(corepack --version || echo 'not installed')"
+          npm install -g corepack@latest
+          echo "After : corepack version => $(corepack --version)"
+          corepack enable
+          pnpm --version
 
       - name: Set node
         uses: actions/setup-node@v4
