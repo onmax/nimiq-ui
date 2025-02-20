@@ -10,11 +10,8 @@ import {
   definePreset,
   type Preflight,
   type Preset,
-  type PresetFactory,
   presetWebFonts,
-  type PresetUnoTheme,
   type DynamicRule,
-  type ArgumentType,
   type Rule
 } from 'unocss'
 import { getNimiqColors } from './colors'
@@ -76,7 +73,7 @@ export interface NimiqPresetOptions {
   staticContent?: boolean
 }
 
-export const presetNimiq = definePreset((_options: NimiqPresetOptions = {}) => {
+export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
   const __dirname = dirname(fileURLToPath(import.meta.url))
   const _cssDir = resolve(__dirname, '../css')
   let cssDir = resolve(_cssDir, 'unminified')
@@ -218,7 +215,6 @@ export const presetNimiq = definePreset((_options: NimiqPresetOptions = {}) => {
     return extractedStr;
   }
 
-  return (options: NimiqPresetOptions = {}): Preset => {
     const { prefix = DEFAULT_PREFIX } = options
 
     const { gradients, colors } = getNimiqColors()
@@ -493,7 +489,6 @@ export const presetNimiq = definePreset((_options: NimiqPresetOptions = {}) => {
       },
     }
     return preset
-  }
 })
 
 export default presetNimiq
