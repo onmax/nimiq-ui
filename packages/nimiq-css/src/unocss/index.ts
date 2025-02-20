@@ -14,7 +14,8 @@ import {
   presetWebFonts,
   type PresetUnoTheme,
   type DynamicRule,
-  type ArgumentType
+  type ArgumentType,
+  type Rule
 } from 'unocss'
 import { getNimiqColors } from './colors'
 import type { Theme } from 'unocss/preset-mini'
@@ -75,7 +76,7 @@ export interface NimiqPresetOptions {
   staticContent?: boolean
 }
 
-function createPreset() {
+export const presetNimiq = definePreset((_options: NimiqPresetOptions = {}) => {
   const __dirname = dirname(fileURLToPath(import.meta.url))
   const _cssDir = resolve(__dirname, '../css')
   let cssDir = resolve(_cssDir, 'unminified')
@@ -286,7 +287,7 @@ function createPreset() {
 
     const { utilities = false, typography = false } = options
 
-    const rules: Preset<Theme>['rules'] = []
+    const rules: Rule<Theme>[] = []
   
 
     // The only way to add gradients is via rules
@@ -503,6 +504,4 @@ function createPreset() {
     }
     return preset
   }
-}
-
-export const presetNimiq: PresetFactory<PresetUnoTheme, NimiqPresetOptions> = definePreset(createPreset())
+})
