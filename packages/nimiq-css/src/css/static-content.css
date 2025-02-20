@@ -234,7 +234,7 @@ body:not(.nq-raw) {
       + :where(section, [data-section]) {
          --f-pt-min: 16;
          --f-pt-max: 32;
-        padding-top: calc(var( --f-pt) + var(--pt));
+        padding-top: calc(var( --f-pt, 0) + var(--pt, 0));
       }
     }
   }
