@@ -20,7 +20,7 @@
     color: rgb(var(--nq-neutral-0) / 0.8);
   }
 
-  :where(.dark, [data-theme="dark"]) & {
+  :where(.dark, [data-theme='dark']) & {
     color: rgb(var(--nq-white) / 0.7);
   }
 }
@@ -46,33 +46,31 @@
     transition: transform 100ms ease-out;
     width: 0.7em;
     height: 0.7em;
-    --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=");
+    --nq-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=');
   }
 }
 
-
 .nq-arrow {
-
   /* We select the arrow OR the closest parent with href to an http */
-  a[href^="http"] &::after,
-  &[href^="http"]::after {
+  a[href^='http'] &::after,
+  &[href^='http']::after {
     margin-bottom: 1px;
     rotate: 0.375turn;
   }
 
   /* We select the arrow OR the closest parent with href starting with local href */
-  a:where(:not([href^="http"])) &::after,
-  &:where(:not([href^="http"]))::after {
+  a:where(:not([href^='http'])) &::after,
+  &:where(:not([href^='http']))::after {
     margin-bottom: 1px;
     rotate: 0.5turn;
   }
 
   &:hover::after {
-    transform: translateX(-.25em);
+    transform: translateX(-0.25em);
   }
 
   a:hover &::after {
-    transform: translateX(-.25em);
+    transform: translateX(-0.25em);
   }
 }
 
@@ -95,17 +93,17 @@
     transition: transform 100ms ease-out;
     width: 0.7em;
     height: 0.7em;
-    --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=");
+    --nq-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=');
     margin-right: 0.4em;
     margin-bottom: 1px;
   }
 
   &:hover::before {
-    transform: translateX(-.25em);
+    transform: translateX(-0.25em);
   }
 
   a:hover &::before {
-    transform: translateX(-.25em);
+    transform: translateX(-0.25em);
   }
 }
 
@@ -116,7 +114,7 @@
     transition: width 0.2s ease-out;
     width: 1em;
     aspect-ratio: 1/1;
-    --nq-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxnIGZpbGw9Im5vbmUiPjxnIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMS42NjciIGNsaXAtcGF0aD0idXJsKCNuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCkiPjxwYXRoIGQ9Ik02IDFDOC43NjI1IDEgMTEgMy4yMzc1IDExIDYiLz48cGF0aCBkPSJNMy4wMzgwOSAyQzEuODA0MDIgMi45MDM3NCAxIDQuMzYyMTkgMSA2LjAxMzg1QzEgOC43Njg3IDMuMjMxMyAxMSA1Ljk4NjE1IDExQzcuNjM3ODEgMTEgOS4wOTYyNiAxMC4xOTYgMTAgOC45NjE5MSIgb3BhY2l0eT0iLjMiLz48L2c+PGRlZnM+PGNsaXBQYXRoIGlkPSJuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48L2RlZnM+PC9nPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgZHVyPSIxcyIgZnJvbT0iMCAwIDAiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB0bz0iMzYwIDAgMCIgdHlwZT0icm90YXRlIi8+PC9zdmc+");
+    --nq-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxnIGZpbGw9Im5vbmUiPjxnIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMS42NjciIGNsaXAtcGF0aD0idXJsKCNuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCkiPjxwYXRoIGQ9Ik02IDFDOC43NjI1IDEgMTEgMy4yMzc1IDExIDYiLz48cGF0aCBkPSJNMy4wMzgwOSAyQzEuODA0MDIgMi45MDM3NCAxIDQuMzYyMTkgMSA2LjAxMzg1QzEgOC43Njg3IDMuMjMxMyAxMSA1Ljk4NjE1IDExQzcuNjM3ODEgMTEgOS4wOTYyNiAxMC4xOTYgMTAgOC45NjE5MSIgb3BhY2l0eT0iLjMiLz48L2c+PGRlZnM+PGNsaXBQYXRoIGlkPSJuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48L2RlZnM+PC9nPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgZHVyPSIxcyIgZnJvbT0iMCAwIDAiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB0bz0iMzYwIDAgMCIgdHlwZT0icm90YXRlIi8+PC9zdmc+');
     transform: scale(1);
     content: '';
     position: relative;
@@ -140,21 +138,20 @@
   }
 }
 
-
 @property --nq-gradient-from {
-  syntax: "<color>";
+  syntax: '<color>';
   inherits: false;
   initial-value: #0000;
 }
 
 @property --nq-gradient-to {
-  syntax: "<color>";
+  syntax: '<color>';
   inherits: false;
   initial-value: #0000;
 }
 
 @property --nq-gradient-stops {
-  syntax: "*";
+  syntax: '*';
   inherits: false;
 }
 
@@ -197,7 +194,11 @@
   &:where(.nq-pill-xl, [nq-pill-xl]) {
     box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    transition: transform 450ms var(--nq-ease), box-shadow 450ms var(--nq-ease), background-color 250ms var(--nq-ease), var(--transitions);
+    transition:
+      transform 450ms var(--nq-ease),
+      box-shadow 450ms var(--nq-ease),
+      background-color 250ms var(--nq-ease),
+      var(--transitions);
     will-change: box-shadow;
     text-transform: uppercase;
     letter-spacing: 0.094em;
@@ -218,9 +219,13 @@
 
   &:active {
     outline: none;
-    box-shadow: 0 .2rem .3rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
     transform: translate3D(0, 1px, 0);
-    transition: transform 200ms cubic-bezier(.41, .34, .26, 1.55), box-shadow 200ms cubic-bezier(.41, .34, .26, 1.55), background-color 200ms var(--nq-ease), var(--transitions);
+    transition:
+      transform 200ms cubic-bezier(0.41, 0.34, 0.26, 1.55),
+      box-shadow 200ms cubic-bezier(0.41, 0.34, 0.26, 1.55),
+      background-color 200ms var(--nq-ease),
+      var(--transitions);
   }
 
   &:where([disabled]) {
@@ -238,7 +243,6 @@
     outline-offset: 3px;
   }
 }
-
 
 .nq-pill-blue {
   --nq-gradient-from: var(--nq-blue-gradient-from);
@@ -317,11 +321,14 @@
     background: rgb(var(--nq-neutral-500));
   }
 
-  :where(.dark,
-  [data-theme="dark"],
-  :where(.bg-darkblue &, &:where(.bg-darkblue, [bg-darkblue])),
-  :where(.bg-neutral &, &:where(.bg-neutral, [bg-neutral])),
-  :where(.bg-darkerblue &, &:where(.bg-darkerblue, [bg-darkerblue]))) & {
+  :where(
+      .dark,
+      [data-theme='dark'],
+      :where(.bg-darkblue &, &:where(.bg-darkblue, [bg-darkblue])),
+      :where(.bg-neutral &, &:where(.bg-neutral, [bg-neutral])),
+      :where(.bg-darkerblue &, &:where(.bg-darkerblue, [bg-darkerblue]))
+    )
+    & {
     background: rgb(var(--nq-white) / 0.1);
 
     &:hover,
@@ -345,7 +352,7 @@
   }
 }
 
-:where([class*="ring"], [ring]),
+:where([class*='ring'], [ring]),
 .nq-border-base {
   --border-color: rgb(var(--nq-neutral-400));
   --atomic-css-framework: var(var(--un-ring-color), var(--tw-ring-color));
@@ -388,7 +395,7 @@
   height: max-content;
   width: max-content;
 
-  :where(.dark, [data-theme="dark"]) &,
+  :where(.dark, [data-theme='dark']) &,
   :where([data-inverted] *) & {
     color: rgb(var(--nq-neutral-0) / 0.8);
   }
@@ -411,10 +418,9 @@
   transition: 100ms background var(--nq-ease, ease-out);
   position: relative;
 
-
   &::after {
     content: '';
-    --cross-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0ibTEgMSAxMCAxMG0wLTEwTDEgMTEiLz48L3N2Zz4=");
+    --cross-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0ibTEgMSAxMCAxMG0wLTEwTDEgMTEiLz48L3N2Zz4=');
     -webkit-mask: var(--cross-icon) no-repeat;
     mask: var(--cross-icon) no-repeat;
     -webkit-mask-size: 100% 100%;
@@ -430,7 +436,6 @@
     right: -1px;
   }
 
-
   &:where(:hover, :focus) {
     background-color: rgb(var(--nq-neutral-600));
   }
@@ -442,7 +447,7 @@
 }
 
 .nq-switch {
-  &:where(input[type="checkbox"]) {
+  &:where(input[type='checkbox']) {
     --active-color: rgb(var(--nq-neutral-300));
     appearance: none;
     font-size: 1em;
@@ -455,7 +460,7 @@
     cursor: pointer;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       transform: translate(-50%, -50%);
       top: 50%;
@@ -497,34 +502,57 @@
   position: sticky;
   /* You need to set top-0 or bottom-0! */
   --mask-size: 2rem;
-  transition: mask-size 0.25s linear(0 0%, 0.0027 3.64%, 0.0106 7.29%,
-      0.0425 14.58%, 0.0957 21.87%,
-      0.1701 29.16%, 0.2477 35.19%,
-      0.3401 41.23%, 0.5982 55.18%,
-      0.7044 61.56%, 0.7987 68.28%, 0.875 75%,
-      0.9297 81.25%, 0.9687 87.5%,
-      0.9922 93.75%, 1 100%);
+  transition: mask-size 0.25s
+    linear(
+      0 0%,
+      0.0027 3.64%,
+      0.0106 7.29%,
+      0.0425 14.58%,
+      0.0957 21.87%,
+      0.1701 29.16%,
+      0.2477 35.19%,
+      0.3401 41.23%,
+      0.5982 55.18%,
+      0.7044 61.56%,
+      0.7987 68.28%,
+      0.875 75%,
+      0.9297 81.25%,
+      0.9687 87.5%,
+      0.9922 93.75%,
+      1 100%
+    );
   scroll-timeline: --scroller;
   --curtain-color: var(--nq-neutral);
-  mask: linear-gradient(var(--curtain-color), transparent) 0 0 / 100% 0 no-repeat,
+  mask:
+    linear-gradient(var(--curtain-color), transparent) 0 0 / 100% 0 no-repeat,
     linear-gradient(var(--curtain-color), var(--curtain-color)) 0 50% / 100% 100% no-repeat,
     linear-gradient(transparent, var(--curtain-color)) 0 100% / 100% var(--mask-size) no-repeat;
   mask-composite: exclude;
   mask-repeat: none;
-  animation: mask-up both linear, mask-down both linear;
+  animation:
+    mask-up both linear,
+    mask-down both linear;
   animation-timeline: scroll(self);
-  animation-range: 0 2rem, 2rem 100%;
+  animation-range:
+    0 2rem,
+    2rem 100%;
 }
 
 @keyframes mask-up {
   100% {
-    mask-size: 100% var(--mask-size), 100% 100%, 100% var(--mask-size);
+    mask-size:
+      100% var(--mask-size),
+      100% 100%,
+      100% var(--mask-size);
   }
 }
 
 @keyframes mask-down {
   100% {
-    mask-size: 100% var(--mask-size), 100% 100%, 100% 0;
+    mask-size:
+      100% var(--mask-size),
+      100% 100%,
+      100% 0;
   }
 }
 
@@ -570,15 +598,15 @@
       padding: 2rem;
     }
 
-    header+& {
+    header + & {
       padding-top: 0.5rem;
     }
 
-    >*:first-child {
+    > *:first-child {
       margin-top: 0;
     }
 
-    >*:last-child {
+    > *:last-child {
       margin-bottom: 0;
     }
   }
@@ -586,7 +614,7 @@
   footer {
     padding: 0.5rem;
 
-    section+& {
+    section + & {
       padding-top: 0;
     }
   }
@@ -686,14 +714,20 @@
   position: relative;
   --ring-color: rgb(var(--nq-neutral-0) / 0.3);
   padding: 1.5rem;
-  transition: --nq-gradient-from 300ms var(--nq-ease), --nq-gradient-to 300ms var(--nq-ease), transform 200ms ease-out, box-shadow 200ms ease-out;
+  transition:
+    --nq-gradient-from 300ms var(--nq-ease),
+    --nq-gradient-to 300ms var(--nq-ease),
+    transform 200ms ease-out,
+    box-shadow 200ms ease-out;
 
   @media (hover: hover) {
     &:where(:hover, :focus-visible) {
       --nq-gradient-from: rgb(var(--nq-white) / 1);
       --nq-gradient-to: rgb(var(--nq-white) / 1);
       color: rgb(var(--nq-neutral));
-      box-shadow: 0 0 0 1.5px var(--ring-color), var(--nq-shadow);
+      box-shadow:
+        0 0 0 1.5px var(--ring-color),
+        var(--nq-shadow);
       transform: translateY(-0.375rem);
 
       &:before {
@@ -701,7 +735,7 @@
       }
     }
 
-    >* {
+    > * {
       z-index: 1;
     }
   }

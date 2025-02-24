@@ -6,14 +6,13 @@
 .nq-green-bg,
 .nq-orange-bg,
 .nq-red-bg,
-
 .nq-blue-bg .nq-link,
 .nq-light-blue-bg .nq-link,
 .nq-gold-bg .nq-link,
 .nq-green-bg .nq-link,
 .nq-orange-bg .nq-link,
 .nq-red-bg .nq-link {
-    color: var(--nimiq-white);
+  color: var(--nimiq-white);
 }
 
 .nq-blue-bg .nq-text,
@@ -22,53 +21,52 @@
 .nq-green-bg .nq-text,
 .nq-orange-bg .nq-text,
 .nq-red-bg .nq-text,
-
 .nq-blue-bg .nq-label,
 .nq-light-blue-bg .nq-label,
 .nq-gold-bg .nq-label,
 .nq-green-bg .nq-label,
 .nq-orange-bg .nq-label,
 .nq-red-bg .nq-label {
-    color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* theme */
 
 .nq-blue-bg,
 .nq-blue-bg .nq-card .nq-blue-bg {
-    --nimiq-light-blue: var(--nimiq-light-blue-on-dark);
-    --nimiq-red:        var(--nimiq-red-on-dark);
+  --nimiq-light-blue: var(--nimiq-light-blue-on-dark);
+  --nimiq-red: var(--nimiq-red-on-dark);
 }
 
 .nq-blue-bg .nq-button.inverse,
 .nq-blue-bg .nq-card {
-    /* on components with white background reset to original colors */
-    --nimiq-light-blue: #0582CA; /* rgb(5, 130, 202) */
-    --nimiq-red:        #D94432; /* rgb(216, 65, 51) */
+  /* on components with white background reset to original colors */
+  --nimiq-light-blue: #0582ca; /* rgb(5, 130, 202) */
+  --nimiq-red: #d94432; /* rgb(216, 65, 51) */
 }
 
 /* inputs */
 
 .nq-blue-bg .nq-input,
 .nq-blue-bg .nq-input-s {
-    --border-color: rgba(255, 255, 255, 0.2);
-    color: var(--nimiq-white);
+  --border-color: rgba(255, 255, 255, 0.2);
+  color: var(--nimiq-white);
 }
 
 .nq-blue-bg .nq-input.vanishing,
 .nq-blue-bg .nq-input-s.vanishing {
-    --border-color: rgba(255, 255, 255, 0);
+  --border-color: rgba(255, 255, 255, 0);
 }
 
 .nq-blue-bg .nq-input::placeholder,
 .nq-blue-bg .nq-input-s::placeholder {
-    color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .nq-blue-bg .nq-input:hover,
 .nq-blue-bg .nq-input:focus,
 .nq-blue-bg .nq-input-s:hover,
 .nq-blue-bg .nq-input-s:focus {
-    --border-color: rgba(255, 255, 255, 0.3);
-    color: var(--nimiq-white);
+  --border-color: rgba(255, 255, 255, 0.3);
+  color: var(--nimiq-white);
 }

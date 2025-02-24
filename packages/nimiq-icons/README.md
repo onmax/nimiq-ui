@@ -17,6 +17,7 @@ The naming convention for each icon in the package is `${frameName}-${iconName}`
 You can preview the icons in the `apps/icons-ui` directory. This directory contains a Vue application that uses the nimiq-icons package and provides a visual interface to view all the icons.
 
 ## Environment Variables
+
 The package requires the following environment variables:
 
 ```bash

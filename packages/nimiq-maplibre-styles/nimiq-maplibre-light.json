@@ -2263,7 +2263,7 @@
         "text-field": [
           "concat",
           ["get", "name:latin"],
-          " ",
+          "",
           ["get", "name:nonlatin"]
         ],
         "visibility": "visible",
@@ -2627,7 +2627,7 @@
         "text-field": [
           "concat",
           ["get", "name:latin"],
-          " ",
+          "",
           ["get", "name:nonlatin"]
         ],
         "text-anchor": "center",
@@ -2654,7 +2654,7 @@
         "text-field": [
           "concat",
           ["get", "name:latin"],
-          " ",
+          "",
           ["get", "name:nonlatin"]
         ],
         "text-anchor": "center",
@@ -2680,7 +2680,7 @@
         "text-field": [
           "concat",
           ["get", "name:latin"],
-          " ",
+          "",
           ["get", "name:nonlatin"]
         ],
         "text-anchor": "center",

@@ -1,21 +1,21 @@
+import type { LocalFontProcessorOptions } from '@unocss/preset-web-fonts/local'
+import type { CSSObject, DynamicRule, Preflight, Preset, Rule } from 'unocss'
+import type { Theme } from 'unocss/preset-mini'
 import type { NimiqColor } from './colors'
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
-import { createLocalFontProcessor, type LocalFontProcessorOptions } from '@unocss/preset-web-fonts/local'
+import { createLocalFontProcessor } from '@unocss/preset-web-fonts/local'
 import { toCSS, toJSON } from 'ts-cssjson'
 import {
-  type CSSObject,
+
   definePreset,
-  type Preflight,
-  type Preset,
+
   presetWebFonts,
-  type DynamicRule,
-  type Rule
+
 } from 'unocss'
 import { getNimiqColors } from './colors'
-import type { Theme } from 'unocss/preset-mini'
 
 const DEFAULT_PREFIX = 'nq-'
 
@@ -151,20 +151,20 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
       ([_selector, { css, ruleName, json }]) => {
         if (!css.includes('{')) {
           const re = new RegExp(`^${ruleName}$`)
-          return [re, () => json as CSSObject, { layer }];
+          return [re, () => json as CSSObject, { layer }]
         }
 
         return [
           new RegExp(`^${ruleName}$`),
           async (_match, { generator, rawSelector, variantHandlers }) => {
-            // @ts-ignore
+            // @ts-expect-error todo fix this
             const { selector: s } = await generator.applyVariants([0, rawSelector, css, undefined, variantHandlers])
             return `@layer ${layer} { ${s?.split(' $$ ').join(' ')}{${css}} }`
           },
           { layer },
         ] satisfies DynamicRule<Theme>
-      }
-    );
+      },
+    )
 
     const preflight: Preflight = { layer, getCSS: () => preflightCss }
     return { rules, rulesNames: rulesNamesStr, preflight }
@@ -174,321 +174,320 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
     const content = readContent(name).replaceAll(
       'data:image/svg+xml;',
       'SEMICOLON_BUG_HACK',
-    );
+    )
     const json = toJSON(content, {
       stripComments: true,
       comments: false,
       ordered: false,
       split: false,
-    });
+    })
 
-    let extractedStr = '';
+    let extractedStr = ''
 
     for (const key of Object.keys(json.children)) {
       // Extract @keyframes
       const keyframes = key
         .split(',')
         .map(s => s.trim())
-        .filter(s => s.startsWith('@keyframes'));
+        .filter(s => s.startsWith('@keyframes'))
       const keyframesCSS = toCSS(json.children[key]).replaceAll(
         'SEMICOLON_BUG_HACK',
         'data:image/svg+xml;',
-      );
+      )
       if (keyframes.length > 0) {
-        extractedStr += `${keyframes.join(', ')} { ${keyframesCSS} }\n`;
+        extractedStr += `${keyframes.join(', ')} { ${keyframesCSS} }\n`
       }
 
       // Extract @property
       const properties = key
         .split(',')
         .map(s => s.trim())
-        .filter(s => s.startsWith('@property'));
+        .filter(s => s.startsWith('@property'))
       const propertiesCSS = toCSS(json.children[key]).replaceAll(
         'SEMICOLON_BUG_HACK',
         'data:image/svg+xml;',
-      );
+      )
       if (properties.length > 0) {
-        extractedStr += `${properties.join(', ')} { ${propertiesCSS} }\n`;
+        extractedStr += `${properties.join(', ')} { ${propertiesCSS} }\n`
       }
     }
 
-    return extractedStr;
+    return extractedStr
   }
 
-    const { prefix = DEFAULT_PREFIX } = options
+  const { prefix = DEFAULT_PREFIX } = options
 
-    const { gradients, colors } = getNimiqColors()
+  const { gradients, colors } = getNimiqColors()
 
-    const rulesNames: string[] = []
+  const rulesNames: string[] = []
 
-    const { reset = 'tailwind-compat' } = options
-    const resetLayer: Preflight = {
-      getCSS() {
-        if (reset === false)
-          return ''
+  const { reset = 'tailwind-compat' } = options
+  const resetLayer: Preflight = {
+    getCSS() {
+      if (reset === false)
+        return ''
 
-        let content: string
-        const fileName = reset === true ? 'tailwind-compat' : reset
+      let content: string
+      const fileName = reset === true ? 'tailwind-compat' : reset
 
-        try {
-          if (typeof reset === 'string' && !['tailwind-compat', 'tailwind', 'eric-meyer', 'normalize'].includes(reset)) {
-            // Custom file path provided
-            const customFilePath = resolve(process.cwd(), fileName)
-            if (!existsSync(customFilePath)) {
-              throw new Error(`Custom reset CSS file not found: ${customFilePath}`)
-            }
-            content = readFileSync(customFilePath, 'utf-8')
+      try {
+        if (typeof reset === 'string' && !['tailwind-compat', 'tailwind', 'eric-meyer', 'normalize'].includes(reset)) {
+          // Custom file path provided
+          const customFilePath = resolve(process.cwd(), fileName)
+          if (!existsSync(customFilePath)) {
+            throw new Error(`Custom reset CSS file not found: ${customFilePath}`)
           }
-          else {
-            // Default reset options
-            const resetFilePath = resolve(`node_modules/@unocss/reset/${fileName}.css`)
-            if (!existsSync(resetFilePath)) {
-              throw new Error(`Reset CSS file not found: ${resetFilePath}`)
-            }
-            content = readFileSync(resetFilePath, 'utf-8')
+          content = readFileSync(customFilePath, 'utf-8')
+        }
+        else {
+          // Default reset options
+          const resetFilePath = resolve(`node_modules/@unocss/reset/${fileName}.css`)
+          if (!existsSync(resetFilePath)) {
+            throw new Error(`Reset CSS file not found: ${resetFilePath}`)
           }
+          content = readFileSync(resetFilePath, 'utf-8')
         }
-        catch (error) {
-          console.warn(`Error reading reset CSS file: ${fileName}. ${JSON.stringify({ error })}`)
-          return ''
-        }
+      }
+      catch (error) {
+        console.warn(`Error reading reset CSS file: ${fileName}. ${JSON.stringify({ error })}`)
+        return ''
+      }
 
-        return wrapToLayer(prefix, 'reset', content)
-      },
-      layer: `${prefix}reset`,
-    }
+      return wrapToLayer(prefix, 'reset', content)
+    },
+    layer: `${prefix}reset`,
+  }
 
-    const { preflight = true, staticContent = false } = options
-    const preflights: Preset['preflights'] = [
-      resetLayer,
-      {
-        layer: `${prefix}colors`,
-        getCSS: () => wrapToLayer(prefix, 'colors', readContent('colors')),
-      },
-    ]
+  const { preflight = true, staticContent = false } = options
+  const preflights: Preset['preflights'] = [
+    resetLayer,
+    {
+      layer: `${prefix}colors`,
+      getCSS: () => wrapToLayer(prefix, 'colors', readContent('colors')),
+    },
+  ]
 
-    if (staticContent) {
-      preflights.push({
-        layer: `${prefix}static-content`,
-        getCSS: () => wrapToLayer(prefix, 'static-content', readContent('static-content').replaceAll(/\.nq-/g, `.${prefix}`)),
-      })
-    }
+  if (staticContent) {
+    preflights.push({
+      layer: `${prefix}static-content`,
+      getCSS: () => wrapToLayer(prefix, 'static-content', readContent('static-content').replaceAll(/\.nq-/g, `.${prefix}`)),
+    })
+  }
 
-    if (preflight) {
-      preflights.push({
-        layer: `${prefix}preflight`,
-        getCSS: () => wrapToLayer(prefix, 'preflight', readContent('preflight').replaceAll(/\.nq-/g, `.${prefix}`)),
-      })
-    }
+  if (preflight) {
+    preflights.push({
+      layer: `${prefix}preflight`,
+      getCSS: () => wrapToLayer(prefix, 'preflight', readContent('preflight').replaceAll(/\.nq-/g, `.${prefix}`)),
+    })
+  }
 
-    const { utilities = false, typography = false } = options
+  const { utilities = false, typography = false } = options
 
-    const rules: Rule<Theme>[] = []
-  
+  const rules: Rule<Theme>[] = []
 
-    // The only way to add gradients is via rules
-    for (const [key, gradient, color] of gradients) {
-      const backgroundImage = { 'background-image': gradient }
-      const background = { 'background-color': colors[color as NimiqColor]?.DEFAULT || color } // This is the fallback color
-      rules.push([
-        key,
-        { ...background, ...backgroundImage },
-        { layer: `${prefix}colors` },
-      ])
-    }
+  // The only way to add gradients is via rules
+  for (const [key, gradient, color] of gradients) {
+    const backgroundImage = { 'background-image': gradient }
+    const background = { 'background-color': colors[color as NimiqColor]?.DEFAULT || color } // This is the fallback color
+    rules.push([
+      key,
+      { ...background, ...backgroundImage },
+      { layer: `${prefix}colors` },
+    ])
+  }
 
-    if (utilities) {
-      const { rules: _rules, rulesNames: _rulesNames } = cssToRules('utilities', { convertToAttributes: options.attributifyUtilities, prefix })
-      rulesNames.push(..._rulesNames)
-      rules.push(..._rules)
-      // keyframes
-      const getCSS = () => extractAtRule('utilities')
-      preflights.push({ layer: `${prefix}utilities`, getCSS })
-    }
+  if (utilities) {
+    const { rules: _rules, rulesNames: _rulesNames } = cssToRules('utilities', { convertToAttributes: options.attributifyUtilities, prefix })
+    rulesNames.push(..._rulesNames)
+    rules.push(..._rules)
+    // keyframes
+    const getCSS = () => extractAtRule('utilities')
+    preflights.push({ layer: `${prefix}utilities`, getCSS })
+  }
 
-    if (typography) {
-      const { rules: _rules, rulesNames: _rulesNames, preflight } = cssToRules('typography', { convertToAttributes: false, prefix })
-      rulesNames.push(..._rulesNames)
-      rules.push(..._rules)
-      preflights.push(preflight)
-    }
+  if (typography) {
+    const { rules: _rules, rulesNames: _rulesNames, preflight } = cssToRules('typography', { convertToAttributes: false, prefix })
+    rulesNames.push(..._rulesNames)
+    rules.push(..._rules)
+    preflights.push(preflight)
+  }
 
-    const { fonts = true } = options
-    const presets: Preset['presets'] = []
+  const { fonts = true } = options
+  const presets: Preset['presets'] = []
 
-    if (fonts !== false) {
-      const processors = fonts === true ? createLocalFontProcessor() : createLocalFontProcessor(fonts)
-      presets.push(
-        presetWebFonts({
-          provider: 'google',
-          fonts: {
-            sans: 'Mulish:400,600,700',
-            mono: 'Fira Code:400',
-          },
-          // This will download the fonts and serve them locally
-          processors,
-        }),
-      )
-    }
+  if (fonts !== false) {
+    const processors = fonts === true ? createLocalFontProcessor() : createLocalFontProcessor(fonts)
+    presets.push(
+      presetWebFonts({
+        provider: 'google',
+        fonts: {
+          sans: 'Mulish:400,600,700',
+          mono: 'Fira Code:400',
+        },
+        // This will download the fonts and serve them locally
+        processors,
+      }),
+    )
+  }
 
-    const variantLayer = `${prefix}variants`
-    const variants: Preset['variants'] = [
-      (matcher) => {
-        if (!matcher.startsWith('inverted:'))
-          return matcher
-        return {
-          matcher: matcher.slice(9),
-          selector: s =>
-            `:where(.inverted,[data-inverted])${s}, :where(.inverted,[data-inverted]) ${s}`,
-          layer: variantLayer,
-        }
-      },
-      (matcher) => {
-        if (!matcher.startsWith('hocus:'))
-          return matcher
-        return {
-          matcher: matcher.replace(/^hocus:/, ''),
-          selector: s => `${s}:hover, ${s}:focus-visible`,
-          layer: variantLayer,
-        }
-      },
-      (matcher) => {
-        if (!matcher.startsWith('group-hocus:'))
-          return matcher
-        return {
-          matcher: matcher.slice(12),
-          selector: s => `:where(.group,[group]):hover ${s}, :where(.group,[group]):focus ${s}`,
-          layer: variantLayer,
-        }
-      },
-      (matcher) => {
-        if (!matcher.startsWith('leader-hocus:'))
-          return matcher
-        return {
-          matcher: matcher.slice(13),
-          selector: (s) =>
-            `*:has(> :where(.leader,[leader]):where(:hover,:focus-visible)) ${s}`,
-        }
-      },
-      (matcher) => {
-        if (!matcher.startsWith('selected:'))
-          return matcher
-        return {
-          matcher: matcher.slice(9),
-          selector: s => `[data-selected]${s}, [data-selected] ${s}`,
-          layer: variantLayer,
-        }
-      },
-      (matcher) => {
-        if (!matcher.startsWith('not-selected:'))
-          return matcher
-        return {
-          matcher: matcher.slice(13),
-          selector: s => `:not([data-selected]), :not([data-selected]) ${s}`,
-          layer: variantLayer,
-        }
-      },
-      (matcher) => {
-        if (!matcher.startsWith('global-dark:'))
-          return matcher
-        return {
-          matcher: matcher.slice('global-dark:'.length),
-          selector: s => `html.dark ${s}`,
-          layer: variantLayer,
-        }
-      },
-
-      // For Radix. Maybe they should be in a separate preset
-      (matcher) => {
-        const motionVariants = ['from-start', 'to-start', 'from-end', 'to-end']
-        for (const variant of motionVariants) {
-          if (matcher.startsWith(`motion-${variant}:`)) {
-            return {
-              matcher: matcher.slice(`motion-${variant}:`.length),
-              selector: s => `[data-motion=${variant}]${s}`,
-              layer: variantLayer,
-            }
-          }
-        }
+  const variantLayer = `${prefix}variants`
+  const variants: Preset['variants'] = [
+    (matcher) => {
+      if (!matcher.startsWith('inverted:'))
         return matcher
-      },
-      (matcher) => {
-        const dataStates = ['open', 'visible', 'hidden', 'closed', 'active']
-        for (const state of dataStates) {
-          const prefix = `data-${state}:`
-          if (matcher.startsWith(prefix)) {
-            return {
-              matcher: matcher.slice(prefix.length),
-              // Ensures styles apply only to elements with data-state=${state} that don't contain nested data-state elements.  
-              selector: (s) => `[data-state=${state}]:not(:has([data-state])) ${s}, [data-state=${state}]:not(:has([data-state]))${s}`,
-              layer: variantLayer,
-            }
+      return {
+        matcher: matcher.slice(9),
+        selector: s =>
+          `:where(.inverted,[data-inverted])${s}, :where(.inverted,[data-inverted]) ${s}`,
+        layer: variantLayer,
+      }
+    },
+    (matcher) => {
+      if (!matcher.startsWith('hocus:'))
+        return matcher
+      return {
+        matcher: matcher.replace(/^hocus:/, ''),
+        selector: s => `${s}:hover, ${s}:focus-visible`,
+        layer: variantLayer,
+      }
+    },
+    (matcher) => {
+      if (!matcher.startsWith('group-hocus:'))
+        return matcher
+      return {
+        matcher: matcher.slice(12),
+        selector: s => `:where(.group,[group]):hover ${s}, :where(.group,[group]):focus ${s}`,
+        layer: variantLayer,
+      }
+    },
+    (matcher) => {
+      if (!matcher.startsWith('leader-hocus:'))
+        return matcher
+      return {
+        matcher: matcher.slice(13),
+        selector: s =>
+          `*:has(> :where(.leader,[leader]):where(:hover,:focus-visible)) ${s}`,
+      }
+    },
+    (matcher) => {
+      if (!matcher.startsWith('selected:'))
+        return matcher
+      return {
+        matcher: matcher.slice(9),
+        selector: s => `[data-selected]${s}, [data-selected] ${s}`,
+        layer: variantLayer,
+      }
+    },
+    (matcher) => {
+      if (!matcher.startsWith('not-selected:'))
+        return matcher
+      return {
+        matcher: matcher.slice(13),
+        selector: s => `:not([data-selected]), :not([data-selected]) ${s}`,
+        layer: variantLayer,
+      }
+    },
+    (matcher) => {
+      if (!matcher.startsWith('global-dark:'))
+        return matcher
+      return {
+        matcher: matcher.slice('global-dark:'.length),
+        selector: s => `html.dark ${s}`,
+        layer: variantLayer,
+      }
+    },
+
+    // For Radix. Maybe they should be in a separate preset
+    (matcher) => {
+      const motionVariants = ['from-start', 'to-start', 'from-end', 'to-end']
+      for (const variant of motionVariants) {
+        if (matcher.startsWith(`motion-${variant}:`)) {
+          return {
+            matcher: matcher.slice(`motion-${variant}:`.length),
+            selector: s => `[data-motion=${variant}]${s}`,
+            layer: variantLayer,
           }
         }
-      },
-    ]
+      }
+      return matcher
+    },
+    (matcher) => {
+      const dataStates = ['open', 'visible', 'hidden', 'closed', 'active']
+      for (const state of dataStates) {
+        const prefix = `data-${state}:`
+        if (matcher.startsWith(prefix)) {
+          return {
+            matcher: matcher.slice(prefix.length),
+            // Ensures styles apply only to elements with data-state=${state} that don't contain nested data-state elements.
+            selector: s => `[data-state=${state}]:not(:has([data-state])) ${s}, [data-state=${state}]:not(:has([data-state]))${s}`,
+            layer: variantLayer,
+          }
+        }
+      }
+    },
+  ]
 
-    // Define the order of the CSS layers
-    const layerDefinition: Preflight = {
-      layer: `${prefix}layer-definition`,
-      getCSS: () => {
-        const layers = [
-          reset && 'reset',
-          'colors',
-          preflight && 'preflight',
-          staticContent && 'static-content',
-          typography && 'typography',
-          utilities && 'utilities',
-          'variants', // To ensure that the rules that have variants are applied after the rules that don't have variants
-        ].filter(Boolean) as string[]
+  // Define the order of the CSS layers
+  const layerDefinition: Preflight = {
+    layer: `${prefix}layer-definition`,
+    getCSS: () => {
+      const layers = [
+        reset && 'reset',
+        'colors',
+        preflight && 'preflight',
+        staticContent && 'static-content',
+        typography && 'typography',
+        utilities && 'utilities',
+        'variants', // To ensure that the rules that have variants are applied after the rules that don't have variants
+      ].filter(Boolean) as string[]
 
-        return `@layer ${layers.map(layer => `${prefix}${layer}`).join(', ')};`
-      },
-    }
-    preflights.unshift(layerDefinition)
-    
-    const autocompleteStaticContent: string[] = staticContent ? ['no-max-width', 'no-color', 'overlaps', 'heading-lg', 'section-gap'].map(u => `${prefix}${u}`) : []
-    const autocompletePreflight = ['nq-no-color']
+      return `@layer ${layers.map(layer => `${prefix}${layer}`).join(', ')};`
+    },
+  }
+  preflights.unshift(layerDefinition)
 
-    const preset: Preset = {
-      name: 'nimiq-preset',
-      preflights,
-      variants,
-      theme: {
-        colors,
-        fontFamily: {
-          sans: 'Mulish',
-          mono: 'Fira Code',
-        },
-        boxShadow: {
-          DEFAULT: 'var(--nq-shadow)',
-          lg: 'var(--nq-shadow-lg)',
-        },
-        easing: {
-          nq: 'var(--nq-ease)',
-        },
+  const autocompleteStaticContent: string[] = staticContent ? ['no-max-width', 'no-color', 'overlaps', 'heading-lg', 'section-gap'].map(u => `${prefix}${u}`) : []
+  const autocompletePreflight = ['nq-no-color']
+
+  const preset: Preset = {
+    name: 'nimiq-preset',
+    preflights,
+    variants,
+    theme: {
+      colors,
+      fontFamily: {
+        sans: 'Mulish',
+        mono: 'Fira Code',
       },
-      autocomplete: {
-        templates: [...rulesNames, ...autocompletePreflight, ...autocompleteStaticContent],
+      boxShadow: {
+        DEFAULT: 'var(--nq-shadow)',
+        lg: 'var(--nq-shadow-lg)',
       },
-      presets,
-      rules,
-      layers: {
-        [`${prefix}layer-definition`]: -101,
-        [`${prefix}reset`]: -100,
-        [`${prefix}colors`]: -50,
-        [`${prefix}preflight`]: -40,
-        components: -1,
-        [`${prefix}static-content`]: 200,
-        [`${prefix}spacing`]: 230,
-        [`${prefix}typography`]: 250,
-        [`${prefix}utilities`]: 300,
-        default: 400,
-        utilities: 500,
-        [`${prefix}variants`]: 600,
+      easing: {
+        nq: 'var(--nq-ease)',
       },
-    }
-    return preset
+    },
+    autocomplete: {
+      templates: [...rulesNames, ...autocompletePreflight, ...autocompleteStaticContent],
+    },
+    presets,
+    rules,
+    layers: {
+      [`${prefix}layer-definition`]: -101,
+      [`${prefix}reset`]: -100,
+      [`${prefix}colors`]: -50,
+      [`${prefix}preflight`]: -40,
+      components: -1,
+      [`${prefix}static-content`]: 200,
+      [`${prefix}spacing`]: 230,
+      [`${prefix}typography`]: 250,
+      [`${prefix}utilities`]: 300,
+      default: 400,
+      utilities: 500,
+      [`${prefix}variants`]: 600,
+    },
+  }
+  return preset
 })
 
 export default presetNimiq

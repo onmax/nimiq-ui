@@ -3,12 +3,12 @@
     "target": "ESNext",
     "jsx": "react-jsx",
     "lib": ["ESNext"],
-    "types": ["node"],
     "moduleDetection": "force",
     "module": "ESNext",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
+    "types": ["node"],
     "allowImportingTsExtensions": true,
     "allowJs": true,
     "strict": true,

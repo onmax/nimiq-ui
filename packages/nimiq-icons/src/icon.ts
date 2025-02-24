@@ -50,7 +50,7 @@ function processIcon(iconSet: IconSet, variant: IconVariant, name: string) {
   if (isLogo(variant)) {
     const monoSvg = new SVG(svg.toMinifiedString())
     parseColors(monoSvg, {
-      defaultColor:  'currentColor',
+      defaultColor: 'currentColor',
       callback: (attr, colorStr, color) => {
         if (!color) // color === null, so color cannot be parsed. Return colorStr to keep old value
           return colorStr
@@ -59,7 +59,8 @@ function processIcon(iconSet: IconSet, variant: IconVariant, name: string) {
           return color
 
         return 'currentColor'
-      }, fixErrors: true
+      },
+      fixErrors: true,
     })
     const randomId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
     const newMonoName = `${newName}-mono`

@@ -62,7 +62,7 @@ The following components are automatically styled
 
 ### 3. Replace the classes
 
-| Old Class | New Class |
-| --- | --- |
-| `.nq-label` | `.label` |
-| `` | `` |
+| Old Class   | New Class |
+| ----------- | --------- |
+| `.nq-label` | `.label`  |
+| ``          | ``        |

@@ -42,3 +42,10 @@ Thumbs.db
 
 # Local Netlify folder
 .netlify
+
+**/.vitepress/cache/
+**/.vitepress/dist
+
+.vite-inspect
+
+.eslintcache

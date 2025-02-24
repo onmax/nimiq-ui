@@ -32,11 +32,23 @@
   --nq-neutral-on-dark-900: 209 209 213;
   --nq-neutral-on-light-gradient-from: oklch(27.37% 0.068 276.29);
   --nq-neutral-on-light-gradient-to: oklch(20.18% 0.0962 315.41);
-  --nq-neutral-on-light-gradient: radial-gradient(100% 100% at 100% 100%, var(--nq-neutral-on-light-gradient-from) 0%, var(--nq-neutral-on-light-gradient-to) 100%);
+  --nq-neutral-on-light-gradient: radial-gradient(
+    100% 100% at 100% 100%,
+    var(--nq-neutral-on-light-gradient-from) 0%,
+    var(--nq-neutral-on-light-gradient-to) 100%
+  );
   --nq-neutral-on-dark-gradient-from: oklch(15.53% 0.075 316.25);
   --nq-neutral-on-dark-gradient-to: oklch(22.21% 0.0524 276.47);
-  --nq-neutral-on-dark-gradient: radial-gradient(at 100% 100%, var(--nq-neutral-on-dark-gradient-from) 0%, var(--nq-neutral-on-dark-gradient-to) 100%);
-  --nq-neutral-on-dark-gradient: radial-gradient(100% 100% at 100% 100%, var(--nq-neutral-on-dark-gradient-from) 0%, var(--nq-neutral-on-dark-gradient-to) 100%);
+  --nq-neutral-on-dark-gradient: radial-gradient(
+    at 100% 100%,
+    var(--nq-neutral-on-dark-gradient-from) 0%,
+    var(--nq-neutral-on-dark-gradient-to) 100%
+  );
+  --nq-neutral-on-dark-gradient: radial-gradient(
+    100% 100% at 100% 100%,
+    var(--nq-neutral-on-dark-gradient-from) 0%,
+    var(--nq-neutral-on-dark-gradient-to) 100%
+  );
 
   --nq-blue-on-light: 5 130 202;
   --nq-blue-on-light-400: 230 242 250;
@@ -50,16 +62,32 @@
   --nq-blue-on-dark-1100: 12 166 254;
   --nq-blue-on-light-gradient-from: oklch(51.82% 0.1965 263.04);
   --nq-blue-on-light-gradient-to: oklch(58.49% 0.1438 244.29);
-  --nq-blue-on-light-gradient: radial-gradient(at 100% 100%, var(--nq-blue-on-light-gradient-from) 0%, var(--nq-blue-on-light-gradient-to) 100%);
+  --nq-blue-on-light-gradient: radial-gradient(
+    at 100% 100%,
+    var(--nq-blue-on-light-gradient-from) 0%,
+    var(--nq-blue-on-light-gradient-to) 100%
+  );
   --nq-blue-on-light-gradient-darkened-from: oklch(48.57% 0.182 263.07);
   --nq-blue-on-light-gradient-darkened-to: oklch(54.04% 0.153 250.02);
-  --nq-blue-on-light-gradient-darkened: radial-gradient(at 100% 100%, var(--nq-blue-on-light-gradient-darkened-from), var(--nq-blue-on-light-gradient-darkened-to));
+  --nq-blue-on-light-gradient-darkened: radial-gradient(
+    at 100% 100%,
+    var(--nq-blue-on-light-gradient-darkened-from),
+    var(--nq-blue-on-light-gradient-darkened-to)
+  );
   --nq-blue-on-dark-gradient-from: oklch(60.45% 0.1951 255.01);
   --nq-blue-on-dark-gradient-to: oklch(69.82% 0.1694 243.83);
-  --nq-blue-on-drak-gradient: linear-gradient(at 100% 100%, var(--nq-blue-on-dark-gradient-from) 0%, var(--nq-blue-on-dark-gradient-to) 100%);
+  --nq-blue-on-drak-gradient: linear-gradient(
+    at 100% 100%,
+    var(--nq-blue-on-dark-gradient-from) 0%,
+    var(--nq-blue-on-dark-gradient-to) 100%
+  );
   --nq-blue-on-dark-gradient-darkened-from: oklch(57.55% 0.1828 254.79);
   --nq-blue-on-dark-gradient-darkened-to: oklch(65.46% 0.1583 243.94);
-  --nq-blue-on-dark-gradient-darkened: radial-gradient(at 100% 100%, var(--nq-blue-on-dark-gradient-darkened-from) 0%, var(--nq-blue-on-dark-gradient-darkened-to) 100%);
+  --nq-blue-on-dark-gradient-darkened: radial-gradient(
+    at 100% 100%,
+    var(--nq-blue-on-dark-gradient-darkened-from) 0%,
+    var(--nq-blue-on-dark-gradient-darkened-to) 100%
+  );
 
   --nq-green-on-light: 19 181 157;
   --nq-green-on-light-400: 231 247 245;
@@ -73,16 +101,32 @@
   --nq-green-on-dark-1100: 36 204 162;
   --nq-green-on-light-gradient-from: oklch(65.17% 0.0971 176.55);
   --nq-green-on-light-gradient-to: rgb(var(--nq-green-on-light));
-  --nq-green-on-light-gradient: radial-gradient(at 100% 100%, var(--nq-green-on-light-gradient-from) 0%, var(--nq-green-on-light-gradient-to) 100%);
+  --nq-green-on-light-gradient: radial-gradient(
+    at 100% 100%,
+    var(--nq-green-on-light-gradient-from) 0%,
+    var(--nq-green-on-light-gradient-to) 100%
+  );
   --nq-green-on-light-gradient-darkened-from: oklch(62.31% 0.0909 178.94);
   --nq-green-on-light-gradient-darkened-to: oklch(68.73% 0.1184 180.55);
-  --nq-green-on-light-gradient-darkened: radial-gradient(at 100% 100%, var(--nq-green-on-light-gradient-darkened-from), var(--nq-green-on-light-gradient-darkened-to));
+  --nq-green-on-light-gradient-darkened: radial-gradient(
+    at 100% 100%,
+    var(--nq-green-on-light-gradient-darkened-from),
+    var(--nq-green-on-light-gradient-darkened-to)
+  );
   --nq-green-on-dark-gradient-from: oklch(71.42% 0.1457 167.35);
   --nq-green-on-dark-gradient-to: oklch(75.5% 0.1426 170.23);
-  --nq-green-on-dark-gradient: radial-gradient(at 100% 100%, var(--nq-green-on-dark-gradient-from) 0%, var(--nq-green-on-dark-gradient-to) 100%);
+  --nq-green-on-dark-gradient: radial-gradient(
+    at 100% 100%,
+    var(--nq-green-on-dark-gradient-from) 0%,
+    var(--nq-green-on-dark-gradient-to) 100%
+  );
   --nq-green-on-dark-gradient-darkened-from: oklch(71.42% 0.1457 167.35);
   --nq-green-on-dark-gradient-darkened-to: oklch(69.71% 0.1299 170.59);
-  --nq-green-on-dark-gradient-darkened: radial-gradient(at 100% 100%, var(--nq-green-on-dark-gradient-darkened-from) 0%, var(--nq-green-on-dark-gradient-darkened-to) 100%);
+  --nq-green-on-dark-gradient-darkened: radial-gradient(
+    at 100% 100%,
+    var(--nq-green-on-dark-gradient-darkened-from) 0%,
+    var(--nq-green-on-dark-gradient-darkened-to) 100%
+  );
 
   --nq-orange-on-light: 252 135 2;
   --nq-orange-on-light-400: 248 237 223;
@@ -94,22 +138,38 @@
   --nq-orange-on-dark-500: 69 50 34;
   --nq-orange-on-dark-600: 81 56 32;
   --nq-orange-on-dark-1100: 255 153 0;
-  --nq-orange-on-light-gradient: radial-gradient(at 100% 100%, #FD6216, rgb(var(--nq-orange-on-light)));
-  --nq-orange-on-light-gradient-darkened: radial-gradient(at 100% 100%, #EA5200, #FC7500);
+  --nq-orange-on-light-gradient: radial-gradient(at 100% 100%, #fd6216, rgb(var(--nq-orange-on-light)));
+  --nq-orange-on-light-gradient-darkened: radial-gradient(at 100% 100%, #ea5200, #fc7500);
   --nq-orange-on-dark-gradient: radial-gradient(at 100% 100%, #ff8800 0%, #ff9900 100%);
   --nq-orange-on-dark-gradient-darkened: radial-gradient(at 100% 100%, #ff8800 0%, #f29202 100%);
   --nq-orange-on-light-gradient-from: oklch(68.83% 0.2036 41.13);
   --nq-orange-on-light-gradient-to: rgb(var(--nq-orange-on-light));
-  --nq-orange-on-light-gradient: radial-gradient(at 100% 100%, var(--nq-orange-on-light-gradient-from) 0%, var(--nq-orange-on-light-gradient-to) 100%);
+  --nq-orange-on-light-gradient: radial-gradient(
+    at 100% 100%,
+    var(--nq-orange-on-light-gradient-from) 0%,
+    var(--nq-orange-on-light-gradient-to) 100%
+  );
   --nq-orange-on-light-gradient-darkened-from: oklch(63.87% 0.2 40.09);
   --nq-orange-on-light-gradient-darkened-to: oklch(71.15% 0.1903 49.18);
-  --nq-orange-on-light-gradient-darkened: radial-gradient(at 100% 100%, var(--nq-orange-on-light-gradient-darkened-from), var(--nq-orange-on-light-gradient-darkened-to));
+  --nq-orange-on-light-gradient-darkened: radial-gradient(
+    at 100% 100%,
+    var(--nq-orange-on-light-gradient-darkened-from),
+    var(--nq-orange-on-light-gradient-darkened-to)
+  );
   --nq-orange-on-dark-gradient-from: oklch(74.42% 0.1811 56.46);
   --nq-orange-on-dark-gradient-to: oklch(77.2% 0.1737 64.55);
-  --nq-orange-on-dark-gradient: radial-gradient(at 100% 100%, var(--nq-orange-on-dark-gradient-from) 0%, var(--nq-orange-on-dark-gradient-to) 100%);
+  --nq-orange-on-dark-gradient: radial-gradient(
+    at 100% 100%,
+    var(--nq-orange-on-dark-gradient-from) 0%,
+    var(--nq-orange-on-dark-gradient-to) 100%
+  );
   --nq-orange-on-dark-gradient-darkened-from: oklch(74.42% 0.1811 56.46);
   --nq-orange-on-dark-gradient-darkened-to: oklch(74.38% 0.1665 65.03);
-  --nq-orange-on-dark-gradient-darkened: radial-gradient(at 100% 100%, var(--nq-orange-on-dark-gradient-darkened-from) 0%, var(--nq-orange-on-dark-gradient-darkened-to) 100%);
+  --nq-orange-on-dark-gradient-darkened: radial-gradient(
+    at 100% 100%,
+    var(--nq-orange-on-dark-gradient-darkened-from) 0%,
+    var(--nq-orange-on-dark-gradient-darkened-to) 100%
+  );
 
   --nq-red-on-light: 217 68 50;
   --nq-red-on-light-400: 251 236 234;
@@ -123,16 +183,32 @@
   --nq-red-on-dark-1100: 255 92 72;
   --nq-red-on-light-gradient-from: oklch(55.99% 0.1909 18.32);
   --nq-red-on-light-gradient-to: oklch(59.8% 0.1886 30.3);
-  --nq-red-on-light-gradient: radial-gradient(at 100% 100%, var(--nq-red-on-light-gradient-from) 0%, var(--nq-red-on-light-gradient-to) 100%);
+  --nq-red-on-light-gradient: radial-gradient(
+    at 100% 100%,
+    var(--nq-red-on-light-gradient-from) 0%,
+    var(--nq-red-on-light-gradient-to) 100%
+  );
   --nq-red-on-light-gradient-darkened-from: oklch(53.44% 0.1811 16.77);
   --nq-red-on-light-gradient-darkened-to: oklch(56.53% 0.1974 26.27);
-  --nq-red-on-light-gradient-darkened: radial-gradient(at 100% 100%, var(--nq-red-on-light-gradient-darkened-from), var(--nq-red-on-light-gradient-darkened-to));
+  --nq-red-on-light-gradient-darkened: radial-gradient(
+    at 100% 100%,
+    var(--nq-red-on-light-gradient-darkened-from),
+    var(--nq-red-on-light-gradient-darkened-to)
+  );
   --nq-red-on-dark-gradient-from: oklch(65.15% 0.2353 31.02);
   --nq-red-on-dark-gradient-to: oklch(68.81% 0.201 30.028);
-  --nq-red-on-dark-gradient: radial-gradient(at 100% 100%, var(--nq-red-on-dark-gradient-from) 0%, var(--nq-red-on-dark-gradient-to) 100%);
+  --nq-red-on-dark-gradient: radial-gradient(
+    at 100% 100%,
+    var(--nq-red-on-dark-gradient-from) 0%,
+    var(--nq-red-on-dark-gradient-to) 100%
+  );
   --nq-red-on-dark-gradient-darkened-from: oklch(65.15% 0.2353 31.02);
   --nq-red-on-dark-gradient-darkened-to: oklch(66.33% 0.1852 30.4);
-  --nq-red-on-dark-gradient-darkened: radial-gradient(at 100% 100%, var(--nq-red-on-dark-gradient-darkened-from) 0%, var(--nq-red-on-dark-gradient-darkened-to) 100%);
+  --nq-red-on-dark-gradient-darkened: radial-gradient(
+    at 100% 100%,
+    var(--nq-red-on-dark-gradient-darkened-from) 0%,
+    var(--nq-red-on-dark-gradient-darkened-to) 100%
+  );
 
   --nq-gold-on-light: 233 178 19;
   --nq-gold-on-light-400: 253 247 231;
@@ -146,16 +222,32 @@
   --nq-gold-on-dark-1100: 255 196 59;
   --nq-gold-on-light-gradient-from: oklch(74.94% 0.1565 69.51);
   --nq-gold-on-light-gradient-to: rgb(var(--nq-gold-on-light));
-  --nq-gold-on-light-gradient: radial-gradient(at 100% 100%, var(--nq-gold-on-light-gradient-from) 0%, var(--nq-gold-on-light-gradient-to) 100%);
+  --nq-gold-on-light-gradient: radial-gradient(
+    at 100% 100%,
+    var(--nq-gold-on-light-gradient-from) 0%,
+    var(--nq-gold-on-light-gradient-to) 100%
+  );
   --nq-gold-on-light-gradient-darkened-from: oklch(71.43% 0.1554 63.42);
   --nq-gold-on-light-gradient-darkened-to: oklch(75.75% 0.1547 78.24);
-  --nq-gold-on-light-gradient-darkened: radial-gradient(at 100% 100%, var(--nq-gold-on-light-gradient-darkened-from), var(--nq-gold-on-light-gradient-darkened-to));
+  --nq-gold-on-light-gradient-darkened: radial-gradient(
+    at 100% 100%,
+    var(--nq-gold-on-light-gradient-darkened-from),
+    var(--nq-gold-on-light-gradient-darkened-to)
+  );
   --nq-gold-on-dark-gradient-from: oklch(81.63% 0.1548 72.79);
-  --nq-gold-on-dark-gradient-to: oklch(85.17% 0.15 83.76); 
-  --nq-gold-on-dark-gradient: radial-gradient(at 100% 100%, var(--nq-gold-on-dark-gradient-from) 0%, var(--nq-gold-on-dark-gradient-to) 100%);
+  --nq-gold-on-dark-gradient-to: oklch(85.17% 0.15 83.76);
+  --nq-gold-on-dark-gradient: radial-gradient(
+    at 100% 100%,
+    var(--nq-gold-on-dark-gradient-from) 0%,
+    var(--nq-gold-on-dark-gradient-to) 100%
+  );
   --nq-gold-on-dark-gradient-darkened-from: oklch(81.63% 0.1548 72.79);
   --nq-gold-on-dark-gradient-darkened-to: oklch(82.21% 0.1507 83.64);
-  --nq-gold-on-dark-gradient-darkened: radial-gradient(at 100% 100%, var(--nq-gold-on-dark-gradient-darkened-from) 0%, var(--nq-gold-on-dark-gradient-darkened-to) 100%);
+  --nq-gold-on-dark-gradient-darkened: radial-gradient(
+    at 100% 100%,
+    var(--nq-gold-on-dark-gradient-darkened-from) 0%,
+    var(--nq-gold-on-dark-gradient-darkened-to) 100%
+  );
 
   --nq-purple-on-light: 95 75 139;
   --nq-purple-on-light-400: 239 237 243;
@@ -249,10 +341,9 @@
   --nq-purple-600: var(--nq-purple-on-light-600);
 }
 
-
 .dark,
-&[data-theme="dark"],
-:where(.bg-darkblue &, &:where(.bg-darkblue,[bg-darkblue])),
+&[data-theme='dark'],
+:where(.bg-darkblue &, &:where(.bg-darkblue, [bg-darkblue])),
 :where(.bg-neutral &, &:where(.bg-neutral, [bg-neutral])),
 :where(.bg-darkerblue &, &:where(.bg-darkerblue, [bg-darkerblue])) {
   --nq-neutral: var(--nq-neutral-on-dark);

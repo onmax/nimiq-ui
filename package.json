@@ -9,20 +9,37 @@
   "scripts": {
     "preview:build": "",
     "build": "rimraf packages/*/dist --glob && pnpm -r --filter=./packages/* run build  && cp -r ./packages/nimiq-css/src/css ./packages/nimiq-css/dist/css/unminified",
-    "dev": "pnpm run dev:packages && pnpm run --filter=./apps/preview dev",
-    "dev:packages": "pnpm --filter=./packages/nimiq-css --parallel run dev",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "dev": "pnpm run dev:packages && pnpm run --filter=./docs dev",
+    "dev:packages": "pnpm --filter=./packages/{nimiq-css,nimiq-vitepress-theme} --parallel run dev",
+    "lint": "eslint --cache .",
+    "lint:fix": "eslint --cache --fix ."
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
+  "workspaces": [
+    "packages/*",
+    "docs"
+  ],
   "devDependencies": {
     "@antfu/eslint-config": "^4.3.0",
+    "@types/node": "^22.13.4",
+    "@unocss/eslint-config": "^66.0.0",
+    "@unocss/eslint-plugin": "^66.0.0",
     "bumpp": "^10.0.3",
     "eslint": "^9.20.1",
-    "nimiq-css": "workspace:*",
-    "nimiq-icons": "workspace:*",
-    "rimraf": "^6.0.1"
+    "eslint-plugin-format": "^1.0.1",
+    "rimraf": "^6.0.1",
+    "typescript": "~5.7.3",
+    "vite": "catalog:"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "catalog:"
+    },
+    "neverBuiltDependencies": []
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm packages:stub && pnpm lint-staged && pnpm typecheck"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }

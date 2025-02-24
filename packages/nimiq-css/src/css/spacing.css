@@ -1,7 +1,6 @@
-/* 
+/*
 For UnoCSS use https://github.com/onmax/unocss-preset-fluid-sizing
 */
-
 
 :root {
   /* Viewport widths */
@@ -45,7 +44,6 @@ For UnoCSS use https://github.com/onmax/unocss-preset-fluid-sizing
   --f-pr-fluid: calc(1px * var(--f-pr-min) + var(--f-pr-range) * var(--f-space-scale-factor));
   --f-pr: clamp(calc(1px * var(--f-pr-min)), var(--f-pr-fluid), calc(var(--f-pr-max) * 1px));
 }
-
 
 .nq-mt-12 {
   --f-mt-min: 8;
@@ -845,7 +843,6 @@ For UnoCSS use https://github.com/onmax/unocss-preset-fluid-sizing
   --f-pb-min: 144;
   --f-pb-max: 200;
 }
-
 
 .nq-mt-12,
 .nq-mt-16,

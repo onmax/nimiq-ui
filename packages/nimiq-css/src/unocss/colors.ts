@@ -40,7 +40,7 @@ export function getNimiqColors() {
         600: `rgb(var(--nq-${NimiqColor.Blue}-600))`,
         1100: `rgb(var(--nq-${NimiqColor.Blue}-1100))`,
 
-        'sss': `rgb(var(--nq-${NimiqColor.Blue}-sss))`,
+        sss: `rgb(var(--nq-${NimiqColor.Blue}-sss))`,
       },
       [NimiqColor.Green]: {
         DEFAULT: `rgb(var(--nq-${NimiqColor.Green}))`,

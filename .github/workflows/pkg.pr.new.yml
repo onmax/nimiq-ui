@@ -56,4 +56,3 @@ jobs:
           git add dist --force
           git commit -m "Updated icons"
           git push
-   

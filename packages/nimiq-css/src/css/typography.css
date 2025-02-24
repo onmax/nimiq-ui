@@ -4,8 +4,12 @@
   --nq-m-max: 0;
 
   /* Viewport widths */
-  --nq-margin-width-min: 320;
-  --nq-margin-width-max: 1152;
+  --nq-screen-width-min: 320;
+  --nq-screen-width-max: 1152;
+
+  /* Base font sizes */
+  --font-size-min: 16;
+  --font-size-max: 16;
 }
 
 /**
@@ -32,11 +36,18 @@
 
   * {
     /* Margin calculation */
-    --nq-margin-width-range: calc(var(--nq-margin-width-max) - var(--nq-margin-width-min));
-    --nq-margin-scale-factor: calc((100vw - (1px * var(--nq-margin-width-min))) / var(--nq-margin-width-range));
+    --nq-margin-width-range: calc(var(--nq-screen-width-max) - var(--nq-screen-width-min));
+    --nq-margin-scale-factor: calc((100vw - (1px * var(--nq-screen-width-min))) / var(--nq-margin-width-range));
     --nq-m-range: calc(var(--nq-m-max) - var(--nq-m-min));
     --nq-m-fluid: calc(1px * var(--nq-m-min) + var(--nq-m-range) * var(--nq-margin-scale-factor));
     --nq-m-size: clamp(calc(1px * var(--nq-m-min)), var(--nq-m-fluid), calc(var(--nq-m-max) * 1px));
+
+    /* Font size calculation */
+    --f-font-width-range: calc(var(--nq-screen-width-max) - var(--nq-screen-width-min));
+    --f-font-scale-factor: calc((100vw - (1px * var(--nq-screen-width-min))) / var(--f-font-width-range));
+    --font-size-range: calc(var(--font-size-max) - var(--font-size-min));
+    --font-size-fluid: calc(1px * var(--font-size-min) + var(--font-size-range) * var(--f-font-scale-factor));
+    --font-size: clamp(calc(1px * var(--font-size-min)), var(--font-size-fluid), calc(var(--font-size-max) * 1px));
   }
 
   >*:first-child {
@@ -48,10 +59,9 @@
     margin-bottom: 0;
   }
 
-
   *:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)) {
     line-height: 1.5;
-    max-width: 780px;
+    max-width: var(--nq-prose-max-width, 780px);
     margin-left: auto;
     margin-right: auto;
 
@@ -61,11 +71,9 @@
       font-size: var(--font-size);
       line-height: 1.5;
       font-weight: 700;
-
-      margin-top: 144px;
     }
 
-    &:where(h1+*:not(:where(h1, h2, h3, h4))) {
+    &:where(h1 + *:not(:where(h1, h2, h3, h4))) {
       --nq-m-min: 112;
       --nq-m-max: 120;
       margin-top: var(--nq-m-size);
@@ -83,7 +91,7 @@
       --nq-m-min: 88;
       --nq-m-max: 96;
 
-      &:where(h1+h2) {
+      &:where(h1 + h2) {
         --nq-m-min: 40;
         --nq-m-max: 48;
       }
@@ -101,7 +109,7 @@
       --nq-m-min: 88;
       --nq-m-max: 96;
 
-      &:where(h2+h3) {
+      &:where(h2 + h3) {
         --nq-m-min: 32;
         --nq-m-max: 36;
       }
@@ -120,7 +128,7 @@
       --nq-m-max: 96;
     }
 
-    &:where(h3+h4) {
+    &:where(h3 + h4) {
       --nq-m-min: 32;
       --nq-m-max: 36;
     }
@@ -244,7 +252,7 @@
         font-weight: 700;
         line-height: 1.3125;
 
-        :where(.dark, [data-theme="dark"]) & {
+        :where(.dark, [data-theme='dark']) & {
           color: rgb(var(--nq-white) / 0.8);
         }
       }
@@ -280,7 +288,7 @@
           color: rgb(var(--nq-neutral-700));
           margin: 8px 24px 24px;
 
-          :where(.dark, [data-theme="dark"]) & {
+          :where(.dark, [data-theme='dark']) & {
             color: rgb(var(--nq-white) / 0.8);
           }
 
@@ -382,7 +390,7 @@
         }
 
         &::before {
-          content: counters(item, ".");
+          content: counters(item, '.');
           font-weight: 700;
           display: inline-block;
           margin-right: 12px;
@@ -400,7 +408,7 @@
             counter-increment: subitem;
 
             &::before {
-              content: counters(item, ".") "." counter(subitem);
+              content: counters(item, '.') '.' counter(subitem);
               top: 0;
               left: -32px;
             }

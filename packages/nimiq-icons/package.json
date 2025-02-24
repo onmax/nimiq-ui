@@ -11,16 +11,16 @@
   "main": "index.js",
   "scripts": {
     "dev": "bun src/index.ts",
-    "build": "esno src/index.ts"
+    "build": "bun src/index.ts"
   },
   "dependencies": {
-    "@iconify/tools": "^4.0.4",
-    "@iconify/utils": "^2.1.25",
-    "jsdom": "^24.1.0"
+    "@iconify/tools": "^4.1.1",
+    "@iconify/utils": "^2.3.0",
+    "jsdom": "^26.0.0"
   },
   "devDependencies": {
-    "@total-typescript/ts-reset": "^0.5.1",
+    "@total-typescript/ts-reset": "^0.6.1",
     "@types/jsdom": "^21.1.7",
-    "esno": "^4.7.0"
+    "esno": "^4.8.0"
   }
 }

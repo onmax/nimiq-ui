@@ -9,7 +9,7 @@ The [Nimiq Styles Framework](https://github.com/nimiq/nimiq-style/tree/master) i
 The [Nimiq Styles Framework](https://github.com/nimiq/nimiq-style/tree/master) is currently the main CSS framework used in Nimiq. This library has been the main inspiration for the new `nimiq-cs` library and has been a part of it from the beginning. It is designed to be as compatible as possible, with a clear migration path. However, there are some breaking changes due to the lack of usage of classes/features implemented by the old library. These breaking changes are highly opinionated, so if you don't like some of the changes or have better ideas, please let me know and we'll change them.
 
 One of the biggest changes in this new library is the use of [CSS layers](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer). This allows us to have a more modular and scalable library. Another big change is the use of a new brand palette and support for dark mode with `.dark` class.
- You can learn more about the new library in a [post I wrote](https://onmax.github.io/onmax/posts/the-evolution-of-nimiq-UI/).
+You can learn more about the new library in a [post I wrote](https://onmax.github.io/onmax/posts/the-evolution-of-nimiq-UI/).
 
 Now, the new `nimiq-css` library is being developed to replace the old Nimiq Styles Framework. With simplicity, flexibility and scalability in mind, the new library is being developed to be more modular and easier to use. In this guide, you can see my recommendation to make the migration to `nimiq-css`. The guide is offered in steps, so you migrate to the new library progressively, one set of classes at a time, or all at once.
 
@@ -74,8 +74,8 @@ The following components are automatically styled in the [preflight.css](https:/
 
 ## 3. Replace the classes
 
-| Old Class | New Class |
-| --- | --- |
+| Old Class      | New Class       |
+| -------------- | --------------- |
 | `.nq-shadow-l` | `.nq-shadow-lg` |
 
 There are more "atomic" classes. You can see it in [atomic.css](https://github.com/onmax/nimiq-ui/tree/main/packages/nimiq-css/src/css/atomic.css).
@@ -84,109 +84,106 @@ There are more "atomic" classes. You can see it in [atomic.css](https://github.c
 
 One of the goals of `nimiq-css` is to allow classes to be used in a more explicit way. So it is always preferable to use the classes in a more explicit way.
 
-| Old Class | New Class |
-| --- | --- |
-| `.nq-notice.success` | `.nq-notice.text-green` |
-| `.nq-notice.warning` | `.nq-notice.text-orange` |
-| `.nq-notice.error` | `.nq-notice.text-red` |
-| `.nq-notice.info` | `.nq-notice.text-blue` |
-| `.nq-blue` | `.text-neutral` (darkblue in light mode and white in dark mode) |
-| `.nq-light-blue` | `.text-blue` |
-| `.nq-gold` | `.text-gold` |
-| `.nq-green` | `.text-green` |
-| `.nq-orange` | `.text-orange` |
-| `.nq-red` | `.text-red` |
-| `.nq-purple` | `.text-purple` |
-| `.nq-pink` | Deleted since it is only used in the wallet |
-| `.nq-light-green` | Deleted since it is only used in the wallet |
-| `.nq-brown` | Deleted since it is only used in the wallet |
-| `.nq-blue-bg` | `.bg-gradient-neutral` (darkblue in light mode and white in dark mode) |
-| `.nq-grey` | `.bg-neutral-200` (You can see all the neutral options: 50,100,200, ... ,800, 900,1100) |
-| `.nq-light-blue-bg` | `.bg-blue` |
-| `.nq-gold-bg` | `.bg-gold` |
-| `.nq-green-bg` | `.bg-green` |
-| `.nq-orange-bg` | `.bg-orange` |
-| `.nq-red-bg` | `.bg-red` |
-| `.nq-purple-bg` | `.bg-purple` |
-| `.nq-pink-bg` | Deleted since it is only used in the wallet |
-| `.nq-light-green-bg` | Deleted since it is only used in the wallet |
-| `.nq-brown-bg` | Deleted since it is only used in the wallet |
+| Old Class            | New Class                                                                               |
+| -------------------- | --------------------------------------------------------------------------------------- |
+| `.nq-notice.success` | `.nq-notice.text-green`                                                                 |
+| `.nq-notice.warning` | `.nq-notice.text-orange`                                                                |
+| `.nq-notice.error`   | `.nq-notice.text-red`                                                                   |
+| `.nq-notice.info`    | `.nq-notice.text-blue`                                                                  |
+| `.nq-blue`           | `.text-neutral` (darkblue in light mode and white in dark mode)                         |
+| `.nq-light-blue`     | `.text-blue`                                                                            |
+| `.nq-gold`           | `.text-gold`                                                                            |
+| `.nq-green`          | `.text-green`                                                                           |
+| `.nq-orange`         | `.text-orange`                                                                          |
+| `.nq-red`            | `.text-red`                                                                             |
+| `.nq-purple`         | `.text-purple`                                                                          |
+| `.nq-pink`           | Deleted since it is only used in the wallet                                             |
+| `.nq-light-green`    | Deleted since it is only used in the wallet                                             |
+| `.nq-brown`          | Deleted since it is only used in the wallet                                             |
+| `.nq-blue-bg`        | `.bg-gradient-neutral` (darkblue in light mode and white in dark mode)                  |
+| `.nq-grey`           | `.bg-neutral-200` (You can see all the neutral options: 50,100,200, ... ,800, 900,1100) |
+| `.nq-light-blue-bg`  | `.bg-blue`                                                                              |
+| `.nq-gold-bg`        | `.bg-gold`                                                                              |
+| `.nq-green-bg`       | `.bg-green`                                                                             |
+| `.nq-orange-bg`      | `.bg-orange`                                                                            |
+| `.nq-red-bg`         | `.bg-red`                                                                               |
+| `.nq-purple-bg`      | `.bg-purple`                                                                            |
+| `.nq-pink-bg`        | Deleted since it is only used in the wallet                                             |
+| `.nq-light-green-bg` | Deleted since it is only used in the wallet                                             |
+| `.nq-brown-bg`       | Deleted since it is only used in the wallet                                             |
 
 With `nimiq-css`, a new palette of colors has been implemented. You can also use the CSS variables as follows: `rgb(var(--nq-neutral-900) / 0.8)`. You need to wrap it in `rgb()` to use it as a color.
 
 #### 3.2 Buttons & Pills
 
-| Old Class | New Class |
-| --- | --- |
-| `.nq-button` | `.nq-pill-xl` + `.nq-pill-{COLOR}` |
-| `.nq-button-s` | `.nq-pill-secondary` |
-| `.nq-button-s.light-blue` | Deleted |
-| `.nq-button-s.green` | Deleted |
-| `.nq-button-s.orange` | Deleted |
-| `.nq-button-s.red` | Deleted |
-| N/A | `.nq-pill-tertiary` |
-| `.nq-button-pill` | Deleted |
-| `.nq-button-pill.light-blue` | `.nq-pill-blue` |
-| `.nq-button-pill.green` | `.nq-pill-green` |
-| `.nq-button-pill.orange` | `.nq-pill-orange` |
-| `.nq-button-pill.red` | `.nq-pill-red` |
-| `.nq-button-pill.gold` | `.nq-pill-gold` |
-| `.nq-button-pill.disabled` | Use the `disabled` state in `<button>` |
+| Old Class                      | New Class                                         |
+| ------------------------------ | ------------------------------------------------- |
+| `.nq-button`                   | `.nq-pill-xl` + `.nq-pill-{COLOR}`                |
+| `.nq-button-s`                 | `.nq-pill-secondary`                              |
+| `.nq-button-s.light-blue`      | Deleted                                           |
+| `.nq-button-s.green`           | Deleted                                           |
+| `.nq-button-s.orange`          | Deleted                                           |
+| `.nq-button-s.red`             | Deleted                                           |
+| N/A                            | `.nq-pill-tertiary`                               |
+| `.nq-button-pill`              | Deleted                                           |
+| `.nq-button-pill.light-blue`   | `.nq-pill-blue`                                   |
+| `.nq-button-pill.green`        | `.nq-pill-green`                                  |
+| `.nq-button-pill.orange`       | `.nq-pill-orange`                                 |
+| `.nq-button-pill.red`          | `.nq-pill-red`                                    |
+| `.nq-button-pill.gold`         | `.nq-pill-gold`                                   |
+| `.nq-button-pill.disabled`     | Use the `disabled` state in `<button>`            |
 | `.nq-button-{s\|pill}.inverse` | Add `.dark` in any parent element or self element |
 
-* There are 3 pill sizes. The default pill just use `.nq-pill-{COLOR|VARIANT}` like pill-green or pill-secondary. If you need other sizes you can use pill-lg or pill-xl.
+- There are 3 pill sizes. The default pill just use `.nq-pill-{COLOR|VARIANT}` like pill-green or pill-secondary. If you need other sizes you can use pill-lg or pill-xl.
 
 #### 3.3 Card
 
-| Old Class | New Class | Comments |
-| --- | --- | --- |
-| `.nq-card-header` | `.nq-card <header>` | A container with `.nq-card` and a children with `<header>` |
-| `.nq-card-header .nq-h1` | `.nq-card <header> h1` | A container with `.nq-card` and a children with `<header>` and a children with `h1` |
+| Old Class                    | New Class                      | Comments                                                                                    |
+| ---------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------- |
+| `.nq-card-header`            | `.nq-card <header>`            | A container with `.nq-card` and a children with `<header>`                                  |
+| `.nq-card-header .nq-h1`     | `.nq-card <header> h1`         | A container with `.nq-card` and a children with `<header>` and a children with `h1`         |
 | `.nq-card-header .nq-notice` | `.nq-card <header> .nq-notice` | A container with `.nq-card` and a children with `<header>` and a children with `.nq-notice` |
-| `.nq-card-body` | `section` | A container with `.nq-card` and a children with `<section>` |
-| `.nq-card-footer` | `.nq-card <footer>` | A container with `.nq-card` and a children with `<footer>` |
+| `.nq-card-body`              | `section`                      | A container with `.nq-card` and a children with `<section>`                                 |
+| `.nq-card-footer`            | `.nq-card <footer>`            | A container with `.nq-card` and a children with `<footer>`                                  |
 
-```html
-
-Before:
-
-```html
+````html
+Before: ```html
 <div class="nq-card">
-    <div class="nq-card-header">
-        <h1 class="nq-h1">Card Header</h1>
-    </div>
-    <div class="nq-card-body">
-        <p>Card Body</p>
-    </div>
-    <div class="nq-card-footer">
-        <a>Card Footer</a>
-    </div>
+  <div class="nq-card-header">
+    <h1 class="nq-h1">Card Header</h1>
+  </div>
+  <div class="nq-card-body">
+    <p>Card Body</p>
+  </div>
+  <div class="nq-card-footer">
+    <a>Card Footer</a>
+  </div>
 </div>
-```
+````
 
 After
 
 ```html
 <div class="nq-card">
-   <header>
-       <h1>Card Header</h1>
-    </header>
-    <section>
-        <p>Card Body</p>
-    </section>
-    <footer>
-        <a>Card Footer</a>
-    </footer>
+  <header>
+    <h1>Card Header</h1>
+  </header>
+  <section>
+    <p>Card Body</p>
+  </section>
+  <footer>
+    <a>Card Footer</a>
+  </footer>
 </div>
 ```
 
 #### Text inputs
 
-| Old Class | New Class |
-| --- | --- |
-| `.nq-input-s` | Deleted |
-| `.nq-input` | `<input type="text">` or `<textarea>` |
-| `.vanishing` | Deleted |
+| Old Class     | New Class                             |
+| ------------- | ------------------------------------- |
+| `.nq-input-s` | Deleted                               |
+| `.nq-input`   | `<input type="text">` or `<textarea>` |
+| `.vanishing`  | Deleted                               |
 
 #### 4. Removed classes and styles
 

@@ -1,21 +1,21 @@
-/* 
+/*
 This file contains atomic CSS classes for styling elements. These classes are very powerful for applying styles, but are only available when using CSS directly. If you're using a library with plugin integration, such as TailwindCSS or UnoCSS, you'll need to use the classes provided by those libraries.
 */
 
 .flex-grow {
-  flex-grow: 1
+  flex-grow: 1;
 }
 
 .flex-grow-half {
-  flex-grow: 0.5
+  flex-grow: 0.5;
 }
 
 .flex-grow-double {
-  flex-grow: 2
+  flex-grow: 2;
 }
 
 .hidden {
-  visibility: hidden
+  visibility: hidden;
 }
 
 .display-none {
