@@ -1,0 +1,39 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.4.1",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "dependencies": {
+    "reka-ui": "^2.0.0",
+    "unocss": "^66.0.0",
+    "vite-plugin-inspect": "^11.0.0",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317",
+    "@iconify-json/tabler": "^1.2.16",
+    "@iconify/utils": "^2.3.0",
+    "@unocss/reset": "^66.0.0",
+    "@vueuse/core": "^12.7.0",
+    "nimiq-css": "workspace:^",
+    "nimiq-vitepress-theme": "workspace:^",
+    "pathe": "^2.0.3",
+    "unocss-preset-fluid-sizing": "^0.0.17",
+    "unocss-preset-scale-px": "^0.0.2",
+    "unplugin-icons": "^22.1.0",
+    "vite": "catalog:",
+    "vite-plugin-vue-devtools": "^7.7.2",
+    "vitepress": "^2.0.0-alpha.2",
+    "vue": "^3.5.13"
+  }
+}

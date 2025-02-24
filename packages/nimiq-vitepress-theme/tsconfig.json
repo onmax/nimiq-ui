@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "outDir": "./dist",
+    "lib": ["DOM"],
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.mts",
+    "./src/**/*.tsx",
+    "./src/**/*.d.ts",
+    "./src/**/*.vue"
+  ],
+  "exclude": [
+    "**/dist/**",
+    "node_modules"
+  ]
+}

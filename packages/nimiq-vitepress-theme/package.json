@@ -1,0 +1,82 @@
+{
+  "name": "nimiq-vitepress-theme",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@10.2.1",
+  "description": "Nimiq UI theme for VitePress",
+  "author": "onmax",
+  "license": "MIT",
+  "homepage": "https://github.com/onmax/nimiq-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onmax/nimiq-ui.git"
+  },
+  "bugs": "https://github.com/onmax/nimiq-ui/issues",
+  "keywords": [
+    "nimiq",
+    "nimiq-ui",
+    "nimiq-theme",
+    "vitepress",
+    "vitepress-theme"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./style.css": "./dist/style.css",
+    "./*": {
+      "types": "./dist/*",
+      "import": "./dist/*.mjs",
+      "require": "./dist/*.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "*",
+        "dist/*",
+        "dist/*.d.ts",
+        "dist/*/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "README.md",
+    "dist",
+    "package.json"
+  ],
+  "scripts": {
+    "dev": "unbuild --stub",
+    "build": "unbuild",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "peerDependencies": {
+    "vitepress": "^1.5.0 || ^2.0.0-alpha.2"
+  },
+  "dependencies": {
+    "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317",
+    "@vueuse/core": "^12.7.0",
+    "reka-ui": "^2.0.0",
+    "vue": "catalog:"
+  },
+  "devDependencies": {
+    "@iconify/utils": "^2.1.25",
+    "@unocss/cli": "^66.0.0",
+    "@unocss/reset": "^66.0.0",
+    "@unocss/transformer-directives": "^66.0.0",
+    "nimiq-css": "workspace:*",
+    "pathe": "^2.0.3",
+    "unbuild": "^3.3.1",
+    "unocss": "^66.0.0",
+    "unocss-preset-fluid-sizing": "^0.0.17",
+    "unocss-preset-scale-px": "^0.0.2"
+  }
+}
