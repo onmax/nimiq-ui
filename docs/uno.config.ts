@@ -7,7 +7,7 @@ import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 
 export default defineConfig({
   content: {
-    filesystem: ['.vitepress/**config.ts', '../**/**.{vue,md}', '.vitepress/theme/components/**/*.vue'],
+    filesystem: ['./.vitepress/config.ts', '../**/*.{vue,md}', './theme/components/**/*.vue', './config.ts'],
   },
   presets: [
     presetWind3(),
@@ -26,6 +26,7 @@ export default defineConfig({
     presetIcons({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/nimiq'),
+        ...createExternalPackageIconLoader('@iconify-json/tabler'),
         custom: FileSystemIconLoader('./public/assets/icons'),
       },
     }),

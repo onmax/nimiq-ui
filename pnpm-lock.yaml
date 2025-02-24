@@ -231,6 +231,9 @@ importers:
         specifier: 'catalog:'
         version: 3.5.13(typescript@5.7.3)
     devDependencies:
+      '@iconify-json/tabler':
+        specifier: ^1.2.16
+        version: 1.2.16
       '@iconify/utils':
         specifier: ^2.1.25
         version: 2.3.0

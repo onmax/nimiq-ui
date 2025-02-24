@@ -4,19 +4,27 @@ export interface NimiqVitepressSidebar {
     text: string
     link?: string
     icon: string
-    items?: { text: string, link: string} []
+    items?: { text: string, link: string }[]
   }[]
 }
 
-
+export interface NimiqVitepressThemeNav {
+  /**
+   * The string displayed in the selector.
+   */
+  text: string
+  /**
+   * The path to the sub-module. If you want to link to the root of the module, use `/`.
+   */
+  subpath: string
+  icon?: string
+  defaultPageLink: string
+  description?: string
+  sidebar: NimiqVitepressSidebar[]
+}
 
 export interface NimiqVitepressThemeConfig {
-  nav?: {
-    text: string
-    link: string
-    icon?: string
-  }[]
-  sidebar: NimiqVitepressSidebar[]
+  modules: NimiqVitepressThemeNav[]
   socialLinks?: {
     icon: string
     link: string

@@ -1,8 +1,8 @@
 # Migrate from Nimiq Styles Framework to `nimiq-css`
 
-In this page, we show how we suggest the new classes to be used [Nimiq Style Framework](https://nimiq.github.io/nimiq-style/demo.html) with the new `nimiq-css` library.
+Convert [Nimiq Style Framework](https://nimiq.github.io/nimiq-style/demo.html) CSS classes to `nimiq-css`.
 
-`nimiq-css` also supports UnoCSS now and will suport Tailwind v4 in the future.
+> `nimiq-css` also supports UnoCSS now and will suport Tailwind v4 in the future.
 
 The [Nimiq Styles Framework](https://github.com/nimiq/nimiq-style/tree/master) is the current main CSS framework used at Nimiq. This library has been the main inspipration for the new `nimiq-css` library. This library has has been built with that in mind. It is designed to be as compatible as possible with a clear path for migration. However, there are some breaking changes due to the lack of usage of classes/features implemented by the old Library. These breaking changes are highly opinioned, so if you don't agree with some of the changes or you have better ideas, please let me know and we let's change it.
 
