@@ -3,7 +3,7 @@
     --font-size-min: 32;
     --font-size-max: 40;
     margin-bottom: 1rem;
-    
+
     + p {
       font-size: 1.25em;
       margin-bottom: 2.75rem;

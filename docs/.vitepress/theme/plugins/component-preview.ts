@@ -1,20 +1,21 @@
+import type { MarkdownEnv, MarkdownRenderer } from 'vitepress'
 import { dirname, resolve } from 'node:path'
-import type { MarkdownRenderer, MarkdownEnv } from 'vitepress'
 
-export const rawPathRegexp =
-  /^(.+?(?:\.([a-z0-9]+))?)(#[\w-]+)?(?: ?\{(\d+(?:[,-]\d+)*)? ?(\S+)?\})? ?(?:\[(.+)\])?$/
+export const rawPathRegexp
+  = /^(.+?(?:\.([a-z0-9]+))?)(#[\w-]+)?(?: ?\{(\d+(?:[,-]\d+)*)? ?(\S+)?\})? ?(?:\[(.+)\])?$/
 
 export default function (md: MarkdownRenderer) {
   md.core.ruler.after('inline', 'component-preview', (state) => {
     const insertComponentImport = (importString: string) => {
       const index = state.tokens.findIndex(i =>
-        i.type === 'html_block' && i.content.match(/<script setup>/g)
+        i.type === 'html_block' && i.content.match(/<script setup>/g),
       )
       if (index === -1) {
         const importToken = new state.Token('html_block', '', 0)
         importToken.content = `<script setup>\n${importString}\n</script>\n`
         state.tokens.unshift(importToken)
-      } else {
+      }
+      else {
         const content = state.tokens[index].content
         state.tokens[index].content = content.replace('</script>', `${importString}\n</script>`)
       }

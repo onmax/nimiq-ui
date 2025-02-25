@@ -1,5 +1,5 @@
 export interface NimiqVitepressSidebar {
-  label: string
+  label?: string
   items: {
     text: string
     link?: string

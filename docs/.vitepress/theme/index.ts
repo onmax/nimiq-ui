@@ -1,5 +1,4 @@
-import type { Theme } from 'vitepress'
-import type { EnhanceAppContext } from 'vitepress'
+import type { EnhanceAppContext, Theme } from 'vitepress'
 import { Layout } from 'nimiq-vitepress-theme'
 
 import ComponentPreview from './components/ComponentPreview.vue'
@@ -11,5 +10,5 @@ export default {
   Layout,
   enhanceApp({ app }: EnhanceAppContext) {
     app.component('ComponentPreview', ComponentPreview)
-  }
+  },
 } satisfies Theme

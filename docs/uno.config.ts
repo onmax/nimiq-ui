@@ -1,9 +1,9 @@
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
-import { presetNimiq } from '../packages/nimiq-css/src/index'
 import { defineConfig, presetAttributify, presetIcons, presetWind3, transformerDirectives } from 'unocss'
 import { presetFluidSizing } from 'unocss-preset-fluid-sizing'
 import { presetScalePx } from 'unocss-preset-scale-px'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
+import { presetNimiq } from '../packages/nimiq-css/src/index'
 
 export default defineConfig({
   content: {

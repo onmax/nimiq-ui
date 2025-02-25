@@ -1,7 +1,6 @@
 # Nimiq Frankenstein
 
-
-A collection of Vue 3 components built for different projects, but designed to be as reusable as possible. 
+A collection of Vue 3 components built for different projects, but designed to be as reusable as possible.
 
 <div class="i-nimiq:fire" />
 
@@ -28,5 +27,3 @@ A collection of useful Vue composition functions. You can find more information 
 ### Nimiq CSS
 
 A UnoCSS preset that I've built for the Nimiq ecosystem. You can find more information on the [Nimiq CSS](/nimiq-css) page.
-
-

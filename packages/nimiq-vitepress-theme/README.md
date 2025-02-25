@@ -23,7 +23,7 @@ Vitepress Theme for Nimiq documentation pages
 
 ## Git Data Performance
 
-The git data feature fetches information about files from git history, which can be slow for large repositories. 
+The git data feature fetches information about files from git history, which can be slow for large repositories.
 To improve performance, the script implements:
 
 1. **Caching**: File information is cached in `.vitepress/cache/git-data-cache.json`

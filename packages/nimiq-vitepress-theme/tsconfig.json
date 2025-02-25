@@ -1,11 +1,11 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "lib": ["DOM"],
     "declaration": true,
     "emitDeclarationOnly": true,
     "noEmit": false,
-    "outDir": "./dist",
-    "lib": ["DOM"],
+    "outDir": "./dist"
   },
   "include": [
     "./src/**/*.ts",

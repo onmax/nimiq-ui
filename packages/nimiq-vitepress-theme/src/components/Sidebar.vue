@@ -54,7 +54,6 @@ const submoduleNavigatorOpen = ref(false)
 
       <DefineNavItem v-slot="{ item: { text, subpath, defaultPageLink, icon, description }, component }">
         <component :is="component"  :href="defaultPageLink" f-text-xs py-6 pl-12 pr-16 rounded-6 w-full hocus:bg-neutral-300 transition-colors :class="{ 'font-bold text-blue bg-blue-500': isActive(subpath), 'grid-cols-[max-content_1fr]':!!icon }" grid="~ rows-2 gap-x-12 items-center">
-          <div aria-hidden absolute inset-y-8 left-12 bg-blue rounded-full w-2 z-2 v-if="isActive(defaultPageLink)" />
           <div :class="icon" block size-28 row-span-full v-if="icon" />
           <span flex-1 text-left>{{ text }}</span>
           <p v-if="description" text="left f-xs" text-neutral-800>{{ description }}</p>
@@ -87,7 +86,7 @@ const submoduleNavigatorOpen = ref(false)
         <ul>
           <li v-for="item in currentDocModule.sidebar" :key="item.label" f-pb-xs>
             <template v-if="item.items?.length">
-              <span nq-label text-11 text-neutral-700>
+              <span nq-label text-11 text-neutral-700 v-if="item.label">
                 {{ item.label }}
               </span>
               <div v-for="subitem in item.items" :key="subitem.text" mt-4>

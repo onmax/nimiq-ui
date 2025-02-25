@@ -1,3 +1,3 @@
 # Nimiq CSS
 
-An awesome Nimiq CSS library 
+An awesome Nimiq CSS library

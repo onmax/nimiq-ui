@@ -2,7 +2,6 @@
 
 A useful set of CSS rules to style website with static content.
 
-
 ## Usage
 
 ```css

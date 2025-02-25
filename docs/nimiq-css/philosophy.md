@@ -18,11 +18,11 @@ Remember that this library does not include full components or any JavaScript in
 2. They are not modular (even though is small). You have to include the whole library to use a single component. You don't have CSS layers
 3. Missing colors, typography, and other utilities. The library was built for the Nimiq Safe and barely has not been updated since then. My work has been focused in new apps where the design is different.
 4. With this library I can add my own features and customizations without the fear of breaking the official library. Here are some features that Nimiq Styles does not provide:
-  1. Light and dark mode support
-  2. Typography rules
-  3. Nice `preflight` rules
-  4. CSS layer for our Static content pages
-  5. A lot of new utilities like `nq-pill` or `nq-arrow` 
+5. Light and dark mode support
+6. Typography rules
+7. Nice `preflight` rules
+8. CSS layer for our Static content pages
+9. A lot of new utilities like `nq-pill` or `nq-arrow`
 
 If you still depend on Nimiq Styles, you can also use `nimiq-css/css/legacy` without the `8px` rule so you can use both libraries together. Read the [migration guide](./migration).
 
