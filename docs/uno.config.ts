@@ -16,7 +16,7 @@ export default defineConfig({
       utilities: true,
       attributifyUtilities: true,
       fonts: {
-        fontAssetsDir: '../public/assets/fonts',
+        fontAssetsDir: './public/assets/fonts',
         fontServeBaseUrl: 'assets/fonts',
       },
       typography: true,
