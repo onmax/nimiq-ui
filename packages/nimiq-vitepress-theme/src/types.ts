@@ -29,4 +29,6 @@ export interface NimiqVitepressThemeConfig {
     icon: string
     link: string
   }[]
+  gitUrl?: string | { $resolve: (path: string) => { link: string, text: string } }
+  showLastUpdated?: boolean
 }

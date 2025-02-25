@@ -59,7 +59,7 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {
-    "vitepress": "^1.5.0 || ^2.0.0-alpha.2"
+    "vitepress": "^1.5.0 || ^2.0.0-alpha.3"
   },
   "dependencies": {
     "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317",
@@ -69,10 +69,13 @@
   },
   "devDependencies": {
     "@iconify/utils": "^2.1.25",
+    "@types/cross-spawn": "^6.0.6",
     "@unocss/cli": "^66.0.0",
     "@unocss/reset": "^66.0.0",
     "@unocss/transformer-directives": "^66.0.0",
+    "cross-spawn": "^7.0.6",
     "nimiq-css": "workspace:*",
+    "p-map": "^7.0.3",
     "pathe": "^2.0.3",
     "unbuild": "^3.3.1",
     "unocss": "^66.0.0",

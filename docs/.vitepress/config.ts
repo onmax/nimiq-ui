@@ -70,7 +70,9 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
     ],
     socialLinks: [
       { 'icon': 'i-nimiq:logos-github-mono', link: 'https://github.com/onmax/nimiq-ui' }
-    ]
+    ],
+    gitUrl: 'https://github.com/onmax/nimiq-ui',
+    showLastUpdated: true,
   },
   markdown: {
     preConfig(md) {
