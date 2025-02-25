@@ -65,7 +65,8 @@
     "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317",
     "@vueuse/core": "^12.7.0",
     "reka-ui": "^2.0.0",
-    "vue": "catalog:"
+    "vue": "catalog:",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
     "@iconify/utils": "^2.1.25",

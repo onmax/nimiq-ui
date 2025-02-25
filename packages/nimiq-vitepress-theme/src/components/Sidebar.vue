@@ -44,7 +44,7 @@ const submoduleNavigatorOpen = ref(false)
 </script>
 
 <template>
-  <aside z-20 w-full of="x-hidden y-auto" fixed inset-y-0 left-0 overscroll-contain bg-neutral-100 flex="~ col">
+  <aside z-20 w-full of="x-hidden y-auto" fixed inset-y-0 left-0 overscroll-contain bg-neutral-100 flex="~ col" border="l-1 neutral-300">
     <div f-p-xs flex-1>
       <Logo />
       <CommandMenu f-mt-sm />

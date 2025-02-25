@@ -106,4 +106,4 @@ We can always discuss about adding more options if you need them. Open an [issue
 ## Credits
 
 - The layout has been heavily inspired by the [Fumadocs](https://fumadocs.vercel.app/docs/ui) theme.
--cInspired by the work of the [Nimiq Hub documentation](https://www.nimiqhub.com/docs/learn).
+- Inspired by the work of the [Nimiq Hub documentation](https://www.nimiqhub.com/docs/learn).

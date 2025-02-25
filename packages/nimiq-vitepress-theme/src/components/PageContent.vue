@@ -6,6 +6,7 @@ import type { NimiqVitepressThemeConfig } from '../types';
 import { data } from '../git.data'
 import { ref, computed, watchEffect, onMounted } from 'vue'
 import { useTimeAgo } from '@vueuse/core';
+import { useOutline } from '../composables/useOutline'
 
 const { theme, lang } = useData<NimiqVitepressThemeConfig>()
 
@@ -34,31 +35,56 @@ onMounted(() => {
 
 const showEditContent = computed(() => theme.value.showEditContent !== false)
 const showLastUpdated = computed(() => theme.value.showLastUpdated !== false)
+
+const { headingTree, isHeadingActive } = useOutline()
 </script>
 
 <template>
-  <div f-px-xl f-pt-xl f-pb-md flex="~ col" h-full>
-    <article class="nq-prose" style="--nq-prose-max-width: none">
-      <Content max-w-none />
-    </article>
-    <div mt-auto px-32 flex="~ items-center justify-between" f-text-md un-f-text-xs v-if="showEditContent || showLastUpdated">
-      <a :href="editUrl" v-if="editUrl && showEditContent" target="_blank" rel="noopener" op70 nq-arrow lh-0>
-        Edit this page on GitHub
-      </a>
-      <div v-else></div> <!-- Empty placeholder to maintain flex spacing when edit link is hidden -->
-      
-      <p v-if="showLastUpdated" text-neutral-700>
-        Updated
-        {{ ago }}
-        on
-        <time :datetime="isoDatetime" font-semibold>{{ datetime }}</time>
-        <span v-if="shortHash && commitUrl" ml-1 font-mono text-neutral-800>
-          (<a :href="commitUrl" target="_blank" rel="noopener" un-text="neutral-800 hocus:neutral-900" transition-colors underline="~ dotted offset-3">
-            {{ shortHash }}
-          </a>)
-        </span>
-        <span v-else-if="shortHash" ml-1 font-mono text-neutral-800>({{ shortHash }})</span>
-      </p>
+  <div f-px-xl f-pt-xl f="$px $px-min-48 $px-max-72" f-pb-md flex="~ gap-48" relative h-full>
+    <div flex="~ col" h-full flex-1>
+      <article flex-1 class="nq-prose" style="--nq-prose-max-width: none"
+        w="[calc(100vw-2*var(--nq-sidebar-width)-2*var(--f-px))]">
+        <Content max-w-none />
+      </article>
+      <div mt-auto px-32 flex="~ items-center justify-between" f-text-md un-f-text-xs
+        v-if="showEditContent || showLastUpdated">
+        <a :href="editUrl" v-if="editUrl && showEditContent" target="_blank" rel="noopener" op70 nq-arrow lh-0>
+          Edit this page on GitHub
+        </a>
+        <div v-else></div>
+
+        <p v-if="showLastUpdated" text-neutral-700>
+          Updated
+          {{ ago }}
+          on
+          <time :datetime="isoDatetime" font-semibold>{{ datetime }}</time>
+          <span v-if="shortHash && commitUrl" ml-1 font-mono text-neutral-800>
+            (<a :href="commitUrl" target="_blank" rel="noopener" un-text="neutral-800 hocus:neutral-900"
+              transition-colors underline="~ dotted offset-3">
+              {{ shortHash }}
+            </a>)
+          </span>
+          <span v-else-if="shortHash" ml-1 font-mono text-neutral-800>({{ shortHash }})</span>
+        </p>
+      </div>
+    </div>
+    <div min-w-286 f-text-xs sticky f-top-xl h-max v-if="headingTree.length > 0" f-px-sm>
+      <div text-neutral-700 flex="~ gap-8 items-center">
+        <div i-tabler:align-left />
+        On this page
+      </div>
+      <ol list-none min-w="$nq-sidebar-width" f-mt-xs text-neutral-800>
+        <li v-for="h2 in headingTree" :key="h2.hashPath" flex="~ col" pb-4>
+          <a :href="'#' + h2.hashPath" px-6 py-4 :class="{ 'text-blue font-semibold': isHeadingActive(h2.hashPath) }">{{ h2.text
+            }}</a>
+          <ol v-if="h2.items.length">
+            <li v-for="h3 in h2.items" :key="h3.hashPath" flex="~ col">
+              <a :href="'#' + h3.hashPath" font-normal p-4 pl-14
+                :class="{ 'text-blue font-semibold': isHeadingActive(h3.hashPath) }">{{ h3.text }}</a>
+            </li>
+          </ol>
+        </li>
+      </ol>
     </div>
   </div>
 </template>

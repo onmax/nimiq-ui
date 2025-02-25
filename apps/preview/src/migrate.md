@@ -36,7 +36,7 @@ That's it! You are ready to start using the new `nimiq-css` library.
 
 If you also rely on the icons from the `@nimiq/styles` package, you should continue to use them. However, another alternative is being developed, `nimiq-icons`, but it is still in development.
 
-## 1. Import the library
+## Import the library
 
 So far, we have only imported the `legacy.css` file which contain all of the old code. Now, if you want to start using the new styles, you should also add the following imports:
 
@@ -52,7 +52,7 @@ You can see the content of this file in the [index.css](https://github.com/onmax
 
 You can learn about the new colors palette and the names in the [Developer Center](https://nimiq.com/developers).
 
-## 2. Automatic styles
+## Automatic styles
 
 In the previous version, you had to add the `nq-style` class to a container or use specific classes to apply the styles. Now, some of the styles are applied automatically using HTML elements as selectors.
 
@@ -72,7 +72,7 @@ The following components are automatically styled in the [preflight.css](https:/
 - `<code>` and `<pre>` elements.
 - `<input type="text">` and `<textarea>` elements. You can remove `.nq-input`.
 
-## 3. Replace the classes
+## Replace the classes
 
 | Old Class      | New Class       |
 | -------------- | --------------- |
@@ -80,7 +80,7 @@ The following components are automatically styled in the [preflight.css](https:/
 
 There are more "atomic" classes. You can see it in [atomic.css](https://github.com/onmax/nimiq-ui/tree/main/packages/nimiq-css/src/css/atomic.css).
 
-#### 3.1 Explicit classes
+### Explicit classes
 
 One of the goals of `nimiq-css` is to allow classes to be used in a more explicit way. So it is always preferable to use the classes in a more explicit way.
 
@@ -114,7 +114,7 @@ One of the goals of `nimiq-css` is to allow classes to be used in a more explici
 
 With `nimiq-css`, a new palette of colors has been implemented. You can also use the CSS variables as follows: `rgb(var(--nq-neutral-900) / 0.8)`. You need to wrap it in `rgb()` to use it as a color.
 
-#### 3.2 Buttons & Pills
+### Buttons & Pills
 
 | Old Class                      | New Class                                         |
 | ------------------------------ | ------------------------------------------------- |
@@ -136,7 +136,7 @@ With `nimiq-css`, a new palette of colors has been implemented. You can also use
 
 - There are 3 pill sizes. The default pill just use `.nq-pill-{COLOR|VARIANT}` like pill-green or pill-secondary. If you need other sizes you can use pill-lg or pill-xl.
 
-#### 3.3 Card
+### Card
 
 | Old Class                    | New Class                      | Comments                                                                                    |
 | ---------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------- |
@@ -177,7 +177,7 @@ After
 </div>
 ```
 
-#### Text inputs
+### Text inputs
 
 | Old Class     | New Class                             |
 | ------------- | ------------------------------------- |
@@ -185,7 +185,7 @@ After
 | `.nq-input`   | `<input type="text">` or `<textarea>` |
 | `.vanishing`  | Deleted                               |
 
-#### 4. Removed classes and styles
+## Removed classes and styles
 
 Everything deleted in the new library is because it is not being used anymore, or not used it much. My main research has been done in the Nimiq Wallet + Hub + Keyguard, which it is our main product. If you think this is a mistake, we can add them back. But remember, you always have them in the `legacy.css` file.
 
@@ -197,10 +197,10 @@ There are two types of classes that have been removed. The ones replaced by defa
 - Heading elements like `h1`, `h2`, `h3`, `h4`, `h5`, `h6` now do not have `margin-top` and `margin-bottom`. You need to add them again using `margin: 1rem 0`.
 - `p` and `small` elements do not have `margin-top` and `margin-bottom` anymore. You need to add them again using `margin: 1rem 0` or `margin: 0.5rem 0` respectively.
 
-### 5. Atomic CSS in `nimiq-css`
+## Atomic CSS in `nimiq-css`
 
 The old `Nimiq Styles Framework` used to have some atomic classes like `flex-grow` or `hidden`. Those classes still available in the new library. See more in the [atomic.css](https://github.com/onmax/nimiq-ui/tree/main/packages/nimiq-css/src/css/atomic.css) file. This file is only used in native CSS. In framework like UnoCSS is not included.
 
-### 6. Prose
+## Prose
 
 `nimiq-css` comes with a new class `nq-prose` that it is useful to style the prose content. It is based on the Tailwind CSS Prose plugin. Just add `.prose` to you mardown wrapper and you are ready to go. You can also use this for smaller parts of your app.
