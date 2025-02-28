@@ -76,7 +76,7 @@
   );
   --nq-blue-on-dark-gradient-from: oklch(60.45% 0.1951 255.01);
   --nq-blue-on-dark-gradient-to: oklch(69.82% 0.1694 243.83);
-  --nq-blue-on-drak-gradient: linear-gradient(
+  --nq-blue-on-dark-gradient: radial-gradient(
     at 100% 100%,
     var(--nq-blue-on-dark-gradient-from) 0%,
     var(--nq-blue-on-dark-gradient-to) 100%
