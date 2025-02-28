@@ -64,6 +64,7 @@
     max-width: var(--nq-prose-max-width, 780px);
     margin-left: auto;
     margin-right: auto;
+    font-family: var(--nq-font-sans, 'Mulish');
 
     &:where(h1) {
       --font-size-min: 44;
@@ -187,68 +188,23 @@
     &:where(p) {
       margin-top: 0;
       margin-bottom: 0;
-      --font-size-min: 14;
-      --font-size-max: 16;
-      font-size: var(--font-size);
       line-height: 1.5;
-
+      
       & + p {
         margin-top: 16px;
       }
     }
-
-    &:where(blockquote) {
-      margin-top: 0;
-      margin-left: 0;
-
-      &:not(figure blockquote) {
-        margin-top: 24px;
-        margin-bottom: 24px;
-
-        /*
-          We add the borders to blockquote if is not a children of figure
-          Otherwise, figure will have the borders
-        */
-        &::after,
-        &::before {
-          content: '';
-          display: block;
-          width: 100%;
-          height: 1.5px;
-          background-color: rgb(var(--nq-neutral-400));
-          border-radius: 1px;
-        }
-
-        & > * {
-          padding: 20px 24px;
-
-          @media (min-width: 769px) {
-            padding: 24px 32px;
-          }
-        }
-      }
-
-      * {
-        --font-size-min: 21;
-        --font-size-max: 24;
-        font-size: var(--font-size);
-        line-height: 1.6;
-        font-weight: 700;
-      }
-
-      code {
-        background-color: rgb(var(--nq-green-400) / 1);
-        color: rgb(var(--nq-green) / 0.9);
-        --font-size-min: 21;
-        --font-size-max: 24;
-        font-size: var(--font-size);
-      }
+    
+    &:where(:not(blockquote p)) {
+      --font-size-min: 14;
+      --font-size-max: 16;
+      font-size: var(--font-size);
     }
 
     &:where(figure) {
       figcaption {
         color: rgb(var(--nq-neutral-700));
-        font-size: 0.875;
+        font-size: 0.875em;
         font-weight: 700;
         line-height: 1.3125;
 
@@ -256,47 +212,21 @@
           color: rgb(var(--nq-white) / 0.8);
         }
       }
+    }
 
-      &:has(blockquote) {
-        margin-top: 24px;
-        margin-bottom: 24px;
-
-        &::after,
-        &::before {
-          content: '';
-          display: block;
-          width: 100%;
-          height: 2px;
-          background-color: rgb(var(--nq-neutral-400));
-          border-radius: 1px;
-        }
-
-        blockquote {
-          padding: 24px 20px 0;
-
-          @media (min-width: 769px) {
-            padding: 24px 32px 0;
-          }
-        }
-
-        figcaption {
-          --font-size-min: 14;
-          --font-size-max: 16;
-          font-size: var(--font-size);
-          line-height: 1.5;
-          font-weight: 400;
-          color: rgb(var(--nq-neutral-700));
-          margin: 8px 24px 24px;
-
-          :where(.dark, [data-theme='dark']) & {
-            color: rgb(var(--nq-white) / 0.8);
-          }
-
-          @media (min-width: 769px) {
-            margin: 8px 32px 24px;
-          }
-        }
-      }
+    &:where(blockquote) {
+      background: rgb(var(--nq-green-400));
+      --nq-m-min: 14;
+      --nq-m-max: 16;
+      padding: var(--nq-m-size);
+      border-radius: 6px;
+      box-shadow: 0 0 0 1.5px rgb(var(--nq-green-600));
+      font-weight: 600;
+      transform: translateX(-8px);
+      width: calc(100% + 16px);
+      --font-size-min: 12;
+      --font-size-max: 14;
+      font-size: var(--font-size);
     }
 
     &:where(img, video, iframe) {
@@ -429,21 +359,27 @@
       }
     }
 
-    &:where(code) {
-      --font-size-min: 13;
-      --font-size-max: 15;
-      font-size: var(--font-size);
-      border-radius: 4px;
+    &:where(code, pre, kbd, pre *, code *) {
+      font-family: var(--nq-font-mono, 'Fira Code');
+      /* font-size-adjust: from-font;
+          TODO
+          Remove all font-sizes for Fira Code and instead using font-size-adjust to adjust the font-size to the parent element.
+        https://developer.mozilla.org/en-US/docs/Web/CSS/font-size-adjust
+    */
+    }
 
-      &:not(:where(:where(:where(h1, h2, h3, h4) &), pre > &)) {
-        padding: 0 8px;
-      }
+    &:where(code) {
+      font-size: 0.875em;
+      border-radius: 4px;
+    }
+
+    :where(:where(h1, h2, h3, h4, h5, h6, p, li, span, a) > code) {
+      padding: 0 0.25em;
     }
 
     &:where(pre) {
-      --font-size-min: 14;
-      --font-size-max: 16;
-      font-size: var(--font-size);
+      width: 100%;
+      font-size: 0.875em;
       --nq-m-min: 20;
       --nq-m-max: 24;
       margin-top: var(--nq-m-size);
@@ -451,6 +387,18 @@
       padding: 20px 24px;
       border-radius: 6px;
       box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.08);
+    }
+
+    kbd {
+      padding: 0.25em 0.125em;
+      font-size: 0.875em;
+      color: rgba(var(--nq-neutral-800) / 1);
+      background-color: rgba(var(--nq-neutral-200) / 1);
+      border-radius: 0.25em;
+      box-shadow: 0 0 0 1px rgba(var(--nq-neutral-400) / 1);
+      margin: 0 0.25em -0.25em 0.25em;
+      white-space: nowrap;
+      line-height: 1;
     }
 
     &:where(pre, code):where(h1, h2, h3, h4 &) {

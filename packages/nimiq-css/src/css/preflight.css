@@ -10,6 +10,12 @@
   /* box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.15); */
   --nq-track: rgb(var(--nq-neutral-200));
   --nq-thumb: rgb(var(--nq-neutral-600));
+
+  --nq-font-sans:
+    'Mulish', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial,
+    Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --nq-font-mono:
+    'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
 :not(:where([nq-raw], .nq-raw)) {
@@ -20,7 +26,7 @@
 
   &:where(:not(:where(code, pre))) {
     font-family:
-      'Mulish',
+      var(--nq-font-sans, 'Mulish'),
       ui-sans-serif,
       system-ui,
       -apple-system,
@@ -38,8 +44,7 @@
   }
 
   &:where(code, pre, pre *, code *) {
-    font-family:
-      'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-family: var(--nq-font-mono, 'Fira Code');
     /* font-size-adjust: from-font;
     TODO
     Remove all font-sizes for Fira Code and instead using font-size-adjust to adjust the font-size to the parent element.
@@ -123,7 +128,6 @@
   }
 
   &:where(code, pre) {
-    background-color: rgb(var(--nq-neutral-300));
     color: rgb(var(--nq-neutral-900));
     --font-size-min: 14;
     --font-size-max: 16;
@@ -136,6 +140,14 @@
 
   &:where(code) {
     line-height: 1.875rem;
+  }
+
+  :where(:where(h1, h2, h3, h4, h5, h6, p, li, span, a) > code) {
+    background-color: rgb(var(--nq-neutral-200));
+  }
+
+  &:where(pre) {
+    background-color: rgb(var(--nq-neutral-50));
   }
 
   /* Links & buttons clickable */
