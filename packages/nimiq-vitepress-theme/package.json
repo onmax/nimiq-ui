@@ -63,7 +63,10 @@
   },
   "dependencies": {
     "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317",
+    "@iconify-json/tabler": "^1.2.16",
     "@vueuse/core": "^12.7.0",
+    "mark.js": "^8.11.1",
+    "minisearch": "^7.1.2",
     "reka-ui": "^2.0.0",
     "vue": "catalog:",
     "vue-router": "^4.5.0"
@@ -81,6 +84,7 @@
     "unbuild": "^3.3.1",
     "unocss": "^66.0.0",
     "unocss-preset-fluid-sizing": "^0.0.17",
-    "unocss-preset-scale-px": "^0.0.2"
+    "unocss-preset-scale-px": "^0.0.2",
+    "unplugin-vue-components": "^28.4.0"
   }
 }

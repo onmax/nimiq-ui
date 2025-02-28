@@ -4,10 +4,11 @@ import Logo from './Logo.vue'
 import ThemeSwitcher from './ThemeSwitcher.vue';
 import { createReusableTemplate } from '@vueuse/core';
 import { useData, useRoute, withBase } from 'vitepress';
-import { computed, useTemplateRef, watch } from 'vue';
+import { useTemplateRef, watch } from 'vue';
 import type { NimiqVitepressThemeConfig, NimiqVitepressThemeNav } from '../types'
 import { ref } from 'vue'
 import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger } from 'reka-ui'
+import { useCurrentModule } from '../composables/useCurrentModule';
 
 const [DefineNavItem, NavItem] = createReusableTemplate<{ item: NimiqVitepressThemeNav, component: 'a' | 'div' }>()
 const [DefineSidebarItem, SidebarItem] = createReusableTemplate<{ item: { text: string, link?: string, icon?: string } }>()
@@ -20,13 +21,7 @@ function isActive(link?: string) {
   return withBase(link || '/') === route.path
 }
 
-const baseUrl = withBase('/').slice(0, -1)
-const currentPageNoBase = computed(() => route.path.slice(baseUrl.length))
-
-const currentDocModule = computed<NimiqVitepressThemeNav>(() => {
-  return theme.value.modules.find(module => currentPageNoBase.value.startsWith(module.subpath)) || theme.value.modules[0]
-
-})
+const {currentDocModule} = useCurrentModule()
 const nav = useTemplateRef<HTMLElement>('nav')
 
 watch(theme, () => {
@@ -44,7 +39,8 @@ const submoduleNavigatorOpen = ref(false)
 </script>
 
 <template>
-  <aside z-20 w-full of="x-hidden y-auto" fixed inset-y-0 left-0 overscroll-contain bg-neutral-100 flex="~ col" border="l-1 neutral-300">
+  <aside z-20 w-full of="x-hidden y-auto" fixed inset-y-0 left-0 overscroll-contain bg-neutral-100 flex="~ col">
+    <div absolute inset-y-0 right-0 ring="0.75 neutral-400" aria-hidden />
     <div f-p-xs flex-1>
       <Logo />
       <CommandMenu f-mt-sm />
@@ -114,7 +110,7 @@ const submoduleNavigatorOpen = ref(false)
     <div border="t neutral-400" flex="~ items-center" f-px-sm>
       <nav>
         <ul flex="~ gap-4" f-py-xs>
-          <li v-for="({ icon, link }) in theme.socialLinks" :key="link">
+          <li v-for="({ icon, link }) in theme.links" :key="link">
             <a :href="link" target="_blank" rel="noopener noreferrer" aria-label="ariaLabel" transition-colors
               un-text="18 neutral-900 hocus:neutral">
               <div :class="icon" />

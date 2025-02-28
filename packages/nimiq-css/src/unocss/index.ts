@@ -333,10 +333,10 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
   const variantLayer = `${prefix}variants`
   const variants: Preset['variants'] = [
     (matcher) => {
-      if (!matcher.startsWith('inverted:'))
+      if (!matcher.startsWith('data-inverted:'))
         return matcher
       return {
-        matcher: matcher.slice(9),
+        matcher: matcher.slice('data-inverted:'.length),
         selector: s =>
           `:where(.inverted,[data-inverted])${s}, :where(.inverted,[data-inverted]) ${s}`,
         layer: variantLayer,

@@ -4,9 +4,12 @@
 import { useData, useRoute } from 'vitepress'
 import type { NimiqVitepressThemeConfig } from '../types';
 import { data } from '../git.data'
-import { ref, computed, watchEffect, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useTimeAgo } from '@vueuse/core';
 import { useOutline } from '../composables/useOutline'
+import '../assets/code-blocks.css'
+import '../assets/typography.css'
+import '../assets/github-callouts.css'
 
 const { theme, lang } = useData<NimiqVitepressThemeConfig>()
 
@@ -20,7 +23,8 @@ const editUrl = computed(() => currentPageData.value?.editUrl || '')
 const commitUrl = computed(() => currentPageData.value?.commitUrl || '')
 
 const date = computed(() => new Date(lastUpdated.value as number))
-const isoDatetime = computed(() => date.value.toISOString())
+const isValidDate = computed(() => !!lastUpdated?.value && !isNaN(date.value.getTime()))
+const isoDatetime = computed(() => isValidDate.value ? date.value.toISOString() : '')
 const datetime = ref('')
 
 const ago = useTimeAgo(date)
@@ -28,7 +32,8 @@ const ago = useTimeAgo(date)
 // set time on mounted hook to avoid hydration mismatch due to
 // potential differences in timezones of the server and clients
 onMounted(() => {
-  watchEffect(() => {
+  watch(date, () => {
+    if (!isValidDate.value) return
     datetime.value = new Intl.DateTimeFormat(lang.value, { dateStyle: 'short', timeStyle: 'short' }).format(date.value)
   })
 })
@@ -41,9 +46,8 @@ const { headingTree, isHeadingActive } = useOutline()
 
 <template>
   <div f-px-xl f-pt-xl f="$px $px-min-48 $px-max-72" f-pb-md flex="~ gap-48" relative h-full>
-    <div flex="~ col" h-full flex-1>
-      <article flex-1 class="nq-prose" style="--nq-prose-max-width: none"
-        w="[calc(100vw-2*var(--nq-sidebar-width)-2*var(--f-px))]">
+    <div flex="~ col" h-full flex-1 w="[calc(100vw-2*var(--nq-sidebar-width)-2*var(--f-px))]">
+      <article flex-1 class="nq-prose" style="--nq-prose-max-width: none">
         <Content max-w-none />
       </article>
       <div mt-auto px-32 flex="~ items-center justify-between" f-text-md un-f-text-xs
@@ -68,18 +72,18 @@ const { headingTree, isHeadingActive } = useOutline()
         </p>
       </div>
     </div>
-    <div min-w-286 f-text-xs sticky f-top-xl h-max v-if="headingTree.length > 0" f-px-sm>
+    <div f-text-xs sticky f-top-xl h-max v-if="headingTree.length > 0" f-px-sm min-w="$nq-sidebar-width">
       <div text-neutral-700 flex="~ gap-8 items-center">
         <div i-tabler:align-left />
         On this page
       </div>
-      <ol list-none min-w="$nq-sidebar-width" f-mt-xs text-neutral-800>
-        <li v-for="h2 in headingTree" :key="h2.hashPath" flex="~ col" pb-4>
-          <a :href="'#' + h2.hashPath" px-6 py-4 :class="{ 'text-blue font-semibold': isHeadingActive(h2.hashPath) }">{{ h2.text
+      <ol list-none f-mt-xs text-neutral-800 w-max>
+        <li v-for="h2 in headingTree" :key="h2.hashPath" flex="~ col" pb-4 >
+          <a :href="'#' + h2.hashPath"  px-6 py-4 :class="{ 'text-blue font-semibold': isHeadingActive(h2.hashPath) }">{{ h2.text
             }}</a>
           <ol v-if="h2.items.length">
             <li v-for="h3 in h2.items" :key="h3.hashPath" flex="~ col">
-              <a :href="'#' + h3.hashPath" font-normal p-4 pl-14
+              <a :href="'#' + h3.hashPath" font-normal p-4 pl-14 
                 :class="{ 'text-blue font-semibold': isHeadingActive(h3.hashPath) }">{{ h3.text }}</a>
             </li>
           </ol>

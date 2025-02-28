@@ -34,7 +34,6 @@ export default defineConfig({
     alias: {
       '~': resolve(__dirname, './'),
       'nimiq-vitepress-theme': resolve(__dirname, '../packages/nimiq-vitepress-theme/src/'),
-      // 'nimiq-css': resolve(__dirname, '../packages/nimiq-css/src/'),
     },
   },
   plugins: [

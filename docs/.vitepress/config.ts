@@ -1,7 +1,7 @@
 import type { NimiqVitepressThemeConfig } from 'nimiq-vitepress-theme'
 import type { UserConfig } from 'vitepress'
 import { defineConfigWithTheme } from 'vitepress'
-import ComponentPreviewPlugin from './theme/plugins/component-preview'
+import MarkdownPreviewPlugin from './theme/plugins/component-preview'
 
 // @unocss-include
 
@@ -77,20 +77,32 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
           {
             items: [
               { text: 'Getting started', link: '/vitepress-theme/', icon: 'i-tabler:arrow-guide scale-120' },
+              {
+                text: 'Components',
+                icon: 'i-nimiq:icons-lg-widget',
+                items: [
+                  { text: 'Code Block', link: '/vitepress-theme/components/code-block' },
+                  { text: 'Card', link: '/vitepress-theme/components/card' },
+                  { text: 'Large Card', link: '/vitepress-theme/components/large-card' },
+                  { text: 'Grid', link: '/vitepress-theme/components/grid' },
+                  { text: 'Callout & Blockquotes', link: '/vitepress-theme/components/callouts-and-blockquotes' },
+                  { text: 'Vitepress Components', link: '/vitepress-theme/components/vitepress-components' },
+                ],
+              },
             ],
           },
         ],
       },
     ],
-    socialLinks: [
+    links: [
       { icon: 'i-nimiq:logos-github-mono', link: 'https://github.com/onmax/nimiq-ui' },
     ],
   },
   markdown: {
     preConfig(md) {
-      md.use(ComponentPreviewPlugin)
+      md.use(MarkdownPreviewPlugin)
     },
     theme: 'vitesse-dark',
-    languages: ['vue', 'vue-html', 'js', 'ts'],
+    languages: ['vue', 'vue-html', 'js', 'ts', 'markdown'],
   },
 } satisfies UserConfig<NimiqVitepressThemeConfig>)

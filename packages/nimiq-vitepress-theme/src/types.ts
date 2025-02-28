@@ -25,7 +25,7 @@ export interface NimiqVitepressThemeNav {
 
 export interface NimiqVitepressThemeConfig {
   modules: NimiqVitepressThemeNav[]
-  socialLinks?: {
+  links?: {
     icon: string
     link: string
   }[]

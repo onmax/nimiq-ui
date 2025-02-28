@@ -1,6 +1,6 @@
-import { ref, onMounted, onUnmounted, onUpdated } from 'vue'
-import { getScrollOffset } from 'vitepress'
 import { useThrottleFn } from '@vueuse/core'
+import { getScrollOffset } from 'vitepress'
+import { onMounted, onUnmounted, onUpdated, ref } from 'vue'
 
 export interface HeadingItem {
   hashPath: string
@@ -12,15 +12,17 @@ export interface HeadingTree extends HeadingItem {
 }
 
 const ignoreRE = /\b(?:header-anchor|ignore-header)\b/
-const resolvedHeaders: { element: HTMLHeadElement; link: string }[] = []
+const resolvedHeaders: { element: HTMLHeadElement, link: string }[] = []
 
 function serializeHeader(h: Element): string {
   let ret = ''
-  Array.from(h.childNodes).forEach(node => {
+  Array.from(h.childNodes).forEach((node) => {
     if (node.nodeType === 1) {
-      if (ignoreRE.test((node as Element).className)) return
+      if (ignoreRE.test((node as Element).className))
+        return
       ret += node.textContent
-    } else if (node.nodeType === 3) {
+    }
+    else if (node.nodeType === 3) {
       ret += node.textContent
     }
   })
@@ -31,7 +33,7 @@ function getAbsoluteTop(element: HTMLElement): number {
   let offsetTop = 0
   while (element !== document.body) {
     if (element === null) {
-      return NaN
+      return Number.NaN
     }
     offsetTop += element.offsetTop
     element = element.offsetParent as HTMLElement
@@ -42,7 +44,7 @@ function getAbsoluteTop(element: HTMLElement): number {
 export function useOutline() {
   const headingTree = ref<HeadingTree[]>([])
   const activeHeadingIds = ref<string[]>([])
-  
+
   function buildTree(headings: HTMLElement[]) {
     const tree: HeadingTree[] = []
     let currentH2: HeadingTree | undefined
@@ -54,10 +56,11 @@ export function useOutline() {
       if (heading.tagName === 'H2') {
         currentH2 = { hashPath, text, items: [] }
         tree.push(currentH2)
-        resolvedHeaders.push({ element: heading as HTMLHeadElement, link: '#' + hashPath })
-      } else if (heading.tagName === 'H3' && currentH2) {
+        resolvedHeaders.push({ element: heading as HTMLHeadElement, link: `#${hashPath}` })
+      }
+      else if (heading.tagName === 'H3' && currentH2) {
         currentH2.items.push({ hashPath, text })
-        resolvedHeaders.push({ element: heading as HTMLHeadElement, link: '#' + hashPath })
+        resolvedHeaders.push({ element: heading as HTMLHeadElement, link: `#${hashPath}` })
       }
     })
 
@@ -73,7 +76,7 @@ export function useOutline() {
     const headers = resolvedHeaders
       .map(({ element, link }) => ({
         link,
-        top: getAbsoluteTop(element)
+        top: getAbsoluteTop(element),
       }))
       .filter(({ top }) => !Number.isNaN(top))
       .sort((a, b) => a.top - b.top)
@@ -111,7 +114,7 @@ export function useOutline() {
     resolvedHeaders.length = 0
     const headings = Array.from(document.querySelectorAll('article :where(h2,h3)'))
       .filter(el => el.id && el.hasChildNodes()) as HTMLElement[]
-    
+
     headingTree.value = buildTree(headings)
     window.addEventListener('scroll', onScroll)
     requestAnimationFrame(onScroll)
@@ -121,7 +124,7 @@ export function useOutline() {
     resolvedHeaders.length = 0
     const headings = Array.from(document.querySelectorAll('article :where(h2,h3)'))
       .filter(el => el.id && el.hasChildNodes()) as HTMLElement[]
-    
+
     headingTree.value = buildTree(headings)
     requestAnimationFrame(onScroll)
   })
@@ -133,6 +136,6 @@ export function useOutline() {
   return {
     headingTree,
     activeHeadingIds,
-    isHeadingActive: (hashPath: string) => activeHeadingIds.value.includes(hashPath)
+    isHeadingActive: (hashPath: string) => activeHeadingIds.value.includes(hashPath),
   }
 }

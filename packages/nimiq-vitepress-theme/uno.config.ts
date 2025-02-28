@@ -1,4 +1,3 @@
-import { readFileSync } from 'node:fs'
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
 import { defineConfig, presetAttributify, presetIcons, presetWind3, transformerDirectives } from 'unocss'
 import { presetFluidSizing } from 'unocss-preset-fluid-sizing'
@@ -6,11 +5,6 @@ import { presetScalePx } from 'unocss-preset-scale-px'
 import { presetNimiq } from '../nimiq-css/src/index'
 
 export default defineConfig({
-  preflights: [
-    {
-      getCSS: () => readFileSync('./src/style.css', { encoding: 'utf8' }),
-    },
-  ],
   presets: [
     presetWind3(),
     presetAttributify(),
@@ -24,6 +18,7 @@ export default defineConfig({
     presetFluidSizing(),
     presetIcons({
       collections: {
+        ...createExternalPackageIconLoader('@iconify-json/tabler'),
         ...createExternalPackageIconLoader('@iconify-json/nimiq'),
       },
     }),

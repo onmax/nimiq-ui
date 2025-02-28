@@ -7,7 +7,7 @@ import { presetNimiq } from '../packages/nimiq-css/src/index'
 
 export default defineConfig({
   content: {
-    filesystem: ['./.vitepress/config.ts', '../**/*.{vue,md}', './theme/components/**/*.vue', './config.ts'],
+    filesystem: ['./.vitepress/config.ts', '../**/**.{vue,md}', './theme/components/**/*.vue', './config.ts'],
   },
   presets: [
     presetWind3(),

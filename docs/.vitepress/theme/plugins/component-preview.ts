@@ -1,100 +1,99 @@
-import type { MarkdownEnv, MarkdownRenderer } from 'vitepress'
 import { dirname, resolve } from 'node:path'
+import type { MarkdownEnv, MarkdownRenderer } from 'vitepress'
 
-export const rawPathRegexp
-  = /^(.+?(?:\.([a-z0-9]+))?)(#[\w-]+)?(?: ?\{(\d+(?:[,-]\d+)*)? ?(\S+)?\})? ?(?:\[(.+)\])?$/
+const randomStr = () => Math.random().toString(36).substring(7)
 
 export default function (md: MarkdownRenderer) {
-  md.core.ruler.after('inline', 'component-preview', (state) => {
-    const insertComponentImport = (importString: string) => {
-      const index = state.tokens.findIndex(i =>
-        i.type === 'html_block' && i.content.match(/<script setup>/g),
-      )
-      if (index === -1) {
-        const importToken = new state.Token('html_block', '', 0)
-        importToken.content = `<script setup>\n${importString}\n</script>\n`
-        state.tokens.unshift(importToken)
-      }
-      else {
-        const content = state.tokens[index].content
-        state.tokens[index].content = content.replace('</script>', `${importString}\n</script>`)
+  md.core.ruler.after('block', 'markdown-preview', (state) => {
+    // Find all html_block tokens containing ComponentPreview
+    for (let i = 0; i < state.tokens.length; i++) {
+      const token = state.tokens[i]
+
+      if (token.type === 'html_block' && token.content.includes('<ComponentPreview')) {
+        // Extract props from the binding value.
+        const propPattern = /(\w+)="([^"]*)"/g
+        const props: { [key: string]: string } = {}
+        const matches = token.content.matchAll(propPattern)
+        for (const match of matches) {
+          const [, key, value] = match
+          props[key] = value
+        }
+
+        const lang = props.lang || 'md'
+
+        // Find the end of the ComponentPreview block
+        let endIndex = i
+        for (let j = i; j < state.tokens.length; j++) {
+          if (state.tokens[j].type === 'html_block' && state.tokens[j].content.includes('</ComponentPreview>')) {
+            endIndex = j
+            break
+          }
+        }
+
+        // We need to regenerate the markdown for code representation
+        const tokensToRender = state.tokens.slice(i + 1, endIndex)
+        let markdownSource = '';
+
+        // Process tokens to reconstruct markdown
+        for (const token of tokensToRender) {
+          console.log({ token })
+          if (token.type === 'fence') {
+            // Recreate code fence with original info and content
+            markdownSource += '```' + (token.info || '') + '\n';
+            markdownSource += token.content;
+            markdownSource += '```\n\n';
+          } else if (token.type === 'heading_open') {
+            markdownSource += token.markup;
+          } else if (token.type === 'paragraph_open') {
+            markdownSource += '\n';
+          } else if (token.type === 'paragraph_close') {
+            markdownSource += '\n';
+          } else if (token.type === 'inline' && token.content) {
+            markdownSource += token.content + '\n';
+          } else if (token.type === 'container_directives_open') {
+            markdownSource += ':::' + (token.info || '') + '\n';
+          } else if (token.type === 'container_directives_close') {
+            markdownSource += ':::\n';
+          } else if (token.content) {
+            markdownSource += token.content + '\n';
+          }
+        }
+
+        // Push tokens
+
+        const dummyToken = new state.Token('', '', 0)
+        const tokens: Array<typeof dummyToken> = []
+
+        const codeTemplateStart = new state.Token('html_inline', '', 0)
+        codeTemplateStart.content = `<template #code>`
+        tokens.push(codeTemplateStart)
+
+        // Create a fence token that will contain actual markdown
+        const codeToken = new state.Token('fence', 'code', 0)
+        codeToken.info = lang
+        codeToken.content = markdownSource.trim();
+        tokens.push(codeToken)
+
+        const codeTemplateEnd = new state.Token('html_inline', '', 0)
+        codeTemplateEnd.content = `</template>`
+        tokens.push(codeTemplateEnd)
+
+        if (props.filePath) {
+          // Get environment info to resolve the code file.
+          const { realPath, path: _path } = state.env as MarkdownEnv
+          const resolvedCodeFile = resolve(dirname(realPath ?? _path), props.filePath)
+
+          const codeToken = new state.Token('fence', 'code', 0)
+          codeToken.info = 'vue'
+          codeToken.content = `<<< ${resolvedCodeFile}`
+          // Set the src property so the snippet plugin can replace it with file content.
+          // @ts-expect-error token.src is used by the snippet plugin.
+          codeToken.src = [resolvedCodeFile]
+          tokens.push(codeToken)
+        }
+
+        state.tokens.splice(i + 1, 0, ...tokens)
       }
     }
-
-    // Match a tag like: <ComponentPreview name="SomeName" />
-    const regex = /<ComponentPreview\s+([^>]+)\/>/g
-
-    state.src = state.src.replace(regex, (_, bindingValue) => {
-      // Extract props from the binding value.
-      const propPattern = /(\w+)="([^"]*)"/g
-      const props: { [key: string]: string } = {}
-      const matches = bindingValue.matchAll(propPattern)
-      for (const match of matches) {
-        const [, key, value] = match
-        props[key] = value
-      }
-      if (!('name' in props))
-        throw new Error('You need to set up `name` when using ComponentPreview')
-
-      // Build component name and path.
-      const demoComponentName = `${props.name}Demo`
-      const demoPath = `./${demoComponentName}.vue`
-      insertComponentImport(`import ${demoComponentName} from '${demoPath}'`)
-
-      // Get environment info to resolve the code file.
-      const { realPath, path: _path } = state.env as MarkdownEnv
-      const codeFileRelative = `./${props.name}Component.vue`
-      const resolvedCodeFile = resolve(dirname(realPath ?? _path), codeFileRelative)
-
-      // Find the token index where the ComponentPreview is defined.
-      const index = state.tokens.findIndex(i => i.content.match(regex))
-      // Replace the content of the current token with the opening tag.
-      state.tokens[index].content = `<ComponentPreview>`
-
-      // Create tokens for inner content.
-      const dummyToken = new state.Token('', '', 0)
-      const tokens: Array<typeof dummyToken> = []
-
-      // Demo slot tokens.
-      const demoTemplateStart = new state.Token('html_inline', '', 0)
-      demoTemplateStart.content = `<template #demo>`
-      tokens.push(demoTemplateStart)
-
-      const demoToken = new state.Token('html_inline', '', 0)
-      demoToken.content = `<${demoComponentName} />`
-      tokens.push(demoToken)
-
-      const demoTemplateEnd = new state.Token('html_inline', '', 0)
-      demoTemplateEnd.content = `</template>`
-      tokens.push(demoTemplateEnd)
-
-      // Code slot tokens using a fence token.
-      const codeTemplateStart = new state.Token('html_inline', '', 0)
-      codeTemplateStart.content = `<template #code>`
-      tokens.push(codeTemplateStart)
-
-      const codeToken = new state.Token('fence', 'code', 0)
-      codeToken.info = 'vue'
-      codeToken.content = `<<< ./${props.name}Component.vue`
-      // Set the src property so the snippet plugin can replace it with file content.
-      // @ts-expect-error token.src is used by the snippet plugin.
-      codeToken.src = [resolvedCodeFile]
-      tokens.push(codeToken)
-
-      const codeTemplateEnd = new state.Token('html_inline', '', 0)
-      codeTemplateEnd.content = `</template>`
-      tokens.push(codeTemplateEnd)
-
-      // Closing tag token.
-      const endTag = new state.Token('html_inline', '', 0)
-      endTag.content = `</ComponentPreview>`
-      tokens.push(endTag)
-
-      // Insert new tokens after the current token.
-      state.tokens.splice(index + 1, 0, ...tokens)
-
-      // Remove the original pattern.
-      return ''
-    })
   })
 }
