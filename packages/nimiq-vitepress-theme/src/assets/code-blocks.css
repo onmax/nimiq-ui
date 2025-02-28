@@ -10,8 +10,9 @@ pre {
     display: inline-block;
     border-radius: 0;
 
-    .highlighted,.diff {
-      transition: background-color .5s;
+    .highlighted,
+    .diff {
+      transition: background-color 0.5s;
       margin: 0 -1.5rem;
       padding: 0 1.5rem;
       width: calc(100% + 3rem);
@@ -59,7 +60,7 @@ pre {
   }
 }
 
-:not(.vp-code-group > .blocks)>.language- {
+:not(.vp-code-group > .blocks) > .language- {
   position: relative;
 
   .copy {
@@ -122,7 +123,6 @@ pre {
   }
 
   &:not(.copied) {
-
     &:hover,
     &:focus-visible {
       background-color: rgba(var(--nq-neutral-200));
@@ -193,6 +193,13 @@ pre {
   --logo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.16em' height='1em' viewBox='0 0 256 221'%3E%3Cpath fill='%2341B883' d='M204.8 0H256L128 220.8L0 0h97.92L128 51.2L157.44 0z'/%3E%3Cpath fill='%2341B883' d='m0 0l128 220.8L256 0h-51.2L128 132.48L50.56 0z'/%3E%3Cpath fill='%2335495E' d='M50.56 0L128 133.12L204.8 0h-47.36L128 51.2L97.92 0z'/%3E%3C/svg%3E");
 }
 
+:where([data-title$='bash' i], [class$='language-bash' i] .lang)::before,
+:where([data-title$='sh' i], [class$='language-sh' i] .lang)::before,
+:where([data-title$='terminal' i], [class$='language-terminal' i] .lang)::before,
+:where([data-title$='shell' i], [class$='language-shell' i] .lang)::before {
+  --logo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='m8 9l3 3l-3 3m5 0h3'/%3E%3Cpath d='M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
 :where([data-title$='ts' i], [class$='language-ts' i] .lang)::before,
 :where([data-title$='typescript' i], [class$='language-typescript' i] .lang)::before,
 :where([data-title$='tsx'], [class$='language-tsx' i] .lang, .language-tsx .lang)::before {
@@ -229,7 +236,7 @@ pre {
   --logo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 128 128'%3E%3Cpath fill='%23E44D26' d='M19.037 113.876L9.032 1.661h109.936l-10.016 112.198l-45.019 12.48z'/%3E%3Cpath fill='%23F16529' d='m64 116.8l36.378-10.086l8.559-95.878H64z'/%3E%3Cpath fill='%23EBEBEB' d='M64 52.455H45.788L44.53 38.361H64V24.599H29.489l.33 3.692l3.382 37.927H64zm0 35.743l-.061.017l-15.327-4.14l-.979-10.975H33.816l1.928 21.609l28.193 7.826l.063-.017z'/%3E%3Cpath fill='%23fff' d='M63.952 52.455v13.763h16.947l-1.597 17.849l-15.35 4.143v14.319l28.215-7.82l.207-2.325l3.234-36.233l.335-3.696h-3.708zm0-27.856v13.762h33.244l.276-3.092l.628-6.978l.329-3.692z'/%3E%3C/svg%3E");
 }
 
-:where([data-title$='md'  i], [class$='language-md' i] .lang)::before {
+:where([data-title$='md' i], [class$='language-md' i] .lang)::before {
   --logo: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 125 128"><rect width="125" height="128" fill="white" rx="16"/><path fill="black" d="M112.15 99.311H14.191C9.755 99.311 6 95.557 6 91.12V37.19C6 32.755 9.754 29 14.191 29h97.617c4.438 0 8.192 3.754 8.192 8.191V91.12c0 4.437-3.413 8.191-7.85 8.191Zm-97.959-64.85c-1.365 0-2.73 1.365-2.73 2.73V91.12c0 1.706 1.365 2.73 2.73 2.73h97.617c1.707 0 2.731-1.365 2.731-2.73V37.19c0-1.706-1.365-2.73-2.731-2.73H14.191Zm8.192 48.467V45.383h10.922l10.922 13.653L55.15 45.383h10.922v37.545H55.15V61.425L44.227 75.078 33.305 61.425v21.503H22.383Zm68.605 0-16.383-18.09h10.922V45.383h10.922v19.114h10.922L90.988 82.928Z"/></svg>');
 }
 
@@ -239,12 +246,10 @@ pre {
 }
 
 .vp-code-group {
-
   /* We only apply the active styles if there are more than one tab */
   .tabs:has(> input + label + input) {
-
     /* Set monochromatic style for unchecked labels */
-    input:not(:checked)+label::before {
+    input:not(:checked) + label::before {
       opacity: 0.6;
       filter: grayscale(100%);
       transition:
@@ -252,7 +257,7 @@ pre {
         filter 0.2s var(--nq-ease);
     }
 
-    input:checked+label {
+    input:checked + label {
       background-color: rgb(var(--nq-blue-400));
       color: rgb(var(--nq-blue));
     }
@@ -271,7 +276,7 @@ pre {
         color: rgb(var(--nq-neutral-800));
       }
 
-      input:focus-visible+& {
+      input:focus-visible + & {
         background-color: rgb(var(--nq-blue-400));
         color: rgb(var(--nq-blue));
       }
@@ -299,7 +304,7 @@ pre {
   }
 
   .blocks {
-    >div:not(.active) {
+    > div:not(.active) {
       display: none;
     }
 

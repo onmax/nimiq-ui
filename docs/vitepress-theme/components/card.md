@@ -4,12 +4,12 @@ A simple card that can turn any boring content into something that looks intenti
 
 ## Props
 
-| Name       | Type     | Default     | Description                                                             |
-| ---------- | -------- | ----------- | ----------------------------------------------------------------------- |
-| `href`     | `string` | `undefined` | Where your card wants to teleport users to                              |
-| `bg-color` | `string` | `undefined` | The mood lighting for your card                                         |
-| `icon`     | `string` | `undefined` | The tiny picture that makes your card feel important                    |
-| slot       | `string` | `undefined` | The magic portal where your content lives                               |
+| Name       | Type     | Default     | Description                                          |
+| ---------- | -------- | ----------- | ---------------------------------------------------- |
+| `href`     | `string` | `undefined` | Where your card wants to teleport users to           |
+| `bg-color` | `string` | `undefined` | The mood lighting for your card                      |
+| `icon`     | `string` | `undefined` | The tiny picture that makes your card feel important |
+| slot       | `string` | `undefined` | The magic portal where your content lives            |
 
 > [!TIP]
 > Remember to [register `NqCard`](/vitepress-theme/#register-the-components) in your app. It's like introducing your components to a party - they need to be on the guest list!

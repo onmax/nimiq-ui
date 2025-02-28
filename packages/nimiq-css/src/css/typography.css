@@ -189,12 +189,12 @@
       margin-top: 0;
       margin-bottom: 0;
       line-height: 1.5;
-      
+
       & + p {
         margin-top: 16px;
       }
     }
-    
+
     &:where(:not(blockquote p)) {
       --font-size-min: 14;
       --font-size-max: 16;

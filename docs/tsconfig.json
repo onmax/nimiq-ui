@@ -5,6 +5,7 @@
       "node",
       "vite/client"
     ],
+    "lib": ["dom"],
     "noImplicitAny": false,
     "declaration": true,
     "noEmit": false,

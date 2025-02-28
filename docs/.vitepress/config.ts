@@ -23,6 +23,7 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
               { text: 'Getting started', link: '/nimiq-css/getting-started', icon: 'i-tabler:arrow-guide scale-120' },
               { text: 'Philosophy', link: '/nimiq-css/philosophy', icon: 'i-tabler:brain scale-120' },
               { text: 'Migrate from Nimiq Style', link: '/nimiq-css/migrate-from-nimiq-styles', icon: 'i-tabler:arrow-move-right-filled scale-120' },
+              { text: 'Palette', link: '/nimiq-css/palette', icon: 'i-tabler:palette scale-120' },
               {
                 text: 'CSS Layers',
                 icon: 'i-tabler:binary-tree scale-120',
@@ -30,7 +31,7 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
                   { text: 'Index', link: '/nimiq-css/layers/index' },
                   { text: 'Preflights', link: '/nimiq-css/layers/preflights' },
                   { text: 'Colors', link: '/nimiq-css/layers/colors' },
-                  { text: 'Utilities', link: '/nimiq-css/layers/colors' },
+                  { text: 'Utilities', link: '/nimiq-css/layers/utilities' },
                   { text: 'Typography', link: '/nimiq-css/layers/typography' },
                   { text: 'Static content', link: '/nimiq-css/layers/static-content' },
                 ],

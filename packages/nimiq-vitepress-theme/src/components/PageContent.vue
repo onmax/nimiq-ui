@@ -72,7 +72,7 @@ const { headingTree, isHeadingActive } = useOutline()
         </p>
       </div>
     </div>
-    <div f-text-xs sticky f-top-xl h-max v-if="headingTree.length > 0" f-px-sm min-w="$nq-sidebar-width">
+    <div f-text-xs sticky h-max f-top-xl v-if="headingTree.length > 0" f-px-sm w="$nq-sidebar-width">
       <div text-neutral-700 flex="~ gap-8 items-center">
         <div i-tabler:align-left />
         On this page
@@ -89,6 +89,7 @@ const { headingTree, isHeadingActive } = useOutline()
           </ol>
         </li>
       </ol>
+      <div id="widget" f-mt-md max-w-full />
     </div>
   </div>
 </template>

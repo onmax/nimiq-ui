@@ -15,9 +15,9 @@ echo "He didn't get arrays!"
 <ComponentPreview>
 
 ```javascript
-const caffeine = '☕'.repeat(5);
-const developer = '🧟‍♂️';
-console.log(`${developer} + ${caffeine} = ${developer.replace('🧟‍♂️', '🦸‍♂️')}`);
+const caffeine = '☕'.repeat(5)
+const developer = '🧟‍♂️'
+console.log(`${developer} + ${caffeine} = ${developer.replace('🧟‍♂️', '🦸‍♂️')}`)
 // Output: 🧟‍♂️ + ☕☕☕☕☕ = 🦸‍♂️
 ```
 
@@ -70,7 +70,7 @@ const { coffeeCount, addCoffee, productivity } = useCoffeeTracking()
 ```
 
 ```ts [coffee.ts]
-import { ref, computed } from 'vue'
+import { computed, ref } from 'vue'
 
 export function useCoffeeTracking() {
   const coffeeCount = ref(0)
@@ -131,7 +131,7 @@ fn main() {
 
 ```js
 export default {
-  data () {
+  data() {
     return {
       excuses: 'It works on my machine', // [!code --]
       reality: 'It works on production!', // [!code ++]

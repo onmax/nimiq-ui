@@ -14,16 +14,16 @@ Same as [GitHub Markdown Callouts](https://docs.github.com/en/get-started/writin
 
 <ComponentPreview>
 
-> [!NOTE]  
+> [!NOTE]
 > Did you hear about the programmer who got stuck in the shower? They were following the instructions on the shampoo bottle: Lather, Rinse, Repeat.
 
 > [!TIP]
 > Remember to take breaks from coding. Your keyboard needs time to forget all those angry keystrokes from debugging.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Coffee intake should be proportional to lines of code written. It's just science.
 
-> [!WARNING]  
+> [!WARNING]
 > Side effects may include: talking in JSON, dreaming in code, and accidentally saying "sudo please" to your cat.
 
 > [!CAUTION]
@@ -37,7 +37,6 @@ You can also add custom title to the callouts:
 
 > [!NOTE] Developer's Life Lesson #42
 > Remember: There are only 10 types of people in the world - those who understand binary and those who don't.
-
 
 ## Credits
 

@@ -102,6 +102,9 @@ importers:
 
   docs:
     dependencies:
+      colorjs.io:
+        specifier: ^0.5.2
+        version: 0.5.2
       reka-ui:
         specifier: ^2.0.0
         version: 2.0.0(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
@@ -139,6 +142,9 @@ importers:
       pathe:
         specifier: ^2.0.3
         version: 2.0.3
+      render-markdown-it-tokens:
+        specifier: ^0.0.4
+        version: 0.0.4
       unocss-preset-fluid-sizing:
         specifier: ^0.0.17
         version: 0.0.17
@@ -151,9 +157,6 @@ importers:
       vite:
         specifier: ^6.1.0
         version: 6.2.0(@types/node@22.13.5)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3)(yaml@2.7.0)
-      vite-plugin-virtual:
-        specifier: ^0.3.0
-        version: 0.3.0(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3)(yaml@2.7.0))
       vite-plugin-vue-devtools:
         specifier: ^7.7.2
         version: 7.7.2(rollup@4.34.8)(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3)(yaml@2.7.0))(vue@3.5.13(typescript@5.7.3))
@@ -1954,6 +1957,9 @@ packages:
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
 
+  colorjs.io@0.5.2:
+    resolution: {integrity: sha512-twmVoizEW7ylZSN32OgKdXRmo1qg+wT5/6C3xu5b9QsWzSFAhHLn2xd8ro0diCsKfCj1RdaTP/nrcW+vAoQPIw==}
+
   combined-stream@1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
@@ -3722,6 +3728,9 @@ packages:
     peerDependencies:
       vue: '>= 3.2.0'
 
+  render-markdown-it-tokens@0.0.4:
+    resolution: {integrity: sha512-qnePJqnzfx+sSeSYwPRmlSFP7q0pMAtXqumJgAwvNbhWVOg5OOHwkBMeeSIe9aiicVk2e15Rpb6NFjd5fQutow==}
+
   requires-port@1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
 
@@ -4248,11 +4257,6 @@ packages:
     peerDependenciesMeta:
       '@nuxt/kit':
         optional: true
-
-  vite-plugin-virtual@0.3.0:
-    resolution: {integrity: sha512-TOtrWw6jKrJNXfxhGRUiQzfAP1gRkYkVzMkJNjHUJ8idLuxf8eeeDKZKZHhdeYfaCc/87rv+KvWE2iCy1QInWA==}
-    peerDependencies:
-      vite: ^6.1.0
 
   vite-plugin-vue-devtools@7.7.2:
     resolution: {integrity: sha512-5V0UijQWiSBj32blkyPEqIbzc6HO9c1bwnBhx+ay2dzU0FakH+qMdNUT8nF9BvDE+i6I1U8CqCuJiO20vKEdQw==}
@@ -6381,6 +6385,8 @@ snapshots:
 
   colorette@2.0.20: {}
 
+  colorjs.io@0.5.2: {}
+
   combined-stream@1.0.8:
     dependencies:
       delayed-stream: 1.0.0
@@ -8473,6 +8479,10 @@ snapshots:
       - '@vue/composition-api'
       - typescript
 
+  render-markdown-it-tokens@0.0.4:
+    dependencies:
+      markdown-it: 14.1.0
+
   requires-port@1.0.0: {}
 
   resolve-from@4.0.0: {}
@@ -9105,10 +9115,6 @@ snapshots:
       vite-dev-rpc: 1.0.7(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3)(yaml@2.7.0))
     transitivePeerDependencies:
       - supports-color
-
-  vite-plugin-virtual@0.3.0(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3)(yaml@2.7.0)):
-    dependencies:
-      vite: 6.2.0(@types/node@22.13.5)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3)(yaml@2.7.0)
 
   vite-plugin-vue-devtools@7.7.2(rollup@4.34.8)(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(less@4.2.2)(tsx@4.19.3)(yaml@2.7.0))(vue@3.5.13(typescript@5.7.3)):
     dependencies:

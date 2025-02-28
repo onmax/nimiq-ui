@@ -4,11 +4,11 @@ A variant of the card component that is larger and more prominent.
 
 ## Props
 
-| Name   | Type     | Default     | Description                                                             |
-| ------ | -------- | ----------- | ----------------------------------------------------------------------- |
-| `href` | `string` | `undefined` | The destination of your card's journey                                  |
-| `icon` | `string` | `undefined` | The fancy hat your card wears                                          |
-| slot   | `string` | `undefined` | Where the magic happens - put your content here                        |
+| Name   | Type     | Default     | Description                                     |
+| ------ | -------- | ----------- | ----------------------------------------------- |
+| `href` | `string` | `undefined` | The destination of your card's journey          |
+| `icon` | `string` | `undefined` | The fancy hat your card wears                   |
+| slot   | `string` | `undefined` | Where the magic happens - put your content here |
 
 <ComponentPreview>
 

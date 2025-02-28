@@ -44,7 +44,7 @@
     --text-color: rgb(var(--nq-blue));
     --bg-color: rgb(var(--nq-blue-400));
     --ring-color: rgb(var(--nq-blue-600));
-    --icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 17"><path stroke="currentColor" stroke-width="1.5" d="m16.824 7.603-3.335-5.92A1.33 1.33 0 0 0 12.335 1H5.666c-.475 0-.915.26-1.153.683l-3.335 5.92a1.397 1.397 0 0 0 0 1.367l3.335 5.92a1.325 1.325 0 0 0 1.153.683h6.668a1.323 1.323 0 0 0 1.154-.683l3.334-5.92c.24-.424.24-.943.002-1.367Z"/><path fill="currentColor" d="M10 12a1 1 0 1 1-2 0V9a1 1 0 0 1 2 0v3Z"/><rect width="2" height="2" x="10" y="7" fill="currentColor" rx="1" transform="rotate(-180 10 7)"/></svg>')
+    --icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 17"><path stroke="currentColor" stroke-width="1.5" d="m16.824 7.603-3.335-5.92A1.33 1.33 0 0 0 12.335 1H5.666c-.475 0-.915.26-1.153.683l-3.335 5.92a1.397 1.397 0 0 0 0 1.367l3.335 5.92a1.325 1.325 0 0 0 1.153.683h6.668a1.323 1.323 0 0 0 1.154-.683l3.334-5.92c.24-.424.24-.943.002-1.367Z"/><path fill="currentColor" d="M10 12a1 1 0 1 1-2 0V9a1 1 0 0 1 2 0v3Z"/><rect width="2" height="2" x="10" y="7" fill="currentColor" rx="1" transform="rotate(-180 10 7)"/></svg>');
   }
 
   &.important {
@@ -82,12 +82,13 @@
   p {
     margin-top: 0.5em;
 
-    a{
+    a {
       color: currentColor;
       text-decoration: underline;
     }
 
-    pre, code {
+    pre,
+    code {
       color: currentColor;
       background-color: var(--ring-color);
     }

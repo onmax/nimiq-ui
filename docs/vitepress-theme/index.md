@@ -48,12 +48,12 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({  // [!code hig
 })
 ```
 
-```ts [themeConfig.ts]
+````ts [themeConfig.ts]
 export const themeConfig = {
   modules: [
     {
       subpath: '/vitepress-theme',
-      
+
       // This will be set as a class on a div element. This works great for UnoCSS Icons preset. Let me know if you need help with other icon libraries.
       icon: 'i-custom:nimiq-css',
 
@@ -63,7 +63,7 @@ export const themeConfig = {
       // Text displayed in the selector
       text: 'Vitepress Theme',
       description: 'Your Viteprss with Nimiq',
-      
+
       // Each module have their own sidebar
       sidebar: [
         {
@@ -113,7 +113,8 @@ export default {
   enhanceApp() {
   },
 } satisfies Theme
-```
+````
+
 :::
 
 ### Register the components
@@ -136,7 +137,9 @@ import NqGrid from 'nimiq-vitepress-theme/components/NqGrid.vue' // [!code highl
 </script>
 
 <NqCard> // [!code highlight]
+
 # This is a card // [!code highlight]
+
 </NqCard> // [!code highlight]
 ```
 
@@ -149,8 +152,8 @@ import type { EnhanceAppContext, Theme } from 'vitepress'
 import { Layout } from 'nimiq-vitepress-theme'
 
 import NqCard from 'nimiq-vitepress-theme/components/NqCard.vue' // [!code highlight]
-import NqLargeCard from 'nimiq-vitepress-theme/components/NqLargeCard.vue' // [!code highlight]
 import NqGrid from 'nimiq-vitepress-theme/components/NqGrid.vue' // [!code highlight]
+import NqLargeCard from 'nimiq-vitepress-theme/components/NqLargeCard.vue' // [!code highlight]
 
 export default {
   Layout,
@@ -161,6 +164,7 @@ export default {
   },
 } satisfies Theme
 ```
+
 :::
 
 ## Customization

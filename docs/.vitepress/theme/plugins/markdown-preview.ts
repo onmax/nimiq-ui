@@ -1,14 +1,15 @@
-import type { MarkdownEnv, MarkdownRenderer } from 'vitepress'
 import { dirname, resolve } from 'node:path'
-import { renderMarkdownItTokens } from 'render-markdown-it-tokens'
+import type { MarkdownEnv, MarkdownRenderer } from 'vitepress'
+
+const randomStr = () => Math.random().toString(36).substring(7)
 
 export default function (md: MarkdownRenderer) {
   md.core.ruler.after('block', 'markdown-preview', (state) => {
-    // Find all html_block tokens containing ComponentPreview
+    // Find all html_block tokens containing MarkdownComponentPreview
     for (let i = 0; i < state.tokens.length; i++) {
       const token = state.tokens[i]
 
-      if (token.type === 'html_block' && token.content.includes('<ComponentPreview')) {
+      if (token.type === 'html_block' && token.content.includes('<MarkdownComponentPreview')) {
         // Extract props from the binding value.
         const propPattern = /(\w+)="([^"]*)"/g
         const props: { [key: string]: string } = {}
@@ -18,14 +19,42 @@ export default function (md: MarkdownRenderer) {
           props[key] = value
         }
 
-        const lang = props.lang || 'md'
-
-        // Find the end of the ComponentPreview block
+        // Find the end of the MarkdownComponentPreview block
         let endIndex = i
         for (let j = i; j < state.tokens.length; j++) {
-          if (state.tokens[j].type === 'html_block' && state.tokens[j].content.includes('</ComponentPreview>')) {
+          if (state.tokens[j].type === 'html_block' && state.tokens[j].content.includes('</MarkdownComponentPreview>')) {
             endIndex = j
             break
+          }
+        }
+
+        // We need to regenerate the markdown for code representation
+        const tokensToRender = state.tokens.slice(i + 1, endIndex)
+        let markdownSource = '';
+
+        // Process tokens to reconstruct markdown
+        for (const token of tokensToRender) {
+          console.log({ token })
+          if (token.type === 'fence') {
+            // Recreate code fence with original info and content
+            markdownSource += '```' + (token.info || '') + '\n';
+            markdownSource += token.content;
+            markdownSource += '```\n\n';
+
+          } else if (token.type === 'heading_open') {
+            token.attrPush(['id', randomStr()])
+          } else if (token.type === 'paragraph_open') {
+            markdownSource += '\n';
+          } else if (token.type === 'paragraph_close') {
+            markdownSource += '\n';
+          } else if (token.type === 'inline' && token.content) {
+            markdownSource += token.content + '\n';
+          } else if (token.type === 'container_directives_open') {
+            markdownSource += ':::' + (token.info || '') + '\n';
+          } else if (token.type === 'container_directives_close') {
+            markdownSource += ':::\n';
+          } else if (token.content) {
+            markdownSource += token.content + '\n';
           }
         }
 
@@ -40,8 +69,8 @@ export default function (md: MarkdownRenderer) {
 
         // Create a fence token that will contain actual markdown
         const codeToken = new state.Token('fence', 'code', 0)
-        codeToken.info = lang
-        codeToken.content = renderMarkdownItTokens(state.tokens.slice(i + 1, endIndex))
+        codeToken.info = 'md'
+        codeToken.content = markdownSource.trim();
         tokens.push(codeToken)
 
         const codeTemplateEnd = new state.Token('html_inline', '', 0)
