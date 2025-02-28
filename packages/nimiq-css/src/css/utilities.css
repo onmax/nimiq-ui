@@ -561,7 +561,7 @@
   font-size: 1rem;
 }
 
-.nq-card {
+.nq-card-lg {
   max-width: 37.5rem;
   background: var(--nq-neutral-0);
   color: var(--nq-neutral);
@@ -701,9 +701,26 @@
   }
 }
 
+.nq-card {
+  & {
+    --nq-gradient-from: rgb(var(--nq-neutral-300) / 1);
+    --nq-gradient-to: rgb(var(--nq-neutral-300) / 0.65);
+    background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
+    color: rgb(var(--nq-neutral));
+    border-radius: 0.5rem;
+    outline-offset: 2px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    --ring-color: rgb(var(--nq-neutral-0) / 0.3);
+    padding: 1.5rem;
+  }
+}
+
 .nq-hoverable {
-  --nq-gradient-from: rgb(var(--nq-neutral-400) / 1);
-  --nq-gradient-to: rgb(var(--nq-neutral-400) / 0.65);
+  --nq-gradient-from: rgb(var(--nq-neutral-300) / 1);
+  --nq-gradient-to: rgb(var(--nq-neutral-300) / 0.65);
   background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
   color: rgb(var(--nq-neutral));
   border-radius: 0.5rem;
@@ -714,17 +731,19 @@
   position: relative;
   --ring-color: rgb(var(--nq-neutral-0) / 0.3);
   padding: 1.5rem;
+  cursor: pointer;
   transition:
     --nq-gradient-from 300ms var(--nq-ease),
     --nq-gradient-to 300ms var(--nq-ease),
     transform 200ms ease-out,
-    box-shadow 200ms ease-out;
+    box-shadow 200ms ease-out,
+    color 200ms ease-out;
 
   @media (hover: hover) {
     &:where(:hover, :focus-visible) {
       --nq-gradient-from: rgb(var(--nq-white) / 1);
       --nq-gradient-to: rgb(var(--nq-white) / 1);
-      color: rgb(var(--nq-neutral));
+      color: rgb(var(--nq-darkblue));
       box-shadow:
         0 0 0 1.5px var(--ring-color),
         var(--nq-shadow);
