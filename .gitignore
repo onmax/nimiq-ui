@@ -2,6 +2,7 @@
 
 # compiled output
 dist
+!./packages/nimiq-icons/dist
 tmp
 /out-tsc
 
