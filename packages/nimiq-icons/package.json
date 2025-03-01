@@ -8,7 +8,7 @@
       "import": "./dist/icons.json"
     }
   },
-  "packageManager": "pnpm@10.4.0",
+  "packageManager": "pnpm@10.4.1",
   "main": "index.js",
   "scripts": {
     "build": "esno ./scripts/index.ts"
