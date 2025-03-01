@@ -3,6 +3,7 @@ import { mergeIconSets } from '@iconify/tools'
 import { checkFigmaVariants, getFigma, prepareNpmPackage, sanitizeName } from './client'
 import { IconVariant } from './consts'
 import { optimizeIconSet } from './icon'
+import 'dotenv/config'
 
 await checkFigmaVariants()
 
