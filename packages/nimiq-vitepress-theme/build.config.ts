@@ -31,6 +31,12 @@ export default defineBuildConfig({
       format: 'esm',
       loaders: ['js'],
     },
+    {
+      builder: 'mkdist',
+      input: './src',
+      pattern: ['**/*.css'],
+      format: 'esm',
+    },
   ],
   declaration: true,
   clean: true,
