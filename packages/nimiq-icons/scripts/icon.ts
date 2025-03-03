@@ -47,11 +47,11 @@ function processIcon(iconSet: IconSet, variant: IconVariant, name: string) {
   iconSet.setIcon(newName, processed.getIcon())
 
   // We also include a monochrome version of the logos
-  if (isLogo(variant)) {
+  if (isLogo(variant) && !newName.includes('-white-')) {
     const monoSvg = new SVG(svg.toMinifiedString())
     parseColors(monoSvg, {
       defaultColor: 'currentColor',
-      callback: (attr, colorStr, color) => {
+      callback: (_attr, colorStr, color) => {
         if (!color) // color === null, so color cannot be parsed. Return colorStr to keep old value
           return colorStr
 

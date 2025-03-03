@@ -9,6 +9,9 @@ export default defineConfig({
   content: {
     filesystem: ['./.vitepress/config.ts', '../**/**.{vue,md}', './theme/components/**/*.vue', './config.ts'],
   },
+  shortcuts: [
+    ['stack', 'w-full grid grid-cols-1 grid-rows-1 children:row-span-full children:col-span-full children:self-center children:justify-self-center'],
+  ],
   presets: [
     presetWind3(),
     presetAttributify(),

@@ -1,7 +1,7 @@
 import type { NimiqVitepressThemeConfig } from 'nimiq-vitepress-theme'
 import type { UserConfig } from 'vitepress'
 import { defineConfigWithTheme } from 'vitepress'
-import MarkdownPreviewPlugin from './theme/plugins/component-preview'
+import PreviewPlugin from './theme/plugins/component-preview'
 
 // @unocss-include
 
@@ -64,6 +64,11 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
                   { text: 'Nested Modal', link: '/frankenstein/components/nested-modal' },
                 ],
               },
+              {
+                text: 'Animated Staking Ripple',
+                icon: 'i-nimiq:leaf-3',
+                link: '/frankenstein/components/animated-staking-ripple',
+              }
             ],
           },
         ],
@@ -94,6 +99,21 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
           },
         ],
       },
+       {
+        subpath: '/nimiq-icons',
+        text: 'Nimiq Icons',
+        icon: 'i-custom:nimiq-vitepress',
+        defaultPageLink: '/nimiq-icons/',
+        description: 'The Iconify Set for Nimiq',
+        sidebar: [
+          {
+            items: [
+              { text: 'Getting started', link: '/nimiq-icons/', icon: 'i-tabler:arrow-guide scale-120' },
+              { text: 'Explorer', link: '/nimiq-icons/explorer', icon: 'i-tabler:telescope scale-120' },
+            ],
+          },
+        ],
+      },
     ],
     links: [
       { icon: 'i-nimiq:logos-github-mono', link: 'https://github.com/onmax/nimiq-ui' },
@@ -101,7 +121,7 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
   },
   markdown: {
     preConfig(md) {
-      md.use(MarkdownPreviewPlugin)
+      md.use(PreviewPlugin)
     },
     theme: 'vitesse-dark',
     languages: ['vue', 'vue-html', 'js', 'ts', 'markdown'],
