@@ -3,7 +3,7 @@ import CommandMenu from './CommandMenu.vue';
 import Logo from './Logo.vue'
 import ThemeSwitcher from './ThemeSwitcher.vue';
 import { createReusableTemplate } from '@vueuse/core';
-import { useData } from 'vitepress';
+import { useData, withBase } from 'vitepress';
 import { useTemplateRef, watch } from 'vue';
 import type { NimiqVitepressThemeConfig, NimiqVitepressThemeNav } from '../types'
 import { ref } from 'vue'
@@ -44,7 +44,7 @@ const submoduleNavigatorOpen = ref(false)
       </span>
 
       <DefineNavItem v-slot="{ item: { text, subpath, defaultPageLink, icon, description }, component }">
-        <component :is="component"  :href="defaultPageLink" f-text-xs py-6 pl-12 pr-16 rounded-6  w-full hocus:bg-neutral-300 transition-colors :class="{ 'font-bold text-blue bg-blue-400': isActive(page.relativePath, subpath), 'grid-cols-[max-content_1fr]':!!icon }" grid="~ rows-2 gap-x-12 items-center">
+        <component :is="component"  :href="withBase(defaultPageLink)" f-text-xs py-6 pl-12 pr-16 rounded-6  w-full hocus:bg-neutral-300 transition-colors :class="{ 'font-bold text-blue bg-blue-400': isActive(page.relativePath, subpath), 'grid-cols-[max-content_1fr]':!!icon }" grid="~ rows-2 gap-x-12 items-center">
           <div :class="icon" block size-28 row-span-full v-if="icon" />
           <span flex-1 text-left>{{ text }}</span>
           <p v-if="description" text="left f-xs" text-neutral-800>{{ description }}</p>
@@ -65,7 +65,7 @@ const submoduleNavigatorOpen = ref(false)
       </CollapsibleRoot>
 
       <DefineSidebarItem v-slot="{ item: { text, link, icon } }">
-        <a :href="link" class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" data-active:font-bold transition-all data-active:text-blue data-active:bg-blue-400>
+        <a :href="withBase(link!)" class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" data-active:font-bold transition-all data-active:text-blue data-active:bg-blue-400>
           <div aria-hidden absolute inset-y-0 bg-blue op-70 rounded-full w-2 z-2 transition-colors v-if="isActive(page.relativePath, link)" left="0 [[data-state=open]_&]:12" />
           <div :class="icon" f-text-2xs v-if="icon" text="neutral data-active:blue" op-90 mr-8 shrink-0 />
           <span flex-1>{{ text }}</span>
@@ -106,7 +106,7 @@ const submoduleNavigatorOpen = ref(false)
       <nav>
         <ul flex="~ gap-4" f-py-xs>
           <li v-for="({ icon, link }) in theme.links" :key="link">
-            <a :href="link" target="_blank" rel="noopener noreferrer" aria-label="ariaLabel" transition-colors
+            <a :href="withBase(link)" target="_blank" rel="noopener noreferrer" aria-label="ariaLabel" transition-colors
               un-text="18 neutral-900 hocus:neutral">
               <div :class="icon" />
               <span sr-only>Visit us on {{ icon }}</span>

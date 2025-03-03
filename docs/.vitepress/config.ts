@@ -8,6 +8,7 @@ import PreviewPlugin from './theme/plugins/component-preview'
 export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
   title: 'Nimiq UI',
   description: 'Build awesome apps with the Nimiq Style',
+  base: 'nimiq-ui',
   themeConfig: {
     modules: [
       {
