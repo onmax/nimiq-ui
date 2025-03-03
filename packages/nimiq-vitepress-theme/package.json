@@ -56,7 +56,8 @@
   "scripts": {
     "dev": "unbuild --stub",
     "build": "unbuild",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "release": "pnpm run build && bumpp --commit --push --tag && pnpm publish"
   },
   "peerDependencies": {
     "vitepress": "^1.5.0 || ^2.0.0-alpha.3"
@@ -77,6 +78,7 @@
     "@unocss/cli": "^66.0.0",
     "@unocss/reset": "^66.0.0",
     "@unocss/transformer-directives": "^66.0.0",
+    "bumpp": "^10.0.3",
     "cross-spawn": "^7.0.6",
     "nimiq-css": "workspace:*",
     "p-map": "^7.0.3",

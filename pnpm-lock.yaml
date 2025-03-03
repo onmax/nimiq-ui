@@ -273,6 +273,9 @@ importers:
       '@unocss/transformer-directives':
         specifier: ^66.0.0
         version: 66.0.0
+      bumpp:
+        specifier: ^10.0.3
+        version: 10.0.3
       cross-spawn:
         specifier: ^7.0.6
         version: 7.0.6
