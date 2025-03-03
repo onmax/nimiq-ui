@@ -1,7 +1,7 @@
 {
   "name": "nimiq-vitepress-theme",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "packageManager": "pnpm@10.2.1",
   "description": "Nimiq UI theme for VitePress",
   "author": "onmax",
@@ -29,6 +29,9 @@
       "require": "./dist/index.js"
     },
     "./style.css": "./dist/style.css",
+    "./assets": {
+      "import": "./dist/assets/*"
+    },
     "./*": {
       "types": "./dist/*",
       "import": "./dist/*.mjs",
@@ -69,6 +72,7 @@
     "mark.js": "^8.11.1",
     "minisearch": "^7.1.2",
     "reka-ui": "^2.0.0",
+    "p-map": "^7.0.3",
     "vue": "catalog:",
     "vue-router": "^4.5.0"
   },
@@ -81,7 +85,6 @@
     "bumpp": "^10.0.3",
     "cross-spawn": "^7.0.6",
     "nimiq-css": "workspace:*",
-    "p-map": "^7.0.3",
     "pathe": "^2.0.3",
     "unbuild": "^3.3.1",
     "unocss": "^66.0.0",
