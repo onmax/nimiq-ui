@@ -1,7 +1,7 @@
 {
   "name": "nimiq-vitepress-theme",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "packageManager": "pnpm@10.2.1",
   "description": "Nimiq UI theme for VitePress",
   "author": "onmax",
