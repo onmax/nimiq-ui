@@ -3,7 +3,7 @@
 Think of grids as the Marie Kondo of UI components - they help keep your cards organized and spark joy in your layouts!
 
 > [!TIP]
-> Remember to [register `NqGrid`](/vitepress-theme/#register-the-components) in your app. It's like organizing a party - you need to tell the bouncer who's allowed in!
+> Remember to [register `NqGrid`](/vitepress-theme/#register-the-components) in your app.
 
 ## Basic grid
 

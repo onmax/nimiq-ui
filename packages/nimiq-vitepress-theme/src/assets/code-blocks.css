@@ -70,7 +70,7 @@ pre {
 
 :where(:not(.vp-code-group > .blocks) > div[class^='language-']:not(.language-), .vp-code-group) {
   margin-top: 1.5em;
-  box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.08);
+  outline: 1.5px solid rgb(var(--nq-neutral) / 0.08);
   border-radius: 0.5em;
   position: relative;
 
@@ -92,7 +92,7 @@ pre {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     margin-top: 0;
-    box-shadow: none;
+    outline: none;
   }
 }
 

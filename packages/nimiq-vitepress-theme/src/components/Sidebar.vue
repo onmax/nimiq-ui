@@ -3,23 +3,18 @@ import CommandMenu from './CommandMenu.vue';
 import Logo from './Logo.vue'
 import ThemeSwitcher from './ThemeSwitcher.vue';
 import { createReusableTemplate } from '@vueuse/core';
-import { useData, useRoute, withBase } from 'vitepress';
+import { useData } from 'vitepress';
 import { useTemplateRef, watch } from 'vue';
 import type { NimiqVitepressThemeConfig, NimiqVitepressThemeNav } from '../types'
 import { ref } from 'vue'
 import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger } from 'reka-ui'
 import { useCurrentModule } from '../composables/useCurrentModule';
+import { isActive } from '../lib/route';
 
 const [DefineNavItem, NavItem] = createReusableTemplate<{ item: NimiqVitepressThemeNav, component: 'a' | 'div' }>()
 const [DefineSidebarItem, SidebarItem] = createReusableTemplate<{ item: { text: string, link?: string, icon?: string } }>()
 
-const { theme } = useData<NimiqVitepressThemeConfig>()
-
-const route = useRoute()
-
-function isActive(link?: string) {
-  return withBase(link || '/') === route.path
-}
+const { theme, page } = useData<NimiqVitepressThemeConfig>()
 
 const {currentDocModule} = useCurrentModule()
 const nav = useTemplateRef<HTMLElement>('nav')
@@ -49,7 +44,7 @@ const submoduleNavigatorOpen = ref(false)
       </span>
 
       <DefineNavItem v-slot="{ item: { text, subpath, defaultPageLink, icon, description }, component }">
-        <component :is="component"  :href="defaultPageLink" f-text-xs py-6 pl-12 pr-16 rounded-6 w-full hocus:bg-neutral-300 transition-colors :class="{ 'font-bold text-blue bg-blue-500': isActive(subpath), 'grid-cols-[max-content_1fr]':!!icon }" grid="~ rows-2 gap-x-12 items-center">
+        <component :is="component"  :href="defaultPageLink" f-text-xs py-6 pl-12 pr-16 rounded-6  w-full hocus:bg-neutral-300 transition-colors :class="{ 'font-bold text-blue bg-blue-400': isActive(page.relativePath, subpath), 'grid-cols-[max-content_1fr]':!!icon }" grid="~ rows-2 gap-x-12 items-center">
           <div :class="icon" block size-28 row-span-full v-if="icon" />
           <span flex-1 text-left>{{ text }}</span>
           <p v-if="description" text="left f-xs" text-neutral-800>{{ description }}</p>
@@ -70,9 +65,9 @@ const submoduleNavigatorOpen = ref(false)
       </CollapsibleRoot>
 
       <DefineSidebarItem v-slot="{ item: { text, link, icon } }">
-        <a :href="link" class="sidebar-item" :class="{ 'font-bold text-blue bg-blue-500': isActive(link) }">
-          <div aria-hidden absolute inset-y-8 left-12 bg-blue rounded-full w-2 z-2 v-if="isActive(link)" />
-          <div :class="icon" f-text-2xs v-if="icon" text-neutral op-90 mr-8 shrink-0 />
+        <a :href="link" class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" data-active:font-bold transition-all data-active:text-blue data-active:bg-blue-400>
+          <div aria-hidden absolute inset-y-0 bg-blue op-70 rounded-full w-2 z-2 transition-colors v-if="isActive(page.relativePath, link)" left="0 [[data-state=open]_&]:12" />
+          <div :class="icon" f-text-2xs v-if="icon" text="neutral data-active:blue" op-90 mr-8 shrink-0 />
           <span flex-1>{{ text }}</span>
         </a>
       </DefineSidebarItem>
@@ -86,7 +81,7 @@ const submoduleNavigatorOpen = ref(false)
                 {{ item.label }}
               </span>
               <div v-for="subitem in item.items" :key="subitem.text" mt-4>
-                <CollapsibleRoot v-if="subitem.items?.length" v-slot="{ open }" mb-24 :default-open="true">
+                <CollapsibleRoot v-if="subitem.items?.length" v-slot="{ open }" :default-open="true">
                   <CollapsibleTrigger class="sidebar-item" group pr-12 pl-8 bg-transparent>
                     <div :class="subitem.icon" f-text-2xs v-if="subitem.icon" text-neutral op-90 mr-8 />
                     <div :class="subitem.text" op="80 group-hocus:100" transition-opacity />
@@ -126,6 +121,6 @@ const submoduleNavigatorOpen = ref(false)
 
 <style scoped>
 .sidebar-item {
-  --uno: 'f-text-xs py-8 md:py-6 rounded-4 flex justify-between items-center w-full hocus:!bg-neutral-300 transition-colors';
+  --uno: 'f-text-xs py-8 md:py-6 rounded-4 flex justify-between items-center w-full hocus:!bg-neutral-300 data-active:hocus:!bg-blue-400 transition-colors';
 }
 </style>

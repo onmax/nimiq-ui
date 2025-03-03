@@ -84,53 +84,37 @@ const tailwindCode = computed(() => {
   const className = (!isLogo.value || (isLogo.value && isMono.value)) ? `\n\tclass="text-${activeColor.value}"` : ''
   return `<div\n\ti-${selectedIcon.value}\n\taria-hidden${className}\n/>`
 })
-
+const baseLogo = computed(() => selectedIcon.value.replace(/(?:white-)?(horizontal|vertical)?(?:-mono)/, '$1'))
 const isLogo = computed(() => selectedIcon.value.startsWith('nimiq:logos'))
 const isMono = computed(() => selectedIcon.value.endsWith('-mono'))
 const isWhite = computed(() => selectedIcon.value.includes('-white-'))
+const hasWhite = computed(() => {
+  return getIcon(baseLogo.value + '-white-horizontal') || getIcon(baseLogo.value + '-white-vertical')
+})
 
 // From mono -> logo -> logo-white
 function rotateLogoIcon() {
   missingLogoVariant.value = false
 
   if (isMono.value) {
-    const baseIcon = selectedIcon.value.slice(0, -5)
-    if (getIcon(baseIcon)) {
-      selectedIcon.value = baseIcon
-    } else {
-      missingLogoVariant.value = true
-    }
+    selectedIcon.value = baseLogo.value
     return
   }
 
-  if (selectedIcon.value.match(/(horizontal|vertical)$/)) {
+  if (!isWhite.value && selectedIcon.value.match(/(horizontal|vertical)$/)) {
     const whiteVersion = selectedIcon.value.replace(/(horizontal|vertical)$/, 'white-$1')
-    if (getIcon(whiteVersion) && !isWhite.value) {
+    if (!hasWhite.value) {
       selectedIcon.value = whiteVersion
       return
     }
-
-    const monoVersion = selectedIcon.value.replace(/(?:white-)(horizontal|vertical)/, '$1') + '-mono'
-    if (getIcon(monoVersion)) {
-      selectedIcon.value = monoVersion
-    } else {
-      missingLogoVariant.value = true
-    }
-    return
   }
 
-  // For non-horizontal/vertical logos, just add mono
-  const monoVersion = selectedIcon.value + '-mono'
-  if (getIcon(monoVersion)) {
-    selectedIcon.value = monoVersion
-  } else {
-    missingLogoVariant.value = true
-  }
+  selectedIcon.value = `${selectedIcon.value}-mono`
 }
 
 function selectColor(c: Color) {
   if (isLogo.value && !isMono.value) {
-    selectedIcon.value = selectedIcon.value + '-mono'
+    selectedIcon.value = `${selectedIcon.value}-mono`
   }
   activeColor.value = c
 }
@@ -180,33 +164,28 @@ function selectColor(c: Color) {
               }">
               <Icon :icon="selectedIcon" text="$c" />
             </div>
-            <div absolute top-8 right="$f-px" mr-8 f="$px $px-min-16 $px-max-24"
-              transition-opacity>
-              <button @click="rotateLogoIcon" stack v-if="isLogo" bg-transparent text-neutral op="60 hocus:100" transition-opacity :class="{
-                'text-neutral-0': !isMono && isWhite
-              }" aspect-square p-4 rounded-full>
-                <span block :class="isMono ? 'i-tabler:paint' : isWhite ? 'i-tabler:paint-off' : 'i-nimiq:moon'" />
-              </button>
-            </div>
             <div flex="~ items-center gap-12" f-mt-sm>
-              <button v-for="c in colors" :key="c" size-21 rounded-full outline="~ 1 neutral/20"
-                :data-active="activeColor === c ? '' : undefined"
-                :class="{ 'op-30 hocus:op-80': c !== activeColor || (isLogo && !isMono) }" transition-colors
-                @click="selectColor(c)" :style="`background-color: rgba(var(--nq-${c}));`" />
+              <button v-for="c in colors" :key="c" shrink-0 size-21 rounded-full outline="~ 1 neutral/20"
+              :data-active="activeColor === c ? '' : undefined"
+              :class="{ 'op-30 hocus:op-80': c !== activeColor || (isLogo && !isMono) }" transition-colors
+              @click="selectColor(c)" :style="`background-color: rgba(var(--nq-${c}));`" />
+
+              <button @click="rotateLogoIcon" stack v-if="isLogo" bg="neutral-500 data-active:neutral" text-neutral-0 size-21 transition-opacity aspect-square rounded-full :data-state="!isMono  ? 'active' :''">
+                <span block :class="isMono ? 'i-tabler:paint' : isWhite ? 'i-tabler:paint-off' : !hasWhite ? 'i-nimiq:moon' : 'i-tabler:paint-off'" />
+              </button>
             </div>
           </header>
 
           <template v-if="!missingLogoVariant">
-            <h3 f-mt-md>
-              <CodeBlock f-text-xs :code="`i-${selectedIcon}`" />
-            </h3>
-
-            <p f-mt-xs nq-label text="9 neutral-700">Copy as</p>
-            <div flex="~ items-center gap-12" mt-6 mb-12>
+            <p f-mt-md nq-label text="9 neutral-700">Copy as</p>
+            <p mt-4 font-semibold>
+              <CodeBlock text-13 :code="`i-${selectedIcon}`" />
+            </p>
+            <div flex="~ items-center gap-$f-gap" f-my-2xs f="$gap $gap-min-8 $gap-max-12">
               <CodeBlock :code="svgIcon" display-content="SVG" />
               <CodeBlock :code="svgIconDataUrl" display-content="Data URL" />
             </div>
-            <ShikiBlock :code="tailwindCode || ''" lang="html" />
+            <ShikiBlock :code="tailwindCode || ''" lang="html" mt-0 />
           </template>
           <div v-else bg-orange-400 outline="~ 1 offset--1 orange-500" f-px-xs f-py-4 rounded-6 f-mt-md>
             <span block text-orange-1100 f-text-xs font-semibold>Missing logo variant</span>

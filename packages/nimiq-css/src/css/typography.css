@@ -386,7 +386,7 @@
       margin-bottom: var(--nq-m-size);
       padding: 20px 24px;
       border-radius: 6px;
-      box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.08);
+      outline: 1.5px solid rgb(var(--nq-neutral) / 0.08);
     }
 
     kbd {

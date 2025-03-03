@@ -57,7 +57,7 @@ const showSecondarySidebar = computed(() => showOutline.value || showWidget.valu
       <div mt-auto px-32 flex="~ items-center justify-between" f-text-md un-f-text-xs
         v-if="showEditContent || showLastUpdated">
         <a :href="editUrl" v-if="editUrl && showEditContent" target="_blank" rel="noopener" op70 group lh-0>
-          Edit this page on <span group-hocus:text-blue transition-colors nq-arrow>GitHub</span> 
+          Edit this page on <span group-hocus:text-blue transition-colors nq-arrow font-semibold>GitHub</span> 
         </a>
         <div v-else></div>
 
