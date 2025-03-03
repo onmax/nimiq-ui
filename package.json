@@ -33,8 +33,7 @@
   "pnpm": {
     "overrides": {
       "vite": "catalog:"
-    },
-    "neverBuiltDependencies": []
+    }
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm packages:stub && pnpm lint-staged && pnpm typecheck"
