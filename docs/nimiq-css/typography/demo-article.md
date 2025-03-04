@@ -110,7 +110,7 @@ As Pixel returned home, the adventure was far from over. With a heart full of me
 _Remember, in the world of cryptocurrency, knowledge is the currency of the realm._
 
 <figure>
-<img src="../assets/scripto.webp" alt="Pixel the Crypto Explorer" />
+<img src="/assets/images/scripto.webp" alt="Pixel the Crypto Explorer" />
 <figcaption>Pixel the Crypto Explorer</figcaption>
 </figure>
 
