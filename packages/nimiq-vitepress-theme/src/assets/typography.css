@@ -11,6 +11,7 @@
     + p {
       font-size: 1.25em;
       margin-bottom: 2.75rem;
+      line-height: 1.2;
       color: rgba(var(--nq-neutral-800));
     }
   }

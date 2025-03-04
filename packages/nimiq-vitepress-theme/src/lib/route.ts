@@ -8,11 +8,16 @@ export function isActive(currentPath: string, matchPath?: string): boolean {
   if (matchPath === undefined)
     return false
 
+  const normalizedCurrent = normalize(currentPath)
+  const normalizedMatch = normalize(matchPath)
   console.log({
-    currentPath: normalize(currentPath),
-    matchPath: normalize(matchPath),  
+    normalizedCurrent,
+    normalizedMatch,
+    currentPath
   })
-  if (normalize(matchPath) !== normalize(currentPath))
+
+  // Check if current path starts with the match path
+  if (!normalizedCurrent.startsWith(normalizedMatch))
     return false
 
   const hashMatch = matchPath.match(HASH_RE)

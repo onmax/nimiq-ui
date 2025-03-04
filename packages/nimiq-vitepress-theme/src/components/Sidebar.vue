@@ -5,7 +5,7 @@ import ThemeSwitcher from './ThemeSwitcher.vue';
 import { createReusableTemplate } from '@vueuse/core';
 import { useData, withBase } from 'vitepress';
 import { useTemplateRef, watch } from 'vue';
-import type { NimiqVitepressThemeConfig, NimiqVitepressThemeNav } from '../types'
+import type { NimiqVitepressSidebar, NimiqVitepressThemeConfig, NimiqVitepressThemeNav } from '../types'
 import { ref } from 'vue'
 import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger } from 'reka-ui'
 import { useCurrentModule } from '../composables/useCurrentModule';
@@ -31,6 +31,23 @@ const submoduleNavigatorOpen = ref(false)
 
 // TODO Animate up and down accordion
 // TODO Animate up and down combobox
+
+function isExternalLink(link: string) {
+  return link.startsWith('http')
+}
+
+// An accordion is collapsed by default if it has more than 6 items and the current page is not part of the accordion
+function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]['items']) {
+  const currentPageIsChild = items?.some(item => isActive(page.value.relativePath, item.link))
+  console.log({
+    currentPageIsChild,
+    items
+  })
+  // Open if either:
+  // 1. Current page is inside this accordion OR
+  // 2. The accordion has 6 or fewer items
+  return currentPageIsChild || (items?.length || 0) <= 6
+} 
 </script>
 
 <template>
@@ -65,9 +82,9 @@ const submoduleNavigatorOpen = ref(false)
       </CollapsibleRoot>
 
       <DefineSidebarItem v-slot="{ item: { text, link, icon } }">
-        <a :href="withBase(link!)" class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" data-active:font-bold transition-all data-active:text-blue data-active:bg-blue-400>
+        <a :href="withBase(link!)" class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" data-active:font-bold transition-all data-active:text-blue data-active:bg-blue-400 group :class="{ 'nq-arrow after:op-70 hocus:after:op-100': isExternalLink(link!) }" transition-opacity :target="isExternalLink(link!) ? '_blank' : undefined">
           <div aria-hidden absolute inset-y-0 bg-blue op-70 rounded-full w-2 z-2 transition-colors v-if="isActive(page.relativePath, link)" left="0 [[data-state=open]_&]:12" />
-          <div :class="icon" f-text-2xs v-if="icon" text="neutral data-active:blue" op-90 mr-8 shrink-0 />
+          <div :class="icon" f-text-sm v-if="icon" text="neutral data-active:blue" op="70 group-hocus:100" transition-opacity mr-8 shrink-0 />
           <span flex-1>{{ text }}</span>
         </a>
       </DefineSidebarItem>
@@ -80,10 +97,10 @@ const submoduleNavigatorOpen = ref(false)
               <span nq-label text-11 text-neutral-700 v-if="item.label">
                 {{ item.label }}
               </span>
-              <div v-for="subitem in item.items" :key="subitem.text" mt-4>
-                <CollapsibleRoot v-if="subitem.items?.length" v-slot="{ open }" :default-open="true">
+              <div v-for="subitem in item.items" :key="subitem.text">
+                <CollapsibleRoot v-if="subitem.items?.length" v-slot="{ open }" :default-open="openAccordionInitialState(subitem.items)">
                   <CollapsibleTrigger class="sidebar-item" group pr-12 pl-8 bg-transparent>
-                    <div :class="subitem.icon" f-text-2xs v-if="subitem.icon" text-neutral op-90 mr-8 />
+                    <div :class="subitem.icon" f-text-sm v-if="subitem.icon" text-neutral op="70 group-hocus:100" mr-8 />
                     <div :class="subitem.text" op="80 group-hocus:100" transition-opacity />
                     <span flex-1 text-left>{{ subitem.text }}</span>
                     <div i-nimiq:chevron-down aria-hidden text="9 neutral-700 group-hocus:neutral-800"
