@@ -1,16 +1,13 @@
-name: Deploy Docs & pkg.new
+name: Deploye
 
 on:
   # Run on pushes but ignore commits from our workflow
   push:
-    branches: ['**']
-    paths-ignore:
-      - 'packages/nimiq-icons/dist/**'  # Ignore changes to the icons dist directory
-  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
-  contents: write
   pages: write
   id-token: write
 
@@ -20,130 +17,87 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Shared build job
   build:
-    # Skip if commit message contains [skip ci]
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ubuntu-latest
-    environment: Dev
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: lts/*
           cache: pnpm
+
+      - name: Use Latest Corepack
+        run: |
+          npm install -g corepack@latest
+          corepack enable
+          pnpm --version
 
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build
-        run: pnpm build
+      - name: Build all assets
+        run: pnpm run build
         env:
           FIGMA_FILE_ID: ${{ secrets.FIGMA_FILE_ID }}
           FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
-        
-      # Verify docs directory exists
-      - name: Check docs directory
-        run: |
-          if [ ! -d "docs/.vitepress/dist" ]; then
-            echo "Error: docs/.vitepress/dist directory does not exist"
-            echo "Available directories:"
-            find docs -type d | sort
-            exit 1
-          else
-            echo "Docs directory exists, contents:"
-            ls -la docs/.vitepress/dist
-          fi
 
-      # Debug step - let's see what's actually in the directory before upload
-      - name: Debug - List directories before upload
-        run: |
-          echo "Current directory structure:"
-          find . -type d -not -path "*/node_modules/*" -not -path "*/\.*" | sort
+      - name: Upload docs artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist
 
-      # Upload entire workspace for subsequent jobs
-      - name: Upload build artifacts
+      - name: Upload packages artifact
         uses: actions/upload-artifact@v4
         with:
-          name: build-artifacts
-          path: |
-            .
-            !node_modules
-            !.git
-            !docs/.vitepress/dist
-          retention-days: 1
+          name: packages-dist
+          path: packages/**/dist
 
-  # VitePress docs deployment job
-  deploy-docs:
+  deploy_docs:
     needs: build
-    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-artifacts
-          path: .
-
-      # Debug step - verify what was actually downloaded
-      - name: Debug - List directories after download
-        run: |
-          echo "Current directory structure after download:"
-          find . -type d -not -path "*/node_modules/*" -not -path "*/\.*" | sort
-          echo "Looking specifically for docs/.vitepress/dist:"
-          ls -la docs/.vitepress/ || echo "docs/.vitepress directory doesn't exist"
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs/.vitepress/dist
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
 
-  # Package publishing job
-  deploy-pkg:
+  deploy_pkg:
     needs: build
-    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    environment: Dev
     steps:
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          name: build-artifacts
-          path: .
+          fetch-depth: 0
 
-      - uses: pnpm/action-setup@v4
-      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: lts/*
           cache: pnpm
 
-      - name: Release
-        run: pnpm dlx pkg-pr-new publish --pnpm './packages/*'
+      - name: Download packages artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: packages-dist
 
-      - name: Update icons
-        working-directory: packages/nimiq-icons
+      - name: Replace packages folder with built files
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add dist --force
-          git commit -m "Updated icons [skip ci]" || echo "No changes to commit"
-          git push || echo "Nothing to push"
+          rm -rf packages
+          mv packages-dist packages
+
+      - name: Publish packages
+        run: pnpm dlx pkg-pr-new publish --pnpm './packages/*'
