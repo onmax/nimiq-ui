@@ -20,7 +20,7 @@
   margin-trim: block;
 
   &:not(:where(.nq-prose-compact, [nq-prose-compact])) {
-    > *:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)) {
+    > *:not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *)) {
       padding-right: 2rem;
       padding-left: 2rem;
 
@@ -59,7 +59,7 @@
     margin-bottom: 0;
   }
 
-  *:not(:where(.nq-raw, .nq-raw *, .nq-no-prose, .nq-no-prose *)) {
+  *:not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *)) {
     line-height: 1.5;
     max-width: var(--nq-prose-max-width, 780px);
     margin-left: auto;
