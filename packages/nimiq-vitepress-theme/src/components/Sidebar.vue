@@ -39,10 +39,6 @@ function isExternalLink(link: string) {
 // An accordion is collapsed by default if it has more than 6 items and the current page is not part of the accordion
 function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]['items']) {
   const currentPageIsChild = items?.some(item => isActive(page.value.relativePath, item.link))
-  console.log({
-    currentPageIsChild,
-    items
-  })
   // Open if either:
   // 1. Current page is inside this accordion OR
   // 2. The accordion has 6 or fewer items
