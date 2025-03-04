@@ -1,4 +1,6 @@
-name: Deploy Preview site to Pages
+# Sample workflow for building and deploying a VitePress site to GitHub Pages
+#
+name: Deploy VitePress site to Pages
 
 on:
   # Runs on pushes targeting the `main` branch. Change this to `master` if you're
@@ -22,34 +24,30 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Not needed if lastUpdated is not enabled
-      - uses: pnpm/action-setup@v3
-        with:
-          version: latest
+      - uses: pnpm/action-setup@v3 # Uncomment this block if you're using pnpm
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: pnpm
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies
-        run: pnpm  install
-      - name: Build nimiq-css
-        run: pnpm --filter nimiq-css build
-      - name: Build
-        run: BASE_URL="/nimiq-ui" pnpm --filter nimiq-preview build
+        run: pnpm i
+      - name: Build with VitePress
+        run: pnpm run docs:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: apps/preview/dist
+          path: docs/.vitepress/dist
 
+  # Deployment job
   deploy:
     environment:
       name: github-pages

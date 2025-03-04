@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "preview:build": "",
-    "build": "rimraf packages/*/dist --glob && pnpm -r --filter=./packages/* run build  && cp -r ./packages/nimiq-css/src/css ./packages/nimiq-css/dist/css/unminified",
+    "build": "rimraf packages/*/dist --glob && pnpm -r --filter=./packages/* run build  && cp -r ./packages/nimiq-css/src/css ./packages/nimiq-css/dist/css/unminified && pnpm -r --filter=./docs run build",
     "dev": "pnpm run dev:packages && pnpm run --filter=./docs dev",
     "dev:packages": "pnpm --filter=./packages/{nimiq-css,nimiq-vitepress-theme} --parallel run dev",
     "lint": "eslint --cache .",
