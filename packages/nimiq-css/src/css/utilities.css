@@ -1,20 +1,17 @@
 .nq-subline {
-  font-size: 1.375rem;
+  font-size: 1.25em;
   line-height: 1.2;
-  margin-top: 20px;
-
-  @media (min-width: 769px) {
-    font-size: 1.5rem;
-    margin-top: 24px;
-  }
+  margin-bottom: 2.75rem;
+  color: rgba(var(--nq-neutral-800));
 }
 
 .nq-label {
   text-transform: uppercase;
   letter-spacing: 0.17em;
+  font-size: 0.75em;
   font-weight: 700;
   line-height: 1;
-  color: rgb(var(--nq-neutral-700));
+  color: rgb(var(--nq-neutral-800));
 
   :where([data-inverted] *) & {
     color: rgb(var(--nq-neutral-0) / 0.8);
@@ -25,8 +22,14 @@
   }
 }
 
-.nq-arrow,
-.nq-loading {
+.nq-arrow {
+  /* We select the arrow OR the closest parent with href to an http */
+  a[href^='http'] &::after,
+  &[href^='http']::after {
+    margin-bottom: 1px;
+    rotate: 0.375turn;
+  }
+
   &::after {
     content: '';
     position: relative;
@@ -47,15 +50,6 @@
     width: 0.7em;
     height: 0.7em;
     --nq-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=');
-  }
-}
-
-.nq-arrow {
-  /* We select the arrow OR the closest parent with href to an http */
-  a[href^='http'] &::after,
-  &[href^='http']::after {
-    margin-bottom: 1px;
-    rotate: 0.375turn;
   }
 
   /* We select the arrow OR the closest parent with href starting with local href */
@@ -104,37 +98,6 @@
 
   a:hover &::before {
     transform: translateX(-0.25em);
-  }
-}
-
-.nq-loading,
-.nq-not-loading {
-  &::after {
-    margin-right: -0.4em;
-    transition: width 0.2s ease-out;
-    width: 1em;
-    aspect-ratio: 1/1;
-    --nq-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxnIGZpbGw9Im5vbmUiPjxnIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMS42NjciIGNsaXAtcGF0aD0idXJsKCNuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCkiPjxwYXRoIGQ9Ik02IDFDOC43NjI1IDEgMTEgMy4yMzc1IDExIDYiLz48cGF0aCBkPSJNMy4wMzgwOSAyQzEuODA0MDIgMi45MDM3NCAxIDQuMzYyMTkgMSA2LjAxMzg1QzEgOC43Njg3IDMuMjMxMyAxMSA1Ljk4NjE1IDExQzcuNjM3ODEgMTEgOS4wOTYyNiAxMC4xOTYgMTAgOC45NjE5MSIgb3BhY2l0eT0iLjMiLz48L2c+PGRlZnM+PGNsaXBQYXRoIGlkPSJuaW1pcS1zcGlubmVyLXVqeGl1c3hoaXhhcnAxb2Q4YmVreCI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48L2RlZnM+PC9nPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgZHVyPSIxcyIgZnJvbT0iMCAwIDAiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB0bz0iMzYwIDAgMCIgdHlwZT0icm90YXRlIi8+PC9zdmc+');
-    transform: scale(1);
-    content: '';
-    position: relative;
-    display: inline-block;
-    -webkit-mask: var(--nq-icon) no-repeat;
-    mask: var(--nq-icon) no-repeat;
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    background-color: currentColor;
-    color: inherit;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: inherit;
-    margin-left: 0.4em;
-  }
-
-  &:where(.not-loading, [not-loading])::after {
-    width: 0;
   }
 }
 
@@ -339,44 +302,18 @@
 }
 
 .nq-pill-tertiary {
-  box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral-600));
+  outline: 0 0 0 1.5px rgb(var(--nq-neutral-500));
   color: rgb(var(--nq-neutral));
   background: rgb(var(--nq-neutral-0));
 
   &:hover {
     background: rgb(var(--nq-neutral-50));
+    outline-color: rgb(var(--nq-neutral-600));
 
     .dark & {
       background: rgb(var(--nq-neutral-200));
     }
   }
-}
-
-:where([class*='ring'], [ring]),
-.nq-border-base {
-  --border-color: rgb(var(--nq-neutral-400));
-  --atomic-css-framework: var(var(--un-ring-color), var(--tw-ring-color));
-  box-shadow: 0 0 0 1.5px var(--atomic-css-framework, var(--border-color));
-}
-
-.nq-border-top {
-  --border-color: rgb(var(--nq-neutral-400));
-  box-shadow: 0 -1.5px 0 0 var(--border-color);
-}
-
-.nq-border-bottom {
-  --border-color: rgb(var(--nq-neutral-400));
-  box-shadow: 0 1.5px 0 0 var(--border-color);
-}
-
-.nq-border-left {
-  --border-color: rgb(var(--nq-neutral-400));
-  box-shadow: -1.5px 0 0 0 var(--border-color);
-}
-
-.nq-border-right {
-  --border-color: rgb(var(--nq-neutral-400));
-  box-shadow: 1.5px 0 0 0 var(--border-color);
 }
 
 .nq-ghost-btn {
@@ -390,8 +327,7 @@
   color: rgb(var(--nq-neutral-700));
   background: inherit;
   transition: 100ms background var(--nq-ease, ease-out);
-  --ring-color: rgb(var(--nq-neutral-400));
-  box-shadow: 0 0 0 1.5px var(--ring-color);
+  outline: 1.5px rgb(var(--nq-neutral-400));
   height: max-content;
   width: max-content;
 
@@ -556,17 +492,14 @@
   }
 }
 
-.nq-notice {
-  font-weight: 600;
-  font-size: 1rem;
-}
-
 .nq-card-lg {
   max-width: 37.5rem;
   background: var(--nq-neutral-0);
   color: var(--nq-neutral);
   border-radius: 0.625rem;
-  box-shadow: 0 0.25rem 1.75rem rgba(0, 0, 0, 0.111158);
+  box-shadow: var(--nq-shadow);
+  outline: 1.5px solid rgb(var(--nq-neutral) / 0.06);
+  outline-offset: -1.5px;
   margin: 1rem 0.5rem;
 
   @media screen and (min-width: 450px) {
@@ -635,16 +568,16 @@
     box-shadow 0.1s var(--nq-ease);
   outline: 0;
 
-  --ring-color: rgba(var(--nq-neutral-500));
   --color: rgb(var(--nq-neutral));
   --placeholder-color: rgb(var(--nq-neutral-700));
+
+  outline: 1.5px solid rgb(var(--nq-neutral-500));
+  color: var(--color);
 
   :where([data-inverted] *) & {
     --placeholder-color: rgb(var(--nq-neutral-0) / 0.8);
   }
 
-  box-shadow: 0 0 0 1.5px var(--ring-color);
-  color: var(--color);
 
   &::placeholder {
     color: var(--placeholder-color);
@@ -652,7 +585,7 @@
 
   &:not(.nq-invalid, :user-invalid):where(:hover, :focus, :focus-within) {
     --color: rgb(var(--nq-blue));
-    --ring-color: rgba(var(--nq-blue) / 0.3);
+    outline-color: rgba(var(--nq-blue) / 0.3);
 
     &::placeholder {
       --placeholder-color: rgb(var(--nq-blue) / 0.6);
@@ -660,13 +593,13 @@
 
     &:focus:valid,
     &:focus-within:valid {
-      --ring-color: rgba(var(--nq-blue));
+      outline-color: rgba(var(--nq-blue));
     }
   }
 
   &:where(.nq-invalid, :user-invalid) {
     --color: rgb(var(--nq-orange));
-    --ring-color: rgba(var(--nq-orange) / 0.4);
+    outline-color: rgba(var(--nq-orange) / 0.4);
 
     &::placeholder {
       --placeholder-color: rgb(var(--nq-orange) / 0.7);
@@ -675,12 +608,8 @@
     &:hover,
     &:focus,
     &:focus-within {
-      --ring-color: rgba(var(--nq-orange));
+      outline-color: rgba(var(--nq-orange));
     }
-  }
-
-  &:where(:hover, :focus-visible, :focus-within) {
-    outline: 1.5px solid rgba(var(--ring-color));
   }
 
   &:where(textarea, :has(textarea)) {
@@ -702,7 +631,6 @@
 }
 
 .nq-card {
-  & {
     --nq-gradient-from: rgb(var(--nq-neutral-300) / 1);
     --nq-gradient-to: rgb(var(--nq-neutral-300) / 0.65);
     background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
@@ -713,9 +641,9 @@
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    --ring-color: rgb(var(--nq-neutral-0) / 0.3);
+    outline: 1.5px solid rgb(var(--nq-neutral) / 0.06);
+    outline-offset: -1.5px;
     padding: 1.5rem;
-  }
 }
 
 .nq-hoverable {
@@ -724,12 +652,13 @@
   background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
   color: rgb(var(--nq-neutral));
   border-radius: 0.5rem;
+  outline: 1.5px solid rgb(var(--nq-neutral) / 0.06);
+  outline-offset: -1.5px;
   outline-offset: 2px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  --ring-color: rgb(var(--nq-neutral-0) / 0.3);
   padding: 1.5rem;
   cursor: pointer;
   transition:
@@ -737,16 +666,16 @@
     --nq-gradient-to 300ms var(--nq-ease),
     transform 200ms ease-out,
     box-shadow 200ms ease-out,
-    color 200ms ease-out;
+    color 200ms ease-out,
+    outline-color 200ms ease-out;
 
   @media (hover: hover) {
     &:where(:hover, :focus-visible) {
       --nq-gradient-from: rgb(var(--nq-white) / 1);
       --nq-gradient-to: rgb(var(--nq-white) / 1);
       color: rgb(var(--nq-darkblue));
-      box-shadow:
-        0 0 0 1.5px var(--ring-color),
-        var(--nq-shadow);
+      box-shadow: var(--nq-shadow);
+      outline-color: rgba(var(--nq-neutral) / 0.02);
       transform: translateY(-0.375rem);
 
       &:before {
