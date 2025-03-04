@@ -1,4 +1,4 @@
-name: Deploye
+name: Deploy
 
 on:
   # Run on pushes but ignore commits from our workflow
@@ -19,6 +19,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: Dev
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
