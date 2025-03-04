@@ -1,5 +1,5 @@
 # Nested Modal
 
-Same as the [basic modal](/components/basic-modal/) but it can trigger another dialog on top of the first one.
+Same as the [basic modal](../basic-modal/index.md) but it can trigger another dialog on top of the first one.
 
 <ComponentPreview name="NestedModal" />

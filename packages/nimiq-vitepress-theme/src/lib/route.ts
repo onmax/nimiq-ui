@@ -10,11 +10,6 @@ export function isActive(currentPath: string, matchPath?: string): boolean {
 
   const normalizedCurrent = normalize(currentPath)
   const normalizedMatch = normalize(matchPath)
-  console.log({
-    normalizedCurrent,
-    normalizedMatch,
-    currentPath
-  })
 
   // Check if current path starts with the match path
   if (!normalizedCurrent.startsWith(normalizedMatch))

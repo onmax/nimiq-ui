@@ -24,7 +24,7 @@ Remember that this library does not include full components or any JavaScript in
 8. CSS layer for our Static content pages
 9. A lot of new utilities like `nq-pill` or `nq-arrow`
 
-If you still depend on Nimiq Styles, you can also use `nimiq-css/css/legacy` without the `8px` rule so you can use both libraries together. Read the [migration guide](./migration).
+If you still depend on Nimiq Styles, you can also use `nimiq-css/css/legacy` without the `8px` rule so you can use both libraries together. Read the [migration guide](./migrate-from-nimiq-styles.md).
 
 ## A note about TailwindCSS
 

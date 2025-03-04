@@ -26,4 +26,4 @@ A collection of useful Vue composition functions. You can find more information 
 
 ### Nimiq CSS
 
-A UnoCSS preset that I've built for the Nimiq ecosystem. You can find more information on the [Nimiq CSS](/nimiq-css) page.
+A UnoCSS preset that I've built for the Nimiq ecosystem. You can find more information on the [Nimiq CSS](../nimiq-css/getting-started.md) page.
