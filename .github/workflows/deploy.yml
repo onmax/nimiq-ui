@@ -25,6 +25,7 @@ jobs:
     # Skip if commit message contains [skip ci]
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ubuntu-latest
+    environment: Dev
     steps:
       - name: Checkout
         uses: actions/checkout@v4
