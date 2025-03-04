@@ -48,6 +48,25 @@ jobs:
         env:
           FIGMA_FILE_ID: ${{ secrets.FIGMA_FILE_ID }}
           FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
+        
+      # Verify docs directory exists
+      - name: Check docs directory
+        run: |
+          if [ ! -d "docs/.vitepress/dist" ]; then
+            echo "Error: docs/.vitepress/dist directory does not exist"
+            echo "Available directories:"
+            find docs -type d | sort
+            exit 1
+          else
+            echo "Docs directory exists, contents:"
+            ls -la docs/.vitepress/dist
+          fi
+
+      # Debug step - let's see what's actually in the directory before upload
+      - name: Debug - List directories before upload
+        run: |
+          echo "Current directory structure:"
+          find . -type d -not -path "*/node_modules/*" -not -path "*/\.*" | sort
 
       # Upload entire workspace for subsequent jobs
       - name: Upload build artifacts
@@ -57,6 +76,7 @@ jobs:
           path: |
             .
             !node_modules
+            !.git
           retention-days: 1
 
   # VitePress docs deployment job
@@ -74,6 +94,14 @@ jobs:
           name: build-artifacts
           path: .
 
+      # Debug step - verify what was actually downloaded
+      - name: Debug - List directories after download
+        run: |
+          echo "Current directory structure after download:"
+          find . -type d -not -path "*/node_modules/*" -not -path "*/\.*" | sort
+          echo "Looking specifically for docs/.vitepress/dist:"
+          ls -la docs/.vitepress/ || echo "docs/.vitepress directory doesn't exist"
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
@@ -89,7 +117,7 @@ jobs:
   # Package publishing job
   deploy-pkg:
     needs: build
-    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/main')
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment: Dev
     steps:
