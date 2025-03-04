@@ -23,13 +23,15 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317",
+    "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8db5bac",
+    "@iconify-json/simple-icons": "^1.2.27",
     "@iconify-json/tabler": "^1.2.16",
     "@iconify/utils": "^2.3.0",
+    "@shikijs/vitepress-twoslash": "^3.1.0",
     "@unocss/reset": "^66.0.0",
     "@vueuse/core": "^12.7.0",
-    "nimiq-css": "workspace:^",
-    "nimiq-vitepress-theme": "workspace:^",
+    "nimiq-css": "workspace:*",
+    "nimiq-vitepress-theme": "workspace:*",
     "pathe": "^2.0.3",
     "render-markdown-it-tokens": "^0.0.4",
     "shiki": "^3.1.0",

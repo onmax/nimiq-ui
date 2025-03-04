@@ -30,6 +30,7 @@ export default defineConfig({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/nimiq'),
         ...createExternalPackageIconLoader('@iconify-json/tabler'),
+        ...createExternalPackageIconLoader('@iconify-json/simple-icons'),
         custom: FileSystemIconLoader('./public/assets/icons'),
       },
     }),

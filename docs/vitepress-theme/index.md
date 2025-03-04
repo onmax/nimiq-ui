@@ -38,10 +38,10 @@ Instead of using `defineConfig`, you will need to use `defineConfigWithTheme`:
 
 ```ts [.vitepress/config.ts]
 import type { NimiqVitepressThemeConfig } from 'nimiq-vitepress-theme'
-import { defineConfigWithTheme } from 'nimiq-vitepress-theme' // [!code highlight]
+import { defineConfigWithTheme } from 'nimiq-vitepress-theme' // [!code hl]
 import { themeConfig } fom './themeConfig'
 
-export default defineConfigWithTheme<NimiqVitepressThemeConfig>({  // [!code highlight]
+export default defineConfigWithTheme<NimiqVitepressThemeConfig>({  // [!code hl]
   themeConfig // The config structure is different from Vitepress
 
   // The rest of your config like title, description, etc.
@@ -69,10 +69,10 @@ export const themeConfig = {
         {
           label: 'Guide',
           items: [
-            { text: 'Getting started', link: '/your-submodule/getting-started', icon: 'i-tabler:arrow-guide scale-120', },
+            { text: 'Getting started', link: '/your-submodule/getting-started', icon: 'i-tabler:arrow-guide ', },
             {
               text: 'My awesome accordion',
-              icon: 'i-tabler:binary-tree scale-120',
+              icon: 'i-tabler:binary-tree ',
               items: [
                 { text: 'Look I am Item 1', link: '/your-submodule/getting-started', },
                 { text: 'Now I am Item 2', link: '/your-submodule/layers/preflights', },
@@ -106,10 +106,10 @@ You need to import the layout from the theme
 
 ```ts [.vitepress/index.ts]
 import { Theme } from 'vitepress'
-import { Layout } from 'nimiq-vitepress-theme' // [!code highlight]
+import { Layout } from 'nimiq-vitepress-theme' // [!code hl]
 
 export default {
-  Layout, // [!code highlight]
+  Layout, // [!code hl]
   enhanceApp() {
   },
 } satisfies Theme
@@ -131,16 +131,16 @@ There are multiple ways you can import the components:
 This is my markdown file content and I want to use the `NqCard` component.
 
 <script setup>
-import NqCard from 'nimiq-vitepress-theme/components/NqCard.vue' // [!code highlight]
-import NqLargeCard from 'nimiq-vitepress-theme/components/NqLargeCard.vue' // [!code highlight]
-import NqGrid from 'nimiq-vitepress-theme/components/NqGrid.vue' // [!code highlight]
+import NqCard from 'nimiq-vitepress-theme/components/NqCard.vue' // [!code hl]
+import NqLargeCard from 'nimiq-vitepress-theme/components/NqLargeCard.vue' // [!code hl]
+import NqGrid from 'nimiq-vitepress-theme/components/NqGrid.vue' // [!code hl]
 </script>
 
-<NqCard> // [!code highlight]
+<NqCard> // [!code hl]
 
-# This is a card // [!code highlight]
+# This is a card // [!code hl]
 
-</NqCard> // [!code highlight]
+</NqCard> // [!code hl]
 ```
 
 ```ts [.vitepress/theme/index.ts]
@@ -151,16 +151,16 @@ import NqGrid from 'nimiq-vitepress-theme/components/NqGrid.vue' // [!code highl
 import type { EnhanceAppContext, Theme } from 'vitepress'
 import { Layout } from 'nimiq-vitepress-theme'
 
-import NqCard from 'nimiq-vitepress-theme/components/NqCard.vue' // [!code highlight]
-import NqGrid from 'nimiq-vitepress-theme/components/NqGrid.vue' // [!code highlight]
-import NqLargeCard from 'nimiq-vitepress-theme/components/NqLargeCard.vue' // [!code highlight]
+import NqCard from 'nimiq-vitepress-theme/components/NqCard.vue' // [!code hl]
+import NqGrid from 'nimiq-vitepress-theme/components/NqGrid.vue' // [!code hl]
+import NqLargeCard from 'nimiq-vitepress-theme/components/NqLargeCard.vue' // [!code hl]
 
 export default {
   Layout,
   enhanceApp({ app }: EnhanceAppContext) {
-    app.component('NqCard', NqCard) // [!code highlight]
-    app.component('NqLargeCard', NqLargeCard) // [!code highlight]
-    app.component('NqGrid', NqGrid) // [!code highlight]
+    app.component('NqCard', NqCard) // [!code hl]
+    app.component('NqLargeCard', NqLargeCard) // [!code hl]
+    app.component('NqGrid', NqGrid) // [!code hl]
   },
 } satisfies Theme
 ```

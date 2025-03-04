@@ -151,6 +151,17 @@ function selectColor(c: Color) {
             <div size-64 />
           </div>
           <p f-mt-sm f-text-xs pl-4 text-neutral-800 font-semibold>Select an icon</p>
+
+          <div flex="~ items-center gap-12" f-mt-sm>
+              <button v-for="c in colors" :key="c" shrink-0 size-21 rounded-full outline="~ 1 neutral/20"
+              :data-active="activeColor === c ? '' : undefined"
+              :class="{ 'op-30 hocus:op-80': c !== activeColor || (isLogo && !isMono) }" transition-colors
+              @click="selectColor(c)" :style="`background-color: rgba(var(--nq-${c}));`" />
+
+              <button @click="rotateLogoIcon" stack v-if="isLogo" bg="neutral-500 data-active:neutral" text-neutral-0 size-21 transition-opacity aspect-square rounded-full :data-state="!isMono  ? 'active' :''">
+                <span block :class="isMono ? 'i-tabler:paint' : isWhite ? 'i-tabler:paint-off' : !hasWhite ? 'i-nimiq:moon' : 'i-tabler:paint-off'" />
+              </button>
+            </div>
         </header>
         <template v-else>
           <header flex="col gap-16 items-start"

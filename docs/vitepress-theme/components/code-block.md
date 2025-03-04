@@ -121,7 +121,7 @@ export function useCoffeeTracking() {
 
 ```rust
 fn main() {
-    println!("Why do Rust developers never get lost? Because they have ownership!"); // [!code highlight]
+    println!("Why do Rust developers never get lost? Because they have ownership!"); // [!code hl]
 }
 ```
 

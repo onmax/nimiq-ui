@@ -3,7 +3,7 @@ import { TabsContent, TabsIndicator, TabsList, TabsRoot, TabsTrigger } from 'rek
 </script>
 
 <template>
-  <TabsRoot w-full defaultValue="preview" f-my-lg>
+  <TabsRoot w-full defaultValue="preview" f-my-lg class="nq-raw">
     <TabsList relative shrink-0 f-mx-lg flex="~ items-center justify-start gap-x-12" w-max aria-label="See the markdown code and rendered preview">
       <!-- <TabsIndicator absolute px-8 left-0 h-3 bottom-2 w="$reka-tabs-indicator-size" bg-blue
         translate-x="$reka-tabs-indicator-position" translate-y-1 transition="[width,transform]"
