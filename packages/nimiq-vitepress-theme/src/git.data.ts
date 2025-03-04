@@ -1,14 +1,18 @@
+/* eslint-disable no-console, antfu/no-top-level-await */
+
 // Inspired from https://github.com/vuejs/vitepress/discussions/3515
 
 import type { ContentData } from 'vitepress'
 import fs from 'node:fs'
 import path from 'node:path'
+import { env } from 'node:process'
 import { spawn } from 'cross-spawn'
 import pMap from 'p-map'
 import { createContentLoader } from 'vitepress'
 
 // For logging
-const DEBUG = process.env.DEBUG === 'true'
+const DEBUG = env.DEBUG === 'true'
+
 const log = (...args: any[]) => DEBUG && console.log('[git.data]', ...args)
 const time = (label: string) => DEBUG && console.time(`[git.data] ${label}`)
 const timeEnd = (label: string) => DEBUG && console.timeEnd(`[git.data] ${label}`)

@@ -9,7 +9,7 @@ The Preflights layer is a set of CSS rules that are applied to the HTML element 
 ## Usage
 
 ```css
-import url('nimiq-css/css/preflight.css') @layer nq-preflight;
+@import url('nimiq-css/css/preflight.css') @layer nq-preflight;
 ```
 
 This layer is included in `nimiq-css/css/index.css`.

@@ -9,7 +9,7 @@ The Colors layer is a set of CSS variables that are applied to the `:root` eleme
 ## Usage
 
 ```css
-import url('nimiq-css/css/colors.css') @layer nq-colors;
+@import url('nimiq-css/css/colors.css') @layer nq-colors;
 
 .your-element {
   background: rgb(var(--nq-blue) / 0.8); /* Use the background color with 80% opacity */

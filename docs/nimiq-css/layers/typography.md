@@ -8,7 +8,7 @@ A single utility to convert your text into a Nimiq-themed article.
 ## Usage in Native CSS
 
 ```css
-import url('nimiq-css/css/typography.css') @layer nq-typography;
+@import url('nimiq-css/css/typography.css') @layer nq-typography;
 ```
 
 This layer is included in `nimiq-css/css/index.css`.

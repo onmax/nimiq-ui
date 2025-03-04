@@ -12,7 +12,7 @@ export default defineBuildConfig([
     clean: true,
     rollup: {
       emitCJS: false,
-      commonjs: false
+      commonjs: false,
     },
     // hooks: {
     //   'build:done': async () => {

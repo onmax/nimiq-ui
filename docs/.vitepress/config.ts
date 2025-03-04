@@ -1,9 +1,9 @@
 import type { NimiqVitepressThemeConfig } from 'nimiq-vitepress-theme'
 import type { UserConfig } from 'vitepress'
-import { defineConfigWithTheme } from 'vitepress'
-import PreviewPlugin from './theme/plugins/component-preview'
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import { createFileSystemTypesCache } from '@shikijs/vitepress-twoslash/cache-fs'
+import { defineConfigWithTheme } from 'vitepress'
+import PreviewPlugin from './theme/plugins/component-preview'
 
 // @unocss-include
 
@@ -36,7 +36,7 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
               { text: 'Typography', icon: 'i-nimiq:file-text ', items: [
                 { text: 'Getting started', link: '/nimiq-css/typography' },
                 { text: 'Example', link: '/nimiq-css/typography/demo-article' },
-              ]},
+              ] },
               {
                 text: 'CSS Layers',
                 icon: 'i-tabler:binary-tree ',
@@ -50,7 +50,7 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
                   { text: 'Static content', link: '/nimiq-css/layers/static-content' },
                 ],
               },
-            ]
+            ],
           },
           {
             label: 'Integrations',
@@ -58,8 +58,8 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
               { text: 'Native CSS', link: '/nimiq-css/integrations/native-css', icon: 'i-simple-icons:css' },
               { text: 'UnoCSS', link: '/nimiq-css/integrations/unocss', icon: 'i-simple-icons:unocss' },
               { text: 'TailwindCSS', link: '/nimiq-css/integrations/tailwindcss', icon: 'i-simple-icons:tailwindcss' },
-            ]
-          }
+            ],
+          },
         ],
       },
       {
@@ -90,7 +90,7 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
                 text: 'Animated Staking Ripple',
                 icon: 'i-nimiq:leaf-3',
                 link: 'frankenstein/components/animated-staking-ripple',
-              }
+              },
             ],
           },
         ],
@@ -121,7 +121,7 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
           },
         ],
       },
-       {
+      {
         subpath: 'nimiq-icons',
         text: 'Nimiq Icons',
         icon: 'i-custom:nimiq-vitepress',
@@ -150,8 +150,8 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
     languages: ['vue', 'vue-html', 'js', 'ts', 'markdown'],
     codeTransformers: [
       transformerTwoslash({
-        typesCache: createFileSystemTypesCache() 
-      }) 
+        typesCache: createFileSystemTypesCache(),
+      }),
     ],
   },
 } satisfies UserConfig<NimiqVitepressThemeConfig>)

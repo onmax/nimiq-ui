@@ -7,5 +7,5 @@ A useful set of CSS rules to style website with static content.
 ## Usage
 
 ```css
-import url('nimiq-css/css/static-content.css') @layer nq-static-content;
+@import url('nimiq-css/css/static-content.css') @layer nq-static-content;
 ```

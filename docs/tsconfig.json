@@ -1,11 +1,11 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "lib": ["dom"],
     "types": [
       "node",
       "vite/client"
     ],
-    "lib": ["dom"],
     "noImplicitAny": false,
     "declaration": true,
     "noEmit": false,

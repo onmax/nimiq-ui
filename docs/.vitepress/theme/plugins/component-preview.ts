@@ -31,7 +31,7 @@ export default function (md: MarkdownRenderer) {
 
         // Push tokens
 
-        const dummyToken = new state.Token('', '', 0)
+        const dummyToken = new state.Token('', '', 0) // eslint-disable-line unused-imports/no-unused-vars
         const tokens: Array<typeof dummyToken> = []
 
         const codeTemplateStart = new state.Token('html_inline', '', 0)

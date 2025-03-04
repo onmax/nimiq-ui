@@ -39,16 +39,16 @@ Instead of using `defineConfig`, you will need to use `defineConfigWithTheme`:
 ```ts [.vitepress/config.ts]
 import type { NimiqVitepressThemeConfig } from 'nimiq-vitepress-theme'
 import { defineConfigWithTheme } from 'nimiq-vitepress-theme' // [!code hl]
-import { themeConfig } fom './themeConfig'
+import { themeConfig } from './themeConfig'
 
-export default defineConfigWithTheme<NimiqVitepressThemeConfig>({  // [!code hl]
+export default defineConfigWithTheme<NimiqVitepressThemeConfig>({ // [!code hl]
   themeConfig // The config structure is different from Vitepress
 
   // The rest of your config like title, description, etc.
 })
 ```
 
-````ts [themeConfig.ts]
+```ts [themeConfig.ts]
 export const themeConfig = {
   modules: [
     {
@@ -93,6 +93,7 @@ export const themeConfig = {
   showLastUpdated: true, // Default is true
   showEditContent: true, // Default is true
 }
+```
 
 :::
 
@@ -105,15 +106,15 @@ You need to import the layout from the theme
 ::: code-group
 
 ```ts [.vitepress/index.ts]
-import { Theme } from 'vitepress'
 import { Layout } from 'nimiq-vitepress-theme' // [!code hl]
+import { Theme } from 'vitepress'
 
 export default {
   Layout, // [!code hl]
   enhanceApp() {
   },
 } satisfies Theme
-````
+```
 
 :::
 

@@ -30,8 +30,8 @@ Learn more about the `Native CSS` integration [here](/nimiq-css/integrations/nat
 ::: code-group
 
 ```ts [unocss.config.ts]
-import { defineConfig } from 'unocss';
-import { presetNimiq } from 'nimiq-css'; // [!code hl]
+import { presetNimiq } from 'nimiq-css' // [!code hl]
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   presets: [
@@ -39,12 +39,12 @@ export default defineConfig({
       utilities: true, // [!code hl]
     }), // [!code hl]
   ],
-});
+})
 ```
 
 ```ts [With Attributify | unocss.config.ts]
-import { defineConfig, presetAttributify } from 'unocss';
-import { presetNimiq } from 'nimiq-css'; // [!code hl]
+import { presetNimiq } from 'nimiq-css' // [!code hl]
+import { defineConfig, presetAttributify } from 'unocss'
 
 export default defineConfig({
   presets: [
@@ -54,7 +54,7 @@ export default defineConfig({
       attributifyUtilities: true, // [!code hl]
     }), // [!code hl]
   ],
-});
+})
 ```
 
 :::
@@ -62,7 +62,6 @@ export default defineConfig({
 <script setup lang="ts">
 import { Teleport } from 'vue'
 </script>
-
 
 ## Utilities
 
@@ -124,6 +123,7 @@ import { Teleport } from 'vue'
 <button class="nq-pill-tertiary">Tertiary Pill</button>
 
 <!-- Size variants -->
+
 <button class="nq-pill-lg">Large Pill</button>
 <button class="nq-pill-xl">Extra Large Pill</button>
 
@@ -165,7 +165,6 @@ import { Teleport } from 'vue'
 </div>
 
 </ComponentPreview>
-
 
 ### `nq-card-lg` {.sr-only}
 

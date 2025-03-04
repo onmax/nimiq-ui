@@ -40,13 +40,11 @@ With a single class, you can transform your text into a beautifully styled artic
 </ul>
 ```
 
-
 ## Undoing typography styles
 
 If you have a block of markup embedded in some content that shouldn't inherit the prose styles, use the `nq-not-prose` or `nq-raw` class to sandbox it:
 
 ```html
-
 <article class="prose">
   <h1>My Heading</h1>
   <p>...</p>

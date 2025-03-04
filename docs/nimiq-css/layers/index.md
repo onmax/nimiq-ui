@@ -9,5 +9,5 @@ Provides a single import to include all Nimiq CSS layers in your project and ens
 ## Usage
 
 ```css
-import url('nimiq-css/css/index.css')
+@import url('nimiq-css/css/index.css');
 ```

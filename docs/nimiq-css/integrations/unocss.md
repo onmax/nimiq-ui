@@ -10,7 +10,6 @@ You can add the Nimiq icons to your project by importing the Nimiq icons CSS fil
 @import 'nimiq-css/css/icons.css' @layer nq-icons;
 ```
 
-
 ## Fonts
 
 By default, UnoCSS will leverage [Web Fonts Preset](https://unocss.dev/presets/web-fonts) to download the fonts and create a folder in your project with the fonts.
@@ -22,8 +21,8 @@ You can customize how the fonts are serve locally by passing the options for `cr
 ::: code-group
 
 ```ts [unocss.config.ts]
-import { defineConfig } from 'unocss'
 import { presetNimiq } from 'nimiq-css'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   presets: [
@@ -39,14 +38,13 @@ export default defineConfig({
 
 :::
 
-
 ### Disable fonts
 
 ::: code-group
 
 ```ts [unocss.config.ts]
-import { defineConfig } from 'unocss'
 import { presetNimiq } from 'nimiq-css'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   presets: [
@@ -58,6 +56,3 @@ export default defineConfig({
 ```
 
 :::
-
-
-

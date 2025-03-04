@@ -1,4 +1,4 @@
-import { inBrowser } from "vitepress"
+import { inBrowser } from 'vitepress'
 
 const HASH_RE = /#.*$/
 const HASH_OR_QUERY_RE = /[?#].*$/
@@ -16,7 +16,7 @@ export function isActive(currentPath: string, matchPath?: string): boolean {
     return false
 
   const hashMatch = matchPath.match(HASH_RE)
-  if (hashMatch) 
+  if (hashMatch)
     return (inBrowser ? location.hash : '') === hashMatch[0]
 
   return true

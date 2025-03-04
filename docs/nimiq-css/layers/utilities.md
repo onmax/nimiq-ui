@@ -9,5 +9,5 @@ The most common and basic utility classes are included in this layer.
 ## Usage
 
 ```css
-import url('nimiq-css/css/utilities.css') @layer nq-utilities;
+@import url('nimiq-css/css/utilities.css') @layer nq-utilities;
 ```
