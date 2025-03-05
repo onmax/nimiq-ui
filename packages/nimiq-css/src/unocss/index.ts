@@ -306,10 +306,10 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
   }
 
   if (typography) {
-    const { rules: _rules, rulesNames: _rulesNames, preflight } = cssToRules('typography', { convertToAttributes: false, prefix })
-    rulesNames.push(..._rulesNames)
-    rules.push(..._rules)
-    preflights.push(preflight)
+    const typographyContent = readContent('typography')
+    preflights.push({
+      getCSS: () => wrapToLayer(prefix, 'typography', typographyContent),
+    })
   }
 
   const { fonts = true } = options
