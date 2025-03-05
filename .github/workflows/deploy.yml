@@ -88,11 +88,30 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: packages-dist
+          path: downloaded-dist
 
-      - name: Replace packages folder with built files
+      - name: Replace package dist folders
         run: |
-          rm -rf packages
-          mv packages-dist packages
+          # Create directories if they don't exist
+          mkdir -p packages
+          
+          # Find all directories in the downloaded artifact
+          for pkg_dir in downloaded-dist/*/; do
+            if [ -d "$pkg_dir" ]; then
+              # Extract package name from path
+              pkg_name=$(basename "$pkg_dir")
+              
+              # Ensure the package directory exists
+              mkdir -p "packages/$pkg_name"
+              
+              # Replace the dist directory
+              rm -rf "packages/$pkg_name/dist"
+              mv "$pkg_dir" "packages/$pkg_name/dist"
+            fi
+          done
+          
+          # Clean up the downloaded directory
+          rm -rf downloaded-dist
 
       - name: Publish packages
         run: pnpm dlx pkg-pr-new publish --pnpm './packages/*'
