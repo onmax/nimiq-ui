@@ -19,9 +19,7 @@ concurrency:
 jobs:
   deploy_docs:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    environment: Dev
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -57,6 +55,7 @@ jobs:
 
   deploy_pkg:
     runs-on: ubuntu-latest
+    environment: Dev
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
