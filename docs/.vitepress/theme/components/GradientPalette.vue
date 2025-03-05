@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, Teleport, nextTick, watch } from 'vue';
 import CodeBlock from './CodeBlock.vue';
-import { computedAsync } from '@vueuse/core';
+import ShikiBlock from './ShikiBlock.vue';
 
 const gradients = ['Neutral', 'Blue', 'Green', 'Red', 'Orange', 'Gold']
 
@@ -15,7 +15,10 @@ function setActiveGradient(gradient: string, darkened?: boolean) {
 }
 
 const cssVar = computed(() => `background-image: var(--nq-${activeGradient.value?.color.toLowerCase()}-gradient${activeGradient.value?.darkened ? '-darkened' : ''})`)
-const tailwind = computed(() => `bg-gradient-${activeGradient.value?.color.toLowerCase()}<br />hover:bg-gradient-${activeGradient.value?.color.toLowerCase()}-darkened`)
+const tailwind = computed(() => {
+  const className = `bg-gradient-${activeGradient.value?.color.toLowerCase()} hover:bg-gradient-${activeGradient.value?.color.toLowerCase()}-darkened transition-colors`
+  return `<div class="${className}" />`
+})
 
 const card= ref<HTMLDivElement>()
 
@@ -31,6 +34,9 @@ watch(activeGradient, async () => {
 
 <template>
   <div grid="~ cols-[auto_1fr_1fr] items-center gap-16" f-my-md class="nq-raw" max-w-800 relative>
+    <div></div>
+    <span nq-label text-center>Default</span>
+    <span nq-label text-center>Darkened</span>
     <div v-for="gradient in gradients" :key="gradient" contents>
       <p text="neutral-700 right" font-semibold f-text-xs sm:pr-24>{{ gradient }}</p>
       <button bg-transparent  :style="getBg(`${gradient}`)" max-h-48 aspect-square w-full rounded="4 md:6"
@@ -49,10 +55,10 @@ watch(activeGradient, async () => {
         <CodeBlock :code="css!" text-wrap />
 
         <span block nq-label text-10 f-mt-md mb-2>CSS Variable</span>
-        <CodeBlock :code="cssVar" text-wrap />
+        <CodeBlock :code="`${cssVar}; /* Defined in nq-colors layer */`" text-wrap />
 
         <span block nq-label text-10 f-mt-md mb-2>Tailwind / UnoCSS</span>
-        <CodeBlock :code="tailwind" text-wrap />
+        <ShikiBlock :code="tailwind" lang="html" />
       </div>
     </Teleport>
   </ClientOnly>
