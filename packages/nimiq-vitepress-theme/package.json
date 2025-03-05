@@ -28,7 +28,6 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./style.css": "./dist/style.css",
     "./assets": {
       "import": "./dist/assets/*"
     },
