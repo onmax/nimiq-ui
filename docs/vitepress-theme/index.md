@@ -99,7 +99,7 @@ export const themeConfig = {
 
 You can use the [config](https://github.com/onmax/nimiq-ui/tree/main/docs/.vitepress/config.ts) used for this documentation for reference.
 
-### Import the layout
+### Import the layout and CSS
 
 You need to import the layout from the theme
 
@@ -108,6 +108,8 @@ You need to import the layout from the theme
 ```ts [.vitepress/index.ts]
 import { Layout } from 'nimiq-vitepress-theme' // [!code hl]
 import { Theme } from 'vitepress'
+
+import 'nimiq-vitepress-theme/assets/index.css' // [!code hl]
 
 export default {
   Layout, // [!code hl]
@@ -155,6 +157,8 @@ import { Layout } from 'nimiq-vitepress-theme'
 import NqCard from 'nimiq-vitepress-theme/components/NqCard.vue' // [!code hl]
 import NqGrid from 'nimiq-vitepress-theme/components/NqGrid.vue' // [!code hl]
 import NqLargeCard from 'nimiq-vitepress-theme/components/NqLargeCard.vue' // [!code hl]
+
+import 'nimiq-vitepress-theme/assets/index.css'
 
 export default {
   Layout,
