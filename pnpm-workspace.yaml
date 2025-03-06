@@ -5,3 +5,5 @@ packages:
 catalog:
   vite: ^6.1.0
   vue: ^3.5.13
+  unocss-preset-onmax: ^1.0.0-beta.7
+  unocss-preset-fluid-sizing: ^0.0.17

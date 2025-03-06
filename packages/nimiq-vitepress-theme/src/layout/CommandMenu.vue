@@ -26,7 +26,8 @@ function handleClose() {
 <template>
   <DialogRoot v-model:open="open">
     <DialogTrigger nq-input-box group hocus:bg-neutral-300 transition-colors flex="~ items-center gap-8"
-      p="l-12 r-4 y-4" rounded-12 f-text-xs v-bind="$attrs" style="--ring-color:rgba(var(--nq-neutral-400))" ref="el">
+      p="l-12 r-4 y-4" rounded-12 f-text-xs v-bind="$attrs" ref="el" var:outline-color:neutral-400>
+
       <div i-nimiq:magnifying-glass text-12 op="60 group-hocus:80" transition-opacity aria-hidden />
       <span inline-flex lh-none>Search</span>
       <span ml-auto f-text-3xs bg="group-hocus:neutral-400 neutral-300" ring="1 neutral-500" lh-none p="x-6 y-4"

@@ -51,13 +51,13 @@ const showSecondarySidebar = computed(() => showOutline.value || showWidget.valu
 <template>
   <div f-pl-xl f-pr-xs f-pt-xl f="$px $px-min-48 $px-max-72" f-pb-md flex="~ gap-16" relative h-full>
     <div flex="~ col" h-full flex-1 w="[calc(100vw-2*var(--nq-sidebar-width)-2*var(--f-px))]">
-      <article flex-1 class="nq-prose" style="--nq-prose-max-width: none">
+      <article flex-1 class="nq-prose" var:nq-prose-max-width:none>
         <Content max-w-none />
       </article>
       <div mt-auto px-32 flex="~ items-center justify-between" f-text-md un-f-text-xs
         v-if="showEditContent || showLastUpdated">
-        <a :href="editUrl" v-if="editUrl && showEditContent" target="_blank" rel="noopener" op70 group lh-0>
-          Edit this page on <span group-hocus:text-blue transition-colors nq-arrow font-semibold>GitHub</span> 
+        <a :href="editUrl" v-if="editUrl && showEditContent" target="_blank" rel="noopener" op70 group lh-0 nq-arrow>
+          Suggest changes on this page
         </a>
         <div v-else></div>
 

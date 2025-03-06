@@ -7,7 +7,7 @@ import { useData, withBase } from 'vitepress';
 import { useTemplateRef, watch } from 'vue';
 import type { NimiqVitepressSidebar, NimiqVitepressThemeConfig, NimiqVitepressThemeNav } from '../types'
 import { ref } from 'vue'
-import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger } from 'reka-ui'
+import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger, ScrollAreaRoot, ScrollAreaViewport, ScrollAreaScrollbar, ScrollAreaThumb } from 'reka-ui'
 import { useCurrentModule } from '../composables/useCurrentModule';
 import { isActive } from '../lib/route';
 
@@ -48,18 +48,18 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
 
 <template>
   <aside z-20 w-full of="x-hidden y-auto" fixed inset-y-0 left-0 overscroll-contain bg-neutral-100 flex="~ col">
-    <div absolute inset-y-0 right-0 ring="0.75 neutral-400" aria-hidden />
-    <div f-p-xs flex-1>
+    <div absolute inset-y-0 z-3 right-0 ring="0.75 neutral-400" aria-hidden var:outline-color:neutral-400 />
+    <div f-p-xs pb-0 display="~ col">
       <Logo />
       <CommandMenu f-mt-sm />
       <span id="sidebar-aria-label" sr-only>
         Sidebar Navigation
       </span>
 
-      <DefineNavItem v-slot="{ item: { text, subpath, defaultPageLink, icon, description }, component }">
-        <component :is="component"  :href="withBase(defaultPageLink)" f-text-xs py-6 pl-12 pr-16 rounded-6  w-full hocus:bg-neutral-300 transition-colors :class="{ 'font-bold text-blue bg-blue-400': isActive(page.relativePath, subpath), 'grid-cols-[max-content_1fr]':!!icon }" grid="~ rows-2 gap-x-12 items-center">
+      <DefineNavItem v-slot="{ item: { text, defaultPageLink, icon, description }, component }">
+        <component :is="component"  :href="withBase(defaultPageLink)" f-text-xs py-6 pl-12 pr-16 rounded-6  w-full hocus:bg-neutral-300 transition-colors :class="{ 'grid-cols-[max-content_1fr]':!!icon }" grid="~ rows-2 gap-x-12 items-center">
           <div :class="icon" block size-28 row-span-full v-if="icon" />
-          <span flex-1 text-left>{{ text }}</span>
+          <p flex-1 text-left>{{ text }}</p>
           <p v-if="description" text="left f-xs" text-neutral-800>{{ description }}</p>
         </component>
       </DefineNavItem>
@@ -84,38 +84,44 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
           <span flex-1>{{ text }}</span>
         </a>
       </DefineSidebarItem>
-
-      <nav v-bind="$attrs" of-y-auto ref="nav" f-mt-sm>
-        <div i-nimiq:fire />
-        <ul>
-          <li v-for="item in currentDocModule.sidebar" :key="item.label" f-pb-xs>
-            <template v-if="item.items?.length">
-              <span nq-label text-11 text-neutral-700 v-if="item.label">
-                {{ item.label }}
-              </span>
-              <div v-for="subitem in item.items" :key="subitem.text">
-                <CollapsibleRoot v-if="subitem.items?.length" v-slot="{ open }" :default-open="openAccordionInitialState(subitem.items)">
-                  <CollapsibleTrigger class="sidebar-item" group pr-12 pl-8 bg-transparent>
-                    <div :class="subitem.icon" f-text-sm v-if="subitem.icon" text-neutral op="70 group-hocus:100" mr-8 />
-                    <div :class="subitem.text" op="80 group-hocus:100" transition-opacity />
-                    <span flex-1 text-left>{{ subitem.text }}</span>
-                    <div i-nimiq:chevron-down aria-hidden text="9 neutral-700 group-hocus:neutral-800"
-                      transition="[color,transform]" :class="{ 'rotate--90': !open }" />
-                  </CollapsibleTrigger>
-                  <CollapsibleContent of-hidden data-open:animate-slide-down data-closed:animate-slide-up relative>
-                    <div absolute inset-y-0 left-12 w-2 bg-neutral-400 z-1 rounded-full />
-                    <SidebarItem v-for="subsubitem in subitem.items" px-24 :key="subsubitem.text" :item="subsubitem" />
-                  </CollapsibleContent>
-                </CollapsibleRoot>
-                <SidebarItem v-else :item="subitem" px-8 />
-              </div>
-            </template>
-          </li>
-        </ul>
-      </nav>
     </div>
 
-    <div border="t neutral-400" flex="~ items-center" f-px-sm>
+    <hr w-full h-1.5 bg-neutral-200 f-mt-xs>
+
+    <ScrollAreaRoot relative of-hidden bg-neutral-100 var:scrollbar-size:10px as="nav" flex-1 f-px-xs ref="nav" v-bind="$attrs">
+      <div absolute top-0 z-2 w-full h-24 bg-gradient="to-t from-transparent to-neutral-100" />
+      <ScrollAreaViewport size-full f-pt-xs as="ul">
+        <li v-for="item in currentDocModule.sidebar" :key="item.label" f-pb-xs>
+          <template v-if="item.items?.length">
+            <span nq-label text-11 text-neutral-700 v-if="item.label">
+              {{ item.label }}
+            </span>
+            <div v-for="subitem in item.items" :key="subitem.text">
+              <CollapsibleRoot v-if="subitem.items?.length" v-slot="{ open }" :default-open="openAccordionInitialState(subitem.items)">
+                <CollapsibleTrigger class="sidebar-item" group pr-12 pl-8 bg-transparent>
+                  <div :class="subitem.icon" f-text-sm v-if="subitem.icon" text-neutral op="70 group-hocus:100" mr-8 />
+                  <div :class="subitem.text" op="80 group-hocus:100" transition-opacity />
+                  <span flex-1 text-left>{{ subitem.text }}</span>
+                  <div i-nimiq:chevron-down aria-hidden text="9 neutral-700 group-hocus:neutral-800"
+                    transition="[color,transform]" :class="{ 'rotate--90': !open }" />
+                </CollapsibleTrigger>
+                <CollapsibleContent of-hidden data-open:animate-slide-down data-closed:animate-slide-up relative>
+                  <div absolute inset-y-0 left-12 w-2 bg-neutral-400 z-1 rounded-full />
+                  <SidebarItem v-for="subsubitem in subitem.items" px-24 :key="subsubitem.text" :item="subsubitem" />
+                </CollapsibleContent>
+              </CollapsibleRoot>
+              <SidebarItem v-else :item="subitem" px-8 />
+            </div>
+          </template>
+        </li>
+      </ScrollAreaViewport>
+      <ScrollAreaScrollbar inset-y-0 flex="~" select-none touch-none p-2 z-20 bg="neutral-300" w-10  orientation="vertical">
+        <ScrollAreaThumb flex-1 bg-neutral-500 rounded-5 relative content-empty before="absolute top--50% left--50% -translate-x--50% -translate-y--50% size-full min-h-40 min-w-40"  />
+      </ScrollAreaScrollbar>
+      <div absolute bottom-0 z-2 w-full h-24 bg-gradient="to-b from-transparent to-neutral-100" />
+    </ScrollAreaRoot>
+
+    <div border="t neutral-400" flex="~ items-center" f-px-sm sticky bottom-0>
       <nav>
         <ul flex="~ gap-4" f-py-xs>
           <li v-for="({ icon, link }) in theme.links" :key="link">

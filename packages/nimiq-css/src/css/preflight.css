@@ -18,29 +18,15 @@
     'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
-:not(:where([nq-raw], .nq-raw)) {
+:where(*:not(:where(.nq-raw *, [nq-raw] *))) {
   border-color: rgb(var(--nq-neutral-400));
   outline-color: rgb(var(--nq-blue));
-  /* outline-width: 0; */
+  outline-width: 1.5px;
   overscroll-behavior-x: contain;
+  caret-color: rgb(var(--nq-blue));
 
   &:where(:not(:where(code, pre))) {
-    font-family:
-      var(--nq-font-sans, 'Mulish'),
-      ui-sans-serif,
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      Segoe UI,
-      Roboto,
-      Helvetica Neue,
-      Arial,
-      Noto Sans,
-      sans-serif,
-      Apple Color Emoji,
-      Segoe UI Emoji,
-      Segoe UI Symbol,
-      Noto Color Emoji;
+    font-family: var(--nq-font-sans, 'Mulish');
   }
 
   &:where(code, pre, pre *, code *) {

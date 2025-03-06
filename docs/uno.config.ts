@@ -1,11 +1,11 @@
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
-import { defineConfig, presetAttributify, presetIcons, presetWind3, transformerDirectives } from 'unocss'
+import { defineConfig, presetIcons,  transformerDirectives, type PresetWind3Theme } from 'unocss'
 import { presetFluidSizing } from 'unocss-preset-fluid-sizing'
-import { presetScalePx } from 'unocss-preset-scale-px'
+import { presetOnmax } from 'unocss-preset-onmax'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { presetNimiq } from '../packages/nimiq-css/src/index'
 
-export default defineConfig({
+export default defineConfig<PresetWind3Theme>({
   content: {
     filesystem: ['./.vitepress/config.ts', '../**/**.{vue,md}', './theme/components/**/*.vue', './config.ts'],
   },
@@ -13,8 +13,7 @@ export default defineConfig({
     ['stack', 'w-full grid grid-cols-1 grid-rows-1 children:row-span-full children:col-span-full children:self-center children:justify-self-center'],
   ],
   presets: [
-    presetWind3(),
-    presetAttributify(),
+    presetOnmax(),
     presetNimiq({
       utilities: true,
       attributifyUtilities: true,
@@ -24,7 +23,6 @@ export default defineConfig({
       },
       typography: true,
     }),
-    presetScalePx(),
     presetFluidSizing(),
     presetIcons({
       collections: {

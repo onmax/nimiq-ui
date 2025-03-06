@@ -566,12 +566,12 @@
   transition:
     colors 0.2s var(--nq-ease),
     box-shadow 0.1s var(--nq-ease);
-  outline: 0;
 
   --color: rgb(var(--nq-neutral));
   --placeholder-color: rgb(var(--nq-neutral-700));
+  --outline-color: rgb(var(--nq-neutral-500));
 
-  outline: 1.5px solid rgb(var(--nq-neutral-500));
+  outline: 1.5px solid var(--outline-color);
   color: var(--color);
 
   :where([data-inverted] *) & {
@@ -584,7 +584,7 @@
 
   &:not(.nq-invalid, :user-invalid):where(:hover, :focus, :focus-within) {
     --color: rgb(var(--nq-blue));
-    outline-color: rgba(var(--nq-blue) / 0.3);
+    --outline-color: rgb(var(--nq-blue) / 0.3);
 
     &::placeholder {
       --placeholder-color: rgb(var(--nq-blue) / 0.6);
@@ -592,7 +592,7 @@
 
     &:focus:valid,
     &:focus-within:valid {
-      outline-color: rgba(var(--nq-blue));
+      --outline-color: rgb(var(--nq-blue)/1);
     }
   }
 

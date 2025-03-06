@@ -14,7 +14,7 @@ const content = computedAsync(async () => {
 </script>
 
 <template>
-  <div class="vp-code-group" style="--nq-m-size:24px">
+  <div class="vp-code-group" var:nq-m-size:24px>
     <div class="tabs">
       <label :data-title="label || lang || 'Code'" for="tab-26">{{ label || lang || 'Code' }}</label>
     </div>

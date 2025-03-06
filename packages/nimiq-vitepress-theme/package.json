@@ -87,8 +87,8 @@
     "pathe": "^2.0.3",
     "unbuild": "^3.3.1",
     "unocss": "^66.0.0",
-    "unocss-preset-fluid-sizing": "^0.0.17",
-    "unocss-preset-scale-px": "^0.0.2",
+    "unocss-preset-fluid-sizing": "catalog:",
+    "unocss-preset-onmax": "catalog:",
     "unplugin-vue-components": "^28.4.0"
   }
 }
