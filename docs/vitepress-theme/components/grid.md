@@ -131,3 +131,52 @@ cards:
 </NqGrid>
 
 </ComponentPreview>
+
+## Grid with Mixed Spans
+
+<ComponentPreview>
+
+<NqGrid>
+
+<NqCard
+  span="full"
+  bg-color="blue"
+  icon="i-nimiq:icons-lg-browsermesh"
+  title="Full Width Feature"
+  description="I'm a special card that spans the entire width of the grid. Perfect for featured content or important announcements!"
+/>
+
+<NqCard
+  span="half"
+  bg-color="green"
+  icon="i-nimiq:tools"
+  title="Half Width Card"
+  description="I take up half the grid width, making me stand out more than standard cards."
+/>
+
+<NqCard
+  span="half"
+  bg-color="orange"
+  icon="i-nimiq:fire"
+  title="Another Half"
+  description="Together with my friend, we make a perfect pair across the row."
+/>
+
+<NqCard
+  title="Regular Card"
+  description="I'm a standard card, happy with my default width."
+/>
+
+<NqCard
+  title="Another Regular"
+  description="Me too! Default width is cozy."
+/>
+
+<NqCard
+  title="Last But Not Least"
+  description="Completing this mixed layout showcase."
+/>
+
+</NqGrid>
+
+</ComponentPreview>

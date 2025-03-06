@@ -32,6 +32,14 @@ const {cards} = defineProps<{
   --uno: 'col-span-2';
 }
 
+:global(.nq-grid [data-card][data-span="full"]) {
+  --uno: 'col-span-6';
+}
+
+:global(.nq-grid [data-card][data-span="half"]) {
+  --uno: 'col-span-3';
+}
+
 :global(.nq-grid [data-card]) {
   --uno: 'mt-0';
 }

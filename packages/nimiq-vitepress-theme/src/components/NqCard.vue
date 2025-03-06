@@ -3,13 +3,14 @@ import { computed } from 'vue';
 
 export type CardColor = 'green' | 'blue' | 'red' | 'gold' | 'orange'
 
-const { bgColor, icon, href } = defineProps<{
+const { bgColor, icon, href, span } = defineProps<{
   icon?: string
   bgColor?: CardColor
   href?: string
   title?: string
   description?: string
   label?: string
+  span?: 'full' | 'half' | 'default'
 }>()
 
 const hasLink = computed(() => !!href)
@@ -18,7 +19,7 @@ const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#1
 </script>
 
 <template>
-  <component :is="hasLink ? 'a' : 'div'" :href group :data-inverted="bgColor ? '' : undefined" class="vp-raw nq-raw"
+  <component :is="hasLink ? 'a' : 'div'" :href group :data-span="span" :data-inverted="bgColor ? '' : undefined" class="vp-raw nq-raw"
     f-mt-md relative :style="`background-image: ${bgColor ? `var(--nq-${bgColor}-gradient)` : ''}`" :data-card="bgColor ? 'colored' : 'default'"
     :target="hasLink && href?.startsWith('http') ? '_blank' : undefined"
     :class="{ 'nq-hoverable': hasLink, 'nq-card': !hasLink, 'children:max-w-[max(50%,240px)]': bgColor, 'bg-neutral-300': !bgColor }">
