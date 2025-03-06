@@ -112,7 +112,7 @@ export function useOutline() {
 
   onMounted(() => {
     resolvedHeaders.length = 0
-    const headings = Array.from(document.querySelectorAll('article :where(h2,h3)'))
+    const headings = Array.from(document.querySelectorAll('article :where(h2,h3):not([data-card] *)'))
       .filter(el => el.id && el.hasChildNodes()) as HTMLElement[]
 
     headingTree.value = buildTree(headings)
@@ -122,7 +122,7 @@ export function useOutline() {
 
   onUpdated(() => {
     resolvedHeaders.length = 0
-    const headings = Array.from(document.querySelectorAll('article :where(h2,h3)'))
+    const headings = Array.from(document.querySelectorAll('article :where(h2,h3):not([data-card] *)'))
       .filter(el => el.id && el.hasChildNodes()) as HTMLElement[]
 
     headingTree.value = buildTree(headings)
