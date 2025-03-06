@@ -3,7 +3,12 @@ packages:
   - apps/*
   - docs/
 catalog:
-  vite: ^6.1.0
+  vite: ^6.2.0
   vue: ^3.5.13
-  unocss-preset-onmax: ^1.0.0-beta.7
+  unocss-preset-onmax: ^1.0.0-beta.9
   unocss-preset-fluid-sizing: ^0.0.17
+  unocss: ^66.1.0-beta.3
+  '@unocss/reset': ^66.1.0-beta.3
+  '@unocss/preset-web-fonts': ^66.1.0-beta.3
+onlyBuiltDependencies:
+  - vue-demi

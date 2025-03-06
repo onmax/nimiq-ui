@@ -36,10 +36,10 @@
     "release": "pnpm run build && bumpp --commit --push --tag && pnpm publish"
   },
   "dependencies": {
-    "@unocss/preset-web-fonts": "^66.0.0",
-    "@unocss/reset": "66.0.0",
+    "@unocss/preset-web-fonts": "catalog:",
+    "@unocss/reset": "catalog:",
     "ts-cssjson": "^3.0.1",
-    "unocss": "^66.0.0"
+    "unocss": "catalog:"
   },
   "devDependencies": {
     "@iconify/types": "^2.0.0",
