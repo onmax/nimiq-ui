@@ -10,13 +10,13 @@ const {cards} = defineProps<{
 </script>
 
 <template>
-  <div grid="~ cols-6 gap-16" class="nq-grid">
+  <ul grid="~ cols-6 gap-16" class="nq-grid">
     <slot>
       <li v-for="(card, index) in cards" :key="index" data-card="default">
         <NqCard v-bind="card" />
       </li>
     </slot>
-  </div>
+  </ul>
 </template>
 
 <style scoped>
