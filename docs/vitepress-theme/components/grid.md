@@ -2,38 +2,60 @@
 
 Think of grids as the Marie Kondo of UI components - they help keep your cards organized and spark joy in your layouts!
 
-> [!TIP]
-> Remember to [register `NqGrid`](/vitepress-theme/#register-the-components) in your app.
+## Props
 
-## Basic grid
+| Name    | Type     | Default     | Description                           |
+| ------- | -------- | ----------- | ------------------------------------- |
+| `cards` | `Card[]` | `undefined` | Array of card objects to render       |
+
+The component also supports using slots for custom content instead of props.
+
+## Basic grid with frontmatter
+
+You can define your grid cards directly in the frontmatter of your markdown file:
+
+```yaml
+---
+cards:
+  - bgColor: blue
+    icon: i-nimiq:fire
+    title: Build with Nimiq
+    description: Create powerful blockchain applications with our easy-to-use tools
+    label: Development
+  - bgColor: green
+    icon: i-nimiq:tools
+    title: Developer Tools
+    description: Everything you need to build and deploy Nimiq applications
+    label: Resources
+  - title: Community Support
+    description: Join our vibrant community of developers and enthusiasts
+  - title: Documentation
+    description: Comprehensive guides and API references at your fingertips
+  - title: Get Started
+    description: Take your first steps into blockchain development with Nimiq
+---
+
+<NqGrid :cards="frontmatter.cards" />
+```
 
 <ComponentPreview>
 
 <NqGrid>
 
-<NqCard>
+<NqCard
+  title="The First Card"
+  description="I'm just the first in a series of amazing cards."
+/>
 
-#### The Three Musketeers: Part 1
+<NqCard
+  title="The Second Card"
+  description="Right in the middle, keeping things balanced."
+/>
 
-All for one and one for all! I'm just the first musketeer in this grid adventure.
-
-</NqCard>
-
-<NqCard>
-
-#### The Three Musketeers: Part 2
-
-Second musketeer reporting for duty! I keep the middle space warm and cozy.
-
-</NqCard>
-
-<NqCard>
-
-#### The Three Musketeers: Part 3
-
-And I complete the trio! Together we make this grid look awesome.
-
-</NqCard>
+<NqCard
+  title="The Third Card"
+  description="Last but not least, completing the trilogy."
+/>
 
 </NqGrid>
 
@@ -45,49 +67,38 @@ And I complete the trio! Together we make this grid look awesome.
 
 <NqGrid>
 
-<NqCard bg-color="blue" href="#" icon="i-nimiq:icons-lg-browsermesh">
+<NqCard
+  bg-color="blue"
+  href="#"
+  icon="i-nimiq:icons-lg-browsermesh"
+  label="Build Something Cool"
+  title="Your Journey Starts Here"
+  description="Like building with LEGO, but for grown-ups who code!"
+/>
 
-#### Build Something Cool {.nq-label}
+<NqCard
+  bg-color="green"
+  href="#"
+  icon="i-nimiq:icons-lg-cubes"
+  label="Learn The Ropes"
+  title="Beyond Hello World"
+  description="Because understanding Nimiq is easier than explaining why you need another mechanical keyboard."
+/>
 
-##### Your Journey Starts Here
+<NqCard
+  title="The Support Squad"
+  description="We're like your coding best friends, minus the coffee borrowing."
+/>
 
-Like building with LEGO, but for grown-ups who code!
+<NqCard
+  title="The Innovation Corner"
+  description="Where ideas come to party and bugs come to retire."
+/>
 
-</NqCard>
-
-<NqCard bg-color="green" href="#" icon="i-nimiq:icons-lg-cubes">
-
-#### Learn The Ropes {.nq-label}
-
-##### Beyond "Hello World"
-
-Because understanding Nimiq is easier than explaining why you need another mechanical keyboard.
-
-</NqCard>
-
-<NqCard>
-
-#### The Support Squad
-
-We're like your coding best friends, minus the coffee borrowing.
-
-</NqCard>
-
-<NqCard>
-
-#### The Innovation Corner
-
-Where ideas come to party and bugs come to retire.
-
-</NqCard>
-
-<NqCard>
-
-#### The Fun Zone
-
-Because who said documentation had to be boring?
-
-</NqCard>
+<NqCard
+  title="The Fun Zone"
+  description="Because who said documentation had to be boring?"
+/>
 
 </NqGrid>
 
@@ -99,29 +110,23 @@ Because who said documentation had to be boring?
 
 <NqGrid>
 
-<NqLargeCard icon="i-nimiq:tools">
+<NqLargeCard
+  icon="i-nimiq:tools"
+  title="The Wise Elder"
+  description="I'm the big card that's seen it all. Think of me as the senior developer of cards."
+/>
 
-#### The Wise Elder
+<NqLargeCard
+  icon="i-nimiq:tools"
+  title="The Middle Manager"
+  description="I keep things balanced, like a good project manager (but more reliable)."
+/>
 
-I'm the big card that's seen it all. Think of me as the senior developer of cards.
-
-</NqLargeCard>
-
-<NqLargeCard icon="i-nimiq:tools">
-
-#### The Middle Manager
-
-I keep things balanced, like a good project manager (but more reliable).
-
-</NqLargeCard>
-
-<NqLargeCard icon="i-nimiq:tools">
-
-#### The Team Player
-
-I complete the trio with style. Three's company, four's a grid overflow!
-
-</NqLargeCard>
+<NqLargeCard
+  icon="i-nimiq:tools"
+  title="The Team Player"
+  description="I complete the trio with style. Three's company, four's a grid overflow!"
+/>
 
 </NqGrid>
 

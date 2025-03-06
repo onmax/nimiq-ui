@@ -1,10 +1,21 @@
 <script setup lang="ts">
-// defineProps<{ test: string }>()
+const {cards} = defineProps<{
+  cards?: {
+    title?: string
+    description?: string
+    label?: string
+  }[]
+}>()
+
 </script>
 
 <template>
   <div grid="~ cols-6 gap-16" class="nq-grid">
-    <slot />
+    <slot>
+      <li v-for="(card, index) in cards" :key="index" data-card="default">
+        <NqCard v-bind="card" />
+      </li>
+    </slot>
   </div>
 </template>
 

@@ -7,6 +7,9 @@ const { bgColor, icon, href } = defineProps<{
   icon?: string
   bgColor?: CardColor
   href?: string
+  title?: string
+  description?: string
+  label?: string
 }>()
 
 const hasLink = computed(() => !!href)
@@ -20,7 +23,11 @@ const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#1
     :target="hasLink && href?.startsWith('http') ? '_blank' : undefined"
     :class="{ 'nq-hoverable': hasLink, 'nq-card': !hasLink, 'children:max-w-[max(50%,240px)]': bgColor, 'bg-neutral-300': !bgColor }">
     <div :class="icon" f-size="~ max-160 min-120" absolute right--12 :style="`color: ${colors[bgColor!]}`" />
-    <slot />
+    <slot>
+      <span nq-label>{{ label }}</span>
+      <h2>{{ title }}</h2>
+      <p>{{ description }}</p>
+    </slot>
   </component>
 </template>
 
