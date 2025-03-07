@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import '../assets/index.css';
 import PageContent from './PageContent.vue';
 import Sidebar from './Sidebar.vue'
 </script>
