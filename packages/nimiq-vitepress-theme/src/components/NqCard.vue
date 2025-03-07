@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 
 export type CardColor = 'green' | 'blue' | 'red' | 'gold' | 'orange'
+export type CardSpan = 'full' | 'half' | 'default'
 
 const { bgColor, icon, href, span } = defineProps<{
   icon?: string
@@ -10,17 +11,22 @@ const { bgColor, icon, href, span } = defineProps<{
   title?: string
   description?: string
   label?: string
-  span?: 'full' | 'half' | 'default'
+  span?: CardSpan
 }>()
 
 const hasLink = computed(() => !!href)
 
 const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#1DA186', gold: '#ffffffaa' }
+
+function getSpan(): CardSpan | undefined {
+  if (span === undefined && bgColor) return 'half'
+  return span
+}
 </script>
 
 <template>
   <component
-    :is="hasLink ? 'a' : 'div'" :href group :data-span="span" :data-inverted="bgColor ? '' : undefined" class="nq-raw"
+    :is="hasLink ? 'a' : 'div'" :href group :data-span="getSpan()" :data-inverted="bgColor ? '' : undefined" class="nq-raw"
     f-mt-md relative :style="`background-image: ${bgColor ? `var(--nq-${bgColor}-gradient)` : ''}`" :data-card="bgColor ? 'colored' : 'default'"
     :target="hasLink && href?.startsWith('http') ? '_blank' : undefined"
     :class="{ 'nq-hoverable': hasLink, 'nq-card': !hasLink, 'children:max-w-[max(50%,240px)]': bgColor, 'bg-neutral-300': !bgColor }"
