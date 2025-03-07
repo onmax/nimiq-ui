@@ -3,7 +3,7 @@
 
 import { useData, useRoute } from 'vitepress'
 import type { NimiqVitepressThemeConfig } from '../types';
-import { data } from '../git.data'
+import { data } from '../lib/git.data'
 import { ref, computed, onMounted, watch } from 'vue'
 import { useTimeAgo } from '@vueuse/core';
 import { useOutline } from '../composables/useOutline'
