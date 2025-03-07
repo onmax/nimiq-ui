@@ -1,3 +1,6 @@
+import type { Theme } from "vitepress"
+import type DefaultTheme from "vitepress/theme"
+
 export interface NimiqVitepressSidebar {
   label?: string
   items: {
@@ -31,4 +34,9 @@ export interface NimiqVitepressThemeConfig {
   }[]
   showLastUpdated?: boolean
   showEditContent?: boolean
+}
+
+export interface DefineThemeNqVpOptions {
+  setup: typeof DefaultTheme['setup']
+  enhanceApp?: Theme['enhanceApp']
 }

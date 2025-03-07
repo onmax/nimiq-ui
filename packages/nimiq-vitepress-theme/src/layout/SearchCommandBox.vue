@@ -1,12 +1,15 @@
 <script setup lang="ts">
-// Adapted from Reka UI and Vitepress default theme 
+// Adapted from Reka UI and Vitepress default theme
 
-import Mark from 'mark.js/src/vanilla.js'
-import MiniSearch, { type SearchResult } from 'minisearch'
-import { useData } from 'vitepress'
-import { DialogClose, type GenericComponentInstance, ListboxContent, ListboxFilter, ListboxItem, ListboxRoot } from 'reka-ui'
-import { type Ref, markRaw, nextTick, onMounted, ref, shallowRef, watch } from 'vue'
+import type { SearchResult } from 'minisearch'
+import type { GenericComponentInstance } from 'reka-ui'
+import type { Ref } from 'vue'
 import { computedAsync, debouncedWatch } from '@vueuse/core'
+import Mark from 'mark.js/src/vanilla.js'
+import MiniSearch from 'minisearch'
+import { DialogClose, ListboxContent, ListboxFilter, ListboxItem, ListboxRoot } from 'reka-ui'
+import { useData } from 'vitepress'
+import { markRaw, nextTick, onMounted, ref, shallowRef, watch } from 'vue'
 import { LRUCache } from '../lib/lru'
 
 const emit = defineEmits<{ close: [] }>()
@@ -27,7 +30,7 @@ interface Result {
 }
 
 onMounted(() => {
-  import('@localSearchIndex').then((m) => searchIndexData.value = m.default)
+  import('@localSearchIndex').then(m => searchIndexData.value = m.default)
 })
 
 const mark = computedAsync(async () => {
@@ -141,13 +144,14 @@ function formMarkRegex(terms: Set<string>) {
       }"
       as="ul" max-h-55vh of-auto border="t md:y neutral-400 md:empty:t-0" empty="hidden md:block"
     >
-      <ListboxItem v-for="p in results" :key="p.id" :value="p.id"
+      <ListboxItem
+        v-for="p in results" :key="p.id" :value="p.id"
         class="data-[highlighted]:bg-blue-400 data-[highlighted]:text-blue data-[highlighted]:font-semibold" as-child @select="emit('close')"
-        >
+      >
         <a :href="p.id" inline-flex f-p-sm f-p-xs w-full>
           <div flex="~ items-center wrap">
             <span v-for="(t, index) in p.titles" :key="index" flex="~ items-center">
-              <span  v-html="t" />
+              <span v-html="t" />
               <div i-nimiq:chevron-right />
             </span>
             <span>
@@ -179,13 +183,13 @@ function formMarkRegex(terms: Set<string>) {
         </kbd>
         to navigate
       </span>
-      <span flex="~ items-center gap-4" >
+      <span flex="~ items-center gap-4">
         <kbd aria-label="Enter">
           enter
         </kbd>
         to select
       </span>
-      <span flex="~ items-center gap-4" >
+      <span flex="~ items-center gap-4">
         <kbd aria-label="Escape">esc</kbd>
         to close
       </span>

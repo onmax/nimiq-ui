@@ -1,14 +1,21 @@
-import type { App } from 'vue'
 import NqCard from './components/NqCard.vue'
 import NqGrid from './components/NqGrid.vue'
 import NqLargeCard from './components/NqLargeCard.vue'
 import Layout from './layout/Layout.vue'
+import type { DefineThemeNqVpOptions } from './types'
+import type { Theme } from 'vitepress'
 
-export { Layout, NqCard, NqGrid, NqLargeCard }
-export * from './types'
+import './assets/index.css'
 
-export function registerNqComponents(app: App) {
-  app.component('NqCard', NqCard)
-  app.component('NqLargeCard', NqLargeCard)
-  app.component('NqGrid', NqGrid)
+export function defineNimiqThemeConfig(options: DefineThemeNqVpOptions): Theme {
+  return {
+    Layout,
+    async enhanceApp(ctx) {
+      if (options?.enhanceApp)
+        options.enhanceApp(ctx)
+      ctx.app.component('NqCard', NqCard)
+      ctx.app.component('NqGrid', NqGrid)
+      ctx.app.component('NqLargeCard', NqLargeCard)
+    },
+  }
 }

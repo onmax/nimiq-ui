@@ -2,7 +2,6 @@
 import NestedModalComponent from './NestedModalComponent.vue'
 </script>
 
-
 <template>
   <NestedModalComponent>
     <template #trigger>

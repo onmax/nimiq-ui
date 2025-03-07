@@ -2,7 +2,6 @@
 import BasicModalComponent from './BasicModalComponent.vue'
 </script>
 
-
 <template>
   <BasicModalComponent>
     <template #trigger>

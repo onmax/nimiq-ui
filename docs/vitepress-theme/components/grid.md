@@ -4,9 +4,9 @@ Think of grids as the Marie Kondo of UI components - they help keep your cards o
 
 ## Props
 
-| Name    | Type     | Default     | Description                           |
-| ------- | -------- | ----------- | ------------------------------------- |
-| `cards` | `Card[]` | `undefined` | Array of card objects to render       |
+| Name    | Type     | Default     | Description                     |
+| ------- | -------- | ----------- | ------------------------------- |
+| `cards` | `Card[]` | `undefined` | Array of card objects to render |
 
 The component also supports using slots for custom content instead of props.
 

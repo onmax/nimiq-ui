@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Color from 'colorjs.io';
-import { computed, nextTick, ref, Teleport, watch } from 'vue';
-import CodeBlock from './CodeBlock.vue';
+import Color from 'colorjs.io'
+import { computed, nextTick, ref, watch } from 'vue'
+import CodeBlock from './CodeBlock.vue'
 
-const colors = ['Neutral','Blue','Green','Red','Orange','Gold','Purple']
+const colors = ['Neutral', 'Blue', 'Green', 'Red', 'Orange', 'Gold', 'Purple']
 
 const variants = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1100]
 
@@ -21,9 +21,10 @@ watch(activeColor, async () => {
 
 function setColorFormats() {
   const colorCard = document.querySelector<HTMLDivElement>('#widget .color-card')
-  if (!colorCard) return ''
+  if (!colorCard)
+    return ''
   const computedStyle = getComputedStyle(colorCard)?.backgroundColor || ''
-  
+
   const colorInstance = new Color(computedStyle)
   activeColorFormats.value = {
     rgb: `rgb(${colorInstance.r * 255}, ${colorInstance.g * 255}, ${colorInstance.b * 255})`,
@@ -32,7 +33,6 @@ function setColorFormats() {
     oklch: colorInstance.to('oklch').toString(),
     oklab: colorInstance.to('oklab').toString(),
   }
-
 }
 
 const colorCodes = computed(() => {
@@ -52,20 +52,30 @@ const colorCodes = computed(() => {
     <div sticky top-0 z-9 bg-neutral-0 h-1lh f-py-xs />
 
     <!-- Top row: variant labels -->
-    <div sticky top-0 z-9 f-py-xs grid="~ col-start-2 cols-12 justify-items-center gap-6 sm:gap-16" bg-neutral-0
-      font-medium max-sm:children="rotate-180 [writing-mode:vertical-lr]" max-sm:py-4>
-      <div v-for="v in variants" :key="v" nq-label f-text-xs>{{ v }}</div>
-      <div absolute nq-label right--20 top--4 text-11 rotate--45>Default</div>
+    <div
+      sticky top-0 z-9 f-py-xs grid="~ col-start-2 cols-12 justify-items-center gap-6 sm:gap-16" bg-neutral-0
+      font-medium max-sm:children="rotate-180 [writing-mode:vertical-lr]" max-sm:py-4
+    >
+      <div v-for="v in variants" :key="v" nq-label f-text-xs>
+        {{ v }}
+      </div>
+      <div absolute nq-label right--20 top--4 text-11 rotate--45>
+        Default
+      </div>
     </div>
 
     <!-- Rows for each color -->
     <div v-for="color in colors" :key="color" contents>
       <!-- Color name in first column -->
-      <p text="neutral-700 right" font-semibold f-text-xs sm:pr-24>{{ color }}</p>
+      <p text="neutral-700 right" font-semibold f-text-xs sm:pr-24>
+        {{ color }}
+      </p>
 
       <div grid="~ cols-12 gap-6 sm:gap-16">
-        <button v-for="c in variants.map(v => `${color}-${v}`).concat([color])" :key="c" :style="getBg(c)"
-          class="color-card" @click="activeColor = `${c}`" />
+        <button
+          v-for="c in variants.map(v => `${color}-${v}`).concat([color])" :key="c" :style="getBg(c)"
+          class="color-card" @click="activeColor = `${c}`"
+        />
       </div>
     </div>
   </div>
@@ -73,10 +83,12 @@ const colorCodes = computed(() => {
   <ClientOnly>
     <Teleport defer to="#widget">
       <div v-if="activeColor">
-        <h3 font-mono>{{ activeColor }}</h3>
-        <div size-48 :style="getBg(activeColor)" class="color-card"></div>
+        <h3 font-mono>
+          {{ activeColor }}
+        </h3>
+        <div size-48 :style="getBg(activeColor)" class="color-card" />
         <ul f-mt-sm>
-          <li v-for="({label, text}) in colorCodes" :key="label" f-mt-xs>
+          <li v-for="({ label, text }) in colorCodes" :key="label" f-mt-xs>
             <span nq-label text-10>
               {{ label }}
             </span>
@@ -88,10 +100,9 @@ const colorCodes = computed(() => {
   </ClientOnly>
 </template>
 
-
 <style scoped>
 .color-card {
-  --uno: "outline-1 outline-solid outline-offset--1 outline-black/10 dark:outline-white/10";
-  --uno: "aspect-square w-full rounded-4 md:rounded-6";
+  --uno: 'outline-1 outline-solid outline-offset--1 outline-black/10 dark:outline-white/10';
+  --uno: 'aspect-square w-full rounded-4 md:rounded-6';
 }
 </style>

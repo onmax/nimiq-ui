@@ -105,6 +105,7 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
           {
             items: [
               { text: 'Getting Started', link: '/vitepress-theme', icon: 'i-tabler:arrow-guide ' },
+              { text: 'Frontmatter', link: '/vitepress-theme/frontmatter', icon: 'i-tabler:file-description ' },
               {
                 text: 'Available Components',
                 icon: 'i-nimiq:icons-lg-widget',

@@ -13,7 +13,6 @@ Then you need to add the following configuration to your `settings.json`:
 ::: code-group
 
 ```md [Setting page]
-
 1. Open the settings by pressing `Ctrl + ,` or `Cmd + ,`.
 2. Search for `Iconify Custom Collection JSON Paths`.
 3. Add the following URL to the list of paths: `https://raw.githubusercontent.com/onmax/nimiq-ui/refs/heads/main/packages/nimiq-icons/dist/icons.json`.
@@ -29,6 +28,4 @@ Then you need to add the following configuration to your `settings.json`:
 
 :::
 
-
 Then, whenever you use an icon in your code, the extension will replace the text with the icon preview. Super handy!
-

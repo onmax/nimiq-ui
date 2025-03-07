@@ -56,19 +56,19 @@ const open = defineModel<boolean>('open')
 }
 
 /* @screen lt-xl { */
-@media screen and (max-width:1200px) {
+@media screen and (max-width: 1200px) {
   .modal-enter-active,
   .modal-leave-active {
     transition: transform 200ms ease-out;
   }
-  
+
   .modal-enter-from,
   .modal-leave-to {
     --un-translate-y: 100%;
   }
 }
 
-@media screen and (min-width:1200px) {
+@media screen and (min-width: 1200px) {
   .modal-enter-active,
   .modal-leave-active {
     transition:

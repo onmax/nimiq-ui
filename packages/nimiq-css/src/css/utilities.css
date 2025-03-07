@@ -592,7 +592,7 @@
 
     &:focus:valid,
     &:focus-within:valid {
-      --outline-color: rgb(var(--nq-blue)/1);
+      --outline-color: rgb(var(--nq-blue) / 1);
     }
   }
 
@@ -635,7 +635,6 @@
   background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
   color: rgb(var(--nq-neutral));
   border-radius: 0.5rem;
-  outline-offset: 2px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -653,7 +652,6 @@
   border-radius: 0.5rem;
   outline: 1.5px solid rgb(var(--nq-neutral) / 0.06);
   outline-offset: -1.5px;
-  outline-offset: 2px;
   display: flex;
   flex-direction: column;
   overflow: hidden;

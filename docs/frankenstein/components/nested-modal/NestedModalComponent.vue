@@ -15,7 +15,8 @@ const open = defineModel<boolean>('open')
         <DialogOverlay v-if="!nested" fixed inset-0 z-200 bg-darkblue op-60 />
       </Transition>
       <Transition :name="nested ? 'nested' : 'modal'">
-        <DialogContent xl="top-1/2 left-1/2 translate--1/2" rounded="t-8 xl:8"
+        <DialogContent
+          xl="top-1/2 left-1/2 translate--1/2" rounded="t-8 xl:8"
           data-modal xl:max-w-500 fixed bottom-0 z-200 h-max max-h-85dvh w-full transform of-y-auto shadow-lg outline-none
           :data-nested="nested ? '' : undefined" @open-auto-focus.prevent
         >

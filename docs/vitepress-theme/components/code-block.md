@@ -62,7 +62,9 @@ const { coffeeCount, addCoffee, productivity } = useCoffeeTracking()
 
 <template>
   <div class="coffee-tracker">
-    <button @click="addCoffee">Add ☕</button>
+    <button @click="addCoffee">
+      Add ☕
+    </button>
     <div>Coffees today: {{ coffeeCount }}</div>
     <div>Productivity level: {{ productivity > 9000 ? '🚀' : '🐌' }}</div>
   </div>

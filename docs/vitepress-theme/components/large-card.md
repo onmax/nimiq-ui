@@ -4,12 +4,12 @@ A variant of the card component that is larger and more prominent.
 
 ## Props
 
-| Name          | Type     | Default     | Description                                     |
-| ------------- | -------- | ----------- | ----------------------------------------------- |
-| `href`        | `string` | `undefined` | The destination of your card's journey          |
-| `icon`        | `string` | `undefined` | The fancy hat your card wears                   |
-| `title`       | `string` | `undefined` | The card's title                               |
-| `description` | `string` | `undefined` | The card's description                          |
+| Name          | Type     | Default     | Description                            |
+| ------------- | -------- | ----------- | -------------------------------------- |
+| `href`        | `string` | `undefined` | The destination of your card's journey |
+| `icon`        | `string` | `undefined` | The fancy hat your card wears          |
+| `title`       | `string` | `undefined` | The card's title                       |
+| `description` | `string` | `undefined` | The card's description                 |
 
 The component also supports using slots for custom content instead of props.
 

@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { type DefaultTheme, inBrowser, useData } from 'vitepress';
-import { nextTick } from 'vue';
-import { useWindowSize } from '@vueuse/core';
+import type { DefaultTheme } from 'vitepress'
+import { useWindowSize } from '@vueuse/core'
+import { inBrowser, useData } from 'vitepress'
+import { nextTick } from 'vue'
 
 const { isDark } = useData<DefaultTheme.Config>()
 
 const enableTransitions = () => inBrowser && 'startViewTransition' in globalThis?.document && globalThis?.window.matchMedia('(prefers-reduced-motion: no-preference)').matches
 
-const { height:windowHeight, width: windowWidth }  = useWindowSize()
+const { height: windowHeight, width: windowWidth } = useWindowSize()
 
 function getHexagonPoints(x: number, y: number, r: number): string {
   const angles = [0, 60, 120, 180, 240, 300]
@@ -22,7 +23,7 @@ function getHexagonPoints(x: number, y: number, r: number): string {
 async function toggleTheme({ clientX: x, clientY: y }: MouseEvent) {
   if (!enableTransitions()) {
     isDark.value = !isDark.value
-    
+
     return
   }
 
@@ -42,9 +43,8 @@ async function toggleTheme({ clientX: x, clientY: y }: MouseEvent) {
 </script>
 
 <template>
- 
-      <label ml-auto flex="~ items-center">
-        <input type="checkbox" nq-switch text-17 bg="neutral-400" :checked="isDark" @click.prevent="toggleTheme">
-        <span sr-only>Theme switcher</span>
-      </label>
+  <label ml-auto flex="~ items-center">
+    <input type="checkbox" nq-switch text-17 bg="neutral-400" :checked="isDark" @click.prevent="toggleTheme">
+    <span sr-only>Theme switcher</span>
+  </label>
 </template>

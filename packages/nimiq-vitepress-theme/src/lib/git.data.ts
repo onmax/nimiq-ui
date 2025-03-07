@@ -1,4 +1,4 @@
-/* eslint-disable no-console, antfu/no-top-level-await */
+/* eslint-disable no-console */
 
 // Inspired from https://github.com/vuejs/vitepress/discussions/3515
 
@@ -8,7 +8,7 @@ import path from 'node:path'
 import { env } from 'node:process'
 import { spawn } from 'cross-spawn'
 import pMap from 'p-map'
-import { createContentLoader } from 'vitepress'
+import { createContentLoader, defineLoader } from 'vitepress'
 
 // For logging
 const DEBUG = env.DEBUG === 'true'
@@ -247,5 +247,21 @@ async function getFileRelativePath(filePath: string): Promise<string> {
 }
 
 // Export the data and the loader
-export const data = await loader.load()
-export default loader
+export type GitData = (ContentData & {
+  lastUpdated: number
+  hash: string
+  editUrl: string
+  commitUrl: string
+  relativePath: string
+})[]
+
+declare const data: GitData
+
+export { data }
+
+export default defineLoader({
+  async load(): Promise<GitData> {
+    const loadedData = await loader.load()
+    return loadedData
+  },
+})

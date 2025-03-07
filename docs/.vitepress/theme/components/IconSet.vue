@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { addCollection, Icon, listIcons, getIcon } from '@iconify/vue'
+import { addCollection, getIcon, Icon, listIcons } from '@iconify/vue'
 import { createReusableTemplate, useLocalStorage } from '@vueuse/core'
-import { computed, onMounted, ref, watchEffect } from 'vue'
 import { buildIcon } from 'iconify-icon'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import CodeBlock from './CodeBlock.vue'
 import ShikiBlock from './ShikiBlock.vue'
 
@@ -69,7 +69,6 @@ const svgIcon = computed(() => {
   if (!built)
     return
   const xlink = built.body.includes('xlink:') ? ' xmlns:xlink="http://www.w3.org/1999/xlink"' : ''
-  // @ts-ignore
   return `<svg xmlns="http://www.w3.org/2000/svg"${xlink} ${Object.entries(built.attributes).map(([k, v]) => `${k}="${v}"`).join(' ')}>${built.body}</svg>`.replaceAll('currentColor', activeColor.value)
 })
 
@@ -80,16 +79,16 @@ const svgIconDataUrl = computed(() => {
   return `data:image/svg+xml,${encodeURIComponent(svg)}`
 })
 
+const baseLogo = computed(() => selectedIcon.value.replace(/(?:white-)?(horizontal|vertical)?-mono/, '$1'))
+const isLogo = computed(() => selectedIcon.value.startsWith('nimiq:logos'))
+const isMono = computed(() => selectedIcon.value.endsWith('-mono'))
+const isWhite = computed(() => selectedIcon.value.includes('-white-'))
 const tailwindCode = computed(() => {
   const className = (!isLogo.value || (isLogo.value && isMono.value)) ? `\n\tclass="text-${activeColor.value}"` : ''
   return `<div\n\ti-${selectedIcon.value}\n\taria-hidden${className}\n/>`
 })
-const baseLogo = computed(() => selectedIcon.value.replace(/(?:white-)?(horizontal|vertical)?(?:-mono)/, '$1'))
-const isLogo = computed(() => selectedIcon.value.startsWith('nimiq:logos'))
-const isMono = computed(() => selectedIcon.value.endsWith('-mono'))
-const isWhite = computed(() => selectedIcon.value.includes('-white-'))
 const hasWhite = computed(() => {
-  return getIcon(baseLogo.value + '-white-horizontal') || getIcon(baseLogo.value + '-white-vertical')
+  return getIcon(`${baseLogo.value}-white-horizontal`) || getIcon(`${baseLogo.value}-white-vertical`)
 })
 
 // From mono -> logo -> logo-white
@@ -121,15 +120,17 @@ function selectColor(c: Color) {
 </script>
 
 <template>
-  <DefineGrid v-slot="{ icons, variant, classes }">
+  <DefineGrid v-slot="{ icons: iconsVariant, variant, classes }">
     <span block f-mt-xl f-text-2xs text="$c" nq-label op="90 dark:70" :style="`--c: rgb(var(--nq-${activeColor}-1100))`">
       {{ variant }}
     </span>
 
     <ul pl-0 flex flex-wrap select-none text-2xl ml--8 f-mt-xs>
-      <li v-for="icon in icons" :key="icon" flex>
-        <button w-max bg-transparent @click="() => selectedIcon = icon" op="70 dark:60 hocus:100" transition-opacity
-          :style="`--c: rgb(var(--nq-${activeColor}))`">
+      <li v-for="icon in iconsVariant" :key="icon" flex>
+        <button
+          w-max bg-transparent op="70 dark:60 hocus:100" transition-opacity :style="`--c: rgb(var(--nq-${activeColor}))`"
+          @click="() => selectedIcon = icon"
+        >
           <Icon :icon text="$c" :class="[classes, { 'w-auto !h-24': icon.includes('horizontal') }]" />
         </button>
       </li>
@@ -146,54 +147,66 @@ function selectColor(c: Color) {
   <ClientOnly>
     <Teleport to="#widget" defer>
       <div class="nq-raw" h-full f-pb-md flex="~ col">
-        <header flex="col gap-16 items-start" v-if="!selectedIcon">
+        <header v-if="!selectedIcon" flex="col gap-16 items-start">
           <div stack f-p-md rounded-16 outline="dashed 3 offset--3 neutral-300" w-max>
             <div size-64 />
           </div>
-          <p f-mt-sm f-text-xs pl-4 text-neutral-800 font-semibold>Select an icon</p>
+          <p f-mt-sm f-text-xs pl-4 text-neutral-800 font-semibold>
+            Select an icon
+          </p>
 
           <div flex="~ items-center gap-12" f-mt-sm>
-              <button v-for="c in colors" :key="c" shrink-0 size-21 rounded-full outline="~ 1 neutral/20"
+            <button
+              v-for="c in colors" :key="c" shrink-0 size-21 rounded-full outline="~ 1 neutral/20"
               :data-active="activeColor === c ? '' : undefined"
               :class="{ 'op-30 hocus:op-80': c !== activeColor || (isLogo && !isMono) }" transition-colors
-              @click="selectColor(c)" :style="`background-color: rgba(var(--nq-${c}));`" />
+              :style="`background-color: rgba(var(--nq-${c}));`" @click="selectColor(c)"
+            />
 
-              <button @click="rotateLogoIcon" stack v-if="isLogo" bg="neutral-500 data-active:neutral" text-neutral-0 size-21 transition-opacity aspect-square rounded-full :data-state="!isMono  ? 'active' :''">
-                <span block :class="isMono ? 'i-tabler:paint' : isWhite ? 'i-tabler:paint-off' : !hasWhite ? 'i-nimiq:moon' : 'i-tabler:paint-off'" />
-              </button>
-            </div>
+            <button v-if="isLogo" stack bg="neutral-500 data-active:neutral" text-neutral-0 size-21 transition-opacity aspect-square rounded-full :data-state="!isMono ? 'active' : ''" @click="rotateLogoIcon">
+              <span block :class="isMono ? 'i-tabler:paint' : isWhite ? 'i-tabler:paint-off' : !hasWhite ? 'i-nimiq:moon' : 'i-tabler:paint-off'" />
+            </button>
+          </div>
         </header>
         <template v-else>
-          <header flex="col gap-16 items-start"
-            :style="`--c: rgb(var(--nq-${activeColor}));--c2: rgb(var(--nq-${activeColor}-400));`">
-            <div stack f-p-md rounded-16 outline="~ 3 offset--3 $c2"
+          <header
+            flex="col gap-16 items-start"
+            :style="`--c: rgb(var(--nq-${activeColor}));--c2: rgb(var(--nq-${activeColor}-400));`"
+          >
+            <div
+              stack f-p-md rounded-16 outline="~ 3 offset--3 $c2"
               :style="`background-color:rgb(var(--nq-${activeColor})/0.04)`" :class="{
                 'w-auto children:h-64 children:w-full': selectedIcon.includes('horizontal'),
                 'w-max children:size-64 size-124': !selectedIcon.includes('horizontal'),
                 '!bg-neutral-0 dark:!bg-neutral outline-neutral-100': isLogo && !isMono && !isWhite,
                 '!bg-neutral dark:!bg-neutral-0 outline-neutral-900 dark:outline-neutral-100': isLogo && !isMono && isWhite,
-              }">
+              }"
+            >
               <Icon :icon="selectedIcon" text="$c" />
             </div>
             <div flex="~ items-center gap-12" f-mt-sm>
-              <button v-for="c in colors" :key="c" shrink-0 size-21 rounded-full outline="~ 1 neutral/20"
-              :data-active="activeColor === c ? '' : undefined"
-              :class="{ 'op-30 hocus:op-80': c !== activeColor || (isLogo && !isMono) }" transition-colors
-              @click="selectColor(c)" :style="`background-color: rgba(var(--nq-${c}));`" />
+              <button
+                v-for="c in colors" :key="c" shrink-0 size-21 rounded-full outline="~ 1 neutral/20"
+                :data-active="activeColor === c ? '' : undefined"
+                :class="{ 'op-30 hocus:op-80': c !== activeColor || (isLogo && !isMono) }" transition-colors
+                :style="`background-color: rgba(var(--nq-${c}));`" @click="selectColor(c)"
+              />
 
-              <button @click="rotateLogoIcon" stack v-if="isLogo" bg="neutral-500 data-active:neutral" text-neutral-0 size-21 transition-opacity aspect-square rounded-full :data-state="!isMono  ? 'active' :''">
+              <button v-if="isLogo" stack bg="neutral-500 data-active:neutral" text-neutral-0 size-21 transition-opacity aspect-square rounded-full :data-state="!isMono ? 'active' : ''" @click="rotateLogoIcon">
                 <span block :class="isMono ? 'i-tabler:paint' : isWhite ? 'i-tabler:paint-off' : !hasWhite ? 'i-nimiq:moon' : 'i-tabler:paint-off'" />
               </button>
             </div>
           </header>
 
           <template v-if="!missingLogoVariant">
-            <p f-mt-md nq-label text="9 neutral-700">Copy as</p>
+            <p f-mt-md nq-label text="9 neutral-700">
+              Copy as
+            </p>
             <p mt-4 font-semibold>
               <CodeBlock text-13 :code="`i-${selectedIcon}`" />
             </p>
             <div flex="~ items-center gap-$f-gap" f-my-2xs f="$gap $gap-min-8 $gap-max-12">
-              <CodeBlock :code="svgIcon" display-content="SVG" />
+              <CodeBlock :code="svgIcon!" display-content="SVG" />
               <CodeBlock :code="svgIconDataUrl" display-content="Data URL" />
             </div>
             <ShikiBlock :code="tailwindCode || ''" lang="html" mt-0 />
@@ -206,12 +219,11 @@ function selectColor(c: Color) {
             <span block text-orange-1100 f-text-xs font-semibold>Uses SVG <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate" target="_blank"><code bg-orange-500 px-4 rounded-2 text-current>animate</code> tag</a></span>
           </div>
 
-          <a mt-auto href="/frankenstein/components/animated-staking-ripple" py-4 text-green-1100 v-if="selectedIcon.includes('staking') || selectedIcon.includes('leaf')" outline="~ 1 offset--1 green-500" f-px-xs f-py-4 rounded-6 f-mt-md nq-arrow>
+          <a v-if="selectedIcon.includes('staking') || selectedIcon.includes('leaf')" mt-auto href="/frankenstein/components/animated-staking-ripple" py-4 text-green-1100 outline="~ 1 offset--1 green-500" f-px-xs f-py-4 rounded-6 f-mt-md nq-arrow>
             Check out the animated staking ripple component
           </a>
         </template>
       </div>
     </Teleport>
   </ClientOnly>
-
 </template>

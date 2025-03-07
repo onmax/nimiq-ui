@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { computedAsync, useClipboard } from '@vueuse/core'
-import { codeToHtml } from 'shiki';
+import { codeToHtml } from 'shiki'
 
-const { code, lang, label } = defineProps<{ code: string, label?: string, lang?:string }>()
+const { code, lang, label } = defineProps<{ code: string, label?: string, lang?: string }>()
 
 const { copied, copy } = useClipboard()
 
 const content = computedAsync(async () => {
-  if (!lang) return code
-  return await codeToHtml(code, { lang: lang, theme: 'vitesse-light', })
+  if (!lang)
+    return code
+  return await codeToHtml(code, { lang, theme: 'vitesse-light' })
 })
-
 </script>
 
 <template>
@@ -20,9 +20,11 @@ const content = computedAsync(async () => {
     </div>
     <div class="blocks">
       <div class="active" :class="`language-${lang}`">
-        <button title="Copy Code" class="copy" :class="{ copied }" @click="copy(code)">Copy</button>
+        <button title="Copy Code" class="copy" :class="{ copied }" @click="copy(code)">
+          Copy
+        </button>
         <span class="lang">{{ lang }}</span>
-        <div v-html="content"></div>
+        <div v-html="content" />
       </div>
     </div>
   </div>

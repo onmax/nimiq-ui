@@ -127,7 +127,7 @@ export default {
 
 This step is optional and only needed if you want to use the Vue components from `nimiq-vitepress-theme` in your project.
 
-In Vitepress, dependencies are "externalized" from Vite's SSR transform module system. This means that you need to tell Vite that you are using a component from an external module: 
+In Vitepress, dependencies are "externalized" from Vite's SSR transform module system. This means that you need to tell Vite that you are using a component from an external module:
 
 ::: code-group
 
@@ -136,8 +136,8 @@ import { defineConfig } from 'vite'
 
 export default defineConfig(() => {
   return {
-    ssr: { // [!code hl] 
-      noExternal: [  // [!code hl]
+    ssr: { // [!code hl]
+      noExternal: [ // [!code hl]
         'nimiq-vitepress-theme', // [!code hl]
       ], // [!code hl]
     }, // [!code hl]

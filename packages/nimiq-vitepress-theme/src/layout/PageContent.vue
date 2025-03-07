@@ -1,12 +1,12 @@
 <script setup lang="ts">
 // Date logic copied from https://github.com/vuejs/vitepress/blob/58bd3e23dd2175a2e9744bdc0d649126bdd0ea2f/src/client/theme-default/components/VPDocFooterLastUpdated.vue#L18
 
+import type { NimiqVitepressThemeConfig } from '../types'
+import { useTimeAgo } from '@vueuse/core'
 import { useData, useRoute } from 'vitepress'
-import type { NimiqVitepressThemeConfig } from '../types';
-import { data } from '../lib/git.data'
-import { ref, computed, onMounted, watch } from 'vue'
-import { useTimeAgo } from '@vueuse/core';
+import { computed, onMounted, ref, watch } from 'vue'
 import { useOutline } from '../composables/useOutline'
+import { data } from '../lib/git.data'
 import '../assets/code-blocks.css'
 import '../assets/typography.css'
 import '../assets/github-callouts.css'
@@ -23,7 +23,7 @@ const editUrl = computed(() => currentPageData.value?.editUrl || '')
 const commitUrl = computed(() => currentPageData.value?.commitUrl || '')
 
 const date = computed(() => new Date(lastUpdated.value as number))
-const isValidDate = computed(() => !!lastUpdated?.value && !isNaN(date.value.getTime()))
+const isValidDate = computed(() => !!lastUpdated?.value && !Number.isNaN(date.value.getTime()))
 const isoDatetime = computed(() => isValidDate.value ? date.value.toISOString() : '')
 const datetime = ref('')
 
@@ -33,7 +33,8 @@ const ago = useTimeAgo(date)
 // potential differences in timezones of the server and clients
 onMounted(() => {
   watch(date, () => {
-    if (!isValidDate.value) return
+    if (!isValidDate.value)
+      return
     datetime.value = new Intl.DateTimeFormat(lang.value, { dateStyle: 'short', timeStyle: 'short' }).format(date.value)
   })
 })
@@ -43,9 +44,25 @@ const showLastUpdated = computed(() => theme.value.showLastUpdated !== false)
 
 const { headingTree, isHeadingActive } = useOutline()
 
-const showOutline = computed(() => headingTree.value.length > 0 )
-const showWidget = computed(() => frontmatter.value.widget !== false)
-const showSecondarySidebar = computed(() => showOutline.value || showWidget.value)
+const showOutline = computed(() => {
+  // Explicit setting in frontmatter takes precedence
+  if (frontmatter.value.outline !== undefined)
+    return !!frontmatter.value.outline
+  // Default: show if there are headings
+  return headingTree.value.length > 0
+})
+
+const showWidget = computed(() => 
+  frontmatter.value.widget !== false
+)
+
+const showSecondarySidebar = computed(() => {
+  // Explicit setting in frontmatter takes precedence
+  if (frontmatter.value.sidebar !== undefined)
+    return !!frontmatter.value.sidebar
+  // Default: show if there's content to display
+  return showOutline.value || showWidget.value
+})
 </script>
 
 <template>
@@ -54,12 +71,14 @@ const showSecondarySidebar = computed(() => showOutline.value || showWidget.valu
       <article flex-1 class="nq-prose" var:nq-prose-max-width:none>
         <Content max-w-none />
       </article>
-      <div mt-auto px-32 flex="~ items-center justify-between" f-text-md un-f-text-xs
-        v-if="showEditContent || showLastUpdated">
-        <a :href="editUrl" v-if="editUrl && showEditContent" target="_blank" rel="noopener" op70 group lh-0 nq-arrow>
+      <div
+        v-if="showEditContent || showLastUpdated" mt-auto px-32 flex="~ items-center justify-between" f-text-md
+        un-f-text-xs
+      >
+        <a v-if="editUrl && showEditContent" :href="editUrl" target="_blank" rel="noopener" op70 group lh-0 nq-arrow>
           Suggest changes on this page
         </a>
-        <div v-else></div>
+        <div v-else />
 
         <p v-if="showLastUpdated" text-neutral-700>
           Updated
@@ -67,8 +86,10 @@ const showSecondarySidebar = computed(() => showOutline.value || showWidget.valu
           on
           <time :datetime="isoDatetime" font-semibold>{{ datetime }}</time>
           <span v-if="shortHash && commitUrl" ml-1 font-mono text-neutral-800>
-            (<a :href="commitUrl" target="_blank" rel="noopener" un-text="neutral-800 hocus:neutral-900"
-              transition-colors underline="~ dotted offset-3">
+            (<a
+              :href="commitUrl" target="_blank" rel="noopener" un-text="neutral-800 hocus:neutral-900"
+              transition-colors underline="~ dotted offset-3"
+            >
               {{ shortHash }}
             </a>)
           </span>
@@ -76,24 +97,26 @@ const showSecondarySidebar = computed(() => showOutline.value || showWidget.valu
         </p>
       </div>
     </div>
-    <div f-text-xs sticky f="$h $h-min-60 $h-max-90" h="[calc(100vh-var(--f-h))]" f-top-xl v-if="showSecondarySidebar" f-px-sm w="[calc(var(--nq-sidebar-width)+24px)]" of-y-auto f-pb-xs>
-      <div text-neutral-700 flex="~ gap-8 items-center" v-if="showOutline">
+    <div v-if="showSecondarySidebar" f-text-xs sticky f="$h $h-min-60 $h-max-90" h="[calc(100vh-var(--f-h))]" f-top-xl f-px-sm w="[calc(var(--nq-sidebar-width)+24px)]" of-y-auto f-pb-xs>
+      <div v-if="showOutline" text-neutral-700 flex="~ gap-8 items-center">
         <div i-tabler:align-left />
         On this page
       </div>
-      <ol list-none f-mt-xs text-neutral-800 w-max v-if="showOutline">
-        <li v-for="h2 in headingTree" :key="h2.hashPath" flex="~ col" pb-4 >
-          <a :href="'#' + h2.hashPath"  px-6 py-4 :class="{ 'text-blue font-semibold': isHeadingActive(h2.hashPath) }">{{ h2.text
-            }}</a>
+      <ol v-if="showOutline" list-none f-mt-xs text-neutral-800 w-max>
+        <li v-for="h2 in headingTree" :key="h2.hashPath" flex="~ col" pb-4>
+          <a :href="`#${h2.hashPath}`" px-6 py-4 :class="{ 'text-blue font-semibold': isHeadingActive(h2.hashPath) }">{{ h2.text
+          }}</a>
           <ol v-if="h2.items.length">
             <li v-for="h3 in h2.items" :key="h3.hashPath" flex="~ col">
-              <a :href="'#' + h3.hashPath" font-normal p-4 pl-14 
-                :class="{ 'text-blue font-semibold': isHeadingActive(h3.hashPath) }">{{ h3.text }}</a>
+              <a
+                :href="`#${h3.hashPath}`" font-normal p-4 pl-14
+                :class="{ 'text-blue font-semibold': isHeadingActive(h3.hashPath) }"
+              >{{ h3.text }}</a>
             </li>
           </ol>
         </li>
       </ol>
-      <div id="widget" max-w-full v-if="showWidget" :class="{ 'f-mt-md': showOutline }" h-full />
+      <div v-if="showWidget" id="widget" max-w-full :class="{ 'f-mt-md': showOutline }" h-full />
     </div>
   </div>
 </template>
