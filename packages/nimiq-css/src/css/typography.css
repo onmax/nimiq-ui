@@ -22,7 +22,7 @@
   margin-trim: block;
 
   &:not(:where(.nq-prose-compact, [nq-prose-compact])) {
-    > *:not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *)) {
+    >*:not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *)) {
       padding-right: 2rem;
       padding-left: 2rem;
 
@@ -52,12 +52,12 @@
     --font-size: clamp(calc(1px * var(--font-size-min)), var(--font-size-fluid), calc(var(--font-size-max) * 1px));
   }
 
-  > *:first-child {
+  >*:first-child {
     margin-top: 0;
     /* TODO Remove margin-top and margin-bottom on last element when margin-trim is widely supported */
   }
 
-  > *:last-child {
+  >*:last-child {
     margin-bottom: 0;
   }
 
@@ -171,7 +171,7 @@
         outline-offset: 0.125rem;
       }
 
-      > a {
+      >a {
         position: absolute;
         inset: 0;
         padding-left: 20px;
@@ -192,15 +192,9 @@
       margin-bottom: 0;
       line-height: 1.5;
 
-      & + p {
+      &+p {
         margin-top: 16px;
       }
-    }
-
-    &:where(:not(blockquote p)) {
-      --font-size-min: 14;
-      --font-size-max: 16;
-      font-size: var(--font-size);
     }
 
     &:where(figure) {
@@ -282,7 +276,7 @@
           margin-left: 40px;
         }
 
-        > ol li {
+        >ol li {
           margin-left: 0;
         }
 
@@ -333,7 +327,7 @@
           top: 2px;
         }
 
-        > ol {
+        >ol {
           counter-reset: subitem;
 
           li {
@@ -415,122 +409,122 @@
       text-decoration: none;
       color: rgb(var(--nq-blue) / 1);
     }
-  }
 
-  table {
-    --nq-m-min: 24;
-    --nq-m-max: 32;
-    margin-bottom: var(--nq-m-size);
-    margin-top: var(--nq-m-size);
-    display: block;
-    overflow-x: auto;
-    border-spacing: 0;
-    border-collapse: separate;
-    border-radius: 6px;
-    border: 1px solid rgb(var(--nq-neutral-300));
-    max-height: 90dvh;
-    max-width: max-content;
-    scroll-behavior: smooth;
+    table {
+      --nq-m-min: 24;
+      --nq-m-max: 32;
+      margin-bottom: var(--nq-m-size);
+      margin-top: var(--nq-m-size);
+      display: block;
+      overflow-x: auto;
+      border-spacing: 0;
+      border-collapse: separate;
+      border-radius: 6px;
+      border: 1px solid rgb(var(--nq-neutral-300));
+      max-height: 90dvh;
+      max-width: max-content;
+      scroll-behavior: smooth;
 
-    code,
-    pre {
-      --line-height: 1.3;
-      padding: 4px 0.25rem;
-      position: relative;
-    }
+      code,
+      pre {
+        --line-height: 1.3;
+        padding: 4px 0.25rem;
+        position: relative;
+      }
 
-    th,
-    td {
-      padding: 12px 0.75rem;
-    }
-
-    thead th {
-      z-index: 1;
-      position: sticky;
-      top: -1px;
-      text-wrap: balance;
-      white-space: nowrap;
-      font-weight: 400;
-      color: rgb(var(--nq-neutral-800));
-      background-color: rgb(var(--nq-neutral-100));
-    }
-
-    tbody {
+      th,
       td {
-        vertical-align: initial;
+        padding: 12px 0.75rem;
+      }
+
+      thead th {
+        z-index: 1;
+        position: sticky;
+        top: -1px;
         text-wrap: balance;
+        white-space: nowrap;
+        font-weight: 400;
+        color: rgb(var(--nq-neutral-800));
+        background-color: rgb(var(--nq-neutral-100));
       }
 
-      > tr:not(:last-child) td {
-        border-bottom: 1px solid rgb(var(--nq-neutral-300));
+      tbody {
+        td {
+          vertical-align: initial;
+          text-wrap: balance;
+        }
+
+        >tr:not(:last-child) td {
+          border-bottom: 1px solid rgb(var(--nq-neutral-300));
+        }
       }
-    }
 
-    /* Apply a border to the right of all but the last column */
-    th:not(:last-child),
-    td:not(:last-child) {
-      border-right: 1px solid rgb(var(--nq-neutral-300));
-    }
-  }
-
-  hr {
-    --nq-m-min: 20;
-    --nq-m-max: 24;
-    margin: var(--nq-m-size) auto;
-    width: 128px;
-    border-color: rgb(var(--nq-neutral-500));
-  }
-
-  details {
-    /* TODO Animate open/closing https://developer.chrome.com/docs/css-ui/animate-to-height-auto#animate_the_details_element */
-    border-radius: 6px;
-    background-color: rgb(var(--nq-neutral-200));
-    --nq-m-min: 18;
-    --nq-m-max: 22;
-    margin-top: var(--nq-m-size);
-    margin-bottom: var(--nq-m-size);
-    color: rgb(var(--nq-neutral-900));
-    box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.1);
-
-    ::marker {
-      color: transparent;
-    }
-
-    summary {
-      padding: 14px 2rem 14px calc(0.7rem + 2.3em);
-      font-size: 1em;
-      position: relative;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-
-      &::before {
-        content: '';
-        --icon: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTIgMS40MTNBLjguOCAwIDAxMy4yMTIuNzI3bDcuNjQ1IDQuNTg3YS44LjggMCAwMTAgMS4zNzJsLTcuNjQ1IDQuNTg3QS44LjggMCAwMTIgMTAuNTg3eiIvPjwvc3ZnPg==);
-        -webkit-mask: var(--icon) no-repeat;
-        mask: var(--icon) no-repeat;
-        -webkit-mask-size: 100% 100%;
-        mask-size: 100% 100%;
-        background-color: currentColor;
-        color: inherit;
-        width: 0.622em;
-        height: 0.622em;
-        transition: transform 100ms ease-out;
-        display: inline-block;
-        position: absolute;
-        left: 0;
-        padding-left: 4rem;
+      /* Apply a border to the right of all but the last column */
+      th:not(:last-child),
+      td:not(:last-child) {
+        border-right: 1px solid rgb(var(--nq-neutral-300));
       }
     }
 
-    &[open] summary {
-      &::before {
-        transform: rotate(90deg);
-      }
+    hr {
+      --nq-m-min: 20;
+      --nq-m-max: 24;
+      margin: var(--nq-m-size) auto;
+      width: 128px;
+      border-color: rgb(var(--nq-neutral-500));
     }
 
-    > *:not(summary) {
-      padding: 0 1rem 14px 1rem;
+    details {
+      /* TODO Animate open/closing https://developer.chrome.com/docs/css-ui/animate-to-height-auto#animate_the_details_element */
+      border-radius: 6px;
+      background-color: rgb(var(--nq-neutral-200));
+      --nq-m-min: 18;
+      --nq-m-max: 22;
+      margin-top: var(--nq-m-size);
+      margin-bottom: var(--nq-m-size);
+      color: rgb(var(--nq-neutral-900));
+      box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.1);
+
+      ::marker {
+        color: transparent;
+      }
+
+      summary {
+        padding: 14px 2rem 14px calc(0.7rem + 2.3em);
+        font-size: 1em;
+        position: relative;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        &::before {
+          content: '';
+          --icon: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTIgMS40MTNBLjguOCAwIDAxMy4yMTIuNzI3bDcuNjQ1IDQuNTg3YS44LjggMCAwMTAgMS4zNzJsLTcuNjQ1IDQuNTg3QS44LjggMCAwMTIgMTAuNTg3eiIvPjwvc3ZnPg==);
+          -webkit-mask: var(--icon) no-repeat;
+          mask: var(--icon) no-repeat;
+          -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+          background-color: currentColor;
+          color: inherit;
+          width: 0.622em;
+          height: 0.622em;
+          transition: transform 100ms ease-out;
+          display: inline-block;
+          position: absolute;
+          left: 0;
+          padding-left: 4rem;
+        }
+      }
+
+      &[open] summary {
+        &::before {
+          transform: rotate(90deg);
+        }
+      }
+
+      >*:not(summary) {
+        padding: 0 1rem 14px 1rem;
+      }
     }
   }
 }

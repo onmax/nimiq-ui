@@ -9,11 +9,8 @@ import { fileURLToPath } from 'node:url'
 import { createLocalFontProcessor } from '@unocss/preset-web-fonts/local'
 import { toCSS, toJSON } from 'ts-cssjson'
 import {
-
   definePreset,
-
   presetWebFonts,
-
 } from 'unocss'
 import { getNimiqColors } from './colors'
 
@@ -330,6 +327,7 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
     )
   }
 
+  // TODO Move to onmaxPreset
   const variantLayer = `${prefix}variants`
   const variants: Preset['variants'] = [
     (matcher) => {
