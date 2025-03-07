@@ -37,6 +37,5 @@ export interface NimiqVitepressThemeConfig {
 }
 
 export interface DefineThemeNqVpOptions {
-  setup: typeof DefaultTheme['setup']
   enhanceApp?: Theme['enhanceApp']
 }
