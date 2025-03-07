@@ -101,17 +101,18 @@ You can use the [config](https://github.com/onmax/nimiq-ui/tree/main/docs/.vitep
 
 ### Import the layout and CSS
 
-You need to import the layout from the theme
+Make sure to remove the default theme import and add the Nimiq theme import:
 
 ::: code-group
 
 ```ts [.vitepress/index.ts]
 import { Layout } from 'nimiq-vitepress-theme' // [!code hl]
-import { Theme } from 'vitepress'
+import Theme from 'vitepress/theme' // [!code remove]
 
 import 'nimiq-vitepress-theme/assets/index.css' // [!code hl]
 
 export default {
+  extends: Theme, // [!code remove]
   Layout, // [!code hl]
   enhanceApp() {
   },
