@@ -5,6 +5,11 @@
   color: rgba(var(--nq-neutral-800));
 }
 
+.nq-basic {
+  font-size: 12px;
+  color: pink;
+}
+
 .nq-label {
   text-transform: uppercase;
   letter-spacing: 0.17em;

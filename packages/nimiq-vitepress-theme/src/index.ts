@@ -1,9 +1,9 @@
+import type { Theme } from 'vitepress'
+import type { DefineThemeNqVpOptions } from './types'
 import NqCard from './components/NqCard.vue'
 import NqGrid from './components/NqGrid.vue'
 import NqLargeCard from './components/NqLargeCard.vue'
 import Layout from './layout/Layout.vue'
-import type { DefineThemeNqVpOptions } from './types'
-import type { Theme } from 'vitepress'
 
 import './assets/index.css'
 

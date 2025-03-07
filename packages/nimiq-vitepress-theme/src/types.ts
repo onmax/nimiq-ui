@@ -1,5 +1,4 @@
-import type { Theme } from "vitepress"
-import type DefaultTheme from "vitepress/theme"
+import type { Theme } from 'vitepress'
 
 export interface NimiqVitepressSidebar {
   label?: string

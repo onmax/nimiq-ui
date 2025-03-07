@@ -19,20 +19,21 @@ The Nimiq Vitepress theme supports the following frontmatter options:
 
 ### General Options
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `title` | `string` | - | Page title, shown in browser tabs and search results |
-| `description` | `string` | - | Page description for SEO |
+| Option        | Type     | Default | Description                                          |
+| ------------- | -------- | ------- | ---------------------------------------------------- |
+| `title`       | `string` | -       | Page title, shown in browser tabs and search results |
+| `description` | `string` | -       | Page description for SEO                             |
 
 ### Layout Options
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `outline` | `boolean` | `true` if headings exist | Whether to show the outline (table of contents) |
-| `sidebar` | `boolean` | `true` if outline or widget is shown | Whether to show the secondary sidebar |
-| `widget` | `boolean` | `true` | Whether to show the widget area in the secondary sidebar |
+| Option             | Type      | Default                              | Description                                              |
+| ------------------ | --------- | ------------------------------------ | -------------------------------------------------------- |
+| `sidebar`          | `boolean` | `true`                               | Whether to show the sidebar                              |
+| `outline`          | `boolean` | `true` if headings exist             | Whether to show the outline (table of contents)          |
+| `secondarySidebar` | `boolean` | `true` if outline or widget is shown | Whether to show the secondary sidebar                    |
+| `widget`           | `boolean` | `true`                               | Whether to show the widget area in the secondary sidebar |
 
-## Controlling the Sidebar
+## Controlling the Secondary Sidebar
 
 The secondary sidebar contains both the outline (table of contents) and optional widget area. You can control them independently:
 
@@ -42,8 +43,8 @@ The secondary sidebar contains both the outline (table of contents) and optional
 outline: false
 widget: true
 
-# Or hide both by disabling the entire sidebar
-sidebar: false
+# Or hide both by disabling the entire secondary sidebar
+secondarySidebar: false
 ---
 ```
 
@@ -87,7 +88,7 @@ If you need to create reusable data structures for specific components, consider
 heroSection:
   title: Welcome to Nimiq
   description: The browser-first blockchain
-  cta: 
+  cta:
     label: Get Started
     url: /getting-started
 ---

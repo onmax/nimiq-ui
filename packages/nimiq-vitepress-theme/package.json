@@ -82,6 +82,7 @@
     "cross-spawn": "^7.0.6",
     "nimiq-css": "workspace:*",
     "pathe": "^2.0.3",
+    "typescript": "catalog:",
     "unbuild": "^3.3.1",
     "unocss": "catalog:",
     "unocss-preset-fluid-sizing": "catalog:",

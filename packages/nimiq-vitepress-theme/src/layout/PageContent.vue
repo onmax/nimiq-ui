@@ -52,14 +52,14 @@ const showOutline = computed(() => {
   return headingTree.value.length > 0
 })
 
-const showWidget = computed(() => 
-  frontmatter.value.widget !== false
+const showWidget = computed(() =>
+  frontmatter.value.widget !== false,
 )
 
 const showSecondarySidebar = computed(() => {
   // Explicit setting in frontmatter takes precedence
-  if (frontmatter.value.sidebar !== undefined)
-    return !!frontmatter.value.sidebar
+  if (frontmatter.value.secondarySidebar !== undefined)
+    return !!frontmatter.value.secondarySidebar
   // Default: show if there's content to display
   return showOutline.value || showWidget.value
 })

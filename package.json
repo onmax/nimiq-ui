@@ -19,7 +19,7 @@
     "docs"
   ],
   "devDependencies": {
-    "@antfu/eslint-config": "^4.5.1",
+    "@antfu/eslint-config": "^4.7.0",
     "@types/node": "^22.13.9",
     "@unocss/eslint-config": "^66.0.0",
     "@unocss/eslint-plugin": "^66.0.0",
@@ -27,7 +27,7 @@
     "eslint": "^9.21.0",
     "eslint-plugin-format": "^1.0.1",
     "rimraf": "^6.0.1",
-    "typescript": "~5.8.2",
+    "typescript": "catalog:",
     "vite": "catalog:"
   },
   "pnpm": {

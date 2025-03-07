@@ -99,16 +99,8 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
 
     const layer = `${prefix}${name}`
 
-    const content = readContent(name).replaceAll(
-      'data:image/svg+xml;',
-      'SEMICOLON_BUG_HACK',
-    )
-    const json = toJSON(content, {
-      stripComments: true,
-      comments: false,
-      ordered: false,
-      split: false,
-    })
+    const content = readContent(name).replaceAll('data:image/svg+xml;', 'SEMICOLON_BUG_HACK')
+    const json = toJSON(content, { stripComments: true, comments: false, ordered: false, split: false })
 
     const rulesNamesStr: string[] = []
     for (const key of Object.keys(json.children)) {

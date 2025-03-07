@@ -1,17 +1,22 @@
 <script setup lang="ts">
-const { cards } = defineProps<{
-  cards?: {
-    title?: string
-    description?: string
-    label?: string
-  }[]
-}>()
+import type { NqCardProps } from './NqCard.vue'
+
+type CardSpan = 'full' | 'half' | 'default'
+type NqCardInGrid = NqCardProps & { span?: CardSpan }
+
+const { cards } = defineProps<{ cards?: NqCardInGrid[] }>()
+
+function getSpan({ span, bgColor }: NqCardInGrid): CardSpan | undefined {
+  if (span === undefined && bgColor)
+    return 'half'
+  return span
+}
 </script>
 
 <template>
   <ul grid="~ cols-6 gap-16" class="nq-grid nq-raw">
     <slot>
-      <li v-for="(card, index) in cards" :key="index" data-card="default">
+      <li v-for="(card, index) in cards" :key="index" data-card="default" :data-span="getSpan(card)">
         <NqCard v-bind="card" />
       </li>
     </slot>
@@ -28,7 +33,7 @@ const { cards } = defineProps<{
     --uno: 'col-span-2';
   }
 
-  [data-card='large'] {
+  [data-card='half'] {
     --uno: 'col-span-2';
   }
 

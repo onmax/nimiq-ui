@@ -1,37 +1,34 @@
+<script lang="ts">
+</script>
+
 <script setup lang="ts">
 import { computed } from 'vue'
 
 export type CardColor = 'green' | 'blue' | 'red' | 'gold' | 'orange'
-export type CardSpan = 'full' | 'half' | 'default'
-
-const { bgColor, icon, href, span } = defineProps<{
+export interface NqCardProps {
   icon?: string
   bgColor?: CardColor
   href?: string
   title?: string
   description?: string
   label?: string
-  span?: CardSpan
-}>()
+}
+
+const { bgColor, icon, href } = defineProps<NqCardProps>()
 
 const hasLink = computed(() => !!href)
 
 const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#1DA186', gold: '#ffffffaa' }
-
-function getSpan(): CardSpan | undefined {
-  if (span === undefined && bgColor) return 'half'
-  return span
-}
 </script>
 
 <template>
   <component
-    :is="hasLink ? 'a' : 'div'" :href group :data-span="getSpan()" :data-inverted="bgColor ? '' : undefined" class="nq-raw"
+    :is="hasLink ? 'a' : 'div'" :href group :data-inverted="bgColor ? '' : undefined" class="nq-raw"
     f-mt-md relative :style="`background-image: ${bgColor ? `var(--nq-${bgColor}-gradient)` : ''}`" :data-card="bgColor ? 'colored' : 'default'"
     :target="hasLink && href?.startsWith('http') ? '_blank' : undefined"
     :class="{ 'nq-hoverable': hasLink, 'nq-card': !hasLink, 'children:max-w-[max(50%,240px)]': bgColor, 'bg-neutral-300': !bgColor }"
   >
-    <div :class="icon" f-size="~ max-160 min-120" absolute right--12 :style="`color: ${colors[bgColor!]}`" />
+    <div v-if="icon" :class="icon" f-size="~ max-160 min-120" absolute right--12 :style="`color: ${colors[bgColor!]}`" />
     <slot>
       <span nq-label>{{ label }}</span>
       <h2>{{ title }}</h2>
