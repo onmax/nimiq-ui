@@ -17,7 +17,7 @@ A simple card that can turn any boring content into something that looks intenti
 The component also supports using slots for custom content instead of props.
 
 > [!TIP]
-> Remember to [register `NqCard`](/vitepress-theme/#register-the-components) in your app. It's like introducing your components to a party - they need to be on the guest list!
+> Remember to [register `NqCard`](/vitepress-theme/#register-the-components) in your app.
 
 ## Examples
 
@@ -72,23 +72,5 @@ The component also supports using slots for custom content instead of props.
   bg-color="orange"
   description="Remember to backup your wallet! Because losing crypto is like dropping your ice cream cone - sad and completely avoidable."
 />
-
-</ComponentPreview>
-
-## With Markdown Content
-
-<ComponentPreview lang="vue">
-
-<NqCard>
-
-### The Markdown Card
-
-I'm a card with markdown content. I can be used to display formatted text, lists, and even images!
-
-- Item 1
-- Item 2
-- Item 3
-
-</NqCard>
 
 </ComponentPreview>

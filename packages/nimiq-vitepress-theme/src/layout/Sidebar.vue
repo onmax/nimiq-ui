@@ -37,7 +37,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
 </script>
 
 <template>
-  <aside z-20 w-full of="x-hidden y-auto" fixed inset-y-0 left-0 overscroll-contain bg-neutral-100 flex="~ col">
+  <aside z-20 of="x-hidden y-auto" fixed inset-y-0 left-0 overscroll-contain bg-neutral-100 flex="~ col">
     <div absolute inset-y-0 z-3 right-0 ring="0.75 neutral-400" aria-hidden var:outline-color:neutral-400 />
     <div f-p-xs pb-0 display="~ col">
       <Logo />

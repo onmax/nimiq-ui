@@ -9,43 +9,40 @@ const { cards } = defineProps<{ cards?: NqCardInGrid[] }>()
 function getSpan({ span, bgColor }: NqCardInGrid): CardSpan | undefined {
   if (span === undefined && bgColor)
     return 'half'
-  return span
+  return span || 'default'
 }
 </script>
 
 <template>
   <ul grid="~ cols-6 gap-16" class="nq-grid nq-raw">
     <slot>
-      <li v-for="(card, index) in cards" :key="index" data-card="default" :data-span="getSpan(card)">
+      <li v-for="(card, index) in cards" :key="index" :data-span="getSpan(card)">
         <NqCard v-bind="card" />
       </li>
     </slot>
   </ul>
 </template>
 
-<style>
-.nq-grid {
-  [data-card='colored'] {
-    --uno: 'col-span-3';
-  }
-
-  [data-card='default'] {
-    --uno: 'col-span-2';
-  }
-
-  [data-card='half'] {
-    --uno: 'col-span-2';
-  }
-
-  [data-card][data-span='full'] {
+<style scoped>
+ul.nq-grid {
+  [data-span='full'] {
     --uno: 'col-span-6';
   }
 
-  [data-card][data-span='half'] {
+  [data-span='half'] {
     --uno: 'col-span-3';
   }
-  [data-card] {
-    --uno: 'mt-0';
+
+  [data-span='default'] {
+    --uno: 'col-span-2';
   }
+
+  li {
+    --uno: 'mt-0 flex';
+  }
+}
+
+:global(ul.nq-grid li > *) {
+  --uno: 'flex-1';
 }
 </style>

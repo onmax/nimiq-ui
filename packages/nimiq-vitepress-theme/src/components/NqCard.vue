@@ -1,9 +1,4 @@
 <script lang="ts">
-</script>
-
-<script setup lang="ts">
-import { computed } from 'vue'
-
 export type CardColor = 'green' | 'blue' | 'red' | 'gold' | 'orange'
 export interface NqCardProps {
   icon?: string
@@ -13,6 +8,10 @@ export interface NqCardProps {
   description?: string
   label?: string
 }
+</script>
+
+<script setup lang="ts">
+import { computed } from 'vue'
 
 const { bgColor, icon, href } = defineProps<NqCardProps>()
 
@@ -23,44 +22,20 @@ const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#1
 
 <template>
   <component
-    :is="hasLink ? 'a' : 'div'" :href group :data-inverted="bgColor ? '' : undefined" class="nq-raw"
-    f-mt-md relative :style="`background-image: ${bgColor ? `var(--nq-${bgColor}-gradient)` : ''}`" :data-card="bgColor ? 'colored' : 'default'"
+    :is="hasLink ? 'a' : 'div'"
+    :href class="nq-raw" group relative
+    :style="`background-image: ${bgColor ? `var(--nq-${bgColor}-gradient)` : ''}`"
+    :data-inverted="bgColor ? '' : undefined"
+    :data-card="bgColor ? 'colored' : 'default'"
     :target="hasLink && href?.startsWith('http') ? '_blank' : undefined"
-    :class="{ 'nq-hoverable': hasLink, 'nq-card': !hasLink, 'children:max-w-[max(50%,240px)]': bgColor, 'bg-neutral-300': !bgColor }"
+    :class="[
+      hasLink ? 'nq-hoverable' : 'nq-card',
+      { 'children:max-w-[max(50%,240px)]' : bgColor }
+    ]"
   >
     <div v-if="icon" :class="icon" f-size="~ max-160 min-120" absolute right--12 :style="`color: ${colors[bgColor!]}`" />
-    <slot>
-      <span nq-label>{{ label }}</span>
-      <h2>{{ title }}</h2>
-      <p>{{ description }}</p>
-    </slot>
+      <span nq-label text-12 mb-4 text="neutral-700 data-inverted:white/50" data-inverted:mb-8>{{ label }}</span>
+      <h2 font-semibold f-text="xl data-inverted:2xl" data-inverted:text-white>{{ title }}</h2>
+      <p text="data-inverted:white/60" data-inverted:f-text-lg data-inverted:mt-4>{{ description }}</p>
   </component>
 </template>
-
-<style>
-@layer nq-vp {
-  [data-card] {
-    .nq-label {
-      --uno: 'text-12 mb-4 text-neutral-700';
-    }
-
-    :where(h2, h3, h4, h5, h6):not(.nq-label) {
-      --uno: 'font-semibold f-text-xl ';
-    }
-
-    [data-inverted] * {
-      &.nq-label {
-        --uno: 'text-white/50 mb-8';
-      }
-
-      &:where(h2, h3, h4, h5, h6):not(.nq-label) {
-        --uno: 'text-white f-text-2xl';
-      }
-
-      &:where(p) {
-        --uno: 'text-white/60 f-text-lg f-mt-4';
-      }
-    }
-  }
-}
-</style>

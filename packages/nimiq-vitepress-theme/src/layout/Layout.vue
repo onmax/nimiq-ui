@@ -12,23 +12,28 @@ const showSidebar = computed(() =>
 </script>
 
 <template>
-  <div flex="~" w-full>
+  <div class="flex" id="viewport">
     <!-- TODO Add skip -->
-    <Sidebar v-if="showSidebar" max-w="$nq-sidebar-width" data-sidebar />
+    <Sidebar v-if="showSidebar" />
 
-    <main flex-1 min-h-screen ml="$nq-sidebar-width" max-w="[calc(100vw-var(--nq-sidebar-width))]">
+    <main class="min-h-screen">
       <PageContent />
     </main>
   </div>
 </template>
 
 <style>
-@propery --nq-sidebar-width {
-  syntax: '<length>';
-  initial-value: 0px;
+:root {
+  --nq-sidebar-width: 288px;
 }
 
-:root:has(sidebar[data-sidebar]) {
-  --nq-sidebar-width: 288px;
+aside {
+  width: var(--nq-sidebar-width);
+  flex-shrink: 0;
+}
+
+main {
+  flex: 1;
+  margin-left: var(--nq-sidebar-width);
 }
 </style>

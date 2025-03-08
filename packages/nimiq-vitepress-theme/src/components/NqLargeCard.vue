@@ -13,25 +13,15 @@ const hasLink = computed(() => !!href)
 
 <template>
   <component
-    :is="hasLink ? 'a' : 'div'" :href group class="nq-raw" data-card="large"
-    f-mt-md bg-neutral-300 relative flex="~ items-center col justify-center" f-p-xl
+    :is="hasLink ? 'a' : 'div'"
+    :href class="nq-raw" group bg-neutral-300 relative f-p-xl
+    flex="~ items-center col justify-center"
+    data-card="large"
     :target="hasLink && href?.startsWith('http') ? '_blank' : undefined"
     :class="{ 'nq-hoverable': hasLink, 'nq-card': !hasLink }"
   >
     <div :class="icon" f-size="~ max-64 min-80" mx-auto f-mb-lg op="70 group-hocus:100" transition-opacity />
-    <slot>
-      <h2>{{ title }}</h2>
-      <p>{{ description }}</p>
-    </slot>
+      <h2 font-semibold f-text-2xl text-center>{{ title }}</h2>
+      <p f-text-lg text-center text-neutral-800 f-mt-xs>{{ description }}</p>
   </component>
 </template>
-
-<style scoped>
-:deep(:where(h2, h3, h4, h5, h6):not(.nq-label)) {
-  --uno: 'font-semibold f-text-2xl text-center';
-}
-
-:deep(p) {
-  --uno: 'f-text-lg text-center text-neutral-800 f-mt-xs';
-}
-</style>

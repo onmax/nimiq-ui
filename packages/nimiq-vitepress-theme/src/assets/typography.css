@@ -1,5 +1,5 @@
 .nq-prose {
-  h1:not(.vp-raw *) {
+  h1:not(.nq-raw *) {
     --font-size-min: 32;
     --font-size-max: 40;
     margin-bottom: 1.5rem;
@@ -16,7 +16,7 @@
     }
   }
 
-  h2:not(.vp-raw *) {
+  h2:not(.nq-raw *) {
     --font-size-min: 28;
     --font-size-max: 32;
     margin-bottom: 1rem;
@@ -24,7 +24,7 @@
     font-weight: 600;
   }
 
-  h3:not(.vp-raw *) {
+  h3:not(.nq-raw *) {
     --font-size-min: 20;
     --font-size-max: 24;
     margin-bottom: 1rem;
@@ -32,7 +32,7 @@
     font-weight: 600;
   }
 
-  h4:not(.vp-raw *) {
+  h4:not(.nq-raw *) {
     --font-size-min: 16;
     --font-size-max: 20;
     margin-bottom: 1rem;
