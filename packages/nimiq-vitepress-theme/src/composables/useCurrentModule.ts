@@ -7,16 +7,14 @@ export function useCurrentModule() {
 
   const route = useRoute()
 
-  const baseUrl = withBase('/').slice(0, -1)
-  const currentPageNoBase = computed(() => route.path.slice(baseUrl.length))
-
   const currentDocModule = computed<NimiqVitepressThemeNav>(() => {
-    return theme.value.modules.find(module => currentPageNoBase.value.startsWith(module.subpath)) || theme.value.modules[0]
+    const module = theme.value.modules.find(module => route.path.startsWith(withBase(`/${module.subpath}`))) || theme.value.modules[0];
+    return module;
   })
 
   return {
     currentDocModule,
-    text: computed(() => currentDocModule.value.text),
-    fullPath: computed(() => withBase(currentDocModule.value.subpath)),
+    text: computed(() => currentDocModule.value?.text),
+    fullPath: computed(() => currentDocModule.value ? withBase(currentDocModule.value.subpath) : ''),
   }
 }
