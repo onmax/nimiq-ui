@@ -7,6 +7,7 @@ import { useData, useRoute } from 'vitepress'
 import { computed, onMounted, ref, watch } from 'vue'
 import SecondarySidebar from './SecondarySidebar.vue'
 import { data } from '../lib/git.data'
+import { useBreadcrumbs } from '../composables/useBreadcrumbs'
 import '../assets/code-blocks.css'
 import '../assets/typography.css'
 import '../assets/github-callouts.css'
@@ -41,11 +42,21 @@ onMounted(() => {
 
 const showEditContent = computed(() => theme.value.showEditContent !== false)
 const showLastUpdated = computed(() => theme.value.showLastUpdated !== false)
+
+const { breadcrumbs } = useBreadcrumbs()
 </script>
 
 <template>
-  <div f-pl-xl f-pr-xs f-pt-xl f="$px $px-min-48 $px-max-72" f-pb-md flex="~ gap-16" relative h-full>
+  <div f-pl-xl f-pr-xs f-pt-sm f="$px $px-min-48 $px-max-72" f-pb-md flex="~ gap-16" relative h-full>
     <div flex="~ col" h-full flex-1 w="[calc(100vw-2*var(--nq-sidebar-width)-2*var(--f-px))]">
+      <ul px-32 f-pb-lg flex="~ items-center gap-12">
+        <li v-for="({text, icon},i) in breadcrumbs" :key="text" contents w-max>
+          <div v-if="icon" :class="icon" />
+          <span nq-label f-text-2xs w-max>{{ text }}</span>
+          <div i-nimiq:chevron-right  text="neutral-700 9" v-if="i < breadcrumbs.length - 1" />
+        </li>
+      </ul>
+
       <article flex-1 class="nq-prose" var:nq-prose-max-width:none>
         <Content max-w-none />
       </article>
