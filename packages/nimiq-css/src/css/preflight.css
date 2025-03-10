@@ -23,7 +23,6 @@
   outline-color: rgb(var(--nq-blue));
   outline-width: 1.5px;
   overscroll-behavior-x: contain;
-  caret-color: rgb(var(--nq-blue));
 
   &:where(:not(:where(code, pre))) {
     font-family: var(--nq-font-sans, 'Mulish');
@@ -150,5 +149,9 @@
         bottom: -1rem;
       }
     }
+  }
+
+  &:where(input[type="text"], textarea) {
+    caret-color: rgb(var(--nq-blue));
   }
 }
