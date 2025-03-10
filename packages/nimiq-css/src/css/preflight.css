@@ -113,7 +113,7 @@
     color: rgb(var(--nq-green));
   }
 
-  &:where(code, pre) {
+  &:not(:where(.shiki *)):where(code, pre) {
     color: rgb(var(--nq-neutral-900));
     --font-size-min: 14;
     --font-size-max: 16;
