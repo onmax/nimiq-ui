@@ -85,6 +85,9 @@ const { breadcrumbs } = useBreadcrumbs()
           <span v-else-if="shortHash" ml-1 font-mono text-neutral-800>({{ shortHash }})</span>
         </p>
       </div>
+      <p text="center neutral-700" f-text-xs f-mt-2xs font-normal italic>
+        Built with the <a href="https://onmax.github.io/nimiq-ui/vitepress-theme/" un-text-neutral-800 target="_blank" rel="noopener" underline>Nimiq Vitepress Theme</a>
+      </p>
     </div>
     <SecondarySidebar />
   </div>
