@@ -141,6 +141,8 @@ export default defineConfig(() => {
 })
 ```
 
+:::
+
 For more information about why configure this, please refer to the [Server-Side Rendering | Vite documentation](https://vite.dev/guide/ssr.html#ssr-externals).
 
 ## Customization
