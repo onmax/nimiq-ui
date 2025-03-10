@@ -101,29 +101,25 @@ You can use the [config](https://github.com/onmax/nimiq-ui/tree/main/docs/.vitep
 
 ### Import the layout and CSS
 
-Make sure to remove the default theme import and add the Nimiq theme import:
+Remove the default Vitepress Theme and instead use `defineNimiqThemeConfig` from `nimiq-vitepress-theme`: 
 
 ::: code-group
 
 ```ts [.vitepress/index.ts]
-import { Layout } from 'nimiq-vitepress-theme' // [!code hl]
-import Theme from 'vitepress/theme' // [!code remove]
+import { defineNimiqThemeConfig } from 'nimiq-vitepress-theme'
 
-import 'nimiq-vitepress-theme/assets/index.css' // [!code hl]
-
-export default {
-  extends: Theme, // [!code remove]
-  Layout, // [!code hl]
-  enhanceApp() {
+export default defineNimiqThemeConfig({
+  enhanceApp({ app }) {
+    // The rest of your config
   },
-} satisfies Theme
+})
 ```
 
 :::
 
-### Register the components
+This will install the layout and will register the Nimiq Components globally.
 
-#### Register the theme as internal
+### Register the theme as internal dependency
 
 This step is optional and only needed if you want to use the Vue components from `nimiq-vitepress-theme` in your project.
 
@@ -146,56 +142,6 @@ export default defineConfig(() => {
 ```
 
 For more information about why configure this, please refer to the [Server-Side Rendering | Vite documentation](https://vite.dev/guide/ssr.html#ssr-externals).
-
-#### Import the components
-
-There are multiple ways you can import the components:
-
-::: code-group
-
-```md [your-markdown-file.md]
-## Importing the components in the files themselves
-
-This is my markdown file content and I want to use the `NqCard` component.
-
-<script setup>
-import NqCard from 'nimiq-vitepress-theme/components/NqCard.vue' // [!code hl]
-import NqLargeCard from 'nimiq-vitepress-theme/components/NqLargeCard.vue' // [!code hl]
-import NqGrid from 'nimiq-vitepress-theme/components/NqGrid.vue' // [!code hl]
-</script>
-
-<NqCard> // [!code hl]
-
-# This is a card // [!code hl]
-
-</NqCard> // [!code hl]
-```
-
-```ts [.vitepress/theme/index.ts]
-/**
- * Auto importing a component globaly is not recommended!
- */
-
-import type { EnhanceAppContext, Theme } from 'vitepress'
-import { Layout } from 'nimiq-vitepress-theme'
-
-import NqCard from 'nimiq-vitepress-theme/components/NqCard.vue' // [!code hl]
-import NqGrid from 'nimiq-vitepress-theme/components/NqGrid.vue' // [!code hl]
-import NqLargeCard from 'nimiq-vitepress-theme/components/NqLargeCard.vue' // [!code hl]
-
-import 'nimiq-vitepress-theme/assets/index.css'
-
-export default {
-  Layout,
-  enhanceApp({ app }: EnhanceAppContext) {
-    app.component('NqCard', NqCard) // [!code hl]
-    app.component('NqLargeCard', NqLargeCard) // [!code hl]
-    app.component('NqGrid', NqGrid) // [!code hl]
-  },
-} satisfies Theme
-```
-
-:::
 
 ## Customization
 
