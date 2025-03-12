@@ -148,15 +148,10 @@ body:not(.nq-raw) {
     --f-pb: clamp(calc(1px * var(--f-pb-min)), var(--f-pb-fluid), calc(var(--f-pb-max) * 1px));
     --pb: var(--f-pb);
 
-    --f-pl-range: calc(var(--f-pl-max) - var(--f-pl-min));
-    --f-pl-fluid: calc(1px * var(--f-pl-min) + var(--f-pl-range) * var(--f-space-scale-factor));
-    --f-pl: clamp(calc(1px * var(--f-pl-min)), var(--f-pl-fluid), calc(var(--f-pl-max) * 1px));
-    --pl: var(--f-pl);
-
-    --f-pr-range: calc(var(--f-pr-max) - var(--f-pr-min));
-    --f-pr-fluid: calc(1px * var(--f-pr-min) + var(--f-pr-range) * var(--f-space-scale-factor));
-    --f-pr: clamp(calc(1px * var(--f-pr-min)), var(--f-pr-fluid), calc(var(--f-pr-max) * 1px));
-    --pr: var(--f-pr);
+    --f-px-range: calc(var(--f-px-max) - var(--f-px-min));
+    --f-px-fluid: calc(1px * var(--f-px-min) + var(--f-px-range) * var(--f-space-scale-factor));
+    --f-px: clamp(calc(1px * var(--f-px-min)), var(--f-px-fluid), calc(var(--f-px-max) * 1px));
+    --px: var(--f-px);
 
     --nq-max-width: calc(100vw - 4rem);
 
@@ -182,10 +177,8 @@ body:not(.nq-raw) {
       max-width: var(--nq-max-width);
     }
 
-    --f-pl-min: 32;
-    --f-pl-max: 80;
-    --f-pr-min: 32;
-    --f-pr-max: 80;
+    --f-px-min: 32;
+    --f-px-max: 80;
 
     --f-pt-min: 160;
     --f-pt-max: 200;
