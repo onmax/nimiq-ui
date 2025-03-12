@@ -43,13 +43,6 @@
     --nq-m-range: calc(var(--nq-m-max) - var(--nq-m-min));
     --nq-m-fluid: calc(1px * var(--nq-m-min) + var(--nq-m-range) * var(--nq-margin-scale-factor));
     --nq-m-size: clamp(calc(1px * var(--nq-m-min)), var(--nq-m-fluid), calc(var(--nq-m-max) * 1px));
-
-    /* Font size calculation */
-    --f-font-width-range: calc(var(--nq-screen-width-max) - var(--nq-screen-width-min));
-    --f-font-scale-factor: calc((100vw - (1px * var(--nq-screen-width-min))) / var(--f-font-width-range));
-    --font-size-range: calc(var(--font-size-max) - var(--font-size-min));
-    --font-size-fluid: calc(1px * var(--font-size-min) + var(--font-size-range) * var(--f-font-scale-factor));
-    --font-size: clamp(calc(1px * var(--font-size-min)), var(--font-size-fluid), calc(var(--font-size-max) * 1px));
   }
 
   > *:first-child {

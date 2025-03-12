@@ -19,6 +19,13 @@
 }
 
 :where(*:not(:where(.nq-raw *, [nq-raw] *))) {
+  /* Font size calculation */
+  --f-font-width-range: calc(var(--nq-screen-width-max) - var(--nq-screen-width-min));
+  --f-font-scale-factor: calc((100vw - (1px * var(--nq-screen-width-min))) / var(--f-font-width-range));
+  --font-size-range: calc(var(--font-size-max) - var(--font-size-min));
+  --font-size-fluid: calc(1px * var(--font-size-min) + var(--font-size-range) * var(--f-font-scale-factor));
+  --font-size: clamp(calc(1px * var(--font-size-min)), var(--font-size-fluid), calc(var(--font-size-max) * 1px));
+
   border-color: rgb(var(--nq-neutral-400));
   outline-color: rgb(var(--nq-blue));
   outline-width: 1.5px;
