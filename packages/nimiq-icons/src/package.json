@@ -1,10 +1,22 @@
 {
 	"name": "nimiq-icons",
-	"description": "Nimiq icons",
-	"version": "0.0.1",
+	"description": "The Nimiq Icons as a iconify icon set.",
+	"version": "1.0.0-beta.5",
 	"main": "index.js",
 	"module": "index.mjs",
 	"types": "index.d.ts",
+	"homepage": "https://github.com/onmax/nimiq-ui#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/onmax/nimiq-ui.git"
+	},
+	"bugs": "https://github.com/onmax/nimiq-ui/issues",
+	"keywords": [
+		"nimiq",
+		"nimiq-ui",
+		"nimiq-icons",
+		"vitepress-theme"
+	],
 	"license": "MIT",
 	"exports": {
 		"./*": "./*",

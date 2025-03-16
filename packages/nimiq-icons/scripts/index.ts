@@ -11,11 +11,20 @@ const iconsSets: IconSet[] = []
 
 for (const variant of Object.values(IconVariant)) {
   const figma = await getFigma(variant)
+  if (figma === 'not_modified') 
+    continue 
+    
   const variantName = sanitizeName(variant)
+
   console.log(`Icons: ${figma.iconSet.list().join(', ')}`)
   const iconSet = optimizeIconSet(figma.iconSet, variantName as IconVariant)
   iconsSets.push(iconSet)
   console.log(`Generated icon set for ${variantName}: ${iconSet.list().join(', ')}`)
+}
+
+if (iconsSets.length === 0) {
+  console.log('No new icons found.')
+  process.exit(0)
 }
 
 const combinedIconSet = iconsSets.reduce((prev, curr) => mergeIconSets(prev, curr))
