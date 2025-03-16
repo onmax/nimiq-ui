@@ -15,6 +15,9 @@ catalogs:
     '@unocss/reset':
       specifier: ^66.1.0-beta.3
       version: 66.1.0-beta.3
+    pathe:
+      specifier: ^2.0.3
+      version: 2.0.3
     typescript:
       specifier: ^5.8.2
       version: 5.8.2
@@ -167,7 +170,7 @@ importers:
         version: 66.1.0-beta.3
       nimiq-icons:
         specifier: workspace:*
-        version: link:../nimiq-icons/dist
+        version: link:../nimiq-icons/src
       ts-cssjson:
         specifier: ^3.0.1
         version: 3.0.1
@@ -212,8 +215,11 @@ importers:
       esno:
         specifier: ^4.8.0
         version: 4.8.0
+      pathe:
+        specifier: 'catalog:'
+        version: 2.0.3
 
-  packages/nimiq-icons/dist:
+  packages/nimiq-icons/src:
     dependencies:
       '@iconify/types':
         specifier: '*'

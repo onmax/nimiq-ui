@@ -1,6 +1,6 @@
 packages:
   - packages/*
-  - packages/nimiq-icons/dist
+  - packages/nimiq-icons/src
   - apps/*
   - docs/
 catalog:
@@ -14,5 +14,6 @@ catalog:
   '@iconify/utils': ^2.3.0
   typescript: ^5.8.2
   vitest: ^3.0.5
+  pathe: ^2.0.3
 onlyBuiltDependencies:
   - vue-demi
