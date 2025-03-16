@@ -12,7 +12,7 @@ const showSidebar = computed(() =>
 </script>
 
 <template>
-  <div class="flex" id="viewport">
+  <div id="viewport" class="flex">
     <!-- TODO Add skip -->
     <Sidebar v-if="showSidebar" />
 

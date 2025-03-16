@@ -5,9 +5,9 @@ import type { NimiqVitepressThemeConfig } from '../types'
 import { useTimeAgo } from '@vueuse/core'
 import { useData, useRoute } from 'vitepress'
 import { computed, onMounted, ref, watch } from 'vue'
-import SecondarySidebar from './SecondarySidebar.vue'
-import { data } from '../lib/git.data'
 import { useBreadcrumbs } from '../composables/useBreadcrumbs'
+import { data } from '../lib/git.data'
+import SecondarySidebar from './SecondarySidebar.vue'
 import '../assets/code-blocks.css'
 import '../assets/typography.css'
 import '../assets/github-callouts.css'
@@ -50,10 +50,10 @@ const { breadcrumbs } = useBreadcrumbs()
   <div f-pl-xl f-pr-xs f-pt-sm f="$px $px-min-48 $px-max-72" f-pb-md flex="~ gap-16" relative h-full>
     <div flex="~ col" h-full flex-1 w="[calc(100vw-2*var(--nq-sidebar-width)-2*var(--f-px))]">
       <ul px-32 f-pb-lg flex="~ items-center gap-12">
-        <li v-for="({text, icon},i) in breadcrumbs" :key="text" contents w-max>
+        <li v-for="({ text, icon }, i) in breadcrumbs" :key="text" contents w-max>
           <div v-if="icon" :class="icon" />
           <span nq-label f-text-2xs w-max>{{ text }}</span>
-          <div i-nimiq:chevron-right  text="neutral-700 9" v-if="i < breadcrumbs.length - 1" />
+          <div v-if="i < breadcrumbs.length - 1" i-nimiq:chevron-right text="neutral-700 9" />
         </li>
       </ul>
 

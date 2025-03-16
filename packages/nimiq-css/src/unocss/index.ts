@@ -13,6 +13,7 @@ import {
   presetWebFonts,
 } from 'unocss'
 import { getNimiqColors } from './colors'
+import { getNimiqIcons, type NimiqColorOptions } from './icons'
 
 const DEFAULT_PREFIX = 'nq-'
 
@@ -68,6 +69,13 @@ export interface NimiqPresetOptions {
    * @default false
    */
   staticContent?: boolean
+
+  /**
+   * Whether to include the Nimiq icons
+   *
+   * @default true
+   */
+  icons?: boolean | NimiqColorOptions
 }
 
 export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
@@ -317,6 +325,13 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
         processors,
       }),
     )
+  }
+
+  const { icons =true} = options
+  if (icons) {
+    const iconsOptions = typeof icons === 'object' ? icons : {}
+    const iconsRules = getNimiqIcons(iconsOptions)
+    rules.push(...iconsRules)
   }
 
   // TODO Move to onmaxPreset

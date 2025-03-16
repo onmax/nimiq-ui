@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue'
 import type { NqCardProps } from './NqCard.vue'
+import { defineAsyncComponent } from 'vue'
 
+const { cards, largeCards = false } = defineProps<{ cards?: NqCardInGrid[], largeCards?: boolean }>()
 const NqCard = defineAsyncComponent(() => import('./NqCard.vue'))
 const NqLargeCard = defineAsyncComponent(() => import('./NqLargeCard.vue'))
 
 type CardSpan = 'full' | 'half' | 'default'
 type NqCardInGrid = NqCardProps & { span?: CardSpan }
-
-const { cards, largeCards=false } = defineProps<{ cards?: NqCardInGrid[], largeCards?: boolean }>()
 
 function getSpan({ span, bgColor }: NqCardInGrid): CardSpan | undefined {
   if (span === undefined && bgColor)

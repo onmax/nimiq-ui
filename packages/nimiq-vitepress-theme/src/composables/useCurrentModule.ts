@@ -8,8 +8,8 @@ export function useCurrentModule() {
   const route = useRoute()
 
   const currentDocModule = computed<NimiqVitepressThemeNav>(() => {
-    const module = theme.value.modules.find(module => route.path.startsWith(withBase(`/${module.subpath}`))) || theme.value.modules[0];
-    return module;
+    const module = theme.value.modules.find(module => route.path.startsWith(withBase(`/${module.subpath}`))) || theme.value.modules[0]
+    return module
   })
 
   return {

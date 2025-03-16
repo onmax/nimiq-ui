@@ -1,5 +1,5 @@
 {
-  "name": "nimiq-icons",
+  "name": "nimiq-icons-builder",
   "type": "module",
   "version": "1.0.0",
   "packageManager": "pnpm@10.4.1",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@iconify/tools": "^4.1.1",
-    "@iconify/utils": "^2.3.0",
+    "@iconify/utils": "catalog:",
     "jsdom": "^26.0.0"
   },
   "devDependencies": {

@@ -158,7 +158,7 @@
     }
   }
 
-  &:where(input[type="text"], textarea) {
+  &:where(input[type='text'], textarea) {
     caret-color: rgb(var(--nq-blue));
   }
 }

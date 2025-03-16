@@ -1,0 +1,3 @@
+i-nimiq:flame
+i-nimiq:logos-nimiq-white-vertical
+i-nimiq:icons-lg-document
