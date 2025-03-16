@@ -101,7 +101,7 @@ You can use the [config](https://github.com/onmax/nimiq-ui/tree/main/docs/.vitep
 
 ### Import the layout and CSS
 
-Remove the default Vitepress Theme and instead use `defineNimiqThemeConfig` from `nimiq-vitepress-theme`: 
+Remove the default Vitepress Theme and instead use `defineNimiqThemeConfig` from `nimiq-vitepress-theme`:
 
 ::: code-group
 

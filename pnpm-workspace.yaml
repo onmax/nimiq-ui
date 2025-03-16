@@ -1,5 +1,6 @@
 packages:
   - packages/*
+  - packages/nimiq-icons/dist
   - apps/*
   - docs/
 catalog:
@@ -10,6 +11,8 @@ catalog:
   unocss: ^66.1.0-beta.3
   '@unocss/reset': ^66.1.0-beta.3
   '@unocss/preset-web-fonts': ^66.1.0-beta.3
+  '@iconify/utils': ^2.3.0
   typescript: ^5.8.2
+  vitest: ^3.0.5
 onlyBuiltDependencies:
   - vue-demi

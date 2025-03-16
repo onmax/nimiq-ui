@@ -12,6 +12,7 @@
     "dev": "pnpm run dev:packages && pnpm run --filter=./docs dev",
     "dev:packages": "pnpm --filter=./packages/{nimiq-css,nimiq-vitepress-theme} --parallel run dev",
     "lint": "eslint --cache .",
+    "test": "vitest",
     "lint:fix": "eslint --cache --fix ."
   },
   "workspaces": [
@@ -28,7 +29,8 @@
     "eslint-plugin-format": "^1.0.1",
     "rimraf": "^6.0.1",
     "typescript": "catalog:",
-    "vite": "catalog:"
+    "vite": "catalog:",
+    "vitest": "catalog:"
   },
   "pnpm": {
     "overrides": {
