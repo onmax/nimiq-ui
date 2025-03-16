@@ -1,4 +1,5 @@
 import type { IconSet } from '@iconify/tools'
+import { exit } from 'node:process'
 import { mergeIconSets } from '@iconify/tools'
 import { checkFigmaVariants, getFigma, prepareNpmPackage, sanitizeName } from './client'
 import { IconVariant } from './consts'
@@ -11,9 +12,9 @@ const iconsSets: IconSet[] = []
 
 for (const variant of Object.values(IconVariant)) {
   const figma = await getFigma(variant)
-  if (figma === 'not_modified') 
-    continue 
-    
+  if (figma === 'not_modified')
+    continue
+
   const variantName = sanitizeName(variant)
 
   console.log(`Icons: ${figma.iconSet.list().join(', ')}`)
@@ -24,7 +25,7 @@ for (const variant of Object.values(IconVariant)) {
 
 if (iconsSets.length === 0) {
   console.log('No new icons found.')
-  process.exit(0)
+  exit(0)
 }
 
 const combinedIconSet = iconsSets.reduce((prev, curr) => mergeIconSets(prev, curr))

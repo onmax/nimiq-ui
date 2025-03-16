@@ -1,9 +1,10 @@
-const icons = require('./icons.json');
-const info = {};
-const metadata = {};
-const chars = {};
+const icons = require('./icons.json')
 
-exports.icons = icons;
-exports.info = info;
-exports.metadata = metadata;
-exports.chars = chars;
+const info = {}
+const metadata = {}
+const chars = {}
+
+exports.icons = icons
+exports.info = info
+exports.metadata = metadata
+exports.chars = chars

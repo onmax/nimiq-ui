@@ -21,8 +21,8 @@
   },
   "devDependencies": {
     "@types/jsdom": "^21.1.7",
-    "pathe": "catalog:",
     "dotenv": "^16.4.7",
-    "esno": "^4.8.0"
+    "esno": "^4.8.0",
+    "pathe": "catalog:"
   }
 }

@@ -1,36 +1,36 @@
 {
-	"name": "nimiq-icons",
-	"description": "The Nimiq Icons as a iconify icon set.",
-	"version": "1.0.0-beta.5",
-	"main": "index.js",
-	"module": "index.mjs",
-	"types": "index.d.ts",
-	"homepage": "https://github.com/onmax/nimiq-ui#readme",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/onmax/nimiq-ui.git"
-	},
-	"bugs": "https://github.com/onmax/nimiq-ui/issues",
-	"keywords": [
-		"nimiq",
-		"nimiq-ui",
-		"nimiq-icons",
-		"vitepress-theme"
-	],
-	"license": "MIT",
-	"exports": {
-		"./*": "./*",
-		".": {
-			"types": "./index.d.ts",
-			"require": "./index.js",
-			"import": "./index.mjs"
-		},
-		"./icons.json": "./icons.json"
-	},
-	"iconSet": {
-		"icons": "icons.json"
-	},
-	"dependencies": {
-		"@iconify/types": "*"
-	}
+  "name": "nimiq-icons",
+  "version": "1.0.0-beta.5",
+  "description": "The Nimiq Icons as a iconify icon set.",
+  "license": "MIT",
+  "homepage": "https://github.com/onmax/nimiq-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onmax/nimiq-ui.git"
+  },
+  "bugs": "https://github.com/onmax/nimiq-ui/issues",
+  "keywords": [
+    "nimiq",
+    "nimiq-ui",
+    "nimiq-icons",
+    "vitepress-theme"
+  ],
+  "exports": {
+    "./*": "./*",
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.mjs",
+      "require": "./index.js"
+    },
+    "./icons.json": "./icons.json"
+  },
+  "main": "index.js",
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "iconSet": {
+    "icons": "icons.json"
+  },
+  "dependencies": {
+    "@iconify/types": "*"
+  }
 }

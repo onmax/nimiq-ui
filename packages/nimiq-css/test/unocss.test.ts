@@ -3,7 +3,7 @@
 import { readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { createGenerator, presetWind4 } from 'unocss'
+import { createGenerator } from 'unocss'
 import { describe, expect, it } from 'vitest'
 import { presetNimiq } from '../src'
 

@@ -24,7 +24,7 @@ export function useBreadcrumbs() {
     // Find current page in sidebar
     const currentSidebar = currentDocModule.value.sidebar.find((section) => {
       return section.items.some(item =>
-        item.link && `${withBase(item.link)}/` === route.path
+        (item.link && `${withBase(item.link)}/` === route.path)
         || (item.items?.some(subitem => `${withBase(subitem.link)}/` === route.path)),
       )
     })

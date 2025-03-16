@@ -1,10 +1,10 @@
 import type { IconSet } from '@iconify/tools'
+import { existsSync, writeFile } from 'node:fs'
 import { env, exit } from 'node:process'
 import { exportJSONPackage, importFromFigma } from '@iconify/tools'
-import { IconVariant } from './consts'
+import { dirname, resolve } from 'pathe'
 import { version } from '../package.json'
-import { resolve, dirname } from 'pathe'
-import { existsSync, writeFile } from 'node:fs'
+import { IconVariant } from './consts'
 
 export const sanitizeName = (name: string) => name.toLocaleLowerCase().trim().replace(/ /g, '-')
 
@@ -80,7 +80,8 @@ export async function getFigma(frameName: string) {
     }
 
     return figma
-  } catch (error) {
+  }
+  catch (error) {
     console.error('Error fetching from Figma:', error)
     exit(1)
   }
@@ -93,17 +94,17 @@ export async function prepareNpmPackage(iconSet: IconSet) {
       name: 'nimiq-icons',
       version,
       description: 'The Nimiq Icons as a iconify icon set.',
-      homepage: "https://github.com/onmax/nimiq-ui#readme",
+      homepage: 'https://github.com/onmax/nimiq-ui#readme',
       repository: {
-        type: "git",
-        url: "git+https://github.com/onmax/nimiq-ui.git"
+        type: 'git',
+        url: 'git+https://github.com/onmax/nimiq-ui.git',
       },
-      bugs: "https://github.com/onmax/nimiq-ui/issues",
+      bugs: 'https://github.com/onmax/nimiq-ui/issues',
       keywords: [
-        "nimiq",
-        "nimiq-ui",
-        "nimiq-icons",
-        "vitepress-theme"
+        'nimiq',
+        'nimiq-ui',
+        'nimiq-icons',
+        'vitepress-theme',
       ],
       license: 'MIT',
     },

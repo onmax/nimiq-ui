@@ -1,12 +1,12 @@
 import type { CSSValue, PresetWind3Theme, Rule } from 'unocss'
+import type { Theme } from 'unocss/preset-mini'
 import { encodeSvgForCss } from '@iconify/utils'
 import nimiqIcons from 'nimiq-icons/icons.json'
-import type { Theme } from 'unocss/preset-mini'
 
 export interface NimiqColorOptions {
   /**
    * Whether to ignore the color flags in the SVGs.
-   * 
+   *
    * @default true
    */
   ignoreFlags?: boolean
@@ -15,10 +15,8 @@ export interface NimiqColorOptions {
 export function getNimiqIcons(options: NimiqColorOptions = {}): Rule<PresetWind3Theme>[] {
   const { ignoreFlags = true } = options
   const rules: Rule<PresetWind3Theme>[] = Object.entries(nimiqIcons.icons)
+    .filter(([name]) => !name.startsWith('flags') || !ignoreFlags)
     .map(([name, parsed]) => {
-      if (name.startsWith('flags') && ignoreFlags)
-        return
-
       const url = `url("data:image/svg+xml;utf8,${encodeSvgForCss(parsed.body)}")`
 
       const mode = parsed.body.includes('currentColor') ? 'mask' : 'bg'
@@ -45,7 +43,6 @@ export function getNimiqIcons(options: NimiqColorOptions = {}): Rule<PresetWind3
       }
       return [`i-nimiq:${name}`, cssObject] satisfies Rule<Theme>
     })
-    .filter(Boolean) as Rule<PresetWind3Theme>[]
 
   return rules
 }
