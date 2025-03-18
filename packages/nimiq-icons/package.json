@@ -15,14 +15,14 @@
     "build": "esno ./scripts/index.ts"
   },
   "dependencies": {
-    "@iconify/tools": "^4.1.1",
+    "@iconify/tools": "catalog:",
     "@iconify/utils": "catalog:",
-    "jsdom": "^26.0.0"
+    "jsdom": "catalog:"
   },
   "devDependencies": {
-    "@types/jsdom": "^21.1.7",
-    "dotenv": "^16.4.7",
-    "esno": "^4.8.0",
+    "@types/jsdom": "catalog:",
+    "dotenv": "catalog:",
+    "esno": "catalog:",
     "pathe": "catalog:"
   }
 }
