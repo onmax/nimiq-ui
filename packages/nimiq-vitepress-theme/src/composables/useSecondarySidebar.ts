@@ -1,6 +1,7 @@
 import { useThrottleFn } from '@vueuse/core'
-import { getScrollOffset } from 'vitepress'
-import { onMounted, onUnmounted, onUpdated, ref } from 'vue'
+import { getScrollOffset, useData } from 'vitepress'
+import { computed, onMounted, onUnmounted, onUpdated, ref } from 'vue'
+import type { NimiqVitepressThemeConfig } from '../types'
 
 export interface HeadingItem {
   hashPath: string
@@ -41,7 +42,7 @@ function getAbsoluteTop(element: HTMLElement): number {
   return offsetTop
 }
 
-export function useOutline() {
+export function useSecondarySidebar() {
   const headingTree = ref<HeadingTree[]>([])
   const activeHeadingIds = ref<string[]>([])
 
@@ -133,7 +134,33 @@ export function useOutline() {
     window.removeEventListener('scroll', onScroll)
   })
 
+  const { frontmatter } = useData<NimiqVitepressThemeConfig>()
+  const showOutline = computed(() => {
+    // Explicit setting in frontmatter takes precedence
+    if (frontmatter.value.outline !== undefined)
+      return !!frontmatter.value.outline
+    // Default: show if there are headings
+    return headingTree.value.length > 0
+  })
+
+  const showWidget = computed(() => frontmatter.value.widget !== false)
+
+  const showSecondarySidebar = computed(() => {
+    const { secondarySidebar } = frontmatter.value
+
+    // Explicit setting in frontmatter takes precedence
+    if (secondarySidebar !== undefined)
+      return !!secondarySidebar
+    // Default: show if there are headings
+    return showOutline.value || showWidget.value
+  })
+
+
+
   return {
+    showSecondarySidebar,
+    showOutline,
+    showWidget,
     headingTree,
     activeHeadingIds,
     isHeadingActive: (hashPath: string) => activeHeadingIds.value.includes(hashPath),

@@ -1,4 +1,4 @@
-import type { NimiqVitepressThemeConfig } from 'nimiq-vitepress-theme'
+import type { NimiqVitepressThemeConfig } from 'nimiq-vitepress-theme/types.js'
 import type { UserConfig } from 'vitepress'
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import { createFileSystemTypesCache } from '@shikijs/vitepress-twoslash/cache-fs'
@@ -33,10 +33,12 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
             items: [
               { text: 'Palette', link: '/nimiq-css/palette', icon: 'i-tabler:palette ' },
               { text: 'Utilities', link: '/nimiq-css/utilities', icon: 'i-tabler:building-factory-2 ' },
-              { text: 'Typography', icon: 'i-nimiq:file-text ', items: [
-                { text: 'Getting started', link: '/nimiq-css/typography' },
-                { text: 'Example', link: '/nimiq-css/typography/demo-article' },
-              ] },
+              {
+                text: 'Typography', icon: 'i-nimiq:file-text ', items: [
+                  { text: 'Getting started', link: '/nimiq-css/typography' },
+                  { text: 'Example', link: '/nimiq-css/typography/demo-article' },
+                ]
+              },
               {
                 text: 'CSS Layers',
                 icon: 'i-tabler:binary-tree ',

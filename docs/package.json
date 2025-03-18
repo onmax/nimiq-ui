@@ -24,9 +24,11 @@
   "devDependencies": {
     "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8db5bac",
     "@iconify-json/simple-icons": "^1.2.27",
+    "@nolebase/vitepress-plugin-git-changelog": "catalog:",
     "@iconify-json/tabler": "^1.2.16",
     "@iconify/utils": "catalog:",
     "@shikijs/vitepress-twoslash": "^3.1.0",
+    "unocss-preset-scale-px": "^1.0.0-beta.13",
     "@unocss/reset": "catalog:",
     "@vueuse/core": "^12.7.0",
     "nimiq-css": "workspace:*",

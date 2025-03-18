@@ -13,11 +13,10 @@ export default defineConfig({
       fonts: false,
       typography: true,
     }),
-    presetFluidSizing(),
     presetIcons({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/tabler'),
-        ...createExternalPackageIconLoader('@iconify-json/nimiq'),
+        ...createExternalPackageIconLoader('nimiq-icons'),
       },
     }),
   ],

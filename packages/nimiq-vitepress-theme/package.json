@@ -29,6 +29,11 @@
       "require": "./dist/index.js"
     },
     "./style.css": "./dist/assets/index.css",
+    "./vite": {
+      "types": "./dist/vite.d.ts",
+      "import": "./dist/vite.mjs",
+      "require": "./dist/vite.js"
+    },
     "./*": {
       "types": "./dist/*",
       "import": "./dist/*.mjs",
@@ -63,8 +68,9 @@
     "vitepress": "^1.5.0 || ^2.0.0-alpha.3"
   },
   "dependencies": {
-    "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317",
+    "nimiq-icons": "workspace:*",
     "@iconify-json/tabler": "^1.2.16",
+    "@nolebase/vitepress-plugin-git-changelog": "catalog:",
     "@vueuse/core": "^12.7.0",
     "mark.js": "^8.11.1",
     "minisearch": "^7.1.2",
@@ -85,7 +91,6 @@
     "typescript": "catalog:",
     "unbuild": "^3.3.1",
     "unocss": "catalog:",
-    "unocss-preset-fluid-sizing": "catalog:",
     "unocss-preset-onmax": "catalog:",
     "unplugin-vue-components": "^28.4.0"
   }

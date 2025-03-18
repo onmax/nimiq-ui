@@ -35,6 +35,9 @@
   "pnpm": {
     "overrides": {
       "vite": "catalog:"
+    },
+    "patchedDependencies": {
+      "@nolebase/vitepress-plugin-git-changelog": "patches/@nolebase__vitepress-plugin-git-changelog.patch"
     }
   },
   "simple-git-hooks": {

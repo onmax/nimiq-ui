@@ -1,10 +1,10 @@
 import type { PresetWind3Theme } from 'unocss'
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
-import { defineConfig, presetIcons, transformerDirectives } from 'unocss'
-import { presetFluidSizing } from 'unocss-preset-fluid-sizing'
+import { defineConfig, presetIcons, presetWind3, transformerDirectives } from 'unocss'
 import { presetOnmax } from 'unocss-preset-onmax'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { presetNimiq } from '../packages/nimiq-css/src/index'
+import { presetScalePx } from 'unocss-preset-scale-px'
 
 export default defineConfig<PresetWind3Theme>({
   content: {
@@ -14,7 +14,11 @@ export default defineConfig<PresetWind3Theme>({
     ['stack', 'w-full grid grid-cols-1 grid-rows-1 children:row-span-full children:col-span-full children:self-center children:justify-self-center'],
   ],
   presets: [
-    presetOnmax(),
+    presetWind3(),
+    presetScalePx({ spacing: { DEFAULT: '0.0625rem' } }),
+    presetOnmax({
+      presets: { wind4: false }
+    }),
     presetNimiq({
       utilities: true,
       attributifyUtilities: true,
@@ -24,7 +28,6 @@ export default defineConfig<PresetWind3Theme>({
       },
       typography: true,
     }),
-    presetFluidSizing(),
     presetIcons({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/nimiq'),

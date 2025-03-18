@@ -1,0 +1,16 @@
+diff --git a/package.json b/package.json
+index a288f7b41463e3ff88d6ac7060caf9e24212bb74..696bd8be14b77b77697db60289ca76fb64a74a21 100644
+--- a/package.json
++++ b/package.json
+@@ -42,6 +42,11 @@
+       "require": "./dist/client/index.js"
+     },
+     "./client/style.css": "./dist/client/style.css",
++    "./client/composables/changelog": {
++      "types": "./dist/client/composables/changelog.d.ts",
++      "import": "./dist/client/composables/changelog.mjs",
++      "require": "./dist/client/composables/changelog.cjs"
++    },
+     "./locales": {
+       "types": "./dist/locales/index.d.ts",
+       "import": "./dist/locales/index.mjs",

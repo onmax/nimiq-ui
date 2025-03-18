@@ -1,39 +1,14 @@
 <script setup lang="ts">
-import type { NimiqVitepressThemeConfig } from '../types'
-import { useData } from 'vitepress'
-import { computed } from 'vue'
-import { useOutline } from '../composables/useOutline'
 import '../assets/code-blocks.css'
 import '../assets/typography.css'
 import '../assets/github-callouts.css'
+import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 
-const { frontmatter } = useData<NimiqVitepressThemeConfig>()
-
-const { headingTree, isHeadingActive } = useOutline()
-
-const showOutline = computed(() => {
-  // Explicit setting in frontmatter takes precedence
-  if (frontmatter.value.outline !== undefined)
-    return !!frontmatter.value.outline
-  // Default: show if there are headings
-  return headingTree.value.length > 0
-})
-
-const showWidget = computed(() =>
-  frontmatter.value.widget !== false,
-)
-
-const showSecondarySidebar = computed(() => {
-  // Explicit setting in frontmatter takes precedence
-  if (frontmatter.value.secondarySidebar !== undefined)
-    return !!frontmatter.value.secondarySidebar
-  // Default: show if there's content to display
-  return showOutline.value || showWidget.value
-})
+const { headingTree, isHeadingActive, showOutline, showWidget } = useSecondarySidebar()
 </script>
 
 <template>
-  <div v-if="showSecondarySidebar" f-text-xs sticky f="$h $h-min-60 $h-max-90" h="[calc(100vh-var(--f-h))]" f-top-xl f-px-sm w="[calc(var(--nq-sidebar-width)+24px)]" of-y-auto f-pb-xs>
+  <div f-text-xs sticky f="$h $h-min-60 $h-max-90" h="[calc(100vh-var(--f-h))]" f-top-xl f-px-sm w="[calc(var(--nq-sidebar-width)+24px)]" of-y-auto f-pb-xs>
     <div v-if="showOutline" text-neutral-700 flex="~ gap-8 items-center">
       <div i-tabler:align-left />
       On this page
