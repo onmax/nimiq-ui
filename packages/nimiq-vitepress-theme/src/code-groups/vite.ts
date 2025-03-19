@@ -51,7 +51,6 @@ export function groupIconVitePlugin(): Plugin {
           break
         matches.add(match[1])
       }
-      console.log('matches', matches)
 
       if (!isSetEqual(matches, oldMatches))
         handleUpdateModule()

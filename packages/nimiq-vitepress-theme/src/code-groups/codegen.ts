@@ -4,7 +4,6 @@ import { builtinIcons } from './builtin-icons'
 
 export async function generateCSS(labels: Set<string>) {
   const mergedIcons = { ...builtinIcons }
-  console.log({labels})
   const matched = getMatchedLabels(labels, mergedIcons)
   const css = await generateIconCSS(matched)
   return { css }
@@ -35,7 +34,6 @@ async function generateIconCSS(matched: Record<string, string[]>) {
     ).join(', ')
     return `${selector} {--logo: url("data:image/svg+xml,${svg}");}`
   }))
-  console.log({iconCSS,matched})
 
   return iconCSS.sort().join('')
 }
