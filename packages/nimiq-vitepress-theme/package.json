@@ -37,6 +37,7 @@
       "import": "./dist/*.mjs"
     }
   },
+  "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "typesVersions": {
@@ -72,14 +73,15 @@
     "nimiq-icons": "workspace:*",
     "p-map": "catalog:",
     "reka-ui": "catalog:",
-    "vitepress-plugin-group-icons": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:"
   },
   "devDependencies": {
+    "@iconify-json/vscode-icons": "catalog:",
     "@iconify/utils": "catalog:",
     "@shikijs/vitepress-twoslash": "catalog:",
     "@types/cross-spawn": "catalog:",
+    "@types/markdown-it": "catalog:",
     "@unocss/cli": "catalog:",
     "@unocss/reset": "catalog:",
     "bumpp": "catalog:",
@@ -91,7 +93,6 @@
     "unbuild": "catalog:",
     "unocss": "catalog:",
     "unocss-preset-animations": "catalog:",
-    "unocss-preset-onmax": "catalog:",
-    "unplugin-vue-components": "catalog:"
+    "unocss-preset-onmax": "catalog:"
   }
 }

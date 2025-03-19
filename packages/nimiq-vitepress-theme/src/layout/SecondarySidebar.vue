@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
-import '../assets/code-blocks.css'
-import '../assets/typography.css'
-import '../assets/github-callouts.css'
 
 const { headingTree, isHeadingActive, showOutline, showWidget } = useSecondarySidebar()
 </script>

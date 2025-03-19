@@ -1,12 +1,12 @@
 {
   "name": "docs",
+  "type": "module",
   "version": "1.0.0",
   "packageManager": "pnpm@10.5.1",
   "description": "",
   "author": "",
   "license": "ISC",
   "keywords": [],
-  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

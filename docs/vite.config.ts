@@ -8,7 +8,7 @@ import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vite'
 import Inspect from 'vite-plugin-inspect'
 import VueDevTools from 'vite-plugin-vue-devtools'
-import NimiqVitepressVite from '../packages/nimiq-vitepress-theme/src/vite'
+import { NimiqVitepressVitePlugin } from '../packages/nimiq-vitepress-theme/src/vite'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -30,6 +30,6 @@ export default defineConfig({
     GitChangelog({
       repoURL: 'https://github.com/onmax/nimiq-ui',
     }),
-    NimiqVitepressVite(),
+    NimiqVitepressVitePlugin(),
   ],
 })

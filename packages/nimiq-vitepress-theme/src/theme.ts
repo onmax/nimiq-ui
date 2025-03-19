@@ -6,6 +6,7 @@ import NqLargeCard from './components/NqLargeCard.vue'
 import Layout from './layout/Layout.vue'
 
 import './assets/index.css'
+import 'virtual:group-icons.css'
 
 export function defineNimiqThemeConfig(options: DefineThemeNqVpOptions): Theme {
   return {

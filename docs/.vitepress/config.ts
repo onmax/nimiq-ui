@@ -1,4 +1,4 @@
-import { defineNimiqVitepressConfig } from 'nimiq-vitepress-theme'
+import { defineNimiqVitepressConfig } from '../../packages/nimiq-vitepress-theme/src/'
 import PreviewPlugin from './theme/plugins/component-preview'
 
 // @unocss-include

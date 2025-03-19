@@ -1,23 +1,24 @@
 import type { Plugin } from 'vite'
-import { groupIconVitePlugin } from 'vitepress-plugin-group-icons'
+import { groupIconVitePlugin } from './code-groups/vite'
 
 export interface NimiqVitepressVitePluginOptions {
 
 }
 
 export function NimiqVitepressVitePlugin(_options: NimiqVitepressVitePluginOptions = {}): Plugin {
-  const plugins: Plugin[] = [
-    groupIconVitePlugin(),
-  ]
+  const { resolveId, configureServer, load, transform } = groupIconVitePlugin()
 
   return {
     name: 'nimiq-vitepress-plugin',
-
+    enforce: 'pre',
+    resolveId,
+    configureServer,
+    load,
+    transform,
     config: () => ({
-      plugins,
       optimizeDeps: {
         exclude: [
-          'nimiq-vitepress-theme/client',
+          'nimiq-vitepress-theme',
           'virtual:nolebase-git-changelog',
         ],
       },
@@ -25,11 +26,6 @@ export function NimiqVitepressVitePlugin(_options: NimiqVitepressVitePluginOptio
         noExternal: [
           'nimiq-vitepress-theme',
         ],
-      },
-      // plugins,
-      resolve: {
-        alias: {
-        },
       },
     }),
   } satisfies Plugin

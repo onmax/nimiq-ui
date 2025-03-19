@@ -1,8 +1,10 @@
+import type { PluginSimple } from 'markdown-it'
 import type { MarkdownEnv, MarkdownRenderer } from 'vitepress'
 import { dirname, resolve } from 'node:path'
 import { renderMarkdownItTokens } from 'render-markdown-it-tokens'
 
-export default function (md: MarkdownRenderer) {
+// PluginSimple
+export default function (md: MarkdownRenderer): PluginSimple {
   md.core.ruler.after('block', 'markdown-preview', (state) => {
     // Find all html_block tokens containing ComponentPreview
     for (let i = 0; i < state.tokens.length; i++) {

@@ -1,6 +1,6 @@
 import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client'
 
-import { defineNimiqThemeConfig } from 'nimiq-vitepress-theme/client.js'
+import { defineNimiqThemeConfig } from 'nimiq-vitepress-theme/theme.js'
 
 import ComponentPreview from './components/ComponentPreview.vue'
 

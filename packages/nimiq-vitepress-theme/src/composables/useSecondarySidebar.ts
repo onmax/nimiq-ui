@@ -1,5 +1,5 @@
 import type { NimiqVitepressThemeConfig } from '../types'
-import { useScroll, useThrottleFn } from '@vueuse/core'
+import { createSharedComposable, useScroll, useThrottleFn } from '@vueuse/core'
 import { useData, useRoute } from 'vitepress'
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 
@@ -10,7 +10,7 @@ export interface SidebarHeading {
   items: SidebarHeading[]
 }
 
-export function useSecondarySidebar() {
+export const useSecondarySidebar = createSharedComposable(() => {
   const { frontmatter } = useData<NimiqVitepressThemeConfig>()
   const headingTree = ref<SidebarHeading[]>([])
   const activeHeadings = ref<string[]>([])
@@ -111,4 +111,4 @@ export function useSecondarySidebar() {
     showWidget,
     showSecondarySidebar,
   }
-}
+})

@@ -1,8 +1,9 @@
 import type { NimiqVitepressThemeConfig, NimiqVitepressThemeNav } from '../types'
+import { createSharedComposable } from '@vueuse/core'
 import { useData, useRoute, withBase } from 'vitepress'
 import { computed } from 'vue'
 
-export function useCurrentModule() {
+export const useCurrentModule = createSharedComposable(() => {
   const { theme } = useData<NimiqVitepressThemeConfig>()
 
   const route = useRoute()
@@ -17,4 +18,4 @@ export function useCurrentModule() {
     text: computed(() => currentDocModule.value?.text),
     fullPath: computed(() => currentDocModule.value ? withBase(currentDocModule.value.subpath) : ''),
   }
-}
+})
