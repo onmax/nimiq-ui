@@ -12,8 +12,6 @@ declare module 'mark.js/src/vanilla.js' {
 
 declare const __ASSETS_DIR__: string
 declare const __VP_HASH_MAP__: Record<string, string>
-declare const __GIT_REMOTE_URL__: string
-
 
 declare module 'virtual:nolebase-git-changelog' {
   import type { Changelog } from './types'

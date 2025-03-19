@@ -34,10 +34,12 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
               { text: 'Palette', link: '/nimiq-css/palette', icon: 'i-tabler:palette ' },
               { text: 'Utilities', link: '/nimiq-css/utilities', icon: 'i-tabler:building-factory-2 ' },
               {
-                text: 'Typography', icon: 'i-nimiq:file-text ', items: [
+                text: 'Typography',
+                icon: 'i-nimiq:file-text ',
+                items: [
                   { text: 'Getting started', link: '/nimiq-css/typography' },
                   { text: 'Example', link: '/nimiq-css/typography/demo-article' },
-                ]
+                ],
               },
               {
                 text: 'CSS Layers',

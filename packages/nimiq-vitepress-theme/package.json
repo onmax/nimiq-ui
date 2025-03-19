@@ -68,30 +68,31 @@
     "vitepress": "^1.5.0 || ^2.0.0-alpha.3"
   },
   "dependencies": {
-    "nimiq-icons": "workspace:*",
-    "@iconify-json/tabler": "^1.2.16",
+    "@iconify-json/tabler": "catalog:",
     "@nolebase/vitepress-plugin-git-changelog": "catalog:",
-    "@vueuse/core": "^12.7.0",
-    "mark.js": "^8.11.1",
-    "minisearch": "^7.1.2",
-    "p-map": "^7.0.3",
-    "reka-ui": "^2.0.0",
-    "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "@vueuse/core": "catalog:",
+    "mark.js": "catalog:",
+    "minisearch": "catalog:",
+    "nimiq-icons": "workspace:*",
+    "p-map": "catalog:",
+    "reka-ui": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
   },
   "devDependencies": {
-    "@iconify/utils": "^2.1.25",
-    "@types/cross-spawn": "^6.0.6",
-    "@unocss/cli": "^66.0.0",
+    "@iconify/utils": "catalog:",
+    "@types/cross-spawn": "catalog:",
+    "@unocss/cli": "catalog:",
     "@unocss/reset": "catalog:",
-    "bumpp": "^10.0.3",
-    "cross-spawn": "^7.0.6",
+    "bumpp": "catalog:",
+    "cross-spawn": "catalog:",
     "nimiq-css": "workspace:*",
     "pathe": "catalog:",
     "typescript": "catalog:",
-    "unbuild": "^3.3.1",
+    "unbuild": "catalog:",
     "unocss": "catalog:",
+    "unocss-preset-animations": "catalog:",
     "unocss-preset-onmax": "catalog:",
-    "unplugin-vue-components": "^28.4.0"
+    "unplugin-vue-components": "catalog:"
   }
 }

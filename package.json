@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-beta.5",
   "private": true,
-  "packageManager": "pnpm@10.5.2",
+  "packageManager": "pnpm@10.6.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -20,14 +20,14 @@
     "docs"
   ],
   "devDependencies": {
-    "@antfu/eslint-config": "^4.7.0",
-    "@types/node": "^22.13.9",
-    "@unocss/eslint-config": "^66.0.0",
-    "@unocss/eslint-plugin": "^66.0.0",
-    "bumpp": "^10.0.3",
-    "eslint": "^9.21.0",
-    "eslint-plugin-format": "^1.0.1",
-    "rimraf": "^6.0.1",
+    "@antfu/eslint-config": "catalog:",
+    "@types/node": "catalog:",
+    "@unocss/eslint-config": "catalog:",
+    "@unocss/eslint-plugin": "catalog:",
+    "bumpp": "catalog:",
+    "eslint": "catalog:",
+    "eslint-plugin-format": "catalog:",
+    "rimraf": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:"

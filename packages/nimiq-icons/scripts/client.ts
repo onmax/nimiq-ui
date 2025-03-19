@@ -1,5 +1,5 @@
 import type { IconSet } from '@iconify/tools'
-import { existsSync, writeFile } from 'node:fs'
+import { existsSync } from 'node:fs'
 import { env, exit } from 'node:process'
 import { exportJSONPackage, importFromFigma } from '@iconify/tools'
 import { dirname, resolve } from 'pathe'

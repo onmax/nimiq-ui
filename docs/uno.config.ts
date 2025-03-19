@@ -2,9 +2,9 @@ import type { PresetWind3Theme } from 'unocss'
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
 import { defineConfig, presetIcons, presetWind3, transformerDirectives } from 'unocss'
 import { presetOnmax } from 'unocss-preset-onmax'
+import { presetScalePx } from 'unocss-preset-scale-px'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { presetNimiq } from '../packages/nimiq-css/src/index'
-import { presetScalePx } from 'unocss-preset-scale-px'
 
 export default defineConfig<PresetWind3Theme>({
   content: {
@@ -17,7 +17,7 @@ export default defineConfig<PresetWind3Theme>({
     presetWind3(),
     presetScalePx({ spacing: { DEFAULT: '0.0625rem' } }),
     presetOnmax({
-      presets: { wind4: false }
+      presets: { wind4: false },
     }),
     presetNimiq({
       utilities: true,
@@ -30,7 +30,7 @@ export default defineConfig<PresetWind3Theme>({
     }),
     presetIcons({
       collections: {
-        ...createExternalPackageIconLoader('@iconify-json/nimiq'),
+        // ...createExternalPackageIconLoader('nimiq-icons'),
         ...createExternalPackageIconLoader('@iconify-json/tabler'),
         ...createExternalPackageIconLoader('@iconify-json/simple-icons'),
         custom: FileSystemIconLoader('./public/assets/icons'),

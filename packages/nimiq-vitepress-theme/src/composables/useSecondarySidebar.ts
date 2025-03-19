@@ -1,168 +1,114 @@
-import { useThrottleFn } from '@vueuse/core'
-import { getScrollOffset, useData } from 'vitepress'
-import { computed, onMounted, onUnmounted, onUpdated, ref } from 'vue'
 import type { NimiqVitepressThemeConfig } from '../types'
+import { useScroll, useThrottleFn } from '@vueuse/core'
+import { useData, useRoute } from 'vitepress'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 
-export interface HeadingItem {
+export interface SidebarHeading {
   hashPath: string
   text: string
-}
-
-export interface HeadingTree extends HeadingItem {
-  items: HeadingItem[]
-}
-
-const ignoreRE = /\b(?:header-anchor|ignore-header)\b/
-const resolvedHeaders: { element: HTMLHeadElement, link: string }[] = []
-
-function serializeHeader(h: Element): string {
-  let ret = ''
-  Array.from(h.childNodes).forEach((node) => {
-    if (node.nodeType === 1) {
-      if (ignoreRE.test((node as Element).className))
-        return
-      ret += node.textContent
-    }
-    else if (node.nodeType === 3) {
-      ret += node.textContent
-    }
-  })
-  return ret.trim()
-}
-
-function getAbsoluteTop(element: HTMLElement): number {
-  let offsetTop = 0
-  while (element !== document.body) {
-    if (element === null) {
-      return Number.NaN
-    }
-    offsetTop += element.offsetTop
-    element = element.offsetParent as HTMLElement
-  }
-  return offsetTop
+  level: number
+  items: SidebarHeading[]
 }
 
 export function useSecondarySidebar() {
-  const headingTree = ref<HeadingTree[]>([])
-  const activeHeadingIds = ref<string[]>([])
+  const { frontmatter } = useData<NimiqVitepressThemeConfig>()
+  const headingTree = ref<SidebarHeading[]>([])
+  const activeHeadings = ref<string[]>([])
 
-  function buildTree(headings: HTMLElement[]) {
-    const tree: HeadingTree[] = []
-    let currentH2: HeadingTree | undefined
+  // Build the heading tree by querying only h2 and h3 elements
+  // inside an article, ignoring those inside [data-card] elements.
+  function updateHeadingTree() {
+    const nodes = document.querySelectorAll('article :where(h2,h3):not([data-card] *)')
+    const tree: SidebarHeading[] = []
+    let lastH2: SidebarHeading | null = null
 
-    headings.forEach((heading) => {
-      const hashPath = heading.id
-      const text = serializeHeader(heading)
-
-      if (heading.tagName === 'H2') {
-        currentH2 = { hashPath, text, items: [] }
-        tree.push(currentH2)
-        resolvedHeaders.push({ element: heading as HTMLHeadElement, link: `#${hashPath}` })
+    nodes.forEach((node) => {
+      const el = node as HTMLElement
+      if (!el.id)
+        return
+      const level = Number(el.tagName[1])
+      const heading: SidebarHeading = {
+        hashPath: el.id,
+        text: el.textContent?.trim() || '',
+        level,
+        items: [],
       }
-      else if (heading.tagName === 'H3' && currentH2) {
-        currentH2.items.push({ hashPath, text })
-        resolvedHeaders.push({ element: heading as HTMLHeadElement, link: `#${hashPath}` })
+      if (level === 2) {
+        tree.push(heading)
+        lastH2 = heading
+      }
+      else if (level === 3) {
+        if (lastH2) {
+          lastH2.items.push(heading)
+        }
+        else {
+          tree.push(heading)
+        }
       }
     })
-
-    return tree
+    headingTree.value = tree
   }
 
-  const onScroll = useThrottleFn(() => {
-    const scrollY = window.scrollY
-    const innerHeight = window.innerHeight
-    const offsetHeight = document.body.offsetHeight
+  // Update active headings based on their visibility within the viewport.
+  // This function is throttled to run at most every 100ms.
+  const updateActiveHeadings = useThrottleFn(async () => {
+    await nextTick()
+    const active: string[] = []
 
-    // Get all headers positions
-    const headers = resolvedHeaders
-      .map(({ element, link }) => ({
-        link,
-        top: getAbsoluteTop(element),
-      }))
-      .filter(({ top }) => !Number.isNaN(top))
-      .sort((a, b) => a.top - b.top)
-
-    if (!headers.length) {
-      activeHeadingIds.value = []
-      return
-    }
-
-    // Page top - activate first heading
-    if (scrollY < 1) {
-      activeHeadingIds.value = headers[0] ? [headers[0].link.slice(1)] : []
-      return
-    }
-
-    // Page bottom - activate last heading
-    if (Math.abs(scrollY + innerHeight - offsetHeight) < 1) {
-      const lastHeader = headers[headers.length - 1]
-      if (lastHeader) {
-        activeHeadingIds.value = [lastHeader.link.slice(1)]
+    // Recursively check each heading (and its children) for visibility.
+    function checkHeading(heading: SidebarHeading) {
+      const el = document.getElementById(heading.hashPath)
+      if (el) {
+        const rect = el.getBoundingClientRect()
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          active.push(heading.hashPath)
+        }
       }
-      return
+      heading.items.forEach(checkHeading)
     }
 
-    // Find all headers that are in viewport
-    const visibleHeaders = headers.filter(({ top }) => {
-      const elementTop = top - scrollY - getScrollOffset()
-      return elementTop >= -50 && elementTop <= innerHeight * 0.4
-    })
-
-    activeHeadingIds.value = visibleHeaders.map(h => h.link.slice(1))
+    headingTree.value.forEach(checkHeading)
+    activeHeadings.value = active
   }, 100)
 
-  onMounted(() => {
-    resolvedHeaders.length = 0
-    const headings = Array.from(document.querySelectorAll('article :where(h2,h3):not([data-card] *)'))
-      .filter(el => el.id && el.hasChildNodes()) as HTMLElement[]
+  const { y: scrollY } = useScroll(window)
 
-    headingTree.value = buildTree(headings)
-    window.addEventListener('scroll', onScroll)
-    requestAnimationFrame(onScroll)
+  const route = useRoute()
+
+  watch(route, async () => {
+    await nextTick()
+    updateHeadingTree()
   })
 
-  onUpdated(() => {
-    resolvedHeaders.length = 0
-    const headings = Array.from(document.querySelectorAll('article :where(h2,h3):not([data-card] *)'))
-      .filter(el => el.id && el.hasChildNodes()) as HTMLElement[]
+  onMounted(() => updateHeadingTree())
 
-    headingTree.value = buildTree(headings)
-    requestAnimationFrame(onScroll)
-  })
+  // Watch the reactive scroll position to update active headings.
+  watch(scrollY, updateActiveHeadings)
 
-  onUnmounted(() => {
-    window.removeEventListener('scroll', onScroll)
-  })
-
-  const { frontmatter } = useData<NimiqVitepressThemeConfig>()
+  // Compute whether to show the outline based on frontmatter settings or heading existence.
   const showOutline = computed(() => {
-    // Explicit setting in frontmatter takes precedence
     if (frontmatter.value.outline !== undefined)
       return !!frontmatter.value.outline
-    // Default: show if there are headings
     return headingTree.value.length > 0
   })
 
   const showWidget = computed(() => frontmatter.value.widget !== false)
-
   const showSecondarySidebar = computed(() => {
-    const { secondarySidebar } = frontmatter.value
-
-    // Explicit setting in frontmatter takes precedence
-    if (secondarySidebar !== undefined)
-      return !!secondarySidebar
-    // Default: show if there are headings
-    return showOutline.value || showWidget.value
+    if (frontmatter.value.showSecondarySidebar !== undefined)
+      return frontmatter.value.showSecondarySidebar !== false
+    return showWidget.value && showOutline.value
   })
 
-
+  // Returns true if the heading (by its hashPath) is active (visible in viewport)
+  function isHeadingActive(hash: string): boolean {
+    return activeHeadings.value.includes(hash)
+  }
 
   return {
-    showSecondarySidebar,
+    headingTree,
+    isHeadingActive,
     showOutline,
     showWidget,
-    headingTree,
-    activeHeadingIds,
-    isHeadingActive: (hashPath: string) => activeHeadingIds.value.includes(hashPath),
+    showSecondarySidebar,
   }
 }

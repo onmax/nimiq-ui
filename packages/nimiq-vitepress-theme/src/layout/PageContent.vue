@@ -1,30 +1,29 @@
 <script setup lang="ts">
-import {join} from 'pathe'
 import type { NimiqVitepressThemeConfig } from '../types'
+import { join } from 'pathe'
 import { useData } from 'vitepress'
 import { useBreadcrumbs } from '../composables/useBreadcrumbs'
+import { useChangelog } from '../composables/useChangelog'
+import { useSecondarySidebar } from '../composables/useSecondarySidebar'
+import Changelog from './Changelog.vue'
 import SecondarySidebar from './SecondarySidebar.vue'
 import '../assets/code-blocks.css'
 import '../assets/typography.css'
 import '../assets/github-callouts.css'
-import { useSecondarySidebar } from '../composables/useSecondarySidebar'
-import Contributors from './Contributors.vue'
 
 const { page } = useData<NimiqVitepressThemeConfig>()
-
 const { breadcrumbs } = useBreadcrumbs()
 
 const { showSecondarySidebar } = useSecondarySidebar()
 
-// repoUrl && cachedInfo.relativePath ? `${repoUrl}/blob/main/${cachedInfo.relativePath}` : '',
+const { repoURL } = useChangelog()
 const editUrl = useEditUrl(page.value.relativePath)
 
 // Convert URL to file path
 function useEditUrl(relativePath: string): string {
   let url = relativePath.replace(/(^|\/)$/, '$1index')
   url = url.replace(/(\.html)?$/, '.md')
-  url = join(__GIT_REMOTE_URL__, url)
-
+  url = join(repoURL.value, url)
   return url
 }
 </script>
@@ -42,15 +41,16 @@ function useEditUrl(relativePath: string): string {
 
       <article flex-1 class="nq-prose" var:nq-prose-max-width:none>
         <Content max-w-none />
+        <Changelog />
       </article>
-
-      <Contributors />
-      <a :href="editUrl" target="_blank" rel="noopener" op70 group lh-0 nq-arrow>
-        Suggest changes on this page
-      </a>
-      <p text="center neutral-700" f-text-xs f-mt-2xs font-normal italic>
-        Built with the <a href="https://onmax.github.io/nimiq-ui/vitepress-theme/" un-text-neutral-800 target="_blank" rel="noopener" underline>Nimiq Vitepress Theme</a>
-      </p>
+      <div flex="~ wrap justify-between gap-8" f-mt-xs f-text-xs>
+        <a :href="editUrl" target="_blank" rel="noopener" op-70 nq-arrow>
+          Suggest changes on this page
+        </a>
+        <p text-neutral-700 font-normal italic>
+          Built with the <a href="https://onmax.github.io/nimiq-ui/vitepress-theme/" un-text-neutral-800 target="_blank" rel="noopener" underline>Nimiq Vitepress Theme</a>
+        </p>
+      </div>
     </div>
     <SecondarySidebar v-if="showSecondarySidebar" />
   </div>

@@ -1,8 +1,8 @@
 import type { Plugin } from 'vite'
 import { dirname, resolve } from 'node:path'
-import { GitChangelog } from "@nolebase/vitepress-plugin-git-changelog/vite";
-
 import { fileURLToPath } from 'node:url'
+
+import { GitChangelog } from '@nolebase/vitepress-plugin-git-changelog/vite'
 import UnoCSS from 'unocss/vite'
 
 import { defineConfig } from 'vite'
@@ -28,10 +28,8 @@ export default defineConfig({
     UnoCSS(),
 
     GitChangelog({
-      repoURL: 'https://github.com/onmax/nimiq-ui'
+      repoURL: 'https://github.com/onmax/nimiq-ui',
     }),
-    NimiqVitepressVite({
-      repoURL: 'https://github.com/onmax/nimiq-ui'
-    })
+    NimiqVitepressVite(),
   ],
 })
