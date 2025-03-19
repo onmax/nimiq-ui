@@ -9,7 +9,8 @@ const filter = createFilter([/\.md$/, /\.md\?vue/, /\.md\?v=/])
 export function groupIconVitePlugin(): Plugin {
   const virtualCssId = 'virtual:group-icons.css'
   const resolvedVirtualCssId = `\0${virtualCssId}`
-  const regex = /```(?:\S+)\s+\[(?:(?:[^\]\.]+\.)+)?([^\]]+)\]/;
+  // eslint-disable-next-line regexp/no-super-linear-backtracking
+  const combinedRegex = /```\S+\s+\[(?:[^\]]*\.)?([^\]]+)\]/g
   const matches = new Set<string>()
 
   let oldMatches: Set<string> = new Set()
@@ -46,7 +47,7 @@ export function groupIconVitePlugin(): Plugin {
         return
 
       while (true) {
-        const match = regex.exec(code)
+        const match = combinedRegex.exec(code)
         if (!match)
           break
         matches.add(match[1])
