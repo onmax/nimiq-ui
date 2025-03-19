@@ -29,7 +29,7 @@ async function generateIconCSS(matched: Record<string, string[]>) {
       throw new Error(`Icon not found: ${iconName}`)
     const { attributes, body } = iconToSVG(iconData)
     const svg = encodeSvgForCss(iconToHTML(body, attributes))
-    const selector = labels.map(l => l.replace('.','')).map(
+    const selector = labels.map(l => l.replace('.', '')).map(
       label => `:where([data-title$='${label}' i], [class$='language-${label}' i] .lang)::before`,
     ).join(', ')
     return `${selector} {--logo: url("data:image/svg+xml,${svg}");}`
