@@ -1,14 +1,20 @@
 import type { Plugin } from 'vite'
+import { groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 
 export interface NimiqVitepressVitePluginOptions {
 
 }
 
 export function NimiqVitepressVitePlugin(_options: NimiqVitepressVitePluginOptions = {}): Plugin {
+  const plugins: Plugin[] = [
+    groupIconVitePlugin(),
+  ]
+
   return {
     name: 'nimiq-vitepress-plugin',
-    // enforce: 'pre',
+
     config: () => ({
+      plugins,
       optimizeDeps: {
         exclude: [
           'nimiq-vitepress-theme/client',

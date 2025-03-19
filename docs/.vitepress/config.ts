@@ -1,13 +1,9 @@
-import type { NimiqVitepressThemeConfig } from 'nimiq-vitepress-theme/types.js'
-import type { UserConfig } from 'vitepress'
-import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
-import { createFileSystemTypesCache } from '@shikijs/vitepress-twoslash/cache-fs'
-import { defineConfigWithTheme } from 'vitepress'
+import { defineNimiqVitepressConfig } from 'nimiq-vitepress-theme'
 import PreviewPlugin from './theme/plugins/component-preview'
 
 // @unocss-include
 
-export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
+export default defineNimiqVitepressConfig({
   title: 'Nimiq UI',
   description: 'Build awesome apps with the Nimiq Style',
   base: '/nimiq-ui/',
@@ -151,12 +147,5 @@ export default defineConfigWithTheme<NimiqVitepressThemeConfig>({
     preConfig(md) {
       md.use(PreviewPlugin)
     },
-    theme: 'vitesse-dark',
-    languages: ['vue', 'vue-html', 'js', 'ts', 'markdown'],
-    codeTransformers: [
-      transformerTwoslash({
-        typesCache: createFileSystemTypesCache(),
-      }),
-    ],
   },
-} satisfies UserConfig<NimiqVitepressThemeConfig>)
+})

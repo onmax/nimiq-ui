@@ -12,14 +12,10 @@ const [DefineCommitRegularLine, CommitRegularLine] = createReusableTemplate<Comm
 </script>
 
 <template>
-  <h2 id="changelog" px-48>
+  <h2 id="changelog" sr-only>
     Changelog
-    <a class="header-anchor" href="#changelog" aria-label="Permalink to Changelog" />
   </h2>
-  <div v-if="!commits.length" px-32 mt-6 italic op-60>
-    No Logs
-  </div>
-  <Collapsible.Root v-else class="nq-raw" px-32 bg-neutral-200 rounded-8>
+  <Collapsible.Root v-if="commits.length > 0" class="nq-raw" px-32 bg-neutral-200 rounded-8 f-mt-lg>
     <Collapsible.Trigger bg-transparent w-full f-mt-2xs z-10 flex f-px-xs f-py-2xs>
       <div i-nimiq:watch-1-50 />
       See changelog of this file
