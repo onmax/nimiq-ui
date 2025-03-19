@@ -25,22 +25,18 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": "./dist/index.mjs"
     },
     "./style.css": "./dist/assets/index.css",
     "./vite": {
       "types": "./dist/vite.d.ts",
-      "import": "./dist/vite.mjs",
-      "require": "./dist/vite.js"
+      "import": "./dist/vite.mjs"
     },
     "./*": {
       "types": "./dist/*",
-      "import": "./dist/*.mjs",
-      "require": "./dist/*.js"
+      "import": "./dist/*.mjs"
     }
   },
-  "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "typesVersions": {

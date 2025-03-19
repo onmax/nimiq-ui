@@ -21,13 +21,6 @@ export default defineBuildConfig({
       builder: 'mkdist',
       input: './src',
       pattern: ['**/*.ts'],
-      format: 'cjs',
-      loaders: ['js'],
-    },
-    {
-      builder: 'mkdist',
-      input: './src',
-      pattern: ['**/*.ts'],
       format: 'esm',
       loaders: ['js'],
     },

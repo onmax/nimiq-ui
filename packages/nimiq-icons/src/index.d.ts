@@ -1,8 +1,8 @@
-import type { IconifyChars, IconifyInfo, IconifyJSON, IconifyMetaData } from '@iconify/types'
+import type { IconifyJSON, IconifyInfo, IconifyMetaData, IconifyChars } from '@iconify/types';
 
-export { IconifyChars, IconifyInfo, IconifyJSON, IconifyMetaData }
+export { IconifyJSON, IconifyInfo, IconifyMetaData, IconifyChars };
 
-export declare const icons: IconifyJSON
-export declare const info: IconifyInfo
-export declare const metadata: IconifyMetaData
-export declare const chars: IconifyChars
+export declare const icons: IconifyJSON;
+export declare const info: IconifyInfo;
+export declare const metadata: IconifyMetaData;
+export declare const chars: IconifyChars;
