@@ -2,7 +2,8 @@
 import { addCollection, getIcon, Icon, listIcons } from '@iconify/vue'
 import { createReusableTemplate, useLocalStorage } from '@vueuse/core'
 import { buildIcon } from 'iconify-icon'
-import { computed, onMounted, ref, watchEffect } from 'vue'
+import nimiqIcons from 'nimiq-icons/icons.json'
+import { computed, ref, watchEffect } from 'vue'
 import CodeBlock from './CodeBlock.vue'
 import ShikiBlock from './ShikiBlock.vue'
 
@@ -26,20 +27,17 @@ const timeBuild = ref('')
 
 const initialIcon = new URLSearchParams(globalThis.location?.search).get('icon') || ''
 
-onMounted(async () => {
-  const json = await fetch('https://raw.githubusercontent.com/onmax/nimiq-ui/main/packages/nimiq-icons/dist/icons.json').then(res => res.json())
-  addCollection(json)
-  // addCollection({ ...json, icons: Object.entries(json.icons).filter(([key]) => key.startsWith('logos-nimiq-full-white-vertical')).reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}) })
+addCollection(nimiqIcons)
+// addCollection({ ...json, icons: Object.entries(json.icons).filter(([key]) => key.startsWith('logos-nimiq-full-white-vertical')).reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}) })
 
-  icons.value = listIcons()
-  variants.value[Variant.Regular] = listIcons().filter(icon => icon.startsWith('nimiq') && !icon.startsWith(`nimiq:${Variant.Large}-`) && !icon.startsWith(`nimiq:${Variant.Logos}-`) && !icon.startsWith(`nimiq:${Variant.Flags}-`))
-  variants.value[Variant.Large] = listIcons().filter(icon => icon.startsWith(`nimiq:${Variant.Large}-`))
-  variants.value[Variant.Logos] = listIcons().filter(icon => icon.startsWith(`nimiq:${Variant.Logos}-`))
-  variants.value[Variant.Flags] = listIcons().filter(icon => icon.startsWith(`nimiq:${Variant.Flags}-`))
+icons.value = listIcons()
+variants.value[Variant.Regular] = listIcons().filter(icon => icon.startsWith('nimiq') && !icon.startsWith(`nimiq:${Variant.Large}-`) && !icon.startsWith(`nimiq:${Variant.Logos}-`) && !icon.startsWith(`nimiq:${Variant.Flags}-`))
+variants.value[Variant.Large] = listIcons().filter(icon => icon.startsWith(`nimiq:${Variant.Large}-`))
+variants.value[Variant.Logos] = listIcons().filter(icon => icon.startsWith(`nimiq:${Variant.Logos}-`))
+variants.value[Variant.Flags] = listIcons().filter(icon => icon.startsWith(`nimiq:${Variant.Flags}-`))
 
-  lastUpdated.value = new Date(json.lastModified * 1000)
-  timeBuild.value = new Intl.DateTimeFormat('en', { dateStyle: 'short', timeStyle: 'short' }).format(lastUpdated.value)
-})
+lastUpdated.value = new Date(nimiqIcons.lastModified * 1000)
+timeBuild.value = new Intl.DateTimeFormat('en', { dateStyle: 'short', timeStyle: 'short' }).format(lastUpdated.value)
 
 const logosMono = computed(() => variants.value[Variant.Logos].filter(icon => icon.endsWith('-mono')))
 
