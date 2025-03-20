@@ -82,7 +82,6 @@
   "devDependencies": {
     "@iconify-json/vscode-icons": "catalog:",
     "@iconify/utils": "catalog:",
-    "@shikijs/vitepress-twoslash": "catalog:",
     "@types/markdown-it": "catalog:",
     "@unocss/cli": "catalog:",
     "@unocss/reset": "catalog:",

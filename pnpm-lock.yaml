@@ -426,9 +426,6 @@ importers:
       '@iconify/utils':
         specifier: 'catalog:'
         version: 2.3.0
-      '@shikijs/vitepress-twoslash':
-        specifier: 'catalog:'
-        version: 3.2.1(typescript@5.8.2)
       '@types/markdown-it':
         specifier: 'catalog:'
         version: 14.1.2
