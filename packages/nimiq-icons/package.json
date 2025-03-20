@@ -5,6 +5,11 @@
   "private": true,
   "packageManager": "pnpm@10.4.1",
   "description": "",
+  "author": {
+    "name": "onmax",
+    "url": "https://github.com/onmax"
+  },
+  "license": "MIT",
   "exports": {
     "./icons.json": {
       "import": "./dist/icons.json"
@@ -12,17 +17,18 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "esno ./scripts/index.ts"
-  },
-  "dependencies": {
-    "@iconify/tools": "catalog:",
-    "@iconify/utils": "catalog:",
-    "jsdom": "catalog:"
+    "build": "esno ./scripts/index.ts",
+    "dev": "esno ./scripts/index.ts",
+    "prepublishOnly": "nr build"
   },
   "devDependencies": {
+    "@iconify/tools": "catalog:",
+    "@iconify/utils": "catalog:",
     "@types/jsdom": "catalog:",
+    "consola": "catalog:",
     "dotenv": "catalog:",
     "esno": "catalog:",
+    "jsdom": "catalog:",
     "pathe": "catalog:"
   }
 }

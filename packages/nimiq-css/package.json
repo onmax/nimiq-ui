@@ -33,7 +33,7 @@
   "scripts": {
     "build": "unbuild",
     "dev": "unbuild --stub",
-    "release": "pnpm run build && bumpp --commit --push --tag && pnpm publish"
+    "prepublishOnly": "nr build"
   },
   "dependencies": {
     "@iconify/utils": "catalog:",

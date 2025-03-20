@@ -1,0 +1,31 @@
+{
+	"prefix": "nimiq",
+	"name": "nimiq-flags",
+	"total": 420,
+	"version": "1.0.0-beta.7",
+	"author": {
+		"name": "onmax",
+		"url": "https://github.com/onmax"
+	},
+	"license": {
+		"title": "MIT",
+		"spdx": "MIT",
+		"url": "https://opensource.org/licenses/MIT"
+	},
+	"samples": [
+		"flags-ae-hexagon",
+		"flags-idr-hexagon",
+		"flags-hr-hexagon",
+		"flags-dk-hexagon",
+		"flags-ci-hexagon"
+	],
+	"height": 24,
+	"displayHeight": 24,
+	"category": "General",
+	"tags": [
+		"nimiq",
+		"cryptocurrency",
+		"ui"
+	],
+	"palette": false
+}

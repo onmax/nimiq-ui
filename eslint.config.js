@@ -5,7 +5,7 @@ export default antfu({
   formatters: true,
   vue: true,
   pnpmCatalogs: true,
-  ignores: ['packages/nimiq-icons/src/*'],
+  ignores: ['packages/nimiq-icons/src/**/*'],
 }, {
   files: ['**/**.ts'],
   rules: {
@@ -17,5 +17,8 @@ export default antfu({
     // https://github.com/vuejs/eslint-plugin-vue/issues/1577
     'import/first': 'off',
   },
-
+}, {
+  // rules: {
+  //   curly: ["error", "multi-or-nest"]
+  // }
 })

@@ -1,5 +1,5 @@
 const icons = require('./icons.json');
-const info = {};
+const info = require('./info.json');
 const metadata = {};
 const chars = {};
 

@@ -1,0 +1,33 @@
+{
+	"prefix": "nimiq",
+	"name": "nimiq-icons",
+	"total": 81,
+	"version": "1.0.0-beta.7",
+	"author": {
+		"name": "onmax",
+		"url": "https://github.com/onmax"
+	},
+	"license": {
+		"title": "MIT",
+		"spdx": "MIT",
+		"url": "https://opensource.org/licenses/MIT"
+	},
+	"samples": [
+		"flame",
+		"leaf-3",
+		"star",
+		"arrow-top-right",
+		"front-fist-filled",
+		"logos-nimiq",
+		"duotone-high-five"
+	],
+	"height": 24,
+	"displayHeight": 24,
+	"category": "General",
+	"tags": [
+		"nimiq",
+		"cryptocurrency",
+		"ui"
+	],
+	"palette": false
+}

@@ -7,14 +7,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "preview:build": "",
-    "build": "rimraf packages/*/dist --glob && pnpm -r --filter=./packages/* run build  && cp -r ./packages/nimiq-css/src/css ./packages/nimiq-css/dist/css/unminified && pnpm -r --filter=./docs run build",
-    "dev": "pnpm run dev:packages && pnpm run --filter=./docs dev",
-    "dev:packages": "pnpm --filter=./packages/{nimiq-css,nimiq-vitepress-theme} --parallel run dev",
+    "build": "nr -r build",
+    "dev": "nr -r dev",
     "lint": "eslint --cache .",
+    "lint:fix": "eslint --cache . --fix",
+    "prepublishOnly": "nr build",
+    "docs": "pnpm -C docs run docs:dev",
+    "docs:build": "pnpm -C docs run docs:build",
     "release": "bumpp -r && pnpm -r publish",
     "test": "vitest",
-    "lint:fix": "eslint --cache --fix ."
+    "typecheck": "tsc --noEmit",
+    "prepare": "simple-git-hooks"
   },
   "workspaces": [
     "packages/*",
@@ -22,29 +25,30 @@
   ],
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
+    "@antfu/ni": "^24.3.0",
     "@types/node": "catalog:",
     "@unocss/eslint-config": "catalog:",
     "@unocss/eslint-plugin": "catalog:",
     "bumpp": "catalog:",
     "eslint": "catalog:",
     "eslint-plugin-format": "catalog:",
+    "lint-staged": "^15.5.0",
     "rimraf": "catalog:",
+    "simple-git-hooks": "^2.11.1",
     "typescript": "catalog:",
+    "unbuild": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:"
   },
   "pnpm": {
-    "overrides": {
-      "vite": "catalog:"
-    },
     "patchedDependencies": {
       "@nolebase/vitepress-plugin-git-changelog": "patches/@nolebase__vitepress-plugin-git-changelog.patch"
     }
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm packages:stub && pnpm lint-staged && pnpm typecheck"
+    "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*": "nr lint:fix"
   }
 }

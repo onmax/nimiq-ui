@@ -60,10 +60,10 @@
     "package.json"
   ],
   "scripts": {
-    "dev": "unbuild --stub",
-    "build": "unbuild",
     "typecheck": "vue-tsc --noEmit",
-    "release": "pnpm run build && bumpp --commit --push --tag && pnpm publish"
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "prepublishOnly": "nr build"
   },
   "peerDependencies": {
     "vitepress": "^1.5.0 || ^2.0.0-alpha.3"
