@@ -9,16 +9,16 @@ import ShikiBlock from './ShikiBlock.vue'
 
 enum Variant {
   Regular = 'regular',
-  Large = 'icons-lg',
+  Duotone = 'duotone',
   Logos = 'logos',
-  Flags = 'flags',
+  // Flags = 'flags',
 }
 
 const variants = ref<Record<Variant, string[]>>({
   [Variant.Regular]: [],
-  [Variant.Large]: [],
+  [Variant.Duotone]: [],
   [Variant.Logos]: [],
-  [Variant.Flags]: [],
+  // [Variant.Flags]: [],
 })
 const icons = ref<string[]>([])
 
@@ -31,10 +31,10 @@ addCollection(nimiqIcons)
 // addCollection({ ...json, icons: Object.entries(json.icons).filter(([key]) => key.startsWith('logos-nimiq-full-white-vertical')).reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}) })
 
 icons.value = listIcons()
-variants.value[Variant.Regular] = listIcons().filter(icon => icon.startsWith('nimiq') && !icon.startsWith(`nimiq:${Variant.Large}-`) && !icon.startsWith(`nimiq:${Variant.Logos}-`) && !icon.startsWith(`nimiq:${Variant.Flags}-`))
-variants.value[Variant.Large] = listIcons().filter(icon => icon.startsWith(`nimiq:${Variant.Large}-`))
+variants.value[Variant.Regular] = listIcons().filter(icon => icon.startsWith('nimiq') && !icon.startsWith(`nimiq:${Variant.Duotone}-`) && !icon.startsWith(`nimiq:${Variant.Logos}-`))
+variants.value[Variant.Duotone] = listIcons().filter(icon => icon.startsWith(`nimiq:${Variant.Duotone}-`))
 variants.value[Variant.Logos] = listIcons().filter(icon => icon.startsWith(`nimiq:${Variant.Logos}-`))
-variants.value[Variant.Flags] = listIcons().filter(icon => icon.startsWith(`nimiq:${Variant.Flags}-`))
+// variants.value[Variant.Flags] = listIcons().filter(icon => icon.startsWith(`nimiq:${Variant.Flags}-`))
 
 lastUpdated.value = new Date(nimiqIcons.lastModified * 1000)
 timeBuild.value = new Intl.DateTimeFormat('en', { dateStyle: 'short', timeStyle: 'short' }).format(lastUpdated.value)
@@ -137,7 +137,7 @@ function selectColor(c: Color) {
 
   <div class="nq-raw">
     <ReuseGrid :icons="variants.regular" variant="regular" classes="w-20 h-28 m-8" />
-    <ReuseGrid :icons="variants['icons-lg']" variant="Large Icons" classes="w-32 h-40 m-10" />
+    <ReuseGrid :icons="variants.duotone" variant="Duotone" classes="w-32 h-40 m-10" />
     <ReuseGrid :icons="logosMono" variant="logos mono" classes="w-32 h-40 m-10" />
     <!-- <ReuseGrid :icons="variants.flags" variant="flags" classes="w-32 h-40 m-10" /> -->
   </div>

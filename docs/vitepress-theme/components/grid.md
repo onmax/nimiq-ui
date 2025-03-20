@@ -70,7 +70,7 @@ cards:
 <NqCard
   bg-color="blue"
   href="#"
-  icon="i-nimiq:icons-lg-browsermesh"
+  icon="i-nimiq:browsermesh"
   label="Build Something Cool"
   title="Your Journey Starts Here"
   description="Like building with LEGO, but for grown-ups who code!"
@@ -79,7 +79,7 @@ cards:
 <NqCard
   bg-color="green"
   href="#"
-  icon="i-nimiq:icons-lg-cubes"
+  icon="i-nimiq:cubes"
   label="Learn The Ropes"
   title="Beyond Hello World"
   description="Because understanding Nimiq is easier than explaining why you need another mechanical keyboard."
@@ -141,7 +141,7 @@ cards:
 <NqCard
   span="full"
   bg-color="blue"
-  icon="i-nimiq:icons-lg-browsermesh"
+  icon="i-nimiq:browsermesh"
   title="Full Width Feature"
   description="I'm a special card that spans the entire width of the grid. Perfect for featured content or important announcements!"
 />

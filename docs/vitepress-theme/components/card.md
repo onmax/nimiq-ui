@@ -45,7 +45,7 @@ The component also supports using slots for custom content instead of props.
 <NqCard
   bg-color="blue"
   href="#"
-  icon="i-nimiq:icons-lg-browsermesh"
+  icon="i-nimiq:browsermesh"
   label="Build Something Amazing"
   title="The 5-Minute Challenge"
   description="Create a Nimiq app faster than making instant noodles (and it'll be more satisfying too!)"
@@ -58,7 +58,7 @@ The component also supports using slots for custom content instead of props.
 <NqCard
   bg-color="green"
   href="#"
-  icon="i-nimiq:icons-lg-cubes"
+  icon="i-nimiq:cubes"
   label="Learn The Magic"
   title="Nimiq Under The Hood"
   description="Discover how Nimiq works - it's like LEGO for grownups, but with blockchain!"

@@ -108,7 +108,7 @@ export default defineNimiqVitepressConfig({
               { text: 'Frontmatter', link: '/vitepress-theme/frontmatter', icon: 'i-tabler:file-description ' },
               {
                 text: 'Available Components',
-                icon: 'i-nimiq:icons-lg-widget',
+                icon: 'i-nimiq:widget',
                 items: [
                   { text: 'Code Block', link: '/vitepress-theme/components/code-block' },
                   { text: 'Card', link: '/vitepress-theme/components/card' },
