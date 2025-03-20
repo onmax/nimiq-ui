@@ -45,8 +45,6 @@
   },
   "devDependencies": {
     "@iconify/types": "catalog:",
-    "@types/bun": "catalog:",
-    "fs-extra": "catalog:",
     "unbuild": "catalog:",
     "vitest": "catalog:"
   }

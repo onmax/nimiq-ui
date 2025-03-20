@@ -15,8 +15,6 @@ catalog:
   '@iconify/vue': ^4.3.0
   '@nolebase/vitepress-plugin-git-changelog': ^2.15.1
   '@shikijs/vitepress-twoslash': ^3.2.1
-  '@types/bun': latest
-  '@types/cross-spawn': ^6.0.6
   '@types/jsdom': ^21.1.7
   '@types/markdown-it': ^14.1.2
   '@types/node': ^22.13.10
@@ -29,19 +27,16 @@ catalog:
   bumpp: ^10.1.0
   colorjs.io: ^0.5.2
   consola: ^3.4.2
-  cross-spawn: ^7.0.6
   defu: ^6.1.4
   dotenv: ^16.4.7
   eslint: ^9.22.0
   eslint-plugin-format: ^1.0.1
   esno: ^4.8.0
-  fs-extra: ^11.3.0
   iconify-icon: ^2.3.0
   jsdom: ^26.0.0
   mark.js: ^8.11.1
   markdown-it: ^14.1.0
   minisearch: ^7.1.2
-  p-map: ^7.0.3
   pathe: ^2.0.3
   reka-ui: ^2.1.0
   render-markdown-it-tokens: ^0.0.4
@@ -66,4 +61,5 @@ catalog:
   vue: ^3.5.13
   vue-router: ^4.5.0
 onlyBuiltDependencies:
+  - esbuild
   - vue-demi
