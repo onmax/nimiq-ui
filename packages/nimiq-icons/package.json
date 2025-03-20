@@ -10,12 +10,6 @@
     "url": "https://github.com/onmax"
   },
   "license": "MIT",
-  "exports": {
-    "./icons.json": {
-      "import": "./dist/icons.json"
-    }
-  },
-  "main": "index.js",
   "scripts": {
     "build": "esno ./scripts/index.ts",
     "dev": "esno ./scripts/index.ts",

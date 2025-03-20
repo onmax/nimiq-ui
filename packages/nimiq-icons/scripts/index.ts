@@ -255,7 +255,6 @@ async function prepareNpmPackage(iconSet: IconSet, options: { target?: string, p
         'nimiq',
         'nimiq-ui',
         packageName,
-        'vitepress-theme',
       ],
       license: 'MIT',
     },
@@ -475,10 +474,11 @@ async function main() {
   formattedStats = formattedStats.map(({ _sortOrder, _package, ...rest }) => rest)
   console.table(formattedStats)
 
+  let combinedIconSet: IconSet | null = null
   // Process each package separately
   for (const [packageName, iconSets] of Object.entries(iconsByPackage)) {
     // Merge all icon sets for this package into one
-    const combinedIconSet = iconSets.reduce((prev, curr) => mergeIconSets(prev, curr))
+    combinedIconSet = iconSets.reduce((prev, curr) => mergeIconSets(prev, curr))
 
     // Set icon info metadata before exporting
     setIconInfo(combinedIconSet, {
@@ -490,12 +490,9 @@ async function main() {
 
     // Generate the npm package with the appropriate target directory
     const targetDir = packageName === 'nimiq-flags' ? 'src/flags' : 'src/icons'
-    consola.start(`Preparing ${packageName} package in ${targetDir}...`)
     await prepareNpmPackage(combinedIconSet, { target: targetDir, packageName })
-    consola.success(`✅ ${packageName} package created successfully in ${targetDir}`)
   }
-
-  consola.success('✅ All packages generated successfully!')
+  consola.success(`✅ ${Object.keys(iconsByPackage).join(' and ')} packages created successfully`)
 }
 
 // Run the main function

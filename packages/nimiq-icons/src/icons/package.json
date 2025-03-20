@@ -15,8 +15,7 @@
 	"keywords": [
 		"nimiq",
 		"nimiq-ui",
-		"nimiq-icons",
-		"vitepress-theme"
+		"nimiq-icons"
 	],
 	"license": "MIT",
 	"exports": {
