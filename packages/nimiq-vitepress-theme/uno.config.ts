@@ -1,7 +1,9 @@
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
+import { presetNimiq } from 'nimiq-css'
 import { defineConfig, presetIcons, transformerDirectives } from 'unocss'
 import { presetOnmax } from 'unocss-preset-onmax'
-import { presetNimiq } from '../nimiq-css/src/index'
+
+console.log('Generating unocss styles...')
 
 export default defineConfig({
   presets: [

@@ -3,8 +3,9 @@
 // for the following configuration.
 
 import { exec } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
 import { promisify } from 'node:util'
-
+import { dirname, join } from 'pathe'
 import { defineBuildConfig } from 'unbuild'
 
 const execAsync = promisify(exec)
@@ -48,7 +49,12 @@ export default defineBuildConfig({
       //
       // The use of CLI was suggested by how to use unocss with rollup? · unocss/unocss · Discussion #542
       // https:// github.com/unocss/unocss/discussions/542
-      await execAsync('unocss "./src/**/*.vue" -o dist/assets/uno.css')
+      console.info('Generating unocss styles...')
+      const packageDir = fileURLToPath(dirname(import.meta.url))
+      const srcDir = join(packageDir, 'src')
+      const distFile = join(packageDir, 'dist/assets/uno.css')
+      const config = join(packageDir, 'uno.config.ts')
+      await execAsync(`unocss "${srcDir}/**/*.vue" -o "${distFile}" --config "${config}"`, { cwd: packageDir })
     },
   },
 })

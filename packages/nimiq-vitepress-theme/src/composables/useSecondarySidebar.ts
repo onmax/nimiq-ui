@@ -18,6 +18,8 @@ export const useSecondarySidebar = createSharedComposable(() => {
   // Build the heading tree by querying only h2 and h3 elements
   // inside an article, ignoring those inside [data-card] elements.
   function updateHeadingTree() {
+    if (import.meta.env.SSR)
+      return
     const nodes = document.querySelectorAll('article :where(h2,h3):not([data-card] *)')
     const tree: SidebarHeading[] = []
     let lastH2: SidebarHeading | null = null
@@ -71,7 +73,7 @@ export const useSecondarySidebar = createSharedComposable(() => {
     activeHeadings.value = active
   }, 100)
 
-  const { y: scrollY } = useScroll(window)
+  const { y: scrollY } = useScroll(undefined)
 
   const route = useRoute()
 

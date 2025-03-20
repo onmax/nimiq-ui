@@ -89,6 +89,7 @@
     "@unocss/cli": "catalog:",
     "@unocss/reset": "catalog:",
     "bumpp": "catalog:",
+    "consola": "catalog:",
     "cross-spawn": "catalog:",
     "defu": "catalog:",
     "nimiq-css": "workspace:*",
