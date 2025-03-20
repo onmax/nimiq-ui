@@ -172,8 +172,6 @@ catalogs:
       specifier: ^4.5.0
       version: 4.5.0
 
-pnpmfileChecksum: sha256-9QrclDqixZnffEhCQ488VyoiuzYOXo64DbTQSNtLKxw=
-
 patchedDependencies:
   '@nolebase/vitepress-plugin-git-changelog':
     hash: 38443eaf2d9b5d0d6553d15bd03fcfa9c564708e9e3208ac4c054750e7a0bd01
