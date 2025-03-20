@@ -2,6 +2,7 @@
   "name": "docs",
   "type": "module",
   "version": "1.0.0-beta.8",
+  "private": true,
   "packageManager": "pnpm@10.5.1",
   "description": "",
   "author": "",
