@@ -6,6 +6,7 @@ packages:
   - docs/
 catalog:
   '@antfu/eslint-config': ^4.10.1
+  '@antfu/ni': ^24.3.0
   '@iconify-json/simple-icons': ^1.2.29
   '@iconify-json/tabler': ^1.2.17
   '@iconify-json/vscode-icons': ^1.2.16
@@ -34,6 +35,7 @@ catalog:
   esno: ^4.8.0
   iconify-icon: ^2.3.0
   jsdom: ^26.0.0
+  lint-staged: ^15.5.0
   mark.js: ^8.11.1
   markdown-it: ^14.1.0
   minisearch: ^7.1.2
@@ -42,6 +44,7 @@ catalog:
   render-markdown-it-tokens: ^0.0.4
   rimraf: ^6.0.1
   shiki: ^3.2.1
+  simple-git-hooks: ^2.11.1
   ts-cssjson: ^3.0.1
   typescript: ^5.8.2
   unbuild: ^3.5.0

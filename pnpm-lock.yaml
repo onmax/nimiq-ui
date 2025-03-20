@@ -9,6 +9,9 @@ catalogs:
     '@antfu/eslint-config':
       specifier: ^4.10.1
       version: 4.10.1
+    '@antfu/ni':
+      specifier: ^24.3.0
+      version: 24.3.0
     '@iconify-json/simple-icons':
       specifier: ^1.2.29
       version: 1.2.29
@@ -93,6 +96,9 @@ catalogs:
     jsdom:
       specifier: ^26.0.0
       version: 26.0.0
+    lint-staged:
+      specifier: ^15.5.0
+      version: 15.5.0
     mark.js:
       specifier: ^8.11.1
       version: 8.11.1
@@ -114,6 +120,9 @@ catalogs:
     shiki:
       specifier: ^3.2.1
       version: 3.2.1
+    simple-git-hooks:
+      specifier: ^2.11.1
+      version: 2.11.1
     ts-cssjson:
       specifier: ^3.0.1
       version: 3.0.1
@@ -175,6 +184,9 @@ importers:
       '@antfu/eslint-config':
         specifier: 'catalog:'
         version: 4.10.1(@typescript-eslint/utils@8.27.0(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2))(@unocss/eslint-plugin@66.1.0-beta.6(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2))(@vue/compiler-sfc@3.5.13)(eslint-plugin-format@1.0.1(eslint@9.22.0(jiti@2.4.2)))(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)(vitest@3.0.9(@types/debug@4.1.12)(@types/node@22.13.10)(jiti@2.4.2)(jsdom@26.0.0)(less@4.2.2)(tsx@4.19.3)(yaml@2.7.0))
+      '@antfu/ni':
+        specifier: 'catalog:'
+        version: 24.3.0
       '@types/node':
         specifier: 'catalog:'
         version: 22.13.10
@@ -194,13 +206,13 @@ importers:
         specifier: 'catalog:'
         version: 1.0.1(eslint@9.22.0(jiti@2.4.2))
       lint-staged:
-        specifier: ^15.5.0
+        specifier: 'catalog:'
         version: 15.5.0
       rimraf:
         specifier: 'catalog:'
         version: 6.0.1
       simple-git-hooks:
-        specifier: ^2.11.1
+        specifier: 'catalog:'
         version: 2.11.1
       typescript:
         specifier: 'catalog:'
@@ -583,6 +595,10 @@ packages:
 
   '@antfu/install-pkg@1.0.0':
     resolution: {integrity: sha512-xvX6P/lo1B3ej0OsaErAjqgFYzYVcJpamjLAFLYh9vRJngBrMoUG7aVnrGTeqM7yxbyTD5p3F2+0/QUEh8Vzhw==}
+
+  '@antfu/ni@24.3.0':
+    resolution: {integrity: sha512-wBSav4mBxvHEW9RbdSo1SWLQ6MAlT0Dc423weC58yOWqW4OcMvtnNDdDrxOZeJ88fEIyPK93gDUWIelBxzSf8g==}
+    hasBin: true
 
   '@antfu/utils@0.7.10':
     resolution: {integrity: sha512-+562v9k4aI80m1+VuMHehNJWLOFjBnXn3tdOitzD0il5b7smkSBal4+a3oKiQTbrwMmN/TBUMDvbdoWDehgOww==}
@@ -3106,6 +3122,9 @@ packages:
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
 
+  fzf@0.5.2:
+    resolution: {integrity: sha512-Tt4kuxLXFKHy8KT40zwsUPUkg1CrsgY25FxA2U/j/0WgEDCk3ddc/zLTCCcbSHX9FcKtLuVaDGtGE/STWC+j3Q==}
+
   gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
@@ -4630,6 +4649,9 @@ packages:
   tinyexec@0.3.2:
     resolution: {integrity: sha512-KQQR9yN7R5+OSwaK0XQoj22pwHoTlgYqmUscPYoknOoWCWfj/5/ABTMRi69FrKU5ffPVh5QcFikpWJI/P1ocHA==}
 
+  tinyexec@1.0.0:
+    resolution: {integrity: sha512-djtKaAR3lnRo0uMT/IKYwj3s4E86IE/SdwCE3XXIJcozbDFKsfgAmi8IBIpIDmTd0Y6YKyfqo3vQ33OloPJPaQ==}
+
   tinyglobby@0.2.12:
     resolution: {integrity: sha512-qkf4trmKSIiMTs/E63cxH+ojC2unam7rJ0WrauAzpT3ECNTxGRMlaXxVbfxMUC/w0LaYk6jQ4y/nGR9uBO3tww==}
     engines: {node: '>=12.0.0'}
@@ -5349,6 +5371,13 @@ snapshots:
     dependencies:
       package-manager-detector: 0.2.11
       tinyexec: 0.3.2
+
+  '@antfu/ni@24.3.0':
+    dependencies:
+      ansis: 3.17.0
+      fzf: 0.5.2
+      package-manager-detector: 1.1.0
+      tinyexec: 1.0.0
 
   '@antfu/utils@0.7.10': {}
 
@@ -8134,6 +8163,8 @@ snapshots:
 
   function-bind@1.1.2: {}
 
+  fzf@0.5.2: {}
+
   gensync@1.0.0-beta.2: {}
 
   get-east-asian-width@1.3.0: {}
@@ -9850,6 +9881,8 @@ snapshots:
   tinybench@2.9.0: {}
 
   tinyexec@0.3.2: {}
+
+  tinyexec@1.0.0: {}
 
   tinyglobby@0.2.12:
     dependencies:
