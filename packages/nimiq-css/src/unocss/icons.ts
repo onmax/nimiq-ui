@@ -24,7 +24,7 @@ export function getNimiqIcons(options: NimiqColorOptions = {}): Rule<PresetWind3
       if (mode === 'mask') {
         // Thanks to https://codepen.io/noahblon/post/coloring-svgs-in-css-background-images
         cssObject = {
-          '--un-icon': url,
+          '--nq-icon': url,
           '-webkit-mask': 'var(--nq-icon) no-repeat',
           'mask': 'var(--nq-icon) no-repeat',
           '-webkit-mask-size': '100% 100%',
