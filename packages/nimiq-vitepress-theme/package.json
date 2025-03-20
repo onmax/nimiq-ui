@@ -32,6 +32,10 @@
       "types": "./dist/vite.d.ts",
       "import": "./dist/vite.mjs"
     },
+    "./theme": {
+      "types": "./dist/theme.d.ts",
+      "import": "./dist/theme.mjs"
+    },
     "./*": {
       "types": "./dist/*",
       "import": "./dist/*.mjs"
