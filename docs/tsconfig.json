@@ -2,13 +2,6 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "lib": ["dom", "ESNext"],
-    "types": [
-      "node",
-      "vite/client"
-    ],
-    "noImplicitAny": false,
-    "declaration": true,
-    "noEmit": false,
     "outDir": "./.vitepress/dist"
   },
   "include": [

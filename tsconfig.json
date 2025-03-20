@@ -1,21 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es2022",
+
+    "target": "ESNext",
     "jsx": "preserve",
-    "lib": [
-      "ESNext"
-    ],
+    "lib": ["ESNext"],
     "baseUrl": "./",
+    "rootDir": ".",
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
-      "~/packages": [
-        "./packages"
-      ],
-      "nimiq-vitepress-theme": [
-        "./packages/nimiq-vitepress-theme/src/index.ts"
-      ]
+      "nimiq-vitepress-theme": ["./packages/nimiq-vitepress-theme/src/index.ts"]
     },
+    "resolveJsonModule": true,
     "types": [
       "node",
       "vite/client"
@@ -26,22 +22,14 @@
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noEmit": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
+    "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
-  "include": [
-    "packages/**/*.ts",
-    "packages/**/*.d.ts",
-    "packages/**/*.tsx",
-    "packages/**/*.vue",
-    "docs/**/*.ts",
-    "docs/**/*.vue",
-    "docs/**/.vitepress/**/*.ts",
-    "docs/**/.vitepress/**/*.vue"
-  ],
   "exclude": [
     "node_modules"
   ]
