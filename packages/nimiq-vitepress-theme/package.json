@@ -70,6 +70,7 @@
   },
   "dependencies": {
     "@iconify-json/tabler": "catalog:",
+    "@iconify-json/vscode-icons": "catalog:",
     "@nolebase/vitepress-plugin-git-changelog": "catalog:",
     "@vueuse/core": "catalog:",
     "mark.js": "catalog:",
@@ -80,7 +81,6 @@
     "vue-router": "catalog:"
   },
   "devDependencies": {
-    "@iconify-json/vscode-icons": "catalog:",
     "@iconify/utils": "catalog:",
     "@types/markdown-it": "catalog:",
     "@unocss/cli": "catalog:",
