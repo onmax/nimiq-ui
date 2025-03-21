@@ -22,7 +22,7 @@ export default defineNimiqVitepressConfig({
               { text: 'Getting started', link: '/nimiq-css/getting-started', icon: 'i-tabler:arrow-guide ' },
               { text: 'Philosophy', link: '/nimiq-css/philosophy', icon: 'i-tabler:brain ' },
               { text: 'Migrate from Nimiq Style', link: '/nimiq-css/migrate-from-nimiq-styles', icon: 'i-tabler:arrow-move-right-filled ' },
-              { text: 'Icons', link: '/nimiq-icons/explorer', icon: 'i-tabler:icons ' },
+              { text: 'Icons', link: '/nimiq-icons/', icon: 'i-tabler:icons ' },
             ],
           },
           {
