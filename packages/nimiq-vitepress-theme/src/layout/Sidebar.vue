@@ -56,7 +56,6 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
           </p>
         </component>
       </DefineNavItem>
-
       <CollapsibleRoot v-model:open="submoduleNavigatorOpen" w-full f-mt-sm>
         <CollapsibleTrigger bg-transparent w-full relative group ring="1.5 neutral-400" rounded="6 reka-open:b-0" transition-border-radius of-clip>
           <NavItem :item="currentDocModule" component="div" />
@@ -69,18 +68,17 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
           </div>
         </CollapsibleContent>
       </CollapsibleRoot>
-
-      <DefineSidebarItem v-slot="{ item: { text, link, icon } }">
-        <a :href="withBase(link!)" class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" data-active:font-bold transition-all data-active:text-blue data-active:bg-blue-400 group :class="{ 'nq-arrow after:op-70 hocus:after:op-100': isExternalLink(link!) }" transition-opacity :target="isExternalLink(link!) ? '_blank' : undefined">
-          <div v-if="isActive(page.relativePath, link)" aria-hidden absolute inset-y-0 bg-blue op-70 rounded-full w-2 z-2 transition-colors left="0 [[data-state=open]_&]:12" />
-          <div v-if="icon" :class="icon" f-text-sm text="neutral data-active:blue" op="70 group-hocus:100" transition-opacity mr-8 shrink-0 />
-          <span flex-1>{{ text }}</span>
-        </a>
-      </DefineSidebarItem>
     </div>
 
     <hr w-full h-1.5 bg-neutral-200 f-mt-xs>
 
+    <DefineSidebarItem v-slot="{ item: { text, link, icon } }">
+      <a :href="withBase(link!)" class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" data-active:font-bold transition-all data-active:text-blue data-active:bg-blue-400 group :class="{ 'nq-arrow after:op-70 hocus:after:op-100': isExternalLink(link!) }" transition-opacity :target="isExternalLink(link!) ? '_blank' : undefined">
+        <div v-if="isActive(page.relativePath, link)" aria-hidden absolute inset-y-0 bg-blue op-70 rounded-full w-2 z-2 transition-colors left="0 [[data-state=open]_&]:12" />
+        <div v-if="icon" :class="icon" f-text-sm text="neutral data-active:blue" op="70 group-hocus:100" transition-opacity mr-8 shrink-0 />
+        <span flex-1>{{ text }}</span>
+      </a>
+    </DefineSidebarItem>
     <ScrollAreaRoot relative of-hidden bg-neutral-100 var:scrollbar-size:10px as="nav" flex-1 f-px-xs v-bind="$attrs">
       <div absolute top-0 z-2 w-full h-24 bg-gradient="to-t from-transparent to-neutral-100" />
       <ScrollAreaViewport size-full f-pt-xs as="ul">
