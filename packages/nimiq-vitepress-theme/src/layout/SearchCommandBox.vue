@@ -132,7 +132,7 @@ function formMarkRegex(terms: Set<string>) {
     <div w-full f-px-sm flex="~ items-center">
       <ListboxFilter v-model="filterText" nq-input-box w-full bg-transparent flex-1 placeholder="Search documentation" auto-focus />
       <DialogClose>
-        <div i-nimiq:close text-18 />
+        <div i-nimiq:cross text-18 />
       </DialogClose>
     </div>
 
