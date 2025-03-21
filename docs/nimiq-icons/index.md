@@ -31,7 +31,7 @@ Alternatively, you can add the following configuration to your `settings.json` f
 ```json [vs-code-settings.json]
 {
   "iconify.customCollectionJsonPaths": [ // [!code lh]
-    "https://raw.githubusercontent.com/onmax/nimiq-ui/refs/heads/main/packages/nimiq-icons/dist/icons.json" // [!code lh]
+    "https://raw.githubusercontent.com/onmax/nimiq-ui/refs/heads/main/packages/nimiq-icons/src/icons/icons.json" // [!code lh]
   ] // [!code lh]
 }
 ```
