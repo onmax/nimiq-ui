@@ -5,6 +5,7 @@ import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger, ScrollAreaRoot
 import { useData, withBase } from 'vitepress'
 import { ref } from 'vue'
 import { useCurrentModule } from '../composables/useCurrentModule'
+import { renderMarkdown } from '../lib/html-renderer'
 import { isActive } from '../lib/route'
 import CommandMenu from './CommandMenu.vue'
 import Logo from './Logo.vue'
@@ -76,7 +77,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
       <a :href="withBase(link!)" class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" data-active:font-bold transition-all data-active:text-blue data-active:bg-blue-400 group :class="{ 'nq-arrow after:op-70 hocus:after:op-100': isExternalLink(link!) }" transition-opacity :target="isExternalLink(link!) ? '_blank' : undefined">
         <div v-if="isActive(page.relativePath, link)" aria-hidden absolute inset-y-0 bg-blue op-70 rounded-full w-2 z-2 transition-colors left="0 [[data-state=open]_&]:12" />
         <div v-if="icon" :class="icon" f-text-sm text="neutral data-active:blue" op="70 group-hocus:100" transition-opacity mr-8 shrink-0 />
-        <span flex-1>{{ text }}</span>
+        <span flex-1 v-html="renderMarkdown(text)" />
       </a>
     </DefineSidebarItem>
     <ScrollAreaRoot relative of-hidden bg-neutral-100 var:scrollbar-size:10px as="nav" flex-1 f-px-xs v-bind="$attrs">
@@ -92,7 +93,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
                 <CollapsibleTrigger class="sidebar-item" group pr-12 pl-8 bg-transparent>
                   <div v-if="subitem.icon" :class="subitem.icon" f-text-sm text-neutral op="70 group-hocus:100" mr-8 />
                   <div :class="subitem.text" op="80 group-hocus:100" transition-opacity />
-                  <span flex-1 text-left>{{ subitem.text }}</span>
+                  <span flex-1 text-left v-html="subitem.text" />
                   <div
                     i-nimiq:chevron-down aria-hidden text="9 neutral-700 group-hocus:neutral-800"
                     transition="[color,transform]" :class="{ 'rotate--90': !open }"
