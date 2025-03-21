@@ -19,8 +19,7 @@ const { currentDocModule } = useCurrentModule()
 
 const submoduleNavigatorOpen = ref(false)
 
-// TODO Animate up and down accordion
-// TODO Animate up and down combobox
+// TODO Animate up and down navigation switcher
 
 function isExternalLink(link: string) {
   return link.startsWith('http')
@@ -101,7 +100,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
                     transition="[color,transform]" :class="{ 'rotate--90': !open }"
                   />
                 </CollapsibleTrigger>
-                <CollapsibleContent of-hidden data-open:animate-slide-down data-closed:animate-slide-up relative>
+                <CollapsibleContent un-animate-collapsible="reka-open:down reka-closed:up" of-hidden relative>
                   <div absolute inset-y-0 left-12 w-2 bg-neutral-400 z-1 rounded-full />
                   <SidebarItem v-for="subsubitem in subitem.items" :key="subsubitem.text" px-24 :item="subsubitem" />
                 </CollapsibleContent>
