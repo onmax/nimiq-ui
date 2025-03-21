@@ -46,7 +46,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
       </span>
 
       <DefineNavItem v-slot="{ item: { text, defaultPageLink, icon, description }, component }">
-        <component :is="component" :href="withBase(defaultPageLink)" f-text-xs py-6 pl-12 pr-16 rounded-6 w-full hocus:bg-neutral-300 transition-colors :class="{ 'grid-cols-[max-content_1fr]': !!icon }" grid="~ rows-2 gap-x-12 items-center">
+        <component :is="component" :href="withBase(defaultPageLink)" f-text-xs py-6 pl-12 pr-16 w-full hocus:bg-neutral-300 transition-colors :class="{ 'grid-cols-[max-content_1fr]': !!icon }" grid="~ rows-2 gap-x-12 items-center">
           <div v-if="icon" :class="icon" block size-28 row-span-full />
           <p flex-1 text-left>
             {{ text }}
@@ -58,13 +58,13 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
       </DefineNavItem>
 
       <CollapsibleRoot v-model:open="submoduleNavigatorOpen" w-full f-mt-sm>
-        <CollapsibleTrigger bg-transparent w-full relative group ring="1.5 neutral-400" rounded-6>
+        <CollapsibleTrigger bg-transparent w-full relative group ring="1.5 neutral-400" rounded="6 reka-open:b-0" transition-border-radius of-clip>
           <NavItem :item="currentDocModule" component="div" />
           <div absolute right-16 top-18 i-nimiq:chevron-top-down transition-opacity op="80 group-hocus:100" scale-80 />
         </CollapsibleTrigger>
 
-        <CollapsibleContent of-hidden data-open:shadow w-full z-90 mt-6>
-          <div absolute z-90 bg-neutral-100 ring="1.5 neutral-300" rounded-6 data-open:animate-slide-down data-closed:animate-slide-up w="[calc(100%-30px)]">
+        <CollapsibleContent of-hidden data-open:shadow w-full mt-0>
+          <div absolute z-90 bg-neutral-100 ring="1.5 neutral-300" rounded-b-6 data-open:animate-slide-down data-closed:animate-slide-up w="[calc(100%-30px)]">
             <NavItem v-for="item in theme.modules" :key="item.text" :item="item" component="a" @click="submoduleNavigatorOpen = false" />
           </div>
         </CollapsibleContent>
