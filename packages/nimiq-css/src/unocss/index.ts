@@ -331,8 +331,9 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
   const { icons = true } = options
   if (icons) {
     const iconsOptions = typeof icons === 'object' ? icons : {}
-    const iconsRules = getNimiqIcons(iconsOptions)
+    const { rules: iconsRules, iconsNames } = getNimiqIcons(iconsOptions)
     rules.push(...iconsRules)
+    rulesNames.push(...iconsNames)
   }
 
   // TODO Move to onmaxPreset

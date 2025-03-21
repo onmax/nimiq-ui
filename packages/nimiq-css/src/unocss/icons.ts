@@ -6,11 +6,11 @@ export interface NimiqIconsOptions {
 
 }
 
-export function getNimiqIcons(_options: NimiqIconsOptions): Rule<PresetWind3Theme>[] {
+export function getNimiqIcons(_options: NimiqIconsOptions): { rules: Rule<PresetWind3Theme>[], iconsNames: string[] } {
   const rules: Rule<PresetWind3Theme>[] = [
     [
       /^i-nimiq:(.*)$/,
-      async ([, name]) => {
+      async function* ([, name], { symbols }) {
         const iconData = getIconData(nimiqIconsJson, name)
         if (!iconData) {
           console.warn(`Icon "${name}" not found in Nimiq icons`)
@@ -43,10 +43,18 @@ export function getNimiqIcons(_options: NimiqIconsOptions): Rule<PresetWind3Them
             'background-color': 'transparent',
           }
         }
-        return cssObject
+        yield {
+          [symbols.layer]: 'icons',
+          ...cssObject,
+        }
+      },
+      {
+        layer: 'icons',
       },
     ],
   ]
 
-  return rules
+  const iconsNames = Object.keys(nimiqIconsJson.icons).map(name => `i-nimiq:${name}`)
+
+  return { rules, iconsNames }
 }
