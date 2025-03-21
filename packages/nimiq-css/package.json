@@ -44,7 +44,9 @@
     "unocss": "catalog:"
   },
   "devDependencies": {
+    "@iconify/tools": "catalog:",
     "@iconify/types": "catalog:",
+    "pathe": "catalog:",
     "unbuild": "catalog:",
     "vitest": "catalog:"
   }

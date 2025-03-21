@@ -2,7 +2,7 @@ import type { LocalFontProcessorOptions } from '@unocss/preset-web-fonts/local'
 import type { CSSObject, DynamicRule, Preflight, Preset, Rule } from 'unocss'
 import type { Theme } from 'unocss/preset-mini'
 import type { NimiqColor } from './colors'
-import type { NimiqColorOptions } from './icons'
+import type { NimiqIconsOptions } from './icons'
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import process from 'node:process'
@@ -76,7 +76,7 @@ export interface NimiqPresetOptions {
    *
    * @default true
    */
-  icons?: boolean | NimiqColorOptions
+  icons?: boolean | NimiqIconsOptions
 }
 
 export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
