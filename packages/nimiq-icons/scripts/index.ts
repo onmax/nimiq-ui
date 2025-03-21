@@ -44,14 +44,20 @@ function getFigmaCredentials() {
   return { file, token }
 }
 
-// Cache for better performance, especially with large icon sets
-const idCache = new Map<string, string>()
+// Deterministic hash function for generating consistent IDs
+function getDeterministicId(prefix: string, name: string): string {
+  // Simple but effective hash function for strings
+  const hash = (str: string): number => {
+    let h = 0
+    for (let i = 0; i < str.length; i++) {
+      h = ((h << 5) - h) + str.charCodeAt(i)
+      h |= 0 // Convert to 32bit integer
+    }
+    return Math.abs(h)
+  }
 
-function getRandomId(prefix: string, name: string): string {
-  const key = `${prefix}-${name}`
-  if (!idCache.has(key))
-    idCache.set(key, Math.random().toString(36).substring(2, 10))
-  return idCache.get(key)!
+  const id = hash(`${prefix}-${name}`).toString(36).substring(0, 8)
+  return id
 }
 
 async function checkFigmaVariants() {
@@ -166,8 +172,8 @@ function processIcon(iconSet: IconSet, variant: IconVariant, name: string, optio
   if (options.needsColorParsing)
     parseColors(svg, { defaultColor: 'currentColor', callback: handleColors, fixErrors: true })
 
-  const randomId = getRandomId(iconSet.prefix, newName)
-  const newSvg = replaceIDs(svg.toMinifiedString(), () => `${iconSet.prefix}-${newName}-${randomId}`)
+  const deterministicId = getDeterministicId(iconSet.prefix, newName)
+  const newSvg = replaceIDs(svg.toMinifiedString(), () => `${iconSet.prefix}-${newName}-${deterministicId}`)
   const processed = new SVG(newSvg)
   iconSet.setIcon(newName, processed.getIcon())
 
@@ -191,8 +197,8 @@ function createMonochromeVersion(iconSet: IconSet, svg: SVG, newName: string) {
   })
 
   const newMonoName = `${newName}-mono`
-  const randomId = getRandomId(iconSet.prefix, newMonoName)
-  const newSvg = replaceIDs(monoSvg.toMinifiedString(), () => `${iconSet.prefix}-${newMonoName}-${randomId}`)
+  const deterministicId = getDeterministicId(iconSet.prefix, newMonoName)
+  const newSvg = replaceIDs(monoSvg.toMinifiedString(), () => `${iconSet.prefix}-${newMonoName}-${deterministicId}`)
 
   const processed = new SVG(newSvg)
   iconSet.setIcon(newMonoName, processed.getIcon())
