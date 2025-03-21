@@ -2,4 +2,6 @@
 home: true
 ---
 
-The Nimiq UI home.
+# Nimiq UI
+
+The home for Nimiq UI development and documentation.
