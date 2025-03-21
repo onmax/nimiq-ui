@@ -26,7 +26,6 @@
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
     "@antfu/ni": "catalog:",
-    "@iconify/utils": "catalog:",
     "@types/node": "catalog:",
     "@unocss/eslint-config": "catalog:",
     "@unocss/eslint-plugin": "catalog:",
@@ -38,10 +37,6 @@
     "simple-git-hooks": "catalog:",
     "typescript": "catalog:",
     "unbuild": "catalog:",
-    "unocss": "catalog:",
-    "unocss-preset-onmax": "catalog:",
-    "unocss-preset-scale-px": "catalog:",
-    "unplugin-icons": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:"
   },
