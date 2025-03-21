@@ -16,7 +16,7 @@ const { breadcrumbs } = useBreadcrumbs()
 
 const { showSecondarySidebar } = useSecondarySidebar()
 
-const { repoURL } = useChangelog()
+const { repoURL, showChangelog } = useChangelog()
 const editUrl = useEditUrl(page.value.relativePath)
 
 // Convert URL to file path
@@ -41,7 +41,7 @@ function useEditUrl(relativePath: string): string {
 
       <article flex-1 class="nq-prose" var:nq-prose-max-width:none>
         <Content max-w-none />
-        <Changelog />
+        <Changelog v-if="showChangelog" />
       </article>
       <div flex="~ wrap justify-between gap-8" f-mt-xs f-text-xs>
         <a :href="editUrl" target="_blank" rel="noopener" op-70 nq-arrow>

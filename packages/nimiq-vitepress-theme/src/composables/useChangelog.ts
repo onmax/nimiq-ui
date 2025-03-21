@@ -1,8 +1,10 @@
 import type { CommitWithAuthorInfo } from '@nolebase/vitepress-plugin-git-changelog/client/composables/changelog'
+import type { NimiqVitepressThemeConfig } from '../types'
 import { useChangelog as useChangelogNolebase } from '@nolebase/vitepress-plugin-git-changelog/client/composables/changelog'
-import { renderCommitMessage } from '@nolebase/vitepress-plugin-git-changelog/client/utils'
 import { createGlobalState, useTimeAgo } from '@vueuse/core'
+import { useData } from 'vitepress'
 import { computed, onMounted } from 'vue'
+import { renderCommitMessage } from '../lib/html-renderer'
 
 export interface Commit extends CommitWithAuthorInfo {
   formattedDate: string
@@ -13,6 +15,7 @@ export interface Commit extends CommitWithAuthorInfo {
 }
 
 export const useChangelog = createGlobalState(() => {
+  const { frontmatter } = useData<NimiqVitepressThemeConfig>()
   const { commits: _commits, useHmr } = useChangelogNolebase()
   onMounted(useHmr)
 
@@ -30,8 +33,15 @@ export const useChangelog = createGlobalState(() => {
   })
   const repoURL = computed(() => commits.value.find(commit => commit.repo_url)?.repo_url || '')
 
+  const showChangelog = computed(() => {
+    if (frontmatter.value.changelog !== undefined)
+      return !!frontmatter.value.changelog
+    return true
+  })
+
   return {
     commits,
     repoURL,
+    showChangelog,
   }
 })

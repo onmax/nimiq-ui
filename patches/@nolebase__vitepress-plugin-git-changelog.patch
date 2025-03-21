@@ -1,21 +1,16 @@
 diff --git a/package.json b/package.json
-index a288f7b41463e3ff88d6ac7060caf9e24212bb74..51b7e51f0dd531237d4f4dbd1c07637f887180ca 100644
+index a288f7b41463e3ff88d6ac7060caf9e24212bb74..375d0c5a4f3a6656fd9222878e98aca3860e2de5 100644
 --- a/package.json
 +++ b/package.json
-@@ -42,6 +42,16 @@
-       "require": "./dist/client/index.js"
+@@ -47,6 +47,11 @@
+       "import": "./dist/locales/index.mjs",
+       "require": "./dist/locales/index.cjs"
      },
-     "./client/style.css": "./dist/client/style.css",
 +    "./client/composables/changelog": {
 +      "types": "./dist/client/composables/changelog.d.ts",
 +      "import": "./dist/client/composables/changelog.mjs",
 +      "require": "./dist/client/composables/changelog.cjs"
 +    },
-+    "./client/utils": {
-+      "types": "./dist/client/utils.d.ts",
-+      "import": "./dist/client/utils.mjs",
-+      "require": "./dist/client/utils.cjs"
-+    },
-     "./locales": {
-       "types": "./dist/locales/index.d.ts",
-       "import": "./dist/locales/index.mjs",
+     "./types/*": {
+       "types": "./dist/types/*"
+     },
