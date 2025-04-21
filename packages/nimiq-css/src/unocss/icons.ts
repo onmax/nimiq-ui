@@ -37,15 +37,19 @@ export function getNimiqIcons(_options: NimiqIconsOptions): { rules: Rule<Preset
           }
         }
         else {
-          const width = '1em'
+          // Use fixed height as base and calculate width based on aspect ratio
+          const height = '1em'
+          // Extract viewBox dimensions from SVG attributes
           const viewBoxAttr = renderData.attributes.viewBox || '0 0 1 1'
           const parts = viewBoxAttr.split(' ')
           const viewBoxWidth = Number(parts[2] || 1)
           const viewBoxHeight = Number(parts[3] || 1)
+          // Use icon dimensions or viewBox dimensions
           const absoluteWidth = iconData.width || viewBoxWidth
           const absoluteHeight = iconData.height || viewBoxHeight
-          const ratio = absoluteHeight / absoluteWidth
-          const height = `${ratio}em`
+          // Calculate width based on the inverse ratio (width/height)
+          const ratio = absoluteWidth / absoluteHeight
+          const width = `${ratio}em`
           cssObject = {
             'background': `${url} no-repeat`,
             'background-size': '100% 100%',
