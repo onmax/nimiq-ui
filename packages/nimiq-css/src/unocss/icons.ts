@@ -37,10 +37,21 @@ export function getNimiqIcons(_options: NimiqIconsOptions): { rules: Rule<Preset
           }
         }
         else {
+          const width = '1em'
+          const viewBoxAttr = renderData.attributes.viewBox || '0 0 1 1'
+          const parts = viewBoxAttr.split(' ')
+          const viewBoxWidth = Number(parts[2] || 1)
+          const viewBoxHeight = Number(parts[3] || 1)
+          const absoluteWidth = iconData.width || viewBoxWidth
+          const absoluteHeight = iconData.height || viewBoxHeight
+          const ratio = absoluteHeight / absoluteWidth
+          const height = `${ratio}em`
           cssObject = {
             'background': `${url} no-repeat`,
             'background-size': '100% 100%',
             'background-color': 'transparent',
+            'width': width,
+            'height': height,
           }
         }
         yield {
