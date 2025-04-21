@@ -69,11 +69,7 @@
     font-weight: bold;
     font-size: var(--font-size);
     line-height: 1.2;
-
-    /* We change the color except if there is parent that change the color */
-    :where(:not(.nq-no-color, [nq-no-color])):not(:has(.nq-no-color, [nq-no-color])) {
-      color: rgb(var(--nq-neutral));
-    }
+    color: rgb(var(--nq-neutral));
 
     /* margin: 1em 0; */
     /* text-box-trim: both;
