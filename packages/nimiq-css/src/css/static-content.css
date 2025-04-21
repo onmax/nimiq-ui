@@ -288,7 +288,7 @@ body:not(.nq-raw) {
       --f-pb-max: 48;
     }
 
-    &[nq-overlaps] {
+    &:where(.nq-overlaps, [nq-overlaps]) {
       --pb: 0;
 
       > * {
