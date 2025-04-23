@@ -8,15 +8,18 @@
   --nq-screen-width-max: 1152;
   --f-screen-range: calc(var(--nq-screen-width-max) - var(--nq-screen-width-min));
 
+  /*
+    The children of `.nq-prose` will have a proportional fluid value depending on the value that
+    the element has.
+    For example, if we set `font-size: 24px` to `.nq-prose`:
+      - h1: will have (3 * 24)px for desktop and (2.75 * 24)px for mobile
+      - p: will have (24)px for desktop and (2.75 * 24)px for mobile
+  */
   --nq-screen-width-min-em: 20;
   --nq-screen-width-max-em: 72;
   --f-screen-range-em: calc(var(--nq-screen-width-max-em) - var(--nq-screen-width-min-em));
-
-  /* Base font sizes */
   --font-size-min-em: 1;
   --font-size-max-em: 1;
-  --font-size-min: 16;
-  --font-size-max: 16;
 }
 
 /**
@@ -26,7 +29,8 @@
 [nq-prose],
 .nq-prose-compact,
 [nq-prose-compact] {
-  font-size: 16px; /* Default font-size */
+  font-size: 16px;
+  /* Default font-size */
   margin-trim: block;
 
   &:not(:where(.nq-prose-compact, [nq-prose-compact])) {
@@ -65,6 +69,7 @@
       var(--font-size-fluid),
       var(--font-size-unit) * var(--font-size-max-em)
     );
+    font-size: var(--font-size);
   }
 
   > *:first-child {
@@ -84,9 +89,8 @@
     font-family: var(--nq-font-sans, 'Mulish');
 
     &:where(h1) {
-      --font-size-min: 2.75;
-      --font-size-max: 3;
-      font-size: var(--font-size);
+      --font-size-min-em: 2.75;
+      --font-size-max-em: 3;
       line-height: 1.5;
       font-weight: 700;
     }
@@ -98,9 +102,8 @@
     }
 
     &:where(h2) {
-      --font-size-min: 2;
-      --font-size-max: 2.375;
-      font-size: var(--font-size);
+      --font-size-min-em: 2;
+      --font-size-max-em: 2.375;
       line-height: 1.3;
       font-weight: 700;
 
@@ -116,9 +119,8 @@
     }
 
     &:where(h3) {
-      --font-size-min: 1.625;
-      --font-size-max: 1.875;
-      font-size: var(--font-size);
+      --font-size-min-em: 1.625;
+      --font-size-max-em: 1.875;
       line-height: 1.3;
       font-weight: 700;
 
@@ -134,9 +136,8 @@
     }
 
     &:where(h4) {
-      --font-size-min: 1.375;
-      --font-size-max: 1.625;
-      font-size: var(--font-size);
+      --font-size-min-em: 1.375;
+      --font-size-max-em: 1.625;
       line-height: 1.3;
       font-weight: 700;
 
@@ -206,6 +207,8 @@
       margin-top: 0;
       margin-bottom: 0;
       line-height: 1.5;
+      --font-size-min-em: 0.9;
+      --font-size-max-em: 1;
 
       & + p {
         margin-top: 16px;
@@ -215,8 +218,8 @@
     &:where(figure) {
       figcaption {
         color: rgb(var(--nq-neutral-700));
-        --font-size-min: 0.75;
-        --font-size-max: 0.875;
+        --font-size-min-em: 0.75;
+        --font-size-max-em: 0.875;
         font-weight: 700;
         line-height: 1.3125;
 
@@ -236,8 +239,8 @@
       font-weight: 600;
       transform: translateX(-8px);
       width: calc(100% + 16px);
-      --font-size-min: 0.75;
-      --font-size-max: 0.875;
+      --font-size-min-em: 0.75;
+      --font-size-max-em: 0.875;
     }
 
     &:where(img, video, iframe) {
@@ -380,8 +383,8 @@
     }
 
     &:where(code) {
-      --font-size-min: 0.75;
-      --font-size-max: 0.875;
+      --font-size-min-em: 0.75;
+      --font-size-max-em: 0.875;
       border-radius: 4px;
     }
 
@@ -391,8 +394,8 @@
 
     &:where(pre) {
       width: 100%;
-      --font-size-min: 0.75;
-      --font-size-max: 0.875;
+      --font-size-min-em: 0.75;
+      --font-size-max-em: 0.875;
       --nq-m-min: 20;
       --nq-m-max: 24;
       margin-top: var(--nq-m-size);
@@ -509,7 +512,8 @@
 
       summary {
         padding: 14px 2rem 14px calc(0.7rem + 2.3em);
-        font-size: 1em;
+        --font-size-min-em: 0.9;
+        --font-size-max-em: 1;
         position: relative;
         display: flex;
         align-items: center;
