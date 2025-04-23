@@ -1,15 +1,8 @@
 :root {
-  /* Base font sizes */
-  --nq-m-min: 0;
-  --nq-m-max: 0;
-
-  /* Viewport widths */
-  --nq-screen-width-min: 320;
-  --nq-screen-width-max: 1152;
-  --f-screen-range: calc(var(--nq-screen-width-max) - var(--nq-screen-width-min));
+  --unit: 1em;
 
   /*
-    The children of `.nq-prose` will have a proportional fluid value depending on the value that
+    The children of `.nq-prose` will have font-sizes and margins proportional fluid value depending on the value that
     the element has.
     For example, if we set `font-size: 24px` to `.nq-prose`:
       - h1: will have (3 * 24)px for desktop and (2.75 * 24)px for mobile
@@ -20,6 +13,8 @@
   --f-screen-range-em: calc(var(--nq-screen-width-max-em) - var(--nq-screen-width-min-em));
   --font-size-min-em: 1;
   --font-size-max-em: 1;
+  --margin-min-em: 0;
+  --margin-max-em: 0;
 }
 
 /**
@@ -49,25 +44,24 @@
   }
 
   * {
+    --f-factor: calc((100vw - (var(--unit) * var(--nq-screen-width-min-em))) / var(--f-screen-range-em));
+
     /* Margin calculation */
-    --nq-margin-scale-factor: calc((100vw - (1px * var(--nq-screen-width-min))) / var(--f-screen-range));
-    --nq-m-range: calc(var(--nq-m-max) - var(--nq-m-min));
-    --nq-m-fluid: calc(1px * var(--nq-m-min) + var(--nq-m-range) * var(--nq-margin-scale-factor));
-    --nq-m-size: clamp(calc(1px * var(--nq-m-min)), var(--nq-m-fluid), calc(var(--nq-m-max) * 1px));
+    --nq-m-range: calc(var(--margin-max-em) - var(--margin-min-em));
+    --nq-m-fluid: calc(var(--unit) * var(--margin-min-em) + var(--nq-m-range) * var(--f-factor));
+    --nq-m-size: clamp(
+      calc(var(--unit) * var(--margin-min-em)),
+      var(--nq-m-fluid),
+      calc(var(--margin-max-em) * var(--unit))
+    );
 
     /* derived values */
-    --font-size-unit: 1em;
-    --f-font-scale-factor: calc(
-      (100vw - (var(--font-size-unit) * var(--nq-screen-width-min-em))) / var(--f-screen-range-em)
-    );
     --font-size-range: calc(var(--font-size-max-em) - var(--font-size-min-em));
-    --font-size-fluid: calc(
-      var(--font-size-unit) * var(--font-size-min-em) + var(--font-size-range) * var(--f-font-scale-factor)
-    );
+    --font-size-fluid: calc(var(--unit) * var(--font-size-min-em) + var(--font-size-range) * var(--f-factor));
     --font-size: clamp(
-      var(--font-size-unit) * var(--font-size-min-em),
+      var(--unit) * var(--font-size-min-em),
       var(--font-size-fluid),
-      var(--font-size-unit) * var(--font-size-max-em)
+      var(--unit) * var(--font-size-max-em)
     );
     font-size: var(--font-size);
   }
@@ -96,8 +90,8 @@
     }
 
     &:where(h1 + *:not(:where(h1, h2, h3, h4))) {
-      --nq-m-min: 112;
-      --nq-m-max: 120;
+      --margin-min-em: 7;
+      --margin-max-em: 7.5;
       margin-top: var(--nq-m-size);
     }
 
@@ -109,12 +103,12 @@
 
       margin-top: var(--nq-m-size);
       margin-bottom: 24px;
-      --nq-m-min: 88;
-      --nq-m-max: 96;
+      --margin-min-em: 5.5;
+      --margin-max-em: 6;
 
       &:where(h1 + h2) {
-        --nq-m-min: 40;
-        --nq-m-max: 48;
+        --margin-min-em: 2.5;
+        --margin-max-em: 3;
       }
     }
 
@@ -126,12 +120,12 @@
 
       margin-bottom: 24px;
       margin-top: var(--nq-m-size);
-      --nq-m-min: 88;
-      --nq-m-max: 96;
+      --margin-min-em: 5.5;
+      --margin-max-em: 6;
 
       &:where(h2 + h3) {
-        --nq-m-min: 32;
-        --nq-m-max: 36;
+        --margin-min-em: 2;
+        --margin-max-em: 2.25;
       }
     }
 
@@ -143,13 +137,13 @@
 
       margin-top: var(--nq-m-size);
       margin-bottom: 24px;
-      --nq-m-min: 88;
-      --nq-m-max: 96;
+      --margin-min-em: 5.5;
+      --margin-max-em: 6;
     }
 
     &:where(h3 + h4) {
-      --nq-m-min: 32;
-      --nq-m-max: 36;
+      --margin-min-em: 2;
+      --margin-max-em: 2.25;
     }
 
     /* Anchors in headings */
@@ -231,8 +225,8 @@
 
     &:where(blockquote) {
       background: rgb(var(--nq-green-400));
-      --nq-m-min: 14;
-      --nq-m-max: 16;
+      --margin-min-em: 0.875;
+      --margin-max-em: 1;
       padding: var(--nq-m-size);
       border-radius: 6px;
       box-shadow: 0 0 0 1.5px rgb(var(--nq-green-600));
@@ -245,19 +239,19 @@
 
     &:where(img, video, iframe) {
       border-radius: 6px;
-      --nq-m-min: 18;
-      --nq-m-max: 22;
+      --margin-min-em: 1.125;
+      --margin-max-em: 1.375;
       margin-top: var(--nq-m-size);
 
       &:has(+ figcaption) {
-        --nq-m-min: 12;
-        --nq-m-max: 16;
+        --margin-min-em: 0.75;
+        --margin-max-em: 1;
         margin-bottom: var(--nq-m-size);
       }
 
       &:not(:has(+ figcaption)) {
-        --nq-m-min: 18;
-        --nq-m-max: 22;
+        --margin-min-em: 1.125;
+        --margin-max-em: 1.375;
         margin-bottom: var(--nq-m-size);
       }
     }
@@ -396,8 +390,8 @@
       width: 100%;
       --font-size-min-em: 0.75;
       --font-size-max-em: 0.875;
-      --nq-m-min: 20;
-      --nq-m-max: 24;
+      --margin-min-em: 1.25;
+      --margin-max-em: 1.5;
       margin-top: var(--nq-m-size);
       margin-bottom: var(--nq-m-size);
       padding: 20px 24px;
@@ -432,8 +426,8 @@
     }
 
     table {
-      --nq-m-min: 24;
-      --nq-m-max: 32;
+      --margin-min-em: 1.5;
+      --margin-max-em: 2;
       margin-bottom: var(--nq-m-size);
       margin-top: var(--nq-m-size);
       display: block;
@@ -488,8 +482,8 @@
     }
 
     hr {
-      --nq-m-min: 20;
-      --nq-m-max: 24;
+      --margin-min-em: 1.25;
+      --margin-max-em: 1.5;
       margin: var(--nq-m-size) auto;
       width: 128px;
       border-color: rgb(var(--nq-neutral-500));
@@ -499,8 +493,8 @@
       /* TODO Animate open/closing https://developer.chrome.com/docs/css-ui/animate-to-height-auto#animate_the_details_element */
       border-radius: 6px;
       background-color: rgb(var(--nq-neutral-200));
-      --nq-m-min: 18;
-      --nq-m-max: 22;
+      --margin-min-em: 1.125;
+      --margin-max-em: 1.375;
       margin-top: var(--nq-m-size);
       margin-bottom: var(--nq-m-size);
       color: rgb(var(--nq-neutral-900));
