@@ -6,8 +6,15 @@
   /* Viewport widths */
   --nq-screen-width-min: 320;
   --nq-screen-width-max: 1152;
+  --f-screen-range: calc(var(--nq-screen-width-max) - var(--nq-screen-width-min));
+
+  --nq-screen-width-min-em: 20;
+  --nq-screen-width-max-em: 72;
+  --f-screen-range-em: calc(var(--nq-screen-width-max-em) - var(--nq-screen-width-min-em));
 
   /* Base font sizes */
+  --font-size-min-em: 1;
+  --font-size-max-em: 1;
   --font-size-min: 16;
   --font-size-max: 16;
 }
@@ -19,6 +26,7 @@
 [nq-prose],
 .nq-prose-compact,
 [nq-prose-compact] {
+  font-size: 16px; /* Default font-size */
   margin-trim: block;
 
   &:not(:where(.nq-prose-compact, [nq-prose-compact])) {
@@ -38,11 +46,25 @@
 
   * {
     /* Margin calculation */
-    --nq-margin-width-range: calc(var(--nq-screen-width-max) - var(--nq-screen-width-min));
-    --nq-margin-scale-factor: calc((100vw - (1px * var(--nq-screen-width-min))) / var(--nq-margin-width-range));
+    --nq-margin-scale-factor: calc((100vw - (1px * var(--nq-screen-width-min))) / var(--f-screen-range));
     --nq-m-range: calc(var(--nq-m-max) - var(--nq-m-min));
     --nq-m-fluid: calc(1px * var(--nq-m-min) + var(--nq-m-range) * var(--nq-margin-scale-factor));
     --nq-m-size: clamp(calc(1px * var(--nq-m-min)), var(--nq-m-fluid), calc(var(--nq-m-max) * 1px));
+
+    /* derived values */
+    --font-size-unit: 1em;
+    --f-font-scale-factor: calc(
+      (100vw - (var(--font-size-unit) * var(--nq-screen-width-min-em))) / var(--f-screen-range-em)
+    );
+    --font-size-range: calc(var(--font-size-max-em) - var(--font-size-min-em));
+    --font-size-fluid: calc(
+      var(--font-size-unit) * var(--font-size-min-em) + var(--font-size-range) * var(--f-font-scale-factor)
+    );
+    --font-size: clamp(
+      var(--font-size-unit) * var(--font-size-min-em),
+      var(--font-size-fluid),
+      var(--font-size-unit) * var(--font-size-max-em)
+    );
   }
 
   > *:first-child {
@@ -62,8 +84,8 @@
     font-family: var(--nq-font-sans, 'Mulish');
 
     &:where(h1) {
-      --font-size-min: 44;
-      --font-size-max: 48;
+      --font-size-min: 2.75;
+      --font-size-max: 3;
       font-size: var(--font-size);
       line-height: 1.5;
       font-weight: 700;
@@ -76,8 +98,8 @@
     }
 
     &:where(h2) {
-      --font-size-min: 32;
-      --font-size-max: 38;
+      --font-size-min: 2;
+      --font-size-max: 2.375;
       font-size: var(--font-size);
       line-height: 1.3;
       font-weight: 700;
@@ -94,8 +116,8 @@
     }
 
     &:where(h3) {
-      --font-size-min: 26;
-      --font-size-max: 30;
+      --font-size-min: 1.625;
+      --font-size-max: 1.875;
       font-size: var(--font-size);
       line-height: 1.3;
       font-weight: 700;
@@ -112,8 +134,8 @@
     }
 
     &:where(h4) {
-      --font-size-min: 22;
-      --font-size-max: 26;
+      --font-size-min: 1.375;
+      --font-size-max: 1.625;
       font-size: var(--font-size);
       line-height: 1.3;
       font-weight: 700;
@@ -193,7 +215,8 @@
     &:where(figure) {
       figcaption {
         color: rgb(var(--nq-neutral-700));
-        font-size: 0.875em;
+        --font-size-min: 0.75;
+        --font-size-max: 0.875;
         font-weight: 700;
         line-height: 1.3125;
 
@@ -213,9 +236,8 @@
       font-weight: 600;
       transform: translateX(-8px);
       width: calc(100% + 16px);
-      --font-size-min: 12;
-      --font-size-max: 14;
-      font-size: var(--font-size);
+      --font-size-min: 0.75;
+      --font-size-max: 0.875;
     }
 
     &:where(img, video, iframe) {
@@ -358,7 +380,8 @@
     }
 
     &:where(code) {
-      font-size: 0.875em;
+      --font-size-min: 0.75;
+      --font-size-max: 0.875;
       border-radius: 4px;
     }
 
@@ -368,7 +391,8 @@
 
     &:where(pre) {
       width: 100%;
-      font-size: 0.875em;
+      --font-size-min: 0.75;
+      --font-size-max: 0.875;
       --nq-m-min: 20;
       --nq-m-max: 24;
       margin-top: var(--nq-m-size);
@@ -380,7 +404,8 @@
 
     kbd {
       padding: 0.25em 0.125em;
-      font-size: 0.875em;
+      --font-size-min: 0.75;
+      --font-size-max: 0.875;
       color: rgba(var(--nq-neutral-800) / 1);
       background-color: rgba(var(--nq-neutral-200) / 1);
       border-radius: 0.25em;

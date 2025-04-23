@@ -16,6 +16,16 @@
     Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   --nq-font-mono:
     'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+  --nq-m-min: 0;
+  --nq-m-max: 0;
+
+  --nq-screen-width-min: 320;
+  --nq-screen-width-max: 1152;
+
+  /* Base font sizes */
+  --font-size-min: 16;
+  --font-size-max: 16;
 }
 
 :where(*:not(:where(.nq-raw *, [nq-raw] *))) {
