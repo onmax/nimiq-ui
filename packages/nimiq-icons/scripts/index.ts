@@ -96,6 +96,8 @@ async function getFigma(frameName: string) {
 
   try {
     const cacheDir = `.figma-cache/${frameName}` // Separate cache directory for each variant
+    const isFlags = frameName === IconVariant.Flags
+    const prefix = isFlags ? 'nimiq-flags' : 'nimiq'
 
     consola.info(`Fetching icons from Figma for variant: ${frameName}`)
 
@@ -104,7 +106,7 @@ async function getFigma(frameName: string) {
       pages: ['Main'],
       token,
       cacheDir,
-      prefix: 'nimiq',
+      prefix,
       depth: 3,
       ifModifiedSince: true,
       simplifyStroke: true,
@@ -362,13 +364,17 @@ async function main() {
       const cacheDir = `.figma-cache/${variantName}`
       consola.info(`Using cached data for ${variantName}`)
 
+      // Determine prefix based on variant
+      const isFlags = variant === IconVariant.Flags
+      const prefix = isFlags ? 'nimiq-flags' : 'nimiq'
+
       // Re-import from cache with cache disabled to force load
       const cachedFigma = await importFromFigma({
         file: env.FIGMA_FILE_ID!,
         pages: ['Main'],
         token: env.FIGMA_API_TOKEN!,
         cacheDir,
-        prefix: 'nimiq',
+        prefix,
         depth: 3,
         iconNameForNode: (node) => {
           if (
