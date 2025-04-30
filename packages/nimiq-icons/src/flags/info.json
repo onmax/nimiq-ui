@@ -1,8 +1,8 @@
 {
 	"prefix": "nimiq-flags",
 	"name": "nimiq-flags",
-	"total": 420,
-	"version": "1.0.0-beta.20",
+	"total": 422,
+	"version": "1.0.0-beta.21",
 	"author": {
 		"name": "onmax",
 		"url": "https://github.com/onmax"
@@ -13,11 +13,11 @@
 		"url": "https://opensource.org/licenses/MIT"
 	},
 	"samples": [
-		"flags-ae-hexagon",
-		"flags-idr-hexagon",
-		"flags-hr-hexagon",
-		"flags-dk-hexagon",
-		"flags-ci-hexagon"
+		"ae-hexagon",
+		"idr-hexagon",
+		"hr-hexagon",
+		"dk-hexagon",
+		"ci-hexagon"
 	],
 	"height": 24,
 	"displayHeight": 24,

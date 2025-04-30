@@ -155,8 +155,9 @@ interface ProcessOptions {
 }
 
 function processIcon(iconSet: IconSet, variant: IconVariant, name: string, options: ProcessOptions) {
-  // For Icons variant, keep the original name without prefix
-  const newName = variant === IconVariant.Icons ? name : `${variant}-${name}`
+  // For Icons variant and Flags variant, keep the original name without prefix
+  // For other variants (Duotone, Logos), add the variant prefix
+  const newName = (variant === IconVariant.Icons || variant === IconVariant.Flags) ? name : `${variant}-${name}`
   if (newName !== name)
     iconSet.rename(name, newName)
 
