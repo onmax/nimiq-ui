@@ -174,7 +174,7 @@ catalogs:
 
 patchedDependencies:
   '@nolebase/vitepress-plugin-git-changelog':
-    hash: ee3b390f613ebe10ffbb1e7bb9e3c700f403ec2df024324aae33fd4701370f8d
+    hash: c5h5iyttte3plwcfezjxhvclw4
     path: patches/@nolebase__vitepress-plugin-git-changelog.patch
 
 importers:
@@ -259,7 +259,7 @@ importers:
         version: 2.3.0
       '@nolebase/vitepress-plugin-git-changelog':
         specifier: 'catalog:'
-        version: 2.15.1(patch_hash=ee3b390f613ebe10ffbb1e7bb9e3c700f403ec2df024324aae33fd4701370f8d)(typescript@5.8.2)(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))
+        version: 2.15.1(patch_hash=c5h5iyttte3plwcfezjxhvclw4)(typescript@5.8.2)(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))
       '@shikijs/vitepress-twoslash':
         specifier: 'catalog:'
         version: 3.2.1(typescript@5.8.2)
@@ -403,7 +403,7 @@ importers:
         version: 1.2.16
       '@nolebase/vitepress-plugin-git-changelog':
         specifier: 'catalog:'
-        version: 2.15.1(patch_hash=ee3b390f613ebe10ffbb1e7bb9e3c700f403ec2df024324aae33fd4701370f8d)(typescript@5.8.2)(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))
+        version: 2.15.1(patch_hash=c5h5iyttte3plwcfezjxhvclw4)(typescript@5.8.2)(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))
       '@vueuse/core':
         specifier: 'catalog:'
         version: 13.0.0(vue@3.5.13(typescript@5.8.2))
@@ -6104,7 +6104,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@nolebase/vitepress-plugin-git-changelog@2.15.1(patch_hash=ee3b390f613ebe10ffbb1e7bb9e3c700f403ec2df024324aae33fd4701370f8d)(typescript@5.8.2)(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))':
+  '@nolebase/vitepress-plugin-git-changelog@2.15.1(patch_hash=c5h5iyttte3plwcfezjxhvclw4)(typescript@5.8.2)(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))':
     dependencies:
       '@iconify-json/octicon': 1.2.5
       '@nolebase/ui': 2.15.1(typescript@5.8.2)(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))

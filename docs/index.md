@@ -1,5 +1,7 @@
 ---
 home: true
+showSecondarySidebar: false
+sidebar: false
 ---
 
 # Nimiq UI
