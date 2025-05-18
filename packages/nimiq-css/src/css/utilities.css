@@ -630,18 +630,20 @@
 }
 
 .nq-card {
-  --nq-gradient-from: rgb(var(--nq-neutral-300) / 1);
-  --nq-gradient-to: rgb(var(--nq-neutral-300) / 0.65);
-  background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
-  color: rgb(var(--nq-neutral));
-  border-radius: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
-  outline: 1.5px solid rgb(var(--nq-neutral) / 0.06);
-  outline-offset: -1.5px;
-  padding: 1.5rem;
+  & {
+    --nq-gradient-from: rgb(var(--nq-neutral-300) / 1);
+    --nq-gradient-to: rgb(var(--nq-neutral-300) / 0.65);
+    background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
+    color: rgb(var(--nq-neutral));
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    outline: 1.5px solid rgb(var(--nq-neutral) / 0.04);
+    outline-offset: -1.5px;
+    padding: 1.5rem;
+  }
 }
 
 .nq-hoverable {
@@ -674,10 +676,6 @@
       box-shadow: var(--nq-shadow);
       outline-color: rgba(var(--nq-neutral) / 0.02);
       transform: translateY(-0.375rem);
-
-      &:before {
-        opacity: 1;
-      }
     }
 
     > * {
