@@ -1,4 +1,4 @@
-import { useRoute, withBase } from 'vitepress'
+import { useData, useRoute, withBase } from 'vitepress'
 import { computed } from 'vue'
 import { useCurrentModule } from './useCurrentModule'
 
@@ -11,6 +11,15 @@ export interface Breadcrumb {
 export function useBreadcrumbs() {
   const { currentDocModule } = useCurrentModule()
   const route = useRoute()
+  const { frontmatter } = useData()
+
+  const showBreadcrumbs = computed(() => {
+    if (frontmatter.value.breadcrumbs !== undefined)
+      return frontmatter.value.breadcrumbs
+    if (frontmatter.value.layout === 'home')
+      return false
+    return true
+  })
 
   const breadcrumbs = computed<Breadcrumb[]>(() => {
     const items: Breadcrumb[] = []
@@ -61,5 +70,6 @@ export function useBreadcrumbs() {
 
   return {
     breadcrumbs,
+    showBreadcrumbs,
   }
 }

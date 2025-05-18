@@ -30,6 +30,7 @@ The Nimiq Vitepress theme supports the following frontmatter options:
 | ------------------ | ------------------ | ----------------------------------------------- | -------------------------------------------------------- |
 | `layout`           | `'home' \| 'docs'` | `'docs'`                                        | Layout type to use for the page                          |
 | `sidebar`          | `boolean`          | `true` for docs layout                          | Whether to show the sidebar                              |
+| `breadcrumbs`      | `boolean`          | `true` for docs layout, `false` for home layout | Whether to show the breadcrumbs navigation               |
 | `outline`          | `boolean`          | `true` if headings exist                        | Whether to show the outline (table of contents)          |
 | `secondarySidebar` | `boolean`          | `true` for docs layout, `false` for home layout | Whether to show the secondary sidebar                    |
 | `widget`           | `boolean`          | `true` for docs layout, `false` for home layout | Whether to show the widget area in the secondary sidebar |

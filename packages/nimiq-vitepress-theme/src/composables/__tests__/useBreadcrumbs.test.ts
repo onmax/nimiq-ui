@@ -1,5 +1,5 @@
 import type { Breadcrumb } from '../useBreadcrumbs'
-import { useRoute } from 'vitepress'
+import { useData, useRoute } from 'vitepress'
 import { describe, expect, it, vi } from 'vitest'
 import { computed } from 'vue'
 import { useBreadcrumbs } from '../useBreadcrumbs'
@@ -8,6 +8,7 @@ import { useCurrentModule } from '../useCurrentModule'
 // Mock dependencies
 vi.mock('vitepress', () => ({
   useRoute: vi.fn(),
+  useData: vi.fn(),
   withBase: (p: string) => `/base${p}`,
 }))
 vi.mock('../useCurrentModule', () => ({
@@ -32,6 +33,7 @@ describe('useBreadcrumbs', () => {
       currentDocModule: computed(() => moduleData),
     })
     ;(useRoute as any).mockReturnValue({ path: '/base/page1/' })
+    ;(useData as any).mockReturnValue({ frontmatter: computed(() => ({})) })
 
     const { breadcrumbs } = useBreadcrumbs()
     expect(breadcrumbs.value).toEqual<Breadcrumb[]>([
@@ -63,6 +65,7 @@ describe('useBreadcrumbs', () => {
       currentDocModule: computed(() => moduleData),
     })
     ;(useRoute as any).mockReturnValue({ path: '/base/child/' })
+    ;(useData as any).mockReturnValue({ frontmatter: computed(() => ({})) })
 
     const { breadcrumbs } = useBreadcrumbs()
     expect(breadcrumbs.value).toEqual<Breadcrumb[]>([
@@ -71,5 +74,53 @@ describe('useBreadcrumbs', () => {
       { text: 'Parent' },
       { text: 'Child' },
     ])
+  })
+
+  it('should show breadcrumbs by default for docs layout', () => {
+    const moduleData = {
+      text: 'Module',
+      subpath: 'mod',
+      sidebar: [],
+    }
+    ;(useCurrentModule as any).mockReturnValue({
+      currentDocModule: computed(() => moduleData),
+    })
+    ;(useRoute as any).mockReturnValue({ path: '/base/test/' })
+    ;(useData as any).mockReturnValue({ frontmatter: computed(() => ({})) })
+
+    const { showBreadcrumbs } = useBreadcrumbs()
+    expect(showBreadcrumbs.value).toBe(true)
+  })
+
+  it('should hide breadcrumbs by default for home layout', () => {
+    const moduleData = {
+      text: 'Module',
+      subpath: 'mod',
+      sidebar: [],
+    }
+    ;(useCurrentModule as any).mockReturnValue({
+      currentDocModule: computed(() => moduleData),
+    })
+    ;(useRoute as any).mockReturnValue({ path: '/base/test/' })
+    ;(useData as any).mockReturnValue({ frontmatter: computed(() => ({ layout: 'home' })) })
+
+    const { showBreadcrumbs } = useBreadcrumbs()
+    expect(showBreadcrumbs.value).toBe(false)
+  })
+
+  it('should respect explicit breadcrumbs frontmatter setting', () => {
+    const moduleData = {
+      text: 'Module',
+      subpath: 'mod',
+      sidebar: [],
+    }
+    ;(useCurrentModule as any).mockReturnValue({
+      currentDocModule: computed(() => moduleData),
+    })
+    ;(useRoute as any).mockReturnValue({ path: '/base/test/' })
+    ;(useData as any).mockReturnValue({ frontmatter: computed(() => ({ breadcrumbs: false })) })
+
+    const { showBreadcrumbs } = useBreadcrumbs()
+    expect(showBreadcrumbs.value).toBe(false)
   })
 })
