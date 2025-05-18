@@ -36,7 +36,10 @@ export const useChangelog = createGlobalState(() => {
   const showChangelog = computed(() => {
     if (frontmatter.value.changelog !== undefined)
       return !!frontmatter.value.changelog
-    return true
+
+    // Default behavior: true for docs layout, false for home layout
+    const layout = frontmatter.value.layout || 'docs'
+    return layout === 'docs'
   })
 
   return {

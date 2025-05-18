@@ -33,6 +33,7 @@ The Nimiq Vitepress theme supports the following frontmatter options:
 | `outline`          | `boolean`          | `true` if headings exist                        | Whether to show the outline (table of contents)          |
 | `secondarySidebar` | `boolean`          | `true` for docs layout, `false` for home layout | Whether to show the secondary sidebar                    |
 | `widget`           | `boolean`          | `true` for docs layout, `false` for home layout | Whether to show the widget area in the secondary sidebar |
+| `changelog`        | `boolean`          | `true` for docs layout, `false` for home layout | Whether to show the changelog in the secondary sidebar   |
 
 ## Page Layouts
 
@@ -76,6 +77,7 @@ layout: home
 # Override the default home layout behavior to show the widget area
 secondarySidebar: true
 widget: true
+changelog: true
 ---
 ```
 
@@ -88,6 +90,7 @@ The secondary sidebar contains both the outline (table of contents) and optional
 # Hide the outline but keep the widget
 outline: false
 widget: true
+changelog: true
 
 # Or hide both by disabling the entire secondary sidebar
 secondarySidebar: false
