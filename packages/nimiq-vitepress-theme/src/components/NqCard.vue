@@ -35,7 +35,7 @@ const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#1
       { 'children:max-w-[max(50%,240px)]': bgColor },
     ]"
   >
-    <div v-if="icon" :class="`${icon} ${iconClass}`" f-size="~ max-160 min-120" absolute right--12 :style="`color: ${colors[bgColor!]}`" />
+    <div v-if="icon" :class="[`${icon} ${iconClass}`, iconClass ? iconClass : 'f-size-120/160 absolute right--12']" :style="`color: ${colors[bgColor!]}`" />
     <span nq-label text-12 mb-4 text="neutral-700 data-inverted:white/50" data-inverted:mb-8>{{ label }}</span>
     <h2 font-semibold f-text="xl data-inverted:2xl" data-inverted:text-white>
       {{ title }}
