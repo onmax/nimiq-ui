@@ -39,7 +39,7 @@ function useEditUrl(relativePath: string): string {
         </li>
       </ul>
 
-      <article flex-1 class="nq-prose" var:nq-prose-max-width:none>
+      <article flex-1 class="nq-prose" f-pb-3xl var:nq-prose-max-width:none>
         <Content max-w-none />
         <Changelog v-if="showChangelog" />
       </article>
