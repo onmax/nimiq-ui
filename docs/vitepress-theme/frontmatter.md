@@ -26,12 +26,12 @@ The Nimiq Vitepress theme supports the following frontmatter options:
 
 ### Layout Options
 
-| Option             | Type      | Default                              | Description                                              |
-| ------------------ | --------- | ------------------------------------ | -------------------------------------------------------- |
-| `sidebar`          | `boolean` | `true`                               | Whether to show the sidebar                              |
-| `outline`          | `boolean` | `true` if headings exist             | Whether to show the outline (table of contents)          |
-| `secondarySidebar` | `boolean` | `true` if outline or widget is shown | Whether to show the secondary sidebar                    |
-| `widget`           | `boolean` | `true`                               | Whether to show the widget area in the secondary sidebar |
+| Option                 | Type      | Default                              | Description                                              |
+| ---------------------- | --------- | ------------------------------------ | -------------------------------------------------------- |
+| `sidebar`              | `boolean` | `true`                               | Whether to show the sidebar                              |
+| `outline`              | `boolean` | `true` if headings exist             | Whether to show the outline (table of contents)          |
+| `showSecondarySidebar` | `boolean` | `true` if outline or widget is shown | Whether to show the secondary sidebar                    |
+| `widget`               | `boolean` | `true`                               | Whether to show the widget area in the secondary sidebar |
 
 ## Controlling the Secondary Sidebar
 
