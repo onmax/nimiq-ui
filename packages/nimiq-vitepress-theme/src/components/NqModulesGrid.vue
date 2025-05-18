@@ -7,10 +7,10 @@ import { computed } from 'vue'
 const { theme } = useData<NimiqVitepressThemeConfig>()
 
 const items = computed(() => {
-  return theme.value.modules.map(({ text, icon, href, description }) => ({
+  return theme.value.modules.map(({ text, icon, defaultPageLink, description }) => ({
     title: text,
     icon,
-    href: withBase(`/${href}`),
+    href: withBase(defaultPageLink),
     description,
   } satisfies NqCardProps))
 })
