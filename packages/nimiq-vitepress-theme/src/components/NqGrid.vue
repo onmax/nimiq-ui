@@ -2,7 +2,7 @@
 import type { NqCardProps } from './NqCard.vue'
 import { defineAsyncComponent } from 'vue'
 
-const { cards, largeCards = false } = defineProps<{ cards?: NqCardInGrid[], largeCards?: boolean }>()
+const { cards = [], largeCards = false } = defineProps<{ cards?: NqCardInGrid[], largeCards?: boolean }>()
 const NqCard = defineAsyncComponent(() => import('./NqCard.vue'))
 const NqLargeCard = defineAsyncComponent(() => import('./NqLargeCard.vue'))
 
@@ -17,7 +17,7 @@ function getSpan({ span, bgColor }: NqCardInGrid): CardSpan | undefined {
 </script>
 
 <template>
-  <ul grid="~ cols-6 gap-16" class="nq-grid nq-raw">
+  <ul v-if="cards.length > 0" grid="~ cols-6 gap-16" class="nq-grid nq-raw">
     <slot>
       <li v-for="(card, index) in cards" :key="index" :data-span="getSpan(card)">
         <component :is="largeCards ? NqLargeCard : NqCard" v-bind="card" />
