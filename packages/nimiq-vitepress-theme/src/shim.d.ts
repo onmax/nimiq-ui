@@ -19,3 +19,11 @@ declare module 'virtual:nolebase-git-changelog' {
   const changelog: Changelog
   export default changelog
 }
+
+// Vite environment variables
+interface ImportMeta {
+  readonly env: {
+    readonly SSR: boolean
+    readonly [key: string]: string | boolean | undefined
+  }
+}

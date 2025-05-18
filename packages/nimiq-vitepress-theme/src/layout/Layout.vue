@@ -8,14 +8,18 @@ import Sidebar from './Sidebar.vue'
 
 const { frontmatter } = useData()
 
-const showSidebar = computed(() =>
-  frontmatter.value.sidebar !== false,
-)
+const showSidebar = computed(() => {
+  if (frontmatter.value.sidebar !== undefined)
+    return frontmatter.value.sidebar
+  if (frontmatter.value.layout === 'home')
+    return false
+  return true
+})
 
-const { showSecondarySidebar } = useSecondarySidebar()
+const { secondarySidebar } = useSecondarySidebar()
 
 const isCentered = computed(() =>
-  !showSidebar.value && !showSecondarySidebar.value,
+  !showSidebar.value && !secondarySidebar.value,
 )
 </script>
 
@@ -27,7 +31,7 @@ const isCentered = computed(() =>
     <main :class="{ centered: isCentered }" class="min-h-screen">
       <PageContent />
     </main>
-    <SecondarySidebar v-if="showSecondarySidebar" />
+    <SecondarySidebar v-if="secondarySidebar" />
   </div>
 </template>
 

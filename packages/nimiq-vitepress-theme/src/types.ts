@@ -40,6 +40,14 @@ export interface NimiqVitepressThemeConfig {
   showEditContent?: boolean
 }
 
+export interface NimiqVitepressFrontmatter {
+  layout?: 'home' | 'docs'
+  sidebar?: boolean
+  outline?: boolean
+  secondarySidebar?: boolean
+  widget?: boolean
+}
+
 export interface DefineThemeNqVpOptions {
   enhanceApp?: Theme['enhanceApp']
 }

@@ -88,17 +88,33 @@ export const useSecondarySidebar = createSharedComposable(() => {
   watch(scrollY, updateActiveHeadings)
 
   // Compute whether to show the outline based on frontmatter settings or heading existence.
+  // Determine layout type
+  const layout = computed(() => frontmatter.value.layout || 'docs')
+
   const showOutline = computed(() => {
     if (frontmatter.value.outline !== undefined)
       return !!frontmatter.value.outline
+    if (layout.value === 'home')
+      return false
     return headingTree.value.length > 0
   })
 
-  const showWidget = computed(() => frontmatter.value.widget !== false)
+  const showWidget = computed(() => {
+    if (frontmatter.value.widget !== undefined)
+      return !!frontmatter.value.widget
+    if (layout.value === 'home')
+      return false
+    return true
+  })
+
   const showSecondarySidebar = computed(() => {
-    if (frontmatter.value.showSecondarySidebar !== undefined)
-      return frontmatter.value.showSecondarySidebar !== false
-    return showWidget.value && showOutline.value
+    if (frontmatter.value.secondarySidebar !== undefined)
+      return !!frontmatter.value.secondarySidebar
+    if (layout.value === 'home')
+      return false
+    // For docs layout, we show the secondary sidebar by default regardless of widget or outline
+    // This matches the behavior described in the documentation
+    return true
   })
 
   // Returns true if the heading (by its hashPath) is active (visible in viewport)

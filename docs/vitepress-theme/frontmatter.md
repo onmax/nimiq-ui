@@ -26,12 +26,58 @@ The Nimiq Vitepress theme supports the following frontmatter options:
 
 ### Layout Options
 
-| Option                 | Type      | Default                              | Description                                              |
-| ---------------------- | --------- | ------------------------------------ | -------------------------------------------------------- |
-| `sidebar`              | `boolean` | `true`                               | Whether to show the sidebar                              |
-| `outline`              | `boolean` | `true` if headings exist             | Whether to show the outline (table of contents)          |
-| `showSecondarySidebar` | `boolean` | `true` if outline or widget is shown | Whether to show the secondary sidebar                    |
-| `widget`               | `boolean` | `true`                               | Whether to show the widget area in the secondary sidebar |
+| Option             | Type               | Default                                         | Description                                              |
+| ------------------ | ------------------ | ----------------------------------------------- | -------------------------------------------------------- |
+| `layout`           | `'home' \| 'docs'` | `'docs'`                                        | Layout type to use for the page                          |
+| `sidebar`          | `boolean`          | `true` for docs layout                          | Whether to show the sidebar                              |
+| `outline`          | `boolean`          | `true` if headings exist                        | Whether to show the outline (table of contents)          |
+| `secondarySidebar` | `boolean`          | `true` for docs layout, `false` for home layout | Whether to show the secondary sidebar                    |
+| `widget`           | `boolean`          | `true` for docs layout, `false` for home layout | Whether to show the widget area in the secondary sidebar |
+
+## Page Layouts
+
+The theme supports two types of layouts: `home` and `docs`.
+
+```yaml
+---
+# Set the layout type
+layout: home # or 'docs' (default)
+---
+```
+
+The `docs` layout (default) shows the sidebar, outline, and widget by default, making it suitable for documentation pages. The `home` layout hides both the sidebar and secondary sidebar, creating a clean, full-width page that's ideal for landing pages.
+
+### Examples
+
+#### Home Layout (Landing Page)
+
+```yaml
+---
+layout: home
+# No need to set sidebar or secondarySidebar to false as they're
+# automatically hidden with home layout
+---
+```
+
+#### Documentation Page Layout
+
+```yaml
+---
+layout: docs
+# All navigation elements show by default
+---
+```
+
+#### Custom Layout Configuration
+
+```yaml
+---
+layout: home
+# Override the default home layout behavior to show the widget area
+secondarySidebar: true
+widget: true
+---
+```
 
 ## Controlling the Secondary Sidebar
 

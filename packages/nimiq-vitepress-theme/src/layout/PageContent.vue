@@ -14,7 +14,7 @@ import '../assets/github-callouts.css'
 const { page } = useData<NimiqVitepressThemeConfig>()
 const { breadcrumbs } = useBreadcrumbs()
 
-const { showSecondarySidebar } = useSecondarySidebar()
+const { secondarySidebar } = useSecondarySidebar()
 
 const { repoURL, showChangelog } = useChangelog()
 const editUrl = useEditUrl(page.value.relativePath)
@@ -29,7 +29,7 @@ function useEditUrl(relativePath: string): string {
 </script>
 
 <template>
-  <div :class="showSecondarySidebar ? 'f-pr-xs f-pl-xl' : 'f-px-xl'" f-pt-sm f="$px $px-min-48 $px-max-72" f-pb-sm flex="~ gap-16" relative h-full>
+  <div :class="secondarySidebar ? 'f-pr-xs f-pl-xl' : 'f-px-xl'" f-pt-sm f="$px $px-min-48 $px-max-72" f-pb-sm flex="~ gap-16" relative h-full>
     <div flex="~ col" h-full flex-1 w="[calc(100vw-2*var(--nq-sidebar-width)-2*var(--f-px))]">
       <ul px-32 f-pb-lg flex="~ items-center gap-12">
         <li v-for="({ text, icon }, i) in breadcrumbs" :key="text" contents w-max>
@@ -52,6 +52,6 @@ function useEditUrl(relativePath: string): string {
         </p>
       </div>
     </div>
-    <SecondarySidebar v-if="showSecondarySidebar" />
+    <SecondarySidebar v-if="secondarySidebar" />
   </div>
 </template>

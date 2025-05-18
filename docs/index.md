@@ -1,6 +1,6 @@
 ---
-home: true
-showSecondarySidebar: false
+layout: 'home'
+secondarySidebar: false
 sidebar: false
 ---
 
