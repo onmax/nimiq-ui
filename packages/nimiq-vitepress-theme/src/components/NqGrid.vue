@@ -17,7 +17,7 @@ function getSpan({ span, bgColor }: NqCardInGrid): CardSpan | undefined {
 </script>
 
 <template>
-  <ul v-if="cards.length > 0" grid="~ cols-6 gap-16" class="nq-grid nq-raw">
+  <ul v-if="cards.length > 0" grid="~ cols-6 gap-16" class="nq-grid nq-raw" f-my-md>
     <slot>
       <li v-for="(card, index) in cards" :key="index" :data-span="getSpan(card)">
         <component :is="largeCards ? NqLargeCard : NqCard" v-bind="card" />
