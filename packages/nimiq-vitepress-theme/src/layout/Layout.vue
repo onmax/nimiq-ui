@@ -16,11 +16,7 @@ const showSidebar = computed(() => {
   return true
 })
 
-const { secondarySidebar } = useSecondarySidebar()
-
-const isCentered = computed(() =>
-  !showSidebar.value && !secondarySidebar.value,
-)
+const { showSecondarySidebar } = useSecondarySidebar()
 </script>
 
 <template>
@@ -28,10 +24,15 @@ const isCentered = computed(() =>
     <!-- TODO Add skip -->
     <Sidebar v-if="showSidebar" />
 
-    <main :class="{ centered: isCentered }" class="min-h-screen">
+    <main
+      :class="{
+        'mx-$nq-sidebar-width': !showSidebar && !showSecondarySidebar,
+        'ml-$nq-sidebar-width': showSidebar,
+      }" class="min-h-screen"
+    >
       <PageContent />
     </main>
-    <SecondarySidebar v-if="secondarySidebar" />
+    <SecondarySidebar v-if="showSecondarySidebar" />
   </div>
 </template>
 
@@ -47,10 +48,5 @@ aside {
 
 main {
   flex: 1;
-}
-
-main.centered {
-  margin-left: var(--nq-sidebar-width);
-  margin-right: var(--nq-sidebar-width);
 }
 </style>
