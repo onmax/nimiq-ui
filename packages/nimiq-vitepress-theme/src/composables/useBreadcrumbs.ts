@@ -24,8 +24,8 @@ export function useBreadcrumbs() {
     // Find current page in sidebar
     const currentSidebar = currentDocModule.value.sidebar.find((section) => {
       return section.items.some(item =>
-        (item.link && `${withBase(item.link)}/` === route.path)
-        || (item.items?.some(subitem => `${withBase(subitem.link)}/` === route.path)),
+        (item.link && (`${withBase(item.link)}/` === route.path || withBase(item.link) === route.path))
+        || (item.items?.some(subitem => `${withBase(subitem.link)}/` === route.path || withBase(subitem.link) === route.path)),
       )
     })
 
@@ -35,17 +35,23 @@ export function useBreadcrumbs() {
 
     // 3. Add parent item if exists (for nested items)
     const parentItem = currentSidebar?.items.find(item =>
-      item.items?.some(subitem => `${withBase(subitem.link)}/` === route.path),
+      item.items?.some(subitem => `${withBase(subitem.link)}/` === route.path || withBase(subitem.link) === route.path),
     )
     if (parentItem)
       items.push({ text: parentItem.text })
 
     // 4. Add current item
-    const currentItem = currentSidebar?.items.find(item => item.link === route.path)
-      || currentSidebar?.items
-        .find(item => item.items?.some(subitem => subitem.link === route.path))
-        ?.items
-        ?.find(subitem => subitem.link === route.path)
+    const currentItem = currentSidebar?.items.find(item =>
+      item.link && (withBase(item.link) === route.path || `${withBase(item.link)}/` === route.path),
+    )
+    || currentSidebar?.items
+      .find(item => item.items?.some(subitem =>
+        subitem.link && (withBase(subitem.link) === route.path || `${withBase(subitem.link)}/` === route.path),
+      ))
+      ?.items
+      ?.find(subitem =>
+        subitem.link && (withBase(subitem.link) === route.path || `${withBase(subitem.link)}/` === route.path),
+      )
 
     if (currentItem)
       items.push({ text: currentItem.text })
