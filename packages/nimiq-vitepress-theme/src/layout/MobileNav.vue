@@ -33,7 +33,7 @@ const { showWidget } = useSecondarySidebar()
 
 <template>
   <div>
-    <div v-if="showWidget" id="widget" fixed bottom-64 rounded-4 outline="~ 1.5 offset--1.5 neutral-400" h-20vh bg-neutral-50 shadow w="[calc(100vw-16px)]" inset-x-8 />
+    <div v-if="showWidget" id="widget" fixed bottom-64 rounded-4 bg-neutral-50 shadow w="[calc(100vw-16px)]" inset-x-8 />
     <nav w-screen border="t neutral-300" nq-raw bg-neutral-0 z-10 :data-sidebar="open ? '' : undefined">
       <ul grid="~ items-center" :class="showSecondarySidebar ? 'cols-4' : 'cols-3'" children:children:h-56>
         <li>
@@ -86,5 +86,9 @@ nav:not([data-sidebar]) {
     0px -18px 38px rgba(var(--nq-neutral) / 0.07),
     0px -7px 8.5px rgba(var(--nq-neutral) / 0.04),
     0px -2px 2.5px rgba(var(--nq-neutral) / 0.02);
+}
+
+#widget:not(:empty) {
+  --uno: 'max-h-20vh outline outline-1.5 outline-offset--1.5 outline-neutral-400';
 }
 </style>
