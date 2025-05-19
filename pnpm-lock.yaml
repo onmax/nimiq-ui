@@ -150,6 +150,9 @@ catalogs:
     unplugin-icons:
       specifier: ^22.1.0
       version: 22.1.0
+    vaul-vue:
+      specifier: ^0.4.1
+      version: 0.4.1
     vite:
       specifier: ^6.2.2
       version: 6.2.2
@@ -174,7 +177,7 @@ catalogs:
 
 patchedDependencies:
   '@nolebase/vitepress-plugin-git-changelog':
-    hash: c5h5iyttte3plwcfezjxhvclw4
+    hash: ee3b390f613ebe10ffbb1e7bb9e3c700f403ec2df024324aae33fd4701370f8d
     path: patches/@nolebase__vitepress-plugin-git-changelog.patch
 
 importers:
@@ -259,7 +262,7 @@ importers:
         version: 2.3.0
       '@nolebase/vitepress-plugin-git-changelog':
         specifier: 'catalog:'
-        version: 2.15.1(patch_hash=c5h5iyttte3plwcfezjxhvclw4)(typescript@5.8.2)(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))
+        version: 2.15.1(patch_hash=ee3b390f613ebe10ffbb1e7bb9e3c700f403ec2df024324aae33fd4701370f8d)(typescript@5.8.2)(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))
       '@shikijs/vitepress-twoslash':
         specifier: 'catalog:'
         version: 3.2.1(typescript@5.8.2)
@@ -403,7 +406,7 @@ importers:
         version: 1.2.16
       '@nolebase/vitepress-plugin-git-changelog':
         specifier: 'catalog:'
-        version: 2.15.1(patch_hash=c5h5iyttte3plwcfezjxhvclw4)(typescript@5.8.2)(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))
+        version: 2.15.1(patch_hash=ee3b390f613ebe10ffbb1e7bb9e3c700f403ec2df024324aae33fd4701370f8d)(typescript@5.8.2)(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))
       '@vueuse/core':
         specifier: 'catalog:'
         version: 13.0.0(vue@3.5.13(typescript@5.8.2))
@@ -419,6 +422,9 @@ importers:
       reka-ui:
         specifier: 'catalog:'
         version: 2.1.0(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+      vaul-vue:
+        specifier: 'catalog:'
+        version: 0.4.1(reka-ui@2.1.0(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       vitepress:
         specifier: ^1.5.0 || ^2.0.0-alpha.3
         version: 2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0)
@@ -1743,6 +1749,9 @@ packages:
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
 
+  '@types/web-bluetooth@0.0.20':
+    resolution: {integrity: sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==}
+
   '@types/web-bluetooth@0.0.21':
     resolution: {integrity: sha512-oIQLCGWtcFZy2JW77j9k8nHzAOpqMHLQejDA48XXMWH6tjCQHz5RCFz1bzsmROyL6PUm+LLnUiI4BCn221inxA==}
 
@@ -2098,6 +2107,9 @@ packages:
   '@vue/shared@3.5.13':
     resolution: {integrity: sha512-/hnE/qP5ZoGpol0a5mDi45bOd7t3tjYJBjsgCsivow7D48cJeV5l05RD82lPqi7gRiphZM37rnhW1l6ZoCNNnQ==}
 
+  '@vueuse/core@10.11.1':
+    resolution: {integrity: sha512-guoy26JQktXPcz+0n3GukWIy/JDNKti9v6VEMu6kV2sYBsWuGiTU8OWdg+ADfUbHg3/3DlqySDe7JmdHrktiww==}
+
   '@vueuse/core@12.8.2':
     resolution: {integrity: sha512-HbvCmZdzAu3VGi/pWYm5Ut+Kd9mn1ZHnn4L5G8kOQTPs/IwIAmJoBrmYk2ckLArgMXZj0AW3n5CAejLUO+PhdQ==}
 
@@ -2147,11 +2159,17 @@ packages:
       universal-cookie:
         optional: true
 
+  '@vueuse/metadata@10.11.1':
+    resolution: {integrity: sha512-IGa5FXd003Ug1qAZmyE8wF3sJ81xGLSqTqtQ6jaVfkeZ4i5kS2mwQF61yhVqojRnenVew5PldLyRgvdl4YYuSw==}
+
   '@vueuse/metadata@12.8.2':
     resolution: {integrity: sha512-rAyLGEuoBJ/Il5AmFHiziCPdQzRt88VxR+Y/A/QhJ1EWtWqPBBAxTAFaSkviwEuOEZNtW8pvkPgoCZQ+HxqW1A==}
 
   '@vueuse/metadata@13.0.0':
     resolution: {integrity: sha512-TRNksqmvtvqsuHf7bbgH9OSXEV2b6+M3BSN4LR5oxWKykOFT9gV78+C2/0++Pq9KCp9KQ1OQDPvGlWNQpOb2Mw==}
+
+  '@vueuse/shared@10.11.1':
+    resolution: {integrity: sha512-LHpC8711VFZlDaYUXEBbFBCQ7GS3dVU9mjOhhMhXP6txTV4EhYQg/KGnQuvt/sPAtoUKq7VVUnL6mVtFoL42sA==}
 
   '@vueuse/shared@12.8.2':
     resolution: {integrity: sha512-dznP38YzxZoNloI0qpEfpkms8knDtaoQ6Y/sfS0L7Yki4zh40LFHEhur0odJC6xTHG5dxWVPiUWBXn+wCG2s5w==}
@@ -4397,6 +4415,7 @@ packages:
 
   rspack-resolver@1.2.2:
     resolution: {integrity: sha512-Fwc19jMBA3g+fxDJH2B4WxwZjE0VaaOL7OX/A4Wn5Zv7bOD/vyPZhzXfaO73Xc2GAlfi96g5fGUa378WbIGfFw==}
+    deprecated: Please migrate to the brand new `@rspack/resolver` or `unrs-resolver` instead
 
   run-applescript@7.0.0:
     resolution: {integrity: sha512-9by4Ij99JUr/MCFBUkDKLWK3G9HVXmabKz9U5MlIAIuvuzkiOicRYs8XJLxX+xahD+mLiiCYDqF9dKAgtzKP1A==}
@@ -4884,6 +4903,12 @@ packages:
 
   validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
+
+  vaul-vue@0.4.1:
+    resolution: {integrity: sha512-A6jOWOZX5yvyo1qMn7IveoWN91mJI5L3BUKsIwkg6qrTGgHs1Sb1JF/vyLJgnbN1rH4OOOxFbtqL9A46bOyGUQ==}
+    peerDependencies:
+      reka-ui: ^2.0.0
+      vue: ^3.3.0
 
   vfile-message@4.0.2:
     resolution: {integrity: sha512-jRDZ1IMLttGj41KcZvlrYAaI3CfqpLpfpf+Mfig13viT6NKvRzWZ+lXz0Y5D60w6uJIBAOGq9mSHf0gktF0duw==}
@@ -6104,7 +6129,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@nolebase/vitepress-plugin-git-changelog@2.15.1(patch_hash=c5h5iyttte3plwcfezjxhvclw4)(typescript@5.8.2)(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))':
+  '@nolebase/vitepress-plugin-git-changelog@2.15.1(patch_hash=ee3b390f613ebe10ffbb1e7bb9e3c700f403ec2df024324aae33fd4701370f8d)(typescript@5.8.2)(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))':
     dependencies:
       '@iconify-json/octicon': 1.2.5
       '@nolebase/ui': 2.15.1(typescript@5.8.2)(vitepress@2.0.0-alpha.4(@algolia/client-search@5.20.3)(@types/node@22.13.10)(axios@1.8.3)(jiti@2.4.2)(less@4.2.2)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))
@@ -6394,6 +6419,8 @@ snapshots:
   '@types/tough-cookie@4.0.5': {}
 
   '@types/unist@3.0.3': {}
+
+  '@types/web-bluetooth@0.0.20': {}
 
   '@types/web-bluetooth@0.0.21': {}
 
@@ -6917,6 +6944,16 @@ snapshots:
 
   '@vue/shared@3.5.13': {}
 
+  '@vueuse/core@10.11.1(vue@3.5.13(typescript@5.8.2))':
+    dependencies:
+      '@types/web-bluetooth': 0.0.20
+      '@vueuse/metadata': 10.11.1
+      '@vueuse/shared': 10.11.1(vue@3.5.13(typescript@5.8.2))
+      vue-demi: 0.14.10(vue@3.5.13(typescript@5.8.2))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
   '@vueuse/core@12.8.2(typescript@5.8.2)':
     dependencies:
       '@types/web-bluetooth': 0.0.21
@@ -6944,9 +6981,18 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
+  '@vueuse/metadata@10.11.1': {}
+
   '@vueuse/metadata@12.8.2': {}
 
   '@vueuse/metadata@13.0.0': {}
+
+  '@vueuse/shared@10.11.1(vue@3.5.13(typescript@5.8.2))':
+    dependencies:
+      vue-demi: 0.14.10(vue@3.5.13(typescript@5.8.2))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
 
   '@vueuse/shared@12.8.2(typescript@5.8.2)':
     dependencies:
@@ -10188,6 +10234,14 @@ snapshots:
     dependencies:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
+
+  vaul-vue@0.4.1(reka-ui@2.1.0(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2)):
+    dependencies:
+      '@vueuse/core': 10.11.1(vue@3.5.13(typescript@5.8.2))
+      reka-ui: 2.1.0(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+      vue: 3.5.13(typescript@5.8.2)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
 
   vfile-message@4.0.2:
     dependencies:

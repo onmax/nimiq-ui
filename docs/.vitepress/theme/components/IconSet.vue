@@ -144,16 +144,16 @@ function selectColor(c: Color) {
 
   <ClientOnly>
     <Teleport to="#widget" defer>
-      <div class="nq-raw" h-full f-pb-md flex="~ col">
-        <header v-if="!selectedIcon" flex="col gap-16 items-start">
+      <div class="nq-raw" h-full f-pb-md flex="~ col" max-md:f-p-xs of-y-auto>
+        <header v-if="!selectedIcon" flex="~ md:col gap-16 items-start">
           <div stack f-p-md rounded-16 outline="dashed 3 offset--3 neutral-300" w-max>
             <div size-64 />
           </div>
-          <p f-mt-sm f-text-xs pl-4 text-neutral-800 font-semibold>
+          <p f-mt-sm f-text-xs pl-4 text-neutral-800 font-semibold shrink-0>
             Select an icon
           </p>
 
-          <div flex="~ items-center gap-12" f-mt-sm>
+          <div flex="~ wrap items-center gap-12" f-mt-sm>
             <button
               v-for="c in colors" :key="c" shrink-0 size-21 rounded-full outline="~ 1 neutral/20"
               :data-active="activeColor === c ? '' : undefined"
@@ -168,7 +168,7 @@ function selectColor(c: Color) {
         </header>
         <template v-else>
           <header
-            flex="col gap-16 items-start"
+            flex="~ md:col gap-16 items-start"
             :style="`--c: rgb(var(--nq-${activeColor}));--c2: rgb(var(--nq-${activeColor}-400));`"
           >
             <div
@@ -182,17 +182,23 @@ function selectColor(c: Color) {
             >
               <Icon :icon="selectedIcon" text="$c" />
             </div>
-            <div flex="~ items-center gap-12" f-mt-sm>
-              <button
-                v-for="c in colors" :key="c" shrink-0 size-21 rounded-full outline="~ 1 neutral/20"
-                :data-active="activeColor === c ? '' : undefined"
-                :class="{ 'op-30 hocus:op-80': c !== activeColor || (isLogo && !isMono) }" transition-colors
-                :style="`background-color: rgba(var(--nq-${c}));`" @click="selectColor(c)"
-              />
+            <div>
+              <div flex="~ items-center wrap gap-12" f-mt-sm>
+                <button
+                  v-for="c in colors" :key="c" shrink-0 size-21 rounded-full outline="~ 1 neutral/20"
+                  :data-active="activeColor === c ? '' : undefined"
+                  :class="{ 'op-30 hocus:op-80': c !== activeColor || (isLogo && !isMono) }" transition-colors
+                  :style="`background-color: rgba(var(--nq-${c}));`" @click="selectColor(c)"
+                />
 
-              <button v-if="isLogo" stack bg="neutral-500 data-active:neutral" text-neutral-0 size-21 transition-opacity aspect-square rounded-full :data-state="!isMono ? 'active' : ''" @click="rotateLogoIcon">
-                <span block :class="isMono ? 'i-tabler:paint' : isWhite ? 'i-tabler:paint-off' : !hasWhite ? 'i-nimiq:moon' : 'i-tabler:paint-off'" />
-              </button>
+                <button v-if="isLogo" stack bg="neutral-500 data-active:neutral" text-neutral-0 size-21 transition-opacity aspect-square rounded-full :data-state="!isMono ? 'active' : ''" @click="rotateLogoIcon">
+                  <span block :class="isMono ? 'i-tabler:paint' : isWhite ? 'i-tabler:paint-off' : !hasWhite ? 'i-nimiq:moon' : 'i-tabler:paint-off'" />
+                </button>
+              </div>
+
+              <p md:hidden mt-10 font-semibold>
+                <CodeBlock text-13 :code="`i-${selectedIcon}`" />
+              </p>
             </div>
           </header>
 
@@ -200,7 +206,7 @@ function selectColor(c: Color) {
             <p f-mt-md nq-label text="9 neutral-700">
               Copy as
             </p>
-            <p mt-4 font-semibold>
+            <p mt-4 font-semibold max-md:hidden>
               <CodeBlock text-13 :code="`i-${selectedIcon}`" />
             </p>
             <div flex="~ items-center gap-$f-gap" f-my-2xs f="$gap $gap-min-8 $gap-max-12">

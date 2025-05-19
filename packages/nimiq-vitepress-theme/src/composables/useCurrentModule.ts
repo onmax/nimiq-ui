@@ -8,8 +8,8 @@ export const useCurrentModule = createSharedComposable(() => {
 
   const route = useRoute()
 
-  const currentDocModule = computed<NimiqVitepressThemeNav>(() => {
-    const module = theme.value.modules.find(module => route.path.startsWith(withBase(`/${module.subpath}`))) || theme.value.modules[0]
+  const currentDocModule = computed<NimiqVitepressThemeNav | undefined>(() => {
+    const module = theme.value.modules.find(module => route.path.startsWith(withBase(`/${module.subpath}`)))
     return module
   })
 

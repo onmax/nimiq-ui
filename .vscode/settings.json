@@ -42,5 +42,6 @@
     "json",
     "jsonc",
     "yaml"
-  ]
+  ],
+  "unocss.include": []
 }

@@ -14,7 +14,7 @@ import '../assets/github-callouts.css'
 const { page } = useData<NimiqVitepressThemeConfig>()
 const { breadcrumbs, showBreadcrumbs } = useBreadcrumbs()
 
-const { secondarySidebar } = useSecondarySidebar()
+const { showSecondarySidebar } = useSecondarySidebar()
 
 const { repoURL, showChangelog } = useChangelog()
 const editUrl = useEditUrl(page.value.relativePath)
@@ -29,7 +29,7 @@ function useEditUrl(relativePath: string): string {
 </script>
 
 <template>
-  <div :class="secondarySidebar ? 'f-pr-xs f-pl-xl' : 'f-px-xl'" f-pt-sm f="$px $px-min-48 $px-max-72" f-pb-sm flex="~ gap-16" relative h-full>
+  <div :class="showSecondarySidebar ? 'md:f-pr-xs md:f-pl-xl' : 'md:f-px-xl'" f-pt-sm f="$px $px-min-48 $px-max-72" pb="f-xl md:sm" flex="~ gap-16" relative h-full>
     <div flex="~ col" h-full flex-1 w="[calc(100vw-2*var(--nq-sidebar-width)-2*var(--f-px))]">
       <ul v-if="showBreadcrumbs" px-32 f-pb-lg flex="~ items-center gap-12">
         <li v-for="({ text, icon }, i) in breadcrumbs" :key="text" contents w-max>
@@ -39,11 +39,11 @@ function useEditUrl(relativePath: string): string {
         </li>
       </ul>
 
-      <article flex-1 class="nq-prose" f-pb-3xl var:nq-prose-max-width:none>
+      <article flex-1 class="nq-prose" f-pb="lg md:3xl" var:nq-prose-max-width:none>
         <Content max-w-none />
         <Changelog v-if="showChangelog" />
       </article>
-      <div flex="~ wrap justify-between gap-8" f-mt-xs f-text-xs>
+      <div flex="~ wrap justify-between gap-8" f-mt-xs f-text-xs px-32>
         <a :href="editUrl" target="_blank" rel="noopener" op-70 nq-arrow>
           Suggest changes on this page
         </a>

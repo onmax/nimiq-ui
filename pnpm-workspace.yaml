@@ -55,6 +55,7 @@ catalog:
   unocss-preset-scale-px: ^1.0.0-beta.15
   unplugin-icons: ^22.1.0
   unplugin-vue-components: ^28.4.1
+  vaul-vue: ^0.4.1
   vite: ^6.2.2
   vite-plugin-inspect: ^11.0.0
   vite-plugin-vue-devtools: ^7.7.2

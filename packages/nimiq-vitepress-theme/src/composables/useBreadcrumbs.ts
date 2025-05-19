@@ -24,6 +24,9 @@ export function useBreadcrumbs() {
   const breadcrumbs = computed<Breadcrumb[]>(() => {
     const items: Breadcrumb[] = []
 
+    if (!currentDocModule.value)
+      return items
+
     // 1. Add module info with link
     items.push({
       text: currentDocModule.value.text,
