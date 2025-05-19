@@ -11,6 +11,7 @@ const items = computed(() => {
     title: text,
     icon,
     href: withBase(defaultPageLink),
+    iconClass: 'relative size-32',
     description,
   } satisfies NqCardProps))
 })
