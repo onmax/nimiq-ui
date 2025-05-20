@@ -38,6 +38,7 @@
   "dependencies": {
     "@iconify/utils": "catalog:",
     "@unocss/preset-web-fonts": "catalog:",
+    "@unocss/preset-wind4": "^66.1.2",
     "nimiq-icons": "workspace:*",
     "ts-cssjson": "catalog:",
     "unocss": "catalog:"

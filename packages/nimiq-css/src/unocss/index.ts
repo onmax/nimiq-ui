@@ -1,6 +1,6 @@
 import type { LocalFontProcessorOptions } from '@unocss/preset-web-fonts/local'
+import type { Theme } from '@unocss/preset-wind4'
 import type { CSSObject, DynamicRule, Preflight, Preset, Rule } from 'unocss'
-import type { Theme } from 'unocss/preset-mini'
 import type { NimiqColor } from './colors'
 import type { NimiqIconsOptions } from './icons'
 import { existsSync, readFileSync } from 'node:fs'
@@ -414,15 +414,15 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
     variants,
     theme: {
       colors,
-      fontFamily: {
+      font: {
         sans: 'Mulish',
         mono: 'Fira Code',
       },
-      boxShadow: {
+      shadow: {
         DEFAULT: 'var(--nq-shadow)',
         lg: 'var(--nq-shadow-lg)',
       },
-      easing: {
+      ease: {
         nq: 'var(--nq-ease)',
       },
     },

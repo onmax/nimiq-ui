@@ -308,6 +308,9 @@ importers:
       '@unocss/preset-web-fonts':
         specifier: 'catalog:'
         version: 66.1.2
+      '@unocss/preset-wind4':
+        specifier: ^66.1.2
+        version: 66.1.2
       nimiq-icons:
         specifier: workspace:*
         version: link:../nimiq-icons/src/icons
