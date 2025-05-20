@@ -5,65 +5,62 @@ packages:
   - apps/*
   - docs/
 catalog:
-  '@antfu/eslint-config': ^4.10.1
-  '@antfu/ni': ^24.3.0
-  '@iconify-json/simple-icons': ^1.2.29
-  '@iconify-json/tabler': ^1.2.17
-  '@iconify-json/vscode-icons': ^1.2.16
+  '@antfu/eslint-config': ^4.13.1
+  '@antfu/ni': ^24.4.0
+  '@iconify-json/simple-icons': ^1.2.35
+  '@iconify-json/tabler': ^1.2.18
+  '@iconify-json/vscode-icons': ^1.2.21
   '@iconify/tools': ^4.1.2
   '@iconify/types': ^2.0.0
   '@iconify/utils': ^2.3.0
-  '@iconify/vue': ^4.3.0
-  '@nolebase/vitepress-plugin-git-changelog': ^2.15.1
-  '@shikijs/vitepress-twoslash': ^3.2.1
+  '@iconify/vue': ^5.0.0
+  '@nolebase/vitepress-plugin-git-changelog': ^2.17.0
+  '@shikijs/vitepress-twoslash': ^3.4.2
   '@types/jsdom': ^21.1.7
   '@types/markdown-it': ^14.1.2
-  '@types/node': ^22.13.10
-  '@unocss/cli': ^66.1.0-beta.6
-  '@unocss/eslint-config': ^66.1.0-beta.6
-  '@unocss/eslint-plugin': ^66.1.0-beta.6
-  '@unocss/preset-web-fonts': ^66.1.0-beta.6
-  '@unocss/reset': ^66.1.0-beta.6
-  '@vueuse/core': ^13.0.0
-  bumpp: ^10.1.0
+  '@types/node': ^22.15.19
+  '@unocss/cli': ^66.1.2
+  '@unocss/eslint-config': ^66.1.2
+  '@unocss/eslint-plugin': ^66.1.2
+  '@unocss/preset-web-fonts': ^66.1.2
+  '@vueuse/core': ^13.2.0
+  bumpp: ^10.1.1
   colorjs.io: ^0.5.2
   consola: ^3.4.2
   defu: ^6.1.4
-  dotenv: ^16.4.7
-  eslint: ^9.22.0
+  dotenv: ^16.5.0
+  eslint: ^9.27.0
   eslint-plugin-format: ^1.0.1
   esno: ^4.8.0
-  iconify-icon: ^2.3.0
-  jsdom: ^26.0.0
-  lint-staged: ^15.5.0
+  iconify-icon: ^3.0.0
+  jsdom: ^26.1.0
+  lint-staged: ^16.0.0
   mark.js: ^8.11.1
   markdown-it: ^14.1.0
   minisearch: ^7.1.2
   pathe: ^2.0.3
-  reka-ui: ^2.1.0
+  reka-ui: ^2.2.1
   render-markdown-it-tokens: ^0.0.4
   rimraf: ^6.0.1
-  shiki: ^3.2.1
-  simple-git-hooks: ^2.11.1
+  shiki: ^3.4.2
+  simple-git-hooks: ^2.13.0
   ts-cssjson: ^3.0.1
-  typescript: ^5.8.2
+  typescript: ^5.8.3
   unbuild: ^3.5.0
-  unocss: ^66.1.0-beta.6
-  unocss-preset-animations: ^1.1.1
-  unocss-preset-fluid-sizing: ^1.0.0-beta.15
-  unocss-preset-onmax: ^1.0.0-beta.15
-  unocss-preset-scale-px: ^1.0.0-beta.15
+  unocss: ^66.1.2
+  unocss-preset-animations: ^1.2.1
+  unocss-preset-onmax: ^1.0.0-beta.23
   unplugin-icons: ^22.1.0
-  unplugin-vue-components: ^28.4.1
+  unplugin-vue-components: ^28.5.0
   vaul-vue: ^0.4.1
-  vite: ^6.2.2
-  vite-plugin-inspect: ^11.0.0
-  vite-plugin-vue-devtools: ^7.7.2
-  vitepress: ^2.0.0-alpha.4
-  vitepress-plugin-group-icons: ^1.3.8
-  vitest: ^3.0.9
-  vue: ^3.5.13
-  vue-router: ^4.5.0
+  vite: ^6.3.5
+  vite-plugin-inspect: ^11.1.0
+  vite-plugin-vue-devtools: ^7.7.6
+  vitepress: ^2.0.0-alpha.5
+  vitepress-plugin-group-icons: ^1.5.5
+  vitest: ^3.1.4
+  vue: ^3.5.14
+  vue-router: ^4.5.1
 onlyBuiltDependencies:
   - esbuild
   - vue-demi

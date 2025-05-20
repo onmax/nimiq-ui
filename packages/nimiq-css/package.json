@@ -28,7 +28,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "scripts": {
     "build": "unbuild",
@@ -38,7 +38,6 @@
   "dependencies": {
     "@iconify/utils": "catalog:",
     "@unocss/preset-web-fonts": "catalog:",
-    "@unocss/reset": "catalog:",
     "nimiq-icons": "workspace:*",
     "ts-cssjson": "catalog:",
     "unocss": "catalog:"

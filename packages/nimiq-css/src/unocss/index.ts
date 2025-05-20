@@ -5,14 +5,10 @@ import type { NimiqColor } from './colors'
 import type { NimiqIconsOptions } from './icons'
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
-import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import { createLocalFontProcessor } from '@unocss/preset-web-fonts/local'
 import { toCSS, toJSON } from 'ts-cssjson'
-import {
-  definePreset,
-  presetWebFonts,
-} from 'unocss'
+import { definePreset, presetWebFonts } from 'unocss'
 import { getNimiqColors } from './colors'
 import { getNimiqIcons } from './icons'
 
@@ -24,12 +20,6 @@ export interface NimiqPresetOptions {
    * @default "nq-"
    */
   prefix?: string
-
-  /**
-   * Whether to reset the styles of the page
-   * @default 'tailwind-compat'
-   */
-  reset?: boolean | 'tailwind-compat' | 'tailwind' | 'eric-meyer' | 'normalize' | string
 
   /**
    * Whether to include the default Nimiq font locally and its paths
@@ -219,46 +209,8 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
 
   const rulesNames: string[] = []
 
-  const { reset = 'tailwind-compat' } = options
-  const resetLayer: Preflight = {
-    getCSS() {
-      if (reset === false)
-        return ''
-
-      let content: string
-      const fileName = reset === true ? 'tailwind-compat' : reset
-
-      try {
-        if (typeof reset === 'string' && !['tailwind-compat', 'tailwind', 'eric-meyer', 'normalize'].includes(reset)) {
-          // Custom file path provided
-          const customFilePath = resolve(process.cwd(), fileName)
-          if (!existsSync(customFilePath)) {
-            throw new Error(`Custom reset CSS file not found: ${customFilePath}`)
-          }
-          content = readFileSync(customFilePath, 'utf-8')
-        }
-        else {
-          // Default reset options
-          const resetFilePath = resolve(`node_modules/@unocss/reset/${fileName}.css`)
-          if (!existsSync(resetFilePath)) {
-            throw new Error(`Reset CSS file not found: ${resetFilePath}`)
-          }
-          content = readFileSync(resetFilePath, 'utf-8')
-        }
-      }
-      catch (error) {
-        console.warn(`Error reading reset CSS file: ${fileName}. ${JSON.stringify({ error })}`)
-        return ''
-      }
-
-      return wrapToLayer(prefix, 'reset', content)
-    },
-    layer: `${prefix}reset`,
-  }
-
   const { preflight = true, staticContent = false } = options
   const preflights: Preset['preflights'] = [
-    resetLayer,
     {
       layer: `${prefix}colors`,
       getCSS: () => wrapToLayer(prefix, 'colors', readContent('colors')),
@@ -439,16 +391,16 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
     layer: `${prefix}layer-definition`,
     getCSS: () => {
       const layers = [
-        reset && 'reset',
-        'colors',
-        preflight && 'preflight',
-        staticContent && 'static-content',
-        typography && 'typography',
-        utilities && 'utilities',
-        'variants', // To ensure that the rules that have variants are applied after the rules that don't have variants
+        'tw-reset',
+        `${prefix}colors`,
+        preflight && `${prefix}preflight`,
+        staticContent && `${prefix}static-content`,
+        typography && `${prefix}typography`,
+        utilities && `${prefix}utilities`,
+        `${prefix}variants`, // To ensure that the rules that have variants are applied after the rules that don't have variants
       ].filter(Boolean) as string[]
 
-      return `@layer ${layers.map(layer => `${prefix}${layer}`).join(', ')};`
+      return `@layer ${layers.join(', ')};`
     },
   }
   preflights.unshift(layerDefinition)
@@ -480,8 +432,8 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
     presets,
     rules,
     layers: {
-      [`${prefix}layer-definition`]: -101,
-      [`${prefix}reset`]: -100,
+      [`${prefix}layer-definition`]: -301,
+      [`tw-reset`]: -300,
       [`${prefix}colors`]: -50,
       [`${prefix}preflight`]: -40,
       components: -1,
