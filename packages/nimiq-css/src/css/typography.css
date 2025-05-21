@@ -95,8 +95,8 @@
     }
 
     &:where(h1 + *:not(:where(h1, h2, h3, h4))) {
-      --margin-min-lh: 7;
-      --margin-max-lh: 7.5;
+      --margin-min-lh: 4.6667;
+      --margin-max-lh: 5.0;
       margin-top: var(--nq-m-size);
     }
 
@@ -108,12 +108,12 @@
 
       margin-top: var(--nq-m-size);
       margin-bottom: 24px;
-      --margin-min-lh: 5.5;
-      --margin-max-lh: 6;
+      --margin-min-lh: 4.2308;
+      --margin-max-lh: 4.6154;
 
       &:where(h1 + h2) {
-        --margin-min-lh: 2.5;
-        --margin-max-lh: 3;
+        --margin-min-lh: 1.9231;
+        --margin-max-lh: 2.3077;
       }
     }
 
@@ -125,12 +125,12 @@
 
       margin-bottom: 24px;
       margin-top: var(--nq-m-size);
-      --margin-min-lh: 5.5;
-      --margin-max-lh: 6;
+      --margin-min-lh: 4.2308;
+      --margin-max-lh: 4.6154;
 
       &:where(h2 + h3) {
-        --margin-min-lh: 2;
-        --margin-max-lh: 2.25;
+        --margin-min-lh: 1.5385;
+        --margin-max-lh: 1.7308;
       }
     }
 
@@ -142,13 +142,13 @@
 
       margin-top: var(--nq-m-size);
       margin-bottom: 24px;
-      --margin-min-lh: 5.5;
-      --margin-max-lh: 6;
+      --margin-min-lh: 4.2308;
+      --margin-max-lh: 4.6154;
     }
 
     &:where(h3 + h4) {
-      --margin-min-lh: 2;
-      --margin-max-lh: 2.25;
+      --margin-min-lh: 1.5385;
+      --margin-max-lh: 1.7308;
     }
 
     /* Anchors in headings */
@@ -230,8 +230,8 @@
 
     &:where(blockquote) {
       background: rgb(var(--nq-green-400));
-      --margin-min-lh: 0.875;
-      --margin-max-lh: 1;
+      --margin-min-lh: 0.5833;
+      --margin-max-lh: 0.6667;
       padding: var(--nq-m-size);
       border-radius: 6px;
       box-shadow: 0 0 0 1.5px rgb(var(--nq-green-600));
@@ -244,19 +244,19 @@
 
     &:where(img, video, iframe) {
       border-radius: 6px;
-      --margin-min-lh: 1.125;
-      --margin-max-lh: 1.375;
+      --margin-min-lh: 0.75;
+      --margin-max-lh: 0.9167;
       margin-top: var(--nq-m-size);
 
       &:has(+ figcaption) {
-        --margin-min-lh: 0.75;
-        --margin-max-lh: 1;
+        --margin-min-lh: 0.5;
+        --margin-max-lh: 0.6667;
         margin-bottom: var(--nq-m-size);
       }
 
       &:not(:has(+ figcaption)) {
-        --margin-min-lh: 1.125;
-        --margin-max-lh: 1.375;
+        --margin-min-lh: 0.75;
+        --margin-max-lh: 0.9167;
         margin-bottom: var(--nq-m-size);
       }
     }
@@ -395,8 +395,8 @@
       width: 100%;
       --font-size-min-em: 0.75;
       --font-size-max-em: 0.875;
-      --margin-min-lh: 1.25;
-      --margin-max-lh: 1.5;
+      --margin-min-lh: 0.8333;
+      --margin-max-lh: 1.0;
       margin-top: var(--nq-m-size);
       margin-bottom: var(--nq-m-size);
       padding: 20px 24px;
@@ -431,8 +431,8 @@
     }
 
     table {
-      --margin-min-lh: 1.5;
-      --margin-max-lh: 2;
+      --margin-min-lh: 1.0;
+      --margin-max-lh: 1.3333;
       margin-bottom: var(--nq-m-size);
       margin-top: var(--nq-m-size);
       display: block;
@@ -487,8 +487,8 @@
     }
 
     hr {
-      --margin-min-lh: 1.25;
-      --margin-max-lh: 1.5;
+      --margin-min-lh: 0.8333;
+      --margin-max-lh: 1.0;
       margin: var(--nq-m-size) auto;
       width: 128px;
       border-color: rgb(var(--nq-neutral-500));
@@ -498,8 +498,8 @@
       /* TODO Animate open/closing https://developer.chrome.com/docs/css-ui/animate-to-height-auto#animate_the_details_element */
       border-radius: 6px;
       background-color: rgb(var(--nq-neutral-200));
-      --margin-min-lh: 1.125;
-      --margin-max-lh: 1.375;
+      --margin-min-lh: 0.75;
+      --margin-max-lh: 0.9167;
       margin-top: var(--nq-m-size);
       margin-bottom: var(--nq-m-size);
       color: rgb(var(--nq-neutral-900));
