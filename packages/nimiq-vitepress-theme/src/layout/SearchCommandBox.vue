@@ -141,7 +141,7 @@ function formMarkRegex(terms: Set<string>) {
 
     <ListboxContent
       :ref="(node) => { if (node && '$el' in node){ resultsEl = node.$el } }"
-      as="ul" max-h-55vh of-auto empty="hidden md:block"
+      as="ul" md:max-h-55vh of-auto empty="hidden md:block"
     >
       <ListboxItem
         v-for="p in results" :key="p.id" :value="p.id"
