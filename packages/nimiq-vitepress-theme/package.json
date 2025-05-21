@@ -71,7 +71,6 @@
   "dependencies": {
     "@iconify-json/tabler": "catalog:",
     "@iconify-json/vscode-icons": "catalog:",
-    "@nolebase/vitepress-plugin-git-changelog": "catalog:",
     "@vueuse/core": "catalog:",
     "mark.js": "catalog:",
     "minisearch": "catalog:",
@@ -83,6 +82,7 @@
   },
   "devDependencies": {
     "@iconify/utils": "catalog:",
+    "@nolebase/vitepress-plugin-git-changelog": "catalog:",
     "@types/markdown-it": "catalog:",
     "@unocss/cli": "catalog:",
     "bumpp": "catalog:",

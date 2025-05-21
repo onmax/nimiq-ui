@@ -2,7 +2,6 @@ import type { Plugin } from 'vite'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { GitChangelog } from '@nolebase/vitepress-plugin-git-changelog/vite'
 import UnoCSS from 'unocss/vite'
 
 import { defineConfig } from 'vite'
@@ -13,7 +12,7 @@ import { NimiqVitepressVitePlugin } from '../packages/nimiq-vitepress-theme/src/
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-export default defineConfig({
+export default defineConfig(async () => ({
   resolve: {
     alias: {
       'nimiq-vitepress-theme': resolve(__dirname, '../packages/nimiq-vitepress-theme/src/'),
@@ -21,15 +20,8 @@ export default defineConfig({
   },
   plugins: [
     VueDevTools() as Plugin,
-    Inspect({
-      build: true,
-      outputDir: '.vite-inspect',
-    }),
+    Inspect(),
     UnoCSS(),
-
-    GitChangelog({
-      repoURL: 'https://github.com/onmax/nimiq-ui',
-    }),
     NimiqVitepressVitePlugin(),
   ],
-})
+}))

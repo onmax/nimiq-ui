@@ -18,7 +18,7 @@ catalog:
   '@shikijs/vitepress-twoslash': ^3.4.2
   '@types/jsdom': ^21.1.7
   '@types/markdown-it': ^14.1.2
-  '@types/node': ^22.15.19
+  '@types/node': ^22.15.21
   '@unocss/cli': ^66.1.2
   '@unocss/eslint-config': ^66.1.2
   '@unocss/eslint-plugin': ^66.1.2
@@ -49,7 +49,7 @@ catalog:
   unbuild: ^3.5.0
   unocss: ^66.1.2
   unocss-preset-animations: ^1.2.1
-  unocss-preset-onmax: ^1.0.0-beta.23
+  unocss-preset-onmax: ^1.0.0-beta.25
   unplugin-icons: ^22.1.0
   unplugin-vue-components: ^28.5.0
   vaul-vue: ^0.4.1

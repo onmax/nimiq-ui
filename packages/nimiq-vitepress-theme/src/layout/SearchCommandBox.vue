@@ -29,8 +29,11 @@ interface Result {
   text?: string
 }
 
-onMounted(() => {
-  import('@localSearchIndex').then(m => searchIndexData.value = m.default)
+onMounted(async () => {
+  // @ts-expect-error internal function
+  import('@localSearchIndex').then((m) => {
+    searchIndexData.value = m.default
+  })
 })
 
 const mark = computedAsync(async () => {
@@ -129,46 +132,39 @@ function formMarkRegex(terms: Set<string>) {
 
 <template>
   <ListboxRoot ref="listboxRef">
-    <div w-full f-px-sm flex="~ items-center">
-      <ListboxFilter v-model="filterText" nq-input-box w-full bg-transparent flex-1 placeholder="Search documentation" auto-focus />
-      <DialogClose>
-        <div i-nimiq:cross text-18 />
+    <div w-full flex="~ items-center" relative f-p-2xs>
+      <ListboxFilter v-model="filterText" rounded-3 nq-input-box of-hidden w-full bg-transparent flex-1 placeholder="Search documentation" auto-focus border="none" outline="8 ~ neutral-500 hocus:blue" transition-outline-color />
+      <DialogClose absolute right-0 size-48 stack cursor-pointer>
+        <div i-nimiq:cross text="10 group-focus-within:blue neutral-700" right-16 mx-auto />
       </DialogClose>
     </div>
 
     <ListboxContent
-      :ref="(node) => {
-        if (node && '$el' in node) {
-          resultsEl = node.$el
-        }
-      }"
-      as="ul" max-h-55vh of-auto border="t md:y neutral-400 md:empty:t-0" empty="hidden md:block"
+      :ref="(node) => { if (node && '$el' in node){ resultsEl = node.$el } }"
+      as="ul" max-h-55vh of-auto empty="hidden md:block"
     >
       <ListboxItem
         v-for="p in results" :key="p.id" :value="p.id"
         class="data-[highlighted]:bg-blue-400 data-[highlighted]:text-blue data-[highlighted]:font-semibold" as-child @select="emit('close')"
       >
-        <a :href="p.id" inline-flex f-p-sm f-p-xs w-full>
+        <a :href="p.id" inline-flex f-p-sm f-p-xs w-full group>
           <div flex="~ items-center wrap">
-            <span v-for="(t, index) in p.titles" :key="index" flex="~ items-center">
+            <span v-for="(t, index) in p.titles" :key="index" flex="~ items-center" font-normal>
               <span v-html="t" />
-              <div i-nimiq:chevron-right />
+              <div i-nimiq:chevron-right mx-8 text="8 neutral-700 group-hocus:blue" />
             </span>
-            <span>
-              <span class="text" v-html="p.title" />
+            <span font-normal>
+              <span v-html="p.title" />
             </span>
           </div>
         </a>
       </ListboxItem>
 
-      <li
-        v-if="filterText && !results.length && enableNoResults"
-        flex="~ items-center justify-center" text-blue f-p-sm f-text-sm
-      >
+      <li v-if="filterText && !results.length && enableNoResults" flex="~ items-center justify-center" f-p-sm f-text-sm>
         No results for "<strong>{{ filterText }}</strong>"
       </li>
 
-      <li v-else-if="!filterText && !results.length" f-text-xs text="neutral-800 center" f-py-md>
+      <li v-else-if="!filterText && !results.length" italic text="f-xs neutral-700 center" f-py-md>
         Start typing to search
       </li>
     </ListboxContent>
@@ -196,3 +192,9 @@ function formMarkRegex(terms: Set<string>) {
     </div>
   </ListboxRoot>
 </template>
+
+<style scoped>
+:global([data-markjs]) {
+  --uno: 'bg-blue rounded-2 px-2 text-white pb-1';
+}
+</style>

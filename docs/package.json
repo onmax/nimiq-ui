@@ -27,7 +27,6 @@
     "@iconify-json/simple-icons": "catalog:",
     "@iconify-json/tabler": "catalog:",
     "@iconify/utils": "catalog:",
-    "@nolebase/vitepress-plugin-git-changelog": "catalog:",
     "@shikijs/vitepress-twoslash": "catalog:",
     "@vueuse/core": "catalog:",
     "nimiq-css": "workspace:*",

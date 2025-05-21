@@ -38,6 +38,7 @@ export interface NimiqVitepressThemeConfig {
   }[]
   showLastUpdated?: boolean
   showEditContent?: boolean
+  search?: { provider: 'local' }
 }
 
 export interface NimiqVitepressFrontmatter {

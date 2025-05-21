@@ -1,4 +1,4 @@
-import type { CSSValue, PresetWind3Theme, Rule } from 'unocss'
+import type { CSSValue, PresetWind4Theme, Rule } from 'unocss'
 import { encodeSvgForCss, getIconData, iconToHTML, iconToSVG, replaceIDs } from '@iconify/utils'
 import nimiqIconsJson from 'nimiq-icons/icons.json'
 
@@ -6,8 +6,8 @@ export interface NimiqIconsOptions {
 
 }
 
-export function getNimiqIcons(_options: NimiqIconsOptions): { rules: Rule<PresetWind3Theme>[], iconsNames: string[] } {
-  const rules: Rule<PresetWind3Theme>[] = [
+export function getNimiqIcons(_options: NimiqIconsOptions): { rules: Rule<PresetWind4Theme>[], iconsNames: string[] } {
+  const rules: Rule<PresetWind4Theme>[] = [
     [
       /^i-nimiq:(.*)$/,
       async function* ([, name], { symbols }) {

@@ -8,6 +8,7 @@ export default defineNimiqVitepressConfig({
   description: 'Build awesome apps with the Nimiq Style',
   base: '/nimiq-ui/',
   themeConfig: {
+    search: { provider: 'local' },
     modules: [
       {
         subpath: 'nimiq-css',

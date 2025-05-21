@@ -1,6 +1,6 @@
 import type { PresetWind3Theme } from 'unocss'
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
-import { defineConfig, presetIcons, transformerDirectives } from 'unocss'
+import { defineConfig, presetIcons } from 'unocss'
 import { presetOnmax } from 'unocss-preset-onmax'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { presetNimiq } from '../packages/nimiq-css/src/index'
@@ -30,8 +30,5 @@ export default defineConfig<PresetWind3Theme>({
         custom: FileSystemIconLoader('public/assets/icons'),
       },
     }),
-  ],
-  transformers: [
-    transformerDirectives(),
   ],
 })
