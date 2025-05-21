@@ -1,7 +1,7 @@
 {
   "name": "nimiq-vitepress-theme",
   "type": "module",
-  "version": "1.0.0-beta.35",
+  "version": "1.0.0-beta.36",
   "packageManager": "pnpm@10.2.1",
   "description": "Nimiq UI theme for VitePress",
   "author": "onmax",
@@ -71,6 +71,7 @@
   "dependencies": {
     "@iconify-json/tabler": "catalog:",
     "@iconify-json/vscode-icons": "catalog:",
+    "@nolebase/vitepress-plugin-git-changelog": "catalog:",
     "@vueuse/core": "catalog:",
     "mark.js": "catalog:",
     "minisearch": "catalog:",
@@ -82,7 +83,6 @@
   },
   "devDependencies": {
     "@iconify/utils": "catalog:",
-    "@nolebase/vitepress-plugin-git-changelog": "catalog:",
     "@types/markdown-it": "catalog:",
     "@unocss/cli": "catalog:",
     "bumpp": "catalog:",
