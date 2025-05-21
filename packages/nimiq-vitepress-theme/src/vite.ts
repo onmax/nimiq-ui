@@ -1,24 +1,21 @@
 import type { Plugin } from 'vite'
-import { exec } from 'node:child_process'
-import { promisify } from 'node:util'
 import { GitChangelog } from '@nolebase/vitepress-plugin-git-changelog/vite'
-import { dirname } from 'pathe'
 import { groupIconVitePlugin } from './code-groups/vite'
 
-export interface NimiqVitepressVitePluginOptions {
+type GitChangelogOptions = Parameters<typeof GitChangelog>[0]
 
+export interface NimiqVitepressVitePluginOptions {
+  gitChangelog: GitChangelogOptions | false
 }
 
-const execAsync = promisify(exec)
-
-export async function NimiqVitepressVitePlugin(_options: NimiqVitepressVitePluginOptions = {}): Promise<Plugin[]> {
+export async function NimiqVitepressVitePlugin({ gitChangelog }: NimiqVitepressVitePluginOptions): Promise<Plugin[]> {
   const { resolveId, configureServer, load, transform } = groupIconVitePlugin()
 
   const externalPlugins: Plugin[] = []
 
-  const repoURL = await execAsync('git config --get remote.origin.url', { cwd: dirname('.') }).then(result => result.stdout.trim()).catch(() => null)
-  if (repoURL)
-    externalPlugins.push(GitChangelog({ repoURL }))
+  if (gitChangelog !== false) {
+    externalPlugins.push(GitChangelog(gitChangelog))
+  }
 
   return [
     {

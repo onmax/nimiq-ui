@@ -22,6 +22,8 @@ export default defineConfig(async () => ({
     VueDevTools() as Plugin,
     Inspect(),
     UnoCSS(),
-    NimiqVitepressVitePlugin(),
+    NimiqVitepressVitePlugin({
+      gitChangelog: { repoURL: 'https://github.com/onmax/nimiq-ui' },
+    }),
   ],
 }))

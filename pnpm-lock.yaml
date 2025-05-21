@@ -383,6 +383,9 @@ importers:
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
         version: 1.2.21
+      '@nolebase/vitepress-plugin-git-changelog':
+        specifier: 'catalog:'
+        version: 2.17.0(patch_hash=ee3b390f613ebe10ffbb1e7bb9e3c700f403ec2df024324aae33fd4701370f8d)(typescript@5.8.3)(vitepress@2.0.0-alpha.5(@algolia/client-search@5.25.0)(@types/node@22.15.21)(axios@1.8.3)(jiti@2.4.2)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(react@18.3.1)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.3)(yaml@2.8.0))
       '@vueuse/core':
         specifier: 'catalog:'
         version: 13.2.0(vue@3.5.14(typescript@5.8.3))
@@ -414,9 +417,6 @@ importers:
       '@iconify/utils':
         specifier: 'catalog:'
         version: 2.3.0
-      '@nolebase/vitepress-plugin-git-changelog':
-        specifier: 'catalog:'
-        version: 2.17.0(patch_hash=ee3b390f613ebe10ffbb1e7bb9e3c700f403ec2df024324aae33fd4701370f8d)(typescript@5.8.3)(vitepress@2.0.0-alpha.5(@algolia/client-search@5.25.0)(@types/node@22.15.21)(axios@1.8.3)(jiti@2.4.2)(less@4.3.0)(markdown-it-mathjax3@4.3.2)(postcss@8.5.3)(react@18.3.1)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.3)(yaml@2.8.0))
       '@types/markdown-it':
         specifier: 'catalog:'
         version: 14.1.2
