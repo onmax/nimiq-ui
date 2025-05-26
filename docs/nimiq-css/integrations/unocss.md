@@ -2,6 +2,10 @@
 
 A preset with everything ready to use Nimiq CSS in your UnoCSS project.
 
+## Colors
+
+The Nimiq UnoCSS preset sources its color palette from the `nimiq-colors` package, ensuring all predefined Nimiq colors and their shades are available as utility classes. For example, you can use classes like `bg-blue-500` for backgrounds or `text-neutral-900` for text, corresponding to the shades defined in `nimiq-colors`. Refer to the [`nimiq-colors` documentation](../../nimiq-colors/index.md) for a full list of available colors and shades.
+
 ## Icons
 
 You can add the Nimiq icons to your project by importing the Nimiq icons CSS file.
