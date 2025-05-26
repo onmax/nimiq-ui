@@ -391,7 +391,7 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
     layer: `${prefix}layer-definition`,
     getCSS: () => {
       const layers = [
-        'tw-reset',
+        'preflights',
         `${prefix}colors`,
         preflight && `${prefix}preflight`,
         staticContent && `${prefix}static-content`,
@@ -433,7 +433,7 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
     rules,
     layers: {
       [`${prefix}layer-definition`]: -301,
-      [`tw-reset`]: -300,
+      preflights: -300,
       [`${prefix}colors`]: -50,
       [`${prefix}preflight`]: -40,
       components: -1,
