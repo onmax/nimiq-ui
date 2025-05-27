@@ -70,8 +70,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
       <hr w-full h-1.5 bg-neutral-200 f-mt-xs>
 
       <DefineSidebarItem v-slot="{ item: { text, link, icon } }">
-        <a :href="withBase(link!)" class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" data-active:font-bold transition-all data-active:text-blue data-active:bg-blue-400 group :class="{ 'nq-arrow after:op-70 hocus:after:op-100': isExternalLink(link!) }" transition-opacity :target="isExternalLink(link!) ? '_blank' : undefined">
-          <div v-if="isActive(page.relativePath, link)" aria-hidden absolute inset-y-0 bg-blue op-70 rounded-full w-2 z-2 transition-colors left="0 [[data-state=open]_&]:12" />
+        <a :href="withBase(link!)" class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" transition-all data-active:text-blue data-active:bg-blue-400 data-active:border-l-4 data-active:border-l-blue-500 group :class="{ 'nq-arrow after:op-70 hocus:after:op-100': isExternalLink(link!) }" transition-opacity :target="isExternalLink(link!) ? '_blank' : undefined">
           <div v-if="icon" :class="icon" f-text-sm text="neutral data-active:blue" op="70 group-hocus:100" transition-opacity mr-8 shrink-0 />
           <span flex-1 v-html="renderMarkdown(text)" />
         </a>
@@ -133,6 +132,6 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
 
 <style scoped>
 .sidebar-item {
-  --uno: 'f-text-xs py-8 md:py-6 rounded-4 flex justify-between items-center w-full hocus:!bg-neutral-300 data-active:hocus:!bg-blue-400 transition-colors';
+  --uno: 'f-text-xs pl-8 pr-8 py-8 md:py-6 rounded-4 flex justify-between items-center w-full hocus:!bg-neutral-300 data-active:hocus:!bg-blue-400 transition-colors';
 }
 </style>
