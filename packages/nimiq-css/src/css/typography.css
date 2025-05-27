@@ -159,7 +159,7 @@
       padding-right: 1rem;
       width: 100%;
       min-height: 1em;
-      color: rgb(var(--nq-neutral) / 1);
+      color: var(--nq-neutral);
 
       &::after {
         content: '#';
@@ -182,7 +182,7 @@
       }
 
       &:has(a:focus-visible) {
-        outline: 0.125rem solid rgb(var(--nq-blue));
+        outline: 0.125rem solid var(--nq-blue);
         outline-offset: 0.125rem;
       }
 
@@ -193,7 +193,7 @@
         font-size: inherit;
         font-weight: inherit;
         top: -6px;
-        color: rgb(var(--nq-neutral) / 1);
+        color: var(--nq-neutral);
 
         &::after {
           position: absolute;
@@ -216,25 +216,25 @@
 
     &:where(figure) {
       figcaption {
-        color: rgb(var(--nq-neutral-700));
+        color: var(--nq-neutral-700);
         --font-size-min-em: 0.75;
         --font-size-max-em: 0.875;
         font-weight: 700;
         line-height: 1.3125;
 
         :where(.dark, [data-theme='dark']) & {
-          color: rgb(var(--nq-white) / 0.8);
+          color: color-mix(in oklch, var(--nq-white) 80%, transparent);
         }
       }
     }
 
     &:where(blockquote) {
-      background: rgb(var(--nq-green-400));
+      background: var(--nq-green-400);
       --margin-min-lh: 0.5833;
       --margin-max-lh: 0.6667;
       padding: var(--nq-m-size);
       border-radius: 6px;
-      box-shadow: 0 0 0 1.5px rgb(var(--nq-green-600));
+      box-shadow: 0 0 0 1.5px var(--nq-green-600);
       font-weight: 600;
       transform: translateX(-8px);
       width: calc(100% + 16px);
@@ -401,17 +401,17 @@
       margin-bottom: var(--nq-m-size);
       padding: 20px 24px;
       border-radius: 6px;
-      outline: 1.5px solid rgb(var(--nq-neutral) / 0.08);
+      outline: 1.5px solid color-mix(in oklch, var(--nq-neutral) 8%, transparent);
     }
 
     kbd {
       padding: 0.25em 0.125em;
       --font-size-min: 0.75;
       --font-size-max: 0.875;
-      color: rgba(var(--nq-neutral-800) / 1);
-      background-color: rgba(var(--nq-neutral-200) / 1);
+      color: var(--nq-neutral-800);
+      background-color: var(--nq-neutral-200);
       border-radius: 0.25em;
-      box-shadow: 0 0 0 1px rgba(var(--nq-neutral-400) / 1);
+      box-shadow: 0 0 0 1px var(--nq-neutral-400);
       margin: 0 0.25em -0.25em 0.25em;
       white-space: nowrap;
       line-height: 1;
@@ -427,7 +427,7 @@
     &:where(a) {
       font-weight: 600;
       text-decoration: none;
-      color: rgb(var(--nq-blue) / 1);
+      color: var(--nq-blue);
     }
 
     table {
@@ -440,7 +440,7 @@
       border-spacing: 0;
       border-collapse: separate;
       border-radius: 6px;
-      border: 1px solid rgb(var(--nq-neutral-300));
+      border: 1px solid var(--nq-neutral-300);
       max-height: 90dvh;
       max-width: max-content;
       scroll-behavior: smooth;
@@ -464,8 +464,8 @@
         text-wrap: balance;
         white-space: nowrap;
         font-weight: 400;
-        color: rgb(var(--nq-neutral-800));
-        background-color: rgb(var(--nq-neutral-100));
+        color: var(--nq-neutral-800);
+        background-color: var(--nq-neutral-100);
       }
 
       tbody {
@@ -475,14 +475,14 @@
         }
 
         > tr:not(:last-child) td {
-          border-bottom: 1px solid rgb(var(--nq-neutral-300));
+          border-bottom: 1px solid var(--nq-neutral-300);
         }
       }
 
       /* Apply a border to the right of all but the last column */
       th:not(:last-child),
       td:not(:last-child) {
-        border-right: 1px solid rgb(var(--nq-neutral-300));
+        border-right: 1px solid var(--nq-neutral-300);
       }
     }
 
@@ -491,19 +491,19 @@
       --margin-max-lh: 1;
       margin: var(--nq-m-size) auto;
       width: 128px;
-      border-color: rgb(var(--nq-neutral-500));
+      border-color: var(--nq-neutral-500);
     }
 
     details {
       /* TODO Animate open/closing https://developer.chrome.com/docs/css-ui/animate-to-height-auto#animate_the_details_element */
       border-radius: 6px;
-      background-color: rgb(var(--nq-neutral-200));
+      background-color: var(--nq-neutral-200);
       --margin-min-lh: 0.75;
       --margin-max-lh: 0.9167;
       margin-top: var(--nq-m-size);
       margin-bottom: var(--nq-m-size);
-      color: rgb(var(--nq-neutral-900));
-      box-shadow: 0 0 0 1.5px rgb(var(--nq-neutral) / 0.1);
+      color: var(--nq-neutral-900);
+      box-shadow: 0 0 0 1.5px color-mix(in oklch, var(--nq-neutral) 10%, transparent);
 
       ::marker {
         color: transparent;

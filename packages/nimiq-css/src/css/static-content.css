@@ -6,12 +6,12 @@
 
 body:not(.nq-raw) {
   /* Base styles */
-  background-color: rgb(var(--nq-neutral-100) / 1);
+  background-color: var(--nq-neutral-100);
 
   --nq-max-width: 73rem;
 
   &:not(:where(.nq-no-color, [nq-no-color], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact])) {
-    color: rgb(var(--nq-neutral-800));
+    color: var(--nq-neutral-800);
   }
 
   :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *)):not(
@@ -63,7 +63,7 @@ body:not(.nq-raw) {
       font-weight: 700;
 
       *:not(.nq-no-color):not([nq-no-color]):not(.nq-no-color *):not([nq-no-color] *) & {
-        color: rgb(var(--nq-neutral));
+        color: var(--nq-neutral);
       }
 
       max-width: 33ch;
@@ -82,7 +82,7 @@ body:not(.nq-raw) {
 
       & + p {
         margin-top: 16px;
-        color: rgb(var(--nq-neutral-800) / 0.85);
+        color: color-mix(in oklch, var(--nq-neutral-800) 85%, transparent);
 
         max-width: 70ch;
 
@@ -105,7 +105,7 @@ body:not(.nq-raw) {
       font-size: var(--f-font-size);
 
       *:not(.nq-no-color):not([nq-no-color]):not(.nq-no-color *):not([nq-no-color] *) & {
-        color: rgb(var(--nq-neutral));
+        color: var(--nq-neutral);
       }
 
       & + p {
@@ -127,7 +127,7 @@ body:not(.nq-raw) {
 
       /* We change the color except if there is parent that change the color */
       *:not(.nq-no-color):not([nq-no-color]):not(.nq-no-color *):not([nq-no-color] *) & {
-        color: rgb(var(--nq-neutral));
+        color: var(--nq-neutral);
       }
     }
   }
