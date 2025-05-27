@@ -1,7 +1,6 @@
 import type { LocalFontProcessorOptions } from '@unocss/preset-web-fonts/local'
 import type { Theme } from '@unocss/preset-wind4'
 import type { CSSObject, DynamicRule, Preflight, Preset, Rule } from 'unocss'
-import type { NimiqColor } from './colors'
 import type { NimiqIconsOptions } from './icons'
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
@@ -9,7 +8,7 @@ import { fileURLToPath } from 'node:url'
 import { createLocalFontProcessor } from '@unocss/preset-web-fonts/local'
 import { toCSS, toJSON } from 'ts-cssjson'
 import { definePreset, presetWebFonts } from 'unocss'
-import { getNimiqColors } from './colors'
+import colors from '../colors'
 import { getNimiqIcons } from './icons'
 
 const DEFAULT_PREFIX = 'nq-'
@@ -205,8 +204,6 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
 
   const { prefix = DEFAULT_PREFIX } = options
 
-  const { gradients, colors } = getNimiqColors()
-
   const rulesNames: string[] = []
 
   const { preflight = true, staticContent = false } = options
@@ -235,16 +232,33 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
 
   const rules: Rule<Theme>[] = []
 
-  // The only way to add gradients is via rules
-  for (const [key, gradient, color] of gradients) {
-    const backgroundImage = { 'background-image': gradient }
-    const background = { 'background-color': colors[color as NimiqColor]?.DEFAULT || color } // This is the fallback color
-    rules.push([
-      key,
-      { ...background, ...backgroundImage },
-      { layer: `${prefix}colors` },
-    ])
-  }
+  preflights.push({
+    getCSS: () => ':root { color-scheme: light dark; }',
+    layer: `${prefix}preflight`,
+  })
+
+  const colorsWithGradientsRe = Object.entries(colors).filter(([, color]) => 'gradient' in color).map(([key]) => key).join('|')
+
+  const shortcuts: Preset['shortcuts'] = []
+  shortcuts.push(
+    [
+      new RegExp(`^bg-gradient-(${colorsWithGradientsRe})$`),
+      ([, c]) => `bg-radial-[at_100%_100%] from-${c}-gradient-from to-${c}-gradient-to`,
+      { layer: `${prefix}colors`, autocomplete: [`bg-gradient-(${colorsWithGradientsRe})`] },
+    ],
+
+    [
+      new RegExp(`^bg-gradient-(${colorsWithGradientsRe})-darkened$`),
+      ([, c]) => `bg-radial-[at_100%_100%] from-${c}-gradient-darkened-from to-${c}-gradient-darkened-to`,
+      { layer: `${prefix}colors`, autocomplete: [`bg-gradient-(${colorsWithGradientsRe})-darkened`] },
+    ],
+
+    [
+      new RegExp(`^bg-gradient-(${colorsWithGradientsRe})-hoverable`),
+      ([, c]) => `bg-radial-[at_100%_100%] from-${c}-gradient-from to-${c}-gradient-to hover:from-${c}-darkened-from hover hover:to-${c}-gradient-darkened-to focus-visible:from-${c}-darkened-from focus-visible:to-${c}-gradient-darkened-to ease-out transition-colors duration-300`,
+      { layer: `${prefix}colors`, autocomplete: [`bg-gradient-(${colorsWithGradientsRe})-hoverable`] },
+    ],
+  )
 
   if (utilities) {
     const { rules: _rules, rulesNames: _rulesNames } = cssToRules('utilities', { convertToAttributes: options.attributifyUtilities, prefix })
@@ -412,6 +426,7 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
     name: 'nimiq-preset',
     preflights,
     variants,
+    shortcuts,
     theme: {
       colors,
       font: {

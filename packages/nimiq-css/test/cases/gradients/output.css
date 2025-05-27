@@ -1,0 +1,22 @@
+/* layer: default */
+.bg-gradient-red-hoverable {
+  background-image: radial-gradient(at 100% 100%, var(--nq-red-gradient-from) 0%, var(--nq-red-gradient-to) 100%);
+  transition:
+    --nq-red-gradient-from 300ms ease-in-out,
+    --nq-red-gradient-to 300ms ease-in-out;
+}
+.bg-gradient-red-hoverable:hover,
+.bg-gradient-red-hoverable:focus-visible {
+  --nq-red-gradient-from: var(--nq-red-gradient-from-darkened);
+  --nq-red-gradient-to: var(--nq-red-gradient-to-darkened);
+}
+@property --nq-red-gradient-from {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #000;
+}
+@property --nq-red-gradient-to {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #000;
+}

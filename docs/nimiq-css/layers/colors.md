@@ -7,7 +7,6 @@ The Colors layer in `nimiq-css` ensures that these CSS variables for colors are 
 [View `nimiq-colors` source definitions](https://github.com/onmax/nimiq-ui/tree/main/packages/nimiq-colors/src/colors.ts){.nq-arrow .nq-pill-tertiary .nq-raw}
 [View generated CSS from `nimiq-colors`](https://github.com/onmax/nimiq-ui/tree/main/packages/nimiq-colors/dist/nimiq-colors.css){.nq-arrow .nq-pill-tertiary .nq-raw}
 
-
 ## Usage
 
 The necessary color CSS from `nimiq-colors` is automatically imported by `nimiq-css` via its main CSS file (`nimiq-css/dist/css/index.css`). You generally do not need to import it separately if you are using `nimiq-css`.

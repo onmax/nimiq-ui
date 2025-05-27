@@ -299,6 +299,9 @@ importers:
 
   packages/nimiq-colors:
     devDependencies:
+      '@antfu/ni':
+        specifier: ^24.4.0
+        version: 24.4.0
       ts-node:
         specifier: ^10.9.0
         version: 10.9.2(@types/node@22.15.21)(typescript@5.8.3)
@@ -317,6 +320,9 @@ importers:
       '@unocss/preset-wind4':
         specifier: ^66.1.2
         version: 66.1.2
+      nimiq-colors:
+        specifier: workspace:*
+        version: link:../nimiq-colors
       nimiq-icons:
         specifier: workspace:*
         version: link:../nimiq-icons/src/icons
