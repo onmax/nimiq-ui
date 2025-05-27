@@ -39,7 +39,6 @@
     "@iconify/utils": "catalog:",
     "@unocss/preset-web-fonts": "catalog:",
     "@unocss/preset-wind4": "^66.1.2",
-    "nimiq-colors": "workspace:*",
     "nimiq-icons": "workspace:*",
     "ts-cssjson": "catalog:",
     "unocss": "catalog:"
