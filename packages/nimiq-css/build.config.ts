@@ -15,10 +15,7 @@ export default defineBuildConfig([
     declaration: true,
     clean: true,
     hooks: {
-      'mkdist:done': async (ctx) => {
-        if (ctx.options.stub)
-          return
-
+      'mkdist:done': async () => {
         buildCSS()
       },
     },

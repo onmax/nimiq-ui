@@ -647,8 +647,8 @@
 }
 
 .nq-hoverable {
-  --nq-gradient-from: var(--nq-neutral-gradient-from);
-  --nq-gradient-to: var(--nq-neutral-gradient-to);
+  --nq-gradient-from: var(--nq-neutral-300);
+  --nq-gradient-to: color-mix(in oklch, var(--nq-neutral-300) 65%, transparent);
   background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
   color: var(--nq-neutral);
   border-radius: 0.5rem;

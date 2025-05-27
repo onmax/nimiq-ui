@@ -26,8 +26,9 @@ function setColorFormats() {
   const computedStyle = getComputedStyle(colorCard)?.backgroundColor || ''
 
   const colorInstance = new Color(computedStyle)
+  const rgbValues = colorInstance.to('srgb')
   activeColorFormats.value = {
-    rgb: `rgb(${colorInstance.r * 255}, ${colorInstance.g * 255}, ${colorInstance.b * 255})`,
+    rgb: `rgb(${Math.round(rgbValues.r * 255)}, ${Math.round(rgbValues.g * 255)}, ${Math.round(rgbValues.b * 255)})`,
     tailwind: `bg-${activeColor.value!.toLowerCase()}`,
     hsl: colorInstance.to('hsl').toString(),
     oklch: colorInstance.to('oklch').toString(),

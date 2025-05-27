@@ -283,12 +283,12 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
     const processors = fonts === true ? createLocalFontProcessor() : createLocalFontProcessor(fonts)
     presets.push(
       presetWebFonts({
+        themeKey: 'font',
         provider: 'google',
         fonts: {
           sans: 'Mulish:400,600,700',
           mono: 'Fira Code:400',
         },
-        // This will download the fonts and serve them locally
         processors,
       }),
     )

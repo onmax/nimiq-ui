@@ -97,6 +97,25 @@ export default defineConfig<PresetWind3Theme>({
     'bg-purple-500',
     'bg-purple-600',
     'bg-purple-1100',
+    // Gradient classes for all Nimiq colors
+    'bg-gradient-neutral',
+    'bg-gradient-neutral-darkened',
+    'bg-gradient-neutral-hoverable',
+    'bg-gradient-blue',
+    'bg-gradient-blue-darkened',
+    'bg-gradient-blue-hoverable',
+    'bg-gradient-green',
+    'bg-gradient-green-darkened',
+    'bg-gradient-green-hoverable',
+    'bg-gradient-gold',
+    'bg-gradient-gold-darkened',
+    'bg-gradient-gold-hoverable',
+    'bg-gradient-red',
+    'bg-gradient-red-darkened',
+    'bg-gradient-red-hoverable',
+    'bg-gradient-orange',
+    'bg-gradient-orange-darkened',
+    'bg-gradient-orange-hoverable',
   ],
   shortcuts: [
     ['stack', 'w-full grid grid-cols-1 grid-rows-1 children:row-span-full children:col-span-full children:self-center children:justify-self-center'],
@@ -106,10 +125,6 @@ export default defineConfig<PresetWind3Theme>({
     presetNimiq({
       utilities: true,
       attributifyUtilities: true,
-      fonts: {
-        fontAssetsDir: 'public/assets/fonts',
-        fontServeBaseUrl: 'assets/fonts',
-      },
       typography: true,
     }),
     presetIcons({
