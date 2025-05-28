@@ -41,6 +41,15 @@
     "vite": "catalog:build",
     "vitest": "catalog:test"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "pncat",
+      "simple-git-hooks",
+      "unrs-resolver",
+      "vue-demi"
+    ]
+  },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
   },

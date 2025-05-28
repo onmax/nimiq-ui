@@ -25,7 +25,7 @@ const isMobile = breakpoints.smaller('md')
 </script>
 
 <template>
-  <div id="viewport" flex relative var:nq-sidebar-width:100vw md:var:--colors-sidebar-width:288px>
+  <div id="viewport" flex relative var:nq-sidebar-width:100vw md:var:nq-sidebar-width:288px>
     <!-- TODO Add skip -->
     <template v-if="!isMobile">
       <Sidebar v-if="showSidebar" w="$nq-sidebar-width" shrink-0 />

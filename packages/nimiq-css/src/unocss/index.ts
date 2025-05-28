@@ -69,6 +69,29 @@ export interface NimiqPresetOptions {
   icons?: boolean | NimiqIconsOptions
 }
 
+function getLayers(prefix: string = DEFAULT_PREFIX) {
+  return {
+    [`${prefix}layer-definition`]: -330,
+    preflights: -320,
+    properties: -310,
+    icons: -309,
+    theme: -305,
+    base: -300,
+    [`${prefix}colors`]: -50,
+    [`${prefix}preflight`]: -40,
+    components: -1,
+    [`${prefix}static-content`]: 200,
+    [`${prefix}typography`]: 250,
+    [`${prefix}utilities`]: 300,
+    default: 400,
+    utilities: 500,
+    [`${prefix}variants`]: 600,
+  }
+}
+
+export const getLayersNames = (prefix: string) => Object.keys(getLayers(prefix))
+export const getLayersCSS = (prefix: string) => `@layer ${getLayersNames(prefix).join(', ')};`
+
 export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
   const __dirname = dirname(fileURLToPath(import.meta.url))
   const _cssDir = resolve(__dirname, '../css')
@@ -405,20 +428,20 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
   // Define the order of the CSS layers
   const layerDefinition: Preflight = {
     layer: `${prefix}layer-definition`,
-    getCSS: () => {
-      const layers = [
-        'preflights',
-        `${prefix}colors`,
-        preflight && `${prefix}preflight`,
-        staticContent && `${prefix}static-content`,
-        typography && `${prefix}typography`,
-        utilities && `${prefix}utilities`,
-        `${prefix}variants`, // To ensure that the rules that have variants are applied after the rules that don't have variants
-      ].filter(Boolean) as string[]
-
-      return `@layer ${layers.join(', ')};`
-    },
+    getCSS: () => getLayersCSS(prefix),
   }
+  // const layers = [
+  //   'preflights',
+  //   `${prefix}colors`,
+  //   preflight && `${prefix}preflight`,
+  //   staticContent && `${prefix}static-content`,
+  //   typography && `${prefix}typography`,
+  //   utilities && `${prefix}utilities`,
+  //   `${prefix}variants`, // To ensure that the rules that have variants are applied after the rules that don't have variants
+  // ].filter(Boolean) as string[]
+
+  // return
+  // },
   preflights.unshift(layerDefinition)
 
   const autocompleteStaticContent: string[] = staticContent ? ['no-max-width', 'no-color', 'overlaps', 'heading-lg', 'section-gap'].map(u => `${prefix}${u}`) : []
@@ -429,39 +452,22 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
     preflights,
     variants,
     shortcuts,
-    theme: {
-      colors,
-      font: {
-        sans: 'Mulish',
-        mono: 'Fira Code',
-      },
-      shadow: {
+    extendTheme: (theme: Theme) => {
+      theme.colors = colors as Record<string, string | Record<string, string>>
+      theme.shadow = {
         DEFAULT: 'var(--nq-shadow)',
         lg: 'var(--nq-shadow-lg)',
-      },
-      ease: {
-        nq: 'var(--nq-ease)',
-      },
+      }
+      theme.ease = {
+        DEFAULT: 'var(--nq-ease)',
+      }
     },
     autocomplete: {
       templates: [...rulesNames, ...autocompletePreflight, ...autocompleteStaticContent],
     },
     presets,
     rules,
-    layers: {
-      [`${prefix}layer-definition`]: -301,
-      preflights: -300,
-      [`${prefix}colors`]: -50,
-      [`${prefix}preflight`]: -40,
-      components: -1,
-      [`${prefix}static-content`]: 200,
-      [`${prefix}spacing`]: 230,
-      [`${prefix}typography`]: 250,
-      [`${prefix}utilities`]: 300,
-      default: 400,
-      utilities: 500,
-      [`${prefix}variants`]: 600,
-    },
+    layers: getLayers(prefix),
   }
   return preset
 })

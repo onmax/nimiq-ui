@@ -6,6 +6,7 @@ packages:
   - docs/
 catalogs:
   build:
+    '@nolebase/vitepress-plugin-git-changelog': ^2.17.1
     '@shikijs/vitepress-twoslash': ^3.4.2
     unbuild: ^3.5.0
     unplugin-icons: ^22.1.0
@@ -21,7 +22,7 @@ catalogs:
     jsdom: ^26.1.0
     typescript: ^5.8.3
   frontend:
-    reka-ui: ^2.2.1
+    reka-ui: ^2.3.0
     vue: ^3.5.15
     vue-router: ^4.5.1
   icons:
@@ -39,7 +40,7 @@ catalogs:
     '@unocss/eslint-plugin': ^66.1.2
     eslint: ^9.27.0
     eslint-plugin-format: ^1.0.1
-    lint-staged: ^16.0.0
+    lint-staged: ^16.1.0
     simple-git-hooks: ^2.13.0
   markdown:
     render-markdown-it-tokens: ^0.0.4
@@ -62,8 +63,8 @@ catalogs:
     '@unocss/preset-wind4': ^66.1.2
     unocss: ^66.1.2
     unocss-preset-animations: ^1.2.1
-    unocss-preset-light-dark: ^1.0.0-beta.29
-    unocss-preset-onmax: ^1.0.0-beta.29
+    unocss-preset-light-dark: ^1.0.0-beta.30
+    unocss-preset-onmax: ^1.0.0-beta.30
   syntax:
     shiki: ^3.4.2
   test:
@@ -71,7 +72,7 @@ catalogs:
   types:
     '@types/jsdom': ^21.1.7
     '@types/markdown-it': ^14.1.2
-    '@types/node': ^22.15.21
+    '@types/node': ^22.15.23
   utils:
     '@vueuse/core': ^13.3.0
     defu: ^6.1.4

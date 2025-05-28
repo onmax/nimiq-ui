@@ -71,6 +71,7 @@
   "dependencies": {
     "@iconify-json/tabler": "catalog:icons",
     "@iconify-json/vscode-icons": "catalog:icons",
+    "@nolebase/vitepress-plugin-git-changelog": "catalog:build",
     "@vueuse/core": "catalog:utils",
     "mark.js": "catalog:prod",
     "minisearch": "catalog:prod",

@@ -1,3 +1,4 @@
-@import url('./layers.css');
+/* layer: nq-layer-definition */
+@layer nq-layer-definition, preflights, properties, icons, theme, base, nq-colors, nq-preflight, components, nq-static-content, nq-spacing, nq-typography, nq-utilities, default, utilities, nq-variants;
 
 @import url('./uno.css') layer nq-vp;

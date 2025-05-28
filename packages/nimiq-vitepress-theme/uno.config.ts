@@ -7,10 +7,7 @@ console.log('Generating unocss styles...')
 
 export default defineConfig({
   presets: [
-    presetOnmax({
-      // Remove when https://github.com/unocss/unocss/issues/4694
-      presets: { wind4: { preflights: { theme: { mode: true } } } },
-    }),
+    presetOnmax(),
     presetNimiq({
       utilities: true,
       attributifyUtilities: true,

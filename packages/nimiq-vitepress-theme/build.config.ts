@@ -48,7 +48,7 @@ export default defineBuildConfig({
       // plugin for us to use, we have to use the CLI here.
       //
       // The use of CLI was suggested by how to use unocss with rollup? · unocss/unocss · Discussion #542
-      // https:// github.com/unocss/unocss/discussions/542
+      // https://github.com/unocss/unocss/discussions/542
       console.info('Generating unocss styles...')
       const packageDir = fileURLToPath(dirname(import.meta.url))
       const srcDir = join(packageDir, 'src')
