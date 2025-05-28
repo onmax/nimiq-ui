@@ -122,7 +122,10 @@ export default defineConfig<PresetWind3Theme>({
     ['stack', 'w-full grid grid-cols-1 grid-rows-1 children:row-span-full children:col-span-full children:self-center children:justify-self-center'],
   ],
   presets: [
-    presetOnmax(),
+    presetOnmax({
+      // Remove when https://github.com/unocss/unocss/issues/4694
+      presets: { wind4: { preflights: { theme: { mode: true } } } },
+    }),
     presetNimiq({
       utilities: true,
       attributifyUtilities: true,
