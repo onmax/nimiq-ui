@@ -16,31 +16,31 @@
     "preview": "vitepress preview"
   },
   "dependencies": {
-    "@iconify/vue": "catalog:",
-    "colorjs.io": "catalog:",
-    "iconify-icon": "catalog:",
-    "reka-ui": "catalog:",
-    "vite-plugin-inspect": "catalog:",
-    "vue-router": "catalog:"
+    "@iconify/vue": "catalog:icons",
+    "colorjs.io": "catalog:prod",
+    "iconify-icon": "catalog:icons",
+    "reka-ui": "catalog:frontend",
+    "vite-plugin-inspect": "catalog:build",
+    "vue-router": "catalog:frontend"
   },
   "devDependencies": {
-    "@iconify-json/simple-icons": "catalog:",
-    "@iconify-json/tabler": "catalog:",
-    "@iconify/utils": "catalog:",
-    "@shikijs/vitepress-twoslash": "catalog:",
-    "@vueuse/core": "catalog:",
+    "@iconify-json/simple-icons": "catalog:icons",
+    "@iconify-json/tabler": "catalog:icons",
+    "@iconify/utils": "catalog:icons",
+    "@shikijs/vitepress-twoslash": "catalog:build",
+    "@vueuse/core": "catalog:utils",
     "nimiq-css": "workspace:*",
     "nimiq-icons": "workspace:*",
     "nimiq-vitepress-theme": "workspace:*",
-    "pathe": "catalog:",
-    "render-markdown-it-tokens": "catalog:",
-    "shiki": "catalog:",
-    "unocss": "catalog:",
-    "unocss-preset-onmax": "catalog:",
-    "unplugin-icons": "catalog:",
-    "vite": "catalog:",
-    "vite-plugin-vue-devtools": "catalog:",
-    "vitepress": "catalog:",
-    "vue": "catalog:"
+    "pathe": "catalog:node",
+    "render-markdown-it-tokens": "catalog:markdown",
+    "shiki": "catalog:syntax",
+    "unocss": "catalog:style",
+    "unocss-preset-onmax": "catalog:style",
+    "unplugin-icons": "catalog:build",
+    "vite": "catalog:build",
+    "vite-plugin-vue-devtools": "catalog:build",
+    "vitepress": "catalog:build",
+    "vue": "catalog:frontend"
   }
 }

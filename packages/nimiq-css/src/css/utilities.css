@@ -2,7 +2,7 @@
   font-size: 1.25em;
   line-height: 1.2;
   margin-bottom: 2.75rem;
-  color: var(--nq-neutral-800);
+  color: var(--colors-neutral-800);
 }
 
 .nq-label {
@@ -11,14 +11,14 @@
   font-size: 0.75em;
   font-weight: 700;
   line-height: 1;
-  color: var(--nq-neutral-800);
+  color: var(--colors-neutral-800);
 
   :where([data-inverted] *) & {
-    color: color-mix(in oklch, var(--nq-neutral-0) 80%, transparent);
+    color: color-mix(in oklch, var(--colors-neutral-0) 80%, transparent);
   }
 
   :where(.dark, [data-theme='dark']) & {
-    color: color-mix(in oklch, var(--nq-white) 70%, transparent);
+    color: color-mix(in oklch, var(--colors-white) 70%, transparent);
   }
 }
 
@@ -202,26 +202,26 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--nq-blue);
+    outline: 2px solid var(--colors-blue);
     outline-offset: 3px;
   }
 }
 
 .nq-pill-blue {
-  --nq-gradient-from: var(--nq-blue-gradient-from);
-  --nq-gradient-to: var(--nq-blue-gradient-to);
+  --nq-gradient-from: var(--colors-blue-gradient-from);
+  --nq-gradient-to: var(--colors-blue-gradient-to);
 
   &:hover,
   &:focus-visible {
-    --nq-gradient-from: var(--nq-blue-gradient-darkened-from);
-    --nq-gradient-to: var(--nq-blue-gradient-darkened-to);
+    --nq-gradient-from: var(--colors-blue-gradient-darkened-from);
+    --nq-gradient-to: var(--colors-blue-gradient-darkened-to);
   }
 }
 
 .nq-pill-white {
-  background: var(--nq-white);
+  background: var(--colors-white);
   background-image: none;
-  color: var(--nq-blue);
+  color: var(--colors-blue);
   --transitions: background 200ms var(--nq-ease);
 
   &:hover,
@@ -231,57 +231,57 @@
 }
 
 .nq-pill-green {
-  --nq-gradient-from: var(--nq-green-gradient-from);
-  --nq-gradient-to: var(--nq-green-gradient-to);
+  --nq-gradient-from: var(--colors-green-gradient-from);
+  --nq-gradient-to: var(--colors-green-gradient-to);
 
   &:hover,
   &:focus-visible {
-    --nq-gradient-from: var(--nq-green-gradient-darkened-from);
-    --nq-gradient-to: var(--nq-green-gradient-darkened-to);
+    --nq-gradient-from: var(--colors-green-gradient-darkened-from);
+    --nq-gradient-to: var(--colors-green-gradient-darkened-to);
   }
 }
 
 .nq-pill-red {
-  --nq-gradient-from: var(--nq-red-gradient-from);
-  --nq-gradient-to: var(--nq-red-gradient-to);
+  --nq-gradient-from: var(--colors-red-gradient-from);
+  --nq-gradient-to: var(--colors-red-gradient-to);
 
   &:hover,
   &:focus-visible {
-    --nq-gradient-from: var(--nq-red-gradient-darkened-from);
-    --nq-gradient-to: var(--nq-red-gradient-darkened-to);
+    --nq-gradient-from: var(--colors-red-gradient-darkened-from);
+    --nq-gradient-to: var(--colors-red-gradient-darkened-to);
   }
 }
 
 .nq-pill-gold {
-  --nq-gradient-from: var(--nq-gold-gradient-from);
-  --nq-gradient-to: var(--nq-gold-gradient-to);
+  --nq-gradient-from: var(--colors-gold-gradient-from);
+  --nq-gradient-to: var(--colors-gold-gradient-to);
 
   &:hover,
   &:focus-visible {
-    --nq-gradient-from: var(--nq-gold-gradient-darkened-from);
-    --nq-gradient-to: var(--nq-gold-gradient-darkened-to);
+    --nq-gradient-from: var(--colors-gold-gradient-darkened-from);
+    --nq-gradient-to: var(--colors-gold-gradient-darkened-to);
   }
 }
 
 .nq-pill-orange {
-  --nq-gradient-from: var(--nq-orange-gradient-from);
-  --nq-gradient-to: var(--nq-orange-gradient-to);
+  --nq-gradient-from: var(--colors-orange-gradient-from);
+  --nq-gradient-to: var(--colors-orange-gradient-to);
 
   &:hover,
   &:focus-visible {
-    --nq-gradient-from: var(--nq-orange-gradient-darkened-from);
-    --nq-gradient-to: var(--nq-orange-gradient-darkened-to);
+    --nq-gradient-from: var(--colors-orange-gradient-darkened-from);
+    --nq-gradient-to: var(--colors-orange-gradient-darkened-to);
   }
 }
 
 .nq-pill-secondary {
-  background: var(--nq-neutral-400);
-  color: var(--nq-neutral);
+  background: var(--colors-neutral-400);
+  color: var(--colors-neutral);
   transition: background 200ms ease-in-out;
 
   &:hover,
   &:focus-visible {
-    background: var(--nq-neutral-500);
+    background: var(--colors-neutral-500);
   }
 
   :where(
@@ -292,26 +292,26 @@
       :where(.bg-darkerblue &, &:where(.bg-darkerblue, [bg-darkerblue]))
     )
     & {
-    background: color-mix(in oklch, var(--nq-white) 10%, transparent);
+    background: color-mix(in oklch, var(--colors-white) 10%, transparent);
 
     &:hover,
     &:focus-visible {
-      background: color-mix(in oklch, var(--nq-white) 20%, transparent);
+      background: color-mix(in oklch, var(--colors-white) 20%, transparent);
     }
   }
 }
 
 .nq-pill-tertiary {
-  outline: 0 0 0 1.5px var(--nq-neutral-500);
-  color: var(--nq-neutral);
-  background: var(--nq-neutral-0);
+  outline: 0 0 0 1.5px var(--colors-neutral-500);
+  color: var(--colors-neutral);
+  background: var(--colors-neutral-0);
 
   &:hover {
-    background: var(--nq-neutral-50);
-    outline-color: var(--nq-neutral-600);
+    background: var(--colors-neutral-50);
+    outline-color: var(--colors-neutral-600);
 
     .dark & {
-      background: var(--nq-neutral-200);
+      background: var(--colors-neutral-200);
     }
   }
 }
@@ -324,24 +324,24 @@
   font-size: 12px;
   line-height: 1;
   font-weight: 600;
-  color: var(--nq-neutral-700);
+  color: var(--colors-neutral-700);
   background: inherit;
   transition: 100ms background var(--nq-ease, ease-out);
-  outline: 1.5px var(--nq-neutral-400);
+  outline: 1.5px var(--colors-neutral-400);
   height: max-content;
   width: max-content;
 
   :where(.dark, [data-theme='dark']) &,
   :where([data-inverted] *) & {
-    color: color-mix(in oklch, var(--nq-neutral-0) 80%, transparent);
+    color: color-mix(in oklch, var(--colors-neutral-0) 80%, transparent);
   }
 
   &:hover {
-    background: var(--nq-neutral-100);
+    background: var(--colors-neutral-100);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--nq-blue);
+    outline: 2px solid var(--colors-blue);
     outline-offset: 3px;
   }
 }
@@ -349,7 +349,7 @@
 .nq-close-btn {
   width: 1em;
   height: 1em;
-  background-color: var(--nq-neutral-500);
+  background-color: var(--colors-neutral-500);
   border-radius: 1em;
   transition: 100ms background var(--nq-ease, ease-out);
   position: relative;
@@ -362,7 +362,7 @@
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
     background-color: currentColor;
-    color: var(--nq-neutral-0);
+    color: var(--colors-neutral-0);
     width: 0.42em;
     height: 0.42em;
     margin: auto;
@@ -373,18 +373,18 @@
   }
 
   &:where(:hover, :focus) {
-    background-color: var(--nq-neutral-600);
+    background-color: var(--colors-neutral-600);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--nq-blue);
+    outline: 2px solid var(--colors-blue);
     outline-offset: 3px;
   }
 }
 
 .nq-switch {
   &:where(input[type='checkbox']) {
-    --active-color: var(--nq-neutral-300);
+    --active-color: var(--colors-neutral-300);
     appearance: none;
     font-size: 1em;
     width: 2em;
@@ -403,7 +403,7 @@
       left: 0.6em;
       width: 0.9em;
       height: 0.9em;
-      border: 1px solid color-mix(in oklch, var(--nq-neutral) 2%, transparent);
+      border: 1px solid color-mix(in oklch, var(--colors-neutral) 2%, transparent);
       border-radius: 50%;
       background: #ffffff;
       transition: left 100ms ease-out;
@@ -411,7 +411,7 @@
     }
 
     &:checked {
-      --active-color: var(--nq-blue);
+      --active-color: var(--colors-blue);
 
       &::before {
         left: 1.4em;
@@ -458,7 +458,7 @@
       1 100%
     );
   scroll-timeline: --scroller;
-  --curtain-color: var(--nq-neutral);
+  --curtain-color: var(--colors-neutral);
   mask:
     linear-gradient(var(--curtain-color), transparent) 0 0 / 100% 0 no-repeat,
     linear-gradient(var(--curtain-color), var(--curtain-color)) 0 50% / 100% 100% no-repeat,
@@ -494,11 +494,11 @@
 
 .nq-card-lg {
   max-width: 37.5rem;
-  background: var(--nq-neutral-0);
-  color: var(--nq-neutral);
+  background: var(--colors-neutral-0);
+  color: var(--colors-neutral);
   border-radius: 0.625rem;
   box-shadow: var(--nq-shadow);
-  outline: 1.5px solid color-mix(in oklch, var(--nq-neutral) 6%, transparent);
+  outline: 1.5px solid color-mix(in oklch, var(--colors-neutral) 6%, transparent);
   outline-offset: -1.5px;
   margin: 1rem 0.5rem;
 
@@ -567,15 +567,15 @@
     colors 0.2s var(--nq-ease),
     box-shadow 0.1s var(--nq-ease);
 
-  --color: var(--nq-neutral);
-  --placeholder-color: var(--nq-neutral-700);
-  --outline-color: var(--nq-neutral-500);
+  --color: var(--colors-neutral);
+  --placeholder-color: var(--colors-neutral-700);
+  --outline-color: var(--colors-neutral-500);
 
   outline: 1.5px solid var(--outline-color);
   color: var(--color);
 
   :where([data-inverted] *) & {
-    --placeholder-color: color-mix(in oklch, var(--nq-neutral-0) 80%, transparent);
+    --placeholder-color: color-mix(in oklch, var(--colors-neutral-0) 80%, transparent);
   }
 
   &::placeholder {
@@ -583,31 +583,31 @@
   }
 
   &:not(.nq-invalid, :user-invalid):where(:hover, :focus, :focus-within) {
-    --color: var(--nq-blue);
-    --outline-color: color-mix(in oklch, var(--nq-blue) 30%, transparent);
+    --color: var(--colors-blue);
+    --outline-color: color-mix(in oklch, var(--colors-blue) 30%, transparent);
 
     &::placeholder {
-      --placeholder-color: color-mix(in oklch, var(--nq-blue) 60%, transparent);
+      --placeholder-color: color-mix(in oklch, var(--colors-blue) 60%, transparent);
     }
 
     &:focus:valid,
     &:focus-within:valid {
-      --outline-color: var(--nq-blue);
+      --outline-color: var(--colors-blue);
     }
   }
 
   &:where(.nq-invalid, :user-invalid) {
-    --color: var(--nq-orange);
-    outline-color: color-mix(in oklch, var(--nq-orange) 40%, transparent);
+    --color: var(--colors-orange);
+    outline-color: color-mix(in oklch, var(--colors-orange) 40%, transparent);
 
     &::placeholder {
-      --placeholder-color: color-mix(in oklch, var(--nq-orange) 70%, transparent);
+      --placeholder-color: color-mix(in oklch, var(--colors-orange) 70%, transparent);
     }
 
     &:hover,
     &:focus,
     &:focus-within {
-      outline-color: var(--nq-orange);
+      outline-color: var(--colors-orange);
     }
   }
 
@@ -621,7 +621,7 @@
 }
 
 .nq-focusable {
-  outline-color: var(--nq-blue);
+  outline-color: var(--colors-blue);
 
   &:focus-visible {
     outline: 2px solid;
@@ -631,28 +631,28 @@
 
 .nq-card {
   & {
-    --nq-gradient-from: var(--nq-neutral-gradient-from);
-    --nq-gradient-to: var(--nq-neutral-gradient-to);
+    --nq-gradient-from: var(--colors-neutral-gradient-from);
+    --nq-gradient-to: var(--colors-neutral-gradient-to);
     background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
-    color: var(--nq-neutral);
+    color: var(--colors-neutral);
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    outline: 1.5px solid color-mix(in oklch, var(--nq-neutral) 4%, transparent);
+    outline: 1.5px solid color-mix(in oklch, var(--colors-neutral) 4%, transparent);
     outline-offset: -1.5px;
     padding: 1.5rem;
   }
 }
 
 .nq-hoverable {
-  --nq-gradient-from: var(--nq-neutral-300);
-  --nq-gradient-to: color-mix(in oklch, var(--nq-neutral-300) 65%, transparent);
+  --nq-gradient-from: var(--colors-neutral-300);
+  --nq-gradient-to: color-mix(in oklch, var(--colors-neutral-300) 65%, transparent);
   background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
-  color: var(--nq-neutral);
+  color: var(--colors-neutral);
   border-radius: 0.5rem;
-  outline: 1.5px solid color-mix(in oklch, var(--nq-neutral) 4%, transparent);
+  outline: 1.5px solid color-mix(in oklch, var(--colors-neutral) 4%, transparent);
   outline-offset: -1.5px;
   display: flex;
   flex-direction: column;
@@ -670,11 +670,11 @@
 
   @media (hover: hover) {
     &:where(:hover, :focus-visible) {
-      --nq-gradient-from: var(--nq-white);
-      --nq-gradient-to: var(--nq-white);
-      color: var(--nq-darkblue);
+      --nq-gradient-from: var(--colors-white);
+      --nq-gradient-to: var(--colors-white);
+      color: var(--colors-darkblue);
       box-shadow: var(--nq-shadow);
-      outline-color: color-mix(in oklch, var(--nq-neutral) 2%, transparent);
+      outline-color: color-mix(in oklch, var(--colors-neutral) 2%, transparent);
       transform: translateY(-0.375rem);
     }
 
@@ -699,7 +699,7 @@
     font-weight: bold;
     text-transform: none;
     letter-spacing: normal;
-    color: var(--nq-blue);
+    color: var(--colors-blue);
     position: absolute;
     bottom: -1lh;
     opacity: 0;
@@ -710,7 +710,7 @@
   }
 
   :where(.nq-hoverable, [nq-hoverable]):where(:hover, :focus-visible) &::after {
-    background-color: var(--nq-white);
+    background-color: var(--colors-white);
     opacity: 1;
     bottom: 0;
   }

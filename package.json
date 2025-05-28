@@ -24,21 +24,22 @@
     "docs"
   ],
   "devDependencies": {
-    "@antfu/eslint-config": "catalog:",
-    "@antfu/ni": "catalog:",
-    "@types/node": "catalog:",
-    "@unocss/eslint-config": "catalog:",
-    "@unocss/eslint-plugin": "catalog:",
-    "bumpp": "catalog:",
-    "eslint": "catalog:",
-    "eslint-plugin-format": "catalog:",
-    "lint-staged": "catalog:",
-    "rimraf": "catalog:",
-    "simple-git-hooks": "catalog:",
-    "typescript": "catalog:",
-    "unbuild": "catalog:",
-    "vite": "catalog:",
-    "vitest": "catalog:"
+    "@antfu/eslint-config": "catalog:lint",
+    "@antfu/ni": "catalog:dev",
+    "@types/node": "catalog:types",
+    "@unocss/eslint-config": "catalog:lint",
+    "@unocss/eslint-plugin": "catalog:lint",
+    "bumpp": "catalog:cli",
+    "eslint": "catalog:lint",
+    "eslint-plugin-format": "catalog:lint",
+    "lint-staged": "catalog:lint",
+    "pncat": "catalog:cli",
+    "rimraf": "catalog:node",
+    "simple-git-hooks": "catalog:lint",
+    "typescript": "catalog:dev",
+    "unbuild": "catalog:build",
+    "vite": "catalog:build",
+    "vitest": "catalog:test"
   },
   "pnpm": {
     "patchedDependencies": {

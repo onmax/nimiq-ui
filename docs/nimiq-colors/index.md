@@ -16,7 +16,7 @@ The `nimiq-colors` package exports:
 1.  **CSS File**:
 
     - Path: `nimiq-colors/dist/nimiq-colors.css`
-    - Contains CSS custom properties for all defined colors (e.g., `--nq-blue-500`, `--nq-neutral`) and gradients (e.g., `--nq-blue-gradient`).
+    - Contains CSS custom properties for all defined colors (e.g., `--colors-blue-500`, `--colors-neutral`) and gradients (e.g., `--colors-blue-gradient`).
     - Automatically handles light and dark themes using `@media (prefers-color-scheme: dark)` and a `.dark` class selector.
 
 2.  **TypeScript Modules**:
@@ -36,8 +36,8 @@ If you want to use `nimiq-colors` directly in a project without the full `nimiq-
 @import 'nimiq-colors/dist/nimiq-colors.css';
 
 .my-element {
-  background-color: oklch(var(--nq-blue-500));
-  color: oklch(var(--nq-neutral-900));
+  background-color: oklch(var(--colors-blue-500));
+  color: oklch(var(--colors-neutral-900));
 }
 ```
 

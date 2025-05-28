@@ -112,7 +112,7 @@ One of the goals of `nimiq-css` is to allow classes to be used in a more explici
 | `.nq-light-green-bg` | Deleted since it is only used in the wallet                                             |
 | `.nq-brown-bg`       | Deleted since it is only used in the wallet                                             |
 
-With `nimiq-css`, a new palette of colors has been implemented. You can also use the CSS variables with `color-mix()` as follows: `color-mix(in oklch, var(--nq-neutral-900) 80%, transparent)`. This provides better browser support and more consistent color mixing than the old `rgb()` syntax.
+With `nimiq-css`, a new palette of colors has been implemented. You can also use the CSS variables with `color-mix()` as follows: `color-mix(in oklch, var(--colors-neutral-900) 80%, transparent)`. This provides better browser support and more consistent color mixing than the old `rgb()` syntax.
 
 ### Buttons & Pills
 

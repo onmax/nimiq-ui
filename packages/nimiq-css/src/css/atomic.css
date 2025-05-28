@@ -43,100 +43,100 @@ This file contains atomic CSS classes for styling elements. These classes are ve
 }
 
 .text-green {
-  color: var(--nq-green);
+  color: var(--colors-green);
 }
 
 .text-orange {
-  color: var(--nq-orange);
+  color: var(--colors-orange);
 }
 
 .text-red {
-  color: var(--nq-red);
+  color: var(--colors-red);
 }
 
 .text-blue {
-  color: var(--nq-blue);
+  color: var(--colors-blue);
 }
 
 .text-gold {
-  color: var(--nq-gold);
+  color: var(--colors-gold);
 }
 
 .text-neutral {
-  color: var(--nq-neutral);
+  color: var(--colors-neutral);
 }
 
 .bg-neutral-gradient {
-  background: var(--nq-neutral);
+  background: var(--colors-neutral);
   background-image: var(--nq-gradient-neutral);
 }
 
 .bg-neutral-50 {
-  background: var(--nq-neutral-50);
+  background: var(--colors-neutral-50);
 }
 
 .bg-neutral-100 {
-  background: var(--nq-neutral-100);
+  background: var(--colors-neutral-100);
 }
 
 .bg-neutral-200 {
-  background: var(--nq-neutral-200);
+  background: var(--colors-neutral-200);
 }
 
 .bg-neutral-300 {
-  background: var(--nq-neutral-300);
+  background: var(--colors-neutral-300);
 }
 
 .bg-neutral-400 {
-  background: var(--nq-neutral-400);
+  background: var(--colors-neutral-400);
 }
 
 .bg-neutral-500 {
-  background: var(--nq-neutral-500);
+  background: var(--colors-neutral-500);
 }
 
 .bg-neutral-600 {
-  background: var(--nq-neutral-600);
+  background: var(--colors-neutral-600);
 }
 
 .bg-neutral-700 {
-  background: var(--nq-neutral-700);
+  background: var(--colors-neutral-700);
 }
 
 .bg-neutral-800 {
-  background: var(--nq-neutral-800);
+  background: var(--colors-neutral-800);
 }
 
 .bg-neutral-900 {
-  background: var(--nq-neutral-900);
+  background: var(--colors-neutral-900);
 }
 
 .bg-neutral-1100 {
-  background: var(--nq-neutral-1100);
+  background: var(--colors-neutral-1100);
 }
 
 .bg-green {
-  background: var(--nq-green);
+  background: var(--colors-green);
 }
 
 .bg-gold {
-  background: var(--nq-gold);
+  background: var(--colors-gold);
 }
 
 .bg-blue {
-  background: var(--nq-blue);
+  background: var(--colors-blue);
 }
 
 .bg-red {
-  background: var(--nq-red);
+  background: var(--colors-red);
 }
 
 .bg-purple {
-  background: var(--nq-purple);
+  background: var(--colors-purple);
 }
 
 .bg-orange {
-  background: var(--nq-orange);
+  background: var(--colors-orange);
 }
 
 .nq-shadow {

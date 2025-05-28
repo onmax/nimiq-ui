@@ -36,18 +36,19 @@
     "prepublishOnly": "nr build"
   },
   "dependencies": {
-    "@iconify/utils": "catalog:",
-    "@unocss/preset-web-fonts": "catalog:",
-    "@unocss/preset-wind4": "^66.1.2",
+    "@iconify/utils": "catalog:icons",
+    "@unocss/preset-web-fonts": "catalog:style",
+    "@unocss/preset-wind4": "catalog:style",
     "nimiq-icons": "workspace:*",
-    "ts-cssjson": "catalog:",
-    "unocss": "catalog:"
+    "ts-cssjson": "catalog:prod",
+    "unocss": "catalog:style",
+    "unocss-preset-light-dark": "catalog:style"
   },
   "devDependencies": {
-    "@iconify/tools": "catalog:",
-    "@iconify/types": "catalog:",
-    "pathe": "catalog:",
-    "unbuild": "catalog:",
-    "vitest": "catalog:"
+    "@iconify/tools": "catalog:icons",
+    "@iconify/types": "catalog:icons",
+    "pathe": "catalog:node",
+    "unbuild": "catalog:build",
+    "vitest": "catalog:test"
   }
 }

@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url'
 import { createLocalFontProcessor } from '@unocss/preset-web-fonts/local'
 import { toCSS, toJSON } from 'ts-cssjson'
 import { definePreset, presetWebFonts } from 'unocss'
+import { presetLightDark } from 'unocss-preset-light-dark'
 import colors from '../colors'
 import { getNimiqIcons } from './icons'
 
@@ -205,6 +206,8 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
   const { prefix = DEFAULT_PREFIX } = options
 
   const rulesNames: string[] = []
+  const shortcuts: Preset['shortcuts'] = []
+  const presets: Preset['presets'] = []
 
   const { preflight = true, staticContent = false } = options
   const preflights: Preset['preflights'] = [
@@ -237,9 +240,9 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
     layer: `${prefix}preflight`,
   })
 
-  const colorsWithGradientsRe = Object.entries(colors).filter(([, color]) => 'gradient' in color).map(([key]) => key).join('|')
+  presets.push(presetLightDark({ colors, prefix, layer: `${prefix}colors` }))
 
-  const shortcuts: Preset['shortcuts'] = []
+  const colorsWithGradientsRe = 'neutral|blue|green|orange|red|gold'
   shortcuts.push(
     [
       new RegExp(`^bg-gradient-(${colorsWithGradientsRe})$`),
@@ -277,7 +280,6 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
   }
 
   const { fonts = true } = options
-  const presets: Preset['presets'] = []
 
   if (fonts !== false) {
     const processors = fonts === true ? createLocalFontProcessor() : createLocalFontProcessor(fonts)

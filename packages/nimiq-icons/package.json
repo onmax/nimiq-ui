@@ -16,13 +16,13 @@
     "prepublishOnly": "nr build"
   },
   "devDependencies": {
-    "@iconify/tools": "catalog:",
-    "@iconify/utils": "catalog:",
-    "@types/jsdom": "catalog:",
-    "consola": "catalog:",
-    "dotenv": "catalog:",
-    "esno": "catalog:",
-    "jsdom": "catalog:",
-    "pathe": "catalog:"
+    "@iconify/tools": "catalog:icons",
+    "@iconify/utils": "catalog:icons",
+    "@types/jsdom": "catalog:types",
+    "consola": "catalog:node",
+    "dotenv": "catalog:node",
+    "esno": "catalog:script",
+    "jsdom": "catalog:dev",
+    "pathe": "catalog:node"
   }
 }

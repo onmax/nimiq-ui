@@ -15,8 +15,8 @@ You can use the color variables in your custom CSS:
 
 ```css
 .your-element {
-  background: oklch(var(--nq-blue-500) / 0.8); /* Use a blue shade with 80% opacity */
-  color: oklch(var(--nq-neutral-900));
+  background: oklch(var(--colors-blue-500) / 0.8); /* Use a blue shade with 80% opacity */
+  color: oklch(var(--colors-neutral-900));
 }
 ```
 

@@ -97,9 +97,9 @@ const { showWidget } = useSecondarySidebar()
 <style scoped>
 nav:not([data-sidebar]) {
   box-shadow:
-    0px -18px 38px color-mix(in oklch, var(--nq-neutral) 7%, transparent),
-    0px -7px 8.5px color-mix(in oklch, var(--nq-neutral) 4%, transparent),
-    0px -2px 2.5px color-mix(in oklch, var(--nq-neutral) 2%, transparent);
+    0px -18px 38px color-mix(in oklch, var(--colors-neutral) 7%, transparent),
+    0px -7px 8.5px color-mix(in oklch, var(--colors-neutral) 4%, transparent),
+    0px -2px 2.5px color-mix(in oklch, var(--colors-neutral) 2%, transparent);
 }
 
 #widget:not(:empty) {

@@ -69,30 +69,30 @@
     "vitepress": "^1.5.0 || ^2.0.0-alpha.3"
   },
   "dependencies": {
-    "@iconify-json/tabler": "catalog:",
-    "@iconify-json/vscode-icons": "catalog:",
-    "@nolebase/vitepress-plugin-git-changelog": "catalog:",
-    "@vueuse/core": "catalog:",
-    "mark.js": "catalog:",
-    "minisearch": "catalog:",
+    "@iconify-json/tabler": "catalog:icons",
+    "@iconify-json/vscode-icons": "catalog:icons",
+    "@nolebase/vitepress-plugin-git-changelog": "catalog:build",
+    "@vueuse/core": "catalog:utils",
+    "mark.js": "catalog:prod",
+    "minisearch": "catalog:prod",
     "nimiq-icons": "workspace:*",
-    "reka-ui": "catalog:",
-    "vaul-vue": "catalog:",
-    "vue": "catalog:",
-    "vue-router": "catalog:"
+    "reka-ui": "catalog:frontend",
+    "vaul-vue": "catalog:prod",
+    "vue": "catalog:frontend",
+    "vue-router": "catalog:frontend"
   },
   "devDependencies": {
-    "@iconify/utils": "catalog:",
-    "@types/markdown-it": "catalog:",
-    "@unocss/cli": "catalog:",
-    "bumpp": "catalog:",
-    "consola": "catalog:",
-    "defu": "catalog:",
-    "pathe": "catalog:",
-    "typescript": "catalog:",
-    "unbuild": "catalog:",
-    "unocss": "catalog:",
-    "unocss-preset-animations": "catalog:",
-    "unocss-preset-onmax": "catalog:"
+    "@iconify/utils": "catalog:icons",
+    "@types/markdown-it": "catalog:types",
+    "@unocss/cli": "catalog:style",
+    "bumpp": "catalog:cli",
+    "consola": "catalog:node",
+    "defu": "catalog:utils",
+    "pathe": "catalog:node",
+    "typescript": "catalog:dev",
+    "unbuild": "catalog:build",
+    "unocss": "catalog:style",
+    "unocss-preset-animations": "catalog:style",
+    "unocss-preset-onmax": "catalog:style"
   }
 }
