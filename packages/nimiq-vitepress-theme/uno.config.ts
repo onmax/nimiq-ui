@@ -7,7 +7,9 @@ console.log('Generating unocss styles...')
 
 export default defineConfig({
   presets: [
-    presetOnmax(),
+    presetOnmax({
+      presets: { wind4: { preflights: { theme: { mode: true } } } },
+    }),
     presetNimiq({
       utilities: true,
       attributifyUtilities: true,

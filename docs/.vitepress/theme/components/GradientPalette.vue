@@ -67,9 +67,9 @@ watch(activeGradient, async () => {
           bg-gradient-{{ gradient.toLowerCase() }}-darkened
         </span>
       </button>
-      <button :class="`bg-gradient-${gradient.toLowerCase()}-hoverable`" relative group @click="setActiveGradient(gradient, 'hoverable')">
+      <button :class="`nq-hoverable-${gradient.toLowerCase()}`" relative group @click="setActiveGradient(gradient, 'hoverable')">
         <span group-hocus:op-100>
-          bg-gradient-{{ gradient.toLowerCase() }}-hoverable
+          nq-hoverable-{{ gradient.toLowerCase() }}
         </span>
       </button>
     </div>

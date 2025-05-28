@@ -6,15 +6,6 @@ function toKebabCase(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
 
-interface GradientColorSource {
-  from: [string, string]
-  to: [string, string]
-  darkened?: {
-    from: [string, string]
-    to: [string, string]
-  }
-}
-
 interface GradientColor {
   from: string
   to: string
@@ -30,43 +21,7 @@ function extractGradients(colorData: typeof colors) {
   for (const colorName in colorData) {
     const colorDef = colorData[colorName as keyof typeof colorData]
     if (colorDef && typeof colorDef === 'object' && 'gradient' in colorDef) {
-      const gradientSource = colorDef.gradient as unknown as GradientColorSource
-
-      // Convert array format to light-dark() format
-      const from = gradientSource.from[0] === gradientSource.from[1]
-        ? gradientSource.from[0]
-        : `${gradientSource.from[0]},${gradientSource.from[1]}`
-
-      const to = gradientSource.to[0] === gradientSource.to[1]
-        ? gradientSource.to[0]
-        : `${gradientSource.to[0]},${gradientSource.to[1]}`
-
-      gradients[colorName] = {
-        from,
-        to,
-      }
-
-      // Handle darkened variants if they exist and are not empty
-      if (gradientSource.darkened
-        && gradientSource.darkened.from
-        && gradientSource.darkened.to
-        && gradientSource.darkened.from[0]
-        && gradientSource.darkened.from[1]
-        && gradientSource.darkened.to[0]
-        && gradientSource.darkened.to[1]) {
-        const darkenedFrom = gradientSource.darkened.from[0] === gradientSource.darkened.from[1]
-          ? gradientSource.darkened.from[0]
-          : `${gradientSource.darkened.from[0]},${gradientSource.darkened.from[1]}`
-
-        const darkenedTo = gradientSource.darkened.to[0] === gradientSource.darkened.to[1]
-          ? gradientSource.darkened.to[0]
-          : `${gradientSource.darkened.to[0]},${gradientSource.darkened.to[1]}`
-
-        gradients[colorName].darkened = {
-          from: darkenedFrom,
-          to: darkenedTo,
-        }
-      }
+      gradients[colorName] = colorDef.gradient as unknown as GradientColor
     }
   }
 
@@ -124,18 +79,62 @@ function generateCssVariables(colorData: typeof colors, gradients: Record<string
     const gradientDef = gradients[gradientName as keyof typeof gradients]
     const kebabGradientName = toKebabCase(gradientName)
 
-    // Generate -from and -to variables (they already contain light-dark() functions)
-    cssString += `  --colors-${kebabGradientName}-gradient-from: ${gradientDef.from};\n`
-    cssString += `  --colors-${kebabGradientName}-gradient-to: ${gradientDef.to};\n`
+    // Generate -from and -to variables using light-dark() function
+    if (Array.isArray(gradientDef.from)) {
+      const [lightFrom, darkFrom] = gradientDef.from
+      if (lightFrom === darkFrom) {
+        cssString += `  --colors-${kebabGradientName}-gradient-from: ${lightFrom};\n`
+      }
+      else {
+        cssString += `  --colors-${kebabGradientName}-gradient-from: light-dark(${lightFrom}, ${darkFrom});\n`
+      }
+    }
+    else {
+      cssString += `  --colors-${kebabGradientName}-gradient-from: ${gradientDef.from};\n`
+    }
+
+    if (Array.isArray(gradientDef.to)) {
+      const [lightTo, darkTo] = gradientDef.to
+      if (lightTo === darkTo) {
+        cssString += `  --colors-${kebabGradientName}-gradient-to: ${lightTo};\n`
+      }
+      else {
+        cssString += `  --colors-${kebabGradientName}-gradient-to: light-dark(${lightTo}, ${darkTo});\n`
+      }
+    }
+    else {
+      cssString += `  --colors-${kebabGradientName}-gradient-to: ${gradientDef.to};\n`
+    }
 
     // Generate the gradient variable
-    cssString += `  --colors-${kebabGradientName}-gradient: radial-gradient(at 100% 100%, var(--colors-${kebabGradientName}-gradient-from), var(--colors-${kebabGradientName}-gradient-to));\n`
+    cssString += `  --colors-${kebabGradientName}-gradient: radial-gradient(var(--colors-${kebabGradientName}-gradient-from), var(--colors-${kebabGradientName}-gradient-to));\n`
 
-    // Generate darkened variants if they exist and are not empty
-    if (gradientDef.darkened && gradientDef.darkened.from && gradientDef.darkened.to) {
-      cssString += `  --colors-${kebabGradientName}-gradient-darkened-from: ${gradientDef.darkened.from};\n`
-      cssString += `  --colors-${kebabGradientName}-gradient-darkened-to: ${gradientDef.darkened.to};\n`
-      cssString += `  --colors-${kebabGradientName}-gradient-darkened: radial-gradient(at 100% 100%, var(--colors-${kebabGradientName}-gradient-darkened-from), var(--colors-${kebabGradientName}-gradient-darkened-to));\n`
+    // Generate darkened variants if they exist and have valid values
+    if (gradientDef.darkened
+      && Array.isArray(gradientDef.darkened.from)
+      && Array.isArray(gradientDef.darkened.to)
+      && gradientDef.darkened.from[0]
+      && gradientDef.darkened.from[1]
+      && gradientDef.darkened.to[0]
+      && gradientDef.darkened.to[1]) {
+      const [lightFromDarkened, darkFromDarkened] = gradientDef.darkened.from
+      const [lightToDarkened, darkToDarkened] = gradientDef.darkened.to
+
+      if (lightFromDarkened === darkFromDarkened) {
+        cssString += `  --colors-${kebabGradientName}-gradient-darkened-from: ${lightFromDarkened};\n`
+      }
+      else {
+        cssString += `  --colors-${kebabGradientName}-gradient-darkened-from: light-dark(${lightFromDarkened}, ${darkFromDarkened});\n`
+      }
+
+      if (lightToDarkened === darkToDarkened) {
+        cssString += `  --colors-${kebabGradientName}-gradient-darkened-to: ${lightToDarkened};\n`
+      }
+      else {
+        cssString += `  --colors-${kebabGradientName}-gradient-darkened-to: light-dark(${lightToDarkened}, ${darkToDarkened});\n`
+      }
+
+      cssString += `  --colors-${kebabGradientName}-gradient-darkened: radial-gradient(var(--colors-${kebabGradientName}-gradient-darkened-from), var(--colors-${kebabGradientName}-gradient-darkened-to));\n`
     }
   }
 

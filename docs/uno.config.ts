@@ -100,29 +100,29 @@ export default defineConfig<PresetWind3Theme>({
     // Gradient classes for all Nimiq colors
     'bg-gradient-neutral',
     'bg-gradient-neutral-darkened',
-    'bg-gradient-neutral-hoverable',
     'bg-gradient-blue',
     'bg-gradient-blue-darkened',
-    'bg-gradient-blue-hoverable',
+    'nq-hoverable-blue',
     'bg-gradient-green',
     'bg-gradient-green-darkened',
-    'bg-gradient-green-hoverable',
+    'nq-hoverable-green',
     'bg-gradient-gold',
     'bg-gradient-gold-darkened',
-    'bg-gradient-gold-hoverable',
+    'nq-hoverable-gold',
     'bg-gradient-red',
     'bg-gradient-red-darkened',
-    'bg-gradient-red-hoverable',
-
+    'nq-hoverable-red',
     'bg-gradient-orange',
     'bg-gradient-orange-darkened',
-    'bg-gradient-orange-hoverable',
+    'nq-hoverable-orange',
   ],
   shortcuts: [
     ['stack', 'w-full grid grid-cols-1 grid-rows-1 children:row-span-full children:col-span-full children:self-center children:justify-self-center'],
   ],
   presets: [
-    presetOnmax(),
+    presetOnmax({
+      presets: { wind4: { preflights: { theme: { mode: true } } } },
+    }),
     presetNimiq({
       utilities: true,
       attributifyUtilities: true,
