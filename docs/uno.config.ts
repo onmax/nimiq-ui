@@ -113,6 +113,7 @@ export default defineConfig<PresetWind3Theme>({
     'bg-gradient-red',
     'bg-gradient-red-darkened',
     'bg-gradient-red-hoverable',
+
     'bg-gradient-orange',
     'bg-gradient-orange-darkened',
     'bg-gradient-orange-hoverable',

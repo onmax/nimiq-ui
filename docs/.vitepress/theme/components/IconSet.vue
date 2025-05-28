@@ -119,14 +119,14 @@ function selectColor(c: Color) {
 
 <template>
   <DefineGrid v-slot="{ icons: iconsVariant, variant, classes }">
-    <span block f-mt-xl f-text-2xs text="$c" nq-label op="90 dark:70" :style="`--c: var(--nq-${activeColor}-1100)`">
+    <span block f-mt-xl f-text-2xs text="$c" nq-label op="90 dark:70" :style="`--c: var(--colors-${activeColor}-1100)`">
       {{ variant }}
     </span>
 
     <ul pl-0 flex flex-wrap select-none text-2xl ml--8 f-mt-xs>
       <li v-for="icon in iconsVariant" :key="icon" flex>
         <button
-          w-max bg-transparent op="70 dark:60 hocus:100" transition-opacity :style="`--c: var(--nq-${activeColor})`"
+          w-max bg-transparent op="70 dark:60 hocus:100" transition-opacity :style="`--c: var(--colors-${activeColor})`"
           @click="() => selectedIcon = icon"
         >
           <Icon :icon text="$c" :class="[classes, { 'w-auto !h-24': icon.includes('horizontal') }]" />
@@ -158,7 +158,7 @@ function selectColor(c: Color) {
               v-for="c in colors" :key="c" shrink-0 size-21 rounded-full outline="~ 1 neutral/20"
               :data-active="activeColor === c ? '' : undefined"
               :class="{ 'op-30 hocus:op-80': c !== activeColor || (isLogo && !isMono) }" transition-colors
-              :style="`background-color: var(--nq-${c});`" @click="selectColor(c)"
+              :style="`background-color: var(--colors-${c});`" @click="selectColor(c)"
             />
 
             <button v-if="isLogo" stack bg="neutral-500 data-active:neutral" text-neutral-0 size-21 transition-opacity aspect-square rounded-full :data-state="!isMono ? 'active' : ''" @click="rotateLogoIcon">
@@ -169,11 +169,11 @@ function selectColor(c: Color) {
         <template v-else>
           <header
             flex="~ md:col gap-16 items-start"
-            :style="`--c: var(--nq-${activeColor});--c2: var(--nq-${activeColor}-400);`"
+            :style="`--c: var(--colors-${activeColor});--c2: var(--colors-${activeColor}-400);`"
           >
             <div
               stack f-p-md rounded-16 outline="~ 3 offset--3 $c2"
-              :style="`background-color: color-mix(in oklch, var(--nq-${activeColor}) 4%, transparent)`" :class="{
+              :style="`background-color: color-mix(in oklch, var(--colors-${activeColor}) 4%, transparent)`" :class="{
                 'w-auto children:h-64 children:w-full': selectedIcon.includes('horizontal'),
                 'w-max children:size-64 size-124': !selectedIcon.includes('horizontal'),
                 '!bg-neutral-0 dark:!bg-neutral outline-neutral-100': isLogo && !isMono && !isWhite,
@@ -188,7 +188,7 @@ function selectColor(c: Color) {
                   v-for="c in colors" :key="c" shrink-0 size-21 rounded-full outline="~ 1 neutral/20"
                   :data-active="activeColor === c ? '' : undefined"
                   :class="{ 'op-30 hocus:op-80': c !== activeColor || (isLogo && !isMono) }" transition-colors
-                  :style="`background-color: var(--nq-${c});`" @click="selectColor(c)"
+                  :style="`background-color: var(--colors-${c});`" @click="selectColor(c)"
                 />
 
                 <button v-if="isLogo" stack bg="neutral-500 data-active:neutral" text-neutral-0 size-21 transition-opacity aspect-square rounded-full :data-state="!isMono ? 'active' : ''" @click="rotateLogoIcon">

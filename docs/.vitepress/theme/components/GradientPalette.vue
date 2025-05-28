@@ -14,9 +14,9 @@ function setActiveGradient(gradient: string, variant: 'default' | 'darkened' | '
 const cssVar = computed(() => {
   const variant = activeGradient.value?.variant
   if (variant === 'hoverable') {
-    return `background-image: var(--nq-${activeGradient.value?.color.toLowerCase()}-gradient)`
+    return `background-image: var(--colors-${activeGradient.value?.color.toLowerCase()}-gradient)`
   }
-  return `background-image: var(--nq-${activeGradient.value?.color.toLowerCase()}-gradient${variant === 'darkened' ? '-darkened' : ''})`
+  return `background-image: var(--colors-${activeGradient.value?.color.toLowerCase()}-gradient${variant === 'darkened' ? '-darkened' : ''})`
 })
 
 const tailwind = computed(() => {

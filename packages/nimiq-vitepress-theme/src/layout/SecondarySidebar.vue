@@ -9,7 +9,7 @@ const { headingTree, isHeadingActive, showOutline, showWidget } = useSecondarySi
 <template>
   <div
     f-text-xs sticky f="$h $h-min-60 $h-max-88" h="[calc(100vh-var(--f-h))]" f-top-xl f-px-sm
-    w="[calc(var(--nq-sidebar-width)+24px)]" of-y-auto f-pb-xs
+    w="[calc(var(--colors-sidebar-width)+24px)]" of-y-auto f-pb-xs
   >
     <div v-if="showOutline" text-neutral-700 flex="~ gap-8 items-center">
       <div i-tabler:align-left />

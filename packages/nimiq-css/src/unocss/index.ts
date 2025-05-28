@@ -258,7 +258,7 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
 
     [
       new RegExp(`^bg-gradient-(${colorsWithGradientsRe})-hoverable`),
-      ([, c]) => `bg-radial-[at_100%_100%] from-${c}-gradient-from to-${c}-gradient-to hover:from-${c}-darkened-from hover hover:to-${c}-gradient-darkened-to focus-visible:from-${c}-darkened-from focus-visible:to-${c}-gradient-darkened-to ease-out transition-colors duration-300`,
+      ([, c]) => `bg-radial-[at_100%_100%] from-${c}-gradient-from to-${c}-gradient-to hover:from-${c}-darkened-from hover hover:to-${c}-gradient-darkened-to focus-visible:from-${c}-gradient-darkened-from focus-visible:to-${c}-gradient-darkened-to ease-out transition-colors duration-300`,
       { layer: `${prefix}colors`, autocomplete: [`bg-gradient-(${colorsWithGradientsRe})-hoverable`] },
     ],
   )

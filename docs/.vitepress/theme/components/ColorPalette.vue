@@ -8,7 +8,7 @@ const colors = ['Neutral', 'Blue', 'Green', 'Red', 'Orange', 'Gold', 'Purple']
 const variants = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1100]
 
 function getBg(color: string) {
-  return { backgroundColor: `var(--nq-${color.toLowerCase()})` }
+  return { backgroundColor: `var(--colors-${color.toLowerCase()})` }
 }
 
 const activeColor = ref<string>()

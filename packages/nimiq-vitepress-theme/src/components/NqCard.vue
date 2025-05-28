@@ -26,7 +26,7 @@ const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#1
   <component
     :is="hasLink ? 'a' : 'div'"
     :href class="nq-raw" group relative
-    :style="`background-image: ${bgColor ? `var(--nq-${bgColor}-gradient)` : ''}`"
+    :style="`background-image: ${bgColor ? `var(--colors-${bgColor}-gradient)` : ''}`"
     :data-inverted="bgColor ? '' : undefined"
     :data-card="bgColor ? 'colored' : 'default'"
     :target="hasLink && href?.startsWith('http') ? '_blank' : undefined"

@@ -68,7 +68,7 @@ This file contains atomic CSS classes for styling elements. These classes are ve
 
 .bg-neutral-gradient {
   background: var(--colors-neutral);
-  background-image: var(--nq-gradient-neutral);
+  background-image: var(--colors-gradient-neutral);
 }
 
 .bg-neutral-50 {
@@ -140,9 +140,9 @@ This file contains atomic CSS classes for styling elements. These classes are ve
 }
 
 .nq-shadow {
-  box-shadow: var(--nq-shadow);
+  box-shadow: var(--colors-shadow);
 }
 
 .nq-shadow-lg {
-  box-shadow: var(--nq-shadow-lg);
+  box-shadow: var(--colors-shadow-lg);
 }
