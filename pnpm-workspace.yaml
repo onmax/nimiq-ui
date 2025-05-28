@@ -63,8 +63,8 @@ catalogs:
     '@unocss/preset-wind4': ^66.1.2
     unocss: ^66.1.2
     unocss-preset-animations: ^1.2.1
-    unocss-preset-light-dark: ^1.0.0-beta.30
-    unocss-preset-onmax: ^1.0.0-beta.30
+    unocss-preset-light-dark: ^1.0.0-beta.31
+    unocss-preset-onmax: ^1.0.0-beta.31
   syntax:
     shiki: ^3.4.2
   test:

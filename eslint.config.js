@@ -5,7 +5,7 @@ export default antfu({
   formatters: true,
   vue: true,
   pnpmCatalogs: true,
-  ignores: ['packages/nimiq-icons/src/**/*'],
+  ignores: ['packages/nimiq-icons/src/**/*', 'packages/nimiq-css/src/css/colors.css'],
 }, {
   files: ['**/**.ts'],
   rules: {
