@@ -30,7 +30,7 @@ function extractGradients(colorData: typeof colors) {
   for (const colorName in colorData) {
     const colorDef = colorData[colorName as keyof typeof colorData]
     if (colorDef && typeof colorDef === 'object' && 'gradient' in colorDef) {
-      const gradientSource = colorDef.gradient as GradientColorSource
+      const gradientSource = colorDef.gradient as unknown as GradientColorSource
 
       // Convert array format to light-dark() format
       const from = gradientSource.from[0] === gradientSource.from[1]
