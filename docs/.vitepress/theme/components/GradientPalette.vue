@@ -24,7 +24,7 @@ const tailwind = computed(() => {
   const variant = activeGradient.value?.variant
 
   if (variant === 'hoverable') {
-    return `<div class="bg-gradient-${color}-hoverable" />`
+    return `<div class="bg-hoverable-${color}" />`
   }
   else if (variant === 'darkened') {
     return `<div class="bg-gradient-${color}-darkened" />`
@@ -62,12 +62,18 @@ watch(activeGradient, async () => {
           bg-gradient-{{ gradient.toLowerCase() }}
         </span>
       </button>
-      <button :class="`bg-gradient-${gradient.toLowerCase()}-darkened`" group @click="setActiveGradient(gradient, 'darkened')">
+      <button
+        :class="`bg-gradient-${gradient.toLowerCase()}-darkened`" group
+        @click="setActiveGradient(gradient, 'darkened')"
+      >
         <span group-hocus:op-100>
           bg-gradient-{{ gradient.toLowerCase() }}-darkened
         </span>
       </button>
-      <button :class="`nq-hoverable-${gradient.toLowerCase()}`" relative group @click="setActiveGradient(gradient, 'hoverable')">
+      <button
+        :class="`nq-hoverable-${gradient.toLowerCase()}`" relative group
+        @click="setActiveGradient(gradient, 'hoverable')"
+      >
         <span group-hocus:op-100>
           nq-hoverable-{{ gradient.toLowerCase() }}
         </span>
@@ -78,22 +84,29 @@ watch(activeGradient, async () => {
   <ClientOnly>
     <Teleport defer to="#widget">
       <div v-if="activeGradient">
-        <h3 font-mono>
-          {{ activeGradient.color }}-{{ activeGradient.variant }}
-        </h3>
-        <div
-          id="color-card" ref="card" size-48 w-full rounded-6 :style="cssVar"
-          outline="1 ~ offset--1 black/10 dark:white/10"
-        />
+        <template v-if="activeGradient.variant === 'hoverable'">
+          <span block nq-label text-10>Tailwind / UnoCSS</span>
+          <ShikiBlock :code="tailwind" lang="html" />
+        </template>
 
-        <span block nq-label text-10 f-mt-md mb-2>CSS</span>
-        <CodeBlock :code="css!" text-wrap />
+        <template v-else>
+          <h3 font-mono>
+            {{ activeGradient.color }}
+          </h3>
+          <div
+            id="color-card" ref="card" size-48 w-full rounded-6 :style="cssVar"
+            outline="1 ~ offset--1 neutral/10 dark:white/10"
+          />
 
-        <span block nq-label text-10 f-mt-md mb-2>CSS Variable</span>
-        <CodeBlock :code="`${cssVar}; /* Defined in nq-colors layer */`" text-wrap />
+          <span block nq-label text-10 f-mt-md mb-2>CSS</span>
+          <CodeBlock :code="css!" text-wrap h-max />
 
-        <span block nq-label text-10 f-mt-md mb-2>Tailwind / UnoCSS</span>
-        <ShikiBlock :code="tailwind" lang="html" />
+          <span block nq-label text-10 f-mt-md mb-2>CSS Variable</span>
+          <CodeBlock h-max :code="`${cssVar}; /* Defined in nq-colors layer */`" text-wrap />
+
+          <span block nq-label text-10 f-mt-md mb-2>Tailwind / UnoCSS</span>
+          <ShikiBlock :code="tailwind" lang="html" />
+        </template>
       </div>
     </Teleport>
   </ClientOnly>

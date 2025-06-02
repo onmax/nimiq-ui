@@ -107,7 +107,7 @@ function generateCssVariables(colorData: typeof colors, gradients: Record<string
     }
 
     // Generate the gradient variable
-    cssString += `  --colors-${kebabGradientName}-gradient: radial-gradient(var(--colors-${kebabGradientName}-gradient-from), var(--colors-${kebabGradientName}-gradient-to));\n`
+    cssString += `  --colors-${kebabGradientName}-gradient: radial-gradient(at 100% 100%, var(--colors-${kebabGradientName}-gradient-from), var(--colors-${kebabGradientName}-gradient-to));\n`
 
     // Generate darkened variants if they exist and have valid values
     if (gradientDef.darkened
@@ -134,7 +134,7 @@ function generateCssVariables(colorData: typeof colors, gradients: Record<string
         cssString += `  --colors-${kebabGradientName}-gradient-darkened-to: light-dark(${lightToDarkened}, ${darkToDarkened});\n`
       }
 
-      cssString += `  --colors-${kebabGradientName}-gradient-darkened: radial-gradient(var(--colors-${kebabGradientName}-gradient-darkened-from), var(--colors-${kebabGradientName}-gradient-darkened-to));\n`
+      cssString += `  --colors-${kebabGradientName}-gradient-darkened: radial-gradient(at 100% 100%, var(--colors-${kebabGradientName}-gradient-darkened-from), var(--colors-${kebabGradientName}-gradient-darkened-to));\n`
     }
   }
 

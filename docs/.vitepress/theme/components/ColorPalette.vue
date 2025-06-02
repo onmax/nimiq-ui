@@ -103,7 +103,7 @@ const colorCodes = computed(() => {
 
 <style scoped>
 .color-card {
-  --uno: 'outline-1 outline-solid outline-offset--1 outline-black/10 dark:outline-white/10';
+  --uno: 'outline-1 outline-solid outline-offset--1 outline-neutral/10';
   --uno: 'aspect-square w-full rounded-4 md:rounded-6';
 }
 </style>
