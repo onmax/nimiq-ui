@@ -3,6 +3,7 @@
   --colors-white: oklch(1 0 90);
   --colors-darkblue: oklch(0.2737 0.068 276.29);
   --colors-darkerblue: oklch(0.2182 0.0371 280.55);
+  --colors-neutral-0: light-dark(oklch(1 0 90), oklch(0.2737 0.068 276.29));
   --colors-neutral-50: light-dark(oklch(0.9881 0 89.88), oklch(0.2388 0.0344 281));
   --colors-neutral-100: light-dark(oklch(0.9791 0 89.88), oklch(0.2472 0.0341 281.14));
   --colors-neutral-200: light-dark(oklch(0.9677 0.0027 286.35), oklch(0.2679 0.0334 281.42));
