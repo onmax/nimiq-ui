@@ -269,14 +269,8 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
   shortcuts.push(
     [
       new RegExp(`^bg-gradient-(${colorsWithGradientsRe})$`),
-      ([, c]) => `bg-radial-[at_100%_100%] from-${c}-gradient-from to-${c}-gradient-to`,
+      ([, c]) => `bg-radial-[at_100%_100%_in_oklab] from-${c}-gradient-from to-${c}-gradient-to`,
       { layer: `${prefix}colors`, autocomplete: [`bg-gradient-(${colorsWithGradientsRe})`] },
-    ],
-
-    [
-      new RegExp(`^bg-gradient-(${colorsWithGradientsRe})-darkened$`),
-      ([, c]) => `bg-radial-[at_100%_100%] from-${c}-gradient-darkened-from to-${c}-gradient-darkened-to`,
-      { layer: `${prefix}colors`, autocomplete: [`bg-gradient-(${colorsWithGradientsRe})-darkened`] },
     ],
   )
 

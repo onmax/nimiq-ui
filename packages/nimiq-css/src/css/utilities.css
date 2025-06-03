@@ -145,7 +145,7 @@
   text-decoration: none;
   color: white;
   outline: none;
-  background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
+  background-image: radial-gradient(at 100% 100% in oklab, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
   --transitions: --nq-gradient-from 200ms var(--nq-ease), --nq-gradient-to 200ms var(--nq-ease);
   transition: var(--transitions);
 
@@ -633,7 +633,7 @@
   & {
     --nq-gradient-from: var(--colors-neutral-gradient-from);
     --nq-gradient-to: var(--colors-neutral-gradient-to);
-    background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
+    background-image: radial-gradient(at 100% 100% in oklab, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
     color: var(--colors-neutral);
     border-radius: 0.5rem;
     display: flex;
@@ -654,7 +654,7 @@
 .nq-hoverable-gold {
   --nq-gradient-from: var(--colors-neutral-300);
   --nq-gradient-to: color-mix(in oklch, var(--colors-neutral-300) 65%, transparent);
-  background-image: radial-gradient(at 100% 100%, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
+  background-image: radial-gradient(at 100% 100% in oklab, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
   color: var(--colors-neutral);
   border-radius: 0.5rem;
   outline: 1.5px solid color-mix(in oklch, var(--colors-neutral) 4%, transparent);
