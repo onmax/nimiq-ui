@@ -269,7 +269,8 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
   shortcuts.push(
     [
       new RegExp(`^bg-gradient-(${colorsWithGradientsRe})$`),
-      ([, c]) => `bg-radial-[at_100%_100%_in_oklab] from-${c}-gradient-from to-${c}-gradient-to`,
+      // This requires `mode:true` in wind 4 preset: https://github.com/unocss/unocss/issues/4694
+      ([, c]) => `bg-[image:$colors-${c}-gradient]`,
       { layer: `${prefix}colors`, autocomplete: [`bg-gradient-(${colorsWithGradientsRe})`] },
     ],
   )
@@ -414,10 +415,10 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
   ]
 
   // Define the order of the CSS layers
-  const layerDefinition: Preflight = {
-    layer: `${prefix}layer-definition`,
-    getCSS: () => getLayersCSS(prefix),
-  }
+  // const layerDefinition: Preflight = {
+  //   layer: `${prefix}layer-definition`,
+  //   getCSS: () => getLayersCSS(prefix),
+  // }
   // const layers = [
   //   'preflights',
   //   `${prefix}colors`,
@@ -430,7 +431,7 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
 
   // return
   // },
-  preflights.unshift(layerDefinition)
+  // preflights.unshift(layerDefinition)
 
   const autocompleteStaticContent: string[] = staticContent ? ['no-max-width', 'no-color', 'overlaps', 'heading-lg', 'section-gap'].map(u => `${prefix}${u}`) : []
   const autocompletePreflight = ['nq-no-color']
