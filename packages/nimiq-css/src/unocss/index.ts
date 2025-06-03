@@ -67,6 +67,13 @@ export interface NimiqPresetOptions {
    * @default true
    */
   icons?: boolean | NimiqIconsOptions
+
+  /**
+   * Whether to output CSS @layer declarations
+   *
+   * @default false
+   */
+  outputCSSLayer?: boolean
 }
 
 function getLayers(prefix: string = DEFAULT_PREFIX) {
@@ -102,7 +109,8 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
   if (!existsSync(cssDir))
     throw new Error(`[Nimiq-CSS]: Unminified CSS folder not found. ${cssDir}`)
   const p = (name: string) => `${cssDir}/${name}.css`
-  const wrapToLayer = (prefix: string, name: string, content: string) => `@layer ${prefix}${name} { \n${content}\n}`
+  const wrapToLayer = (prefix: string, name: string, content: string) =>
+    options.outputCSSLayer ? `@layer ${prefix}${name} { \n${content}\n}` : content
   const readContent = (name: string) => readFileSync(p(name), 'utf-8')
 
   interface CssToRulesOptions { convertToAttributes?: boolean, prefix?: string }
@@ -131,7 +139,7 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
       for (const _rule of rulesNames) {
         if (preflightCssKeys.includes(_rule)) {
           const _css = `${_rule} { ${css} }`
-          preflightCss += _rule === ':root' ? _css : `@layer ${layer} { ${_css} }`
+          preflightCss += _rule === ':root' ? _css : options.outputCSSLayer ? `@layer ${layer} { ${_css} }` : _css
           continue
         }
 
@@ -170,7 +178,8 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
           async (_match, { generator, rawSelector, variantHandlers }) => {
             // @ts-expect-error todo fix this
             const { selector: s } = await generator.applyVariants([0, rawSelector, css, undefined, variantHandlers])
-            return `@layer ${layer} { ${s?.split(' $$ ').join(' ')}{${css}} }`
+            const selectorWithCss = `${s?.split(' $$ ').join(' ')}{${css}}`
+            return options.outputCSSLayer ? `@layer ${layer} { ${selectorWithCss} }` : selectorWithCss
           },
           { layer },
         ] satisfies DynamicRule<Theme>
@@ -456,6 +465,7 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
     },
     presets,
     rules,
+    outputToCssLayers: options.outputCSSLayer,
     layers: getLayers(prefix),
   }
   return preset
