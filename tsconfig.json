@@ -30,6 +30,11 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
+  "include": [
+    "vue-shims.d.ts",
+    "packages/**/*",
+    "docs/**/*"
+  ],
   "exclude": [
     "node_modules"
   ]
