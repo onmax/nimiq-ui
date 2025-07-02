@@ -1,36 +1,25 @@
 <script setup lang="ts">
-import { watchDebounced } from '@vueuse/core'
 import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue'
 import { useRouter, withBase } from 'vitepress'
 import { defineAsyncComponent, ref, watch } from 'vue'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 
 const open = ref(false)
-const openSecondarySidebar = ref(false)
 
 const SearchCommandBox = defineAsyncComponent(() => import('./SearchCommandBox.vue'))
-const SecondarySidebar = defineAsyncComponent(() => import('./SecondarySidebar.vue'))
 const Sidebar = defineAsyncComponent(() => import('./Sidebar.vue'))
-
-const shouldTeleport = ref(false)
-watchDebounced(
-  () => openSecondarySidebar.value,
-  (val) => {
-    shouldTeleport.value = val
-  },
-  { debounce: 200 },
-)
-
-const { showSecondarySidebar } = useSecondarySidebar()
 
 const { route } = useRouter()
 
 watch(route, () => {
   open.value = false
-  openSecondarySidebar.value = false
 })
 
 const { showWidget } = useSecondarySidebar()
+
+function handleClose() {
+  open.value = false
+}
 </script>
 
 <template>
@@ -40,25 +29,11 @@ const { showWidget } = useSecondarySidebar()
       inset-x-8
     />
     <nav w-screen border="t neutral-300" nq-raw bg-neutral-0 z-50 :data-sidebar="open ? '' : undefined">
-      <ul grid="~ items-center" :class="showSecondarySidebar ? 'cols-4' : 'cols-3'" children:children:h-56>
+      <ul grid="~ items-center cols-3" children:children:h-56>
         <li>
           <a :href="withBase('')" stack>
             <div i-tabler:home text-20 />
           </a>
-        </li>
-
-        <li v-if="showSecondarySidebar">
-          <DrawerRoot v-model:open="openSecondarySidebar">
-            <DrawerTrigger stack bg-transparent>
-              <div i-nimiq:widget text-18 />
-            </DrawerTrigger>
-            <DrawerPortal>
-              <DrawerOverlay fixed inset-0 bg-neutral bg-opacity-20 />
-              <DrawerContent mt-24 max-h="96%" h-80vh fixed bottom-0 left-0 right-0>
-                <SecondarySidebar :with-widget="false" bg-neutral-100 w-screen f-pt-sm rounded-t-12 />
-              </DrawerContent>
-            </DrawerPortal>
-          </DrawerRoot>
         </li>
 
         <li px-8>
@@ -69,7 +44,6 @@ const { showWidget } = useSecondarySidebar()
             <DrawerPortal>
               <DrawerOverlay fixed inset-0 bg-neutral bg-opacity-20 />
               <DrawerContent mt-24 max-h="96%" h-80vh fixed bottom-0 left-0 right-0 bg-neutral-100 rounded-t-12 f-pt-sm>
-                <!-- <Sidebar :search="false" w-screen f-pt-sm rounded-t-12 /> -->
                 <SearchCommandBox @close="handleClose" />
               </DrawerContent>
             </DrawerPortal>

@@ -125,7 +125,7 @@
     color: var(--colors-green);
   }
 
-  &:not(:where(.shiki *)):where(code, pre) {
+  &:not(:where(pre.shiki &)):where(code, pre) {
     color: var(--colors-neutral-900);
     --font-size-min: 14;
     --font-size-max: 16;

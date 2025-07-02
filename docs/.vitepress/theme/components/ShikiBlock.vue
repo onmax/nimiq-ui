@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { computedAsync, useClipboard } from '@vueuse/core'
 import { codeToHtml } from 'shiki'
+import { useData } from 'vitepress'
 
 const { code, lang, label } = defineProps<{ code: string, label?: string, lang?: string }>()
 
 const { copied, copy } = useClipboard()
+const { isDark } = useData()
 
 const content = computedAsync(async () => {
   if (!lang)
     return code
-  return await codeToHtml(code, { lang, theme: 'vitesse-light' })
+  const theme = isDark.value ? 'vitesse-dark' : 'vitesse-light'
+  return await codeToHtml(code, { lang, theme })
 })
 </script>
 

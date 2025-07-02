@@ -14,6 +14,7 @@
   --colors-neutral-700: light-dark(oklch(0.6613 0.0281 280.83), oklch(0.64 0.0148 285.97));
   --colors-neutral-800: light-dark(oklch(0.5889 0.0335 281.21), oklch(0.7168 0.0101 279.62));
   --colors-neutral-900: light-dark(oklch(0.4374 0.0495 279.71), oklch(0.8619 0.0055 286.28));
+  --colors-neutral-1100: light-dark(oklch(1 0 90), oklch(0.2185 0.0213 246.2deg));
   --colors-neutral: light-dark(oklch(0.2737 0.068 276.29), oklch(1 0 90));
   --colors-blue-400: light-dark(oklch(0.9545 0.0167 236.69), oklch(0.2716 0.0521 257.92));
   --colors-blue-500: light-dark(oklch(0.9109 0.0327 232.24), oklch(0.3193 0.0701 251.54));

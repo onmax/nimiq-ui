@@ -7,7 +7,10 @@ export function defineNimiqVitepressConfig<T = NimiqVitepressThemeConfig>(config
     title: 'Nimiq Vitepress',
     description: 'Build awesome docs with the Nimiq Style',
     markdown: {
-      theme: 'vitesse-dark',
+      theme: {
+        light: 'vitesse-light',
+        dark: 'vitesse-dark',
+      },
       // languages: ['vue', 'vue-html', 'js', 'ts', 'markdown', 'json', 'rs'],
     },
   }

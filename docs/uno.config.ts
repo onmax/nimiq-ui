@@ -9,6 +9,7 @@ export default defineConfig<PresetWind3Theme>({
   content: {
     filesystem: ['./.vitepress/config.ts', '../**/**.{vue,md}', './theme/components/**/*.vue', './config.ts'],
   },
+
   safelist: [
     // Ensure all dynamic color utility classes are generated for the icon set
     // Text colors for all Nimiq colors that might be used dynamically

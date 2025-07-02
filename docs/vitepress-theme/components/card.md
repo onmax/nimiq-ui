@@ -4,15 +4,15 @@ A simple card that can turn any boring content into something that looks intenti
 
 ## Props
 
-| Name          | Type                            | Default     | Description                                          |
-| ------------- | ------------------------------- | ----------- | ---------------------------------------------------- |
-| `href`        | `string`                        | `undefined` | Where your card wants to teleport users to           |
-| `bg-color`    | `string`                        | `undefined` | The mood lighting for your card                      |
-| `icon`        | `string`                        | `undefined` | The tiny picture that makes your card feel important |
-| `title`       | `string`                        | `undefined` | The card's title                                     |
-| `description` | `string`                        | `undefined` | The card's description                               |
-| `label`       | `string`                        | `undefined` | Optional label displayed above the title             |
-| `span`        | `'full' \| 'half' \| 'default'` | `undefined` | Controls how many columns the card spans in a grid   |
+| Name          | Type                            | Default     | Description                                                     |
+| ------------- | ------------------------------- | ----------- | --------------------------------------------------------------- |
+| `href`        | `string`                        | `undefined` | Where your card wants to teleport users to                      |
+| `bg-color`    | `string`                        | `undefined` | The mood lighting for your card                                 |
+| `icon`        | `string`                        | `undefined` | The tiny picture that makes your card feel important (optional) |
+| `title`       | `string`                        | `undefined` | The card's title (optional)                                     |
+| `description` | `string`                        | `undefined` | The card's description (optional)                               |
+| `label`       | `string`                        | `undefined` | Optional label displayed above the title                        |
+| `span`        | `'full' \| 'half' \| 'default'` | `undefined` | Controls how many columns the card spans in a grid              |
 
 The component also supports using slots for custom content instead of props.
 

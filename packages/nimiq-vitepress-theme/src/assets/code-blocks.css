@@ -24,8 +24,8 @@ pre {
     }
 
     .highlighted {
-      --bg-color: rgb(var(--nq-neutral-200));
-      --border-color: rgb(var(--nq-neutral-300));
+      --bg-color: var(--colors-neutral-200);
+      --border-color: var(--colors-neutral-300);
     }
 
     .highlighted:has(+ .highlighted) {
@@ -39,13 +39,13 @@ pre {
     }
 
     .diff.remove {
-      --bg-color: rgb(var(--nq-red-400));
-      --border-color: rgb(var(--nq-red-500));
+      --bg-color: var(--colors-red-400);
+      --border-color: var(--colors-red-500);
     }
 
     .diff.add {
-      --bg-color: rgb(var(--nq-green-400));
-      --border-color: rgb(var(--nq-green-500));
+      --bg-color: var(--colors-green-400);
+      --border-color: var(--colors-green-500);
     }
 
     .diff:has(+ .diff) {
@@ -70,19 +70,17 @@ pre {
 
 :where(:not(.vp-code-group > .blocks) > div[class^='language-']:not(.language-), .vp-code-group) {
   margin-top: 1.5em;
-  outline: 1.5px solid rgb(var(--nq-neutral) / 0.08);
+  outline: 1.5px solid var(--colors-neutral-300);
   border-radius: 0.5em;
   position: relative;
 
   .lang,
   .tabs {
     height: 44px;
-    --nq-m-min: 20;
-    --nq-m-max: 24;
-    padding: 8px var(--nq-m-size);
-    background-color: rgb(var(--nq-neutral-50));
+    padding: 8px 24px;
+    background-color: var(--colors-neutral-50);
     border-radius: 0.5rem 0.5rem 0 0;
-    border-bottom: 1.5px solid rgb(var(--nq-neutral) / 0.08);
+    border-bottom: 1.5px solid var(--colors-neutral-300);
 
     display: flex;
     justify-content: flex-start;
@@ -92,6 +90,8 @@ pre {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     margin-top: 0;
+    padding-top: 16px;
+    padding-bottom: 16px;
     outline: none;
   }
 }
@@ -107,25 +107,25 @@ pre {
   justify-content: center;
   background-color: transparent;
   transition: background-color 0.2s var(--nq-ease);
-  background-color: rgb(var(--nq-neutral-50));
+  background-color: var(--colors-neutral-50);
   z-index: 1;
   font-size: 14px;
   border-radius: 6px;
-  color: rgba(var(--nq-neutral-800));
+  color: var(--colors-neutral-800);
 
   &.copied {
     cursor: default;
 
     &::before {
       --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 12 10'%3E%3Cg clip-path='url(%23a)'%3E%3Cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M11.082 1.111 5.022 8.89 1.363 5.687'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath fill='white' d='M0 0h12v10H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
-      color: rgba(var(--nq-green));
+      color: var(--colors-green);
     }
   }
 
   &:not(.copied) {
     &:hover,
     &:focus-visible {
-      background-color: rgba(var(--nq-neutral-200));
+      background-color: var(--colors-neutral-200);
     }
 
     &::before {
@@ -157,7 +157,7 @@ pre {
 :where(:not(.vp-code-group > .blocks) div[class^='language-']:not(.language-) .lang, .vp-code-group .tabs label) {
   padding: 0.25em 0.65em 0.25em 0.75em;
   font-size: 14px;
-  color: rgb(var(--nq-neutral-700));
+  color: var(--colors-neutral-700);
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -202,8 +202,8 @@ pre {
     }
 
     input:checked + label {
-      background-color: rgb(var(--nq-blue-400));
-      color: rgb(var(--nq-blue));
+      background-color: var(--colors-blue-400);
+      color: var(--colors-blue);
     }
 
     label {
@@ -213,23 +213,23 @@ pre {
       transition:
         background-color 0.2s,
         color 0.2s;
-      color: rgb(var(--nq-neutral-700));
+      color: var(--colors-neutral-700);
 
       &:hover {
-        background-color: rgb(var(--nq-neutral-200));
-        color: rgb(var(--nq-neutral-800));
+        background-color: var(--colors-neutral-200);
+        color: var(--colors-neutral-800);
       }
 
       input:focus-visible + & {
-        background-color: rgb(var(--nq-blue-400));
-        color: rgb(var(--nq-blue));
+        background-color: var(--colors-blue-400);
+        color: var(--colors-blue);
       }
     }
   }
 
   .tabs:not(:has(> input + label + input)) {
     label {
-      color: rgb(var(--nq-neutral-800));
+      color: var(--colors-neutral-800);
       transform: translateX(-0.75em);
     }
   }

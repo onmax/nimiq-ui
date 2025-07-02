@@ -4,6 +4,7 @@ import { useData } from 'vitepress'
 import { computed } from 'vue'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import MobileNav from './MobileNav.vue'
+import MobileOutlineAccordion from './MobileOutlineAccordion.vue'
 import PageContent from './PageContent.vue'
 import SecondarySidebar from './SecondarySidebar.vue'
 import Sidebar from './Sidebar.vue'
@@ -20,32 +21,38 @@ const showSidebar = computed(() => {
 
 const { showSecondarySidebar } = useSecondarySidebar()
 
-const breakpoints = useBreakpoints({ md: 768 })
-const isMobile = breakpoints.smaller('md')
+const breakpoints = useBreakpoints({ lg: 1224 })
+const isMobileOrTablet = breakpoints.smaller('lg')
 </script>
 
 <template>
   <div id="viewport" flex relative var:nq-sidebar-width:100vw md:var:nq-sidebar-width:288px>
     <!-- TODO Add skip -->
-    <template v-if="!isMobile">
-      <Sidebar v-if="showSidebar" w="$nq-sidebar-width" shrink-0 />
+    <div v-if="!isMobileOrTablet" flex w-full>
+      <div shrink-0 relative w="$nq-sidebar-width">
+        <Sidebar v-if="showSidebar" w="$nq-sidebar-width" />
+      </div>
       <main
-        min-h-screen flex-1 :class="{
+        dark:bg-neutral-1100 min-h-screen flex-1 min-w-0 :class="{
           'md:max-w-1220 md:mx-auto': !showSidebar && !showSecondarySidebar,
-          'md:ml-$nq-sidebar-width': showSidebar,
         }"
       >
         <PageContent />
       </main>
 
-      <SecondarySidebar v-if="showSecondarySidebar" />
-    </template>
+      <div w="$nq-sidebar-width" shrink-0>
+        <SecondarySidebar v-if="showSecondarySidebar" />
+      </div>
+    </div>
     <template v-else>
-      <main min-h-screen w-full mb-56>
-        <PageContent />
-      </main>
+      <div flex="~ col" size-full>
+        <MobileOutlineAccordion />
 
-      <!-- <SecondarySidebar v-if="showSecondarySidebar" /> -->
+        <main dark:bg-neutral-1100 min-h-screen w-full mb-56>
+          <PageContent />
+        </main>
+      </div>
+
       <MobileNav fixed bottom-0 />
     </template>
   </div>

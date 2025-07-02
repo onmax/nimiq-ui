@@ -47,6 +47,9 @@ export interface NimiqVitepressFrontmatter {
   outline?: boolean
   secondarySidebar?: boolean
   widget?: boolean
+  sourceCode?: boolean | string
+  sourceCodeLabel?: string
+  copyMarkdown?: boolean
 }
 
 export interface DefineThemeNqVpOptions {

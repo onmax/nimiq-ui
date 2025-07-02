@@ -26,15 +26,25 @@ The Nimiq Vitepress theme supports the following frontmatter options:
 
 ### Layout Options
 
-| Option             | Type               | Default                                         | Description                                              |
-| ------------------ | ------------------ | ----------------------------------------------- | -------------------------------------------------------- |
-| `layout`           | `'home' \| 'docs'` | `'docs'`                                        | Layout type to use for the page                          |
-| `sidebar`          | `boolean`          | `true` for docs layout                          | Whether to show the sidebar                              |
-| `breadcrumbs`      | `boolean`          | `true` for docs layout, `false` for home layout | Whether to show the breadcrumbs navigation               |
-| `outline`          | `boolean`          | `true` if headings exist                        | Whether to show the outline (table of contents)          |
-| `secondarySidebar` | `boolean`          | `true` for docs layout, `false` for home layout | Whether to show the secondary sidebar                    |
-| `widget`           | `boolean`          | `true` for docs layout, `false` for home layout | Whether to show the widget area in the secondary sidebar |
-| `changelog`        | `boolean`          | `true` for docs layout, `false` for home layout | Whether to show the changelog in the secondary sidebar   |
+| Option             | Type                | Default                                         | Description                                               |
+| ------------------ | ------------------- | ----------------------------------------------- | --------------------------------------------------------- |
+| `layout`           | `'home' \| 'docs'`  | `'docs'`                                        | Layout type to use for the page                           |
+| `sidebar`          | `boolean`           | `true` for docs layout                          | Whether to show the sidebar                               |
+| `breadcrumbs`      | `boolean`           | `true` for docs layout, `false` for home layout | Whether to show the breadcrumbs navigation                |
+| `outline`          | `boolean`           | `true` if headings exist                        | Whether to show the outline (table of contents)           |
+| `secondarySidebar` | `boolean`           | `true` for docs layout, `false` for home layout | Whether to show the secondary sidebar                     |
+| `widget`           | `boolean`           | `true` for docs layout, `false` for home layout | Whether to show the widget area in the secondary sidebar  |
+| `changelog`        | `boolean`           | `true` for docs layout, `false` for home layout | Whether to show the changelog in the secondary sidebar    |
+| `sourceCode`       | `boolean \| string` | `true` for docs layout, `false` for home layout | Show source code controls. Can be a custom URL or boolean |
+| `sourceCodeLabel`  | `string`            | `'View Source'`                                 | Label for the source code button                          |
+| `copyMarkdown`     | `boolean`           | Same as `sourceCode`                            | Show the copy markdown button independently               |
+
+### Navigation Options
+
+| Option | Type                                                             | Description                                                                               |
+| ------ | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `prev` | `string \| { text: string, link: string, description?: string }` | Link to the previous page. Can be a URL string or an object with text and link properties |
+| `next` | `string \| { text: string, link: string, description?: string }` | Link to the next page. Can be a URL string or an object with text and link properties     |
 
 ## Page Layouts
 
@@ -82,21 +92,129 @@ changelog: true
 ---
 ```
 
+## Source Code Controls
+
+The theme includes source code controls next to the breadcrumbs, allowing users to view the source of the current page and copy the raw markdown content. These controls are enabled by default for documentation pages.
+
+**Enable source code controls (default for docs layout):**
+
+```yaml
+---
+sourceCode: true
+---
+```
+
+**Disable source code controls:**
+
+```yaml
+---
+sourceCode: false
+---
+```
+
+**Use a custom source URL instead of the auto-generated GitHub link:**
+
+```yaml
+---
+sourceCode: https://github.com/onmax/nimiq-ui/blob/main/docs/custom-path.md
+sourceCodeLabel: Edit on GitHub
+---
+```
+
+**Control buttons independently:**
+
+```yaml
+---
+# Only show copy button, not the source link
+copyMarkdown: true
+sourceCode: false
+---
+```
+
+**Or disable copy but keep source link:**
+
+```yaml
+---
+copyMarkdown: false
+sourceCode: true
+---
+```
+
+### Features
+
+The source code controls provide two separate buttons that can be controlled independently:
+
+1. **Copy Markdown** - Copies the raw markdown content to the clipboard (controlled by `copyMarkdown`)
+2. **View Source** - Opens the source file (GitHub by default, or custom URL) (controlled by `sourceCode`)
+
+Both buttons are shown by default on documentation pages. The labels remain visible on desktop but become icon-only on mobile screens.
+
+### Auto-Generated URLs
+
+By default, when `sourceCode` is `true`, the theme automatically generates a GitHub URL based on:
+
+- The repository URL from git history
+- The current page's relative path
+- The assumption that the source is in the `main` branch
+
+For example, if your page is at `docs/guide/introduction.md`, the generated URL will be:
+`https://github.com/your-repo/blob/main/docs/guide/introduction.md`
+
 ## Controlling the Secondary Sidebar
 
 The secondary sidebar contains both the outline (table of contents) and optional widget area. You can control them independently:
 
+**Hide the outline but keep the widget:**
+
 ```yaml
 ---
-# Hide the outline but keep the widget
 outline: false
 widget: true
 changelog: true
+---
+```
 
-# Or hide both by disabling the entire secondary sidebar
+**Or hide both by disabling the entire secondary sidebar:**
+
+```yaml
+---
 secondarySidebar: false
 ---
 ```
+
+## Page Navigation
+
+The theme includes a previous/next page navigation feature that is generated automatically from your sidebar structure. You can disable either link per page using frontmatter:
+
+**Hide only the previous link:**
+
+```yaml
+---
+prev: false
+---
+```
+
+**Hide only the next link:**
+
+```yaml
+---
+next: false
+---
+```
+
+**Hide both:**
+
+```yaml
+---
+prev: false
+next: false
+---
+```
+
+If not set, both navigation links are shown by default, following the sidebar order. The navigation is always hidden on the home page.
+
+> [!TIP]
+> Use `prev: false` or `next: false` in your page frontmatter to hide the respective navigation link for that page.
 
 ## Using Frontmatter with Components
 

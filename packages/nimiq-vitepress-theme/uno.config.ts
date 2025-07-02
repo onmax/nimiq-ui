@@ -23,7 +23,15 @@ export default defineConfig({
       },
     }),
   ],
-  transformers: [
-    transformerDirectives(),
+  transformers: [transformerDirectives()],
+  variants: [
+    (matcher) => {
+      if (!matcher.startsWith('copied:'))
+        return matcher
+      return {
+        matcher: matcher.slice(6),
+        selector: s => `[data-state="copied"]${s}`,
+      }
+    },
   ],
 })

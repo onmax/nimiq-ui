@@ -5,7 +5,22 @@ export default antfu({
   formatters: true,
   vue: true,
   pnpmCatalogs: true,
-  ignores: ['packages/nimiq-icons/src/**/*', 'packages/nimiq-css/src/css/colors.css'],
+  ignores: [
+    'packages/nimiq-icons/src/**/*',
+    'packages/nimiq-css/src/css/colors.css',
+    '**/dist/**',
+    '**/build/**',
+    '**/.vitepress/cache/**',
+    '**/.vitepress/dist/**',
+    '**/node_modules/**',
+    '**/.git/**',
+    '**/.figma-cache/**',
+    '**/coverage/**',
+    '**/.nx/**',
+    '**/.netlify/**',
+    '**/tmp/**',
+    '**/out-tsc/**',
+  ],
 }, {
   files: ['**/**.ts'],
   rules: {
@@ -18,7 +33,8 @@ export default antfu({
     'import/first': 'off',
   },
 }, {
-  // rules: {
-  //   curly: ["error", "multi-or-nest"]
-  // }
+  rules: {
+    // Fix for vue/object-property-newline rule configuration
+    'vue/object-property-newline': ['error', { allowAllPropertiesOnSameLine: false }],
+  },
 })

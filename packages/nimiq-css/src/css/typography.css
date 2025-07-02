@@ -27,7 +27,7 @@
 [nq-prose],
 .nq-prose-compact,
 [nq-prose-compact] {
-  font-size: 16px;
+  font-size: 1rem;
   /* Default font-size */
   margin-trim: block;
 
@@ -62,13 +62,13 @@
 
     /* derived values */
     --font-size-range: calc(var(--font-size-max-em) - var(--font-size-min-em));
-    --font-size-fluid: calc(var(--unit) * var(--font-size-min-em) + var(--font-size-range) * var(--f-factor));
-    --font-size: clamp(
+    --tp-font-size-fluid: calc(var(--unit) * var(--font-size-min-em) + var(--font-size-range) * var(--f-factor));
+    --tp-font-size: clamp(
       var(--unit) * var(--font-size-min-em),
-      var(--font-size-fluid),
+      var(--tp-font-size-fluid),
       var(--unit) * var(--font-size-max-em)
     );
-    font-size: var(--font-size);
+    font-size: var(--tp-font-size);
   }
 
   > *:first-child {

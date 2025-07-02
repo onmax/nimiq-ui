@@ -67,7 +67,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
     </div>
 
     <template v-if="currentDocModule">
-      <hr w-full h-1.5 bg-neutral-200 f-mt-xs>
+      <hr w-full h-1.5 bg-neutral-800 f-mt-xs>
 
       <DefineSidebarItem v-slot="{ item: { text, link, icon } }">
         <a :href="withBase(link!)" class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" data-active:font-bold transition-all data-active:text-blue data-active:bg-blue-400 group :class="{ 'nq-arrow after:op-70 hocus:after:op-100': isExternalLink(link!) }" transition-opacity :target="isExternalLink(link!) ? '_blank' : undefined">
