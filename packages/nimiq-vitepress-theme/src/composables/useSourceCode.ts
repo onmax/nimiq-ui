@@ -29,11 +29,28 @@ export function useSourceCode() {
     return showSourceCode.value
   })
 
-  // Get the actual file path in the repository by combining srcDir + filePath
+  // Get the actual file path in the repository
   const getRepoFilePath = computed(() => {
-    // For monorepos where VitePress runs from docs/ but files are in repo/docs/
-    // We need to add 'docs' prefix since VitePress doesn't include it in filePath
-    return join('docs', page.value.filePath)
+    // Allow custom path prefix configuration via frontmatter
+    const pathPrefix = frontmatter.value.sourceCodePathPrefix
+
+    if (pathPrefix !== undefined) {
+      // If explicitly set (including empty string), use it
+      return pathPrefix ? join(pathPrefix, page.value.filePath) : page.value.filePath
+    }
+
+    // Auto-detect based on common patterns
+    // If the repoURL suggests this is a monorepo with docs/ structure
+    if (repoURL.value && (
+      repoURL.value.includes('/nimiq-ui') // Known monorepo pattern
+      || repoURL.value.includes('/ui') // Common monorepo pattern
+      || page.value.filePath.includes('docs/') === false // VitePress running from docs/ but filePath doesn't include it
+    )) {
+      return join('docs', page.value.filePath)
+    }
+
+    // Default: use filePath as-is for standalone projects
+    return page.value.filePath
   })
 
   const editUrl = computed(() => {

@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import type { NimiqVitepressThemeConfig } from '../types'
 import { useBreakpoints } from '@vueuse/core'
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import { computed } from 'vue'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
+import CommandMenu from './CommandMenu.vue'
+import Logo from './Logo.vue'
 import MobileNav from './MobileNav.vue'
 import MobileOutlineAccordion from './MobileOutlineAccordion.vue'
 import PageContent from './PageContent.vue'
@@ -20,6 +23,9 @@ const showSidebar = computed(() => {
   return true
 })
 
+const { theme } = useData<NimiqVitepressThemeConfig>()
+const modules = computed(() => theme.value.modules)
+
 const { showSecondarySidebar } = useSecondarySidebar()
 
 const breakpoints = useBreakpoints({ lg: 1224 })
@@ -27,10 +33,10 @@ const isMobileOrTablet = breakpoints.smaller('lg')
 </script>
 
 <template>
-  <div id="viewport" flex relative var:nq-sidebar-width:100vw md:var:nq-sidebar-width:288px>
+  <div v-if="!isHome" id="viewport" flex relative var:nq-sidebar-width:100vw md:var:nq-sidebar-width:288px data-layout="docs">
     <!-- TODO Add skip -->
     <div v-if="!isMobileOrTablet" flex w-full>
-      <div v-if="!isHome" shrink-0 relative w="$nq-sidebar-width">
+      <div shrink-0 relative w="$nq-sidebar-width">
         <Sidebar v-if="showSidebar" w="$nq-sidebar-width" />
       </div>
       <main
@@ -41,13 +47,13 @@ const isMobileOrTablet = breakpoints.smaller('lg')
         <PageContent />
       </main>
 
-      <div v-if="!isHome" w="$nq-sidebar-width" shrink-0>
+      <div w="$nq-sidebar-width" shrink-0>
         <SecondarySidebar v-if="showSecondarySidebar" />
       </div>
     </div>
     <template v-else>
       <div flex="~ col" size-full>
-        <MobileOutlineAccordion v-if="!isHome" />
+        <MobileOutlineAccordion />
 
         <main dark:bg-neutral-1100 min-h-screen w-full mb-56>
           <PageContent />
@@ -55,6 +61,24 @@ const isMobileOrTablet = breakpoints.smaller('lg')
       </div>
 
       <MobileNav fixed bottom-0 />
+    </template>
+  </div>
+
+  <div v-else data-layout="home">
+    <template v-if="isMobileOrTablet">
+      <PageContent />
+      <MobileNav fixed bottom-0 />
+    </template>
+    <template v-else>
+      <header fixed inset-x-0 top-0 z-10 bg-neutral-0 f-h-xl flex="~ gap-32" f-px-xl f-py-sm>
+        <Logo />
+        <CommandMenu max-w-320 ml-auto />
+        <nav flex="~ items-center gap-32">
+          <a v-for="module in modules" :key="module.text" shrink-0 :href="withBase(module.defaultPageLink)">
+            {{ module.text }}</a>
+        </nav>
+      </header>
+      <PageContent f-pt-xl />
     </template>
   </div>
 </template>

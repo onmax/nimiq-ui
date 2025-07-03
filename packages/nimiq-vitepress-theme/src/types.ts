@@ -49,6 +49,7 @@ export interface NimiqVitepressFrontmatter {
   widget?: boolean
   sourceCode?: boolean | string
   sourceCodeLabel?: string
+  sourceCodePathPrefix?: string
   copyMarkdown?: boolean
 }
 

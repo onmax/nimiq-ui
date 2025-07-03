@@ -26,18 +26,19 @@ The Nimiq Vitepress theme supports the following frontmatter options:
 
 ### Layout Options
 
-| Option             | Type                | Default                                         | Description                                               |
-| ------------------ | ------------------- | ----------------------------------------------- | --------------------------------------------------------- |
-| `layout`           | `'home' \| 'docs'`  | `'docs'`                                        | Layout type to use for the page                           |
-| `sidebar`          | `boolean`           | `true` for docs layout                          | Whether to show the sidebar                               |
-| `breadcrumbs`      | `boolean`           | `true` for docs layout, `false` for home layout | Whether to show the breadcrumbs navigation                |
-| `outline`          | `boolean`           | `true` if headings exist                        | Whether to show the outline (table of contents)           |
-| `secondarySidebar` | `boolean`           | `true` for docs layout, `false` for home layout | Whether to show the secondary sidebar                     |
-| `widget`           | `boolean`           | `true` for docs layout, `false` for home layout | Whether to show the widget area in the secondary sidebar  |
-| `changelog`        | `boolean`           | `true` for docs layout, `false` for home layout | Whether to show the changelog in the secondary sidebar    |
-| `sourceCode`       | `boolean \| string` | `true` for docs layout, `false` for home layout | Show source code controls. Can be a custom URL or boolean |
-| `sourceCodeLabel`  | `string`            | `'View Source'`                                 | Label for the source code button                          |
-| `copyMarkdown`     | `boolean`           | Same as `sourceCode`                            | Show the copy markdown button independently               |
+| Option                 | Type                  | Default                                         | Description                                               |
+| ---------------------- | --------------------- | ----------------------------------------------- | --------------------------------------------------------- |
+| `layout`               | `'home' \| 'docs'`    | `'docs'`                                        | Layout type to use for the page                           |
+| `sidebar`              | `boolean`             | `true` for docs layout                          | Whether to show the sidebar                               |
+| `breadcrumbs`          | `boolean`             | `true` for docs layout, `false` for home layout | Whether to show the breadcrumbs navigation                |
+| `outline`              | `boolean`             | `true` if headings exist                        | Whether to show the outline (table of contents)           |
+| `secondarySidebar`     | `boolean`             | `true` for docs layout, `false` for home layout | Whether to show the secondary sidebar                     |
+| `widget`               | `boolean`             | `true` for docs layout, `false` for home layout | Whether to show the widget area in the secondary sidebar  |
+| `changelog`            | `boolean`             | `true` for docs layout, `false` for home layout | Whether to show the changelog in the secondary sidebar    |
+| `sourceCode`           | `boolean \| string`   | `true` for docs layout, `false` for home layout | Show source code controls. Can be a custom URL or boolean |
+| `sourceCodeLabel`      | `string`              | `'View Source'`                                 | Label for the source code button                          |
+| `sourceCodePathPrefix` | `string \| undefined` | Auto-detected                                   | Path prefix for source code URLs (e.g., `'docs'` or `''`) |
+| `copyMarkdown`         | `boolean`             | Same as `sourceCode`                            | Show the copy markdown button independently               |
 
 ### Navigation Options
 
@@ -159,6 +160,36 @@ By default, when `sourceCode` is `true`, the theme automatically generates a Git
 
 For example, if your page is at `docs/guide/introduction.md`, the generated URL will be:
 `https://github.com/your-repo/blob/main/docs/guide/introduction.md`
+
+### Path Prefix Configuration
+
+For most projects, the theme automatically detects the correct path structure. However, if you need to override this behavior, you can use the `sourceCodePathPrefix` option:
+
+**For monorepo projects where VitePress runs from docs/ but files are in repo/docs/:**
+
+```yaml
+---
+sourceCodePathPrefix: docs
+---
+```
+
+**For standalone projects where VitePress runs from the root:**
+
+```yaml
+---
+sourceCodePathPrefix: ''
+---
+```
+
+**For custom directory structures:**
+
+```yaml
+---
+sourceCodePathPrefix: documentation
+---
+```
+
+If not specified, the theme will auto-detect the correct prefix based on the repository URL and common patterns. This ensures compatibility with both monorepo and standalone project structures.
 
 ## Controlling the Secondary Sidebar
 

@@ -114,8 +114,9 @@ export default defineNimiqVitepressConfig({
                 items: [
                   { text: 'Code Block', link: '/vitepress-theme/components/code-block' },
                   { text: 'Card', link: '/vitepress-theme/components/card' },
-                  { text: 'Large Card', link: '/vitepress-theme/components/large-card' },
                   { text: 'Grid', link: '/vitepress-theme/components/grid' },
+                  { text: 'Headline', link: '/vitepress-theme/components/headline' },
+                  { text: 'Large Card', link: '/vitepress-theme/components/large-card' },
                   { text: 'Callout & Blockquotes', link: '/vitepress-theme/components/callouts-and-blockquotes' },
                   { text: 'Vitepress Components', link: '/vitepress-theme/components/vitepress-components' },
                 ],

@@ -2,10 +2,11 @@
 layout: 'home'
 secondarySidebar: false
 sidebar: false
+
+title: Nimiq UI
+description: Build your app with the Nimiq theme
 ---
 
-# Nimiq UI
-
-The home for Nimiq UI development and documentation.
+<NqHeadline />
 
 <NqModulesGrid />
