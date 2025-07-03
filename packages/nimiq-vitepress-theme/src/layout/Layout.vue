@@ -70,7 +70,7 @@ const isMobileOrTablet = breakpoints.smaller('lg')
       <MobileNav fixed bottom-0 />
     </template>
     <template v-else>
-      <header fixed inset-x-0 top-0 z-10 bg-neutral-0 f-h-xl flex="~ gap-32" f-px-xl f-py-sm>
+      <header z-1000 fixed inset-x-0 top-0 border="b-1 neutral-400" shadow bg-neutral-0 f-h-xl flex="~ gap-32" f-px-xl f-py-sm>
         <Logo />
         <CommandMenu max-w-320 ml-auto />
         <nav flex="~ items-center gap-32">
@@ -78,7 +78,7 @@ const isMobileOrTablet = breakpoints.smaller('lg')
             {{ module.text }}</a>
         </nav>
       </header>
-      <PageContent f-pt-xl />
+      <Content f-pt-xl />
     </template>
   </div>
 </template>
