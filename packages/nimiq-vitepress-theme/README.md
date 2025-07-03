@@ -6,7 +6,117 @@
 [![JSDocs][jsdocs-src]][jsdocs-href]
 [![License][license-src]][license-href]
 
-Vitepress Theme for Nimiq documentation pages
+A modern, beautiful VitePress theme with Nimiq branding and design patterns.
+
+## Features
+
+- 🎨 Modern, clean design with Nimiq branding
+- 🌙 Dark mode support
+- 📱 Fully responsive layout
+- 🔍 Advanced search functionality
+- 🧭 Smart navigation with breadcrumbs
+- 📝 Rich typography and code highlighting
+- 🎯 Custom components (NqCard, NqGrid, NqHeadline, etc.)
+- **🚨 Beautiful custom 404 error page**
+
+## Components
+
+### Built-in Components
+
+- `NqCard` - Flexible card component with optional icons and links
+- `NqGrid` - Responsive grid layout
+- `NqHeadline` - Structured headline component
+- `NqLargeCard` - Large featured card component
+- `NqModulesGrid` - Grid for displaying modules
+
+### Error Page
+
+The theme includes a custom 404 error page with:
+
+- Friendly error message with random emojis
+- Quick navigation options (Go Back, Go Home)
+- Integrated search functionality
+- Quick links to common pages
+- Display of available modules
+- Responsive design for mobile and desktop
+
+## Installation
+
+```bash
+npm install nimiq-vitepress-theme
+```
+
+## Usage
+
+```ts
+// .vitepress/config.ts
+import { defineNimiqVitepressConfig } from 'nimiq-vitepress-theme'
+
+export default defineNimiqVitepressConfig({
+  title: 'Your Documentation',
+  description: 'Your description',
+  themeConfig: {
+    modules: [
+      {
+        text: 'Getting Started',
+        defaultPageLink: '/getting-started',
+        description: 'Learn the basics'
+      }
+    ]
+  }
+})
+```
+
+## Theme Configuration
+
+The theme supports various configuration options:
+
+```ts
+interface NimiqVitepressThemeConfig {
+  modules: NimiqVitepressThemeNav[]
+  links?: {
+    icon: string
+    link: string
+  }[]
+  showLastUpdated?: boolean
+  showEditContent?: boolean
+  search?: { provider: 'local' }
+}
+```
+
+## Testing the 404 Page
+
+To test the custom 404 error page:
+
+1. Start your development server
+2. Navigate to any non-existent page (e.g., `/non-existent-page`)
+3. The custom error page will display with:
+   - Random emoji
+   - Friendly error message
+   - Navigation options
+   - Search functionality
+   - Quick links and module exploration
+
+## Development
+
+```bash
+# Install dependencies
+pnpm install
+
+# Build the theme
+pnpm build
+
+# Development
+pnpm dev
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+MIT License
 
 <!-- Badges -->
 
