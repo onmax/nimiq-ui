@@ -56,7 +56,7 @@ const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabe
       </div>
 
       <article flex-1 class="nq-prose" f-pb="lg md:3xl" var:nq-prose-max-width:none>
-        <Content max-w-none />
+        <Content max-w-none px-0 />
         <Changelog v-if="showChangelog" />
       </article>
       <DocNavigation />

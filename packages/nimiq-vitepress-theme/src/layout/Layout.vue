@@ -47,8 +47,8 @@ const isMobileOrTablet = breakpoints.smaller('lg')
         <PageContent />
       </main>
 
-      <div w="$nq-sidebar-width" shrink-0>
-        <SecondarySidebar v-if="showSecondarySidebar" />
+      <div v-if="showSecondarySidebar" w="$nq-sidebar-width" shrink-0>
+        <SecondarySidebar />
       </div>
     </div>
     <template v-else>
