@@ -11,10 +11,11 @@ import Sidebar from './Sidebar.vue'
 
 const { frontmatter } = useData()
 
+const isHome = computed(() => frontmatter.value.layout === 'home')
 const showSidebar = computed(() => {
   if (frontmatter.value.sidebar !== undefined)
     return frontmatter.value.sidebar
-  if (frontmatter.value.layout === 'home')
+  if (isHome.value)
     return false
   return true
 })
@@ -29,7 +30,7 @@ const isMobileOrTablet = breakpoints.smaller('lg')
   <div id="viewport" flex relative var:nq-sidebar-width:100vw md:var:nq-sidebar-width:288px>
     <!-- TODO Add skip -->
     <div v-if="!isMobileOrTablet" flex w-full>
-      <div shrink-0 relative w="$nq-sidebar-width">
+      <div v-if="!isHome" shrink-0 relative w="$nq-sidebar-width">
         <Sidebar v-if="showSidebar" w="$nq-sidebar-width" />
       </div>
       <main
@@ -40,13 +41,13 @@ const isMobileOrTablet = breakpoints.smaller('lg')
         <PageContent />
       </main>
 
-      <div w="$nq-sidebar-width" shrink-0>
+      <div v-if="!isHome" w="$nq-sidebar-width" shrink-0>
         <SecondarySidebar v-if="showSecondarySidebar" />
       </div>
     </div>
     <template v-else>
       <div flex="~ col" size-full>
-        <MobileOutlineAccordion />
+        <MobileOutlineAccordion v-if="!isHome" />
 
         <main dark:bg-neutral-1100 min-h-screen w-full mb-56>
           <PageContent />
