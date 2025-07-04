@@ -33,15 +33,15 @@ function handleSearch() {
 </script>
 
 <template>
-  <div min-h-screen bg-neutral-0 dark:bg-neutral-1100 flex="~ col">
+  <div min-h-screen bg-neutral-0 dark:bg-neutral-1100 flex flex-col>
     <!-- Header -->
-    <header flex="~ items-center justify-between" f-px-xl f-py-lg>
+    <header flex items-center justify-between px-xl py-lg>
       <Logo />
       <CommandMenu />
     </header>
 
     <!-- Main Content -->
-    <main flex="~ col items-center justify-center" flex-1 f-px-lg f-py-2xl>
+    <main flex flex-col items-center justify-center flex-1 px-lg py-2xl>
       <div text-center max-w-2xl mx-auto>
         <!-- Error Icon/Emoji -->
         <div text-8xl mb-8>
@@ -51,7 +51,7 @@ function handleSearch() {
         <!-- Error Code -->
         <div
           text-8xl font-bold text-transparent bg-clip-text
-          bg-gradient="to-r from-blue-500 to-blue-700"
+          bg-gradient-to-r from-blue-500 to-blue-700
           mb-4
         >
           404
@@ -68,12 +68,10 @@ function handleSearch() {
         </p>
 
         <!-- Action Buttons -->
-        <div flex="~ gap-4 items-center justify-center wrap" mb-12>
+        <div flex gap-4 items-center justify-center flex-wrap mb-12>
           <button
-            class="nq-pill-primary"
-            bg-blue-500
-            hover:bg-blue-600 text-white px-8 py-4 rounded-lg transition-colors
-            font-semibold flex="~ items-center gap-2" @click="goBack"
+            bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-lg transition-colors
+            font-semibold flex items-center gap-2 @click="goBack"
           >
             <div i-nimiq:arrow-left />
             Go Back
@@ -81,10 +79,9 @@ function handleSearch() {
 
           <a
             :href="withBase('/')"
-            class="nq-pill-secondary"
             bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700
             text-neutral-900 dark:text-neutral-100 px-8 py-4 rounded-lg
-            transition-colors font-semibold flex="~ items-center gap-2"
+            transition-colors font-semibold flex items-center gap-2
           >
             <div i-nimiq:home />
             Go Home
@@ -94,12 +91,11 @@ function handleSearch() {
         <!-- Search Box -->
         <div mb-12>
           <div
-            class="nq-card group cursor-pointer"
-            bg-neutral-50 dark:bg-neutral-800 border="~ neutral-300 dark:neutral-700"
-            rounded-lg p-6 hover:shadow-lg transition-shadow
+            bg-neutral-50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700
+            rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer
             @click="handleSearch"
           >
-            <div flex="~ items-center gap-3" text-neutral-600 dark:text-neutral-400>
+            <div flex items-center gap-3 text-neutral-600 dark:text-neutral-400>
               <div i-nimiq:search text-xl />
               <span>Search for what you're looking for...</span>
               <div
@@ -117,15 +113,14 @@ function handleSearch() {
           <h2 text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-6>
             Quick Links
           </h2>
-          <div grid="~ cols-1 md:cols-2 gap-4" max-w-md mx-auto>
+          <div grid grid-cols-1 md:grid-cols-2 gap-4 max-w-md mx-auto>
             <a
               v-for="link in quickLinks"
               :key="link.text"
               :href="withBase(link.link)"
-              class="nq-hoverable"
               bg-neutral-50 dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700
-              border="~ neutral-300 dark:neutral-700" rounded-lg p-4
-              flex="~ items-center gap-3" transition-colors
+              border border-neutral-300 dark:border-neutral-700 rounded-lg p-4
+              flex items-center gap-3 transition-colors hover:shadow-lg
             >
               <div :class="link.icon" text-lg text-blue-500 />
               <span font-medium text-neutral-900 dark:text-neutral-100>
@@ -140,15 +135,14 @@ function handleSearch() {
           <h2 text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-6>
             Explore Modules
           </h2>
-          <div grid="~ cols-1 md:cols-2 lg:cols-3 gap-4" max-w-4xl mx-auto>
+          <div grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto>
             <a
               v-for="module in modules"
               :key="module.text"
               :href="withBase(module.defaultPageLink)"
-              class="nq-hoverable"
               bg-neutral-50 dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700
-              border="~ neutral-300 dark:neutral-700" rounded-lg p-6
-              text-left transition-colors
+              border border-neutral-300 dark:border-neutral-700 rounded-lg p-6
+              text-left transition-colors hover:shadow-lg
             >
               <div v-if="module.icon" :class="module.icon" text-2xl text-blue-500 mb-3 />
               <h3 font-semibold text-neutral-900 dark:text-neutral-100 mb-2>
@@ -164,7 +158,7 @@ function handleSearch() {
     </main>
 
     <!-- Footer -->
-    <footer text-center f-py-lg text-sm text-neutral-500 dark:text-neutral-400>
+    <footer text-center py-lg text-sm text-neutral-500 dark:text-neutral-400>
       <p>
         © {{ new Date().getFullYear() }} {{ site.title }}.
         Built with the
@@ -172,8 +166,7 @@ function handleSearch() {
           href="https://onmax.github.io/nimiq-ui/vitepress-theme/"
           target="_blank"
           rel="noopener"
-          class="nq-link"
-          text-blue-500 hover:text-blue-600 underline
+          text-blue-500 hover:text-blue-600 underline transition-colors
         >
           Nimiq VitePress Theme
         </a>
@@ -184,25 +177,3 @@ function handleSearch() {
     <MobileNav />
   </div>
 </template>
-
-<style scoped>
-.nq-pill-primary {
-  @apply bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-colors font-semibold;
-}
-
-.nq-pill-secondary {
-  @apply bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-900 dark:text-neutral-100 px-6 py-3 rounded-lg transition-colors font-semibold;
-}
-
-.nq-card {
-  @apply bg-neutral-50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg transition-shadow;
-}
-
-.nq-hoverable {
-  @apply hover:shadow-lg transition-all duration-200;
-}
-
-.nq-link {
-  @apply text-blue-500 hover:text-blue-600 transition-colors;
-}
-</style>
