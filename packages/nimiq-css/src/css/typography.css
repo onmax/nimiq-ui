@@ -229,17 +229,29 @@
     }
 
     &:where(blockquote) {
-      background: var(--colors-green-400);
-      --margin-min-lh: 0.5833;
-      --margin-max-lh: 0.6667;
-      padding: var(--nq-m-size);
-      border-radius: 6px;
-      box-shadow: 0 0 0 1.5px var(--colors-green-600);
-      font-weight: 600;
-      transform: translateX(-8px);
-      width: calc(100% + 16px);
-      --font-size-min-em: 0.75;
-      --font-size-max-em: 0.875;
+      width: 100%;
+      max-width: inherit;
+      margin: 1lh 0;
+      padding: 1lh;
+
+      @media (min-width: 768px) {
+        transform: translateX(0);
+      }
+
+      p {
+        line-height: 1.3;
+        margin: 0;
+      }
+
+      > *:not(:first-child) {
+        margin-top: 0.75lh;
+      }
+
+      code,
+      pre {
+        background-color: var(--colors-green-600);
+        color: var(--colors-green-1100);
+      }
     }
 
     &:where(img, video, iframe) {

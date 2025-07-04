@@ -1,3 +1,33 @@
+.vp-code-group,
+[class*='language-'] {
+  margin: 1lh 0;
+  outline: 1.5px solid color-mix(in oklch, var(--colors-neutral) 8%, transparent);
+
+  .tabs {
+    label {
+      margin-right: 0;
+      margin-left: 0;
+      padding-right: 8px;
+      padding-left: 8px;
+    }
+
+    input:checked + label {
+      outline: 1.5px solid color-mix(in oklch, var(--colors-blue) 50%, transparent);
+    }
+  }
+  pre {
+    outline: none;
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    font-size: 1.25em;
+
+    code {
+      padding: 0;
+    }
+  }
+}
+
 pre {
   padding-right: 0;
   padding-left: 0;

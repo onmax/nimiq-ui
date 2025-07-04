@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { NimiqVitepressThemeConfig } from '../types'
 import { useBreakpoints } from '@vueuse/core'
 import { useData, withBase } from 'vitepress'
 import { computed } from 'vue'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
+import { useVisibleModules } from '../composables/useVisibleModules'
 import CommandMenu from './CommandMenu.vue'
 import Logo from './Logo.vue'
 import MobileNav from './MobileNav.vue'
@@ -23,8 +23,7 @@ const showSidebar = computed(() => {
   return true
 })
 
-const { theme } = useData<NimiqVitepressThemeConfig>()
-const modules = computed(() => theme.value.modules)
+const { visibleModules } = useVisibleModules()
 
 const { showSecondarySidebar } = useSecondarySidebar()
 
@@ -75,7 +74,7 @@ const isMobileOrTablet = breakpoints.smaller('lg')
         <Logo />
         <CommandMenu max-w-320 ml-auto />
         <nav flex="~ items-center gap-32">
-          <a v-for="module in modules" :key="module.text" shrink-0 :href="withBase(module.defaultPageLink)">
+          <a v-for="module in visibleModules" :key="module.text" shrink-0 :href="withBase(module.defaultPageLink)">
             {{ module.text }}</a>
         </nav>
       </header>

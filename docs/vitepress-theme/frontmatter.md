@@ -39,6 +39,40 @@ The Nimiq Vitepress theme supports the following frontmatter options:
 | `sourceCodeLabel`      | `string`              | `'View Source'`                                 | Label for the source code button                          |
 | `sourceCodePathPrefix` | `string \| undefined` | Auto-detected                                   | Path prefix for source code URLs (e.g., `'docs'` or `''`) |
 | `copyMarkdown`         | `boolean`             | Same as `sourceCode`                            | Show the copy markdown button independently               |
+| `wide`                 | `boolean`             | `false`, `true` if `secondarySidebar` is set    | Remove max-width constraint on prose content              |
+
+## Wide Layout
+
+The `wide` option controls whether prose content should use the full available width or be constrained to a maximum width for better readability.
+
+**Default behavior:**
+
+- `wide: false` by default - content is constrained to approximately 78 characters per line for optimal reading
+- `wide: true` automatically when `secondarySidebar` is explicitly set - provides more space for complex content
+
+**Enable wide layout:**
+
+```yaml
+---
+wide: true
+---
+```
+
+**Disable wide layout (even when secondarySidebar is set):**
+
+```yaml
+---
+secondarySidebar: true
+wide: false
+---
+```
+
+**Use cases for wide layout:**
+
+- API documentation with long code examples
+- Tables that need more horizontal space
+- Technical content that benefits from wider presentation
+- Pages with complex diagrams or wide visual content
 
 ### Navigation Options
 
@@ -90,6 +124,27 @@ layout: home
 secondarySidebar: true
 widget: true
 changelog: true
+---
+```
+
+#### Wide Layout for Technical Documentation
+
+```yaml
+---
+# Automatically uses wide layout since secondarySidebar is set
+secondarySidebar: true
+outline: true
+widget: false
+---
+```
+
+#### Force Wide Layout Without Secondary Sidebar
+
+```yaml
+---
+# Explicitly enable wide layout for full-width content
+wide: true
+secondarySidebar: false
 ---
 ```
 

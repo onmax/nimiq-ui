@@ -5,6 +5,7 @@ import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger, ScrollAreaRoot
 import { useData, withBase } from 'vitepress'
 import { ref } from 'vue'
 import { useCurrentModule } from '../composables/useCurrentModule'
+import { useVisibleModules } from '../composables/useVisibleModules'
 import { renderMarkdown } from '../lib/html-renderer'
 import { isActive } from '../lib/route'
 import CommandMenu from './CommandMenu.vue'
@@ -19,6 +20,7 @@ const [DefineSidebarItem, SidebarItem] = createReusableTemplate<{ item: { text: 
 const { theme, page } = useData<NimiqVitepressThemeConfig>()
 
 const { currentDocModule } = useCurrentModule()
+const { visibleModules } = useVisibleModules()
 
 const submoduleNavigatorOpen = ref(false)
 
@@ -60,7 +62,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
 
         <CollapsibleContent of-hidden data-open:shadow w-full mt-0>
           <div absolute z-90 bg-neutral-100 ring="1.5 neutral-300" rounded-b-6 data-open:animate-slide-down data-closed:animate-slide-up w="[calc(100%-30px)]" shadow>
-            <ModulePill v-for="item in theme.modules" :key="item.text" :item="item" component="a" @click="submoduleNavigatorOpen = false" />
+            <ModulePill v-for="item in visibleModules" :key="item.text" :item="item" component="a" @click="submoduleNavigatorOpen = false" />
           </div>
         </CollapsibleContent>
       </CollapsibleRoot>
@@ -84,7 +86,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
               <span v-if="item.label" nq-label text-11 text-neutral-700>
                 {{ item.label }}
               </span>
-              <div v-for="subitem in item.items" :key="subitem.text">
+              <div v-for="subitem in item.items.filter(i => !i.hidden)" :key="subitem.text">
                 <CollapsibleRoot v-if="subitem.items?.length" v-slot="{ open }" :default-open="openAccordionInitialState(subitem.items)">
                   <CollapsibleTrigger class="sidebar-item" group pr-12 pl-8 bg-transparent>
                     <div v-if="subitem.icon" :class="subitem.icon" f-text-sm text-neutral op="70 group-hocus:100" mr-8 />
@@ -97,7 +99,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
                   </CollapsibleTrigger>
                   <CollapsibleContent un-animate-collapsible="reka-open:down reka-closed:up" of-hidden relative>
                     <div absolute inset-y-0 left-12 w-2 bg-neutral-400 z-1 rounded-full />
-                    <SidebarItem v-for="subsubitem in subitem.items" :key="subsubitem.text" px-24 :item="subsubitem" />
+                    <SidebarItem v-for="subsubitem in subitem.items.filter(i => !i.hidden)" :key="subsubitem.text" px-24 :item="subsubitem" />
                   </CollapsibleContent>
                 </CollapsibleRoot>
                 <SidebarItem v-else :item="subitem" px-8 />

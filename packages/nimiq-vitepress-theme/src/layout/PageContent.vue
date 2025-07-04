@@ -3,6 +3,7 @@ import { useBreadcrumbs } from '../composables/useBreadcrumbs'
 import { useChangelog } from '../composables/useChangelog'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import { useSourceCode } from '../composables/useSourceCode'
+import { useWideLayout } from '../composables/useWideLayout'
 import Changelog from './Changelog.vue'
 import DocNavigation from './DocNavigation.vue'
 import '../assets/code-blocks.css'
@@ -15,6 +16,8 @@ const { showSecondarySidebar } = useSecondarySidebar()
 
 const { showChangelog } = useChangelog()
 const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabel, copyMarkdownContent, copied } = useSourceCode()
+
+const { isWide } = useWideLayout()
 </script>
 
 <template>
@@ -25,7 +28,16 @@ const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabe
     }" f-pt-sm f="$px $px-min-48 $px-max-72" pb="f-xl xl:sm" flex="~ gap-16" relative h-full
   >
     <div flex="~ col wrap gap-8" h-full flex-1 max-w-full>
-      <div v-if="showBreadcrumbs || showSourceCode || showCopyMarkdown" f-pb-lg flex="~ items-center justify-between">
+      <div
+        v-if="showBreadcrumbs || showSourceCode || showCopyMarkdown"
+        f-pb-lg
+        flex="~ items-center justify-between"
+        :style="{
+          maxWidth: isWide ? 'none' : 'var(--nq-prose-max-width, 78ch)',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        }"
+      >
         <ul v-if="showBreadcrumbs" flex="~ items-center gap-12">
           <li v-for="({ text, icon }, i) in breadcrumbs" :key="text" contents w-max>
             <div v-if="icon" :class="icon" />
@@ -55,12 +67,35 @@ const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabe
         </div>
       </div>
 
-      <article flex-1 class="nq-prose" f-pb="lg md:3xl">
+      <article
+        flex-1
+        class="nq-prose"
+        f-pb="lg md:3xl"
+        :style="{ '--nq-prose-max-width': isWide ? 'auto' : undefined }"
+      >
         <Content max-w-none px-0 />
         <Changelog v-if="showChangelog" />
       </article>
-      <DocNavigation />
-      <div flex="~ wrap justify-between gap-8" f-mt-xs f-text-xs px-32>
+
+      <DocNavigation
+        :style="{
+          maxWidth: isWide ? 'none' : 'var(--nq-prose-max-width, 78ch)',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        }"
+      />
+
+      <div
+        flex="~ wrap justify-between gap-8"
+        f-mt-xs
+        f-text-xs
+        px-32
+        :style="{
+          maxWidth: isWide ? 'none' : 'var(--nq-prose-max-width, 78ch)',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        }"
+      >
         <a :href="editUrl" target="_blank" rel="noopener" op-70 nq-arrow>
           Suggest changes on this page
         </a>

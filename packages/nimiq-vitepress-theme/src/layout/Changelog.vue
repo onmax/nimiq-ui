@@ -15,7 +15,19 @@ const [DefineCommitRegularLine, CommitRegularLine] = createReusableTemplate<Comm
   <h2 id="changelog" sr-only>
     Changelog
   </h2>
-  <Collapsible.Root v-if="commits.length > 0" class="nq-raw" px-32 bg-neutral-200 rounded-8 f-mt-lg>
+  <Collapsible.Root
+    v-if="commits.length > 0"
+    class="nq-raw"
+    px-32
+    bg-neutral-200
+    rounded-8
+    f-mt-lg
+    :style="{
+      maxWidth: 'var(--nq-prose-max-width, 78ch)',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    }"
+  >
     <Collapsible.Trigger bg-transparent w-full f-mt-2xs z-10 f-px-xs f-py-2xs flex="~ items-center gap-8">
       <div i-nimiq:watch-1-50 />
       See changelog of this file

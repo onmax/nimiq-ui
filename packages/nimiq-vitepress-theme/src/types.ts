@@ -6,7 +6,12 @@ export interface NimiqVitepressSidebar<T extends `/${string}/` = any> {
     text: string
     link?: `${T}${string}`
     icon: string
-    items?: { text: string, link: `${T}${string}` }[]
+    /**
+     * Hide this sidebar item from navigation. The item will still be
+     * accessible via direct links and search for legacy and SEO purposes.
+     */
+    hidden?: boolean
+    items?: { text: string, link: `${T}${string}`, hidden?: boolean }[]
   }[]
 }
 
@@ -27,6 +32,11 @@ export interface NimiqVitepressThemeNav<T extends `/${string}/` = any> {
    */
   defaultPageLink: T
   description?: string
+  /**
+   * Hide this module from navigation (sidebar and header). The module will still be
+   * accessible via direct links and search for legacy and SEO purposes.
+   */
+  hidden?: boolean
   sidebar: NimiqVitepressSidebar<T>[]
 }
 
@@ -51,6 +61,7 @@ export interface NimiqVitepressFrontmatter {
   sourceCodeLabel?: string
   sourceCodePathPrefix?: string
   copyMarkdown?: boolean
+  wide?: boolean
 }
 
 export interface DefineThemeNqVpOptions {

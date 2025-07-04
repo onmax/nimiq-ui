@@ -37,7 +37,6 @@
   --font-size: clamp(calc(1px * var(--font-size-min)), var(--font-size-fluid), calc(var(--font-size-max) * 1px));
 
   border-color: var(--colors-neutral-400);
-  outline-color: var(--colors-blue);
   outline-width: 1.5px;
   overscroll-behavior-x: contain;
 

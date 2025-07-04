@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { NimiqVitepressThemeConfig } from '../types'
 import type { NqCardProps } from './NqCard.vue'
-import { useData, withBase } from 'vitepress'
+import { withBase } from 'vitepress'
 import { computed } from 'vue'
+import { useVisibleModules } from '../composables/useVisibleModules'
 
-const { theme } = useData<NimiqVitepressThemeConfig>()
+const { visibleModules } = useVisibleModules()
 
 const items = computed(() => {
-  return theme.value.modules.map(({ text, icon, defaultPageLink, description }) => ({
+  return visibleModules.value.map(({ text, icon, defaultPageLink, description }) => ({
     title: text,
     icon,
     href: withBase(defaultPageLink),

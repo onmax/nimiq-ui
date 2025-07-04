@@ -3,14 +3,16 @@ import type { NimiqVitepressThemeConfig } from '../types'
 import { useData, withBase } from 'vitepress'
 import { computed } from 'vue'
 import { useRandomEmoji } from '../composables/useRandomEmoji'
+import { useVisibleModules } from '../composables/useVisibleModules'
 import CommandMenu from './CommandMenu.vue'
 import Logo from './Logo.vue'
 import MobileNav from './MobileNav.vue'
 
-const { theme, site } = useData<NimiqVitepressThemeConfig>()
+const { site } = useData<NimiqVitepressThemeConfig>()
 const { randomEmoji } = useRandomEmoji()
+const { visibleModules } = useVisibleModules()
 
-const modules = computed(() => theme.value.modules || [])
+const modules = computed(() => visibleModules.value || [])
 
 const quickLinks = computed(() => [
   { text: 'Home', link: '/', icon: 'i-nimiq:home' },
