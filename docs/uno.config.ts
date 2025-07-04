@@ -133,7 +133,7 @@ export default defineConfig<PresetWind3Theme>({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/tabler'),
         ...createExternalPackageIconLoader('@iconify-json/simple-icons'),
-        custom: FileSystemIconLoader('public/assets/icons'),
+        local: FileSystemIconLoader('public/assets/icons'),
       },
     }),
   ],

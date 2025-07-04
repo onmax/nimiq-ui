@@ -34,8 +34,6 @@ const { isWide } = useWideLayout()
         flex="~ items-center justify-between"
         :style="{
           maxWidth: isWide ? 'none' : 'var(--nq-prose-max-width, 78ch)',
-          marginLeft: 'auto',
-          marginRight: 'auto',
         }"
       >
         <ul v-if="showBreadcrumbs" flex="~ items-center gap-12">
@@ -77,13 +75,7 @@ const { isWide } = useWideLayout()
         <Changelog v-if="showChangelog" />
       </article>
 
-      <DocNavigation
-        :style="{
-          maxWidth: isWide ? 'none' : 'var(--nq-prose-max-width, 78ch)',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-        }"
-      />
+      <DocNavigation :style="{ maxWidth: isWide ? 'none' : 'var(--nq-prose-max-width, 78ch)' }" />
 
       <div
         flex="~ wrap justify-between gap-8"
@@ -92,8 +84,6 @@ const { isWide } = useWideLayout()
         px-32
         :style="{
           maxWidth: isWide ? 'none' : 'var(--nq-prose-max-width, 78ch)',
-          marginLeft: 'auto',
-          marginRight: 'auto',
         }"
       >
         <a :href="editUrl" target="_blank" rel="noopener" op-70 nq-arrow>

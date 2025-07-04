@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { useBreakpoints } from '@vueuse/core'
-import { useData, withBase } from 'vitepress'
+import { useData } from 'vitepress'
 import { computed } from 'vue'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
-import { useVisibleModules } from '../composables/useVisibleModules'
-import CommandMenu from './CommandMenu.vue'
-import Logo from './Logo.vue'
+import DesktopHeader from './DesktopHeader.vue'
 import MobileNav from './MobileNav.vue'
 import MobileOutlineAccordion from './MobileOutlineAccordion.vue'
+import NotFound from './NotFound.vue'
 import PageContent from './PageContent.vue'
 import SecondarySidebar from './SecondarySidebar.vue'
 import Sidebar from './Sidebar.vue'
 
-const { frontmatter } = useData()
+const { frontmatter, page } = useData()
 
 const isHome = computed(() => frontmatter.value.layout === 'home')
+const is404 = computed(() => page.value.isNotFound || frontmatter.value.layout === '404')
 const showSidebar = computed(() => {
   if (frontmatter.value.sidebar !== undefined)
     return frontmatter.value.sidebar
@@ -23,8 +23,6 @@ const showSidebar = computed(() => {
   return true
 })
 
-const { visibleModules } = useVisibleModules()
-
 const { showSecondarySidebar } = useSecondarySidebar()
 
 const breakpoints = useBreakpoints({ lg: 1224 })
@@ -32,7 +30,11 @@ const isMobileOrTablet = breakpoints.smaller('lg')
 </script>
 
 <template>
-  <div v-if="!isHome" id="viewport" flex relative var:nq-sidebar-width:100vw md:var:nq-sidebar-width:288px data-layout="docs">
+  <!-- 404 Not Found Page -->
+  <NotFound v-if="is404" />
+
+  <!-- Documentation Pages -->
+  <div v-else-if="!isHome" id="viewport" flex relative var:nq-sidebar-width:100vw md:var:nq-sidebar-width:288px data-layout="docs">
     <!-- TODO Add skip -->
     <div v-if="!isMobileOrTablet" flex w-full>
       <div shrink-0 relative w="$nq-sidebar-width">
@@ -64,20 +66,14 @@ const isMobileOrTablet = breakpoints.smaller('lg')
     </template>
   </div>
 
-  <div v-else data-layout="home">
+  <!-- Home Page -->
+  <div v-else data-layout="home" min-h-screen>
     <template v-if="isMobileOrTablet">
-      <PageContent />
+      <Content />
       <MobileNav fixed bottom-0 />
     </template>
     <template v-else>
-      <header z-1000 fixed inset-x-0 top-0 border="b-1 neutral-400" shadow bg-neutral-0 f-h-xl flex="~ gap-32" f-px-xl f-py-sm>
-        <Logo />
-        <CommandMenu max-w-320 ml-auto />
-        <nav flex="~ items-center gap-32">
-          <a v-for="module in visibleModules" :key="module.text" shrink-0 :href="withBase(module.defaultPageLink)">
-            {{ module.text }}</a>
-        </nav>
-      </header>
+      <DesktopHeader />
       <Content f-pt-xl />
     </template>
   </div>

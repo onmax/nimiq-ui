@@ -12,9 +12,6 @@ const [DefineCommitRegularLine, CommitRegularLine] = createReusableTemplate<Comm
 </script>
 
 <template>
-  <h2 id="changelog" sr-only>
-    Changelog
-  </h2>
   <Collapsible.Root
     v-if="commits.length > 0"
     class="nq-raw"
