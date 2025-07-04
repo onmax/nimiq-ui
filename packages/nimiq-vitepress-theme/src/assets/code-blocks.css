@@ -86,6 +86,10 @@ pre {
     justify-content: flex-start;
   }
 
+  .tabs label {
+    padding: 8px 0;
+  }
+
   pre {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
