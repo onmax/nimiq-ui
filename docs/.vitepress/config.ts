@@ -12,7 +12,7 @@ export default defineNimiqVitepressConfig({
     modules: [
       {
         subpath: 'nimiq-css',
-        icon: 'i-custom:nimiq-css',
+        icon: 'i-local:nimiq-css',
         defaultPageLink: '/nimiq-css/getting-started',
         text: 'Nimiq CSS',
         description: 'The CSS framework',
@@ -67,7 +67,7 @@ export default defineNimiqVitepressConfig({
       {
         subpath: 'frankenstein',
         text: 'Nimiq Frankenstein',
-        icon: 'i-custom:frankenstein',
+        icon: 'i-local:frankenstein',
         defaultPageLink: '/frankenstein/getting-started',
         description: 'The Vue 3 components',
         sidebar: [
@@ -82,7 +82,7 @@ export default defineNimiqVitepressConfig({
             items: [
               {
                 text: 'Dialog Components',
-                icon: 'i-custom:modal',
+                icon: 'i-local:modal',
                 items: [
                   { text: 'Basic Modal', link: '/frankenstein/components/basic-modal' },
                   { text: 'Nested Modal', link: '/frankenstein/components/nested-modal' },
@@ -100,7 +100,7 @@ export default defineNimiqVitepressConfig({
       {
         subpath: 'vitepress-theme',
         text: 'Vitepress Theme',
-        icon: 'i-custom:nimiq-vitepress',
+        icon: 'i-local:nimiq-vitepress',
         defaultPageLink: '/vitepress-theme',
         description: 'Your Vitepress with Nimiq',
         sidebar: [
@@ -128,7 +128,7 @@ export default defineNimiqVitepressConfig({
       {
         subpath: 'nimiq-icons',
         text: 'Nimiq Icons',
-        icon: 'i-custom:nimiq-vitepress',
+        icon: 'i-local:nimiq-vitepress',
         defaultPageLink: '/nimiq-icons/explorer',
         description: 'The Iconify Set for Nimiq',
         sidebar: [

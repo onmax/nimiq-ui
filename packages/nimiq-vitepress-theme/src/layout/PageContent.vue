@@ -24,7 +24,7 @@ const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabe
       'xl:f-px-xl': !showSecondarySidebar,
     }" f-pt-sm f="$px $px-min-48 $px-max-72" pb="f-xl xl:sm" flex="~ gap-16" relative h-full
   >
-    <div flex="~ col" h-full flex-1 max-w-full>
+    <div flex="~ col wrap gap-8" h-full flex-1 max-w-full>
       <div v-if="showBreadcrumbs || showSourceCode || showCopyMarkdown" f-pb-lg flex="~ items-center justify-between">
         <ul v-if="showBreadcrumbs" flex="~ items-center gap-12">
           <li v-for="({ text, icon }, i) in breadcrumbs" :key="text" contents w-max>
@@ -55,7 +55,7 @@ const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabe
         </div>
       </div>
 
-      <article flex-1 class="nq-prose" f-pb="lg md:3xl" var:nq-prose-max-width:none>
+      <article flex-1 class="nq-prose" f-pb="lg md:3xl">
         <Content max-w-none px-0 />
         <Changelog v-if="showChangelog" />
       </article>

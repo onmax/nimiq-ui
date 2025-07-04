@@ -40,6 +40,7 @@ const isMobileOrTablet = breakpoints.smaller('lg')
         <Sidebar v-if="showSidebar" w="$nq-sidebar-width" />
       </div>
       <main
+        of-hidden
         dark:bg-neutral-1100 min-h-screen flex-1 min-w-0 :class="{
           'md:max-w-1220 md:mx-auto': !showSidebar && !showSecondarySidebar,
         }"

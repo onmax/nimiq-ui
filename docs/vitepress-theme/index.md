@@ -55,7 +55,7 @@ export const themeConfig = {
       subpath: '/vitepress-theme',
 
       // This will be set as a class on a div element. This works great for UnoCSS Icons preset. Let me know if you need help with other icon libraries.
-      icon: 'i-custom:nimiq-css',
+      icon: 'i-local:nimiq-css',
 
       // This will be the default page link when the user clicks on the selector
       defaultPageLink: '/your-submodule/getting-started',

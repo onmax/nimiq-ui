@@ -82,7 +82,7 @@
 
   *:not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)) {
     line-height: 1.5;
-    max-width: var(--nq-prose-max-width, 780px);
+    max-width: var(--nq-prose-max-width, 78ch);
     margin-left: auto;
     margin-right: auto;
     font-family: var(--nq-font-sans, 'Mulish');
