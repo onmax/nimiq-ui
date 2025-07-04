@@ -22,7 +22,13 @@ const description = computed(() => userDescription || frontmatter.value.descript
 </script>
 
 <template>
-  <div flex="~ col" :class="align === 'left' ? 'items-start' : 'items-center'" class="nq-raw" f-my-2xl>
+  <div
+    flex="~ col" nq-component="headline"
+    :class="{ 'items-start': align === 'left',
+              'items-center': align === 'center',
+              'f-mt-2xl': !h1 }" class="nq-raw"
+    f-mb-2xl
+  >
     <div
       v-if="label" outline="~ 1.5 neutral-600" bg="neutral/3" px-12 py-6 rounded-full nq-label
       :class="align === 'left' ? 'text-left' : 'text-center'"
