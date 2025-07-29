@@ -80,8 +80,8 @@
     font-size: var(--font-size);
     line-height: 1.2;
     color: rgb(var(--nq-neutral));
+    margin: 1em 0;
 
-    /* margin: 1em 0; */
     /* text-box-trim: both;
     text-box-edge: cap alphabetic; */
   }
@@ -98,6 +98,7 @@
 
   &:where(p) {
     --line-height: 1.3125;
+    margin: 1em 0;
   }
 
   small {
@@ -106,6 +107,7 @@
     font-size: var(--font-size);
     line-height: 1.2;
     font-weight: 600;
+    margin: 0.5em 0;
   }
 
   &:where(p, li) {
@@ -123,6 +125,14 @@
 
   &:where(blockquote p, blockquote p > :where(em, b)) {
     color: rgb(var(--nq-green));
+  }
+
+  &:where(blockquote) {
+    margin: 1.5em 0;
+    padding: 1em;
+    border-left: 4px solid rgb(var(--nq-green));
+    background-color: rgb(var(--nq-green-50));
+    border-radius: 0 6px 6px 0;
   }
 
   &:not(:where(.shiki *)):where(code, pre) {

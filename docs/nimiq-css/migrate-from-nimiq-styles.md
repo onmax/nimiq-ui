@@ -2,7 +2,7 @@
 
 Convert [Nimiq Style Framework](https://nimiq.github.io/nimiq-style/demo.html) CSS classes to `nimiq-css`.
 
-> `nimiq-css` also supports UnoCSS now and will suport Tailwind v4 in the future.
+> `nimiq-css` also supports UnoCSS now and will support Tailwind v4 in the future.
 
 The [Nimiq Styles Framework](https://github.com/nimiq/nimiq-style/tree/master) is the current main CSS framework used at Nimiq. This library has been the main inspipration for the new `nimiq-css` library. This library has has been built with that in mind. It is designed to be as compatible as possible with a clear path for migration. However, there are some breaking changes due to the lack of usage of classes/features implemented by the old Library. These breaking changes are highly opinioned, so if you don't agree with some of the changes or you have better ideas, please let me know and we let's change it.
 
@@ -65,10 +65,9 @@ You can always "opt-out" of the styles by adding the `raw` class to the element.
 The following components are automatically styled in the [preflight.css](https://github.com/onmax/nimiq-ui/tree/main/packages/nimiq-css/src/css/preflight.css) file:
 
 - Body with some default styles.
-- Headings `h1`, `h2` and `h3`. You can remove `.nq-h1`, `.nq-h2` and `.nq-h3`. But, be aware that the `margin-top` and `margin-bottom` have been removed. You need to add them again using `margin: 1rem 0`.
-- Paragraphs `p`. You can remove `.nq-text`.
-- Paragraphs `p` and `small` do not have `margin-top` and `margin-bottom` anymore. You need to add them again using `margin: 1rem 0` or `margin: 0.5rem 0` respectively.
-- `<small>` elements. You can remove `.nq-text-s`.
+- Headings `h1`, `h2` and `h3`. You can remove `.nq-h1`, `.nq-h2` and `.nq-h3`. Headings now have proper `margin: 1em 0` by default.
+- Paragraphs `p`. You can remove `.nq-text`. Paragraphs now have proper `margin: 1em 0` by default.
+- `<small>` elements. You can remove `.nq-text-s`. Small elements now have proper `margin: 0.5em 0` by default.
 - `<code>` and `<pre>` elements.
 - `<input type="text">` and `<textarea>` elements. You can remove `.nq-input`.
 
@@ -191,11 +190,11 @@ Everything deleted in the new library is because it is not being used anymore, o
 
 There are two types of classes that have been removed. The ones replaced by default styles and the ones that are not being used anymore.
 
-- `.nq-text`, `.nq-style p`: Now, all the `<p>` will have this styles.
+- `.nq-text`, `.nq-style p`: Now, all the `<p>` will have this styles with proper margins.
 - `.nq-link`, `.nq-text a`, `.nq-style a`: I don't think this is pretty useful as link are always super different.
-- `.nq-text-s` has been deleted. Instead use the `<small>` HTML element.
-- Heading elements like `h1`, `h2`, `h3`, `h4`, `h5`, `h6` now do not have `margin-top` and `margin-bottom`. You need to add them again using `margin: 1rem 0`.
-- `p` and `small` elements do not have `margin-top` and `margin-bottom` anymore. You need to add them again using `margin: 1rem 0` or `margin: 0.5rem 0` respectively.
+- `.nq-text-s` has been deleted. Instead use the `<small>` HTML element with proper margins.
+- Heading elements like `h1`, `h2`, `h3`, `h4`, `h5`, `h6` now have proper `margin: 1em 0` by default.
+- `p` and `small` elements now have proper margins (`margin: 1em 0` and `margin: 0.5em 0` respectively) by default.
 
 ## Atomic CSS in `nimiq-css`
 
