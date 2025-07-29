@@ -2,6 +2,8 @@
 title: No Headings Test
 ---
 
+# HI!
+
 This is a test page with no headings at all. The secondary sidebar should not appear because there are no h2 or h3 elements in this content.
 
 The main content area should be wider when there's no table of contents, giving more space for the text and other content.

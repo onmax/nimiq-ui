@@ -162,7 +162,7 @@ pre {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-left: 0;
+  margin-left: 0.5rem;
   gap: 8px;
 
   /* Default file icon */
