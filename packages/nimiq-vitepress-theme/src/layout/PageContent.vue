@@ -30,7 +30,7 @@ function useEditUrl(relativePath: string): string {
 
 <template>
   <div :class="showSecondarySidebar ? 'f-pr-xs f-pl-xl' : 'f-px-xl'" f-pt-sm f="$px $px-min-48 $px-max-72" f-pb-sm flex="~ gap-16" relative h-full>
-    <div flex="~ col" h-full flex-1 w="[calc(100vw-2*var(--nq-sidebar-width)-2*var(--f-px))]">
+    <div flex="~ col" h-full flex-1 :class="showSecondarySidebar ? 'w-[calc(100vw-2*var(--nq-sidebar-width)-2*var(--f-px))]' : 'w-[calc(100vw-var(--nq-sidebar-width)-2*var(--f-px))]'" :style="!showSecondarySidebar ? 'max-width: calc(100vw - var(--nq-sidebar-width) - 200px)' : ''">
       <ul px-32 f-pb-lg flex="~ items-center gap-12">
         <li v-for="({ text, icon }, i) in breadcrumbs" :key="text" contents w-max>
           <div v-if="icon" :class="icon" />

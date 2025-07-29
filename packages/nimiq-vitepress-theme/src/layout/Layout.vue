@@ -16,7 +16,7 @@ const showSidebar = computed(() =>
     <!-- TODO Add skip -->
     <Sidebar v-if="showSidebar" />
 
-    <main class="min-h-screen">
+    <main class="min-h-screen" :class="showSidebar ? 'ml-[var(--nq-sidebar-width)]' : 'ml-0'">
       <PageContent />
     </main>
   </div>
@@ -34,6 +34,5 @@ aside {
 
 main {
   flex: 1;
-  margin-left: var(--nq-sidebar-width);
 }
 </style>
