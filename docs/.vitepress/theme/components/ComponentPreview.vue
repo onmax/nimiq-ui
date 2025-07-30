@@ -19,7 +19,7 @@ import { TabsContent, TabsList, TabsRoot, TabsTrigger } from 'reka-ui'
       <TabsContent value="code" grow bg-white outline-none>
         <slot name="code" />
       </TabsContent>
-      <TabsContent value="preview" grow bg-white outline-none>
+      <TabsContent value="preview" grow bg-white outline-none style="padding-top: 1rem;">
         <slot name="default" />
       </TabsContent>
     </div>

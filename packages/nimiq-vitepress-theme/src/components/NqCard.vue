@@ -33,6 +33,7 @@ const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#1
       hasLink ? 'nq-hoverable' : 'nq-card',
       { 'children:max-w-[max(50%,240px)]': bgColor },
     ]"
+    style="padding: 1rem;"
   >
     <div v-if="icon" :class="icon" f-size="~ max-160 min-120" absolute right--12 :style="`color: ${colors[bgColor!]}`" />
     <span nq-label text-12 mb-4 text="neutral-700 data-inverted:white/50" data-inverted:mb-8>{{ label }}</span>
