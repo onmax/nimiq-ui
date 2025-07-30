@@ -3,9 +3,7 @@ import type { NimiqVitepressThemeConfig } from '../types'
 import { join } from 'pathe'
 import { useData } from 'vitepress'
 import { useBreadcrumbs } from '../composables/useBreadcrumbs'
-import { useChangelog } from '../composables/useChangelog'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
-import Changelog from './Changelog.vue'
 import SecondarySidebar from './SecondarySidebar.vue'
 import '../assets/code-blocks.css'
 import '../assets/typography.css'
@@ -16,14 +14,13 @@ const { breadcrumbs } = useBreadcrumbs()
 
 const { showSecondarySidebar } = useSecondarySidebar()
 
-const { repoURL, showChangelog } = useChangelog()
 const editUrl = useEditUrl(page.value.relativePath)
 
 // Convert URL to file path
 function useEditUrl(relativePath: string): string {
   let url = relativePath.replace(/(^|\/)$/, '$1index')
   url = url.replace(/(\.html)?$/, '.md')
-  url = join(repoURL.value, url)
+  url = join('https://github.com/onmax/nimiq-ui', url)
   return url
 }
 </script>
@@ -41,15 +38,15 @@ function useEditUrl(relativePath: string): string {
 
       <article flex-1 class="nq-prose" var:nq-prose-max-width:none>
         <Content max-w-none />
-        <Changelog v-if="showChangelog" />
       </article>
-      <div flex="~ wrap justify-between gap-8" f-mt-xs f-text-xs>
-        <a :href="editUrl" target="_blank" rel="noopener" op-70 nq-arrow>
-          Suggest changes on this page
+      <div flex="~ justify-between items-center" f-mt-lg f-text-xs>
+        <a :href="editUrl" target="_blank" rel="noopener" op-70 hover:opacity-100 transition-opacity flex="~ items-center gap-3">
+          <span>Suggest changes on this page</span>
+          <div i-nimiq:arrow-right text="neutral-700 12" />
         </a>
-        <p text-neutral-700 font-normal italic>
-          Built with the <a href="https://onmax.github.io/nimiq-ui/vitepress-theme/" un-text-neutral-800 target="_blank" rel="noopener" underline>Nimiq Vitepress Theme</a>
-        </p>
+        <span text-neutral-600 font-normal>
+          Built with the <a href="https://onmax.github.io/nimiq-ui/vitepress-theme/" un-text-neutral-700 target="_blank" rel="noopener" underline hover:text-neutral-800 transition-colors>Nimiq Vitepress Theme</a>
+        </span>
       </div>
     </div>
     <SecondarySidebar v-if="showSecondarySidebar" />

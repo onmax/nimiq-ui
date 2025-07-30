@@ -37,8 +37,8 @@ function getFigmaCredentials() {
   const token = env.FIGMA_API_TOKEN
 
   if (!file || !token) {
-    consola.error('Please provide FIGMA_FILE_ID and FIGMA_API_TOKEN environment variables.')
-    exit(1)
+    consola.warn('FIGMA_FILE_ID and FIGMA_API_TOKEN environment variables are not set. Skipping Figma fetch.')
+    return null
   }
 
   return { file, token }
@@ -61,38 +61,57 @@ function getDeterministicId(prefix: string, name: string): string {
 }
 
 async function checkFigmaVariants() {
-  const { file, token } = getFigmaCredentials()
+  const credentials = getFigmaCredentials()
 
-  const figma = await importFromFigma({
-    file,
-    pages: ['Main'],
-    token,
-    prefix: 'nimiq',
-    depth: 2,
-    ifModifiedSince: '2021-01-01T00:00:00Z', // Force fetch to ensure variants exist
-    iconNameForNode: node => node.name.startsWith('_') ? null : node.name,
-    simplifyStroke: true,
-  })
-
-  if (figma === 'not_modified') {
-    consola.info('Figma file has not been modified since last check. Will use cached data.')
+  if (!credentials) {
+    consola.warn('Skipping Figma variants check due to missing credentials.')
     return
   }
 
-  const iconSetVariants = figma.iconSet.list().map(sanitizeName)
-  const ourVariants = Object.values(IconVariant)
+  const { file, token } = credentials
 
-  const missingVariants = ourVariants.filter(variant => !iconSetVariants.includes(variant))
-  const extraUnknownVariants = iconSetVariants.filter(v => !ourVariants.includes(v as IconVariant))
+  try {
+    const figma = await importFromFigma({
+      file,
+      pages: ['Main'],
+      token,
+      prefix: 'nimiq',
+      depth: 2,
+      ifModifiedSince: '2021-01-01T00:00:00Z', // Force fetch to ensure variants exist
+      iconNameForNode: node => node.name.startsWith('_') ? null : node.name,
+      simplifyStroke: true,
+    })
 
-  if (missingVariants.length > 0 || extraUnknownVariants.length > 0)
-    throw new Error(`There is an unknown variant or a missing variant: ${JSON.stringify({ extraUnknownVariants, missingVariants })}`)
+    if (figma === 'not_modified') {
+      consola.info('Figma file has not been modified since last check. Will use cached data.')
+      return
+    }
 
-  consola.success('Figma variants are correct.')
+    const iconSetVariants = figma.iconSet.list().map(sanitizeName)
+    const ourVariants = Object.values(IconVariant)
+
+    const missingVariants = ourVariants.filter(variant => !iconSetVariants.includes(variant))
+    const extraUnknownVariants = iconSetVariants.filter(v => !ourVariants.includes(v as IconVariant))
+
+    if (missingVariants.length > 0 || extraUnknownVariants.length > 0)
+      throw new Error(`There is an unknown variant or a missing variant: ${JSON.stringify({ extraUnknownVariants, missingVariants })}`)
+
+    consola.success('Figma variants are correct.')
+  }
+  catch (error) {
+    consola.warn('Figma API error, skipping variants check:', (error as Error).message)
+  }
 }
 
 async function getFigma(frameName: string) {
-  const { file, token } = getFigmaCredentials()
+  const credentials = getFigmaCredentials()
+
+  if (!credentials) {
+    consola.warn('Skipping Figma fetch due to missing credentials.')
+    return 'not_modified'
+  }
+
+  const { file, token } = credentials
 
   try {
     const cacheDir = `.figma-cache/${frameName}` // Separate cache directory for each variant
@@ -133,7 +152,7 @@ async function getFigma(frameName: string) {
   }
   catch (error) {
     consola.error(`Error fetching from Figma for ${frameName}:`, error)
-    exit(1)
+    return 'not_modified'
   }
 }
 
@@ -363,40 +382,59 @@ async function main() {
     if (figma === 'not_modified') {
       // If using cached data, try to load from the cache directory
       const cacheDir = `.figma-cache/${variantName}`
+
+      // Check if cached data exists
+      if (!existsSync(resolve(cacheDir))) {
+        consola.warn(`No cached data available for ${variantName}. Skipping.`)
+        continue
+      }
+
       consola.info(`Using cached data for ${variantName}`)
 
       // Determine prefix based on variant
       const isFlags = variant === IconVariant.Flags
       const prefix = isFlags ? 'nimiq-flags' : 'nimiq'
 
-      // Re-import from cache with cache disabled to force load
-      const cachedFigma = await importFromFigma({
-        file: env.FIGMA_FILE_ID!,
-        pages: ['Main'],
-        token: env.FIGMA_API_TOKEN!,
-        cacheDir,
-        prefix,
-        depth: 3,
-        iconNameForNode: (node) => {
-          if (
-            node.parents.length !== 2
-            || node.type !== 'FRAME'
-            || sanitizeName(node.parents.at(-1)?.name || '') !== variantName
-          ) {
-            return null
-          }
-          return sanitizeName(node.name)
-        },
-      })
+      try {
+        // Re-import from cache with cache disabled to force load
+        const credentials = getFigmaCredentials()
+        if (!credentials) {
+          consola.warn(`No credentials available for ${variantName}. Skipping.`)
+          continue
+        }
 
-      const iconSet = optimizeIconSet(cachedFigma.iconSet, variantName as IconVariant)
-      consola.success(`Loaded ${iconSet.list().length} icons from cache for ${variantName}`)
+        const cachedFigma = await importFromFigma({
+          file: credentials.file,
+          pages: ['Main'],
+          token: credentials.token,
+          cacheDir,
+          prefix,
+          depth: 3,
+          iconNameForNode: (node) => {
+            if (
+              node.parents.length !== 2
+              || node.type !== 'FRAME'
+              || sanitizeName(node.parents.at(-1)?.name || '') !== variantName
+            ) {
+              return null
+            }
+            return sanitizeName(node.name)
+          },
+        })
 
-      results.push({
-        variant: variantName,
-        iconSet,
-        package: variant === IconVariant.Flags ? 'nimiq-flags' : 'nimiq-icons',
-      })
+        const iconSet = optimizeIconSet(cachedFigma.iconSet, variantName as IconVariant)
+        consola.success(`Loaded ${iconSet.list().length} icons from cache for ${variantName}`)
+
+        results.push({
+          variant: variantName,
+          iconSet,
+          package: variant === IconVariant.Flags ? 'nimiq-flags' : 'nimiq-icons',
+        })
+      }
+      catch (error) {
+        consola.warn(`Error loading cached data for ${variantName}:`, (error as Error).message)
+        continue
+      }
     }
     else {
       // Process newly fetched icons
@@ -412,6 +450,12 @@ async function main() {
         package: variant === IconVariant.Flags ? 'nimiq-flags' : 'nimiq-icons',
       })
     }
+  }
+
+  if (results.length === 0) {
+    consola.warn('No icon sets were processed. This might be due to missing Figma credentials or cached data.')
+    consola.info('Continuing with other workspace tasks...')
+    return
   }
 
   // Group icon sets by package
