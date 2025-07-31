@@ -96,6 +96,10 @@ pre {
   .copy {
     top: 18px;
   }
+
+  pre {
+    padding-top: 1rem;
+  }
 }
 
 :where(:not(.vp-code-group > .blocks) > div[class^='language-']:not(.language-), .vp-code-group) {
@@ -196,7 +200,7 @@ pre {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-left: 0;
+  margin-left: 0.5rem;
   gap: 8px;
 
   /* Default file icon */
@@ -290,4 +294,47 @@ pre {
       display: none;
     }
   }
+
+  /* ComponentPreview spacing */
+  .nq-raw[class*='f-my-lg'] {
+    .nq-raw > div {
+      padding-top: 1rem;
+    }
+  }
+
+  /* Alternative targeting for ComponentPreview */
+  [data-radix-tabs-content] {
+    padding-top: 1rem;
+  }
+
+  /* Target ComponentPreview content areas */
+  .nq-raw .grow {
+    padding-top: 1rem;
+  }
+
+  /* Direct targeting for ComponentPreview tabs content */
+  .nq-raw [role='tabpanel'] {
+    padding-top: 1rem;
+  }
+
+  /* Specific targeting for ComponentPreview preview content */
+  .nq-raw [role='tabpanel'][data-state='active'] {
+    padding-top: 1rem;
+  }
+
+  /* Target the preview content area specifically */
+  .nq-raw [data-radix-tabs-content][data-state='active'] {
+    padding-top: 1rem;
+  }
+
+  /* More specific targeting for ComponentPreview content */
+  .nq-raw > div > div {
+    padding-top: 1rem;
+  }
+
+  /* Direct targeting for TabsContent */
+  .nq-raw [data-radix-tabs-content] {
+    padding-top: 1rem !important;
+  }
 }
+

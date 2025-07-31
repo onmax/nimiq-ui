@@ -26,7 +26,7 @@ export const useSecondarySidebar = createSharedComposable(() => {
 
     nodes.forEach((node) => {
       const el = node as HTMLElement
-      if (!el.id)
+      if (!el.id || el.id === 'changelog')
         return
       const level = Number(el.tagName[1])
       const heading: SidebarHeading = {
