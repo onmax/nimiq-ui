@@ -3,8 +3,8 @@
   --margin-min-em: 1.5;
   --margin-max-em: 2;
   padding: var(--nq-m-size);
-  margin-top: var(--nq-m-size);
-  margin-bottom: var(--nq-m-size);
+  margin-top: calc(var(--margin-min-em) * 1em);
+  margin-bottom: calc(var(--margin-max-em) * 1em);
   border-radius: 6px;
   outline: 1.5px solid var(--ring-color);
   outline-offset: -1.5px;

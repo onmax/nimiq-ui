@@ -24,11 +24,11 @@ const { isWide } = useWideLayout()
       'xl:f-px-xl': !showSecondarySidebar,
     }" f-pt-sm f="$px $px-min-48 $px-max-72" pb="f-xl xl:sm" flex="~ gap-16" relative h-full
   >
-    <div 
-      flex="~ col" 
-      h-full 
-      flex-1 
-      :class="showSecondarySidebar ? 'w-[calc(100vw-2*var(--nq-sidebar-width)-2*var(--f-px))]' : 'w-[calc(100vw-var(--nq-sidebar-width)-2*var(--f-px))]'" 
+    <div
+      flex="~ col"
+      h-full
+      flex-1
+      :class="showSecondarySidebar ? 'w-[calc(100vw-2*var(--nq-sidebar-width)-2*var(--f-px))]' : 'w-[calc(100vw-var(--nq-sidebar-width)-2*var(--f-px))]'"
       :style="!showSecondarySidebar ? 'max-width: calc(100vw - var(--nq-sidebar-width) - 200px)' : ''"
     >
       <div
