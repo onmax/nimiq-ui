@@ -7,6 +7,7 @@ import DesktopHeader from './DesktopHeader.vue'
 import MobileNav from './MobileNav.vue'
 import MobileOutlineAccordion from './MobileOutlineAccordion.vue'
 import NotFound from './NotFound.vue'
+import OverviewContent from './OverviewContent.vue'
 import PageContent from './PageContent.vue'
 import SecondarySidebar from './SecondarySidebar.vue'
 import Sidebar from './Sidebar.vue'
@@ -14,6 +15,7 @@ import Sidebar from './Sidebar.vue'
 const { frontmatter, page } = useData()
 
 const isHome = computed(() => frontmatter.value.layout === 'home')
+const isOverview = computed(() => frontmatter.value.layout === 'overview')
 const is404 = computed(() => page.value.isNotFound || frontmatter.value.layout === '404')
 const showSidebar = computed(() => {
   if (frontmatter.value.sidebar !== undefined)
@@ -33,8 +35,25 @@ const isMobileOrTablet = breakpoints.smaller('lg')
   <!-- 404 Not Found Page -->
   <NotFound v-if="is404" />
 
-  <!-- Documentation Pages -->
-  <div v-else-if="!isHome" id="viewport" flex relative var:nq-sidebar-width:100vw md:var:nq-sidebar-width:288px data-layout="docs">
+  <!-- Home Page -->
+  <div v-else-if="isHome" data-layout="home" min-h-screen>
+    <template v-if="isMobileOrTablet">
+      <Content />
+      <MobileNav fixed bottom-0 />
+    </template>
+    <template v-else>
+      <DesktopHeader />
+      <Content f-pt-xl />
+    </template>
+  </div>
+
+  <!-- Overview Pages -->
+  <div v-else-if="isOverview" id="viewport" data-layout="overview" min-h-screen>
+    <OverviewContent />
+  </div>
+
+  <!-- Documentation Pages (default) -->
+  <div v-else id="viewport" flex relative var:nq-sidebar-width:100vw md:var:nq-sidebar-width:288px data-layout="docs">
     <!-- TODO Add skip -->
     <div v-if="!isMobileOrTablet" flex w-full>
       <div shrink-0 relative w="$nq-sidebar-width">
@@ -69,18 +88,6 @@ const isMobileOrTablet = breakpoints.smaller('lg')
       </div>
 
       <MobileNav fixed bottom-0 />
-    </template>
-  </div>
-
-  <!-- Home Page -->
-  <div v-else data-layout="home" min-h-screen>
-    <template v-if="isMobileOrTablet">
-      <Content />
-      <MobileNav fixed bottom-0 />
-    </template>
-    <template v-else>
-      <DesktopHeader />
-      <Content f-pt-xl />
     </template>
   </div>
 </template>
