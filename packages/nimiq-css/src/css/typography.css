@@ -229,14 +229,14 @@
     }
 
     &:where(blockquote) {
-      background: rgb(var(--nq-green-400));
+      background: var(--colors-green-400);
       --margin-min-em: 1.5;
       --margin-max-em: 2;
       margin-top: var(--nq-m-size);
       margin-bottom: var(--nq-m-size);
       padding: 1em;
       border-radius: 6px;
-      box-shadow: 0 0 0 1.5px rgb(var(--nq-green-600));
+      box-shadow: 0 0 0 1.5px var(--colors-green-600);
       font-weight: 600;
       transform: translateX(-8px);
       width: calc(100% + 16px);

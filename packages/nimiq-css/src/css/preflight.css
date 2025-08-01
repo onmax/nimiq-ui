@@ -129,8 +129,8 @@
   &:where(blockquote) {
     margin: 1.5em 0;
     padding: 1em;
-    border-left: 4px solid rgb(var(--nq-green));
-    background-color: rgb(var(--nq-green-50));
+    border-left: 4px solid var(--colors-green);
+    background-color: var(--colors-green-50);
     border-radius: 0 6px 6px 0;
   }
 
