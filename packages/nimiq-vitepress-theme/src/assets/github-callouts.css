@@ -1,9 +1,10 @@
 .custom-block.github-alert {
   background: var(--bg-color);
-  --nq-m-min: 14;
-  --nq-m-max: 16;
+  --margin-min-em: 1.5;
+  --margin-max-em: 2;
   padding: var(--nq-m-size);
-  margin: calc(1.5 * var(--nq-m-size)) 0;
+  margin-top: calc(var(--margin-min-em) * 1em);
+  margin-bottom: calc(var(--margin-max-em) * 1em);
   border-radius: 6px;
   outline: 1.5px solid var(--ring-color);
   outline-offset: -1.5px;

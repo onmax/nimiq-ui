@@ -9,8 +9,8 @@
   "scripts": {
     "build": "nr -r build",
     "dev": "nr -r dev",
-    "lint": "NODE_OPTIONS=\"--max-old-space-size=4096\" eslint --cache packages/nimiq-css packages/nimiq-vitepress-theme packages/nimiq-theme packages/nimiq-maplibre-styles docs *.{js,ts,vue}",
-    "lint:fix": "NODE_OPTIONS=\"--max-old-space-size=4096\" eslint --cache packages/nimiq-css packages/nimiq-vitepress-theme packages/nimiq-theme packages/nimiq-maplibre-styles docs *.{js,ts,vue} --fix",
+    "lint": "NODE_OPTIONS=\"--max-old-space-size=4096\" eslint --cache packages/nimiq-css packages/nimiq-vitepress-theme packages/nimiq-theme packages/nimiq-maplibre-styles docs eslint.config.js vue-shims.d.ts",
+    "lint:fix": "NODE_OPTIONS=\"--max-old-space-size=4096\" eslint --cache packages/nimiq-css packages/nimiq-vitepress-theme packages/nimiq-theme packages/nimiq-maplibre-styles docs eslint.config.js vue-shims.d.ts --fix",
     "prepublishOnly": "nr build",
     "docs": "pnpm -C docs run docs:dev",
     "docs:build": "pnpm -C docs run docs:build",

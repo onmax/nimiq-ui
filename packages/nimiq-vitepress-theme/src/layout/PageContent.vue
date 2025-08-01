@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { useBreadcrumbs } from '../composables/useBreadcrumbs'
-import { useChangelog } from '../composables/useChangelog'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import { useSourceCode } from '../composables/useSourceCode'
 import { useWideLayout } from '../composables/useWideLayout'
-import Changelog from './Changelog.vue'
 import DocNavigation from './DocNavigation.vue'
 import '../assets/code-blocks.css'
 import '../assets/typography.css'
@@ -14,7 +12,6 @@ const { breadcrumbs, showBreadcrumbs } = useBreadcrumbs()
 
 const { showSecondarySidebar } = useSecondarySidebar()
 
-const { showChangelog } = useChangelog()
 const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabel, copyMarkdownContent, copied } = useSourceCode()
 
 const { isWide } = useWideLayout()
@@ -27,7 +24,13 @@ const { isWide } = useWideLayout()
       'xl:f-px-xl': !showSecondarySidebar,
     }" f-pt-sm f="$px $px-min-48 $px-max-72" pb="f-xl xl:sm" flex="~ gap-16" relative h-full
   >
-    <div flex="~ col wrap gap-8" h-full flex-1 max-w-full>
+    <div
+      flex="~ col"
+      h-full
+      flex-1
+      :class="showSecondarySidebar ? 'w-[calc(100vw-2*var(--nq-sidebar-width)-2*var(--f-px))]' : 'w-[calc(100vw-var(--nq-sidebar-width)-2*var(--f-px))]'"
+      :style="!showSecondarySidebar ? 'max-width: calc(100vw - var(--nq-sidebar-width) - 200px)' : ''"
+    >
       <div
         v-if="showBreadcrumbs || showSourceCode || showCopyMarkdown"
         f-pb-lg
@@ -72,29 +75,16 @@ const { isWide } = useWideLayout()
         :style="{ '--nq-prose-max-width': isWide ? 'auto' : undefined }"
       >
         <Content max-w-none px-0 />
-        <Changelog v-if="showChangelog" />
       </article>
 
       <DocNavigation :style="{ maxWidth: isWide ? 'none' : 'var(--nq-prose-max-width, 78ch)' }" />
 
-      <div
-        flex="~ wrap justify-between gap-8"
-        f-mt-xs
-        f-text-xs
-        px-32
-        :style="{
-          maxWidth: isWide ? 'none' : 'var(--nq-prose-max-width, 78ch)',
-        }"
-      >
-        <a :href="editUrl" target="_blank" rel="noopener" op-70 nq-arrow>
-          Suggest changes on this page
+      <div flex="~ justify-between items-center" f-mt-lg f-text-xs>
+        <a :href="editUrl" target="_blank" rel="noopener" op-70 hover:opacity-100 transition-opacity flex="~ items-center gap-3">
+          <span>Suggest changes on this page</span>
+          <div i-nimiq:arrow-right text="neutral-700 12" />
         </a>
-        <p text-neutral-700 font-normal italic>
-          Built with the <a
-            href="https://onmax.github.io/nimiq-ui/vitepress-theme/" un-text-neutral-800 target="_blank"
-            rel="noopener" underline
-          >Nimiq Vitepress Theme</a>
-        </p>
+        <span text-neutral-600 font-normal>Built with the <a href="https://onmax.github.io/nimiq-ui/vitepress-theme/" un-text-neutral-700 target="_blank" rel="noopener" underline hover:text-neutral-800 transition-colors>Nimiq Vitepress Theme</a></span>
       </div>
     </div>
   </div>
