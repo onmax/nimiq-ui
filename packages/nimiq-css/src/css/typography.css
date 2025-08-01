@@ -234,17 +234,21 @@
       --margin-max-em: 2;
       margin-top: var(--nq-m-size);
       margin-bottom: var(--nq-m-size);
+      margin-left: -8px;
+      margin-right: -8px;
       padding: 1em;
       border-radius: 6px;
       box-shadow: 0 0 0 1.5px var(--colors-green-600);
       font-weight: 600;
-      transform: translateX(-8px);
       width: calc(100% + 16px);
+      box-sizing: border-box;
       --font-size-min-em: 0.75;
       --font-size-max-em: 0.875;
 
       @media (min-width: 768px) {
-        transform: translateX(0);
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
       }
 
       p {
@@ -409,7 +413,9 @@
     }
 
     :where(:where(h1, h2, h3, h4, h5, h6, p, li, span, a) > code) {
-      padding: 0 0.25em;
+      padding: 0 0.15em;
+      line-height: inherit;
+      vertical-align: baseline;
     }
 
     &:where(pre) {
