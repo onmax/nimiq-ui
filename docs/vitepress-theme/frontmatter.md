@@ -26,20 +26,20 @@ The Nimiq Vitepress theme supports the following frontmatter options:
 
 ### Layout Options
 
-| Option                 | Type                  | Default                                         | Description                                               |
-| ---------------------- | --------------------- | ----------------------------------------------- | --------------------------------------------------------- |
-| `layout`               | `'home' \| 'docs'`    | `'docs'`                                        | Layout type to use for the page                           |
-| `sidebar`              | `boolean`             | `true` for docs layout                          | Whether to show the sidebar                               |
-| `breadcrumbs`          | `boolean`             | `true` for docs layout, `false` for home layout | Whether to show the breadcrumbs navigation                |
-| `outline`              | `boolean`             | `true` if headings exist                        | Whether to show the outline (table of contents)           |
-| `secondarySidebar`     | `boolean`             | `true` for docs layout, `false` for home layout | Whether to show the secondary sidebar                     |
-| `widget`               | `boolean`             | `true` for docs layout, `false` for home layout | Whether to show the widget area in the secondary sidebar  |
-| `changelog`            | `boolean`             | `true` for docs layout, `false` for home layout | Whether to show the changelog in the secondary sidebar    |
-| `sourceCode`           | `boolean \| string`   | `true` for docs layout, `false` for home layout | Show source code controls. Can be a custom URL or boolean |
-| `sourceCodeLabel`      | `string`              | `'View Source'`                                 | Label for the source code button                          |
-| `sourceCodePathPrefix` | `string \| undefined` | Auto-detected                                   | Path prefix for source code URLs (e.g., `'docs'` or `''`) |
-| `copyMarkdown`         | `boolean`             | Same as `sourceCode`                            | Show the copy markdown button independently               |
-| `wide`                 | `boolean`             | `false`, `true` if `secondarySidebar` is set    | Remove max-width constraint on prose content              |
+| Option                 | Type                             | Default                                         | Description                                                         |
+| ---------------------- | -------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------- |
+| `layout`               | `'home' \| 'docs' \| 'overview'` | `'docs'`                                        | Layout type to use for the page ([see layouts guide](./layouts.md)) |
+| `sidebar`              | `boolean`                        | `true` for docs layout                          | Whether to show the sidebar                                         |
+| `breadcrumbs`          | `boolean`                        | `true` for docs layout, `false` for home layout | Whether to show the breadcrumbs navigation                          |
+| `outline`              | `boolean`                        | `true` if headings exist                        | Whether to show the outline (table of contents)                     |
+| `secondarySidebar`     | `boolean`                        | `true` for docs layout, `false` for home layout | Whether to show the secondary sidebar                               |
+| `widget`               | `boolean`                        | `true` for docs layout, `false` for home layout | Whether to show the widget area in the secondary sidebar            |
+| `changelog`            | `boolean`                        | `true` for docs layout, `false` for home layout | Whether to show the changelog in the secondary sidebar              |
+| `sourceCode`           | `boolean \| string`              | `true` for docs layout, `false` for home layout | Show source code controls. Can be a custom URL or boolean           |
+| `sourceCodeLabel`      | `string`                         | `'View Source'`                                 | Label for the source code button                                    |
+| `sourceCodePathPrefix` | `string \| undefined`            | Auto-detected                                   | Path prefix for source code URLs (e.g., `'docs'` or `''`)           |
+| `copyMarkdown`         | `boolean`                        | Same as `sourceCode`                            | Show the copy markdown button independently                         |
+| `wide`                 | `boolean`                        | `false`, `true` if `secondarySidebar` is set    | Remove max-width constraint on prose content                        |
 
 ## Wide Layout
 

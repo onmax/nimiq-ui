@@ -107,6 +107,7 @@ export default defineNimiqVitepressConfig({
           {
             items: [
               { text: 'Getting Started', link: '/vitepress-theme', icon: 'i-tabler:arrow-guide ' },
+              { text: 'Layout Types', link: '/vitepress-theme/layouts', icon: 'i-tabler:layout-grid ' },
               { text: 'Frontmatter', link: '/vitepress-theme/frontmatter', icon: 'i-tabler:file-description ' },
               { text: 'Hiding Modules', link: '/vitepress-theme/hiding-modules', icon: 'i-tabler:eye-off ' },
               {

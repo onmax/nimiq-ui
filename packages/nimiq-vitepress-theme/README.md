@@ -17,6 +17,7 @@ A modern, beautiful VitePress theme with Nimiq branding and design patterns.
 - 🧭 Smart navigation with breadcrumbs
 - 📝 Rich typography and code highlighting
 - 🎯 Custom components (NqCard, NqGrid, NqHeadline, etc.)
+
 - **🚨 Beautiful custom 404 error page**
 
 ## Components
