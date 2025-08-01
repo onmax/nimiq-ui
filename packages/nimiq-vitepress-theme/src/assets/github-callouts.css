@@ -2,10 +2,10 @@
   background: var(--bg-color);
   --margin-min-em: 1.5;
   --margin-max-em: 2;
-  padding: var(--nq-m-size);
+  padding: 1rem 1.25rem;
   margin-top: calc(var(--margin-min-em) * 1em);
   margin-bottom: calc(var(--margin-max-em) * 1em);
-  border-radius: 6px;
+  border-radius: 8px;
   outline: 1.5px solid var(--ring-color);
   outline-offset: -1.5px;
   font-weight: 600;
@@ -21,6 +21,7 @@
     align-items: center;
     gap: 0.5em;
     margin-top: 0;
+    margin-bottom: 0.75em;
     font-weight: 700;
     line-height: 1;
     color: var(--label-color);
@@ -82,7 +83,12 @@
   }
 
   p {
-    margin-top: 0.5em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     a {
       color: currentColor;
