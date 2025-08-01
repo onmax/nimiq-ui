@@ -29,11 +29,11 @@
 }
 
 pre {
-  padding-right: 0;
-  padding-left: 0;
+  padding-right: 2rem;
+  padding-left: 2rem;
 
   code {
-    padding: 0 1.5rem;
+    padding: 0;
     width: fit-content;
     min-width: 100%;
     position: relative;
@@ -43,9 +43,9 @@ pre {
     .highlighted,
     .diff {
       transition: background-color 0.5s;
-      margin: 0 -1.5rem;
-      padding: 0 1.5rem;
-      width: calc(100% + 3rem);
+      margin: 0 -2rem;
+      padding: 0 2rem;
+      width: calc(100% + 4rem);
       display: inline-block;
       border-top-width: 1px;
       border-bottom-width: 1px;
@@ -90,15 +90,20 @@ pre {
   }
 }
 
-:not(.vp-code-group > .blocks) > .language- {
+:not(.vp-code-group > .blocks) > div[class*='language-'] {
   position: relative;
-
-  .copy {
-    top: 18px;
-  }
+  background-color: var(--colors-neutral-50);
 
   pre {
     padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background-color: var(--colors-neutral-50);
+
+    code {
+      color: var(--colors-neutral-900);
+      background-color: transparent;
+    }
   }
 }
 
@@ -128,9 +133,17 @@ pre {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     margin-top: 0;
-    padding-top: 16px;
+    padding-top: 8px;
     padding-bottom: 16px;
+    padding-left: 2rem;
+    padding-right: 2rem;
     outline: none;
+    background-color: var(--colors-neutral-50);
+
+    code {
+      color: var(--colors-neutral-900);
+      background-color: transparent;
+    }
   }
 }
 

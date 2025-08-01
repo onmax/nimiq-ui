@@ -2,7 +2,6 @@
 import { useBreadcrumbs } from '../composables/useBreadcrumbs'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import { useSourceCode } from '../composables/useSourceCode'
-import { useWideLayout } from '../composables/useWideLayout'
 import DocNavigation from './DocNavigation.vue'
 import '../assets/code-blocks.css'
 import '../assets/typography.css'
@@ -13,8 +12,6 @@ const { breadcrumbs, showBreadcrumbs } = useBreadcrumbs()
 const { showSecondarySidebar } = useSecondarySidebar()
 
 const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabel, copyMarkdownContent, copied } = useSourceCode()
-
-const { isWide } = useWideLayout()
 </script>
 
 <template>
@@ -22,22 +19,18 @@ const { isWide } = useWideLayout()
     :class="{
       'xl:f-pr-xs xl:f-pl-xl': showSecondarySidebar,
       'xl:f-px-xl': !showSecondarySidebar,
-    }" f-pt-sm f="$px $px-min-48 $px-max-72" pb="f-xl xl:sm" flex="~ gap-16" relative h-full
+    }" f-pt-sm f="$px $px-min-32 $px-max-64" pb="f-xl xl:sm" flex="~ gap-16" relative h-full
   >
     <div
       flex="~ col"
       h-full
       flex-1
-      :class="showSecondarySidebar ? 'w-[calc(100vw-2*var(--nq-sidebar-width)-2*var(--f-px))]' : 'w-[calc(100vw-var(--nq-sidebar-width)-2*var(--f-px))]'"
-      :style="!showSecondarySidebar ? 'max-width: calc(100vw - var(--nq-sidebar-width) - 200px)' : ''"
+      w-full
     >
       <div
         v-if="showBreadcrumbs || showSourceCode || showCopyMarkdown"
         f-pb-lg
         flex="~ items-center justify-between"
-        :style="{
-          maxWidth: isWide ? 'none' : 'var(--nq-prose-max-width, 78ch)',
-        }"
       >
         <ul v-if="showBreadcrumbs" flex="~ items-center gap-12">
           <li v-for="({ text, icon }, i) in breadcrumbs" :key="text" contents w-max>
@@ -72,12 +65,14 @@ const { isWide } = useWideLayout()
         flex-1
         class="nq-prose"
         f-pb="lg md:3xl"
-        :style="{ '--nq-prose-max-width': isWide ? 'auto' : undefined }"
+        style="--nq-prose-max-width: none;"
       >
-        <Content max-w-none px-0 />
+        <div style="max-width: none; margin-left: 0; margin-right: 0;">
+          <Content max-w-none px-0 />
+        </div>
       </article>
 
-      <DocNavigation :style="{ maxWidth: isWide ? 'none' : 'var(--nq-prose-max-width, 78ch)' }" />
+      <DocNavigation />
 
       <div flex="~ justify-between items-center" f-mt-lg f-text-xs>
         <a :href="editUrl" target="_blank" rel="noopener" op-70 hover:opacity-100 transition-opacity flex="~ items-center gap-3">

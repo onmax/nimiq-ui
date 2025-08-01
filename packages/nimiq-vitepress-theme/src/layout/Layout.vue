@@ -68,7 +68,9 @@ const isMobileOrTablet = breakpoints.smaller('lg')
         :class="{
           'ml-[$nq-sidebar-width]': showSidebar,
           'ml-0': !showSidebar,
-          'md:max-w-1220 md:mx-auto': !showSidebar && !showSecondarySidebar,
+          'max-w-1400 mx-auto': !showSidebar && !showSecondarySidebar,
+          'max-w-1200 mx-auto': showSidebar && !showSecondarySidebar,
+          'max-w-1000 mx-auto': showSidebar && showSecondarySidebar,
         }"
       >
         <PageContent />
