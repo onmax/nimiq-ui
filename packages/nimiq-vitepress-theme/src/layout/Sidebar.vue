@@ -11,13 +11,14 @@ import { isActive } from '../lib/route'
 import CommandMenu from './CommandMenu.vue'
 import Logo from './Logo.vue'
 import ModulePill from './ModulePill.vue'
+import SocialMediaLinks from './SocialMediaLinks.vue'
 import ThemeSwitcher from './ThemeSwitcher.vue'
 
 const { search = true } = defineProps<{ search?: boolean }>()
 
 const [DefineSidebarItem, SidebarItem] = createReusableTemplate<{ item: { text: string, link?: string, icon?: string } }>()
 
-const { theme, page } = useData<NimiqVitepressThemeConfig>()
+const { page } = useData<NimiqVitepressThemeConfig>()
 
 const { currentDocModule } = useCurrentModule()
 const { visibleModules } = useVisibleModules()
@@ -115,19 +116,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
     </template>
 
     <div border="t neutral-400" :class="{ 'border-none mt-auto': !currentDocModule } " flex="~ items-center" f-px-sm sticky bottom-0>
-      <nav>
-        <ul flex="~ gap-4" f-py-xs>
-          <li v-for="({ icon, link }) in theme.links" :key="link">
-            <a
-              :href="withBase(link)" target="_blank" rel="noopener noreferrer" transition-colors
-              un-text="18 neutral-900 hocus:neutral"
-              aria-label="Visit us on {{ icon }}"
-            >
-              <div :class="icon" />
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <SocialMediaLinks />
       <ThemeSwitcher />
     </div>
   </aside>

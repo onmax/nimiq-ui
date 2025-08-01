@@ -75,6 +75,7 @@
     "@vueuse/core": "catalog:utils",
     "mark.js": "catalog:prod",
     "minisearch": "catalog:prod",
+    "motion-v": "^1.6.1",
     "nimiq-icons": "workspace:*",
     "reka-ui": "catalog:frontend",
     "vaul-vue": "catalog:prod",
