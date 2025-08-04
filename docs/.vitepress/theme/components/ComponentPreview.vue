@@ -15,11 +15,11 @@ import { TabsContent, TabsList, TabsRoot, TabsTrigger } from 'reka-ui'
         Preview
       </TabsTrigger>
     </TabsList>
-    <div of-hidden f-px-sm>
-      <TabsContent value="code" grow bg-white outline-none>
+    <div of-hidden p-16 f-px-sm>
+      <TabsContent value="code" grow outline-none>
         <slot name="code" />
       </TabsContent>
-      <TabsContent value="preview" grow bg-white outline-none pt-16>
+      <TabsContent value="preview" grow outline-none>
         <slot name="default" />
       </TabsContent>
     </div>

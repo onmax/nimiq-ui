@@ -29,7 +29,7 @@ Armed with a digital map and a sturdy backpack filled with essential coding tool
 
 > "To the **moon**!"
 
-<figcaption>Pixel exclaimed</figcaption>
+<figcaption pt-16>Pixel exclaimed</figcaption>
 </figure>
 
 ## The Allies and Challenges
@@ -111,7 +111,7 @@ _Remember, in the world of cryptocurrency, knowledge is the currency of the real
 
 <figure>
 <img src="/assets/images/scripto.webp" alt="Pixel the Crypto Explorer" />
-<figcaption>Pixel the Crypto Explorer</figcaption>
+<figcaption pt-16>Pixel the Crypto Explorer</figcaption>
 </figure>
 
 ## Chapter 2: The Ledger of Legends
