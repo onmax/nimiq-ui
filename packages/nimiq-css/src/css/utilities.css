@@ -132,7 +132,7 @@
   position: relative;
   font-weight: bold;
   font-size: 0.875rem;
-  padding: 0.25rem 0.875rem;
+  padding: 0.1875rem 0.8125rem;
   border: none;
   border-radius: 999px;
   display: flex;
@@ -148,7 +148,6 @@
   background-image: radial-gradient(at 100% 100% in oklab, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
   --transitions: --nq-gradient-from 200ms var(--nq-ease), --nq-gradient-to 200ms var(--nq-ease);
   transition: var(--transitions);
-  margin: 0.5rem 0.25rem;
 
   &:where(.nq-pill-lg, [nq-pill-lg]) {
     font-size: 1rem;

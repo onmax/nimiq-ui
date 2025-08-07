@@ -576,11 +576,11 @@
       }
 
       p {
-        margin: 12px;
+        margin: 0.75lh;
       }
 
       &[open] p {
-        margin: 12px;
+        margin: 0.75lh;
       }
     }
   }
