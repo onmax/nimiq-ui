@@ -221,6 +221,7 @@
         --font-size-max-em: 0.875;
         font-weight: 700;
         line-height: 1.3125;
+        padding: 16px;
 
         :where(.dark, [data-theme='dark']) & {
           color: color-mix(in oklch, var(--colors-white) 80%, transparent);
@@ -572,6 +573,14 @@
 
       > *:not(summary) {
         padding: 0 1rem 14px 1rem;
+      }
+
+      p {
+        margin: 0.75lh;
+      }
+
+      &[open] p {
+        margin: 0.75lh;
       }
     }
   }
