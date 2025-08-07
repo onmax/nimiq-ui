@@ -10,7 +10,7 @@ const { navigation, showNavigation } = useDocNavigation()
     <a
       v-if="navigation.prev"
       :href="navigation.prev.link"
-      class="nq-hoverable navigation-card navigation-card-prev group block px-6 py-8 rounded-12 min-h-120"
+      class="nq-hoverable group block px-6 py-8 rounded-12 min-h-120"
     >
       <div class="inline-flex items-center mb-4 pl-16">
         <div class="i-nimiq:arrow-left size-16 pt-24 shrink-0 text-neutral-600 group-hover:text-blue-600 transition-[color,translate] group-active:-translate-x-0.5" />
@@ -23,7 +23,7 @@ const { navigation, showNavigation } = useDocNavigation()
     <a
       v-if="navigation.next"
       :href="navigation.next.link"
-      class="nq-hoverable navigation-card navigation-card-next group block px-6 py-8 rounded-12 text-right min-h-120"
+      class="nq-hoverable group block px-6 py-8 rounded-12 text-right min-h-120"
     >
       <div class="inline-flex items-center mb-4 justify-end pr-16">
         <div class="i-nimiq:arrow-right size-16 pt-24 shrink-0 text-neutral-600 group-hover:text-blue-600 transition-[color,translate] group-active:translate-x-0.5" />
