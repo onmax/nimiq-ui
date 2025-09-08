@@ -5,31 +5,15 @@ const { navigation, showNavigation } = useDocNavigation()
 </script>
 
 <template>
-  <nav v-if="showNavigation && (navigation.prev || navigation.next)" class="grid grid-cols-1 sm:grid-cols-2 gap-8" f-mt-lg>
-    <!-- Previous Card -->
-    <a
-      v-if="navigation.prev"
-      :href="navigation.prev.link"
-      class="nq-hoverable group block px-6 py-8 rounded-12 min-h-120"
-    >
-      <div class="inline-flex items-center mb-4 pl-16">
-        <div class="i-nimiq:arrow-left size-16 pt-24 shrink-0 text-neutral-600 group-hover:text-blue-600 transition-[color,translate] group-active:-translate-x-0.5" />
-      </div>
-      <p class="font-medium f-text-xl text-neutral-900 mb-1 truncate pl-16">{{ navigation.prev.text }}</p>
+  <nav v-if="showNavigation && (navigation.prev || navigation.next)" grid="~ cols-1 sm:cols-2 gap-8" class="nq-raw">
+    <a v-if="navigation.prev" col-1 :href="navigation.prev.link" nq-hoverable h-max group gap-2>
+      <div i-nimiq:arrow-left size-14 shrink-0 op="60 group-hocus:80" transition-opacity />
+      <p f-text-xl>{{ navigation.prev.text }}</p>
     </a>
-    <div v-else />
 
-    <!-- Next Card -->
-    <a
-      v-if="navigation.next"
-      :href="navigation.next.link"
-      class="nq-hoverable group block px-6 py-8 rounded-12 text-right min-h-120"
-    >
-      <div class="inline-flex items-center mb-4 justify-end pr-16">
-        <div class="i-nimiq:arrow-right size-16 pt-24 shrink-0 text-neutral-600 group-hover:text-blue-600 transition-[color,translate] group-active:translate-x-0.5" />
-      </div>
-      <p class="font-medium f-text-xl text-neutral-900 mb-1 truncate pr-16">{{ navigation.next.text }}</p>
+    <a v-if="navigation.next" col-2 :href="navigation.next.link" nq-hoverable items-end h-max group gap-2>
+      <div i-nimiq:arrow-right size-14 shrink-0 op="60 group-hocus:80" transition-opacity />
+      <p f-text-xl>{{ navigation.next.text }}</p>
     </a>
-    <div v-else />
   </nav>
 </template>

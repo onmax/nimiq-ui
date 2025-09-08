@@ -8,7 +8,6 @@ import Sidebar from './Sidebar.vue'
 import '../assets/code-blocks.css'
 import '../assets/typography.css'
 import '../assets/github-callouts.css'
-import 'nimiq-css/css/static-content.css'
 
 const { frontmatter } = useData()
 
@@ -43,7 +42,6 @@ const isMobileOrTablet = breakpoints.smaller('lg')
       </main>
     </div>
 
-    <!-- Mobile Layout -->
     <template v-else>
       <div flex="~ col" size-full>
         <MobileOutlineAccordion />
