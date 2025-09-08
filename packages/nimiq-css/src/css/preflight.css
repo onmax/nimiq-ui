@@ -129,18 +129,29 @@
   &:where(blockquote) {
     margin: 1.5em 0;
     padding: 1em;
-    border-left: 4px solid var(--colors-green);
-    background-color: var(--colors-green-50);
-    border-radius: 0 6px 6px 0;
+    background-color: var(--colors-green-400);
+    outline: 1.5px solid var(--colors-green-500);
+    font-size: 16px;
+    border-radius: 8px;
+
+    > * {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    :is(code, pre) {
+      background-color: color-mix(in oklch, var(--colors-green), transparent 80%);
+      border-radius: 4px;
+      font-weight: 400;
+    }
   }
 
-  &:not(:where(pre.shiki &)):where(code, pre) {
+  &:not(:where(pre.shiki &, :where(h1, h2, h3, h4, h5, h6) &, blockquote &)):where(code, pre) {
     color: var(--colors-neutral-900);
     --font-size-min: 14;
     --font-size-max: 16;
     font-size: var(--font-size);
     overflow-x: auto;
-    /* Scroll colors */
     --nq-track: var(--colors-neutral-500);
     --nq-thumb: color-mix(in oklch, var(--colors-neutral-700) 75%, transparent);
   }
@@ -151,6 +162,9 @@
 
   :where(:where(h1, h2, h3, h4, h5, h6, p, li, span, a) > code) {
     background-color: var(--colors-neutral-200);
+    padding-left: 0.15em;
+    padding-right: 0.15em;
+    border-radius: 0.1em;
   }
 
   &:where(pre) {

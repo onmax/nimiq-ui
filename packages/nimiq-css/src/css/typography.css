@@ -453,9 +453,13 @@
     }
 
     &:where(a) {
-      font-weight: 600;
       text-decoration: none;
       color: var(--colors-blue);
+      font-weight: 600;
+
+      code {
+        font-weight: 400;
+      }
     }
 
     table {
