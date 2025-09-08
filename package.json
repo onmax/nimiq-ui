@@ -1,7 +1,7 @@
 {
   "name": "nimiq-ui",
   "type": "module",
-  "version": "1.0.0-beta.69",
+  "version": "1.0.0-beta.70",
   "private": true,
   "packageManager": "pnpm@10.12.1",
   "description": "",
@@ -14,7 +14,7 @@
     "prepublishOnly": "nr build",
     "docs": "pnpm -C docs run docs:dev",
     "docs:build": "pnpm -C docs run docs:build",
-    "release": "bumpp -r && pnpm -r publish",
+    "release": "pnpm build && bumpp -r && pnpm -r publish",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks"
