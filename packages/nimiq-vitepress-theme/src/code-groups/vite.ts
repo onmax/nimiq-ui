@@ -10,7 +10,7 @@ export function groupIconVitePlugin(): Plugin {
   const virtualCssId = 'virtual:group-icons.css'
   const resolvedVirtualCssId = `\0${virtualCssId}`
   // eslint-disable-next-line regexp/no-super-linear-backtracking
-  const combinedRegex = /```\S+\s+\[(?:[^\]]*\.)?([^\]]+)\]/g
+  const combinedRegex = /```(\S+)(?:\s+\[(?:[^\]]*\.)?([^\]]+)\])?/g
   const matches = new Set<string>()
 
   let oldMatches: Set<string> = new Set()
@@ -51,6 +51,9 @@ export function groupIconVitePlugin(): Plugin {
         if (!match)
           break
         matches.add(match[1])
+        if (match[2]) {
+          matches.add(match[2])
+        }
       }
 
       if (!isSetEqual(matches, oldMatches))
