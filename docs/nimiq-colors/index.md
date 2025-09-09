@@ -14,7 +14,6 @@ The `nimiq-colors` package is the central source of truth for color definitions 
 The `nimiq-colors` package exports:
 
 1.  **CSS File**:
-
     - Path: `nimiq-colors/dist/nimiq-colors.css`
     - Contains CSS custom properties for all defined colors (e.g., `--colors-blue-500`, `--colors-neutral`) and gradients (e.g., `--colors-blue-gradient`).
     - Automatically handles light and dark themes using `@media (prefers-color-scheme: dark)` and a `.dark` class selector.

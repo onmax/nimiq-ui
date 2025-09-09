@@ -86,7 +86,6 @@ Pixel was amazed at how Nimiq could be accessed directly from a web browser with
 At the journey's end, Pixel found the greatest treasure was not a pile of digital coins but the knowledge and experiences gained along the way.
 
 1. Cryptography is not just about security; it's an art.
-
    1. Understanding encryption algorithms.
    2. Mastering the balance between security and efficiency.
 

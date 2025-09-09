@@ -15,8 +15,8 @@ body:not(.nq-raw) {
   }
 
   :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *)):not(
-      :is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *
-    ) {
+    :is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *
+  ) {
     --f-space-width-range: calc(var(--f-space-width-max) - var(--f-space-width-min));
     --f-space-scale-factor: calc((100vw - (1px * var(--f-space-width-min))) / var(--f-space-width-range));
 
