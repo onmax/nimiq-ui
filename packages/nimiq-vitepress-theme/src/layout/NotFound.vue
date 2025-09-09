@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { createReusableTemplate } from '@vueuse/core'
-import { useBreakpoints } from '@vueuse/core'
+import { createReusableTemplate, useBreakpoints } from '@vueuse/core'
 import { withBase } from 'vitepress'
 import { computed } from 'vue'
 import { useRandomEmoji } from '../composables/useRandomEmoji'
