@@ -1,8 +1,8 @@
 {
 	"name": "nimiq-icons",
 	"description": "The Nimiq Icons as an iconify icon set.",
-	"version": "1.0.0-beta.72",
-	"iconSetVersion": "1.0.0-beta.71",
+	"version": "1.0.0-beta.73",
+	"iconSetVersion": "1.0.0-beta.72",
 	"main": "index.js",
 	"module": "index.mjs",
 	"types": "index.d.ts",
