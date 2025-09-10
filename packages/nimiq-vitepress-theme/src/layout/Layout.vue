@@ -5,7 +5,6 @@ import { computed } from 'vue'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import DesktopHeader from './DesktopHeader.vue'
 import MobileNav from './MobileNav.vue'
-import MobileOutlineAccordion from './MobileOutlineAccordion.vue'
 import NotFound from './NotFound.vue'
 import OverviewContent from './OverviewContent.vue'
 import PageContent from './PageContent.vue'
@@ -82,8 +81,6 @@ const isMobileOrTablet = breakpoints.smaller('lg')
     </div>
     <template v-else>
       <div flex="~ col" size-full>
-        <MobileOutlineAccordion />
-
         <main dark:bg-neutral-1100 min-h-screen w-full mb-56>
           <PageContent />
         </main>

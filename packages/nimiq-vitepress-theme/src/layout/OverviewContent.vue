@@ -3,7 +3,6 @@ import { useBreakpoints } from '@vueuse/core'
 import { useData } from 'vitepress'
 import { computed } from 'vue'
 import MobileNav from './MobileNav.vue'
-import MobileOutlineAccordion from './MobileOutlineAccordion.vue'
 import Sidebar from './Sidebar.vue'
 import '../assets/code-blocks.css'
 import '../assets/typography.css'
@@ -44,8 +43,6 @@ const isMobileOrTablet = breakpoints.smaller('lg')
 
     <template v-else>
       <div flex="~ col" size-full>
-        <MobileOutlineAccordion />
-
         <main dark:bg-neutral-1100 min-h-screen w-full>
           <article w-full max-w-none h-full>
             <Content />

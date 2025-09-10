@@ -5,6 +5,7 @@ import { defineAsyncComponent, ref, watch } from 'vue'
 import { useHeaderScroll } from '../composables/useHeaderScroll'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import Logo from './Logo.vue'
+import MobileOutlineAccordion from './MobileOutlineAccordion.vue'
 
 const searchOpen = ref(false)
 const menuOpen = ref(false)
@@ -76,6 +77,8 @@ function handleSearchClose() {
           </DrawerRoot>
         </div>
       </nav>
+
+      <MobileOutlineAccordion />
     </header>
   </div>
 </template>

@@ -19,14 +19,9 @@ const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabe
     :class="{
       'xl:f-pr-xs xl:f-pl-xl': showSecondarySidebar,
       'xl:f-px-xl': !showSecondarySidebar,
-    }" f-pt-sm f="$px $px-min-32 $px-max-64" pb="f-xl xl:sm" flex="~ gap-16" relative h-full
+    }" f-pt-sm f="$px $px-min-32 $px-max-64" pb="f-xl xl:sm" flex="~ gap-16" relative h-full max-xl:f-px-lg
   >
-    <div
-      flex="~ col"
-      h-full
-      flex-1
-      w-full
-    >
+    <div flex="~ col" size-full flex-1>
       <div
         v-if="showBreadcrumbs || showSourceCode || showCopyMarkdown"
         f-pb-lg
