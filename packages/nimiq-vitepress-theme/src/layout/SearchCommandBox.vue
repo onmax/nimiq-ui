@@ -134,7 +134,7 @@ function formMarkRegex(terms: Set<string>) {
   <ListboxRoot ref="listboxRef">
     <div w-full flex="~ items-center" relative f-p-2xs>
       <ListboxFilter v-model="filterText" rounded-3 nq-input-box of-hidden w-full bg-transparent flex-1 placeholder="Search documentation" auto-focus border="none" outline="8 ~ neutral-500 hocus:blue" transition-outline-color />
-      <DialogClose absolute right-0 size-48 stack cursor-pointer>
+      <DialogClose absolute right-4 stack size-48="!" cursor-pointer>
         <div i-nimiq:cross text="10 group-focus-within:blue neutral-700" right-16 mx-auto />
       </DialogClose>
     </div>
