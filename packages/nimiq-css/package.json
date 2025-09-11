@@ -9,9 +9,19 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs"
     },
-    "./css": {
-      "import": "./dist/css/*"
-    },
+    "./css/*": "./dist/css/*",
+    "./css/animations.css": "./dist/css/animations.css",
+    "./css/atomic.css": "./dist/css/atomic.css",
+    "./css/colors.css": "./dist/css/colors.css",
+    "./css/fonts.css": "./dist/css/fonts.css",
+    "./css/index.css": "./dist/css/index.css",
+    "./css/preflight.css": "./dist/css/preflight.css",
+    "./css/spacing.css": "./dist/css/spacing.css",
+    "./css/static-content.css": "./dist/css/static-content.css",
+    "./css/typography.css": "./dist/css/typography.css",
+    "./css/utilities.css": "./dist/css/utilities.css",
+    "./css/legacy/icons.css": "./dist/css/legacy/icons.css",
+    "./css/legacy/inputs.css": "./dist/css/legacy/inputs.css",
     "./unocss": {
       "types": "./dist/unocss/index.d.ts",
       "import": "./dist/unocss/index.mjs"
