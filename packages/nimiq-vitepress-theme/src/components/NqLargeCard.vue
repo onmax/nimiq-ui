@@ -21,7 +21,7 @@ const hasLink = computed(() => !!href)
     :class="{ 'nq-hoverable': hasLink,
               'nq-card': !hasLink }"
   >
-    <div v-if="icon" :class="[icon, !!description ? 'f-size-64/80' : 'f-size-32/40']" mx-auto f-mb-lg op="70 group-hocus:100" transition-opacity />
+    <div v-if="icon" :class="[icon, !!description ? 'f-size-64/80 f-mb-lg' : 'f-size-32/40 f-mb-sm']" mx-auto op="70 group-hocus:100" transition-opacity />
     <h2 font-semibold text-center :class="description ? 'f-text-2xl' : 'f-text-lg'">
       {{ title }}
     </h2>
