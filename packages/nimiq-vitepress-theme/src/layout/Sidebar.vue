@@ -42,7 +42,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
 </script>
 
 <template>
-  <aside z-20 class="nq-raw" of="x-hidden y-auto" fixed inset-y-0 left-0 overscroll-contain bg-neutral-100 flex="~ col">
+  <aside z-200 class="nq-raw" of="x-hidden y-auto" fixed inset-y-0 left-0 overscroll-contain bg-neutral-100 flex="~ col">
     <div absolute inset-y-0 z-3 right-0 ring="0.75 neutral-400" max-xl:hidden aria-hidden var:outline-color:neutral-400 />
     <div f-p="sm md:xs" pb-0 display="~ col">
       <Logo />
@@ -79,7 +79,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
         </a>
       </DefineSidebarItem>
       <ScrollAreaRoot relative of-hidden bg-neutral-100 var:scrollbar-size:10px as="nav" flex-1 f-p="sm md:xs" v-bind="$attrs">
-        <div absolute top-0 z-2 w-full h-24 bg-gradient="to-t from-transparent to-neutral-100" />
+        <div absolute top-0 z-2 w-full h-24 bg-gradient-to-t from-transparent to-neutral-100 />
         <ScrollAreaViewport size-full f-pt-xs as="ul">
           <li v-for="item in currentDocModule.sidebar" :key="item.label" f-pb-xs>
             <template v-if="item.items?.length">
@@ -110,7 +110,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
         <ScrollAreaScrollbar inset-y-0 flex="~" select-none touch-none p-2 z-20 bg="neutral-300" w-10 orientation="vertical">
           <ScrollAreaThumb flex-1 bg-neutral-500 rounded-5 relative content-empty before="absolute top--50% left--50% -translate-x--50% -translate-y--50% size-full min-h-40 min-w-40" />
         </ScrollAreaScrollbar>
-        <div absolute bottom-0 z-2 w-full h-24 bg-gradient="to-b from-transparent to-neutral-100" />
+        <div absolute bottom-0 z-2 w-full h-24 bg-gradient-to-b from-transparent to-neutral-100 />
       </ScrollAreaRoot>
     </template>
 

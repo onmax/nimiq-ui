@@ -66,11 +66,8 @@ function handleSearchClose() {
             <DrawerPortal>
               <DrawerOverlay fixed inset-0 bg-neutral bg-opacity-20 />
               <DrawerContent fixed inset-y-0 right-0 w-85vw max-w-450 min-h-screen bg-neutral-100 rounded-l-12 f-p-0>
-                <div h-full w-full class="mobile-sidebar-container">
-                  <Sidebar
-                    :search="false"
-                    class="mobile-sidebar"
-                  />
+                <div w-full f-px-sm h-screen of-hidden class="mobile-sidebar-container">
+                  <Sidebar :search="false" relateive inset-unset size-full p-0 />
                 </div>
               </DrawerContent>
             </DrawerPortal>
@@ -87,28 +84,5 @@ function handleSearchClose() {
 /* Widget styling when it has content */
 #widget:not(:empty) {
   --uno: 'max-h-20vh outline outline-1.5 outline-offset--1.5 outline-neutral-400';
-}
-
-/* Fix mobile sidebar positioning and padding */
-.mobile-sidebar-container {
-  height: 100vh;
-  overflow: hidden;
-}
-
-.mobile-sidebar-container :deep(.mobile-sidebar) {
-  position: relative !important;
-  inset: unset !important;
-  left: unset !important;
-  right: unset !important;
-  top: unset !important;
-  bottom: unset !important;
-  height: 100% !important;
-  width: 100% !important;
-  padding: 0 !important;
-}
-
-.mobile-sidebar-container :deep(.mobile-sidebar > div:first-child) {
-  padding: 1rem !important;
-  padding-bottom: 0 !important;
 }
 </style>
