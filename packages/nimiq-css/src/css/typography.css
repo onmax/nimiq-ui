@@ -32,7 +32,35 @@
   margin-trim: block;
 
   &:not(:where(.nq-prose-compact, [nq-prose-compact])) {
-    > *:not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)) {
+    > *:not(
+        :where(
+          .nq-raw,
+          .nq-raw *,
+          .nq-not-prose,
+          .nq-not-prose *,
+          .shiki *,
+          img,
+          video,
+          iframe,
+          figure,
+          blockquote,
+          pre,
+          code
+        )
+      ) {
+      padding-right: 0;
+      padding-left: 0;
+
+      &:last-child {
+        padding-bottom: 6rem;
+
+        @media (min-width: 1153px) {
+          padding-bottom: 8rem;
+        }
+      }
+    }
+
+    > :where(img, video, iframe, figure, blockquote, pre, code) {
       padding-right: 2rem;
       padding-left: 2rem;
 
@@ -88,8 +116,8 @@
     font-family: var(--nq-font-sans, 'Mulish');
 
     &:where(h1) {
-      --font-size-min-em: 2.75;
-      --font-size-max-em: 3;
+      --font-size-min-em: 2.25;
+      --font-size-max-em: 2.5;
       line-height: 1.5;
       font-weight: 700;
     }
@@ -101,12 +129,12 @@
     }
 
     &:where(h2) {
-      --font-size-min-em: 2;
-      --font-size-max-em: 2.375;
+      --font-size-min-em: 1.75;
+      --font-size-max-em: 2;
       line-height: 1.3;
       font-weight: 700;
 
-      margin-top: var(--nq-m-size);
+      margin-top: 2lh;
       margin-bottom: 24px;
       --margin-min-lh: 4.2308;
       --margin-max-lh: 4.6154;
@@ -118,13 +146,13 @@
     }
 
     &:where(h3) {
-      --font-size-min-em: 1.625;
-      --font-size-max-em: 1.875;
+      --font-size-min-em: 1.4;
+      --font-size-max-em: 1.625;
       line-height: 1.3;
       font-weight: 700;
 
       margin-bottom: 24px;
-      margin-top: var(--nq-m-size);
+      margin-top: 1.7lh;
       --margin-min-lh: 4.2308;
       --margin-max-lh: 4.6154;
 
@@ -135,12 +163,12 @@
     }
 
     &:where(h4) {
-      --font-size-min-em: 1.375;
-      --font-size-max-em: 1.625;
+      --font-size-min-em: 1.25;
+      --font-size-max-em: 1.4;
       line-height: 1.3;
       font-weight: 700;
 
-      margin-top: var(--nq-m-size);
+      margin-top: 1.4lh;
       margin-bottom: 24px;
       --margin-min-lh: 4.2308;
       --margin-max-lh: 4.6154;
@@ -149,6 +177,31 @@
     &:where(h3 + h4) {
       --margin-min-lh: 1.5385;
       --margin-max-lh: 1.7308;
+      margin-top: 1.2lh;
+    }
+
+    &:where(h5) {
+      --font-size-min-em: 1.125;
+      --font-size-max-em: 1.25;
+      line-height: 1.3;
+      font-weight: 700;
+
+      margin-top: 1.2lh;
+      margin-bottom: 24px;
+      --margin-min-lh: 4.2308;
+      --margin-max-lh: 4.6154;
+    }
+
+    &:where(h6) {
+      --font-size-min-em: 1;
+      --font-size-max-em: 1.125;
+      line-height: 1.3;
+      font-weight: 700;
+
+      margin-top: 1.2lh;
+      margin-bottom: 24px;
+      --margin-min-lh: 4.2308;
+      --margin-max-lh: 4.6154;
     }
 
     /* Anchors in headings */
@@ -285,6 +338,10 @@
         --margin-max-lh: 0.9167;
         margin-bottom: var(--nq-m-size);
       }
+    }
+
+    article &:where(img) {
+      background-color: white;
     }
 
     /* Rules to use a wider container (8px on the sides). Mainly for phones */
