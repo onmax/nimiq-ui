@@ -32,7 +32,11 @@ const moduleCards = computed(() => {
 </script>
 
 <template>
-  <header z-1000 fixed inset-x-0 top-0 mx-16 mt-16 border="1 neutral-400" shadow bg-neutral-0 f-h-xl flex="~ items-center gap-32" f-px-xl f-py-sm rounded-12 transition="[transform,opacity] duration-300 ease-out" :class="{ 'translate-y--120% opacity-0': !isHeaderVisible }">
+  <header
+    z-1000 fixed inset-x-0 top-0 mx-16 mt-16 border="1 neutral-400" shadow bg-neutral-0 f-h-xl
+    flex="~ items-center gap-32" f-px-xl f-py-sm rounded-12 transition="[transform,opacity] duration-300 ease-out"
+    :class="{ 'translate-y--120% opacity-0': !isHeaderVisible }"
+  >
     <!-- Logo on the left -->
     <Logo />
 
@@ -43,29 +47,29 @@ const moduleCards = computed(() => {
 
       <!-- Modules Dropdown -->
       <CollapsibleRoot v-model:open="isModulesDropdownOpen" relative>
-        <CollapsibleTrigger flex="~ items-center gap-8" f-px-sm f-py-xs f-rounded-xs bg="transparent hocus:neutral-200" transition-colors group>
+        <CollapsibleTrigger
+          flex="~ items-center gap-8" f-px-sm f-py-xs f-rounded-xs bg="transparent hocus:neutral-200"
+          transition-colors group
+        >
           <span f-text-sm font-medium>Modules</span>
-          <div i-nimiq:chevron-down text-12 transition-transform duration-200 :class="{ 'rotate-180': isModulesDropdownOpen }" />
+          <div
+            i-nimiq:chevron-down text-12 transition-transform duration-200
+            :class="{ 'rotate-180': isModulesDropdownOpen }"
+          />
         </CollapsibleTrigger>
 
-        <CollapsibleContent absolute top-full right-0 min-w-400 max-w-600 bg-neutral-0 border="1 neutral-400" f-rounded-md shadow-lg z-50 un-animate="collapsible" class="modules-dropdown-content" of-clip>
-          <motion.div
-            :initial="{ opacity: 0,
-                        y: -10 }" :animate="{ opacity: 1,
-                                              y: 0 }" :transition="{ duration: 0.2 }" max-h-60vh of-y-auto f-p-md
-          >
+        <CollapsibleContent
+          absolute top-full right-0 min-w-400 max-w-600 bg-neutral-0 border="1 neutral-400"
+          f-rounded-md shadow-lg z-50 un-animate="collapsible" class="modules-dropdown-content" of-clip
+        >
+          <!-- eslint-disable -->
+          <motion.div :initial="{ opacity: 0, y: -10 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.2 }"
+            max-h-60vh of-y-auto f-p-md>
             <ul v-if="moduleCards.length > 0" grid="~ cols-2 gap-12" class="nq-raw" max-w-full my-0>
-              <motion.li
-                v-for="(card, index) in moduleCards" :key="card.title" :initial="{ opacity: 0,
-                                                                                   y: 20,
-                                                                                   scale: 0.9 }" :animate="{ opacity: 1,
-                                                                                                             y: 0,
-                                                                                                             scale: 1 }" :transition="{ duration: 0.3,
-                                                                                                                                        delay: index * 0.05,
-                                                                                                                                        type: 'spring',
-                                                                                                                                        stiffness: 260,
-                                                                                                                                        damping: 20 }" col-span-1 mt-0 flex @click="isModulesDropdownOpen = false"
-              >
+              <motion.li v-for="(card, index) in moduleCards" :key="card.title"
+                :initial="{ opacity: 0, y: 20, scale: 0.9 }" :animate="{ opacity: 1, y: 0, scale: 1 }"
+                :transition="{ duration: 0.3, delay: index * 0.05, type: 'spring', stiffness: 260, damping: 20 }"
+                col-span-1 mt-0 flex @click="isModulesDropdownOpen = false">
                 <a :href="card.href" nq-hoverable>
                   <div :class="[card.icon, card.iconClass]" scale-125 />
                   <h3 v-if="card.title" f-mt-xs f-text-lg font-medium>
@@ -78,6 +82,7 @@ const moduleCards = computed(() => {
               </motion.li>
             </ul>
           </motion.div>
+          <!-- eslint-enable -->
         </CollapsibleContent>
       </CollapsibleRoot>
 

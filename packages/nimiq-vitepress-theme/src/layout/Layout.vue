@@ -32,10 +32,10 @@ const isMobileOrTablet = breakpoints.smaller('lg')
 
 <template>
   <!-- 404 Not Found Page -->
-  <NotFound v-if="is404" />
+  <NotFound v-if="is404" bg-neutral-1100 />
 
   <!-- Home Page -->
-  <div v-else-if="isHome" data-layout="home" min-h-screen>
+  <div v-else-if="isHome" data-layout="home" min-h-screen bg-neutral-1100>
     <template v-if="isMobileOrTablet">
       <Content />
       <MobileNav fixed bottom-0 />
@@ -47,12 +47,12 @@ const isMobileOrTablet = breakpoints.smaller('lg')
   </div>
 
   <!-- Overview Pages -->
-  <div v-else-if="isOverview" id="viewport" data-layout="overview" min-h-screen>
+  <div v-else-if="isOverview" id="viewport" data-layout="overview" min-h-screen bg-neutral-1100>
     <OverviewContent />
   </div>
 
   <!-- Documentation Pages (default) -->
-  <div v-else id="viewport" flex relative var:nq-sidebar-width:100vw md:var:nq-sidebar-width:288px data-layout="docs">
+  <div v-else id="viewport" flex relative var:nq-sidebar-width:100vw md:var:nq-sidebar-width:288px data-layout="docs" bg-neutral-1100>
     <!-- TODO Add skip -->
     <div v-if="!isMobileOrTablet" flex w-full>
       <div shrink-0 relative w="$nq-sidebar-width">
