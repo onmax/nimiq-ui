@@ -25,7 +25,7 @@ const hasLink = computed(() => !!href)
     <h2 font-semibold f-text-2xl text-center>
       {{ title }}
     </h2>
-    <p f-text-lg text-center text-neutral-800 f-mt-xs>
+    <p v-if="description" f-text-lg text-center text-neutral-800 f-mt-xs>
       {{ description }}
     </p>
   </component>
