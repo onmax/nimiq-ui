@@ -11,17 +11,16 @@ export function isActive(currentPath: string, matchPath?: string): boolean {
   const normalizedCurrent = normalize(currentPath)
   const normalizedMatch = normalize(matchPath)
 
-  // Check if current path starts with the match path
-  if (!normalizedCurrent.startsWith(normalizedMatch))
-    return false
-
+  // If there's a hash in the match path, check it specifically
   const hashMatch = matchPath.match(HASH_RE)
-  if (hashMatch)
-    return (inBrowser ? location.hash : '') === hashMatch[0]
+  if (hashMatch) {
+    return normalizedCurrent === normalizedMatch && (inBrowser ? location.hash : '') === hashMatch[0]
+  }
 
-  return true
+  // For exact path matching, return true only if they are exactly the same
+  return normalizedCurrent === normalizedMatch
 }
 
 export function normalize(path: string): string {
-  return decodeURI(path).replace(HASH_OR_QUERY_RE, '').replace(INDEX_OR_EXT_RE, '$1')
+  return decodeURI(path).replace(HASH_OR_QUERY_RE, '').replace(INDEX_OR_EXT_RE, '$1').replace(/^\//, '').replace(/\/$/, '')
 }
