@@ -2,6 +2,7 @@
 import { useBreadcrumbs } from '../composables/useBreadcrumbs'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import { useSourceCode } from '../composables/useSourceCode'
+import CopyButtonGroup from '../components/CopyButtonGroup.vue'
 import DocNavigation from './DocNavigation.vue'
 import '../assets/code-blocks.css'
 import '../assets/typography.css'
@@ -37,14 +38,7 @@ const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabe
         <div v-else />
 
         <div v-if="showSourceCode || showCopyMarkdown" flex="~ items-center gap-8 sm:gap-12">
-          <button
-            v-if="showCopyMarkdown" nq-pill-tertiary outline="~ 1.5 neutral-500" translate-y-0 shadow-none
-            un-text="f-2xs neutral-900 copied:white" rounded-4 copied:bg-green flex="~ row gap-4"
-            :data-state="copied ? '' : undefined" @click="copyMarkdownContent"
-          >
-            <div i-nimiq:copy copied:i-nimiq:checkmark />
-            <span>{{ copied ? 'Copied!' : 'Copy MD' }}</span>
-          </button>
+          <CopyButtonGroup />
 
           <a
             v-if="showSourceCode" :href="sourceCodeUrl" target="_blank" rel="noopener" rounded-4 nq-pill-tertiary

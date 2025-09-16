@@ -1,0 +1,93 @@
+{
+	"meta": {
+		"generatedAt": "2025-09-16T13:10:13.647Z",
+		"tasksAnalyzed": 10,
+		"totalTasks": 10,
+		"analysisCount": 10,
+		"thresholdScore": 5,
+		"projectName": "Taskmaster",
+		"usedResearch": true
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 1,
+			"taskTitle": "Install and configure vue-sonner dependency",
+			"complexityScore": 3,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down the vue-sonner installation into: 1) Package installation and version management, 2) Main theme configuration and provider setup, 3) TypeScript types verification and testing",
+			"reasoning": "Simple dependency addition with standard package.json modification and basic setup. The project already uses pnpm catalogs and has established patterns for dependency management."
+		},
+		{
+			"taskId": 2,
+			"taskTitle": "Create enhanced button group component",
+			"complexityScore": 6,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Create CopyButtonGroup component with subtasks: 1) Basic Vue component structure and reka-ui imports, 2) Button group styling with UnoCSS and shared borders, 3) Dropdown menu integration with reka-ui components, 4) Keyboard navigation and accessibility implementation",
+			"reasoning": "Moderate complexity requiring understanding of reka-ui patterns (seen in CommandMenu.vue), UnoCSS styling system, and proper button group implementation. Requires coordination with existing design tokens."
+		},
+		{
+			"taskId": 3,
+			"taskTitle": "Extend useSourceCode composable with new copy methods",
+			"complexityScore": 5,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Extend useSourceCode.ts with: 1) Add copyMarkdownLink method with page title and URL logic, 2) Implement AI platform URL generation methods (ChatGPT/Claude), 3) Add toast notification integration, 4) Content truncation and URL encoding utilities",
+			"reasoning": "Medium complexity involving extending existing composable (115 lines currently) with new methods. Requires integration with VitePress APIs and proper error handling patterns already established."
+		},
+		{
+			"taskId": 4,
+			"taskTitle": "Create custom AI platform icons",
+			"complexityScore": 4,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Create AI platform icons with: 1) Design SVG icons following nimiq-icons format and 16px viewBox, 2) Add icons to nimiq-icons package or create local theme icons, 3) Configure UnoCSS icon classes and test visibility in light/dark themes",
+			"reasoning": "Medium-low complexity. The nimiq-icons system is well-established with clear JSON structure. Requires following existing icon patterns but is straightforward implementation."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "Implement dropdown menu with copy options",
+			"complexityScore": 6,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Build dropdown menu with: 1) DropdownMenuItem components and structure following reka-ui patterns, 2) Menu styling with Nimiq design system and proper positioning, 3) Click handlers integration with useSourceCode methods, 4) Menu behavior and close handling",
+			"reasoning": "Medium complexity requiring proper integration of multiple components. Reka-ui usage is established in the codebase (CommandMenu example), but requires careful coordination of multiple dependencies."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "Integrate toast notifications with copy actions",
+			"complexityScore": 4,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Integrate vue-sonner toasts with: 1) Configure Toaster component in main theme layout with positioning and styling, 2) Add toast calls to copy methods with appropriate success/loading messages, 3) Style toasts to match Nimiq design system",
+			"reasoning": "Medium-low complexity. Straightforward integration once vue-sonner is installed. Requires following Nimiq design patterns for consistent styling."
+		},
+		{
+			"taskId": 7,
+			"taskTitle": "Update PageContent.vue to use new copy system",
+			"complexityScore": 4,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Update PageContent.vue with: 1) Import and replace existing copy button (lines 40-47) with CopyButtonGroup, 2) Maintain conditional rendering logic and existing layout styling, 3) Test responsive behavior and View Source link positioning",
+			"reasoning": "Medium-low complexity. PageContent.vue is well-structured (82 lines) with clear copy button implementation. Replacement is straightforward but requires preserving existing functionality."
+		},
+		{
+			"taskId": 8,
+			"taskTitle": "Implement error handling and user feedback",
+			"complexityScore": 5,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Add error handling with: 1) Try-catch blocks and specific error messages for clipboard/network failures, 2) Toast error notifications with vue-sonner, 3) Fallback clipboard implementation using document.execCommand, 4) Loading states and timeout handling for async operations",
+			"reasoning": "Medium complexity requiring comprehensive error scenarios handling. The existing useSourceCode composable has basic error handling, but needs significant enhancement for robust user experience."
+		},
+		{
+			"taskId": 9,
+			"taskTitle": "Implement accessibility features",
+			"complexityScore": 7,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Implement accessibility with: 1) Keyboard navigation (Tab, Arrow keys, Enter/Space, Escape), 2) ARIA labels and roles for dropdown components, 3) Focus management and focus trap implementation, 4) Screen reader live regions for copy success, 5) Accessibility testing and validation",
+			"reasoning": "High complexity requiring deep understanding of ARIA patterns and keyboard navigation. Accessibility implementation is comprehensive and requires careful testing across different assistive technologies."
+		},
+		{
+			"taskId": 10,
+			"taskTitle": "Add responsive behavior and mobile optimization",
+			"complexityScore": 6,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Optimize for mobile with: 1) Touch-friendly interactions and minimum touch target sizes, 2) Dropdown positioning and width handling on small screens, 3) Responsive button labels and icon-only display below 400px, 4) Mobile-specific UX improvements like swipe-to-dismiss",
+			"reasoning": "Medium complexity involving responsive design patterns. The existing codebase shows good mobile patterns (PageContent.vue has responsive classes), but dropdown positioning and touch interactions require careful implementation."
+		}
+	]
+}

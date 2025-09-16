@@ -1,0 +1,445 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Install and configure vue-sonner dependency",
+        "description": "Add vue-sonner toast notification library to the nimiq-vitepress-theme package dependencies",
+        "details": "Install vue-sonner (Vue 3 compatible sonner notifications) in packages/nimiq-vitepress-theme/package.json. Add it to dependencies section with version ^1.1.4 (latest stable). Configure the Sonner provider in the main theme entry point to enable toast notifications throughout the application. Update package.json and run pnpm install to ensure dependency is properly installed.",
+        "testStrategy": "Verify installation by checking node_modules for vue-sonner package, test import in a Vue component, and ensure TypeScript types are available.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Add vue-sonner to package.json dependencies",
+            "description": "Install vue-sonner package in nimiq-vitepress-theme with proper version specification",
+            "dependencies": [],
+            "details": "Add vue-sonner ^1.1.4 to dependencies section in packages/nimiq-vitepress-theme/package.json. Run pnpm install to install the package and update lockfile. Verify the package appears in node_modules and pnpm-lock.yaml is updated correctly.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Configure Sonner provider in theme entry point",
+            "description": "Set up vue-sonner Toaster component in the main VitePress theme layout",
+            "dependencies": [
+              "1.1"
+            ],
+            "details": "Import and configure the Toaster component from vue-sonner in the main theme layout file (likely Layout.vue or theme/index.ts). Position it appropriately in the component tree to be available globally. Configure default options like position, duration, and styling to match Nimiq design system.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Verify TypeScript types and test installation",
+            "description": "Ensure vue-sonner TypeScript definitions work correctly and test basic functionality",
+            "dependencies": [
+              "1.2"
+            ],
+            "details": "Check that vue-sonner imports work without TypeScript errors. Test basic toast functionality by creating a simple test component or adding temporary toast calls. Verify the toast notifications appear correctly and match the configured styling. Remove test code after verification.",
+            "status": "done",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Create enhanced button group component",
+        "description": "Build a compound button component that combines the primary copy button with dropdown trigger",
+        "details": "Create CopyButtonGroup.vue component in packages/nimiq-vitepress-theme/src/components/. Use Reka UI's DropdownMenu components (DropdownMenuRoot, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem). Implement button group styling with left button having rounded-left corners only, right dropdown trigger with rounded-right corners only, and shared border. Use existing Nimiq design tokens and UnoCSS classes. Handle keyboard navigation (Tab, Arrow keys, Enter/Space, Escape).",
+        "testStrategy": "Test button group visual appearance, dropdown open/close functionality, keyboard navigation compliance, and responsive behavior on mobile devices.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create basic Vue component structure with reka-ui imports",
+            "description": "Set up CopyButtonGroup.vue component file with necessary imports and basic structure",
+            "dependencies": [],
+            "details": "Create CopyButtonGroup.vue in packages/nimiq-vitepress-theme/src/components/. Import required Reka UI components: DropdownMenuRoot, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem. Set up basic Vue 3 composition API structure with script setup. Import useSourceCode composable and other necessary utilities. Define component props interface if needed.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement button group styling with UnoCSS and shared borders",
+            "description": "Create the visual appearance of the button group with proper styling and layout",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Implement button group container with flex layout. Style primary copy button with rounded-left corners only (rounded-l). Style dropdown trigger button with rounded-right corners only (rounded-r). Create shared border styling between buttons with proper border colors using Nimiq design tokens. Ensure consistent height, padding, and visual cohesion between the two button elements. Use UnoCSS classes for all styling.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Integrate dropdown menu with reka-ui components",
+            "description": "Set up the dropdown menu functionality using Reka UI components",
+            "dependencies": [
+              "2.2"
+            ],
+            "details": "Implement DropdownMenuRoot as container, DropdownMenuTrigger for the right button, and DropdownMenuContent for menu items. Set up dropdown positioning and styling to match Nimiq design system. Configure dropdown trigger button with appropriate icon (chevron down). Ensure proper dropdown open/close state management. Style dropdown content with shadows, padding, and proper width.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement keyboard navigation and accessibility",
+            "description": "Add proper keyboard navigation support and accessibility features",
+            "dependencies": [
+              "2.3"
+            ],
+            "details": "Implement keyboard navigation: Tab key to move between button group and other elements, Arrow keys for navigation within dropdown when open, Enter/Space to activate buttons and menu items, Escape to close dropdown. Add proper ARIA attributes for screen readers. Ensure focus management when dropdown opens/closes. Add focus indicators that comply with accessibility guidelines. Test with keyboard-only navigation to ensure full functionality.",
+            "status": "done",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Extend useSourceCode composable with new copy methods",
+        "description": "Add new methods to handle markdown link copying, AI platform URL generation, and toast notifications",
+        "details": "Extend packages/nimiq-vitepress-theme/src/composables/useSourceCode.ts with: copyMarkdownLink() - generates [pageTitle](currentURL) format; openInChatGPT() - creates https://chatgpt.com/?q= + encoded message; openInClaude() - creates https://claude.ai/chat?q= + encoded message; showToast(message, type) - displays vue-sonner notifications. Use VitePress useData() for page title and window.location.href for current URL. Implement proper URL encoding and content truncation for large markdown (max 1500 chars).",
+        "testStrategy": "Unit test each new method with various page titles and URL formats, test content truncation logic, verify URL encoding handles special characters, and test toast notification display.",
+        "priority": "high",
+        "dependencies": [
+          1,
+          2
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Add copyMarkdownLink method with page title and URL logic",
+            "description": "Implement method to generate markdown link format [pageTitle](currentURL) using VitePress useData() API",
+            "dependencies": [],
+            "details": "Create copyMarkdownLink() method in useSourceCode.ts that uses VitePress useData() composable to get page title and window.location.href for current URL. Generate markdown link in format [pageTitle](currentURL) and copy to clipboard using existing clipboard API patterns.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement AI platform URL generation methods",
+            "description": "Add openInChatGPT() and openInClaude() methods that create encoded URLs for AI platforms",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "Create openInChatGPT() method generating https://chatgpt.com/?q= + encoded message and openInClaude() method creating https://claude.ai/chat?q= + encoded message. Implement proper URL encoding for special characters and content truncation for large markdown (max 1500 chars).",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Add toast notification integration with showToast method",
+            "description": "Implement showToast(message, type) method using vue-sonner for user feedback",
+            "dependencies": [],
+            "details": "Create showToast(message, type) method that displays vue-sonner notifications. Import and use toast from vue-sonner with appropriate success/error/loading states. Ensure method is properly typed and follows existing composable patterns.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Add content truncation and URL encoding utilities",
+            "description": "Create utility functions for content truncation and proper URL encoding",
+            "dependencies": [
+              "3.2"
+            ],
+            "details": "Implement utility functions for truncating content to 1500 character limit and proper URL encoding for AI platform URLs. Handle edge cases like special characters, line breaks, and markdown formatting. Ensure utilities work with both ChatGPT and Claude URL generation methods.",
+            "status": "done",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Create custom AI platform icons",
+        "description": "Design and implement ChatGPT and Claude icons for dropdown menu options",
+        "details": "Create SVG icons for ChatGPT and Claude AI platforms, following Nimiq icon design guidelines. Add icons to nimiq-icons package or create local icons in the vitepress-theme. Use 16px viewBox for consistency with other menu icons. ChatGPT icon should be recognizable OpenAI branding (circular with distinctive shape), Claude icon should use Anthropic's brand colors (orange/red gradient). Export as UnoCSS icon classes: i-nimiq:chatgpt and i-nimiq:claude.",
+        "testStrategy": "Verify icons render correctly at 16px size, test visibility in both light and dark themes, ensure icons match existing icon style and spacing in dropdown menu.",
+        "priority": "medium",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design SVG icons for ChatGPT and Claude platforms",
+            "description": "Create SVG icons following Nimiq design guidelines with 16px viewBox",
+            "dependencies": [],
+            "details": "Design ChatGPT icon with recognizable OpenAI circular branding and distinctive shape. Create Claude icon using Anthropic's brand colors (orange/red gradient). Both icons must use 16px viewBox for consistency with existing menu icons. Follow nimiq-icons package format with proper SVG structure and optimization.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Add icons to nimiq-icons package structure",
+            "description": "Integrate new SVG icons into the nimiq-icons package following existing patterns",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Add ChatGPT and Claude SVG files to packages/nimiq-icons/src/icons/ directory. Update icons.json and info.json files to include new icon entries. Follow existing naming conventions and metadata structure. Ensure proper package.json version increment and build configuration.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Configure UnoCSS icon classes and test theme compatibility",
+            "description": "Set up UnoCSS classes i-nimiq:chatgpt and i-nimiq:claude with theme testing",
+            "dependencies": [
+              "4.2"
+            ],
+            "details": "Configure UnoCSS to recognize new icon classes i-nimiq:chatgpt and i-nimiq:claude. Test icon visibility and appearance in both light and dark themes. Verify icons render correctly at 16px size and maintain visual consistency with existing dropdown menu icons. Test integration with vitepress-theme components.",
+            "status": "done",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Implement dropdown menu with copy options",
+        "description": "Build the dropdown menu containing all four copy/open options using Reka UI components",
+        "details": "Create dropdown menu content with four options: 1) Copy Markdown Link (i-nimiq:link icon), 2) View as Markdown (i-nimiq:logos-github-mono icon), 3) Open in ChatGPT (custom ChatGPT icon), 4) Open in Claude (custom Claude icon). Use DropdownMenuItem components with proper event handlers. Style with Nimiq design system: min-width 200px, card-like appearance with shadows, 8px padding, 4px gap between items. Implement click handlers that call respective useSourceCode methods and close dropdown after action.",
+        "testStrategy": "Test each dropdown option functionality, verify menu positioning and styling, test click-outside to close behavior, and validate menu accessibility with screen readers.",
+        "priority": "high",
+        "dependencies": [
+          2,
+          3,
+          4
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create dropdown menu structure with Reka UI components",
+            "description": "Set up the basic dropdown menu structure using DropdownMenuRoot, DropdownMenuContent, and DropdownMenuItem components",
+            "dependencies": [],
+            "details": "Import and configure Reka UI dropdown components: DropdownMenuRoot as container, DropdownMenuContent for menu panel, DropdownMenuItem for each option. Set up proper component hierarchy and ensure dropdown is properly connected to trigger from task 2.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement menu items with icons and labels",
+            "description": "Create four dropdown menu items with appropriate icons and text labels for each copy/open option",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Add four DropdownMenuItem components: Copy Markdown Link (i-nimiq:link icon), View as Markdown (i-nimiq:logos-github-mono icon), Open in ChatGPT (custom ChatGPT icon from task 4), Open in Claude (custom Claude icon from task 4). Include proper text labels and icon positioning.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Apply Nimiq design system styling to dropdown",
+            "description": "Style the dropdown menu with Nimiq design tokens including sizing, spacing, shadows, and visual appearance",
+            "dependencies": [
+              "5.2"
+            ],
+            "details": "Apply styling: min-width 200px, card-like appearance with shadows, 8px padding on menu content, 4px gap between menu items. Use Nimiq design system colors and typography. Ensure proper visual hierarchy and hover states for menu items.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Integrate click handlers and menu behavior",
+            "description": "Connect menu items to useSourceCode methods and implement proper dropdown close behavior",
+            "dependencies": [
+              "5.3"
+            ],
+            "details": "Add click handlers to each DropdownMenuItem that call appropriate useSourceCode methods (copyMarkdownLink, viewAsMarkdown, openInChatGPT, openInClaude). Implement automatic dropdown close after item selection. Handle menu positioning and ensure click-outside-to-close functionality works correctly.",
+            "status": "done",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Integrate toast notifications with copy actions",
+        "description": "Connect vue-sonner notifications to all copy and external open actions",
+        "details": "Configure vue-sonner Toaster component in main theme layout with position 'top-right', duration 3000ms, and success styling with green accent. Integrate toast calls in all copy methods: 'Page content copied to clipboard', 'Markdown link copied to clipboard', 'Opening in ChatGPT...', 'Opening in Claude...'. Use toast.success() for successful copy operations and toast.loading() briefly for external platform opens. Style toasts to match Nimiq design system with appropriate typography and colors.",
+        "testStrategy": "Test toast appears for each action, verify 3-second duration, test positioning on different screen sizes, and ensure toasts don't interfere with page content or navigation.",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          3,
+          5
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Configure vue-sonner Toaster component in main theme layout",
+            "description": "Set up the Toaster component with proper positioning and default styling in the main VitePress theme layout",
+            "dependencies": [],
+            "details": "Add vue-sonner Toaster component to packages/nimiq-vitepress-theme/src/layout/Layout.vue or appropriate main layout file. Configure with position 'top-right', duration 3000ms, and ensure it's properly positioned within the layout hierarchy. Set up base styling that will work with Nimiq design system.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Integrate toast calls in copy and external open methods",
+            "description": "Add appropriate toast notifications to all copy operations and external platform opening actions",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Update useSourceCode composable methods to include toast calls: toast.success('Page content copied to clipboard') for copyPageContent(), toast.success('Markdown link copied to clipboard') for copyMarkdownLink(), toast.loading('Opening in ChatGPT...') for openInChatGPT(), and toast.loading('Opening in Claude...') for openInClaude(). Import toast from vue-sonner and handle timing appropriately.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Style toasts to match Nimiq design system",
+            "description": "Apply Nimiq design tokens and styling to vue-sonner toast notifications for visual consistency",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Customize vue-sonner toast styling using Toaster component props or CSS overrides to match Nimiq design system. Apply appropriate typography, colors (green accent for success), spacing, and ensure toasts work well in both light and dark themes. Use Nimiq design tokens and UnoCSS classes where possible for consistency.",
+            "status": "done",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Update PageContent.vue to use new copy system",
+        "description": "Replace existing copy markdown button with new enhanced button group component",
+        "details": "Modify packages/nimiq-vitepress-theme/src/layout/PageContent.vue to import and use new CopyButtonGroup component. Replace the existing single copy button (lines 40-47) with the new compound button group. Maintain existing conditional rendering logic (showCopyMarkdown). Update the button group container styling to match existing layout. Ensure the View Source link positioning and functionality remain unchanged. Preserve all existing responsive behavior and styling.",
+        "testStrategy": "Test button group renders correctly in place of old button, verify showCopyMarkdown conditional logic still works, test responsiveness on mobile/tablet/desktop, and ensure View Source link remains functional.",
+        "priority": "high",
+        "dependencies": [
+          2,
+          5,
+          6
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Import CopyButtonGroup and remove existing copy button",
+            "description": "Replace the existing copy markdown button implementation with the new CopyButtonGroup component import and usage",
+            "dependencies": [],
+            "details": "Import CopyButtonGroup component at the top of PageContent.vue. Remove the existing copy button implementation on lines 40-47. Replace with <CopyButtonGroup> component while maintaining the same conditional rendering with v-if='showCopyMarkdown'.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Update button group container styling and layout",
+            "description": "Ensure the new CopyButtonGroup matches existing layout styling and positioning within the PageContent container",
+            "dependencies": [
+              "7.1"
+            ],
+            "details": "Apply appropriate CSS classes to the CopyButtonGroup to match existing button container styling. Ensure proper spacing and alignment with surrounding elements. Maintain the button group's position relative to the View Source link without affecting its functionality.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Test responsive behavior and View Source link functionality",
+            "description": "Verify that the updated component maintains all existing responsive behavior and doesn't break View Source link positioning",
+            "dependencies": [
+              "7.2"
+            ],
+            "details": "Test the component across mobile, tablet, and desktop viewports to ensure responsive behavior is preserved. Verify that the View Source link remains properly positioned and functional. Confirm that the showCopyMarkdown conditional logic still works correctly and that the button group renders as expected in all scenarios.",
+            "status": "done",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Implement error handling and user feedback",
+        "description": "Add comprehensive error handling for clipboard failures, network issues, and user feedback",
+        "details": "Implement try-catch blocks in all copy methods with specific error messages: clipboard API not supported, network fetch failures, large content warnings. Use vue-sonner toast.error() for error notifications with messages like 'Clipboard not supported', 'Failed to fetch page content', 'Content too large, truncated'. Add fallback for unsupported clipboard API using document.execCommand as last resort. Implement loading states for async operations and timeout handling for fetch requests (5 seconds).",
+        "testStrategy": "Test error scenarios: disable clipboard API, simulate network failures, test with very large markdown content, verify error toasts appear with appropriate messages, and test fallback clipboard method in older browsers.",
+        "priority": "medium",
+        "dependencies": [
+          3,
+          6
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement clipboard error handling with fallback",
+            "description": "Add try-catch blocks for clipboard operations with document.execCommand fallback for unsupported browsers",
+            "dependencies": [],
+            "details": "Wrap all clipboard API calls in try-catch blocks. Detect clipboard API support and implement fallback using document.execCommand('copy') for older browsers. Handle specific errors: clipboard not supported, permission denied, security restrictions. Test clipboard functionality and gracefully degrade to fallback method when needed.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Add network error handling and timeouts",
+            "description": "Implement comprehensive error handling for fetch requests with timeout and retry logic",
+            "dependencies": [],
+            "details": "Add try-catch blocks around all fetch operations in useSourceCode composable. Implement 5-second timeout for fetch requests using AbortController. Handle network errors: connection failures, 404s, server errors. Add specific error messages for different failure types: 'Failed to fetch page content', 'Request timeout', 'Page not found'.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Integrate vue-sonner toast notifications",
+            "description": "Add error toast notifications using vue-sonner for all error scenarios",
+            "dependencies": [
+              "8.1",
+              "8.2"
+            ],
+            "details": "Import and configure vue-sonner toast system. Create specific error toast messages: 'Clipboard not supported', 'Failed to fetch page content', 'Content too large, truncated', 'Request timeout'. Position toasts appropriately and ensure they don't interfere with dropdown menu. Style toasts to match Nimiq design system.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement loading states and content size warnings",
+            "description": "Add loading indicators for async operations and warnings for large content",
+            "dependencies": [
+              "8.2"
+            ],
+            "details": "Add loading states to all async copy operations with visual indicators (spinner or loading text). Implement content size checking before processing - warn users when content exceeds reasonable limits. Add loading state management to prevent multiple simultaneous operations. Show appropriate feedback during fetch and clipboard operations.",
+            "status": "done",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Implement accessibility features",
+        "description": "Add comprehensive keyboard navigation, ARIA labels, and screen reader support",
+        "details": "Implement keyboard navigation: Tab to dropdown trigger, Arrow keys for menu navigation, Enter/Space to activate items, Escape to close dropdown. Add ARIA labels: aria-label='Copy options menu' on dropdown trigger, role='menu' on dropdown content, role='menuitem' on each option, aria-expanded state management. Add live regions for copy success announcements to screen readers. Ensure focus management - return focus to trigger after menu closes, trap focus within open dropdown, visible focus indicators throughout.",
+        "testStrategy": "Test with keyboard-only navigation, verify screen reader announces menu state changes and copy success, test focus trap within dropdown, validate ARIA attributes with accessibility tools, and test with Windows Narrator and macOS VoiceOver.",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          5
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Add responsive behavior and mobile optimization",
+        "description": "Ensure copy button group works effectively on mobile devices with touch interactions",
+        "details": "Implement touch-friendly interactions for mobile devices. Ensure dropdown menu doesn't exceed screen width on small devices, adjust positioning if needed. Add touch event handling for better mobile UX. Consider collapsing button labels on very small screens (below 400px width) to show icons only. Test dropdown positioning on mobile to avoid cut-off issues. Ensure minimum touch target sizes meet accessibility guidelines (44px minimum). Implement swipe-to-dismiss for mobile dropdown menu.",
+        "testStrategy": "Test on various mobile devices and screen sizes, verify dropdown positioning and touch interactions, test button accessibility on small screens, validate minimum touch target sizes, and ensure no horizontal scrolling issues.",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          5,
+          7
+        ],
+        "status": "done",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-09-16T13:08:50.114Z",
+      "updated": "2025-09-16T13:49:14.946Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

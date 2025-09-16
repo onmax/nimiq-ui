@@ -16,7 +16,7 @@ import ThemeSwitcher from './ThemeSwitcher.vue'
 
 const { search = true } = defineProps<{ search?: boolean }>()
 
-const [DefineSidebarItem, SidebarItem] = createReusableTemplate<{ item: { text: string, link?: string, icon?: string } }>()
+const [DefineSidebarItem, SidebarItem] = createReusableTemplate<{ item: { text: string, link?: string, icon?: string }, isInAccordion?: boolean }>()
 
 const { page } = useData<NimiqVitepressThemeConfig>()
 
@@ -29,6 +29,20 @@ const submoduleNavigatorOpen = ref(false)
 
 function isExternalLink(link: string) {
   return link.startsWith('http')
+}
+
+// Check if a link navigates to a different module
+function isCrossModuleLink(link: string) {
+  if (!link || isExternalLink(link)) return false
+
+  // Get the first segment of the link (e.g., '/nimiq-icons/explorer' -> 'nimiq-icons')
+  const linkModule = link.split('/')[1]
+
+  // Get current module subpath
+  const currentModule = currentDocModule.value?.subpath
+
+  // If we have both modules and they're different, it's a cross-module link
+  return linkModule && currentModule && linkModule !== currentModule
 }
 
 // An accordion is collapsed by default if it has more than 6 items and the current page is not part of the accordion
@@ -71,10 +85,10 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
     <template v-if="currentDocModule">
       <hr w-full border="t-1 neutral-400" f-mt-xs>
 
-      <DefineSidebarItem v-slot="{ item: { text, link, icon } }">
-        <a :href="withBase(link!)" class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" data-active:font-bold transition-all data-active:text-blue data-active:bg-blue-400 group :class="{ 'nq-arrow after:op-70 hocus:after:op-100': isExternalLink(link!) }" transition-opacity :target="isExternalLink(link!) ? '_blank' : undefined">
-          <div v-if="isActive(page.relativePath, link)" aria-hidden absolute inset-y-0 bg-blue op-70 rounded-full w-2 z-2 transition-colors left="0 [[data-state=open]_&]:12" />
-          <div v-if="icon" :class="icon" f-size-xs text="neutral data-active:blue" op="70 group-hocus:100" transition-opacity mr-8 shrink-0 />
+      <DefineSidebarItem v-slot="{ item: { text, link, icon }, isInAccordion }">
+        <a :href="withBase(link!)" relative class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" reka-active:font-bold transition-all reka-active:text-blue reka-active:bg-blue-400 group :class="{ 'nq-arrow after:op-70 hocus:after:op-100': isExternalLink(link!) || isCrossModuleLink(link!) }" transition-opacity :target="isExternalLink(link!) ? '_blank' : undefined">
+          <div v-if="isActive(page.relativePath, link)" aria-hidden absolute inset-y-0 bg-blue rounded-full w-2 z-2 transition-colors :class="isInAccordion ? 'left-12' : 'left-0'" />
+          <div v-if="icon" :class="icon" f-size-xs text="neutral reka-active:blue" op="70 group-hocus:100" transition-opacity mr-8 shrink-0 />
           <span flex-1 v-html="renderMarkdown(text)" />
         </a>
       </DefineSidebarItem>
@@ -99,7 +113,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
                   </CollapsibleTrigger>
                   <CollapsibleContent un-animate-collapsible="reka-open:down reka-closed:up" of-hidden relative>
                     <div absolute inset-y-0 left-12 w-2 bg-neutral-400 z-1 rounded-full />
-                    <SidebarItem v-for="subsubitem in subitem.items.filter(i => !i.hidden)" :key="subsubitem.text" px-24 :item="subsubitem" />
+                    <SidebarItem v-for="subsubitem in subitem.items.filter(i => !i.hidden)" :key="subsubitem.text" px-24 :item="subsubitem" :is-in-accordion="true" />
                   </CollapsibleContent>
                 </CollapsibleRoot>
                 <SidebarItem v-else :item="subitem" px-8 />
@@ -123,6 +137,6 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
 
 <style scoped>
 .sidebar-item {
-  --uno: 'f-text-xs py-8 md:py-6 rounded-4 flex justify-between items-center w-full hocus:!bg-neutral-300 data-active:hocus:!bg-blue-400 transition-colors';
+  --uno: 'f-text-xs py-8 md:py-6 rounded-4 flex justify-between items-center w-full hocus:!bg-neutral-300 reka-active:hocus:!bg-blue-400 transition-colors';
 }
 </style>

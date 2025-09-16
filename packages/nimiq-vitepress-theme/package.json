@@ -69,18 +69,22 @@
     "vitepress": "^1.5.0 || ^2.0.0-alpha.3"
   },
   "dependencies": {
+    "@iconify-json/simple-icons": "catalog:icons",
     "@iconify-json/tabler": "catalog:icons",
     "@iconify-json/vscode-icons": "catalog:icons",
     "@nolebase/vitepress-plugin-git-changelog": "catalog:build",
     "@vueuse/core": "catalog:utils",
+    "@vueuse/motion": "^3.0.3",
     "mark.js": "catalog:prod",
     "minisearch": "catalog:prod",
+    "motion": "^12.23.13",
     "motion-v": "^1.6.1",
     "nimiq-icons": "workspace:*",
     "reka-ui": "catalog:frontend",
     "vaul-vue": "catalog:prod",
     "vue": "catalog:frontend",
-    "vue-router": "catalog:frontend"
+    "vue-router": "catalog:frontend",
+    "vue-sonner": "^1.1.4"
   },
   "devDependencies": {
     "@iconify/utils": "catalog:icons",

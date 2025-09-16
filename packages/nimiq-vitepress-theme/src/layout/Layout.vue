@@ -2,6 +2,7 @@
 import { useBreakpoints } from '@vueuse/core'
 import { useData } from 'vitepress'
 import { computed } from 'vue'
+import { Toaster } from 'vue-sonner'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import DesktopHeader from './DesktopHeader.vue'
 import MobileNav from './MobileNav.vue'
@@ -89,4 +90,13 @@ const isMobileOrTablet = breakpoints.smaller('lg')
       <MobileNav fixed bottom-0 />
     </template>
   </div>
+
+  <!-- Toast notifications -->
+  <Toaster
+    position="bottom-right"
+    :duration="30000"
+    :toast-options="{
+      className: 'nimiq-toast'
+    }"
+  />
 </template>
