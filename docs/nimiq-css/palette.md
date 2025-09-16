@@ -1,3 +1,8 @@
+---
+copyMarkdown: false
+sourceCode: false
+---
+
 # Nimiq Colors
 
 A set of colors used in Nimiq's branding and design. Supports light and dark themes.

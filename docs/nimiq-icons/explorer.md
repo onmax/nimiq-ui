@@ -1,5 +1,7 @@
 ---
 widget: true
+copyMarkdown: false
+sourceCode: false
 ---
 
 # Nimiq Icons explorer
