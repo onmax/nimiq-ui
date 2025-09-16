@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import CopyButtonGroup from '../components/CopyButtonGroup.vue'
 import { useBreadcrumbs } from '../composables/useBreadcrumbs'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import { useSourceCode } from '../composables/useSourceCode'
-import CopyButtonGroup from '../components/CopyButtonGroup.vue'
 import DocNavigation from './DocNavigation.vue'
 import '../assets/code-blocks.css'
 import '../assets/typography.css'
@@ -12,7 +12,7 @@ const { breadcrumbs, showBreadcrumbs } = useBreadcrumbs()
 
 const { showSecondarySidebar } = useSecondarySidebar()
 
-const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabel, copyMarkdownContent, copied } = useSourceCode()
+const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabel } = useSourceCode()
 </script>
 
 <template>
