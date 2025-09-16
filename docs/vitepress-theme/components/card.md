@@ -12,65 +12,114 @@ A simple card that can turn any boring content into something that looks intenti
 | `title`       | `string`                        | `undefined` | The card's title (optional)                                     |
 | `description` | `string`                        | `undefined` | The card's description (optional)                               |
 | `label`       | `string`                        | `undefined` | Optional label displayed above the title                        |
+| `layout`      | `'column' \| 'row'`             | `'column'`  | Switch to `row` to place the icon on the left next to the copy  |
 | `span`        | `'full' \| 'half' \| 'default'` | `undefined` | Controls how many columns the card spans in a grid              |
 
 The component also supports using slots for custom content instead of props.
+
+The default column layout stacks everything neatly; flip to `row` when you want the icon leading on the left and the label sitting just above the title.
 
 > [!TIP]
 > Remember to [register `NqCard`](/vitepress-theme/#register-the-components) in your app.
 
 ## Examples
 
+### Basic Card
+
+Simple card with just title and description - perfect for static content display.
+
 <ComponentPreview lang="vue">
 
+<NqPlayground>
 <NqCard
-  title="The Lonely Card"
-  description="I'm just sitting here, carrying some content. No fancy links, no colors - I'm the minimalist of cards."
+  title="Getting Started"
+  description="Learn the basics of building with Nimiq's browser-first blockchain technology."
 />
+</NqPlayground>
 
 </ComponentPreview>
 
+### Clickable Card
+
+Add an `href` to make the entire card clickable and navigatable.
+
 <ComponentPreview lang="vue">
 
+<NqPlayground>
 <NqCard
-  href="https://nimiq.com"
-  title="The Adventurous Card"
-  description="Click me! I'll take you on a journey to the Nimiq website. I promise it's better than your average cat video."
+  href="/getting-started"
+  title="Documentation"
+  description="Explore our comprehensive guides and API references."
 />
+</NqPlayground>
 
 </ComponentPreview>
 
+### Card with Icon (Column Layout)
+
+Default column layout with icon positioned absolutely on the right side.
+
 <ComponentPreview lang="vue">
 
+<NqPlayground>
+<NqCard
+  icon="i-nimiq:cubes"
+  title="Build Apps"
+  description="Create decentralized applications with our developer tools."
+/>
+</NqPlayground>
+
+</ComponentPreview>
+
+### Card with Background Color
+
+Use predefined colors (blue, green, orange, gold, red) to add visual emphasis.
+
+<ComponentPreview lang="vue">
+
+<NqPlayground>
 <NqCard
   bg-color="blue"
   href="#"
-  icon="i-nimiq:browsermesh"
-  label="Build Something Amazing"
-  title="The 5-Minute Challenge"
-  description="Create a Nimiq app faster than making instant noodles (and it'll be more satisfying too!)"
+  title="Join the Network"
+  description="Become part of the Nimiq ecosystem and start earning rewards."
 />
+</NqPlayground>
 
 </ComponentPreview>
 
+### Card with Label
+
+Add a label above the title for better content categorization.
+
 <ComponentPreview lang="vue">
 
+<NqPlayground>
 <NqCard
   bg-color="green"
-  href="#"
-  icon="i-nimiq:cubes"
-  label="Learn The Magic"
-  title="Nimiq Under The Hood"
-  description="Discover how Nimiq works - it's like LEGO for grownups, but with blockchain!"
+  icon="i-nimiq:browsermesh"
+  label="Tutorial"
+  title="Your First Transaction"
+  description="Step-by-step guide to sending your first Nimiq transaction."
 />
+</NqPlayground>
 
 </ComponentPreview>
 
+### Row Layout
+
+Use `layout="row"` to place the icon on the left with content flowing to the right.
+
 <ComponentPreview lang="vue">
 
+<NqPlayground>
 <NqCard
-  bg-color="orange"
-  description="Remember to backup your wallet! Because losing crypto is like dropping your ice cream cone - sad and completely avoidable."
+  layout="row"
+  icon="i-nimiq:cubes"
+  label="Developer Tools"
+  title="Nimiq RPC API"
+  description="Connect to the Nimiq network using our JSON-RPC interface."
 />
+</NqPlayground>
 
 </ComponentPreview>
