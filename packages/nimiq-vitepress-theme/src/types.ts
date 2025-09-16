@@ -45,6 +45,7 @@ export interface NimiqVitepressThemeConfig {
   links?: {
     icon: string
     link: string
+    label: string
   }[]
   showLastUpdated?: boolean
   showEditContent?: boolean

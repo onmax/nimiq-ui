@@ -48,7 +48,7 @@ const moduleCards = computed(() => {
       <!-- Modules Dropdown -->
       <CollapsibleRoot v-model:open="isModulesDropdownOpen" relative>
         <CollapsibleTrigger
-          flex="~ items-center gap-8" f-px-sm f-py-xs f-rounded-xs bg="transparent hocus:neutral-200"
+          flex="~ items-center gap-8" f-px-2xs py-4 f-rounded-xs bg="transparent hocus:neutral-200"
           transition-colors group
         >
           <span f-text-sm font-medium>Modules</span>
@@ -64,18 +64,18 @@ const moduleCards = computed(() => {
         >
           <!-- eslint-disable -->
           <motion.div :initial="{ opacity: 0, y: -10 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.2 }"
-            max-h-60vh of-y-auto f-p-md>
-            <ul v-if="moduleCards.length > 0" grid="~ cols-2 gap-12" class="nq-raw" max-w-full my-0>
+            max-h-60vh of-y-auto f-p-sm>
+            <ul v-if="moduleCards.length > 0" grid="~ cols-1 gap-12" class="nq-raw" max-w-full my-0>
               <motion.li v-for="(card, index) in moduleCards" :key="card.title"
                 :initial="{ opacity: 0, y: 20, scale: 0.9 }" :animate="{ opacity: 1, y: 0, scale: 1 }"
                 :transition="{ duration: 0.3, delay: index * 0.05, type: 'spring', stiffness: 260, damping: 20 }"
                 col-span-1 mt-0 flex @click="isModulesDropdownOpen = false">
-                <a :href="card.href" nq-hoverable>
-                  <div :class="[card.icon, card.iconClass]" scale-125 />
-                  <h3 v-if="card.title" f-mt-xs f-text-lg font-medium>
+                <a :href="card.href" nq-hoverable f-p-xs flex-1 grid="~ cols-[48px_1fr] rows-[1fr_auto] items-center gap-x-12 gap-y-2">
+                  <div :class="[card.icon, card.iconClass]" row-span-full size-40 />
+                  <h3 v-if="card.title" f-text-lg font-medium>
                     {{ card.title }}
                   </h3>
-                  <p v-if="card.description" mt-2 text="f-sm neutral-800">
+                  <p v-if="card.description" text="f-sm neutral-800">
                     {{ card.description }}
                   </p>
                 </a>

@@ -139,10 +139,13 @@ pre {
     padding-right: 2rem;
     outline: none;
     background-color: var(--colors-neutral-50);
+    overflow-x: auto;
 
     code {
       color: var(--colors-neutral-900);
       background-color: transparent;
+      width: 100%;
+      font-size: 14px;
     }
   }
 }
@@ -213,7 +216,6 @@ pre {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-left: 0.5rem;
   gap: 8px;
 
   /* Default file icon */

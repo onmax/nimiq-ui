@@ -145,7 +145,8 @@ export default defineNimiqVitepressConfig({
       },
     ],
     links: [
-      { icon: 'i-nimiq:logos-github-mono', link: 'https://github.com/onmax/nimiq-ui' },
+      { icon: 'i-nimiq:logos-github-mono', link: 'https://github.com/onmax/nimiq-ui', label: 'GitHub' },
+      { icon: 'i-nimiq:code', link: 'https://nimiq.dev', label: 'Nimiq Developer Center' },
     ],
   },
   markdown: {
