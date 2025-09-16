@@ -33,7 +33,8 @@ function isExternalLink(link: string) {
 
 // Check if a link navigates to a different module
 function isCrossModuleLink(link: string) {
-  if (!link || isExternalLink(link)) return false
+  if (!link || isExternalLink(link))
+    return false
 
   // Get the first segment of the link (e.g., '/nimiq-icons/explorer' -> 'nimiq-icons')
   const linkModule = link.split('/')[1]

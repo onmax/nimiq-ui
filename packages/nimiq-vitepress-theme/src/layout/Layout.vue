@@ -96,7 +96,7 @@ const isMobileOrTablet = breakpoints.smaller('lg')
     position="bottom-right"
     :duration="30000"
     :toast-options="{
-      className: 'nimiq-toast'
+      className: 'nimiq-toast',
     }"
   />
 </template>

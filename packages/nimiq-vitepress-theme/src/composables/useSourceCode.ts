@@ -16,8 +16,10 @@ export function useSourceCode() {
 
     const copyOptions = frontmatter.value.copyOptions
 
-    if (copyOptions === 'hidden') return false
-    if (copyOptions === 'source-only') return true
+    if (copyOptions === 'hidden')
+      return false
+    if (copyOptions === 'source-only')
+      return true
 
     return false // Hidden by default to reduce UI clutter
   })
@@ -25,8 +27,10 @@ export function useSourceCode() {
   const showCopyMarkdown = computed(() => {
     const copyOptions = frontmatter.value.copyOptions
 
-    if (copyOptions === 'hidden') return false
-    if (copyOptions === 'source-only') return false
+    if (copyOptions === 'hidden')
+      return false
+    if (copyOptions === 'source-only')
+      return false
 
     return true // Enable by default for better UX
   })
@@ -56,9 +60,9 @@ export function useSourceCode() {
 
     // Detect monorepo patterns to add docs/ prefix
     if (repoURL.value && (
-      repoURL.value.includes('/nimiq-ui') ||
-      repoURL.value.includes('/ui') ||
-      page.value.filePath.includes('docs/') === false
+      repoURL.value.includes('/nimiq-ui')
+      || repoURL.value.includes('/ui')
+      || page.value.filePath.includes('docs/') === false
     )) {
       return join('docs', page.value.filePath)
     }
