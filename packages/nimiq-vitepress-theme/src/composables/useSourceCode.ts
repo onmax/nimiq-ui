@@ -4,10 +4,12 @@ import { useData } from 'vitepress'
 import { computed, ref } from 'vue'
 import { toast } from 'vue-sonner'
 import { useChangelog } from './useChangelog'
+import { useNimiqConfig } from './useNimiqConfig'
 
 export function useSourceCode() {
   const { page, frontmatter } = useData()
   const { repoURL } = useChangelog()
+  const nimiqConfig = useNimiqConfig()
 
   // Use a safer approach for SSR compatibility
   const clipboardResult = typeof window !== 'undefined'
@@ -56,17 +58,28 @@ export function useSourceCode() {
     return config.markdownLink || config.viewMarkdown || config.chatgpt || config.claude
   })
 
+  // Get the effective repo URL, prioritizing plugin config over changelog
+  const effectiveRepoURL = computed(() => {
+    return nimiqConfig.repoURL || repoURL.value
+  })
+
   const getRepoFilePath = computed(() => {
     const pathPrefix = frontmatter.value.sourceCodePathPrefix
 
+    // If explicit path prefix is set in frontmatter, use it
     if (pathPrefix !== undefined) {
       return pathPrefix ? join(pathPrefix, page.value.filePath) : page.value.filePath
     }
 
-    // Detect monorepo patterns to add docs/ prefix
-    if (repoURL.value && (
-      repoURL.value.includes('/nimiq-ui')
-      || repoURL.value.includes('/ui')
+    // Use contentPath from plugin config if available
+    if (nimiqConfig.contentPath) {
+      return join(nimiqConfig.contentPath, page.value.filePath)
+    }
+
+    // Fallback to legacy monorepo detection logic
+    if (effectiveRepoURL.value && (
+      effectiveRepoURL.value.includes('/nimiq-ui')
+      || effectiveRepoURL.value.includes('/ui')
       || page.value.filePath.includes('docs/') === false
     )) {
       return join('docs', page.value.filePath)
@@ -76,16 +89,16 @@ export function useSourceCode() {
   })
 
   const editUrl = computed(() => {
-    if (!repoURL.value)
+    if (!effectiveRepoURL.value)
       return ''
-    return `${repoURL.value.replace(/\/$/, '')}/${getRepoFilePath.value}`
+    return `${effectiveRepoURL.value.replace(/\/$/, '')}/${getRepoFilePath.value}`
   })
 
   const sourceCodeUrl = computed(() => {
-    if (!repoURL.value)
+    if (!effectiveRepoURL.value)
       return ''
 
-    return `${repoURL.value.replace(/\/$/, '')}/blob/main/${getRepoFilePath.value}`
+    return `${effectiveRepoURL.value.replace(/\/$/, '')}/blob/main/${getRepoFilePath.value}`
   })
 
   const sourceCodeLabel = computed(() => {

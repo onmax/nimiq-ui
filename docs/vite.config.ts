@@ -23,7 +23,8 @@ export default defineConfig(async () => ({
     Inspect(),
     UnoCSS(),
     NimiqVitepressVitePlugin({
-      gitChangelog: { repoURL: 'https://github.com/onmax/nimiq-ui' },
+      repoURL: 'https://github.com/onmax/nimiq-ui',
+      contentPath: 'docs',
     }),
   ],
 }))

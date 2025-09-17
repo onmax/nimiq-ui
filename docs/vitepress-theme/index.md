@@ -119,6 +119,55 @@ export default defineNimiqThemeConfig({
 
 This will install the layout and will register the Nimiq Components globally.
 
+### Configure the Vite plugin
+
+The theme provides a Vite plugin that adds Git changelog functionality and source code features:
+
+::: code-group
+
+```ts [vite.config.ts]
+import { NimiqVitepressVitePlugin } from 'nimiq-vitepress-theme/vite'
+import { defineConfig } from 'vite'
+
+export default defineConfig(() => {
+  return {
+    plugins: [
+      NimiqVitepressVitePlugin({
+        // GitHub repository URL (required for source code features)
+        repoURL: 'https://github.com/your-org/your-repo',
+
+        // Content directory path relative to repository root
+        // Use this if your docs are not in the repository root
+        contentPath: 'docs', // Optional, defaults to ''
+
+        // Git changelog configuration (optional)
+        // If not provided, will use repoURL as default
+        // Set to false to disable changelog
+        gitChangelog: {
+          repoURL: 'https://github.com/your-org/your-repo' // Can be different from main repoURL
+        }
+      })
+    ]
+  }
+})
+```
+
+:::
+
+#### Plugin Options
+
+| Option         | Type              | Default        | Description                                                                      |
+| -------------- | ----------------- | -------------- | -------------------------------------------------------------------------------- |
+| `repoURL`      | `string`          | -              | GitHub repository URL used for source code links and as default for GitChangelog |
+| `contentPath`  | `string`          | `''`           | Directory path where documentation files are located relative to repository root |
+| `gitChangelog` | `object \| false` | Uses `repoURL` | Git changelog configuration or `false` to disable                                |
+
+The plugin automatically:
+
+- Configures Git changelog functionality using the provided repository URL
+- Enables source code viewing and copying features
+- Constructs proper URLs for "View Source" and "Edit Page" links
+
 ### Register the theme as internal dependency
 
 This step is optional and only needed if you want to use the Vue components from `nimiq-vitepress-theme` in your project.
