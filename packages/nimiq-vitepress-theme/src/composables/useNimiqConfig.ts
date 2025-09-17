@@ -9,12 +9,12 @@ export interface NimiqVitepressConfig {
 }
 
 export function useNimiqConfig(): NimiqVitepressConfig {
-  // Check if running in browser environment and config is available
-  if (typeof window !== 'undefined' && typeof __NIMIQ_VITEPRESS_CONFIG__ !== 'undefined') {
+  // Vite's define works in both browser and SSR environments
+  if (typeof __NIMIQ_VITEPRESS_CONFIG__ !== 'undefined') {
     return __NIMIQ_VITEPRESS_CONFIG__
   }
 
-  // For SSR or when config is not available, return fallback
+  // Fallback only when config is truly not available
   return {
     repoURL: undefined,
     contentPath: '',
