@@ -129,8 +129,8 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
       </ScrollAreaRoot>
     </template>
 
-    <div border="t neutral-400" :class="{ 'border-none mt-auto': !currentDocModule } " flex="~ items-center" f-px-sm sticky bottom-0>
-      <SocialMediaLinks />
+    <div border="t neutral-400" :class="{ 'border-none mt-auto': !currentDocModule } " flex="~ items-center" f-px-sm f-py-2xs sticky bottom-0>
+      <SocialMediaLinks size="sm" />
       <ThemeSwitcher />
     </div>
   </aside>

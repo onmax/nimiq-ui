@@ -425,9 +425,6 @@ importers:
       minisearch:
         specifier: catalog:prod
         version: 7.1.2
-      motion:
-        specifier: ^12.23.13
-        version: 12.23.13
       motion-v:
         specifier: ^1.6.1
         version: 1.7.1(@vueuse/core@13.9.0(vue@3.5.21(typescript@5.9.2)))(vue@3.5.21(typescript@5.9.2))
@@ -2674,20 +2671,6 @@ packages:
       react-dom:
         optional: true
 
-  framer-motion@12.23.13:
-    resolution: {integrity: sha512-OMF57Xh0fuTXfJQPtCieYGeU9Fam4SxqPLVz78YI7ATRFrfz8SARtqr1+qv56cX45kPFcIEfkUorVfxlOsjcUg==}
-    peerDependencies:
-      '@emotion/is-prop-valid': '*'
-      react: ^18.0.0 || ^19.0.0
-      react-dom: ^18.0.0 || ^19.0.0
-    peerDependenciesMeta:
-      '@emotion/is-prop-valid':
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
-
   framesync@6.1.2:
     resolution: {integrity: sha512-jBTqhX6KaQVDyus8muwZbBeGGP0XgujBRbQ7gM7BRdS3CadCZIHiawyzYLnafYcvZIh5j8WE7cxZKFn7dXhu9g==}
 
@@ -3402,20 +3385,6 @@ packages:
     peerDependencies:
       '@vueuse/core': '>=10.0.0'
       vue: '>=3.0.0'
-
-  motion@12.23.13:
-    resolution: {integrity: sha512-kqmtRlqMuSJAMeHmYD+BPJNPGCUBXKqDuYpfuEh+mud9Y2gpSUrIXQRhCNkKzGlwOpbgbJocSJR5aKvhzyqFQg==}
-    peerDependencies:
-      '@emotion/is-prop-valid': '*'
-      react: ^18.0.0 || ^19.0.0
-      react-dom: ^18.0.0 || ^19.0.0
-    peerDependenciesMeta:
-      '@emotion/is-prop-valid':
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
 
   mrmime@2.0.1:
     resolution: {integrity: sha512-Y3wQdFg2Va6etvQ5I82yUhGdsKrcYox6p7FfL1LbK2J4V01F9TGlepTIhnK24t7koZibmg82KGglhA1XK5IsLQ==}
@@ -7317,12 +7286,6 @@ snapshots:
       motion-utils: 12.23.6
       tslib: 2.8.1
 
-  framer-motion@12.23.13:
-    dependencies:
-      motion-dom: 12.23.12
-      motion-utils: 12.23.6
-      tslib: 2.8.1
-
   framesync@6.1.2:
     dependencies:
       tslib: 2.4.0
@@ -8224,11 +8187,6 @@ snapshots:
       - '@emotion/is-prop-valid'
       - react
       - react-dom
-
-  motion@12.23.13:
-    dependencies:
-      framer-motion: 12.23.13
-      tslib: 2.8.1
 
   mrmime@2.0.1: {}
 

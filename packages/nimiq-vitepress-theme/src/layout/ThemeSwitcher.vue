@@ -1,44 +1,44 @@
 <script setup lang="ts">
 import type { DefaultTheme } from 'vitepress'
-import { useWindowSize } from '@vueuse/core'
 import { inBrowser, useData } from 'vitepress'
-import { nextTick } from 'vue'
+import { nextTick, ref, watch } from 'vue'
 
 const { isDark } = useData<DefaultTheme.Config>()
 
-const enableTransitions = () => inBrowser && 'startViewTransition' in globalThis?.document && globalThis?.window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+// Flag to control whether to auto-sync color-scheme (disabled during transitions)
+const isTransitioning = ref(false)
 
-const { height: windowHeight, width: windowWidth } = useWindowSize()
-
-function getHexagonPoints(x: number, y: number, r: number): string {
-  const angles = [0, 60, 120, 180, 240, 300]
-  return angles.map((angle) => {
-    const radian = (Math.PI / 180) * angle
-    const dx = r * Math.cos(radian)
-    const dy = r * Math.sin(radian)
-    return `${x + dx}px ${y + dy}px`
-  }).join(', ')
+// Sync isDark with color-scheme property for light-dark() CSS functions
+if (inBrowser) {
+  watch(isDark, (dark) => {
+    if (!isTransitioning.value) {
+      globalThis.document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
+    }
+  }, { immediate: true })
 }
 
-async function toggleTheme({ clientX: x, clientY: y }: MouseEvent) {
+const enableTransitions = () => inBrowser && 'startViewTransition' in globalThis?.document && globalThis?.window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+
+async function toggleTheme(_event: MouseEvent) {
   if (!enableTransitions()) {
     isDark.value = !isDark.value
-
     return
   }
 
-  const maxDistance = Math.max(x, windowWidth.value - x, y / Math.sqrt(3), (windowHeight.value - y) / Math.sqrt(3))
-  const clipPath = [`polygon(${getHexagonPoints(x, y, 0)})`, `polygon(${getHexagonPoints(x, y, maxDistance)})`]
+  // Start transitioning - prevent auto color-scheme sync
+  isTransitioning.value = true
 
-  await globalThis.document.startViewTransition(async () => {
+  const transition = globalThis.document.startViewTransition(async () => {
     isDark.value = !isDark.value
+    // Set color-scheme here so the new snapshot captures the new theme
+    globalThis.document.documentElement.style.colorScheme = isDark.value ? 'dark' : 'light'
     await nextTick()
-  }).ready
+  })
 
-  globalThis.document.documentElement.animate(
-    { clipPath: isDark.value ? clipPath.reverse() : clipPath },
-    { duration: 300, easing: 'ease-in', pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)` },
-  )
+  // Re-enable auto sync after transition completes
+  transition.finished.finally(() => {
+    isTransitioning.value = false
+  })
 }
 </script>
 

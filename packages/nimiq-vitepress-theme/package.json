@@ -77,7 +77,6 @@
     "@vueuse/motion": "^3.0.3",
     "mark.js": "catalog:prod",
     "minisearch": "catalog:prod",
-    "motion": "^12.23.13",
     "motion-v": "^1.6.1",
     "nimiq-icons": "workspace:*",
     "reka-ui": "catalog:frontend",
