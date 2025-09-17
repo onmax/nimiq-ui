@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { NimiqVitepressSidebar, NimiqVitepressThemeConfig } from '../types'
 import { createReusableTemplate } from '@vueuse/core'
+import { Motion } from 'motion-v'
 import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger, ScrollAreaRoot, ScrollAreaScrollbar, ScrollAreaThumb, ScrollAreaViewport } from 'reka-ui'
 import { useData, withBase } from 'vitepress'
 import { ref } from 'vue'
@@ -74,15 +75,28 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
         </CollapsibleTrigger>
 
         <CollapsibleContent of-hidden data-open:shadow w-full mt-0>
-          <div absolute z-90 bg-neutral-100 outline="~ 1.5 neutral-300" rounded-b-6 data-open:animate-slide-down data-closed:animate-slide-up w="[calc(100%-30px)]" shadow>
+          <Motion
+            as="div"
+            :initial="{ height: 0,
+                        opacity: 0 }"
+            :animate="submoduleNavigatorOpen ? { height: 'auto',
+                                                 opacity: 1 } : { height: 0,
+                                                                  opacity: 0 }"
+            :transition="{ duration: 0.25,
+                           ease: 'easeInOut' }"
+            absolute z-90 bg-neutral-100 outline="~ 1.5 neutral-300" rounded-b-6 w="[calc(100%-30px)]" shadow
+          >
             <ModulePill v-for="item in visibleModules.filter(m => m !== currentDocModule)" :key="item.text" :item="item" component="a" @click="submoduleNavigatorOpen = false" />
-          </div>
+          </Motion>
         </CollapsibleContent>
       </CollapsibleRoot>
 
       <!-- Show expanded module pills when currentDocModule has no sidebar -->
-      <div v-else-if="currentDocModule && (!currentDocModule.sidebar || !currentDocModule.sidebar.length)" w-full f-mt-sm>
-        <ModulePill v-for="item in visibleModules" :key="item.text" :item="item" component="a" />
+      <div v-else w-full f-mt-sm>
+        <span nq-label text-11 text-neutral-700>
+          Modules
+        </span>
+        <ModulePill v-for="item in visibleModules" :key="item.text" :item="item" component="a" px-0="!" />
       </div>
     </div>
 
