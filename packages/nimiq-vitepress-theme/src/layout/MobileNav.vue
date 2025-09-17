@@ -35,7 +35,7 @@ function handleSearchClose() {
 
     <!-- Top navigation header -->
     <header
-      fixed inset-x-0 top-0 z-1000 mx-8 mt-8 bg-neutral-0 outline="1.5 offset--1.5 neutral/6" shadow
+      fixed inset-x-0 top-0 mx-8 mt-8 bg-neutral-0 outline="1.5 offset--1.5 neutral/6" shadow
       rounded-12 transition="[transform,opacity] duration-300 ease-out"
       :class="{ 'translate-y--120% opacity-0': !isHeaderVisible }"
     >
@@ -52,7 +52,7 @@ function handleSearchClose() {
             </DrawerTrigger>
             <DrawerPortal>
               <DrawerOverlay fixed inset-0 bg-neutral bg-opacity-20 />
-              <DrawerContent fixed inset-x-0 bottom-0 max-h-90vw bg-neutral-100 rounded-t-12 f-p-sm>
+              <DrawerContent fixed inset-x-0 bottom-0 max-h-90vw z-1000 bg-neutral-100 rounded-t-12 f-p-sm>
                 <SearchCommandBox @close="handleSearchClose" />
               </DrawerContent>
             </DrawerPortal>
@@ -65,7 +65,7 @@ function handleSearchClose() {
             </DrawerTrigger>
             <DrawerPortal>
               <DrawerOverlay fixed inset-0 bg-neutral bg-opacity-20 />
-              <DrawerContent fixed inset-y-0 right-0 w-85vw max-w-450 min-h-screen bg-neutral-100 rounded-l-12 f-p-0>
+              <DrawerContent fixed inset-y-0 right-0 w-85vw max-w-450 min-h-screen bg-neutral-100 rounded-l-12 p-0 z-1000>
                 <div w-full f-px-sm h-screen of-hidden class="mobile-sidebar-container">
                   <Sidebar :search="false" relateive inset-unset size-full p-0 />
                 </div>

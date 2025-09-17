@@ -11,7 +11,7 @@ defineProps<{ item: NimiqVitepressThemeNav, component: 'a' | 'div' }>()
     transition-colors :class="{ 'grid-cols-[max-content_1fr]': !!item.icon }" grid="~ rows-2 gap-x-12 items-center"
   >
     <div v-if="item.icon" :class="item.icon" block size-28 row-span-full />
-    <p flex-1 text-left>
+    <p flex-1 text="left neutral">
       {{ item.text }}
     </p>
     <p v-if="item.description" text="left f-xs" text-neutral-800>

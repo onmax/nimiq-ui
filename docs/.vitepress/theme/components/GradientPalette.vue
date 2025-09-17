@@ -48,10 +48,9 @@ watch(activeGradient, async () => {
 </script>
 
 <template>
-  <div grid="~ cols-[auto_1fr_1fr_1fr] items-center gap-16" f-my-md class="nq-raw" max-w-800 relative>
+  <div grid="~ cols-[auto_1fr_1fr] items-center gap-16" f-my-md class="nq-raw" max-w-800 relative>
     <div />
     <span nq-label text-center>Default</span>
-    <span nq-label text-center>Darkened</span>
     <span nq-label text-center>Hoverable</span>
     <div v-for="gradient in gradients" :key="gradient" contents>
       <p text="neutral-700 right" font-semibold f-text-xs sm:pr-24>
@@ -60,14 +59,6 @@ watch(activeGradient, async () => {
       <button :class="`bg-gradient-${gradient.toLowerCase()}`" group @click="setActiveGradient(gradient, 'default')">
         <span group-hocus:op-100>
           bg-gradient-{{ gradient.toLowerCase() }}
-        </span>
-      </button>
-      <button
-        :class="`bg-gradient-${gradient.toLowerCase()}-darkened`" group
-        @click="setActiveGradient(gradient, 'darkened')"
-      >
-        <span group-hocus:op-100>
-          bg-gradient-{{ gradient.toLowerCase() }}-darkened
         </span>
       </button>
       <button

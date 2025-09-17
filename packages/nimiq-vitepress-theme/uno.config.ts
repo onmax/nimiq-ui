@@ -20,6 +20,7 @@ export default defineConfig({
     presetIcons({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/tabler'),
+        ...createExternalPackageIconLoader('@iconify-json/simple-icons'),
         ...createExternalPackageIconLoader('nimiq-icons'),
       },
     }),

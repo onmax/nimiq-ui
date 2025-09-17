@@ -54,7 +54,7 @@ const colorCodes = computed(() => {
 
     <!-- Top row: variant labels -->
     <div
-      sticky top-0 z-9 f-py-xs grid="~ col-start-2 cols-12 justify-items-center gap-6 sm:gap-16" bg-neutral-0
+      f-py-xs grid="~ col-start-2 cols-12 justify-items-center gap-6 sm:gap-16"
       font-medium max-sm:children="rotate-180 [writing-mode:vertical-lr]" max-sm:py-4
     >
       <div v-for="v in variants" :key="v" nq-label f-text-xs>
