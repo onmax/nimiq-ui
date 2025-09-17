@@ -7,6 +7,9 @@ export default defineNimiqVitepressConfig({
   title: 'Nimiq UI',
   description: 'Build awesome apps with the Nimiq Style',
   base: '/nimiq-ui/',
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/nimiq-ui/favicon.svg' }],
+  ],
   themeConfig: {
     search: { provider: 'local' },
     modules: [
