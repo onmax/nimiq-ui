@@ -66,12 +66,10 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
       </span>
       <CommandMenu v-if="search" f-mt-sm />
 
-      <CollapsibleRoot v-model:open="submoduleNavigatorOpen" w-full f-mt-sm>
+      <!-- Show collapsible when currentDocModule has sidebar content -->
+      <CollapsibleRoot v-if="currentDocModule?.sidebar?.length" v-model:open="submoduleNavigatorOpen" w-full f-mt-sm>
         <CollapsibleTrigger bg-transparent w-full relative group outline="~ 1.5 neutral-300" rounded="6 reka-open:b-0" transition-border-radius of-clip>
-          <ModulePill v-if="currentDocModule" :item="currentDocModule" component="div" />
-          <div v-else f-py-sm>
-            Go to module
-          </div>
+          <ModulePill :item="currentDocModule" component="div" />
           <div absolute right-16 top-18 i-nimiq:chevron-top-down transition-opacity op="80 group-hocus:100" scale-80 />
         </CollapsibleTrigger>
 
@@ -81,9 +79,14 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
           </div>
         </CollapsibleContent>
       </CollapsibleRoot>
+
+      <!-- Show expanded module pills when currentDocModule has no sidebar -->
+      <div v-else-if="currentDocModule && (!currentDocModule.sidebar || !currentDocModule.sidebar.length)" w-full f-mt-sm>
+        <ModulePill v-for="item in visibleModules" :key="item.text" :item="item" component="a" />
+      </div>
     </div>
 
-    <template v-if="currentDocModule">
+    <template v-if="currentDocModule?.sidebar?.length">
       <hr w-full border="t-1 neutral-400" f-mt-xs>
 
       <DefineSidebarItem v-slot="{ item: { text, link, icon }, isInAccordion }">
