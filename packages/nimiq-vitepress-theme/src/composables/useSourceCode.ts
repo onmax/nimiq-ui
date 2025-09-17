@@ -73,14 +73,14 @@ export function useSourceCode() {
   const editUrl = computed(() => {
     if (!repoURL.value)
       return ''
-    return join(repoURL.value, getRepoFilePath.value)
+    return `${repoURL.value.replace(/\/$/, '')}/${getRepoFilePath.value}`
   })
 
   const sourceCodeUrl = computed(() => {
     if (!repoURL.value)
       return ''
 
-    return join(repoURL.value, 'blob/main', getRepoFilePath.value)
+    return `${repoURL.value.replace(/\/$/, '')}/blob/main/${getRepoFilePath.value}`
   })
 
   const sourceCodeLabel = computed(() => {
