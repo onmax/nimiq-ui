@@ -3,6 +3,7 @@ import CopyButtonGroup from '../components/CopyButtonGroup.vue'
 import { useBreadcrumbs } from '../composables/useBreadcrumbs'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import { useSourceCode } from '../composables/useSourceCode'
+import { humanizeText } from '../utils/textUtils'
 import DocNavigation from './DocNavigation.vue'
 import '../assets/code-blocks.css'
 import '../assets/typography.css'
@@ -31,7 +32,7 @@ const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabe
         <ul v-if="showBreadcrumbs" flex="~ items-center gap-12">
           <li v-for="({ text, icon }, i) in breadcrumbs" :key="text" contents w-max>
             <div v-if="icon" :class="icon" />
-            <span nq-label f-text-2xs w-max>{{ text }}</span>
+            <span nq-label f-text-2xs w-max>{{ humanizeText(text) }}</span>
             <div v-if="i < breadcrumbs.length - 1" i-nimiq:chevron-right text="neutral-700 9" />
           </li>
         </ul>

@@ -36,7 +36,7 @@ const iconClasses = computed(() => {
   }
 
   if (!iconClass.value) {
-    classes.push('f-size-120/160')
+    classes.push(layout.value === 'row' ? 'f-size-48/48' : 'f-size-120/160')
     classes.push(layout.value === 'row' ? 'shrink-0' : 'absolute right--12')
   }
   else if (layout.value === 'row') {
