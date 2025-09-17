@@ -67,7 +67,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
       <CommandMenu v-if="search" f-mt-sm />
 
       <CollapsibleRoot v-model:open="submoduleNavigatorOpen" w-full f-mt-sm>
-        <CollapsibleTrigger bg-transparent w-full relative group ring="1.5 neutral-300" rounded="6 reka-open:b-0" transition-border-radius of-clip>
+        <CollapsibleTrigger bg-transparent w-full relative group outline="~ 1.5 neutral-300" rounded="6 reka-open:b-0" transition-border-radius of-clip>
           <ModulePill v-if="currentDocModule" :item="currentDocModule" component="div" />
           <div v-else f-py-sm>
             Go to module
@@ -76,7 +76,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
         </CollapsibleTrigger>
 
         <CollapsibleContent of-hidden data-open:shadow w-full mt-0>
-          <div absolute z-90 bg-neutral-100 outline="~ 1.5 offset--1.5 neutral-300" rounded-b-6 data-open:animate-slide-down data-closed:animate-slide-up w="[calc(100%-30px)]" shadow>
+          <div absolute z-90 bg-neutral-100 outline="~ 1.5 neutral-300" rounded-b-6 data-open:animate-slide-down data-closed:animate-slide-up w="[calc(100%-30px)]" shadow>
             <ModulePill v-for="item in visibleModules.filter(m => m !== currentDocModule)" :key="item.text" :item="item" component="a" @click="submoduleNavigatorOpen = false" />
           </div>
         </CollapsibleContent>
@@ -93,7 +93,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
           <span flex-1 v-html="renderMarkdown(text)" />
         </a>
       </DefineSidebarItem>
-      <ScrollAreaRoot relative of-hidden bg-neutral-100 var:scrollbar-size:10px as="nav" flex-1 f-p="sm md:xs" v-bind="$attrs">
+      <ScrollAreaRoot relative of-hidden bg-neutral-100 var:scrollbar-size:10px as="nav" flex-1 f-px="sm md:xs" v-bind="$attrs">
         <div absolute top-0 z-2 w-full h-24 bg-gradient-to-t from-transparent to-neutral-100 />
         <ScrollAreaViewport size-full f-pt-xs as="ul">
           <li v-for="item in currentDocModule.sidebar" :key="item.label" f-pb-xs>

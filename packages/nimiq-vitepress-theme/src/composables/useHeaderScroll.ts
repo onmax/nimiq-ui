@@ -16,7 +16,7 @@ export function useHeaderScroll(threshold = 10, hideDelay = 100) {
   let hideTimeout: ReturnType<typeof setTimeout> | null = null
 
   const handleScroll = () => {
-    const currentScrollY = window.scrollY
+    const currentScrollY = typeof window !== 'undefined' ? window.scrollY : 0
     scrollY.value = currentScrollY
 
     // Don't hide header when at the very top

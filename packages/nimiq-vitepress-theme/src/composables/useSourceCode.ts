@@ -1,14 +1,19 @@
 import { useClipboard } from '@vueuse/core'
 import { join } from 'pathe'
 import { useData } from 'vitepress'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { toast } from 'vue-sonner'
 import { useChangelog } from './useChangelog'
 
 export function useSourceCode() {
   const { page, frontmatter } = useData()
   const { repoURL } = useChangelog()
-  const { copy, copied, isSupported } = useClipboard()
+
+  // Use a safer approach for SSR compatibility
+  const clipboardResult = typeof window !== 'undefined'
+    ? useClipboard()
+    : { copy: async () => {}, copied: ref(false), isSupported: ref(false) }
+  const { copy, copied, isSupported } = clipboardResult
 
   const showSourceCode = computed(() => {
     if (!isSupported.value)
@@ -97,14 +102,65 @@ export function useSourceCode() {
           .replace('/blob/', '/')
       }
 
-      const response = await fetch(rawUrl)
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+      // Generate multiple URL variations to try
+      const urlsToTry: string[] = []
+      const filePath = page.value.filePath
+
+      if (repoURL.value) {
+        const baseRawUrl = repoURL.value
+          .replace('github.com', 'raw.githubusercontent.com')
+          .replace(/\/$/, '')
+
+        // Try different path combinations
+        const pathVariations = [
+          getRepoFilePath.value, // Current computed path
+          filePath, // Original file path without modifications
+          filePath.startsWith('/') ? filePath.slice(1) : filePath, // Remove leading slash
+        ]
+
+        // If current path has docs/, also try without it
+        if (getRepoFilePath.value.includes('docs/')) {
+          pathVariations.push(getRepoFilePath.value.replace('docs/', ''))
+        }
+
+        // If current path doesn't have docs/, also try with it
+        if (!getRepoFilePath.value.includes('docs/')) {
+          pathVariations.push(join('docs', getRepoFilePath.value))
+        }
+
+        // Generate full URLs for each path variation
+        pathVariations.forEach((path) => {
+          const cleanPath = path.startsWith('/') ? path.slice(1) : path
+          urlsToTry.push(`${baseRawUrl}/main/${cleanPath}`)
+        })
+      }
+      else {
+        // Fallback to original logic if no repoURL
+        urlsToTry.push(rawUrl)
       }
 
-      const content = await response.text()
-      await copy(content)
-      toast.success('Page content copied to clipboard')
+      // Remove duplicates
+      const uniqueUrls = [...new Set(urlsToTry)]
+
+      let lastError: Error | null = null
+
+      for (const url of uniqueUrls) {
+        try {
+          const response = await fetch(url)
+          if (response.ok) {
+            const content = await response.text()
+            await copy(content)
+            toast.success('Page content copied to clipboard')
+            return
+          }
+          lastError = new Error(`HTTP ${response.status}: ${response.statusText}`)
+        }
+        catch (error) {
+          lastError = error as Error
+        }
+      }
+
+      throw lastError || new Error('All URL attempts failed')
     }
     catch (error) {
       console.error('Failed to copy markdown content:', error)
@@ -115,8 +171,13 @@ export function useSourceCode() {
 
   const copyMarkdownLink = async () => {
     try {
+      if (typeof window === 'undefined') {
+        toast.error('Copy functionality not available during server-side rendering')
+        return
+      }
+
       const pageTitle = page.value.title || document.title || 'Documentation Page'
-      const currentURL = typeof window !== 'undefined' ? window.location.href : ''
+      const currentURL = window.location.href
       const markdownLink = `[${pageTitle}](${currentURL})`
 
       await copy(markdownLink)
