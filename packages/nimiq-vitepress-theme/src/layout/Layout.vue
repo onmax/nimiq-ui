@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useBreakpoints } from '@vueuse/core'
 import { useData } from 'vitepress'
-import { computed, watchEffect } from 'vue'
+import { computed } from 'vue'
 import { Toaster } from 'vue-sonner'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import DesktopHeader from './DesktopHeader.vue'
@@ -23,13 +23,6 @@ const showSidebar = computed(() => {
   if (isHome.value)
     return false
   return true
-})
-
-// Conditionally import static-content.css for home and overview layouts
-watchEffect(() => {
-  if (isHome.value || isOverview.value) {
-    import('../../../nimiq-css/src/css/static-content.css')
-  }
 })
 
 const { showSecondarySidebar } = useSecondarySidebar()

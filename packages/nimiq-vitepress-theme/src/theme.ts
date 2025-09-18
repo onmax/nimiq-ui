@@ -9,6 +9,7 @@ import Layout from './layout/Layout.vue'
 import NotFound from './layout/NotFound.vue'
 
 import './assets/index.css'
+import './assets/static-content.css'
 import 'virtual:group-icons.css'
 
 export function defineNimiqThemeConfig(options: DefineThemeNqVpOptions): Theme {

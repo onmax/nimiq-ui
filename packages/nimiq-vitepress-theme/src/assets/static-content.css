@@ -1,0 +1,312 @@
+:root {
+  /* Viewport widths */
+  --f-space-width-min: 320;
+  --f-space-width-max: 1440;
+}
+
+body:not(.nq-raw) {
+  /* Base styles */
+  background-color: var(--colors-neutral-100);
+
+  --nq-max-width: 73rem;
+
+  &:not(:where(.nq-no-color, [nq-no-color], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact])) {
+    color: var(--colors-neutral-800);
+  }
+
+  :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *)):not(
+    :is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *
+  ) {
+    --f-space-width-range: calc(var(--f-space-width-max) - var(--f-space-width-min));
+    --f-space-scale-factor: calc((100vw - (1px * var(--f-space-width-min))) / var(--f-space-width-range));
+
+    --f-font-size-range: calc(var(--font-size-max) - var(--font-size-min));
+    --f-font-size-fluid: calc(1px * var(--font-size-min) + var(--f-font-size-range) * var(--f-space-scale-factor));
+    --f-font-size: clamp(calc(1px * var(--font-size-min)), var(--f-font-size-fluid), calc(var(--font-size-max) * 1px));
+
+    &:where(h1) {
+      font-weight: 700;
+      max-width: 26ch;
+      text-align: left;
+      margin: 0;
+      line-height: 1.3;
+
+      --font-size-min: 40;
+      --font-size-max: 48;
+      font-size: var(--f-font-size);
+
+      &:where(.nq-heading-lg, [nq-heading-lg]) {
+        --font-size-min: 36;
+        --font-size-max: 64;
+      }
+
+      @media screen and (min-width: 768px) {
+        text-align: center;
+      }
+
+      & + p {
+        margin-top: 24px;
+        max-width: 42ch;
+
+        line-height: 1.5;
+        --font-size-min: 20;
+        --font-size-max: 22;
+        font-size: var(--f-font-size);
+
+        @media screen and (min-width: 768px) {
+          text-align: center;
+        }
+      }
+    }
+
+    &:where(h2) {
+      font-weight: 700;
+
+      *:not(.nq-no-color):not([nq-no-color]):not(.nq-no-color *):not([nq-no-color] *) & {
+        color: var(--colors-neutral);
+      }
+
+      max-width: 33ch;
+      margin: 0;
+
+      --font-size-min: 32;
+      --font-size-max: 40;
+      font-size: var(--f-font-size);
+      line-height: 1.3;
+
+      text-align: left;
+
+      @media screen and (min-width: 768px) {
+        text-align: center;
+      }
+
+      & + p {
+        margin-top: 16px;
+        color: color-mix(in oklch, var(--colors-neutral-800) 85%, transparent);
+
+        max-width: 70ch;
+
+        line-height: 1.5;
+        --font-size-min: 20;
+        --font-size-max: 22;
+        font-size: var(--f-font-size);
+
+        @media screen and (min-width: 768px) {
+          text-align: center;
+        }
+      }
+    }
+
+    &:where(h3) {
+      font-weight: 600;
+      line-height: 1.3;
+      --font-size-min: 22;
+      --font-size-max: 28;
+      font-size: var(--f-font-size);
+
+      *:not(.nq-no-color):not([nq-no-color]):not(.nq-no-color *):not([nq-no-color] *) & {
+        color: var(--colors-neutral);
+      }
+
+      & + p {
+        margin-top: 16px;
+
+        line-height: 1.5;
+        --font-size-min: 18;
+        --font-size-max: 20;
+        font-size: var(--f-font-size);
+      }
+    }
+
+    &:where(h4) {
+      font-weight: 600;
+      line-height: 1.3;
+      --font-size-min: 20;
+      --font-size-max: 22;
+      font-size: var(--f-font-size);
+
+      /* We change the color except if there is parent that change the color */
+      *:not(.nq-no-color):not([nq-no-color]):not(.nq-no-color *):not([nq-no-color] *) & {
+        color: var(--colors-neutral);
+      }
+    }
+  }
+
+  :where(section, [data-section]) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media screen and (min-width: 769px) {
+      align-items: center;
+    }
+
+    margin-left: auto;
+    margin-right: auto;
+
+    --f-space-width-range: calc(var(--f-space-width-max) - var(--f-space-width-min));
+    --f-space-scale-factor: calc((100vw - (1px * var(--f-space-width-min))) / var(--f-space-width-range));
+    --f-space-width-min: 320;
+    --f-space-width-max: 1440;
+
+    --f-pt-range: calc(var(--f-pt-max) - var(--f-pt-min));
+    --f-pt-fluid: calc(1px * var(--f-pt-min) + var(--f-pt-range) * var(--f-space-scale-factor));
+    --f-pt: clamp(calc(1px * var(--f-pt-min)), var(--f-pt-fluid), calc(var(--f-pt-max) * 1px));
+    --pt: var(--f-pt);
+
+    --f-pb-range: calc(var(--f-pb-max) - var(--f-pb-min));
+    --f-pb-fluid: calc(1px * var(--f-pb-min) + var(--f-pb-range) * var(--f-space-scale-factor));
+    --f-pb: clamp(calc(1px * var(--f-pb-min)), var(--f-pb-fluid), calc(var(--f-pb-max) * 1px));
+    --pb: var(--f-pb);
+
+    --f-px-range: calc(var(--f-px-max) - var(--f-px-min));
+    --f-px-fluid: calc(1px * var(--f-px-min) + var(--f-px-range) * var(--f-space-scale-factor));
+    --f-px: clamp(calc(1px * var(--f-px-min)), var(--f-px-fluid), calc(var(--f-px-max) * 1px));
+    --px: var(--f-px);
+
+    --nq-max-width: calc(100vw - 4rem);
+
+    @media screen and (min-width: 1152px) {
+      --nq-max-width: calc(100vw - 9rem);
+    }
+
+    @media screen and (min-width: 1440px) {
+      --nq-max-width: 73rem;
+    }
+
+    &:is(.nq-wide, [nq-wide]) {
+      --nq-max-width: none;
+      --px: 0;
+      width: 100%;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    padding: var(--pt, 0) var(--px, 0) var(--pb, 0) var(--px, 0);
+
+    > * {
+      max-width: var(--nq-max-width);
+    }
+
+    --f-px-min: 32;
+    --f-px-max: 80;
+
+    --f-pt-min: 160;
+    --f-pt-max: 200;
+
+    :is(
+      &:where(.bg-darkblue, [bg-darkblue]):has(
+          + :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(
+              .bg-darkblue,
+              [bg-darkblue]
+            )
+        ),
+      &:where(.bg-darkerblue, [bg-darkerblue]):has(
+          + :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(
+              .bg-darkerblue,
+              [bg-darkerblue]
+            )
+        ),
+      &:where(.bg-neutral-100, [bg-neutral-100]):has(
+          + :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(
+              .bg-neutral-100,
+              [bg-neutral-100]
+            )
+        ),
+      &:where(.bg-neutral-0, [bg-neutral-0]):has(
+          + :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(
+              .bg-neutral-0,
+              [bg-neutral-0]
+            )
+        )
+    ) {
+      --f-pb-min: 36;
+      --f-pb-max: 48;
+
+      + :where(section, [data-section]) {
+        --f-pt-min: 36;
+        --f-pt-max: 48;
+      }
+    }
+
+    &:where(.bg-darkblue, [bg-darkblue], .bg-darkerblue, [bg-darkerblue]):has(
+        + :where(section, [data-section]):where(
+            .bg-neutral-100,
+            .bg-neutral-0,
+            [bg-neutral-100],
+            [bg-neutral-0],
+            .nq-section-gap,
+            [nq-section-gap]
+          )
+      ),
+    &:where(.bg-neutral-0, [bg-neutral-0], .bg-neutral-100, [bg-neutral-100]):has(
+        + :where(section, [data-section]):where(
+            .bg-darkblue,
+            [bg-darkblue],
+            .bg-darkerblue,
+            [bg-darkerblue],
+            .nq-section-gap,
+            [nq-section-gap]
+          )
+      ),
+    &:where(.bg-neutral-0, [bg-neutral-0]):has(
+        + :where(section, [data-section]):where(
+            .bg-neutral-100,
+            [bg-neutral-100],
+            .bg-darkblue,
+            [bg-darkblue],
+            .bg-darkerblue,
+            [bg-darkerblue],
+            .nq-section-gap,
+            [nq-section-gap]
+          )
+      ),
+    &:where(.bg-darkblue, [bg-darkblue], .bg-neutral-100, [bg-neutral-100], .bg-darkerblue, [bg-darkerblue]):has(
+        + :where(section, [data-section]):where(.bg-neutral-0, [bg-neutral-0], .nq-section-gap, [nq-section-gap])
+      ),
+    &:where(.bg-neutral-100, [bg-neutral-100]):has(
+        + :where(section, [data-section]):where(
+            .bg-darkblue,
+            [bg-darkblue],
+            .bg-neutral-0,
+            [bg-neutral-0],
+            .bg-darkerblue,
+            [bg-darkerblue],
+            .nq-section-gap,
+            [nq-section-gap]
+          )
+      ),
+    &:where(.bg-neutral-0, [bg-neutral-0], .bg-darkblue, [bg-darkblue], .bg-darkerblue, [bg-darkerblue]):has(
+        + :where(section, [data-section]):where(.bg-neutral-100, [bg-neutral-100], .nq-section-gap, [nq-section-gap])
+      ) {
+      --f-pb-min: 160;
+      --f-pb-max: 200;
+    }
+
+    &:last-child {
+      --f-pb-min: 32;
+      --f-pb-max: 48;
+    }
+
+    &:where(.nq-overlaps, [nq-overlaps]) {
+      --pb: 0;
+
+      > * {
+        position: relative;
+        z-index: 2;
+
+        --f-mb-min: 48;
+        --f-mb-max: 64;
+        --f-mb-range: calc(var(--f-mb-max) - var(--f-mb-min));
+        --f-mb-fluid: calc(1px * var(--f-mb-min) + var(--f-mb-range) * var(--f-space-scale-factor));
+        --f-mb: clamp(calc(1px * var(--f-mb-min)), var(--f-mb-fluid), calc(var(--f-mb-max) * 1px));
+        bottom: calc(var(--f-mb) * -1);
+      }
+
+      + :where(section, [data-section]) {
+        --f-pt-min: 224;
+        --f-pt-max: 272;
+      }
+    }
+  }
+}
