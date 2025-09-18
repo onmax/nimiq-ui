@@ -38,8 +38,9 @@ cards:
 <NqGrid :cards="frontmatter.cards" />
 ```
 
-<ComponentPreview>
+<ComponentPreview lang="vue">
 
+<NqPlayground>
 <NqGrid>
 
 <NqCard
@@ -58,13 +59,15 @@ cards:
 />
 
 </NqGrid>
+</NqPlayground>
 
 </ComponentPreview>
 
 ## Complex Grid
 
-<ComponentPreview>
+<ComponentPreview lang="vue">
 
+<NqPlayground>
 <NqGrid>
 
 <NqCard
@@ -101,13 +104,15 @@ cards:
 />
 
 </NqGrid>
+</NqPlayground>
 
 </ComponentPreview>
 
 ## Grid with Large Cards
 
-<ComponentPreview>
+<ComponentPreview lang="vue">
 
+<NqPlayground>
 <NqGrid>
 
 <NqLargeCard
@@ -129,13 +134,15 @@ cards:
 />
 
 </NqGrid>
+</NqPlayground>
 
 </ComponentPreview>
 
 ## Grid with Mixed Spans
 
-<ComponentPreview>
+<ComponentPreview lang="vue">
 
+<NqPlayground>
 <NqGrid>
 
 <NqCard
@@ -178,5 +185,6 @@ cards:
 />
 
 </NqGrid>
+</NqPlayground>
 
 </ComponentPreview>

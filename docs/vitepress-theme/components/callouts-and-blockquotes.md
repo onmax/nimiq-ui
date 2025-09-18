@@ -4,7 +4,11 @@
 
 <ComponentPreview>
 
+<NqPlayground>
+
 > Time is like CSS - if you don't manage it well, everything floats everywhere!
+
+</NqPlayground>
 
 </ComponentPreview>
 
@@ -13,6 +17,8 @@
 Same as [GitHub Markdown Callouts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts), you can use them in your projects:
 
 <ComponentPreview>
+
+<NqPlayground>
 
 > [!NOTE]
 > Did you hear about the programmer who got stuck in the shower? They were following the instructions on the shampoo bottle: Lather, Rinse, Repeat.
@@ -29,14 +35,36 @@ Same as [GitHub Markdown Callouts](https://docs.github.com/en/get-started/writin
 > [!CAUTION]
 > Excessive use of console.log() may lead to deforestation of your terminal screen.
 
+</NqPlayground>
+
 </ComponentPreview>
 
 ---
 
 You can also add custom title to the callouts:
 
+<ComponentPreview>
+
+<NqPlayground>
+
 > [!NOTE] Developer's Life Lesson #42
 > Remember: There are only 10 types of people in the world - those who understand binary and those who don't.
+
+> [!TIP] Pro Tip
+> Always code as if the person who ends up maintaining your code is a violent psychopath who knows where you live.
+
+> [!IMPORTANT] Critical Reminder
+> If at first you don't succeed; call it version 1.0.
+
+> [!WARNING] Cautionary Advice
+> Debugging: Being the detective in a crime movie where you are also the murderer.
+
+> [!CAUTION] Cautionary Note
+> Excessive use of console.log() may lead to deforestation of your terminal screen.
+
+</NqPlayground>
+
+</ComponentPreview>
 
 ## Credits
 

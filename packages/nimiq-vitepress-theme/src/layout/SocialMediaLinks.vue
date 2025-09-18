@@ -18,7 +18,7 @@ const { theme } = useData<NimiqVitepressThemeConfig>()
           <Tooltip.Root>
             <Tooltip.Trigger
               as="a" :href="withBase(link)" target="_blank" rel="noopener noreferrer" transition-colors
-              un-text="neutral-900 hocus:neutral" :class="{ 'text-18 p-8': size === 'md',
+              un-text="neutral-700 hocus:neutral" :class="{ 'text-18 p-8': size === 'md',
                                                             'text-16 p-6': size === 'sm' }" inline-flex="~ items-center justify-center" rounded-6
               bg="transparent hocus:neutral-200" :aria-label="label"
             >

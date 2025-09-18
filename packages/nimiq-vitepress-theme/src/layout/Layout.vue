@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useBreakpoints } from '@vueuse/core'
 import { useData } from 'vitepress'
-import { computed } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { Toaster } from 'vue-sonner'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import DesktopHeader from './DesktopHeader.vue'
@@ -23,6 +23,13 @@ const showSidebar = computed(() => {
   if (isHome.value)
     return false
   return true
+})
+
+// Conditionally import static-content.css for home and overview layouts
+watchEffect(() => {
+  if (isHome.value || isOverview.value) {
+    import('../../../nimiq-css/src/css/static-content.css')
+  }
 })
 
 const { showSecondarySidebar } = useSecondarySidebar()
@@ -53,19 +60,17 @@ const isMobileOrTablet = breakpoints.smaller('lg')
   </div>
 
   <!-- Documentation Pages (default) -->
-  <div v-else id="viewport" flex relative var:nq-sidebar-width:100vw md:var:nq-sidebar-width:288px data-layout="docs" bg-neutral-1100>
+  <div
+    v-else id="viewport" flex relative var:nq-sidebar-width:100vw md:var:nq-sidebar-width:288px data-layout="docs"
+    bg-neutral-1100
+  >
     <!-- TODO Add skip -->
     <div v-if="!isMobileOrTablet" flex w-full>
       <div shrink-0 relative w="$nq-sidebar-width">
         <Sidebar v-if="showSidebar" w="$nq-sidebar-width" />
       </div>
       <main
-        of-hidden
-        dark:bg-neutral-1100
-        min-h-screen
-        flex-1
-        min-w-0
-        :class="{
+        of-hidden dark:bg-neutral-1100 min-h-screen flex-1 min-w-0 :class="{
           'ml-[$nq-sidebar-width]': showSidebar,
           'ml-0': !showSidebar,
           'max-w-1400 mx-auto': !showSidebar && !showSecondarySidebar,
@@ -92,5 +97,18 @@ const isMobileOrTablet = breakpoints.smaller('lg')
   </div>
 
   <!-- Toast notifications -->
-  <Toaster position="bottom-right" :duration="3000" class="nq-raw" />
+  <div id="toaster-container">
+    <Toaster position="bottom-right" :duration="3000" class="nq-raw" style="padding: 0" />
+  </div>
 </template>
+
+<style>
+[data-layout='overview'] section > * {
+  width: 100%;
+  --nq-max-width: none;
+}
+
+#toaster-container > section {
+  padding: 0 !important;
+}
+</style>
