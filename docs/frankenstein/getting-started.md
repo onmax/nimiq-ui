@@ -2,8 +2,6 @@
 
 A collection of Vue 3 components built for different projects, but designed to be as reusable as possible.
 
-<div class="i-nimiq:fire" />
-
 This is not a library which you download and start using it. Instead, you will need to copy and paste it and use the components in your projects, leaving you the option of adapting the component to your needs.
 
 Connecting the dots, you can now understand why is called `Frankenstein`, multiple pieces that you can put together to build you app!
