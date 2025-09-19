@@ -11,13 +11,13 @@ A component for displaying external links with consistent styling. Perfect for s
 
 ### NqLinksItem Interface
 
-| Name      | Type     | Default             | Description                                                              |
-| --------- | -------- | ------------------- | ------------------------------------------------------------------------ |
-| `label`   | `string` | required            | The text displayed for the link                                          |
-| `href`    | `string` | required            | The URL the link points to                                               |
-| `icon`    | `string` | `undefined`         | Optional icon class (e.g., `i-nimiq:external`)                           |
-| `variant` | `string` | `nq-pill-secondary` | Pill variant: `blue`, `gold`, `green`, `secondary`, `tertiary`, `orange` |
-| `title`   | `string` | `undefined`         | Optional tooltip text for accessibility                                  |
+| Name      | Type              | Default             | Description                                                                                              |
+| --------- | ----------------- | ------------------- | -------------------------------------------------------------------------------------------------------- |
+| `label`   | `string`          | required            | The text displayed for the link                                                                          |
+| `href`    | `string`          | required            | The URL the link points to                                                                               |
+| `icon`    | `string \| false` | auto-detected       | Icon class or `false` to disable. Auto-detects icons for common domains (GitHub, Discord, Twitter, etc.) |
+| `variant` | `string`          | first: `nq-pill-blue`, rest: `nq-pill-secondary` | Pill variant: `blue`, `gold`, `green`, `secondary`, `tertiary`, `orange`                                 |
+| `title`   | `string`          | `undefined`         | Optional tooltip text for accessibility                                                                  |
 
 All links automatically open in a new tab with `target="_blank"` and include `rel="noopener noreferrer"` for security.
 
@@ -129,6 +129,46 @@ Use different pill variants to color-code your links.
 </NqPlayground>
 
 </ComponentPreview>
+
+### Auto-Detected Domain Icons
+
+Links automatically get appropriate icons based on their domain. Set `icon: false` to disable.
+
+<ComponentPreview lang="vue">
+
+<NqPlayground>
+<NqLinks :items="[
+  {
+    label: 'GitHub Repository',
+    href: 'https://github.com/nimiq/ui'
+  },
+  {
+    label: 'Discord Community',
+    href: 'https://discord.gg/nimiq'
+  },
+  {
+    label: 'Follow on Twitter',
+    href: 'https://twitter.com/nimiq'
+  },
+  {
+    label: 'No Icon Link',
+    href: 'https://example.com',
+    icon: false
+  }
+]" />
+</NqPlayground>
+
+</ComponentPreview>
+
+#### Supported Domains
+
+The following domains are automatically detected and assigned icons:
+
+- **Nimiq**: `nimiq.com` → `i-nimiq:logos-nimiq-mono`
+- **GitHub**: `github.com` → `i-nimiq:logos-github-mono`
+- **Discord**: `discord.gg`, `discord.com` → `i-nimiq:logos-discord-mono`
+- **Twitter/X**: `twitter.com`, `x.com` → `i-nimiq:logos-twitter-mono`
+- **Telegram**: `telegram.org`, `t.me` → `i-nimiq:logos-telegram-mono`
 
 ## Usage Notes
 
