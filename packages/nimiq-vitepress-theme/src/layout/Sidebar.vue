@@ -9,7 +9,6 @@ import { useCurrentModule } from '../composables/useCurrentModule'
 import { useVisibleModules } from '../composables/useVisibleModules'
 import { renderMarkdown } from '../lib/html-renderer'
 import { isActive } from '../lib/route'
-import { humanizeText } from '../utils/textUtils'
 import CommandMenu from './CommandMenu.vue'
 import Logo from './Logo.vue'
 import ModulePill from './ModulePill.vue'
@@ -108,7 +107,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
         <a :href="withBase(link!)" relative class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" reka-active:font-bold transition-all reka-active:text-blue reka-active:bg-blue-400 group :class="{ 'nq-arrow after:op-70 hocus:after:op-100': isExternalLink(link!) || isCrossModuleLink(link!) }" transition-opacity :target="isExternalLink(link!) ? '_blank' : undefined">
           <div v-if="isActive(page.relativePath, link)" aria-hidden absolute inset-y-0 bg-blue rounded-full w-2 z-2 transition-colors :class="isInAccordion ? 'left-12' : 'left-0'" />
           <div v-if="icon" :class="icon" f-size-xs text="neutral reka-active:blue" grayscale class="reka-active:var:un-grayscale:0" op="70 group-hocus:100 reka-active:100" transition-opacity mr-8 shrink-0 />
-          <span flex-1 v-html="renderMarkdown(humanizeText(text))" />
+          <span flex-1 v-html="renderMarkdown(text)" />
         </a>
       </DefineSidebarItem>
       <ScrollAreaRoot relative of-hidden bg-neutral-100 var:scrollbar-size:10px as="nav" flex-1 f-px="sm md:xs" v-bind="$attrs">
@@ -124,7 +123,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
                   <CollapsibleTrigger class="sidebar-item" group pr-12 pl-8 bg-transparent>
                     <div v-if="subitem.icon" :class="subitem.icon" f-text-sm text-neutral op="70 group-hocus:100" mr-8 />
                     <div :class="subitem.text" op="80 group-hocus:100" transition-opacity />
-                    <span flex-1 text-left v-html="renderMarkdown(humanizeText(subitem.text))" />
+                    <span flex-1 text-left v-html="renderMarkdown(subitem.text)" />
                     <div
                       i-nimiq:chevron-down aria-hidden text="9 neutral-700 group-hocus:neutral-800"
                       transition="[color,transform]" :class="{ 'rotate--90': !open }"
