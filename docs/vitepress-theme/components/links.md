@@ -36,7 +36,7 @@ Display a single external link with an icon.
 <NqLinks :item="{
   label: 'GitHub Repository',
   href: 'https://github.com/nimiq/ui',
-  icon: 'i-nimiq:external',
+  icon: 'i-nimiq:arrow-from-bottom-right',
   title: 'View source code on GitHub'
 }" />
 </NqPlayground>
@@ -54,19 +54,19 @@ Display multiple related links in a horizontal layout.
   {
     label: 'Documentation',
     href: 'https://docs.nimiq.com',
-    icon: 'i-nimiq:book',
+    icon: 'i-nimiq:contact-book',
     title: 'Read the documentation'
   },
   {
     label: 'Discord',
     href: 'https://discord.gg/nimiq',
-    icon: 'i-nimiq:chat',
+    icon: 'i-nimiq:help',
     title: 'Join our Discord community'
   },
   {
     label: 'Twitter',
     href: 'https://twitter.com/nimiq',
-    icon: 'i-nimiq:twitter',
+    icon: 'i-nimiq:logos-twitter-mono',
     title: 'Follow us on Twitter'
   }
 ]" />
@@ -111,7 +111,7 @@ Use different pill variants to color-code your links.
     label: 'Documentation',
     href: '/docs',
     variant: 'nq-pill-blue',
-    icon: 'i-nimiq:book'
+    icon: 'i-nimiq:contact-book'
   },
   {
     label: 'API Reference',

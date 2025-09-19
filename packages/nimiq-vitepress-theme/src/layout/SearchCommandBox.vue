@@ -280,7 +280,7 @@ function handleOpenInClaude() {
         >
           <div inline-flex f-p-sm f-p-xs w-full group cursor-pointer>
             <div flex="~ items-center gap-12">
-              <div :class="module.icon || 'i-nimiq:document'" size-24 text="neutral-700 group-hocus:blue" />
+              <div :class="module.icon || 'i-nimiq:document-filled'" size-24 text="neutral-700 group-hocus:blue" />
               <div flex="~ col">
                 <span>{{ module.text }}</span>
                 <span v-if="module.description" text="f-xs neutral-800">{{ module.description }}</span>
@@ -345,7 +345,7 @@ function handleOpenInClaude() {
       >
         <a :href="p.id" inline-flex f-p-sm f-p-xs w-full group>
           <div flex="~ items-center gap-12">
-            <div i-nimiq:document size-16 text="neutral-700 group-hocus:blue" />
+            <div i-nimiq:document-filled size-16 text="neutral-700 group-hocus:blue" />
             <div flex="~ items-center wrap">
               <span v-for="(t, index) in p.titles" :key="index" flex="~ items-center" font-normal>
                 <span v-html="t" />

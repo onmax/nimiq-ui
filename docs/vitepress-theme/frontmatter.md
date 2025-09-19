@@ -314,12 +314,12 @@ You can define card data in frontmatter and pass it to the [`NqGrid` component](
 ---
 cards:
   - bgColor: blue
-    icon: i-nimiq:fire
+    icon: i-nimiq:bolt
     title: Build with Nimiq
     description: Create powerful blockchain applications with our easy-to-use tools
     label: Development
   - bgColor: green
-    icon: i-nimiq:tools
+    icon: i-nimiq:tools-wench-hammer
     title: Developer Tools
     description: Everything you need to build and deploy Nimiq applications
     label: Resources

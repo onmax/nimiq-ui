@@ -18,12 +18,12 @@ You can define your grid cards directly in the frontmatter of your markdown file
 ---
 cards:
   - bgColor: blue
-    icon: i-nimiq:fire
+    icon: i-nimiq:bolt
     title: Build with Nimiq
     description: Create powerful blockchain applications with our easy-to-use tools
     label: Development
   - bgColor: green
-    icon: i-nimiq:tools
+    icon: i-nimiq:tools-wench-hammer
     title: Developer Tools
     description: Everything you need to build and deploy Nimiq applications
     label: Resources
@@ -116,19 +116,19 @@ cards:
 <NqGrid>
 
 <NqLargeCard
-  icon="i-nimiq:tools"
+  icon="i-nimiq:tools-wench-hammer"
   title="The Wise Elder"
   description="I'm the big card that's seen it all. Think of me as the senior developer of cards."
 />
 
 <NqLargeCard
-  icon="i-nimiq:tools"
+  icon="i-nimiq:tools-wench-hammer"
   title="The Middle Manager"
   description="I keep things balanced, like a good project manager (but more reliable)."
 />
 
 <NqLargeCard
-  icon="i-nimiq:tools"
+  icon="i-nimiq:tools-wench-hammer"
   title="The Team Player"
   description="I complete the trio with style. Three's company, four's a grid overflow!"
 />
@@ -156,7 +156,7 @@ cards:
 <NqCard
   span="half"
   bg-color="green"
-  icon="i-nimiq:tools"
+  icon="i-nimiq:tools-wench-hammer"
   title="Half Width Card"
   description="I take up half the grid width, making me stand out more than standard cards."
 />
@@ -164,7 +164,7 @@ cards:
 <NqCard
   span="half"
   bg-color="orange"
-  icon="i-nimiq:fire"
+  icon="i-nimiq:bolt"
   title="Another Half"
   description="Together with my friend, we make a perfect pair across the row."
 />
