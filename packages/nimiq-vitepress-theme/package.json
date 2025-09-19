@@ -95,7 +95,7 @@
     "pathe": "catalog:node",
     "typescript": "catalog:dev",
     "unbuild": "catalog:build",
-    "unocss": "catalog:style",
+    "unocss": "66.4.2",
     "unocss-preset-animations": "catalog:style",
     "unocss-preset-onmax": "catalog:style"
   }

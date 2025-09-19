@@ -35,7 +35,7 @@
     "pathe": "catalog:node",
     "render-markdown-it-tokens": "catalog:markdown",
     "shiki": "catalog:syntax",
-    "unocss": "catalog:style",
+    "unocss": "66.4.2",
     "unocss-preset-onmax": "catalog:style",
     "unplugin-icons": "catalog:build",
     "vite": "catalog:build",
