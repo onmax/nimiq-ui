@@ -9,7 +9,7 @@ export interface NimiqIconsOptions {
 export function getNimiqIcons(_options: NimiqIconsOptions): { rules: Rule<PresetWind4Theme>[], iconsNames: string[] } {
   const rules: Rule<PresetWind4Theme>[] = [
     [
-      /^i-nimiq:(.*)$/,
+      /^i-nimiq:([\w-]+)$/,
       async function* ([, name], { symbols }) {
         const iconData = getIconData(nimiqIconsJson, name)
         if (!iconData) {

@@ -11,12 +11,13 @@ A component for displaying external links with consistent styling. Perfect for s
 
 ### NqLinksItem Interface
 
-| Name    | Type     | Default     | Description                                    |
-| ------- | -------- | ----------- | ---------------------------------------------- |
-| `label` | `string` | required    | The text displayed for the link                |
-| `href`  | `string` | required    | The URL the link points to                     |
-| `icon`  | `string` | `undefined` | Optional icon class (e.g., `i-nimiq:external`) |
-| `title` | `string` | `undefined` | Optional tooltip text for accessibility        |
+| Name      | Type     | Default             | Description                                                              |
+| --------- | -------- | ------------------- | ------------------------------------------------------------------------ |
+| `label`   | `string` | required            | The text displayed for the link                                          |
+| `href`    | `string` | required            | The URL the link points to                                               |
+| `icon`    | `string` | `undefined`         | Optional icon class (e.g., `i-nimiq:external`)                           |
+| `variant` | `string` | `nq-pill-secondary` | Pill variant: `blue`, `gold`, `green`, `secondary`, `tertiary`, `orange` |
+| `title`   | `string` | `undefined`         | Optional tooltip text for accessibility                                  |
 
 All links automatically open in a new tab with `target="_blank"` and include `rel="noopener noreferrer"` for security.
 
@@ -92,6 +93,37 @@ Simple text links without icons for minimal designs.
   {
     label: 'Contact',
     href: '/contact'
+  }
+]" />
+</NqPlayground>
+
+</ComponentPreview>
+
+### Links with Different Variants
+
+Use different pill variants to color-code your links.
+
+<ComponentPreview lang="vue">
+
+<NqPlayground>
+<NqLinks :items="[
+  {
+    label: 'Documentation',
+    href: '/docs',
+    variant: 'nq-pill-blue',
+    icon: 'i-nimiq:book'
+  },
+  {
+    label: 'API Reference',
+    href: '/api',
+    variant: 'nq-pill-green',
+    icon: 'i-nimiq:code'
+  },
+  {
+    label: 'Support',
+    href: '/support',
+    variant: 'nq-pill-orange',
+    icon: 'i-nimiq:help'
   }
 ]" />
 </NqPlayground>

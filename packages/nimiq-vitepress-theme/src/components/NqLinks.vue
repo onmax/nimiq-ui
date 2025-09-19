@@ -5,11 +5,11 @@ interface NqLinksItem {
   label: string
   href: string
   icon?: string
-  variant: `nq-pill-${'blue' | 'gold' | 'green' | 'secondary' | 'tertiary' | 'orange'}`
+  variant?: `nq-pill-${'blue' | 'gold' | 'green' | 'secondary' | 'tertiary' | 'orange'}`
   title?: string
 }
 
-const props = defineProps<{ item?: NqLinksItem, items?: NqLinksItems[] }>()
+const props = defineProps<{ item?: NqLinksItem, items?: NqLinksItem[] }>()
 
 const items = computed(() => props.items?.length ? props.items : props.item ? [props.item] : [])
 </script>
