@@ -11,13 +11,13 @@ A component for displaying external links with consistent styling. Perfect for s
 
 ### NqLinksItem Interface
 
-| Name      | Type              | Default             | Description                                                                                              |
-| --------- | ----------------- | ------------------- | -------------------------------------------------------------------------------------------------------- |
-| `label`   | `string`          | required            | The text displayed for the link                                                                          |
-| `href`    | `string`          | required            | The URL the link points to                                                                               |
-| `icon`    | `string \| false` | auto-detected       | Icon class or `false` to disable. Auto-detects icons for common domains (GitHub, Discord, Twitter, etc.) |
+| Name      | Type              | Default                                          | Description                                                                                              |
+| --------- | ----------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| `label`   | `string`          | required                                         | The text displayed for the link                                                                          |
+| `href`    | `string`          | required                                         | The URL the link points to                                                                               |
+| `icon`    | `string \| false` | auto-detected                                    | Icon class or `false` to disable. Auto-detects icons for common domains (GitHub, Discord, Twitter, etc.) |
 | `variant` | `string`          | first: `nq-pill-blue`, rest: `nq-pill-secondary` | Pill variant: `blue`, `gold`, `green`, `secondary`, `tertiary`, `orange`                                 |
-| `title`   | `string`          | `undefined`         | Optional tooltip text for accessibility                                                                  |
+| `title`   | `string`          | `undefined`                                      | Optional tooltip text for accessibility                                                                  |
 
 All links automatically open in a new tab with `target="_blank"` and include `rel="noopener noreferrer"` for security.
 
