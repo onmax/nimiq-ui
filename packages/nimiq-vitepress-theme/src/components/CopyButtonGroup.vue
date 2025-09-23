@@ -102,12 +102,12 @@ const {
         </DropdownMenu.Item>
 
         <DropdownMenu.Item v-if="copyOptionsConfig.chatgpt" as="a" :href="chatGPTUrl" target="_blank" rel="noopener noreferrer" flex="~ items-center gap-12" px-8 py-4 un-text="f-xs text-neutral-900" bg="transparent hocus:neutral-200" transition-colors rounded-4 cursor-pointer nq-arrow after:op-60 after:ml-auto group>
-          <div size-16 i-simple-icons:openai text="neutral-600 group-hocus:neutral-700" transition-colors />
+          <div size-16 i-local:openai text="neutral-600 group-hocus:neutral-700" transition-colors />
           <span>Open in ChatGPT</span>
         </DropdownMenu.Item>
 
         <DropdownMenu.Item v-if="copyOptionsConfig.claude" as="a" :href="claudeUrl" target="_blank" rel="noopener noreferrer" flex="~ items-center gap-12" px-8 py-4 un-text="f-xs text-neutral-900" bg="transparent hocus:neutral-200" transition-colors rounded-4 cursor-pointer nq-arrow after:op-60 after:ml-auto group>
-          <div size-16 i-simple-icons:claude text="neutral-600 group-hocus:neutral-700" transition-colors />
+          <div size-16 i-local:claude text="neutral-600 group-hocus:neutral-700" transition-colors />
           <span>Open in Claude</span>
         </DropdownMenu.Item>
       </DropdownMenu.Content>

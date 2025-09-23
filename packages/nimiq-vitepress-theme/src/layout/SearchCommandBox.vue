@@ -120,7 +120,7 @@ const copyItems = computed(() => {
   if (copyOptionsConfig.value.claude) {
     items.push({
       value: 'open-claude',
-      icon: 'i-simple-icons:claude',
+      icon: 'i-local:claude',
       label: 'Open in Claude',
       action: handleOpenInClaude,
     })
@@ -129,7 +129,7 @@ const copyItems = computed(() => {
   if (copyOptionsConfig.value.chatgpt) {
     items.push({
       value: 'open-chatgpt',
-      icon: 'i-simple-icons:openai',
+      icon: 'i-local:openai',
       label: 'Open in ChatGPT',
       action: handleOpenInChatGPT,
     })

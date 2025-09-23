@@ -401,9 +401,6 @@ importers:
 
   packages/nimiq-vitepress-theme:
     dependencies:
-      '@iconify-json/simple-icons':
-        specifier: catalog:icons
-        version: 1.2.53
       '@iconify-json/tabler':
         specifier: catalog:icons
         version: 1.2.23

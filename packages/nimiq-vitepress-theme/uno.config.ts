@@ -1,4 +1,5 @@
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
+import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 import { defineConfig, presetIcons, transformerDirectives } from 'unocss'
 import { presetOnmax } from 'unocss-preset-onmax'
 import { presetNimiq } from '../nimiq-css/src'
@@ -20,7 +21,7 @@ export default defineConfig({
     presetIcons({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/tabler'),
-        ...createExternalPackageIconLoader('@iconify-json/simple-icons'),
+        local: FileSystemIconLoader('./src/assets/icons'),
         ...createExternalPackageIconLoader('nimiq-icons'),
       },
     }),
