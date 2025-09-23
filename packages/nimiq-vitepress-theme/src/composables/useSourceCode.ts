@@ -160,7 +160,7 @@ export function useSourceCode() {
         .replace('/blob/', '/')
     }
 
-    return rawUrl
+    return encodeURIComponent(rawUrl)
   }
 
   const chatGPTUrl = computed(() => {

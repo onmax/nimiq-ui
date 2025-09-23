@@ -32,7 +32,7 @@ const computedAlign = computed(() => {
     :class="{ 'items-start': computedAlign === 'left',
               'items-center': computedAlign === 'center',
               'f-mt-2xl': !h1 }" class="nq-raw"
-    f-mb-2xl
+    f-mb-lg
   >
     <div
       v-if="label" outline="~ 1.5 neutral-600" bg="neutral/3" px-12 py-6 rounded-full nq-label

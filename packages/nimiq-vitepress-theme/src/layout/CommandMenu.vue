@@ -43,7 +43,7 @@ function handleClose() {
       <DialogOverlay bg="darkblue/70" fixed inset-0 z-1001 />
       <DialogContent
         fixed top="10%" left="50%" max-h-85vh w-90vw max-w-420px translate-x="-50%" rounded-6 bg-neutral-100
-        shadow of-hidden z-1002 outline="1.5 neutral"
+        shadow of-hidden z-1002 outline="1.5 offset--1.5 neutral-0/6 ~"
       >
         <DialogTitle class="sr-only">
           Search documentation

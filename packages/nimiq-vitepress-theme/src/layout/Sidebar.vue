@@ -106,7 +106,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
       <DefineSidebarItem v-slot="{ item: { text, link, icon }, isInAccordion }">
         <a :href="withBase(link!)" relative class="sidebar-item" :data-state="isActive(page.relativePath, link) ? 'active' : ''" reka-active:font-bold transition-all reka-active:text-blue reka-active:bg-blue-400 group :class="{ 'nq-arrow after:op-70 hocus:after:op-100': isExternalLink(link!) || isCrossModuleLink(link!) }" transition-opacity :target="isExternalLink(link!) ? '_blank' : undefined">
           <div v-if="isActive(page.relativePath, link)" aria-hidden absolute inset-y-0 bg-blue rounded-full w-2 z-2 transition-colors :class="isInAccordion ? 'left-12' : 'left-0'" />
-          <div v-if="icon" :class="icon" f-size-xs text="neutral reka-active:blue" grayscale="~ reka-active:0" op="70 group-hocus:100 reka-active:100" transition-opacity mr-8 shrink-0 />
+          <div v-if="icon" :class="icon" f-size-xs text="neutral reka-active:blue" grayscale="~ reka-active:0 group-hocus:0" op="70 group-hocus:100 reka-active:100" transition-opacity mr-8 shrink-0 />
           <span flex-1 v-html="renderMarkdown(text)" />
         </a>
       </DefineSidebarItem>

@@ -5,12 +5,13 @@ import type { SearchResult } from 'minisearch'
 import type { GenericComponentInstance } from 'reka-ui'
 import type { Ref } from 'vue'
 import type { NimiqVitepressThemeConfig } from '../types'
+import localSearchIndex from '@localSearchIndex'
 import { computedAsync, debouncedWatch } from '@vueuse/core'
 import Mark from 'mark.js/src/vanilla.js'
 import MiniSearch from 'minisearch'
 import { DialogClose, ListboxContent, ListboxFilter, ListboxItem, ListboxRoot } from 'reka-ui'
 import { useData, withBase } from 'vitepress'
-import { computed, markRaw, nextTick, onMounted, ref, shallowRef, watch } from 'vue'
+import { computed, markRaw, nextTick, ref, shallowRef, watch } from 'vue'
 import { useSourceCode } from '../composables/useSourceCode'
 import { LRUCache } from '../lib/lru'
 
@@ -31,7 +32,6 @@ const {
 const filterText = ref('')
 const enableNoResults = ref(false)
 const resultsEl = shallowRef<HTMLElement>()
-const searchIndexData = shallowRef()
 const results: Ref<(SearchResult & Result)[]> = shallowRef([])
 const listboxRef = ref<GenericComponentInstance<typeof ListboxRoot>>()
 
@@ -41,12 +41,16 @@ interface Result {
   text?: string
 }
 
-onMounted(async () => {
-  // @ts-expect-error internal function
-  import('@localSearchIndex').then((m) => {
-    searchIndexData.value = m.default
+const searchIndexData = shallowRef(localSearchIndex)
+
+// hmr
+if (import.meta.hot) {
+  import.meta.hot.accept('@localSearchIndex', (m) => {
+    if (m) {
+      searchIndexData.value = m.default
+    }
   })
-})
+}
 
 const mark = computedAsync(async () => {
   if (!resultsEl.value)
