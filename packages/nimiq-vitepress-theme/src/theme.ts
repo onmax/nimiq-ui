@@ -4,6 +4,7 @@ import NqCard from './components/NqCard.vue'
 import NqGrid from './components/NqGrid.vue'
 import NqHeadline from './components/NqHeadline.vue'
 import NqLargeCard from './components/NqLargeCard.vue'
+import NqLinks from './components/NqLinks.vue'
 import NqModulesGrid from './components/NqModulesGrid.vue'
 import Layout from './layout/Layout.vue'
 import NotFound from './layout/NotFound.vue'
@@ -24,6 +25,7 @@ export function defineNimiqThemeConfig(options: DefineThemeNqVpOptions): Theme {
       ctx.app.component('NqHeadline', NqHeadline)
       ctx.app.component('NqLargeCard', NqLargeCard)
       ctx.app.component('NqModulesGrid', NqModulesGrid)
+      ctx.app.component('NqLinks', NqLinks)
     },
   }
 }
