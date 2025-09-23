@@ -1,10 +1,14 @@
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
 import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 import { defineConfig, presetIcons, transformerDirectives } from 'unocss'
 import { presetOnmax } from 'unocss-preset-onmax'
 import { presetNimiq } from '../nimiq-css/src'
 
-console.log('Generating unocss styles...')
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+console.log('Generating unocss styles...', resolve(__dirname, './src/assets/icons'))
 
 export default defineConfig({
   presets: [
@@ -21,7 +25,7 @@ export default defineConfig({
     presetIcons({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/tabler'),
-        local: FileSystemIconLoader('./src/assets/icons'),
+        local: FileSystemIconLoader(resolve(__dirname, './src/assets/icons')),
         ...createExternalPackageIconLoader('nimiq-icons'),
       },
     }),

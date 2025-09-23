@@ -1,9 +1,31 @@
 import type { PresetWind3Theme } from 'unocss'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
+import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 import { defineConfig, presetIcons } from 'unocss'
 import { presetOnmax } from 'unocss-preset-onmax'
-import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { presetNimiq } from '../packages/nimiq-css/src/index'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+const themeIconsLoader = FileSystemIconLoader(resolve(__dirname, '../packages/nimiq-vitepress-theme/src/assets/icons'))
+const docsIconsLoader = FileSystemIconLoader(resolve(__dirname, './public/assets/icons'))
+
+async function tryLoadIcon(loader: ReturnType<typeof FileSystemIconLoader>, name: string) {
+  try {
+    return await loader(name)
+  }
+  catch {
+    return null
+  }
+}
+
+async function localIconLoader(name: string) {
+  return (await tryLoadIcon(themeIconsLoader, name))
+    ?? (await tryLoadIcon(docsIconsLoader, name))
+}
 
 export default defineConfig<PresetWind3Theme>({
   content: {
@@ -137,7 +159,7 @@ export default defineConfig<PresetWind3Theme>({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/tabler'),
         ...createExternalPackageIconLoader('@iconify-json/simple-icons'),
-        local: FileSystemIconLoader('public/assets/icons'),
+        local: localIconLoader,
       },
     }),
   ],
