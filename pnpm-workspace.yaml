@@ -2,45 +2,44 @@ packages:
   - packages/*
   - packages/nimiq-icons/src/icons
   - packages/nimiq-icons/src/flags
-  - apps/*
   - docs/
 catalogs:
   build:
     '@nolebase/vitepress-plugin-git-changelog': ^2.18.2
-    '@shikijs/vitepress-twoslash': ^3.12.2
+    '@shikijs/vitepress-twoslash': ^3.13.0
     unbuild: ^3.6.1
-    unplugin-icons: ^22.2.0
-    vite: ^6.3.6
+    unplugin-icons: ^22.3.0
+    vite: ^7.1.7
     vite-plugin-inspect: ^11.3.3
-    vite-plugin-vue-devtools: ^8.0.1
+    vite-plugin-vue-devtools: ^8.0.2
     vitepress: ^2.0.0-alpha.12
   cli:
     bumpp: ^10.2.3
     pncat: ^0.5.4
   dev:
-    '@antfu/ni': ^25.0.0
-    jsdom: ^26.1.0
+    '@antfu/ni': ^26.0.1
+    jsdom: ^27.0.0
     typescript: ^5.9.2
   frontend:
     reka-ui: ^2.5.0
     vue: ^3.5.21
     vue-router: ^4.5.1
   icons:
-    '@iconify-json/simple-icons': ^1.2.50
-    '@iconify-json/tabler': ^1.2.22
+    '@iconify-json/simple-icons': ^1.2.53
+    '@iconify-json/tabler': ^1.2.23
     '@iconify-json/vscode-icons': ^1.2.30
-    '@iconify/tools': ^4.1.2
+    '@iconify/tools': ^4.1.3
     '@iconify/types': ^2.0.0
-    '@iconify/utils': ^3.0.1
+    '@iconify/utils': ^3.0.2
     '@iconify/vue': ^5.0.0
-    iconify-icon: ^3.0.0
+    iconify-icon: ^3.0.1
   lint:
-    '@antfu/eslint-config': ^5.3.0
-    '@unocss/eslint-config': ^66.5.1
-    '@unocss/eslint-plugin': ^66.5.1
-    eslint: ^9.35.0
-    eslint-plugin-format: ^1.0.1
-    lint-staged: ^16.1.6
+    '@antfu/eslint-config': ^5.4.1
+    '@unocss/eslint-config': ^66.5.2
+    '@unocss/eslint-plugin': ^66.5.2
+    eslint: ^9.36.0
+    eslint-plugin-format: ^1.0.2
+    lint-staged: ^16.2.0
     simple-git-hooks: ^2.13.1
   markdown:
     render-markdown-it-tokens: ^0.0.4
@@ -52,27 +51,27 @@ catalogs:
   prod:
     colorjs.io: ^0.5.2
     mark.js: ^8.11.1
-    minisearch: ^7.1.2
+    minisearch: ^7.2.0
     ts-cssjson: ^3.0.1
     vaul-vue: ^0.4.1
   script:
     esno: ^4.8.0
   style:
-    '@unocss/cli': ^66.5.1
-    '@unocss/preset-web-fonts': ^66.5.1
-    '@unocss/preset-wind4': ^66.5.1
-    unocss: ^66.5.1
+    '@unocss/cli': ^66.5.2
+    '@unocss/preset-web-fonts': ^66.5.2
+    '@unocss/preset-wind4': ^66.5.2
+    unocss: ^66.5.2
     unocss-preset-animations: ^1.2.1
-    unocss-preset-light-dark: ^1.0.0-beta.38
-    unocss-preset-onmax: ^1.0.0-beta.40
+    unocss-preset-light-dark: ^1.0.0-beta.43
+    unocss-preset-onmax: ^1.0.0-beta.43
   syntax:
-    shiki: ^3.12.2
+    shiki: ^3.13.0
   test:
     vitest: ^3.2.4
   types:
     '@types/jsdom': ^21.1.7
     '@types/markdown-it': ^14.1.2
-    '@types/node': ^24.3.1
+    '@types/node': ^24.5.2
   utils:
     '@vueuse/core': ^13.9.0
     defu: ^6.1.4

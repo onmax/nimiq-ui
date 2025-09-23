@@ -30,12 +30,10 @@ Simple card with just title and description - perfect for static content display
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqCard
   title="Getting Started"
   description="Learn the basics of building with Nimiq's browser-first blockchain technology."
 />
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -45,13 +43,11 @@ Add an `href` to make the entire card clickable and navigatable.
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqCard
   href="/getting-started"
   title="Documentation"
   description="Explore our comprehensive guides and API references."
 />
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -61,13 +57,11 @@ Default column layout with icon positioned absolutely on the right side.
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqCard
   icon="i-nimiq:cubes"
   title="Build Apps"
   description="Create decentralized applications with our developer tools."
 />
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -77,14 +71,12 @@ Use predefined colors (blue, green, orange, gold, red) to add visual emphasis.
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqCard
   bg-color="blue"
   href="#"
   title="Join the Network"
   description="Become part of the Nimiq ecosystem and start earning rewards."
 />
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -94,7 +86,6 @@ Add a label above the title for better content categorization.
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqCard
   bg-color="green"
   icon="i-nimiq:browsermesh"
@@ -102,7 +93,6 @@ Add a label above the title for better content categorization.
   title="Your First Transaction"
   description="Step-by-step guide to sending your first Nimiq transaction."
 />
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -112,7 +102,6 @@ Use `layout="row"` to place the icon on the left with content flowing to the rig
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqCard
   layout="row"
   icon="i-nimiq:cubes"
@@ -120,6 +109,5 @@ Use `layout="row"` to place the icon on the left with content flowing to the rig
   title="Nimiq RPC API"
   description="Connect to the Nimiq network using our JSON-RPC interface."
 />
-</NqPlayground>
 
 </ComponentPreview>

@@ -1,5 +1,5 @@
 import type { NimiqVitepressThemeConfig } from '../types'
-import { createSharedComposable, useScroll, useThrottleFn } from '@vueuse/core'
+import { createSharedComposable, useScroll, useThrottleFn, useWindowSize } from '@vueuse/core'
 import { useData, useRoute } from 'vitepress'
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 
@@ -15,11 +15,11 @@ export const useSecondarySidebar = createSharedComposable(() => {
   const headingTree = ref<SidebarHeading[]>([])
   const activeHeadings = ref<string[]>([])
 
+  const { height: windowHeight } = useWindowSize()
+
   // Build the heading tree by querying only h2 and h3 elements
   // inside an article, ignoring those inside [data-card] elements.
   function updateHeadingTree() {
-    if (import.meta.env.SSR)
-      return
     const nodes = document.querySelectorAll('article :where(h2,h3):not([data-card] *)')
     const tree: SidebarHeading[] = []
     let lastH2: SidebarHeading | null = null
@@ -62,7 +62,7 @@ export const useSecondarySidebar = createSharedComposable(() => {
       const el = document.getElementById(heading.hashPath)
       if (el) {
         const rect = el.getBoundingClientRect()
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
+        if (rect.top < windowHeight.value && rect.bottom > 0) {
           active.push(heading.hashPath)
         }
       }
@@ -73,7 +73,7 @@ export const useSecondarySidebar = createSharedComposable(() => {
     activeHeadings.value = active
   }, 100)
 
-  const { y: scrollY } = useScroll(undefined)
+  const { y: scrollY } = typeof window ? ({ y: ref(0) }) : useScroll(window)
 
   const route = useRoute()
 

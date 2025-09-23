@@ -1,5 +1,5 @@
 <template>
-  <div class="playground" p="$f-px" f="$px $px-min-16 $px-max-40" translate-x="[calc(-1*var(--f-px))]" relative rounded-12 outline="1.5 neutral/10 ~" of-hidden>
+  <div class="playground" f-p-sm relative rounded-12 outline="1.5 neutral/10 ~" of-hidden>
     <slot />
   </div>
 </template>

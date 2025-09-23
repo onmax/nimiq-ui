@@ -6,12 +6,12 @@ import { useHeaderScroll } from '../composables/useHeaderScroll'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import Logo from './Logo.vue'
 import MobileOutlineAccordion from './MobileOutlineAccordion.vue'
+import Sidebar from './Sidebar.vue'
 
 const searchOpen = ref(false)
 const menuOpen = ref(false)
 
 const SearchCommandBox = defineAsyncComponent(() => import('./SearchCommandBox.vue'))
-const Sidebar = defineAsyncComponent(() => import('./Sidebar.vue'))
 
 const { route } = useRouter()
 const { isHeaderVisible } = useHeaderScroll()

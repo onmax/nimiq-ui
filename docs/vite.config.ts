@@ -15,6 +15,7 @@ const __dirname = dirname(__filename)
 export default defineConfig(async () => ({
   resolve: {
     alias: {
+      'nimiq-css': resolve(__dirname, '../packages/nimiq-css/src/'),
       'nimiq-vitepress-theme': resolve(__dirname, '../packages/nimiq-vitepress-theme/src/'),
     },
   },

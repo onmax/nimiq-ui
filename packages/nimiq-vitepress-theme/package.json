@@ -87,15 +87,17 @@
   },
   "devDependencies": {
     "@iconify/utils": "catalog:icons",
+    "@types/mark.js": "^8.11.12",
     "@types/markdown-it": "catalog:types",
     "@unocss/cli": "catalog:style",
     "bumpp": "catalog:cli",
     "consola": "catalog:node",
     "defu": "catalog:utils",
+    "i": "^0.3.7",
     "pathe": "catalog:node",
     "typescript": "catalog:dev",
     "unbuild": "catalog:build",
-    "unocss": "66.4.2",
+    "unocss": "catalog:style",
     "unocss-preset-animations": "catalog:style",
     "unocss-preset-onmax": "catalog:style"
   }

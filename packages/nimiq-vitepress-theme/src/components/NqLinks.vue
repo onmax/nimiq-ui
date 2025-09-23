@@ -49,7 +49,7 @@ const items = computed(() => {
 <template>
   <div flex="~ gap-8" class="nq-raw">
     <a v-for="({ label, href, icon, title = label, variant }, index) in items" :key="href" :href :title target="_blank" rel="noopener noreferrer" nq-arrow f-text-xs mx-0 font-semibold z-100 :class="variant || (index === 0 ? 'nq-pill-blue' : 'nq-pill-secondary')">
-      <div v-if="icon && icon !== false" :class="icon" mr-4 />
+      <div v-if="!!icon && icon !== false" :class="icon" mr-4 />
       {{ label }}
     </a>
   </div>

@@ -3,6 +3,7 @@ import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/exter
 import { defineConfig, presetIcons } from 'unocss'
 import { presetOnmax } from 'unocss-preset-onmax'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
+import { presetNimiq } from '../packages/nimiq-css/src/index'
 
 export default defineConfig<PresetWind3Theme>({
   content: {
@@ -126,12 +127,12 @@ export default defineConfig<PresetWind3Theme>({
       presets: { wind4: { preflights: { theme: { mode: true } } } },
     }),
     // Temporarily disable Nimiq preset
-    // presetNimiq({
-    //   utilities: true,
-    //   attributifyUtilities: true,
-    //   typography: true,
-    //   outputCSSLayer: false,
-    // }),
+    presetNimiq({
+      utilities: true,
+      attributifyUtilities: true,
+      typography: true,
+      outputCSSLayer: false,
+    }),
     presetIcons({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/tabler'),
@@ -140,5 +141,5 @@ export default defineConfig<PresetWind3Theme>({
       },
     }),
   ],
-  outputToCssLayers: false,
+  outputToCssLayers: true,
 })

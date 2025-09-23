@@ -24,12 +24,10 @@ A versatile headline component that makes your content stand out with style. Per
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqHeadline
   title="Welcome to Nimiq"
   description="The browser-based blockchain designed for simplicity and accessibility."
 />
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -37,13 +35,11 @@ A versatile headline component that makes your content stand out with style. Per
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqHeadline
   label="Getting Started"
   title="Build Your First App"
   description="Learn how to create amazing applications with Nimiq in just a few minutes."
 />
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -51,13 +47,11 @@ A versatile headline component that makes your content stand out with style. Per
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqHeadline
   align="left"
   title="Documentation"
   description="Comprehensive guides and API references to help you build with Nimiq."
 />
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -65,13 +59,11 @@ A versatile headline component that makes your content stand out with style. Per
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqHeadline
   :h1="false"
   title="Nimiq Ecosystem"
   description="Explore the complete suite of tools and applications built on Nimiq."
 />
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -79,14 +71,12 @@ A versatile headline component that makes your content stand out with style. Per
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqHeadline
   label="Feature Spotlight"
   title="Browser-Based Mining"
   description="Experience the world's first browser-based blockchain that requires no downloads or installations."
   align="left"
 />
-</NqPlayground>
 
 </ComponentPreview>
 

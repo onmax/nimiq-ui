@@ -1,27 +1,46 @@
 <script setup>
-import { TabsContent, TabsList, TabsRoot, TabsTrigger } from 'reka-ui'
+import { Tabs } from 'reka-ui/namespaced'
+import NqPlayground from './NqPlayground.vue'
 </script>
 
 <template>
-  <TabsRoot w-full default-value="preview" f-my-lg class="nq-raw">
-    <TabsList relative shrink-0 f-mx-lg flex="~ items-center justify-start gap-x-12" w-max aria-label="See the markdown code and rendered preview">
-      <!-- <TabsIndicator absolute px-8 left-0 h-3 bottom-2 w="$reka-tabs-indicator-size" bg-blue
-        translate-x="$reka-tabs-indicator-position" translate-y-1 transition="[width,transform]"
-        duration-300 /> -->
-      <TabsTrigger value="code" aria-label="Code Tab" bg-transparent transition-all data-active:font-semibold nq-pill-tertiary data-active:nq-pill-blue translate-y-0 shadow-none ring="1.5 neutral-300 data-active:0">
+  <Tabs.Root w-full default-value="preview" f-my-lg class="nq-raw component-preview">
+    <Tabs.List
+      relative shrink-0 flex="~ items-center justify-start" w-max
+      aria-label="See the markdown code and rendered preview" bg-neutral-400 rounded-full outline-blue
+    >
+      <Tabs.Indicator
+        w="$reka-tabs-indicator-size" translate-x="$reka-tabs-indicator-position" absolute rounded-full
+        transition="[width,transform]" bg-neutral-0 inset-y-2 duration-300
+      />
+      <Tabs.Trigger
+        value="code" aria-label="Code Tab" z-1 font-semibold ml-2 f-px-2xs py-2 outline="blue offset-1"
+        rounded-full
+      >
         Code
-      </TabsTrigger>
-      <TabsTrigger value="preview" aria-label="Preview Tab" bg-transparent transition-all data-active:font-semibold nq-pill-tertiary data-active:nq-pill-blue translate-y-0 shadow-none ring="1.5 neutral-300 data-active:0">
+      </Tabs.Trigger>
+      <Tabs.Trigger
+        value="preview" aria-label="Preview Tab" z-1 font-semibold mr-2 f-px-2xs py-2
+        outline="blue offset-1" rounded-full
+      >
         Preview
-      </TabsTrigger>
-    </TabsList>
-    <div p-16 f-px-sm>
-      <TabsContent value="code" grow outline-none f-text-sm>
+      </Tabs.Trigger>
+    </Tabs.List>
+    <div>
+      <Tabs.Content value="code" grow outline-none>
         <slot name="code" />
-      </TabsContent>
-      <TabsContent value="preview" grow outline-none>
-        <slot name="default" />
-      </TabsContent>
+      </Tabs.Content>
+      <Tabs.Content value="preview" grow outline-none my-1lh>
+        <NqPlayground>
+          <slot name="default" />
+        </NqPlayground>
+      </Tabs.Content>
     </div>
-  </TabsRoot>
+  </Tabs.Root>
 </template>
+
+<style>
+.component-preview [class*='language-'] pre {
+  font-size: 1em;
+}
+</style>

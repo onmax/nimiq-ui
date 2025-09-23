@@ -40,7 +40,6 @@ cards:
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqGrid>
 
 <NqCard
@@ -59,7 +58,6 @@ cards:
 />
 
 </NqGrid>
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -67,7 +65,6 @@ cards:
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqGrid>
 
 <NqCard
@@ -104,7 +101,6 @@ cards:
 />
 
 </NqGrid>
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -112,7 +108,6 @@ cards:
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqGrid>
 
 <NqLargeCard
@@ -134,7 +129,6 @@ cards:
 />
 
 </NqGrid>
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -142,7 +136,6 @@ cards:
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqGrid>
 
 <NqCard
@@ -185,6 +178,5 @@ cards:
 />
 
 </NqGrid>
-</NqPlayground>
 
 </ComponentPreview>

@@ -9,7 +9,8 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
-      "nimiq-vitepress-theme": ["./packages/nimiq-vitepress-theme/src/index.ts"]
+      "nimiq-vitepress-theme": ["./packages/nimiq-vitepress-theme/src/index.ts"],
+      "nimiq-css": ["./packages/nimiq-css/src/unocss/index.ts"]
     },
     "resolveJsonModule": true,
     "types": [

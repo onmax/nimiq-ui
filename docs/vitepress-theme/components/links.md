@@ -32,14 +32,12 @@ Display a single external link with an icon.
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqLinks :item="{
   label: 'GitHub Repository',
   href: 'https://github.com/nimiq/ui',
   icon: 'i-nimiq:arrow-from-bottom-right',
   title: 'View source code on GitHub'
 }" />
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -49,7 +47,6 @@ Display multiple related links in a horizontal layout.
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqLinks :items="[
   {
     label: 'Documentation',
@@ -70,7 +67,6 @@ Display multiple related links in a horizontal layout.
     title: 'Follow us on Twitter'
   }
 ]" />
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -80,7 +76,6 @@ Simple text links without icons for minimal designs.
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqLinks :items="[
   {
     label: 'Terms of Service',
@@ -95,7 +90,6 @@ Simple text links without icons for minimal designs.
     href: '/contact'
   }
 ]" />
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -105,7 +99,6 @@ Use different pill variants to color-code your links.
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqLinks :items="[
   {
     label: 'Documentation',
@@ -126,7 +119,6 @@ Use different pill variants to color-code your links.
     icon: 'i-nimiq:help'
   }
 ]" />
-</NqPlayground>
 
 </ComponentPreview>
 
@@ -136,7 +128,6 @@ Links automatically get appropriate icons based on their domain. Set `icon: fals
 
 <ComponentPreview lang="vue">
 
-<NqPlayground>
 <NqLinks :items="[
   {
     label: 'GitHub Repository',
@@ -156,7 +147,6 @@ Links automatically get appropriate icons based on their domain. Set `icon: fals
     icon: false
   }
 ]" />
-</NqPlayground>
 
 </ComponentPreview>
 

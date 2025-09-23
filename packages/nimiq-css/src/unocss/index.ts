@@ -148,7 +148,8 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
         if (_rule === '.nq-shadow') // we define the shadow in the theme
           continue
         const rule = _rule.replace(new RegExp(`^\.${DEFAULT_PREFIX}`), `.${prefix}`)
-        const ruleName = rule.replace(/^\./, '').trim().split(/[:*]/).at(0)?.split(/\s/).at(0)
+        const ruleNameMatch = rule.match(/^\.([\w-]+)/)
+        const ruleName = ruleNameMatch?.[1]
         if (!ruleName)
           throw new Error(`Rule name not found for ${rule}`)
         rulesNamesStr.push(ruleName)
@@ -272,6 +273,7 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
     layer: `${prefix}preflight`,
   })
 
+  // @ts-expect-error This is fine
   presets.push(presetLightDark({ colors, prefix, layer: `${prefix}colors` }))
 
   const colorsWithGradientsRe = 'neutral|blue|green|orange|red|gold'

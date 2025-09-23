@@ -1,3 +1,4 @@
+import { useEventListener } from '@vueuse/core'
 import { onMounted, onUnmounted, readonly, ref } from 'vue'
 
 /**
@@ -57,17 +58,15 @@ export function useHeaderScroll(threshold = 10, hideDelay = 100) {
     lastScrollY.value = currentScrollY
   }
 
+  useEventListener('scroll', handleScroll, { passive: true })
+
   onMounted(() => {
     // Initialize scroll position
     scrollY.value = window.scrollY
     lastScrollY.value = window.scrollY
-
-    // Add scroll event listener with passive option for better performance
-    window.addEventListener('scroll', handleScroll, { passive: true })
   })
 
   onUnmounted(() => {
-    window.removeEventListener('scroll', handleScroll)
     if (hideTimeout) {
       clearTimeout(hideTimeout)
     }
