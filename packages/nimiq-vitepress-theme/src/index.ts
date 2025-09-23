@@ -1,6 +1,6 @@
 import type { NimiqVitepressThemeConfig } from 'nimiq-vitepress-theme/types.js'
 import type { UserConfig } from 'vitepress'
-import { defineConfigWithTheme } from 'vitepress'
+import { defineConfig } from 'vitepress'
 
 export function defineNimiqVitepressConfig<T = NimiqVitepressThemeConfig>(config: UserConfig<T>): UserConfig<T> {
   const defaultConfig: UserConfig<T> = {
@@ -15,7 +15,7 @@ export function defineNimiqVitepressConfig<T = NimiqVitepressThemeConfig>(config
     },
   }
 
-  return defineConfigWithTheme<T>({
+  return defineConfig<T>({
     extends: defaultConfig,
     ...config,
   })

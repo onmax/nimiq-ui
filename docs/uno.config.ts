@@ -1,154 +1,17 @@
-import type { PresetWind3Theme } from 'unocss'
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
-import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 import { defineConfig, presetIcons } from 'unocss'
 import { presetOnmax } from 'unocss-preset-onmax'
+import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { presetNimiq } from '../packages/nimiq-css/src/index'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
-const themeIconsLoader = FileSystemIconLoader(resolve(__dirname, '../packages/nimiq-vitepress-theme/src/assets/icons'))
-const docsIconsLoader = FileSystemIconLoader(resolve(__dirname, './public/assets/icons'))
-
-async function tryLoadIcon(loader: ReturnType<typeof FileSystemIconLoader>, name: string) {
-  try {
-    return await loader(name)
-  }
-  catch {
-    return null
-  }
-}
-
-async function localIconLoader(name: string) {
-  return (await tryLoadIcon(themeIconsLoader, name))
-    ?? (await tryLoadIcon(docsIconsLoader, name))
-}
-
-export default defineConfig<PresetWind3Theme>({
+export default defineConfig({
   content: {
     filesystem: ['./.vitepress/config.ts', '../**/**.{vue,md}', './theme/components/**/*.vue', './config.ts'],
   },
-
-  // Temporarily comment out safelist to identify problematic rules
-  // safelist: [
-  //   // Ensure all dynamic color utility classes are generated for the icon set
-  //   // Text colors for all Nimiq colors that might be used dynamically
-  //   'text-neutral',
-  //   'text-blue',
-  //   'text-green',
-  //   'text-gold',
-  //   'text-red',
-  //   'text-orange',
-  //   'text-purple',
-  //   'text-neutral-50',
-  //   'text-neutral-100',
-  //   'text-neutral-200',
-  //   'text-neutral-300',
-  //   'text-neutral-400',
-  //   'text-neutral-500',
-  //   'text-neutral-600',
-  //   'text-neutral-700',
-  //   'text-neutral-800',
-  //   'text-neutral-900',
-  //   'text-neutral-1100',
-  //   'text-blue-400',
-  //   'text-blue-500',
-  //   'text-blue-600',
-  //   'text-blue-1100',
-  //   'text-green-400',
-  //   'text-green-500',
-  //   'text-green-600',
-  //   'text-green-1100',
-  //   'text-gold-400',
-  //   'text-gold-500',
-  //   'text-gold-600',
-  //   'text-gold-1100',
-  //   'text-red-400',
-  //   'text-red-500',
-  //   'text-red-600',
-  //   'text-red-1100',
-  //   'text-orange-400',
-  //   'text-orange-500',
-  //   'text-orange-600',
-  //   'text-orange-1100',
-  //   'text-purple-400',
-  //   'text-purple-500',
-  //   'text-purple-600',
-  //   'text-purple-1100',
-  //   // Background colors for all Nimiq colors that might be used dynamically
-  //   'bg-neutral',
-  //   'bg-blue',
-  //   'bg-green',
-  //   'bg-gold',
-  //   'bg-red',
-  //   'bg-orange',
-  //   'bg-purple',
-  //   'bg-neutral-50',
-  //   'bg-neutral-100',
-  //   'bg-neutral-200',
-  //   'bg-neutral-300',
-  //   'bg-neutral-400',
-  //   'bg-neutral-500',
-  //   'bg-neutral-600',
-  //   'bg-neutral-700',
-  //   'bg-neutral-800',
-  //   'bg-neutral-900',
-  //   'bg-neutral-1100',
-  //   'bg-blue-400',
-  //   'bg-blue-500',
-  //   'bg-blue-600',
-  //   'bg-blue-1100',
-  //   'bg-green-400',
-  //   'bg-green-500',
-  //   'bg-green-600',
-  //   'bg-green-1100',
-  //   'bg-gold-400',
-  //   'bg-gold-500',
-  //   'bg-gold-600',
-  //   'bg-gold-1100',
-  //   'bg-red-400',
-  //   'bg-red-500',
-  //   'bg-red-600',
-  //   'bg-red-1100',
-  //   'bg-orange-400',
-  //   'bg-orange-500',
-  //   'bg-orange-600',
-  //   'bg-orange-1100',
-  //   'bg-purple-400',
-  //   'bg-purple-500',
-  //   'bg-purple-600',
-  //   'bg-purple-1100',
-  //   // Gradient classes for all Nimiq colors
-  //   'bg-gradient-neutral',
-  //   'bg-gradient-neutral-darkened',
-  //   'bg-gradient-blue',
-  //   'bg-gradient-blue-darkened',
-  //   'nq-hoverable-blue',
-  //   'bg-gradient-green',
-  //   'bg-gradient-green-darkened',
-  //   'nq-hoverable-green',
-  //   'bg-gradient-gold',
-  //   'bg-gradient-gold-darkened',
-  //   'nq-hoverable-gold',
-  //   'bg-gradient-red',
-  //   'bg-gradient-red-darkened',
-  //   'nq-hoverable-red',
-  //   'bg-gradient-orange',
-  //   'bg-gradient-orange-darkened',
-  //   'nq-hoverable-orange',
-  // ],
-  // Temporarily disable shortcuts to isolate issue
-  // shortcuts: [
-  //   ['stack', 'w-full grid grid-cols-1 grid-rows-1 children:row-span-full children:col-span-full children:self-center children:justify-self-center'],
-  // ],
   presets: [
     presetOnmax({
       presets: { wind4: { preflights: { theme: { mode: true } } } },
     }),
-    // Temporarily disable Nimiq preset
     presetNimiq({
       utilities: true,
       attributifyUtilities: true,
@@ -159,7 +22,7 @@ export default defineConfig<PresetWind3Theme>({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/tabler'),
         ...createExternalPackageIconLoader('@iconify-json/simple-icons'),
-        local: localIconLoader,
+        local: FileSystemIconLoader('public/assets/icons'),
       },
     }),
   ],

@@ -25,8 +25,8 @@ export default defineConfig({
     presetIcons({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/tabler'),
-        local: FileSystemIconLoader(resolve(__dirname, './src/assets/icons')),
         ...createExternalPackageIconLoader('nimiq-icons'),
+        local: FileSystemIconLoader(resolve(__dirname, './src/assets/icons')),
       },
     }),
   ],
