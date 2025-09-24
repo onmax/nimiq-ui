@@ -32,17 +32,17 @@ bun add nimiq-vitepress-theme
 
 ### Update your config
 
-Instead of using `defineConfig`, you will need to use `defineConfigWithTheme`:
+Use the Nimiq wrapper function around VitePress's standard `defineConfig`. This approach is compatible with VitePress v2 and avoids the deprecated `defineConfigWithTheme` function:
 
 ::: code-group
 
 ```ts [.vitepress/config.ts]
 import type { NimiqVitepressThemeConfig } from 'nimiq-vitepress-theme'
-import { defineConfigWithTheme } from 'nimiq-vitepress-theme' // [!code hl]
+import { defineNimiqVitepressConfig } from 'nimiq-vitepress-theme' // [!code hl]
 import { themeConfig } from './themeConfig'
 
-export default defineConfigWithTheme<NimiqVitepressThemeConfig>({ // [!code hl]
-  themeConfig // The config structure is different from Vitepress
+export default defineNimiqVitepressConfig<NimiqVitepressThemeConfig>({ // [!code hl]
+  themeConfig, // The config structure is different from Vitepress
 
   // The rest of your config like title, description, etc.
 })
@@ -101,12 +101,12 @@ You can use the [config](https://github.com/onmax/nimiq-ui/tree/main/docs/.vitep
 
 ### Import the layout and CSS
 
-Remove the default Vitepress Theme and instead use `defineNimiqThemeConfig` from `nimiq-vitepress-theme`:
+Create a theme configuration file that extends the Nimiq theme:
 
 ::: code-group
 
-```ts [.vitepress/index.ts]
-import { defineNimiqThemeConfig } from 'nimiq-vitepress-theme'
+```ts [.vitepress/theme/index.ts]
+import { defineNimiqThemeConfig } from 'nimiq-vitepress-theme/theme'
 
 export default defineNimiqThemeConfig({
   enhanceApp({ app }) {
@@ -193,6 +193,37 @@ export default defineConfig(() => {
 :::
 
 For more information about why configure this, please refer to the [Server-Side Rendering | Vite documentation](https://vite.dev/guide/ssr.html#ssr-externals).
+
+## VitePress Built-in Features
+
+The Nimiq VitePress theme supports all standard VitePress features. You can configure them in your `themeConfig` object.
+
+### Local Search
+
+To enable VitePress's built-in local search, add the search configuration to your theme config:
+
+```ts [themeConfig.ts]
+export const themeConfig = {
+  search: {
+    provider: 'local'
+  },
+  // ... rest of your config
+}
+```
+
+This enables VitePress's default local search functionality. For more advanced search options, refer to the [VitePress Search documentation](https://vitepress.dev/reference/default-theme-search).
+
+### Other VitePress Features
+
+All other VitePress configuration options work as expected:
+
+- **Social Links**: Add links to your GitHub, Twitter, etc.
+- **Edit Link**: Configure "Edit this page" functionality
+- **Last Updated**: Show when pages were last modified
+- **Prev/Next Links**: Configure page navigation
+- **Sidebar**: Additional sidebar configuration options
+
+Refer to the [VitePress Default Theme Config](https://vitepress.dev/reference/default-theme-config) for all available options.
 
 ## Customization
 
