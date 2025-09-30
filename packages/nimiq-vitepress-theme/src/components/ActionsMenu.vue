@@ -59,61 +59,61 @@ function toggleExpanded() {
   </div>
 
   <!-- Inline variant (horizontal with borders) -->
-  <div v-else-if="variant === 'inline' && allActions.length > 0" flex="~ gap-8 items-center wrap">
-    <div v-for="(action, index) in allActions" :key="index" flex="~ items-center" relative>
+  <div v-else-if="variant === 'inline' && allActions.length > 0" flex="~ gap-8 items-center wrap" f-my-md>
+    <button
+      v-for="(action, index) in allActions"
+      :key="index"
+      type="button"
+      flex="~ items-center gap-8"
+      p="x-12 y-8"
+      cursor-pointer
+      hover:bg-neutral-100
+      rounded-6
+      transition-colors
+      f-text-xs
+      text-neutral-800
+      border="1 neutral-300"
+      @click="() => action.onClick()"
+    >
+      <div :class="action.icon" />
+      <span>{{ action.label }}</span>
+    </button>
+
+    <div v-if="hasDropdown" relative>
       <button
         type="button"
-        flex="~ items-center gap-8"
-        p="x-12 y-8"
-        cursor-pointer
+        p="x-8 y-8"
         hover:bg-neutral-100
         rounded-6
         transition-colors
-        f-text-xs
-        text-neutral-800
         border="1 neutral-300"
-        @click="() => action.onClick()"
+        @click.stop="toggleExpanded"
       >
-        <div :class="action.icon" />
-        <span>{{ action.label }}</span>
+        <div i-tabler:dots />
       </button>
 
-      <div v-if="index === 0 && hasDropdown" relative ml-8>
-        <button
-          type="button"
-          p="x-8 y-8"
-          hover:bg-neutral-100
-          rounded-6
-          transition-colors
-          border="1 neutral-300"
-          @click.stop="toggleExpanded"
-        >
-          <div i-tabler:dots />
-        </button>
-
-        <Transition
-          enter-active-class="transition-all duration-200"
-          enter-from-class="opacity-0 scale-95"
-          enter-to-class="opacity-100 scale-100"
-          leave-active-class="transition-all duration-150"
-          leave-from-class="opacity-100 scale-100"
-          leave-to-class="opacity-0 scale-95"
-        >
-          <div v-if="isExpanded" absolute left-0 top="[calc(100%+4px)]" min-w-200 bg-white rounded-8 shadow-lg border="1 neutral-200" z-50 py-6>
-            <div v-for="(option, idx) in nativeOptions" :key="`native-${idx}`" flex="~ items-center gap-8" px-10 py-6 cursor-pointer hover:bg-neutral-100 transition-colors f-text-xs text-neutral-800 @click="() => { option.onClick(); isExpanded = false }">
-              <div :class="option.icon" text-14 />
-              <span>{{ option.label }}</span>
-            </div>
-
-            <Separator v-if="nativeOptions.length > 0 && externalOptions.length > 0" my-4 h-1 bg-neutral-200 />
-
-            <div v-for="(option, idx) in externalOptions" :key="`external-${idx}`" flex="~ items-center gap-8" px-10 py-6 cursor-pointer hover:bg-neutral-100 transition-colors f-text-xs text-neutral-800 @click="() => { option.onClick(); isExpanded = false }">
-              <div :class="option.icon" text-14 />
-              <span>{{ option.label }}</span>
-            </div>
+      <Transition
+        enter-active-class="transition-all duration-200"
+        enter-from-class="opacity-0 scale-95"
+        enter-to-class="opacity-100 scale-100"
+        leave-active-class="transition-all duration-150"
+        leave-from-class="opacity-100 scale-100"
+        leave-to-class="opacity-0 scale-95"
+      >
+        <div v-if="isExpanded" absolute left-0 top="[calc(100%+4px)]" min-w-200 bg-white rounded-8 shadow-lg border="1 neutral-200" z-50 py-6>
+          <div v-for="(option, idx) in nativeOptions" :key="`native-${idx}`" flex="~ items-center gap-8" px-10 py-6 cursor-pointer hover:bg-neutral-100 transition-colors f-text-xs text-neutral-800 @click="() => { option.onClick(); isExpanded = false }">
+            <div :class="option.icon" text-14 />
+            <span>{{ option.label }}</span>
           </div>
-        </Transition>
-      </div>
+
+          <Separator v-if="nativeOptions.length > 0 && externalOptions.length > 0" my-4 h-1 bg-neutral-200 />
+
+          <div v-for="(option, idx) in externalOptions" :key="`external-${idx}`" flex="~ items-center gap-8" px-10 py-6 cursor-pointer hover:bg-neutral-100 transition-colors f-text-xs text-neutral-800 @click="() => { option.onClick(); isExpanded = false }">
+            <div :class="option.icon" text-14 />
+            <span>{{ option.label }}</span>
+          </div>
+        </div>
+      </Transition>
     </div>
   </div>
 

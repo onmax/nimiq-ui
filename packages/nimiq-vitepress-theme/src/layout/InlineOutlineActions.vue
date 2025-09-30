@@ -6,13 +6,12 @@ const { allActions, nativeOptions, externalOptions, hasDropdown } = useOutlineAc
 </script>
 
 <template>
-  <div v-if="allActions.length > 0" f-my-lg>
-    <ActionsMenu
-      :all-actions="allActions"
-      :native-options="nativeOptions"
-      :external-options="externalOptions"
-      :has-dropdown="hasDropdown"
-      variant="inline"
-    />
-  </div>
+  <ActionsMenu
+    v-if="allActions.length > 0"
+    :all-actions="allActions"
+    :native-options="nativeOptions"
+    :external-options="externalOptions"
+    :has-dropdown="hasDropdown"
+    variant="inline"
+  />
 </template>
