@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useOutlineActions } from '../composables/useOutlineActions'
+import { useActionsMenu } from '../composables/useActionsMenu'
 import ActionsMenu from './ActionsMenu.vue'
 
-const { allActions, nativeOptions, externalOptions, hasDropdown } = useOutlineActions()
+const { allActions, nativeOptions, externalOptions, hasDropdown } = useActionsMenu()
 </script>
 
 <template>

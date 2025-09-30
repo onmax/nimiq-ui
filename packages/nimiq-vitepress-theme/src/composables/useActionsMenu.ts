@@ -3,7 +3,9 @@ import { useData } from 'vitepress'
 import { computed } from 'vue'
 import { useSourceCode } from './useSourceCode'
 
-export function useOutlineActions() {
+// @unocss-include
+
+export function useActionsMenu() {
   const { theme } = useData()
   const {
     copyMarkdownContent,

@@ -266,9 +266,27 @@ All other VitePress configuration options work as expected:
 
 Refer to the [VitePress Default Theme Config](https://vitepress.dev/reference/default-theme-config) for all available options.
 
-## Custom Outline Actions
+## Outline Actions
 
-The theme allows you to add custom actions to the right outline sidebar. By default, it includes a "Copy page" button with expandable options for copying markdown links, viewing as markdown, and opening in ChatGPT or Claude.
+The theme provides a powerful actions menu in the right outline sidebar that appears below the table of contents. This menu includes built-in actions for working with page content and supports custom actions you can add through configuration.
+
+### Built-in Actions
+
+By default, the theme includes a **"Copy page"** button that copies the current page content as markdown to your clipboard. This button has an expandable dropdown (accessed via a chevron icon) with additional options:
+
+**Native Options:**
+
+- **Copy markdown link** - Copies a markdown-formatted link to the current page (`copyMarkdownLink` frontmatter option)
+- **View as markdown** - Opens the raw markdown source in a new tab (`copyViewMarkdown` frontmatter option)
+
+**External Options:**
+
+- **Open in ChatGPT** - Opens the page content in ChatGPT's interface (`copyChatGPT` frontmatter option)
+- **Open in Claude** - Opens the page content in Claude's interface (`copyClaude` frontmatter option)
+
+All these options are enabled by default, but you can control which ones appear using frontmatter (see [Controlling Copy Options](#controlling-copy-options-per-page) below).
+
+### Adding Custom Actions
 
 You can add your own custom actions (like a feedback button) through the theme configuration:
 
@@ -291,6 +309,8 @@ export const themeConfig = {
   // ... rest of your config
 }
 ```
+
+Custom actions appear alongside the built-in "Copy page" button in the actions menu.
 
 ### OutlineAction Interface
 

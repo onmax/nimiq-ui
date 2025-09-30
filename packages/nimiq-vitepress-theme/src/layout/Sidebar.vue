@@ -5,8 +5,8 @@ import { Motion } from 'motion-v'
 import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger, ScrollAreaRoot, ScrollAreaScrollbar, ScrollAreaThumb, ScrollAreaViewport } from 'reka-ui'
 import { useData, withBase } from 'vitepress'
 import { ref } from 'vue'
+import { useActionsMenu } from '../composables/useActionsMenu'
 import { useCurrentModule } from '../composables/useCurrentModule'
-import { useOutlineActions } from '../composables/useOutlineActions'
 import { useVisibleModules } from '../composables/useVisibleModules'
 import { renderMarkdown } from '../lib/html-renderer'
 import { isActive } from '../lib/route'
@@ -25,7 +25,7 @@ const { page } = useData<NimiqVitepressThemeConfig>()
 
 const { currentDocModule } = useCurrentModule()
 const { visibleModules } = useVisibleModules()
-const { allActions, nativeOptions, externalOptions, hasDropdown } = useOutlineActions()
+const { allActions, nativeOptions, externalOptions, hasDropdown } = useActionsMenu()
 
 const submoduleNavigatorOpen = ref(false)
 

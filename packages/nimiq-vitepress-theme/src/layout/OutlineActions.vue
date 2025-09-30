@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useOutlineActions } from '../composables/useOutlineActions'
+import { useActionsMenu } from '../composables/useActionsMenu'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import ActionsMenu from './ActionsMenu.vue'
 
-const { allActions, nativeOptions, externalOptions, hasDropdown } = useOutlineActions()
+const { allActions, nativeOptions, externalOptions, hasDropdown } = useActionsMenu()
 const { showOutline, headingTree } = useSecondarySidebar()
 </script>
 
