@@ -351,7 +351,7 @@ export default defineNimiqThemeConfig({
 </template>
 ```
 
-The slot is only visible on desktop in the home layout.
+The slot appears in both desktop header and mobile sidebar (above the modules selector) in the home layout.
 
 ## Customization
 

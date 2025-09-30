@@ -67,7 +67,11 @@ function handleSearchClose() {
               <DrawerOverlay fixed inset-0 bg-neutral bg-opacity-20 />
               <DrawerContent fixed inset-y-0 right-0 w-85vw max-w-450 min-h-screen bg-neutral-100 rounded-l-12 p-0 z-1000>
                 <div w-full f-px-sm h-screen of-hidden class="mobile-sidebar-container">
-                  <Sidebar :search="false" relateive inset-unset size-full p-0 />
+                  <Sidebar :search="false" relateive inset-unset size-full p-0>
+                    <template #header-nav-before-modules>
+                      <slot name="header-nav-before-modules" />
+                    </template>
+                  </Sidebar>
                 </div>
               </DrawerContent>
             </DrawerPortal>
