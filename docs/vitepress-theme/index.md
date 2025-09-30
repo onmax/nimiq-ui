@@ -121,7 +121,7 @@ This will install the layout and will register the Nimiq Components globally.
 
 ### Configure the Vite plugin
 
-The theme provides a Vite plugin that adds Git changelog functionality and source code features:
+The theme provides a Vite plugin that adds Git changelog, source code features, and automatic markdown generation:
 
 ::: code-group
 
@@ -145,6 +145,14 @@ export default defineConfig(() => {
         // Set to false to disable changelog
         gitChangelog: {
           repoURL: 'https://github.com/your-org/your-repo' // Can be different from main repoURL
+        },
+
+        // Markdown generation (optional)
+        // Set to false to disable automatic markdown generation
+        // Or customize with options
+        markdown: {
+          cacheTTL: 3600000, // Cache duration in milliseconds (default: 1 hour)
+          verbose: false // Enable verbose logging (default: false)
         }
       })
     ]
@@ -156,17 +164,19 @@ export default defineConfig(() => {
 
 #### Plugin Options
 
-| Option         | Type              | Default        | Description                                                                      |
-| -------------- | ----------------- | -------------- | -------------------------------------------------------------------------------- |
-| `repoURL`      | `string`          | -              | GitHub repository URL used for source code links and as default for GitChangelog |
-| `contentPath`  | `string`          | `''`           | Directory path where documentation files are located relative to repository root |
-| `gitChangelog` | `object \| false` | Uses `repoURL` | Git changelog configuration or `false` to disable                                |
+| Option         | Type                | Default        | Description                                                                      |
+| -------------- | ------------------- | -------------- | -------------------------------------------------------------------------------- |
+| `repoURL`      | `string`            | -              | GitHub repository URL used for source code links and as default for GitChangelog |
+| `contentPath`  | `string`            | `''`           | Directory path where documentation files are located relative to repository root |
+| `gitChangelog` | `object \| false`   | Uses `repoURL` | Git changelog configuration or `false` to disable                                |
+| `markdown`     | `object \| boolean` | `true`         | Markdown generation options or `false` to disable                                |
 
 The plugin automatically:
 
 - Configures Git changelog functionality using the provided repository URL
 - Enables source code viewing and copying features
 - Constructs proper URLs for "View Source" and "Edit Page" links
+- Generates markdown files for all HTML pages during build
 
 ### Register the theme as internal dependency
 
@@ -193,6 +203,36 @@ export default defineConfig(() => {
 :::
 
 For more information about why configure this, please refer to the [Server-Side Rendering | Vite documentation](https://vite.dev/guide/ssr.html#ssr-externals).
+
+## Copy Page as Markdown
+
+The theme automatically generates markdown versions of all HTML pages during build using the [@mdream/vite](https://github.com/harlan-zw/mdream) plugin. This enables users to easily copy page content as markdown for use with LLMs, note-taking apps, or other tools.
+
+### How it works
+
+1. **Automatic Generation**: The `NimiqVitepressVitePlugin` includes the mdream Vite plugin which automatically converts HTML pages to markdown during build
+2. **Development Support**: In dev mode, markdown is generated on-demand when accessing any page with `.md` extension (e.g., `/guide.html` → `/guide.md`)
+3. **Copy Button**: Each page includes a "Copy page" button that fetches the generated markdown and copies it to the clipboard
+4. **Configurable**: You can customize caching, verbose logging, or disable the feature entirely through the plugin options
+
+The markdown files are saved alongside their corresponding HTML files in the build output (e.g., `getting-started.html` → `getting-started.md`).
+
+### Customization
+
+You can configure the markdown generation or disable it entirely:
+
+```ts
+NimiqVitepressVitePlugin({
+  // Disable markdown generation
+  markdown: false,
+
+  // Or customize options
+  markdown: {
+    cacheTTL: 7200000, // 2 hours cache
+    verbose: true // Enable logging
+  }
+})
+```
 
 ## VitePress Built-in Features
 

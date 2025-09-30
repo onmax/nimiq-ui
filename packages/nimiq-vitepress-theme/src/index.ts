@@ -1,7 +1,6 @@
 import type { NimiqVitepressThemeConfig } from 'nimiq-vitepress-theme/types.js'
 import type { UserConfig } from 'vitepress'
 import { defineConfig } from 'vitepress'
-import { generateMarkdownFiles } from './vite/markdown-generator'
 
 export function defineNimiqVitepressConfig<T = NimiqVitepressThemeConfig>(config: UserConfig<T>): UserConfig<T> {
   const defaultConfig: UserConfig<T> = {
@@ -12,9 +11,6 @@ export function defineNimiqVitepressConfig<T = NimiqVitepressThemeConfig>(config
         light: 'vitesse-light',
         dark: 'vitesse-dark',
       },
-    },
-    buildEnd: async (siteConfig) => {
-      await generateMarkdownFiles(siteConfig.outDir)
     },
   }
 

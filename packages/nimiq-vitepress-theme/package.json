@@ -71,12 +71,11 @@
   "dependencies": {
     "@iconify-json/tabler": "catalog:icons",
     "@iconify-json/vscode-icons": "catalog:icons",
+    "@mdream/vite": "^0.11.0",
     "@nolebase/vitepress-plugin-git-changelog": "catalog:build",
     "@vueuse/core": "catalog:utils",
     "@vueuse/motion": "^3.0.3",
-    "fast-glob": "^3.3.3",
     "mark.js": "catalog:prod",
-    "mdream": "^0.11.0",
     "minisearch": "catalog:prod",
     "motion-v": "^1.6.1",
     "nimiq-icons": "workspace:*",
