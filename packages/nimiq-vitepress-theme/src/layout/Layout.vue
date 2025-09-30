@@ -39,7 +39,7 @@ const isMobileOrTablet = breakpoints.smaller('lg')
   <div v-else-if="isHome" data-layout="home" min-h-screen bg-neutral-1100>
     <template v-if="isMobileOrTablet">
       <Content />
-      <MobileNav fixed bottom-0 />
+      <MobileNav />
     </template>
     <template v-else>
       <DesktopHeader />
