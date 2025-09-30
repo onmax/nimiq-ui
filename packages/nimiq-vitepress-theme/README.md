@@ -85,6 +85,47 @@ interface NimiqVitepressThemeConfig {
 }
 ```
 
+## Layout Slots
+
+The theme provides layout slots for extending functionality:
+
+### `layout-bottom`
+
+A slot rendered at the bottom of the layout, useful for mounting global components like modals or notification systems.
+
+**Example usage:**
+
+```ts
+import type { Theme } from 'vitepress'
+// .vitepress/theme/index.ts
+import { defineNimiqThemeConfig } from 'nimiq-vitepress-theme/theme'
+import { h } from 'vue'
+import MyGlobalModal from './components/MyGlobalModal.vue'
+
+const baseTheme = defineNimiqThemeConfig({
+  enhanceApp({ app }) {
+    // your app enhancements
+  },
+})
+
+export default {
+  extends: baseTheme,
+  Layout: () => {
+    return h(baseTheme.Layout!, null, {
+      'layout-bottom': () => h(MyGlobalModal),
+    })
+  },
+} satisfies Theme
+```
+
+This slot is ideal for:
+
+- Global modals and dialogs
+- Feedback widgets
+- Cookie consent banners
+- Analytics components
+- Any component that needs to be available across all pages
+
 ## Testing the 404 Page
 
 To test the custom 404 error page:

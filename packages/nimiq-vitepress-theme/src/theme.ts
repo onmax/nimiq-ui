@@ -1,5 +1,6 @@
 import type { Theme } from 'vitepress'
 import type { DefineThemeNqVpOptions } from './types'
+import InlineOutlineActions from './components/InlineOutlineActions.vue'
 import NqCard from './components/NqCard.vue'
 import NqGrid from './components/NqGrid.vue'
 import NqHeadline from './components/NqHeadline.vue'
@@ -20,6 +21,7 @@ export function defineNimiqThemeConfig(options: DefineThemeNqVpOptions): Theme {
     async enhanceApp(ctx) {
       if (options?.enhanceApp)
         options.enhanceApp(ctx)
+      ctx.app.component('InlineOutlineActions', InlineOutlineActions)
       ctx.app.component('NqCard', NqCard)
       ctx.app.component('NqGrid', NqGrid)
       ctx.app.component('NqHeadline', NqHeadline)

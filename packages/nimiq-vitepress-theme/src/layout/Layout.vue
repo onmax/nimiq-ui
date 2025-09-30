@@ -93,6 +93,9 @@ const isMobileOrTablet = breakpoints.smaller('lg')
   <div id="toaster-container">
     <Toaster position="bottom-right" :duration="3000" class="nq-raw" style="padding: 0" />
   </div>
+
+  <!-- Custom slot for global components like modals -->
+  <slot name="layout-bottom" />
 </template>
 
 <style>

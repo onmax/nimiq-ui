@@ -60,7 +60,7 @@ export interface NimiqVitepressThemeConfig {
 }
 
 export interface NimiqVitepressFrontmatter {
-  layout?: 'home' | 'docs'
+  layout?: 'home' | 'docs' | 'overview'
   sidebar?: boolean
   outline?: boolean
   secondarySidebar?: boolean
@@ -70,6 +70,7 @@ export interface NimiqVitepressFrontmatter {
   sourceCodePathPrefix?: string
   copyMarkdown?: boolean
   wide?: boolean
+  inlineActions?: boolean
 }
 
 export interface DefineThemeNqVpOptions {
