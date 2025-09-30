@@ -2,7 +2,7 @@
 
 A set of CSS utility classes for the most common use cases.
 
-[Source code](https://github.com/onmax/nimiq-ui/tree/main/packages/nimiq-css/src/css/utilities.css){.nq-arrow .nq-pill-tertiary .nq-raw}
+<NqLinks :item="{ label: 'Source code', href: 'https://github.com/onmax/nimiq-ui/tree/main/packages/nimiq-css/src/css/utilities.css' }" />
 
 ## Usage in Native CSS
 

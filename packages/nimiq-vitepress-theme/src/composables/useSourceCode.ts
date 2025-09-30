@@ -107,15 +107,16 @@ export function useSourceCode() {
 
   const copyMarkdownContent = async () => {
     try {
-      let rawUrl = sourceCodeUrl.value
-
-      if (rawUrl.includes('github.com') && rawUrl.includes('/blob/')) {
-        rawUrl = rawUrl
-          .replace('github.com', 'raw.githubusercontent.com')
-          .replace('/blob/', '/')
+      if (typeof window === 'undefined') {
+        toast.error('Copy functionality not available during server-side rendering')
+        return
       }
 
-      const response = await fetch(rawUrl)
+      const currentPath = window.location.pathname
+      const markdownPath = currentPath.replace(/\.html$/, '.md').replace(/\/$/, '/index.md')
+      const markdownUrl = `${window.location.origin}${markdownPath}`
+
+      const response = await fetch(markdownUrl)
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`)
       }
@@ -126,7 +127,6 @@ export function useSourceCode() {
     }
     catch (error) {
       console.error('Failed to copy markdown content:', error)
-      console.error('Source URL was:', sourceCodeUrl.value)
       toast.error('Failed to copy page content')
     }
   }

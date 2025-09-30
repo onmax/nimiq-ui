@@ -416,9 +416,15 @@ importers:
       '@vueuse/motion':
         specifier: ^3.0.3
         version: 3.0.3(vue@3.5.21(typescript@5.9.2))
+      fast-glob:
+        specifier: ^3.3.3
+        version: 3.3.3
       mark.js:
         specifier: catalog:prod
         version: 8.11.1
+      mdream:
+        specifier: ^0.11.0
+        version: 0.11.0
       minisearch:
         specifier: catalog:prod
         version: 7.2.0
@@ -3278,6 +3284,10 @@ packages:
 
   mdn-data@2.12.2:
     resolution: {integrity: sha512-IEn+pegP1aManZuckezWCO+XZQDplx1366JoVhTpMpBB1sPey/SbveZQUosKiKiGYjg1wH4pMlNgXbCiYgihQA==}
+
+  mdream@0.11.0:
+    resolution: {integrity: sha512-a9FwyC2h+AhXS2sC3yXKNxE52SWHVOgy52YsAxGjB/34E7uWqVv/lsgoz9FD3weXY4iO0X/HiJ6PcyE8Hu6cSg==}
+    hasBin: true
 
   mdurl@2.0.0:
     resolution: {integrity: sha512-Lf+9+2r+Tdp5wXDXC4PcIBjTDtq4UKjCPMQhKIuzpJNW0b96kVqSwW0bT7FhRSfmAiFYgP+SCRvdrDozfh0U5w==}
@@ -8041,6 +8051,12 @@ snapshots:
   mdn-data@2.0.30: {}
 
   mdn-data@2.12.2: {}
+
+  mdream@0.11.0:
+    dependencies:
+      cac: 6.7.14
+      pathe: 2.0.3
+      tinyglobby: 0.2.15
 
   mdurl@2.0.0: {}
 
