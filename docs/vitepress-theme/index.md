@@ -327,9 +327,13 @@ copyOptions: source-only  # Show only "View Source" button
 
 ## Custom Header Slot
 
-The theme provides a slot in the header navigation to add custom content between the search bar and modules dropdown. This is useful for adding custom navigation items, buttons, or other elements.
+The theme provides a `header-nav-before-modules` slot in the header navigation to add custom content between the search bar and modules dropdown. This slot is perfect for adding custom navigation links, action buttons, or any other interactive elements.
 
-To use this slot, create a custom theme file:
+### Basic Usage
+
+To use this slot, you need to extend the theme and provide a component for the slot:
+
+::: code-group
 
 ```ts [.vitepress/theme/index.ts]
 import { defineNimiqThemeConfig } from 'nimiq-vitepress-theme/theme'
@@ -344,7 +348,11 @@ export default defineNimiqThemeConfig({
 })
 ```
 
-Then create your custom component:
+:::
+
+### Examples
+
+#### Simple Link
 
 ```vue [.vitepress/theme/CustomHeaderNav.vue]
 <template>
@@ -357,12 +365,112 @@ Then create your custom component:
     transition-colors
   >
     <div i-tabler:external-link />
-    <span f-text-sm font-medium>Docs</span>
+    <span f-text-sm font-medium>Documentation</span>
   </a>
 </template>
 ```
 
-The slot is only visible on desktop in the home layout.
+#### Multiple Navigation Items
+
+```vue [.vitepress/theme/CustomHeaderNav.vue]
+<template>
+  <div flex="~ items-center gap-8">
+    <a
+      href="/blog"
+      flex="~ items-center gap-8"
+      f-px-2xs py-4 f-rounded-xs
+      bg="transparent hocus:neutral-200"
+      transition-colors
+    >
+      <div i-tabler:news />
+      <span f-text-sm font-medium>Blog</span>
+    </a>
+
+    <a
+      href="https://github.com/your-org/your-repo"
+      target="_blank"
+      flex="~ items-center gap-8"
+      f-px-2xs py-4 f-rounded-xs
+      bg="transparent hocus:neutral-200"
+      transition-colors
+    >
+      <div i-nimiq:logos-github-mono />
+      <span f-text-sm font-medium>GitHub</span>
+    </a>
+  </div>
+</template>
+```
+
+#### Custom Button with Action
+
+```vue [.vitepress/theme/CustomHeaderNav.vue]
+<script setup lang="ts">
+function openFeedback() {
+  // Your custom logic
+  console.log('Open feedback modal')
+}
+</script>
+
+<template>
+  <button
+    type="button"
+    flex="~ items-center gap-8"
+    f-px-2xs py-4 f-rounded-xs
+    bg="transparent hocus:neutral-200"
+    transition-colors
+    @click="openFeedback"
+  >
+    <div i-tabler:message />
+    <span f-text-sm font-medium>Feedback</span>
+  </button>
+</template>
+```
+
+#### Using VitePress Data
+
+You can access VitePress's data and utilities in your custom component:
+
+```vue [.vitepress/theme/CustomHeaderNav.vue]
+<script setup lang="ts">
+import { useData, withBase } from 'vitepress'
+import { computed } from 'vue'
+
+const { theme } = useData()
+
+const customLink = computed(() => theme.value.customHeaderLink || '/default')
+</script>
+
+<template>
+  <a
+    :href="withBase(customLink)"
+    flex="~ items-center gap-8"
+    f-px-2xs py-4 f-rounded-xs
+    bg="transparent hocus:neutral-200"
+    transition-colors
+  >
+    <div i-tabler:link />
+    <span f-text-sm font-medium>Custom Link</span>
+  </a>
+</template>
+```
+
+### Styling Guidelines
+
+To match the theme's design, follow these styling patterns:
+
+- Use `flex="~ items-center gap-8"` for horizontal layouts
+- Apply `f-px-2xs py-4` for consistent padding
+- Use `f-rounded-xs` for rounded corners
+- Add `bg="transparent hocus:neutral-200"` for hover effects
+- Include `transition-colors` for smooth transitions
+- Set text size with `f-text-sm` and weight with `font-medium`
+
+### Notes
+
+- The slot is only visible on **desktop** devices in the **home layout**
+- On mobile/tablet, the header is replaced with the mobile navigation
+- Multiple components can be rendered using a wrapper div
+- You have access to all VitePress composables and theme configuration
 
 ## Customization
 
