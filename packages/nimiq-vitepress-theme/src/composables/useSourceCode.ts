@@ -262,31 +262,22 @@ export function useSourceCode() {
     }
   }
 
-  const getRawMarkdownUrl = () => {
+  const chatGPTUrl = computed(() => {
     const absoluteUrl = getAbsoluteMarkdownUrl()
-
     if (!absoluteUrl)
       return ''
 
-    return encodeURIComponent(absoluteUrl)
-  }
-
-  const chatGPTUrl = computed(() => {
-    const rawUrl = getRawMarkdownUrl()
-    if (!rawUrl)
-      return ''
-
-    const message = `Read ${rawUrl} so I can ask questions about it.`
+    const message = `Read ${absoluteUrl} so I can ask questions about it.`
     const encodedMessage = encodeURIComponent(message)
     return `https://chatgpt.com/?hints=search&q=${encodedMessage}`
   })
 
   const claudeUrl = computed(() => {
-    const rawUrl = getRawMarkdownUrl()
-    if (!rawUrl)
+    const absoluteUrl = getAbsoluteMarkdownUrl()
+    if (!absoluteUrl)
       return ''
 
-    const message = `Read ${rawUrl} so I can ask questions about it.`
+    const message = `Read ${absoluteUrl} so I can ask questions about it.`
     const encodedMessage = encodeURIComponent(message)
     return `https://claude.ai/new?q=${encodedMessage}`
   })
