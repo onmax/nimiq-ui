@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { OutlineAction } from '../types'
+import { Separator } from 'reka-ui'
 import { useData } from 'vitepress'
 import { computed, ref } from 'vue'
 import { useSourceCode } from '../composables/useSourceCode'
@@ -34,7 +35,7 @@ const allActions = computed(() => {
   return [...actions, ...customActions.value]
 })
 
-const dropdownOptions = computed(() => {
+const nativeOptions = computed(() => {
   const options: OutlineAction[] = []
 
   if (copyOptionsConfig.value.markdownLink) {
@@ -58,6 +59,12 @@ const dropdownOptions = computed(() => {
       },
     })
   }
+
+  return options
+})
+
+const externalOptions = computed(() => {
+  const options: OutlineAction[] = []
 
   if (copyOptionsConfig.value.chatgpt) {
     options.push({
@@ -86,7 +93,7 @@ const dropdownOptions = computed(() => {
   return options
 })
 
-const hasDropdown = computed(() => dropdownOptions.value.length > 0)
+const hasDropdown = computed(() => nativeOptions.value.length > 0 || externalOptions.value.length > 0)
 
 function toggleExpanded() {
   isExpanded.value = !isExpanded.value
@@ -117,9 +124,16 @@ function toggleExpanded() {
             leave-from-class="opacity-100 scale-100"
             leave-to-class="opacity-0 scale-95"
           >
-            <div v-if="isExpanded" absolute right-0 top="[calc(100%+4px)]" min-w-200 bg-white rounded-8 shadow-lg border="1 neutral-200" z-50 py-4 @click="isExpanded = false">
-              <div v-for="(option, idx) in dropdownOptions" :key="idx" flex="~ items-center gap-8" px-12 py-8 cursor-pointer hover:bg-neutral-100 transition-colors f-text-xs text-neutral-700 @click="option.onClick">
-                <div :class="option.icon" />
+            <div v-if="isExpanded" absolute right-0 top="[calc(100%+4px)]" min-w-200 bg-white rounded-8 shadow-lg border="1 neutral-200" z-50 py-6 @click="isExpanded = false">
+              <div v-for="(option, idx) in nativeOptions" :key="`native-${idx}`" flex="~ items-center gap-8" px-10 py-6 cursor-pointer hover:bg-neutral-100 transition-colors f-text-xs text-neutral-800 @click="option.onClick">
+                <div :class="option.icon" text-14 />
+                <span>{{ option.label }}</span>
+              </div>
+
+              <Separator v-if="nativeOptions.length > 0 && externalOptions.length > 0" my-4 h-1 bg-neutral-200 />
+
+              <div v-for="(option, idx) in externalOptions" :key="`external-${idx}`" flex="~ items-center gap-8" px-10 py-6 cursor-pointer hover:bg-neutral-100 transition-colors f-text-xs text-neutral-700 @click="option.onClick">
+                <div :class="option.icon" text-14 />
                 <span>{{ option.label }}</span>
               </div>
             </div>
