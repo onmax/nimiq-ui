@@ -10,7 +10,6 @@ const {
   copyMarkdownLink,
   chatGPTUrl,
   claudeUrl,
-  viewAsMarkdown,
   copyOptionsConfig,
   showCopyMarkdown,
 } = useSourceCode()
@@ -50,7 +49,13 @@ const dropdownOptions = computed(() => {
     options.push({
       icon: 'i-tabler:eye',
       label: 'View as markdown',
-      onClick: viewAsMarkdown,
+      onClick: () => {
+        if (typeof window !== 'undefined') {
+          const currentPath = window.location.pathname
+          const markdownPath = currentPath.replace(/\.html$/, '.md').replace(/\/$/, '/index.md')
+          window.open(markdownPath, '_blank', 'noopener,noreferrer')
+        }
+      },
     })
   }
 
@@ -68,7 +73,7 @@ const dropdownOptions = computed(() => {
 
   if (copyOptionsConfig.value.claude) {
     options.push({
-      icon: 'i-tabler:sparkles',
+      icon: 'i-tabler:brand-openai',
       label: 'Open in Claude',
       onClick: () => {
         if (typeof window !== 'undefined') {
@@ -97,58 +102,78 @@ function toggleExpanded() {
         v-for="(action, index) in allActions"
         :key="index"
         flex="~ items-center justify-between"
-        p-4
-        cursor-pointer
-        hover:bg-neutral-100
-        rounded-6
-        transition-colors
-        @click="action.onClick"
+        relative
       >
-        <div flex="~ items-center gap-8" f-text-xs text-neutral-800>
+        <div
+          flex="~ items-center gap-8"
+          flex-1
+          p-4
+          cursor-pointer
+          hover:bg-neutral-100
+          rounded-6
+          transition-colors
+          f-text-xs
+          text-neutral-800
+          @click="action.onClick"
+        >
           <div :class="action.icon" />
           <span>{{ action.label }}</span>
         </div>
 
-        <button
-          v-if="index === 0 && hasDropdown"
-          type="button"
-          p-4
-          hover:bg-neutral-200
-          rounded-4
-          transition-colors
-          @click.stop="toggleExpanded"
-        >
-          <div :class="isExpanded ? 'i-tabler:chevron-up' : 'i-tabler:chevron-down'" />
-        </button>
-      </div>
-
-      <Transition
-        enter-active-class="transition-all duration-200"
-        enter-from-class="opacity-0 -translate-y-8"
-        enter-to-class="opacity-100 translate-y-0"
-        leave-active-class="transition-all duration-200"
-        leave-from-class="opacity-100 translate-y-0"
-        leave-to-class="opacity-0 -translate-y-8"
-      >
-        <div v-if="isExpanded && hasDropdown" flex="~ col gap-4" pl-16>
-          <div
-            v-for="(option, idx) in dropdownOptions"
-            :key="idx"
-            flex="~ items-center gap-8"
-            p-4
-            cursor-pointer
+        <div v-if="index === 0 && hasDropdown" relative>
+          <button
+            type="button"
+            p-6
             hover:bg-neutral-100
             rounded-6
             transition-colors
-            f-text-xs
-            text-neutral-700
-            @click="option.onClick"
+            @click.stop="toggleExpanded"
           >
-            <div :class="option.icon" />
-            <span>{{ option.label }}</span>
-          </div>
+            <div i-tabler:dots />
+          </button>
+
+          <Transition
+            enter-active-class="transition-all duration-200"
+            enter-from-class="opacity-0 scale-95"
+            enter-to-class="opacity-100 scale-100"
+            leave-active-class="transition-all duration-150"
+            leave-from-class="opacity-100 scale-100"
+            leave-to-class="opacity-0 scale-95"
+          >
+            <div
+              v-if="isExpanded"
+              absolute
+              right-0
+              top="[calc(100%+4px)]"
+              min-w-200
+              bg-white
+              rounded-8
+              shadow-lg
+              border="1 neutral-200"
+              z-50
+              py-4
+              @click="isExpanded = false"
+            >
+              <div
+                v-for="(option, idx) in dropdownOptions"
+                :key="idx"
+                flex="~ items-center gap-8"
+                px-12
+                py-8
+                cursor-pointer
+                hover:bg-neutral-100
+                transition-colors
+                f-text-xs
+                text-neutral-700
+                @click="option.onClick"
+              >
+                <div :class="option.icon" />
+                <span>{{ option.label }}</span>
+              </div>
+            </div>
+          </Transition>
         </div>
-      </Transition>
+      </div>
     </div>
   </div>
 </template>
