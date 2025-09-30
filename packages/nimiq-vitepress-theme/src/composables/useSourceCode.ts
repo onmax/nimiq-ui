@@ -139,8 +139,10 @@ export function useSourceCode() {
       }
 
       const pageTitle = page.value.title || document.title || 'Documentation Page'
-      const currentURL = window.location.href
-      const markdownLink = `[${pageTitle}](${currentURL})`
+      const currentPath = window.location.pathname
+      const markdownPath = currentPath.replace(/\.html$/, '.md').replace(/\/$/, '/index.md')
+      const markdownUrl = `${window.location.origin}${markdownPath}`
+      const markdownLink = `[${pageTitle}](${markdownUrl})`
 
       await copy(markdownLink)
       toast.success('Markdown link copied to clipboard')
