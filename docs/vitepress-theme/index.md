@@ -325,6 +325,45 @@ copyOptions: source-only  # Show only "View Source" button
 ---
 ```
 
+## Custom Header Slot
+
+The theme provides a slot in the header navigation to add custom content between the search bar and modules dropdown. This is useful for adding custom navigation items, buttons, or other elements.
+
+To use this slot, create a custom theme file:
+
+```ts [.vitepress/theme/index.ts]
+import { defineNimiqThemeConfig } from 'nimiq-vitepress-theme/theme'
+import CustomHeaderNav from './CustomHeaderNav.vue'
+
+export default defineNimiqThemeConfig({
+  Layout() {
+    return {
+      'header-nav-before-modules': CustomHeaderNav
+    }
+  }
+})
+```
+
+Then create your custom component:
+
+```vue [.vitepress/theme/CustomHeaderNav.vue]
+<template>
+  <a
+    href="https://example.com"
+    target="_blank"
+    flex="~ items-center gap-8"
+    f-px-2xs py-4 f-rounded-xs
+    bg="transparent hocus:neutral-200"
+    transition-colors
+  >
+    <div i-tabler:external-link />
+    <span f-text-sm font-medium>Docs</span>
+  </a>
+</template>
+```
+
+The slot is only visible on desktop in the home layout.
+
 ## Customization
 
 This theme **has not been developed with customatization in mind**. In fact, it has the least possible amount of options on purpose as we want to keep it simple.

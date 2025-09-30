@@ -42,7 +42,11 @@ const isMobileOrTablet = breakpoints.smaller('lg')
       <MobileNav fixed bottom-0 />
     </template>
     <template v-else>
-      <DesktopHeader />
+      <DesktopHeader>
+        <template #header-nav-before-modules>
+          <slot name="header-nav-before-modules" />
+        </template>
+      </DesktopHeader>
       <Content f-pt-xl />
     </template>
   </div>
