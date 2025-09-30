@@ -8,12 +8,12 @@ export default function inlineActionsPlugin(md: MarkdownRenderer): PluginSimple 
 
     // Check conditions for injecting inline actions
     const layout = frontmatter.layout || 'docs'
-    const isDocsOrOverview = layout === 'docs' || layout === 'overview'
-    const outlineDisabled = frontmatter.outline === false
+    const isOverview = layout === 'overview'
+    const isDocsWithoutOutline = layout === 'docs' && frontmatter.outline === false
     const inlineActionsEnabled = frontmatter.inlineActions !== false
 
-    // Only proceed if conditions are met
-    if (!isDocsOrOverview || !outlineDisabled || !inlineActionsEnabled) {
+    // Only proceed if conditions are met: overview layout OR docs with outline disabled
+    if ((!isOverview && !isDocsWithoutOutline) || !inlineActionsEnabled) {
       return
     }
 

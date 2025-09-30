@@ -50,7 +50,7 @@ export function NimiqVitepressVitePlugin(options: NimiqVitepressVitePluginOption
       generateLLMFriendlyDocsForEachPage: true,
       injectLLMHint: false,
       excludeIndexPage: false,
-      stripHTML: false,
+      stripHTML: true,
       ...llmsOptions,
     })
 

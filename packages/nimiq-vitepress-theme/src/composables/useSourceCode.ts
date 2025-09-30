@@ -227,6 +227,13 @@ export function useSourceCode() {
         return
       }
 
+      // Dev server doesn't support copying markdown
+      if (import.meta.env.DEV) {
+        await copy('Dev server not supported')
+        toast.error('Copy markdown not supported in dev mode')
+        return
+      }
+
       const response = await fetch(markdownUrl.value)
 
       if (!response.ok) {

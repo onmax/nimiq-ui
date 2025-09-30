@@ -5,7 +5,9 @@ import { Motion } from 'motion-v'
 import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger, ScrollAreaRoot, ScrollAreaScrollbar, ScrollAreaThumb, ScrollAreaViewport } from 'reka-ui'
 import { useData, withBase } from 'vitepress'
 import { ref } from 'vue'
+import ActionsMenu from '../components/ActionsMenu.vue'
 import { useCurrentModule } from '../composables/useCurrentModule'
+import { useOutlineActions } from '../composables/useOutlineActions'
 import { useVisibleModules } from '../composables/useVisibleModules'
 import { renderMarkdown } from '../lib/html-renderer'
 import { isActive } from '../lib/route'
@@ -23,6 +25,7 @@ const { page } = useData<NimiqVitepressThemeConfig>()
 
 const { currentDocModule } = useCurrentModule()
 const { visibleModules } = useVisibleModules()
+const { allActions, nativeOptions, externalOptions, hasDropdown } = useOutlineActions()
 
 const submoduleNavigatorOpen = ref(false)
 
@@ -146,7 +149,21 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
       </ScrollAreaRoot>
     </template>
 
-    <div border="t neutral-400" :class="{ 'border-none mt-auto': !currentDocModule } " flex="~ items-center" f-px-sm f-py-2xs sticky bottom-0>
+    <!-- Outline Actions - Mobile Only -->
+    <div v-if="allActions.length > 0" border="t neutral-400" f-px-sm f-py-xs max-xl:block xl:hidden>
+      <ActionsMenu
+        :all-actions="allActions"
+        :native-options="nativeOptions"
+        :external-options="externalOptions"
+        :has-dropdown="hasDropdown"
+        variant="sidebar"
+      />
+    </div>
+
+    <div
+      border="t neutral-400" :class="{ 'border-none': !currentDocModule && allActions.length === 0,
+                                       'mt-auto': !currentDocModule && allActions.length === 0 }" flex="~ items-center" f-px-sm f-py-2xs sticky bottom-0
+    >
       <SocialMediaLinks size="sm" translate-x--6 />
       <ThemeSwitcher />
     </div>
