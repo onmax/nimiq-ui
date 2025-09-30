@@ -1,21 +1,136 @@
-import { useClipboard } from '@vueuse/core'
 import { join } from 'pathe'
 import { useData } from 'vitepress'
-import { computed, ref } from 'vue'
+import { computed, onBeforeUnmount, ref } from 'vue'
 import { toast } from 'vue-sonner'
 import { useChangelog } from './useChangelog'
 import { useNimiqConfig } from './useNimiqConfig'
 
 export function useSourceCode() {
-  const { page, frontmatter } = useData()
+  const { page, frontmatter, site } = useData()
   const { repoURL } = useChangelog()
   const nimiqConfig = useNimiqConfig()
 
-  // Use a safer approach for SSR compatibility
-  const clipboardResult = typeof window !== 'undefined'
-    ? useClipboard()
-    : { copy: async () => {}, copied: ref(false), isSupported: ref(false) }
-  const { copy, copied, isSupported } = clipboardResult
+  if (typeof window === 'undefined') {
+    const fallbackCopied = ref(false)
+    const fallbackSupported = ref(false)
+    const emptyString = computed(() => '')
+    const copyOptions = computed(() => ({
+      markdownLink: false,
+      viewMarkdown: false,
+      chatgpt: false,
+      claude: false,
+    }))
+
+    return {
+      showSourceCode: computed(() => false),
+      showCopyMarkdown: computed(() => false),
+      editUrl: emptyString,
+      sourceCodeUrl: emptyString,
+      sourceCodeLabel: computed(() => 'View Source'),
+      copyMarkdownContent: async () => {},
+      copied: fallbackCopied,
+      isSupported: fallbackSupported,
+      copyMarkdownLink: async () => {},
+      chatGPTUrl: emptyString,
+      claudeUrl: emptyString,
+      viewAsMarkdown: () => {},
+      copyOptionsConfig: copyOptions,
+      hasDropdownOptions: computed(() => false),
+    }
+  }
+
+  const copied = ref(false)
+  const isSupported = ref(false)
+  let resetTimer: ReturnType<typeof setTimeout> | undefined
+
+  const determineSupport = () => {
+    if (typeof window === 'undefined') {
+      isSupported.value = false
+      return
+    }
+
+    const nav = window.navigator
+    const hasClipboardAPI = !!nav?.clipboard?.writeText
+    const hasLegacySupport = typeof document !== 'undefined' && typeof document.queryCommandSupported === 'function'
+      && document.queryCommandSupported('copy')
+
+    isSupported.value = hasClipboardAPI || hasLegacySupport
+  }
+
+  const resetCopiedFlag = () => {
+    if (resetTimer)
+      clearTimeout(resetTimer)
+    resetTimer = setTimeout(() => {
+      copied.value = false
+      resetTimer = undefined
+    }, 1500)
+  }
+
+  const copy = async (text: string) => {
+    if (typeof window === 'undefined')
+      throw new Error('Clipboard not available during SSR')
+
+    const nav = window.navigator
+
+    if (nav?.clipboard?.writeText) {
+      await nav.clipboard.writeText(text)
+    }
+    else if (typeof document !== 'undefined' && document.body) {
+      const textarea = document.createElement('textarea')
+      textarea.value = text
+      textarea.setAttribute('readonly', 'true')
+      textarea.style.position = 'absolute'
+      textarea.style.left = '-9999px'
+      document.body.appendChild(textarea)
+      textarea.select()
+      const successful = document.execCommand?.('copy') ?? false
+      document.body.removeChild(textarea)
+      if (!successful)
+        throw new Error('Clipboard copy failed')
+    }
+    else {
+      throw new Error('Clipboard API not supported')
+    }
+
+    copied.value = true
+    resetCopiedFlag()
+  }
+
+  if (typeof window !== 'undefined')
+    determineSupport()
+
+  onBeforeUnmount(() => {
+    if (resetTimer)
+      clearTimeout(resetTimer)
+  })
+
+  const generatedMarkdownPath = computed(() => {
+    const filePath = page.value.relativePath || page.value.filePath || 'index.md'
+
+    if (filePath === 'index.md')
+      return '/index.md'
+
+    if (filePath.endsWith('/index.md')) {
+      const trimmed = filePath.slice(0, -'/index.md'.length)
+      return `/${trimmed}.md`
+    }
+
+    return `/${filePath}`
+  })
+
+  const markdownUrl = computed(() => {
+    const base = site.value.base?.replace(/\/$/, '') ?? ''
+    const path = generatedMarkdownPath.value
+    return `${base}${path}`
+  })
+
+  const getAbsoluteMarkdownUrl = () => {
+    if (typeof window === 'undefined')
+      return ''
+
+    const origin = window.location.origin
+    return new URL(markdownUrl.value, origin).href
+  }
 
   const showSourceCode = computed(() => {
     if (!isSupported.value)
@@ -112,11 +227,8 @@ export function useSourceCode() {
         return
       }
 
-      const currentPath = window.location.pathname
-      const markdownPath = currentPath.replace(/\.html$/, '.md').replace(/\/$/, '/index.md')
-      const markdownUrl = `${window.location.origin}${markdownPath}`
+      const response = await fetch(markdownUrl.value)
 
-      const response = await fetch(markdownUrl)
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`)
       }
@@ -139,10 +251,7 @@ export function useSourceCode() {
       }
 
       const pageTitle = page.value.title || document.title || 'Documentation Page'
-      const currentPath = window.location.pathname
-      const markdownPath = currentPath.replace(/\.html$/, '.md').replace(/\/$/, '/index.md')
-      const markdownUrl = `${window.location.origin}${markdownPath}`
-      const markdownLink = `[${pageTitle}](${markdownUrl})`
+      const markdownLink = `[${pageTitle}](${getAbsoluteMarkdownUrl()})`
 
       await copy(markdownLink)
       toast.success('Markdown link copied to clipboard')
@@ -154,19 +263,19 @@ export function useSourceCode() {
   }
 
   const getRawMarkdownUrl = () => {
-    let rawUrl = sourceCodeUrl.value
+    const absoluteUrl = getAbsoluteMarkdownUrl()
 
-    if (rawUrl.includes('github.com') && rawUrl.includes('/blob/')) {
-      rawUrl = rawUrl
-        .replace('github.com', 'raw.githubusercontent.com')
-        .replace('/blob/', '/')
-    }
+    if (!absoluteUrl)
+      return ''
 
-    return encodeURIComponent(rawUrl)
+    return encodeURIComponent(absoluteUrl)
   }
 
   const chatGPTUrl = computed(() => {
     const rawUrl = getRawMarkdownUrl()
+    if (!rawUrl)
+      return ''
+
     const message = `Read ${rawUrl} so I can ask questions about it.`
     const encodedMessage = encodeURIComponent(message)
     return `https://chatgpt.com/?hints=search&q=${encodedMessage}`
@@ -174,6 +283,9 @@ export function useSourceCode() {
 
   const claudeUrl = computed(() => {
     const rawUrl = getRawMarkdownUrl()
+    if (!rawUrl)
+      return ''
+
     const message = `Read ${rawUrl} so I can ask questions about it.`
     const encodedMessage = encodeURIComponent(message)
     return `https://claude.ai/new?q=${encodedMessage}`
@@ -181,7 +293,7 @@ export function useSourceCode() {
 
   const viewAsMarkdown = () => {
     if (typeof window !== 'undefined') {
-      window.open(sourceCodeUrl.value, '_blank', 'noopener,noreferrer')
+      window.open(getAbsoluteMarkdownUrl() || markdownUrl.value, '_blank', 'noopener,noreferrer')
     }
   }
 

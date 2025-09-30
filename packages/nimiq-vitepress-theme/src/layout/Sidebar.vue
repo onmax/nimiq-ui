@@ -67,9 +67,6 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
       </span>
       <CommandMenu v-if="search" f-mt-sm />
 
-      <!-- Custom slot before modules -->
-      <slot name="header-nav-before-modules" />
-
       <!-- Show collapsible when currentDocModule has sidebar content -->
       <CollapsibleRoot v-if="currentDocModule?.sidebar?.length" v-model:open="submoduleNavigatorOpen" w-full f-mt-sm>
         <CollapsibleTrigger bg-transparent w-full relative group outline="~ 1.5 neutral-300" rounded="6 reka-open:b-0" transition-border-radius of-clip>

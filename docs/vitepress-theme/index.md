@@ -147,12 +147,12 @@ export default defineConfig(() => {
           repoURL: 'https://github.com/your-org/your-repo' // Can be different from main repoURL
         },
 
-        // Markdown generation (optional)
-        // Set to false to disable automatic markdown generation
-        // Or customize with options
-        markdown: {
-          cacheTTL: 3600000, // Cache duration in milliseconds (default: 1 hour)
-          verbose: false // Enable verbose logging (default: false)
+        // LLM-friendly markdown generation (optional)
+        // Set to false to disable .md outputs
+        // Or customize using vitepress-plugin-llms settings
+        llms: {
+          domain: 'https://docs.nimiq.com',
+          injectLLMHint: false
         }
       })
     ]
@@ -169,14 +169,14 @@ export default defineConfig(() => {
 | `repoURL`      | `string`            | -              | GitHub repository URL used for source code links and as default for GitChangelog |
 | `contentPath`  | `string`            | `''`           | Directory path where documentation files are located relative to repository root |
 | `gitChangelog` | `object \| false`   | Uses `repoURL` | Git changelog configuration or `false` to disable                                |
-| `markdown`     | `object \| boolean` | `true`         | Markdown generation options or `false` to disable                                |
+| `llms`         | `object \| boolean` | `true`         | LLM-friendly markdown generation options or `false` to disable                   |
 
 The plugin automatically:
 
 - Configures Git changelog functionality using the provided repository URL
 - Enables source code viewing and copying features
 - Constructs proper URLs for "View Source" and "Edit Page" links
-- Generates markdown files for all HTML pages during build
+- Generates LLM-optimized markdown files for every page using `vitepress-plugin-llms`
 
 ### Register the theme as internal dependency
 
@@ -206,14 +206,14 @@ For more information about why configure this, please refer to the [Server-Side 
 
 ## Copy Page as Markdown
 
-The theme automatically generates markdown versions of all HTML pages during build using the [@mdream/vite](https://github.com/harlan-zw/mdream) plugin. This enables users to easily copy page content as markdown for use with LLMs, note-taking apps, or other tools.
+The theme automatically generates markdown versions of all HTML pages during build using the [vitepress-plugin-llms](https://github.com/okineadev/vitepress-plugin-llms) toolkit. This enables users to easily copy page content as markdown for use with LLMs, note-taking apps, or other tools.
 
 ### How it works
 
-1. **Automatic Generation**: The `NimiqVitepressVitePlugin` includes the mdream Vite plugin which automatically converts HTML pages to markdown during build
-2. **Development Support**: In dev mode, markdown is generated on-demand when accessing any page with `.md` extension (e.g., `/guide.html` → `/guide.md`)
+1. **Automatic Generation**: The `NimiqVitepressVitePlugin` bundles `vitepress-plugin-llms`, which converts each documentation page into a dedicated `.md` file during build
+2. **Development Support**: In dev mode, the plugin serves `.md` pages through the Vite dev server so you can copy or test locally without a full build
 3. **Copy Button**: Each page includes a "Copy page" button that fetches the generated markdown and copies it to the clipboard
-4. **Configurable**: You can customize caching, verbose logging, or disable the feature entirely through the plugin options
+4. **Configurable**: You can override any `llmstxt` settings (e.g., domain, hints, additional outputs) or disable the integration entirely through the plugin options
 
 The markdown files are saved alongside their corresponding HTML files in the build output (e.g., `getting-started.html` → `getting-started.md`).
 
@@ -224,12 +224,13 @@ You can configure the markdown generation or disable it entirely:
 ```ts
 NimiqVitepressVitePlugin({
   // Disable markdown generation
-  markdown: false,
+  llms: false,
 
   // Or customize options
-  markdown: {
-    cacheTTL: 7200000, // 2 hours cache
-    verbose: true // Enable logging
+  llms: {
+    domain: 'https://docs.example.com',
+    generateLLMsTxt: true, // Enable llms.txt sitemap
+    generateLLMsFullTxt: false, // Keep the bundle light
   }
 })
 ```
@@ -324,34 +325,6 @@ copyOptions: hidden       # Hide all copy functionality
 copyOptions: source-only  # Show only "View Source" button
 ---
 ```
-
-## Custom Header Slot
-
-Add custom content between the search bar and modules dropdown in the header navigation.
-
-```ts [.vitepress/theme/index.ts]
-import { defineNimiqThemeConfig } from 'nimiq-vitepress-theme/theme'
-import CustomHeaderNav from './CustomHeaderNav.vue'
-
-export default defineNimiqThemeConfig({
-  Layout() {
-    return {
-      'header-nav-before-modules': CustomHeaderNav
-    }
-  }
-})
-```
-
-```vue [.vitepress/theme/CustomHeaderNav.vue]
-<template>
-  <a href="https://example.com" target="_blank" flex="~ items-center gap-8" f-px-2xs py-4 f-rounded-xs bg="transparent hocus:neutral-200" transition-colors>
-    <div i-tabler:external-link />
-    <span f-text-sm font-medium>Docs</span>
-  </a>
-</template>
-```
-
-The slot appears in both desktop header and mobile sidebar (above the modules selector) in the home layout.
 
 ## Customization
 

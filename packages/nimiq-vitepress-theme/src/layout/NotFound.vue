@@ -14,8 +14,8 @@ const isMobileOrTablet = breakpoints.smaller('lg')
 const { randomEmoji } = useRandomEmoji()
 
 const backUrl = computed(() => {
-  if (window.history.length > 1)
-    return window.history.state.back
+  if (typeof window !== 'undefined' && window.history.length > 1)
+    return window.history.state?.back ?? document.referrer ?? '/'
   return '/'
 })
 </script>

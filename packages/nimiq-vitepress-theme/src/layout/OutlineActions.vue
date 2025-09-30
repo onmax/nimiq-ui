@@ -11,6 +11,7 @@ const {
   copyMarkdownLink,
   chatGPTUrl,
   claudeUrl,
+  viewAsMarkdown,
   copyOptionsConfig,
   showCopyMarkdown,
 } = useSourceCode()
@@ -50,13 +51,7 @@ const nativeOptions = computed(() => {
     options.push({
       icon: 'i-tabler:eye',
       label: 'View as markdown',
-      onClick: () => {
-        if (typeof window !== 'undefined') {
-          const currentPath = window.location.pathname
-          const markdownPath = currentPath.replace(/\.html$/, '.md').replace(/\/$/, '/index.md')
-          window.open(markdownPath, '_blank', 'noopener,noreferrer')
-        }
-      },
+      onClick: viewAsMarkdown,
     })
   }
 

@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite'
 import type { VitePluginGitChangelog } from 'vitepress-plugin-git-changelog/types'
-import { viteHtmlToMarkdownPlugin } from '@mdream/vite'
+import llmstxt from 'vitepress-plugin-llms'
 
 export interface NimiqVitepressVitePluginOptions {
   /**
@@ -24,22 +24,11 @@ export interface NimiqVitepressVitePluginOptions {
   gitChangelog?: VitePluginGitChangelog | false
 
   /**
-   * Markdown generation options
-   * Set to false to disable markdown generation
+   * LLM-friendly markdown generation options
+   * Set to false to disable generation
    * @default true
    */
-  markdown?: boolean | {
-    /**
-     * Cache time-to-live for production (milliseconds)
-     * @default 3600000 (1 hour)
-     */
-    cacheTTL?: number
-    /**
-     * Enable verbose logging
-     * @default false
-     */
-    verbose?: boolean
-  }
+  llms?: boolean | Parameters<typeof llmstxt>[0]
 }
 
 export function NimiqVitepressVitePlugin(options: NimiqVitepressVitePluginOptions = {}): Plugin[] {
@@ -47,27 +36,25 @@ export function NimiqVitepressVitePlugin(options: NimiqVitepressVitePluginOption
     repoURL,
     contentPath = '',
     gitChangelog,
-    markdown = true,
+    llms = true,
   } = options
 
   const plugins: Plugin[] = []
 
-  // Add markdown generation plugin
-  if (markdown !== false) {
-    const mdreamOptions = typeof markdown === 'object' ? markdown : {}
-    const mdreamPlugin = viteHtmlToMarkdownPlugin({
-      cacheEnabled: true,
-      cacheTTL: mdreamOptions.cacheTTL ?? 3600000,
-      verbose: mdreamOptions.verbose ?? false,
-      preserveStructure: true,
+  // Add llmstxt plugin to generate markdown copies of each page
+  if (llms !== false) {
+    const llmsOptions = typeof llms === 'object' ? llms : {}
+    const llmsPlugins = llmstxt({
+      generateLLMsTxt: false,
+      generateLLMsFullTxt: false,
+      generateLLMFriendlyDocsForEachPage: true,
+      injectLLMHint: false,
+      excludeIndexPage: false,
+      stripHTML: false,
+      ...llmsOptions,
     })
 
-    // Ensure the plugin runs after other plugins to avoid conflicts
-    if (mdreamPlugin && typeof mdreamPlugin === 'object') {
-      mdreamPlugin.enforce = 'post'
-    }
-
-    plugins.push(mdreamPlugin)
+    plugins.push(...llmsPlugins)
   }
 
   // Add Git changelog plugin if enabled

@@ -1,5 +1,6 @@
 import type { Plugin } from 'vite'
 import { GitChangelog } from '@nolebase/vitepress-plugin-git-changelog/vite'
+import llmstxt from 'vitepress-plugin-llms'
 import { groupIconVitePlugin } from './code-groups/vite'
 
 type GitChangelogOptions = Parameters<typeof GitChangelog>[0]
@@ -24,12 +25,20 @@ export interface NimiqVitepressVitePluginOptions {
    * Set to false to disable changelog
    */
   gitChangelog?: GitChangelogOptions | false
+
+  /**
+   * LLM-friendly markdown generation options
+   * Set to false to disable generation
+   * @default true
+   */
+  llms?: boolean | Parameters<typeof llmstxt>[0]
 }
 
 export async function NimiqVitepressVitePlugin({
   repoURL,
   contentPath = '',
   gitChangelog,
+  llms = true,
 }: NimiqVitepressVitePluginOptions): Promise<Plugin[]> {
   const { resolveId, configureServer, load, transform } = groupIconVitePlugin()
 
@@ -49,7 +58,7 @@ export async function NimiqVitepressVitePlugin({
     contentPath,
   }
 
-  return [
+  const plugins: Plugin[] = [
     {
       name: 'nimiq-vitepress-plugin',
       enforce: 'pre',
@@ -76,6 +85,76 @@ export async function NimiqVitepressVitePlugin({
     } satisfies Plugin,
     ...externalPlugins,
   ]
+
+  if (llms !== false) {
+    const llmsOptions = typeof llms === 'object' ? llms : {}
+
+    // Add a custom middleware to handle .md requests with proper base path handling
+    // This works around a bug in vitepress-plugin-llms that causes ERR_HTTP_HEADERS_SENT
+    plugins.push({
+      name: 'nimiq-llms-middleware',
+      enforce: 'pre',
+      async configureServer(server) {
+        const { readFile } = await import('node:fs/promises')
+        const { resolve: resolvePath } = await import('node:path')
+
+        server.middlewares.use(async (req, res, next) => {
+          // Only handle .md and .txt requests
+          if (!req.url?.endsWith('.md') && !req.url?.endsWith('.txt')) {
+            return next()
+          }
+
+          try {
+            const vitepressConfig = server.config?.vitepress
+            const base = vitepressConfig?.site?.base || '/'
+            const outDir = vitepressConfig?.outDir ?? 'dist'
+
+            // Strip base path from URL if present
+            let urlPath = req.url
+            if (base !== '/' && urlPath.startsWith(base)) {
+              urlPath = urlPath.slice(base.length - 1) // Keep the leading slash
+            }
+
+            // Remove extension and re-add .md
+            const pathWithoutExt = urlPath.replace(/\.(md|txt)$/, '')
+            const filePath = resolvePath(outDir, `${pathWithoutExt}.md`)
+
+            const content = await readFile(filePath, 'utf-8')
+            res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+            res.end(content)
+          }
+          catch {
+            // File not found or other error - just pass to next middleware
+            next()
+          }
+        })
+      },
+    })
+
+    // Still include the llms plugin for build-time generation
+    const llmsPlugins = llmstxt({
+      generateLLMsTxt: false,
+      generateLLMsFullTxt: false,
+      generateLLMFriendlyDocsForEachPage: true,
+      injectLLMHint: false,
+      excludeIndexPage: false,
+      stripHTML: false,
+      ...llmsOptions,
+    })
+
+    // But filter out its configureServer hook to avoid the double middleware issue
+    const buildOnlyPlugins = llmsPlugins.map((plugin) => {
+      if (plugin && typeof plugin === 'object' && 'configureServer' in plugin) {
+        const { configureServer, ...rest } = plugin
+        return rest
+      }
+      return plugin
+    })
+
+    plugins.push(...buildOnlyPlugins)
+  }
+
+  return plugins
 }
 
 export default NimiqVitepressVitePlugin

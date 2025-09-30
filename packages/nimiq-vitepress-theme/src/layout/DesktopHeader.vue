@@ -45,9 +45,6 @@ const moduleCards = computed(() => {
       <!-- Search -->
       <CommandMenu w-full min-w-320 />
 
-      <!-- Custom slot between search and modules -->
-      <slot name="header-nav-before-modules" />
-
       <!-- Modules Dropdown -->
       <CollapsibleRoot v-model:open="isModulesDropdownOpen" relative>
         <CollapsibleTrigger
