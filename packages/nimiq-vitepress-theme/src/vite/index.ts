@@ -55,12 +55,19 @@ export function NimiqVitepressVitePlugin(options: NimiqVitepressVitePluginOption
   // Add markdown generation plugin
   if (markdown !== false) {
     const mdreamOptions = typeof markdown === 'object' ? markdown : {}
-    plugins.push(viteHtmlToMarkdownPlugin({
+    const mdreamPlugin = viteHtmlToMarkdownPlugin({
       cacheEnabled: true,
       cacheTTL: mdreamOptions.cacheTTL ?? 3600000,
       verbose: mdreamOptions.verbose ?? false,
       preserveStructure: true,
-    }))
+    })
+
+    // Ensure the plugin runs after other plugins to avoid conflicts
+    if (mdreamPlugin && typeof mdreamPlugin === 'object') {
+      mdreamPlugin.enforce = 'post'
+    }
+
+    plugins.push(mdreamPlugin)
   }
 
   // Add Git changelog plugin if enabled
