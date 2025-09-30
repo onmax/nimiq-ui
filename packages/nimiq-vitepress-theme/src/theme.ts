@@ -1,12 +1,12 @@
 import type { Theme } from 'vitepress'
 import type { DefineThemeNqVpOptions } from './types'
-import InlineOutlineActions from './components/InlineOutlineActions.vue'
 import NqCard from './components/NqCard.vue'
 import NqGrid from './components/NqGrid.vue'
 import NqHeadline from './components/NqHeadline.vue'
 import NqLargeCard from './components/NqLargeCard.vue'
 import NqLinks from './components/NqLinks.vue'
 import NqModulesGrid from './components/NqModulesGrid.vue'
+import InlineOutlineActions from './layout/InlineOutlineActions.vue'
 import Layout from './layout/Layout.vue'
 import NotFound from './layout/NotFound.vue'
 
