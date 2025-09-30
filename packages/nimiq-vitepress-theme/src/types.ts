@@ -40,6 +40,12 @@ export interface NimiqVitepressThemeNav<T extends `/${string}/` = any> {
   sidebar: NimiqVitepressSidebar<T>[]
 }
 
+export interface OutlineAction {
+  icon: string
+  label: string
+  onClick: () => void | Promise<void>
+}
+
 export interface NimiqVitepressThemeConfig {
   modules: NimiqVitepressThemeNav[]
   links?: {
@@ -50,6 +56,7 @@ export interface NimiqVitepressThemeConfig {
   showLastUpdated?: boolean
   showEditContent?: boolean
   search?: { provider: 'local' }
+  outlineActions?: OutlineAction[]
 }
 
 export interface NimiqVitepressFrontmatter {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
+import OutlineActions from './OutlineActions.vue'
 
 const { withWidget = true } = defineProps<{ withWidget?: boolean }>()
 
@@ -31,6 +32,9 @@ const { headingTree, isHeadingActive, showOutline, showWidget } = useSecondarySi
         </ol>
       </li>
     </ol>
+
+    <OutlineActions />
+
     <div v-if="withWidget && showWidget" id="widget" max-w-full :class="{ 'f-mt-md': showOutline }" h-max />
   </div>
 </template>

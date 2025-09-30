@@ -265,6 +265,44 @@ All other VitePress configuration options work as expected:
 
 Refer to the [VitePress Default Theme Config](https://vitepress.dev/reference/default-theme-config) for all available options.
 
+## Custom Outline Actions
+
+The theme allows you to add custom actions to the right outline sidebar. By default, it includes a "Copy page" button with expandable options for copying markdown links, viewing as markdown, and opening in ChatGPT or Claude.
+
+You can add your own custom actions (like a feedback button) through the theme configuration:
+
+```ts [themeConfig.ts]
+export const themeConfig = {
+  modules: [
+    // ... your modules
+  ],
+  outlineActions: [
+    {
+      icon: 'i-tabler:message',
+      label: 'Share feedback',
+      onClick: () => {
+        // Open your custom feedback modal
+        // This function has access to the DOM and can trigger any action
+        document.dispatchEvent(new CustomEvent('open-feedback-modal'))
+      }
+    }
+  ],
+  // ... rest of your config
+}
+```
+
+### OutlineAction Interface
+
+Each outline action supports the following properties:
+
+| Property  | Type                          | Description                                |
+| --------- | ----------------------------- | ------------------------------------------ |
+| `icon`    | `string`                      | Icon class (e.g., `i-tabler:message`)      |
+| `label`   | `string`                      | Text displayed next to the icon            |
+| `onClick` | `() => void \| Promise<void>` | Function called when the action is clicked |
+
+The actions appear below the outline (table of contents) with a horizontal separator, maintaining the same visual style as the outline items.
+
 ## Customization
 
 This theme **has not been developed with customatization in mind**. In fact, it has the least possible amount of options on purpose as we want to keep it simple.
