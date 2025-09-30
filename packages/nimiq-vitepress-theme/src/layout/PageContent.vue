@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import CopyButtonGroup from '../components/CopyButtonGroup.vue'
 import { useBreadcrumbs } from '../composables/useBreadcrumbs'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import { useSourceCode } from '../composables/useSourceCode'
@@ -13,7 +12,7 @@ const { breadcrumbs, showBreadcrumbs } = useBreadcrumbs()
 
 const { showSecondarySidebar } = useSecondarySidebar()
 
-const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabel } = useSourceCode()
+const { showSourceCode, editUrl, sourceCodeUrl, sourceCodeLabel } = useSourceCode()
 </script>
 
 <template>
@@ -24,11 +23,7 @@ const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabe
     }" f-pt-sm f="$px $px-min-32 $px-max-64" pb="f-xl xl:sm" flex="~ gap-16" relative h-full max-xl:f-px-lg
   >
     <div flex="~ col" size-full flex-1>
-      <div
-        v-if="showBreadcrumbs || showSourceCode || showCopyMarkdown"
-        f-pb-lg
-        flex="~ items-center justify-between"
-      >
+      <div v-if="showBreadcrumbs || showSourceCode" f-pb-lg flex="~ items-center justify-between">
         <ul v-if="showBreadcrumbs" flex="~ items-center gap-12">
           <li v-for="({ text, icon }, i) in breadcrumbs" :key="text" contents w-max>
             <div v-if="icon" :class="icon" />
@@ -38,11 +33,9 @@ const { showSourceCode, showCopyMarkdown, editUrl, sourceCodeUrl, sourceCodeLabe
         </ul>
         <div v-else />
 
-        <div v-if="showSourceCode || showCopyMarkdown" flex="~ items-center gap-8 sm:gap-12">
-          <CopyButtonGroup />
-
+        <div v-if="showSourceCode" flex="~ items-center gap-8 sm:gap-12">
           <a
-            v-if="showSourceCode" :href="sourceCodeUrl" target="_blank" rel="noopener" rounded-4 nq-pill-tertiary
+            :href="sourceCodeUrl" target="_blank" rel="noopener" rounded-4 nq-pill-tertiary
             outline="~ 1.5 neutral-500" nq-arrow un-text="f-2xs neutral-900" flex="~ row gap-4"
           >
             <div i-nimiq:logos-github-mono op-80 />

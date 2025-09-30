@@ -61,7 +61,7 @@ const dropdownOptions = computed(() => {
 
   if (copyOptionsConfig.value.chatgpt) {
     options.push({
-      icon: 'i-tabler:brand-openai',
+      icon: 'i-local:openai',
       label: 'Open in ChatGPT',
       onClick: () => {
         if (typeof window !== 'undefined') {
@@ -73,7 +73,7 @@ const dropdownOptions = computed(() => {
 
   if (copyOptionsConfig.value.claude) {
     options.push({
-      icon: 'i-tabler:brand-openai',
+      icon: 'i-local:claude',
       label: 'Open in Claude',
       onClick: () => {
         if (typeof window !== 'undefined') {
@@ -95,40 +95,17 @@ function toggleExpanded() {
 
 <template>
   <div v-if="allActions.length > 0" f-mt-md>
-    <hr border-neutral-200 f-my-md>
+    <hr border-neutral-400 f-my-md>
 
     <div flex="~ col gap-4">
-      <div
-        v-for="(action, index) in allActions"
-        :key="index"
-        flex="~ items-center justify-between"
-        relative
-      >
-        <div
-          flex="~ items-center gap-8"
-          flex-1
-          p-4
-          cursor-pointer
-          hover:bg-neutral-100
-          rounded-6
-          transition-colors
-          f-text-xs
-          text-neutral-800
-          @click="action.onClick"
-        >
+      <div v-for="(action, index) in allActions" :key="index" flex="~ items-center justify-between" relative>
+        <div flex="~ items-center gap-8" flex-1 p-4 cursor-pointer hover:bg-neutral-100 rounded-6 transition-colors f-text-xs text-neutral-800 @click="action.onClick">
           <div :class="action.icon" />
           <span>{{ action.label }}</span>
         </div>
 
         <div v-if="index === 0 && hasDropdown" relative>
-          <button
-            type="button"
-            p-6
-            hover:bg-neutral-100
-            rounded-6
-            transition-colors
-            @click.stop="toggleExpanded"
-          >
+          <button type="button" p-6 hover:bg-neutral-100 rounded-6 transition-colors @click.stop="toggleExpanded">
             <div i-tabler:dots />
           </button>
 
@@ -140,33 +117,8 @@ function toggleExpanded() {
             leave-from-class="opacity-100 scale-100"
             leave-to-class="opacity-0 scale-95"
           >
-            <div
-              v-if="isExpanded"
-              absolute
-              right-0
-              top="[calc(100%+4px)]"
-              min-w-200
-              bg-white
-              rounded-8
-              shadow-lg
-              border="1 neutral-200"
-              z-50
-              py-4
-              @click="isExpanded = false"
-            >
-              <div
-                v-for="(option, idx) in dropdownOptions"
-                :key="idx"
-                flex="~ items-center gap-8"
-                px-12
-                py-8
-                cursor-pointer
-                hover:bg-neutral-100
-                transition-colors
-                f-text-xs
-                text-neutral-700
-                @click="option.onClick"
-              >
+            <div v-if="isExpanded" absolute right-0 top="[calc(100%+4px)]" min-w-200 bg-white rounded-8 shadow-lg border="1 neutral-200" z-50 py-4 @click="isExpanded = false">
+              <div v-for="(option, idx) in dropdownOptions" :key="idx" flex="~ items-center gap-8" px-12 py-8 cursor-pointer hover:bg-neutral-100 transition-colors f-text-xs text-neutral-700 @click="option.onClick">
                 <div :class="option.icon" />
                 <span>{{ option.label }}</span>
               </div>

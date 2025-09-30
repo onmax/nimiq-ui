@@ -303,6 +303,28 @@ Each outline action supports the following properties:
 
 The actions appear below the outline (table of contents) with a horizontal separator, maintaining the same visual style as the outline items.
 
+### Controlling Copy Options per Page
+
+You can control which copy options appear in the dropdown menu using frontmatter:
+
+```md
+---
+copyMarkdownLink: false  # Hide "Copy markdown link" option
+copyViewMarkdown: true   # Show "View as markdown" option (default: true)
+copyChatGPT: true        # Show "Open in ChatGPT" option (default: true)
+copyClaude: true         # Show "Open in Claude" option (default: true)
+---
+```
+
+You can also hide the entire copy feature on specific pages:
+
+```md
+---
+copyOptions: hidden       # Hide all copy functionality
+copyOptions: source-only  # Show only "View Source" button
+---
+```
+
 ## Customization
 
 This theme **has not been developed with customatization in mind**. In fact, it has the least possible amount of options on purpose as we want to keep it simple.
