@@ -18,6 +18,8 @@ function toggleExpanded() {
 }
 </script>
 
+<!-- @unocss-include -->
+
 <template>
   <!-- Outline variant (vertical with hover background) -->
   <div v-if="variant === 'outline' && allActions.length > 0" flex="~ col gap-4">
