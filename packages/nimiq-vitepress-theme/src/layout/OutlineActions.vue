@@ -8,7 +8,7 @@ const { showOutline, headingTree } = useSecondarySidebar()
 </script>
 
 <template>
-  <div v-if="allActions.length > 0" f-mt-md>
+  <div v-if="allActions.length > 0" mt-auto>
     <hr v-if="showOutline && headingTree.length > 0" border-neutral-400 f-my-md>
 
     <ActionsMenu

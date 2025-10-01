@@ -9,9 +9,11 @@ const { headingTree, isHeadingActive, showOutline, showWidget } = useSecondarySi
 
 <template>
   <div
-    f-text-xs sticky f="$h $h-min-60 $h-max-88" h="[calc(100vh-var(--f-h))]" f-top-xl f-px-sm of-y-auto f-pb-xs
+    f-text-xs sticky f="$h $h-min-60 $h-max-88" h="[calc(100vh-var(--f-h))]" f-top-xl f-px-sm of-y-auto f-pb-xs flex="~ col"
   >
-    <div v-if="showOutline" text-neutral-700 flex="~ gap-8 items-center">
+    <div v-if="withWidget && showWidget" id="widget" max-w-full h-max />
+
+    <div v-if="showOutline" text-neutral-700 flex="~ gap-8 items-center" :class="{ 'f-mt-md': withWidget && showWidget }">
       <div i-tabler:align-left />
       On this page
     </div>
@@ -34,7 +36,5 @@ const { headingTree, isHeadingActive, showOutline, showWidget } = useSecondarySi
     </ol>
 
     <OutlineActions />
-
-    <div v-if="withWidget && showWidget" id="widget" max-w-full :class="{ 'f-mt-md': showOutline }" h-max />
   </div>
 </template>
