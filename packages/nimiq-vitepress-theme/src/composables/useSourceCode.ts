@@ -1,4 +1,4 @@
-import mdream from 'mdream'
+import { htmlToMarkdown } from 'mdream'
 import { join } from 'pathe'
 import { useData } from 'vitepress'
 import { computed, onBeforeUnmount, ref } from 'vue'
@@ -233,7 +233,7 @@ export function useSourceCode() {
       }
 
       // Convert HTML to markdown using mdream
-      const markdown = await mdream(contentEl.innerHTML)
+      const markdown = await htmlToMarkdown(contentEl.innerHTML)
 
       await copy(markdown)
       toast.success('Page content copied to clipboard')
