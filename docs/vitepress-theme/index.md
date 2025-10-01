@@ -206,34 +206,36 @@ For more information about why configure this, please refer to the [Server-Side 
 
 ## Copy Page as Markdown
 
-The theme automatically generates markdown versions of all HTML pages during build using the [vitepress-plugin-llms](https://github.com/okineadev/vitepress-plugin-llms) toolkit. This enables users to easily copy page content as markdown for use with LLMs, note-taking apps, or other tools.
+The theme automatically generates markdown versions of all HTML pages during build using [@mdream/vite](https://github.com/harlan-zw/mdream). This enables users to easily copy page content as markdown for use with LLMs, note-taking apps, or other tools.
 
 ### How it works
 
-1. **Automatic Generation**: The `NimiqVitepressVitePlugin` bundles `vitepress-plugin-llms`, which converts each documentation page into a dedicated `.md` file during build
-2. **Development Support**: In dev mode, the plugin serves `.md` pages through the Vite dev server so you can copy or test locally without a full build
-3. **Copy Button**: Each page includes a "Copy page" button that fetches the generated markdown and copies it to the clipboard
-4. **Configurable**: You can override any `llmstxt` settings (e.g., domain, hints, additional outputs) or disable the integration entirely through the plugin options
+1. **Automatic Generation**: The `NimiqVitepressVitePlugin` uses `@mdream/vite`, which converts each documentation page into a dedicated `.md` file during build
+2. **Copy Button**: Each page includes a "Copy page" button that fetches the generated markdown and copies it to the clipboard
 
-The markdown files are saved alongside their corresponding HTML files in the build output (e.g., `getting-started.html` → `getting-started.md`).
+The markdown files are saved in a `markdown/` directory in the build output.
 
-### Customization
+### Generating llms.txt files
 
-You can configure the markdown generation or disable it entirely:
+To generate `llms.txt` and `llms-full.txt` files in your repository root, use the mdream CLI after building your docs:
 
-```ts
-NimiqVitepressVitePlugin({
-  // Disable markdown generation
-  llms: false,
+```bash
+# Build the documentation
+pnpm docs:build
 
-  // Or customize options
-  llms: {
-    domain: 'https://docs.example.com',
-    generateLLMsTxt: true, // Enable llms.txt sitemap
-    generateLLMsFullTxt: false, // Keep the bundle light
-  }
-})
+# Generate llms.txt files in the root
+pnpm dlx mdream llms "docs/.vitepress/dist/**/*.html" \
+  --site-name "Nimiq UI" \
+  --description "Build awesome apps with the Nimiq Style" \
+  --origin "https://nimiq.github.io" \
+  -o .
 ```
+
+This will create:
+
+- `llms.txt` - A sitemap of all documentation pages
+- `llms-full.txt` - Complete markdown content of all pages
+- `markdown/` directory - Individual markdown files for each page
 
 ## VitePress Built-in Features
 

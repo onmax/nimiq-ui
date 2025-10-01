@@ -12,7 +12,7 @@ import { NimiqVitepressVitePlugin } from '../packages/nimiq-vitepress-theme/src/
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-export default defineConfig(async () => ({
+export default defineConfig(() => ({
   resolve: {
     alias: {
       'nimiq-css': resolve(__dirname, '../packages/nimiq-css/src/'),
@@ -23,7 +23,7 @@ export default defineConfig(async () => ({
     VueDevTools() as Plugin,
     Inspect(),
     UnoCSS(),
-    NimiqVitepressVitePlugin({
+    ...NimiqVitepressVitePlugin({
       repoURL: 'https://github.com/onmax/nimiq-ui',
       contentPath: 'docs',
     }),

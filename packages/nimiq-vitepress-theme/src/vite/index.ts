@@ -1,94 +1,88 @@
 import type { Plugin } from 'vite'
-import type { VitePluginGitChangelog } from 'vitepress-plugin-git-changelog/types'
-import llmstxt from 'vitepress-plugin-llms'
+import { viteHtmlToMarkdownPlugin } from '@mdream/vite'
+import { GitChangelog } from '@nolebase/vitepress-plugin-git-changelog/vite'
+import { groupIconVitePlugin } from '../code-groups/vite'
+
+type GitChangelogOptions = Parameters<typeof GitChangelog>[0]
 
 export interface NimiqVitepressVitePluginOptions {
   /**
-   * GitHub repository URL for source code links
-   * @example 'https://github.com/your-org/your-repo'
+   * GitHub repository URL (e.g., 'https://github.com/owner/repo')
+   * Used as default for GitChangelog and for constructing source code URLs
    */
   repoURL?: string
 
   /**
-   * Directory path where documentation files are located relative to repository root
-   * @default ''
-   * @example 'docs'
+   * Content directory path relative to repository root
+   * Specifies where documentation files are located
+   * @default '' (repository root)
    */
   contentPath?: string
 
   /**
    * Git changelog configuration
+   * If not provided, will use repoURL as default
    * Set to false to disable changelog
-   * @default Uses repoURL as default
    */
-  gitChangelog?: VitePluginGitChangelog | false
-
-  /**
-   * LLM-friendly markdown generation options
-   * Set to false to disable generation
-   * @default true
-   */
-  llms?: boolean | Parameters<typeof llmstxt>[0]
+  gitChangelog?: GitChangelogOptions | false
 }
 
-export function NimiqVitepressVitePlugin(options: NimiqVitepressVitePluginOptions = {}): Plugin[] {
-  const {
-    repoURL,
-    contentPath = '',
-    gitChangelog,
-    llms = true,
-  } = options
+export function NimiqVitepressVitePlugin({
+  repoURL,
+  contentPath = '',
+  gitChangelog,
+}: NimiqVitepressVitePluginOptions): Plugin[] {
+  const { resolveId, configureServer, load, transform } = groupIconVitePlugin()
 
-  const plugins: Plugin[] = []
+  const externalPlugins: Plugin[] = []
 
-  // Add llmstxt plugin to generate markdown copies of each page
-  if (llms !== false) {
-    const llmsOptions = typeof llms === 'object' ? llms : {}
-    const llmsPlugins = llmstxt({
-      generateLLMsTxt: false,
-      generateLLMsFullTxt: false,
-      generateLLMFriendlyDocsForEachPage: true,
-      injectLLMHint: false,
-      excludeIndexPage: false,
-      stripHTML: true,
-      ...llmsOptions,
-    })
-
-    plugins.push(...llmsPlugins)
-  }
-
-  // Add Git changelog plugin if enabled
+  // Configure GitChangelog with repoURL as default
   if (gitChangelog !== false) {
-    // Dynamically import to avoid hard dependency
-    plugins.push({
-      name: 'nimiq-vitepress-git-changelog',
-      async configResolved(config) {
-        const { GitChangelog } = await import('vitepress-plugin-git-changelog/vite')
-
-        const changelogOptions = gitChangelog || {
-          repoURL: repoURL || '',
-        }
-
-        const changelogPlugin = GitChangelog(changelogOptions)
-        if (changelogPlugin && typeof changelogPlugin === 'object' && 'configResolved' in changelogPlugin) {
-          await changelogPlugin.configResolved?.(config)
-        }
-      },
-    })
+    const changelogConfig = gitChangelog || (repoURL ? { repoURL } : {})
+    if (Object.keys(changelogConfig).length > 0) {
+      externalPlugins.push(GitChangelog(changelogConfig))
+    }
   }
 
-  // Inject config for source code composable
-  plugins.push({
-    name: 'nimiq-vitepress-config',
-    config() {
-      return {
+  // Store configuration in Vite config for use in composables
+  const nimiqConfig = {
+    repoURL,
+    contentPath,
+  }
+
+  const plugins: Plugin[] = [
+    {
+      name: 'nimiq-vitepress-plugin',
+      enforce: 'pre',
+      resolveId,
+      configureServer,
+      load,
+      transform,
+      config: () => ({
         define: {
-          __NIMIQ_VITEPRESS_REPO_URL__: JSON.stringify(repoURL || ''),
-          __NIMIQ_VITEPRESS_CONTENT_PATH__: JSON.stringify(contentPath),
+          __NIMIQ_VITEPRESS_CONFIG__: JSON.stringify(nimiqConfig),
         },
-      }
-    },
-  })
+        optimizeDeps: {
+          exclude: [
+            'nimiq-vitepress-theme',
+            'virtual:nolebase-git-changelog',
+          ],
+        },
+        ssr: {
+          noExternal: [
+            'nimiq-vitepress-theme',
+          ],
+        },
+      }),
+    } satisfies Plugin,
+    ...externalPlugins,
+  ]
+
+  // Add mdream plugin to generate markdown copies of each page
+  plugins.push(viteHtmlToMarkdownPlugin({
+    outputDir: 'markdown',
+    cacheEnabled: true,
+  }))
 
   return plugins
 }
