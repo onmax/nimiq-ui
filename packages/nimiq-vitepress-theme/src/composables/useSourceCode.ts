@@ -1,4 +1,3 @@
-import { htmlToMarkdown } from 'mdream'
 import { join } from 'pathe'
 import { useData } from 'vitepress'
 import { computed, onBeforeUnmount, ref } from 'vue'
@@ -226,15 +225,23 @@ export function useSourceCode() {
         return
       }
 
-      // Get the main content container
-      const contentEl = document.querySelector('.vp-doc') || document.querySelector('main')
-      if (!contentEl) {
-        throw new Error('Could not find page content')
+      const markdownUrl = getMarkdownUrl()
+      if (!markdownUrl) {
+        throw new Error('Could not determine markdown URL')
       }
 
-      // Convert HTML to markdown using mdream
-      const markdown = await htmlToMarkdown(contentEl.innerHTML)
+      const response = await fetch(markdownUrl, {
+        headers: {
+          Accept: 'text/markdown, text/plain, */*',
+        },
+        cache: 'no-cache',
+      })
 
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+      }
+
+      const markdown = await response.text()
       await copy(markdown)
       toast.success('Page content copied to clipboard')
     }
