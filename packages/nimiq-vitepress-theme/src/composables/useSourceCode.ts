@@ -112,6 +112,25 @@ export function useSourceCode() {
     return window.location.href
   }
 
+  const getMarkdownUrl = () => {
+    if (typeof window === 'undefined')
+      return ''
+
+    const url = new URL(window.location.href)
+    const pathname = url.pathname
+
+    // If it's a clean URL (no .html), append .md
+    // Handle index pages: /path/ -> /path/index.md
+    if (pathname.endsWith('/')) {
+      url.pathname = `${pathname}index.md`
+    }
+    else {
+      url.pathname = `${pathname}.md`
+    }
+
+    return url.href
+  }
+
   const showSourceCode = computed(() => {
     if (!isSupported.value)
       return false
@@ -264,31 +283,13 @@ export function useSourceCode() {
     return `https://claude.ai/new?q=${encodedMessage}`
   })
 
-  const viewAsMarkdown = async () => {
+  const viewAsMarkdown = () => {
     if (typeof window === 'undefined')
       return
 
-    try {
-      // Get the main content container
-      const contentEl = document.querySelector('.vp-doc') || document.querySelector('main')
-      if (!contentEl) {
-        throw new Error('Could not find page content')
-      }
-
-      // Convert HTML to markdown using mdream
-      const markdown = await mdream(contentEl.innerHTML)
-
-      // Create a blob and open it in a new window
-      const blob = new Blob([markdown], { type: 'text/markdown' })
-      const url = URL.createObjectURL(blob)
-      window.open(url, '_blank', 'noopener,noreferrer')
-
-      // Clean up the blob URL after a delay
-      setTimeout(() => URL.revokeObjectURL(url), 1000)
-    }
-    catch (error) {
-      console.error('Failed to view as markdown:', error)
-      toast.error('Failed to open markdown view')
+    const markdownUrl = getMarkdownUrl()
+    if (markdownUrl) {
+      window.open(markdownUrl, '_blank', 'noopener,noreferrer')
     }
   }
 
