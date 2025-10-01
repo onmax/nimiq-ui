@@ -227,7 +227,13 @@ export function useSourceCode() {
         return
       }
 
-      const response = await fetch(markdownUrl.value)
+      const response = await fetch(markdownUrl.value, {
+        headers: {
+          Accept: 'text/markdown, text/plain, */*',
+        },
+        cache: 'no-cache',
+        redirect: 'follow',
+      })
 
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`)
