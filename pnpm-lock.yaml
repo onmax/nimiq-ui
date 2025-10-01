@@ -419,6 +419,9 @@ importers:
       mark.js:
         specifier: catalog:prod
         version: 8.11.1
+      mdream:
+        specifier: ^0.12.0
+        version: 0.12.0
       minisearch:
         specifier: catalog:prod
         version: 7.2.0
@@ -3290,6 +3293,10 @@ packages:
 
   mdn-data@2.12.2:
     resolution: {integrity: sha512-IEn+pegP1aManZuckezWCO+XZQDplx1366JoVhTpMpBB1sPey/SbveZQUosKiKiGYjg1wH4pMlNgXbCiYgihQA==}
+
+  mdream@0.12.0:
+    resolution: {integrity: sha512-qLp48OtgV/M7jeeZbiBS/o48ZhZxKrv8ItlvjZxlmL2JM1SqpXLe72O9wokePbg/60iHSes9Md8H+q5Fo+dlXw==}
+    hasBin: true
 
   mdurl@2.0.0:
     resolution: {integrity: sha512-Lf+9+2r+Tdp5wXDXC4PcIBjTDtq4UKjCPMQhKIuzpJNW0b96kVqSwW0bT7FhRSfmAiFYgP+SCRvdrDozfh0U5w==}
@@ -8096,6 +8103,12 @@ snapshots:
   mdn-data@2.0.30: {}
 
   mdn-data@2.12.2: {}
+
+  mdream@0.12.0:
+    dependencies:
+      cac: 6.7.14
+      pathe: 2.0.3
+      tinyglobby: 0.2.15
 
   mdurl@2.0.0: {}
 

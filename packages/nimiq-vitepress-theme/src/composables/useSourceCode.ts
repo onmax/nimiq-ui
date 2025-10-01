@@ -1,3 +1,4 @@
+import mdream from 'mdream'
 import { join } from 'pathe'
 import { useData } from 'vitepress'
 import { computed, onBeforeUnmount, ref } from 'vue'
@@ -6,7 +7,7 @@ import { useChangelog } from './useChangelog'
 import { useNimiqConfig } from './useNimiqConfig'
 
 export function useSourceCode() {
-  const { page, frontmatter, site } = useData()
+  const { page, frontmatter } = useData()
   const { repoURL } = useChangelog()
   const nimiqConfig = useNimiqConfig()
 
@@ -104,32 +105,11 @@ export function useSourceCode() {
       clearTimeout(resetTimer)
   })
 
-  const generatedMarkdownPath = computed(() => {
-    const filePath = page.value.relativePath || page.value.filePath || 'index.md'
-
-    if (filePath === 'index.md')
-      return '/index.md'
-
-    if (filePath.endsWith('/index.md')) {
-      const trimmed = filePath.slice(0, -'/index.md'.length)
-      return `/${trimmed}.md`
-    }
-
-    return `/${filePath}`
-  })
-
-  const markdownUrl = computed(() => {
-    const base = site.value.base?.replace(/\/$/, '') ?? ''
-    const path = generatedMarkdownPath.value
-    return `${base}${path}`
-  })
-
-  const getAbsoluteMarkdownUrl = () => {
+  const getAbsolutePageUrl = () => {
     if (typeof window === 'undefined')
       return ''
 
-    const origin = window.location.origin
-    return new URL(markdownUrl.value, origin).href
+    return window.location.href
   }
 
   const showSourceCode = computed(() => {
@@ -227,20 +207,16 @@ export function useSourceCode() {
         return
       }
 
-      const response = await fetch(markdownUrl.value, {
-        headers: {
-          Accept: 'text/markdown, text/plain, */*',
-        },
-        cache: 'no-cache',
-        redirect: 'follow',
-      })
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+      // Get the main content container
+      const contentEl = document.querySelector('.vp-doc') || document.querySelector('main')
+      if (!contentEl) {
+        throw new Error('Could not find page content')
       }
 
-      const content = await response.text()
-      await copy(content)
+      // Convert HTML to markdown using mdream
+      const markdown = await mdream(contentEl.innerHTML)
+
+      await copy(markdown)
       toast.success('Page content copied to clipboard')
     }
     catch (error) {
@@ -257,7 +233,7 @@ export function useSourceCode() {
       }
 
       const pageTitle = page.value.title || document.title || 'Documentation Page'
-      const markdownLink = `[${pageTitle}](${getAbsoluteMarkdownUrl()})`
+      const markdownLink = `[${pageTitle}](${getAbsolutePageUrl()})`
 
       await copy(markdownLink)
       toast.success('Markdown link copied to clipboard')
@@ -269,7 +245,7 @@ export function useSourceCode() {
   }
 
   const chatGPTUrl = computed(() => {
-    const absoluteUrl = getAbsoluteMarkdownUrl()
+    const absoluteUrl = getAbsolutePageUrl()
     if (!absoluteUrl)
       return ''
 
@@ -279,7 +255,7 @@ export function useSourceCode() {
   })
 
   const claudeUrl = computed(() => {
-    const absoluteUrl = getAbsoluteMarkdownUrl()
+    const absoluteUrl = getAbsolutePageUrl()
     if (!absoluteUrl)
       return ''
 
@@ -288,9 +264,31 @@ export function useSourceCode() {
     return `https://claude.ai/new?q=${encodedMessage}`
   })
 
-  const viewAsMarkdown = () => {
-    if (typeof window !== 'undefined') {
-      window.open(getAbsoluteMarkdownUrl() || markdownUrl.value, '_blank', 'noopener,noreferrer')
+  const viewAsMarkdown = async () => {
+    if (typeof window === 'undefined')
+      return
+
+    try {
+      // Get the main content container
+      const contentEl = document.querySelector('.vp-doc') || document.querySelector('main')
+      if (!contentEl) {
+        throw new Error('Could not find page content')
+      }
+
+      // Convert HTML to markdown using mdream
+      const markdown = await mdream(contentEl.innerHTML)
+
+      // Create a blob and open it in a new window
+      const blob = new Blob([markdown], { type: 'text/markdown' })
+      const url = URL.createObjectURL(blob)
+      window.open(url, '_blank', 'noopener,noreferrer')
+
+      // Clean up the blob URL after a delay
+      setTimeout(() => URL.revokeObjectURL(url), 1000)
+    }
+    catch (error) {
+      console.error('Failed to view as markdown:', error)
+      toast.error('Failed to open markdown view')
     }
   }
 
