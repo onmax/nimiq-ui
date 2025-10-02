@@ -82,6 +82,16 @@ export function NimiqVitepressVitePlugin({
   plugins.push(viteHtmlToMarkdownPlugin({
     outputDir: 'markdown',
     cacheEnabled: true,
+    exclude: [
+      '**/node_modules/**',
+      '**/@vite/**',
+      '**/@id/**',
+      '**/@fs/**',
+      '**/*.js',
+      '**/*.mjs',
+      '**/*.ts',
+      '**/*.tsx',
+    ],
   }))
 
   return plugins
