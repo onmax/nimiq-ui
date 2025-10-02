@@ -1,7 +1,6 @@
-import type { PluginSimple } from 'markdown-it'
 import type { MarkdownEnv, MarkdownRenderer } from 'vitepress'
 
-export default function inlineActionsPlugin(md: MarkdownRenderer): PluginSimple {
+export default function inlineActionsPlugin(md: MarkdownRenderer): void {
   md.core.ruler.after('block', 'inline-actions', (state) => {
     const env = state.env as MarkdownEnv
     const frontmatter = env.frontmatter || {}

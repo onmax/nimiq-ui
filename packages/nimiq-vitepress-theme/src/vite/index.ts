@@ -1,4 +1,5 @@
-import type { Plugin } from 'vite'
+import type { IncomingMessage } from 'node:http'
+import type { Plugin, PreviewServerHook, ServerHook } from 'vite'
 import { viteHtmlToMarkdownPlugin } from '@mdream/vite'
 import { GitChangelog } from '@nolebase/vitepress-plugin-git-changelog/vite'
 import { groupIconVitePlugin } from '../code-groups/vite'
@@ -79,20 +80,109 @@ export function NimiqVitepressVitePlugin({
   ]
 
   // Add mdream plugin to generate markdown copies of each page
-  plugins.push(viteHtmlToMarkdownPlugin({
-    outputDir: 'markdown',
-    cacheEnabled: true,
-    exclude: [
-      '**/node_modules/**',
-      '**/@vite/**',
-      '**/@id/**',
-      '**/@fs/**',
-      '**/*.js',
-      '**/*.mjs',
-      '**/*.ts',
-      '**/*.tsx',
-    ],
-  }))
+  const markdownPlugin = guardMarkdownMiddleware(
+    viteHtmlToMarkdownPlugin({
+      outputDir: 'markdown',
+      cacheEnabled: true,
+      exclude: [
+        '**/node_modules/**',
+        '**/@vite/**',
+        '**/@id/**',
+        '**/@fs/**',
+        '**/*.js',
+        '**/*.mjs',
+        '**/*.ts',
+        '**/*.tsx',
+      ],
+    }),
+  )
+
+  plugins.push(markdownPlugin)
 
   return plugins
+}
+
+function guardMarkdownMiddleware(plugin: Plugin): Plugin {
+  const shouldServeMarkdown = (req: IncomingMessage | undefined) => {
+    if (!req?.url) {
+      return false
+    }
+
+    if (req.url.endsWith('.md')) {
+      return true
+    }
+
+    const accept = req.headers.accept ?? ''
+    return accept.includes('text/markdown')
+  }
+  interface HookObject<T> {
+    handler: T
+    order?: 'pre' | 'post' | null
+  }
+
+  const isHookObject = <T>(value: unknown): value is HookObject<T> => {
+    return Boolean(value) && typeof value === 'object' && 'handler' in (value as Record<string, unknown>)
+  }
+
+  const wrapHook = <T extends (server: any) => any>(hook?: T | HookObject<T>) => {
+    if (!hook) {
+      return hook
+    }
+
+    const original = typeof hook === 'function' ? hook : hook.handler
+
+    const wrapped: T = ((server: any) => {
+      const middlewares = (server as any)?.middlewares
+      if (!middlewares?.use) {
+        return original(server)
+      }
+
+      const originalUse = middlewares.use.bind(middlewares)
+
+      middlewares.use = (fn: any) => originalUse((req: IncomingMessage, res: any, next: any) => {
+        if (shouldServeMarkdown(req)) {
+          return fn(req, res, next)
+        }
+        return next()
+      })
+
+      const result = original(server)
+
+      const restore = () => {
+        middlewares.use = originalUse
+      }
+
+      if (typeof result === 'function') {
+        return (...args: any[]) => {
+          try {
+            return result(...args)
+          }
+          finally {
+            restore()
+          }
+        }
+      }
+
+      if (result && typeof result.then === 'function') {
+        return (result.finally(restore))
+      }
+
+      restore()
+      return result
+    }) as T
+
+    if (!isHookObject<T>(hook)) {
+      return wrapped
+    }
+
+    return {
+      ...hook,
+      handler: wrapped,
+    }
+  }
+
+  plugin.configureServer = wrapHook(plugin.configureServer as ServerHook | HookObject<ServerHook>) as typeof plugin.configureServer
+  plugin.configurePreviewServer = wrapHook(plugin.configurePreviewServer as PreviewServerHook | HookObject<PreviewServerHook>) as typeof plugin.configurePreviewServer
+
+  return plugin
 }

@@ -273,8 +273,7 @@ export const presetNimiq = definePreset((options: NimiqPresetOptions = {}) => {
     layer: `${prefix}preflight`,
   })
 
-  // @ts-expect-error This is fine
-  presets.push(presetLightDark({ colors, prefix, layer: `${prefix}colors` }))
+  presets.push(presetLightDark({ colors, prefix, layer: `${prefix}colors` }) as Preset)
 
   const colorsWithGradientsRe = 'neutral|blue|green|orange|red|gold'
   shortcuts.push(
