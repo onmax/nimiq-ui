@@ -54,7 +54,7 @@ export default defineBuildConfig({
       const srcDir = join(packageDir, 'src')
       const distFile = join(packageDir, 'dist/assets/uno.css')
       const config = join(packageDir, 'uno.config.ts')
-      await execAsync(`unocss "${srcDir}/**/*.vue" -o "${distFile}" --config "${config}"`, { cwd: packageDir })
+      await execAsync(`unocss "${srcDir}/**/*.{vue,ts}" -o "${distFile}" --config "${config}"`, { cwd: packageDir })
     },
   },
 })

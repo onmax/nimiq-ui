@@ -9,7 +9,7 @@ const { headingTree, isHeadingActive, showOutline, showWidget } = useSecondarySi
 
 <template>
   <div
-    f-text-xs sticky f="$h $h-min-60 $h-max-88" h="[calc(100vh-var(--f-h))]" f-top-xl f-px-sm of-y-auto f-pb-xs flex="~ col"
+    f-text-xs sticky f="$h $h-min-60 $h-max-88" h-screen f-px-sm of-y-auto f-pb-xs flex="~ col"
   >
     <div v-if="withWidget && showWidget" id="widget" max-w-full h-max />
 

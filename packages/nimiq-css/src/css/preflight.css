@@ -156,10 +156,6 @@
     --nq-thumb: color-mix(in oklch, var(--colors-neutral-700) 75%, transparent);
   }
 
-  &:where(code) {
-    line-height: 1.875rem;
-  }
-
   :where(:where(h1, h2, h3, h4, h5, h6, p, li, span, a) > code) {
     background-color: var(--colors-neutral-200);
     padding-left: 0.15em;

@@ -47,10 +47,10 @@ const { allActions, nativeOptions, externalOptions, hasDropdown, variant = 'outl
 
             <Separator v-if="nativeOptions.length > 0 && externalOptions.length > 0" my-4 h-1 bg-neutral-200 />
 
-            <div v-for="(option, idx) in externalOptions" :key="`external-${idx}`" flex="~ items-center gap-8" px-10 py-6 cursor-pointer hover:bg-neutral-100 transition-colors f-text-xs text-neutral-800 @click="option.onClick">
+            <button v-for="(option, idx) in externalOptions" :key="`external-${idx}`" flex="~ items-center gap-8" px-10 py-6 cursor-pointer bg="transparent hocus:neutral-100" transition-colors text="f-xs neutral-800" @click="option.onClick">
               <div :class="option.icon" text-14 />
               <span>{{ option.label }}</span>
-            </div>
+            </button>
           </PopoverContent>
         </PopoverPortal>
       </PopoverRoot>

@@ -26,7 +26,7 @@ export function useActionsMenu() {
 
     if (showCopyMarkdown.value) {
       actions.push({
-        icon: 'i-tabler:copy',
+        icon: 'i-nimiq:copy',
         label: 'Copy page',
         onClick: copyMarkdownContent,
       })

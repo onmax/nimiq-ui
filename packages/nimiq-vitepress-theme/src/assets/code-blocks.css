@@ -11,8 +11,11 @@
       padding-left: 8px;
     }
 
-    input:checked + label {
-      outline: 1.5px solid color-mix(in oklch, var(--colors-blue) 50%, transparent);
+    /* Only show outline on checked tab when multiple tabs exist */
+    &:has(> input + label + input) {
+      input:checked + label {
+        outline: 1.5px solid color-mix(in oklch, var(--colors-blue) 50%, transparent);
+      }
     }
   }
   pre {
@@ -104,6 +107,21 @@ pre {
       color: var(--colors-neutral-900);
       background-color: transparent;
     }
+  }
+}
+
+/* Special language-lh-1: line-height 1, hidden UI elements */
+div[class*='language-lh-1'] {
+  > .copy {
+    display: none !important;
+  }
+
+  > .lang {
+    display: none !important;
+  }
+
+  pre code {
+    line-height: 1;
   }
 }
 
@@ -350,6 +368,36 @@ pre {
     /* Direct targeting for TabsContent */
     [data-radix-tabs-content] {
       padding-top: 1rem !important;
+    }
+  }
+}
+
+article.nq-prose details {
+  [class*='language-'] {
+    margin-left: 1lh;
+    margin-right: 1lh;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+
+    pre {
+      margin-bottom: 0;
+      width: calc(100% + 2lh);
+    }
+
+    .lang {
+      line-height: 1;
+      height: max-content;
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+  }
+
+  &:has([class*='language-']:last-child) {
+    padding-bottom: 1lh;
+
+    [class*='language-']:last-child {
+      margin-bottom: 0;
     }
   }
 }
