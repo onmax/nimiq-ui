@@ -104,28 +104,44 @@ export default defineNimiqVitepressConfig({
         subpath: 'vitepress-theme',
         text: 'Vitepress Theme',
         icon: 'i-local:nimiq-vitepress',
-        defaultPageLink: '/vitepress-theme',
+        defaultPageLink: '/vitepress-theme/getting-started',
         description: 'Your Vitepress with Nimiq',
         sidebar: [
           {
+            label: 'Getting Started',
             items: [
-              { text: 'Getting Started', link: '/vitepress-theme', icon: 'i-tabler:arrow-guide ' },
-              { text: 'Layout Types', link: '/vitepress-theme/layouts', icon: 'i-tabler:layout-grid ' },
-              { text: 'Frontmatter', link: '/vitepress-theme/frontmatter', icon: 'i-tabler:file-description ' },
-              { text: 'Hiding Modules', link: '/vitepress-theme/hiding-modules', icon: 'i-tabler:eye-off ' },
-              {
-                text: 'Available Components',
-                icon: 'i-nimiq:widget',
-                items: [
-                  { text: 'Code Block', link: '/vitepress-theme/components/code-block' },
-                  { text: 'Card', link: '/vitepress-theme/components/card' },
-                  { text: 'Grid', link: '/vitepress-theme/components/grid' },
-                  { text: 'Headline', link: '/vitepress-theme/components/headline' },
-                  { text: 'Large Card', link: '/vitepress-theme/components/large-card' },
-                  { text: 'Callout & Blockquotes', link: '/vitepress-theme/components/callouts-and-blockquotes' },
-                  { text: 'Vitepress Components', link: '/vitepress-theme/components/vitepress-components' },
-                ],
-              },
+              { text: 'Introduction', link: '/vitepress-theme/getting-started', icon: 'i-tabler:rocket' },
+              { text: 'Installation', link: '/vitepress-theme/getting-started/installation', icon: 'i-tabler:download' },
+              { text: 'Configuration', link: '/vitepress-theme/getting-started/configuration', icon: 'i-tabler:settings' },
+            ],
+          },
+          {
+            label: 'Guide',
+            items: [
+              { text: 'Layout Types', link: '/vitepress-theme/guide/layouts', icon: 'i-tabler:layout-grid' },
+              { text: 'Frontmatter', link: '/vitepress-theme/guide/frontmatter', icon: 'i-tabler:file-description' },
+              { text: 'Hiding Modules', link: '/vitepress-theme/guide/hiding-modules', icon: 'i-tabler:eye-off' },
+              { text: 'VitePress Integration', link: '/vitepress-theme/guide/vitepress-integration', icon: 'i-tabler:plug' },
+            ],
+          },
+          {
+            label: 'Features',
+            items: [
+              { text: 'Outline Actions', link: '/vitepress-theme/features/outline-actions', icon: 'i-tabler:click' },
+              { text: 'Copy as Markdown', link: '/vitepress-theme/features/copy-as-markdown', icon: 'i-tabler:copy' },
+            ],
+          },
+          {
+            label: 'Components',
+            items: [
+              { text: 'Card', link: '/vitepress-theme/components/card' },
+              { text: 'Grid', link: '/vitepress-theme/components/grid' },
+              { text: 'Headline', link: '/vitepress-theme/components/headline' },
+              { text: 'Large Card', link: '/vitepress-theme/components/large-card' },
+              { text: 'Links', link: '/vitepress-theme/components/links' },
+              { text: 'Code Block', link: '/vitepress-theme/components/code-block' },
+              { text: 'Callout & Blockquotes', link: '/vitepress-theme/components/callouts-and-blockquotes' },
+              { text: 'Vitepress Components', link: '/vitepress-theme/components/vitepress-components' },
             ],
           },
         ],
