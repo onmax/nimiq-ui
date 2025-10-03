@@ -23,7 +23,8 @@ export function useSourceCode() {
 
     return {
       showSourceCode: computed(() => false),
-      showCopyMarkdown: computed(() => false),
+      // expose the copy action during SSR to keep hydration order identical to the client
+      showCopyMarkdown: computed(() => true),
       editUrl: emptyString,
       sourceCodeUrl: emptyString,
       sourceCodeLabel: computed(() => 'View Source'),

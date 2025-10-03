@@ -14,7 +14,12 @@ const { allActions, nativeOptions, externalOptions, hasDropdown, variant = 'outl
 <template>
   <!-- Outline variant (vertical with hover background) -->
   <div v-if="variant === 'outline' && allActions.length > 0" flex="~ col gap-4">
-    <div v-for="(action, index) in allActions" :key="index" flex="~ items-center justify-between" relative>
+    <div
+      v-for="(action, index) in allActions"
+      :key="`${action.label}-${action.icon}-${index}`"
+      flex="~ items-center justify-between"
+      relative
+    >
       <div flex="~ items-center gap-8" flex-1 p-4 cursor-pointer hover:bg-neutral-100 rounded-6 transition-colors text="f-xs neutral-800" @click="() => action.onClick()">
         <div :class="action.icon" />
         <span>{{ action.label }}</span>
@@ -61,7 +66,7 @@ const { allActions, nativeOptions, externalOptions, hasDropdown, variant = 'outl
   <div v-else-if="variant === 'inline' && allActions.length > 0" flex="~ gap-8 items-center wrap" f-my-md>
     <button
       v-for="(action, index) in allActions"
-      :key="index"
+      :key="`${action.label}-${action.icon}-${index}`"
       type="button"
       flex="~ items-center gap-8"
       p="x-12 y-8"
@@ -123,7 +128,12 @@ const { allActions, nativeOptions, externalOptions, hasDropdown, variant = 'outl
 
   <!-- Sidebar variant (vertical with buttons) -->
   <div v-else-if="variant === 'sidebar' && allActions.length > 0" flex="~ col gap-4">
-    <div v-for="(action, index) in allActions" :key="index" flex="~ items-center justify-between" relative>
+    <div
+      v-for="(action, index) in allActions"
+      :key="`${action.label}-${action.icon}-${index}`"
+      flex="~ items-center justify-between"
+      relative
+    >
       <button
         type="button"
         flex="~ items-center gap-8"
