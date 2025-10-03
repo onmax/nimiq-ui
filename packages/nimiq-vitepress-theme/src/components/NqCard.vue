@@ -9,6 +9,7 @@ export type CardLayout = 'column' | 'row'
 export interface NqCardProps {
   icon?: string
   iconClass?: string
+  iconColor?: string
   bgColor?: CardColor
   href?: string
   title?: string
@@ -21,7 +22,7 @@ const props = withDefaults(defineProps<NqCardProps>(), {
   layout: 'column',
 })
 
-const { bgColor, icon, href, iconClass, layout } = toRefs(props)
+const { bgColor, icon, href, iconClass, iconColor: customIconColor, layout } = toRefs(props)
 
 const hasLink = computed(() => !!href.value)
 
@@ -43,10 +44,22 @@ const iconClasses = computed(() => {
     classes.push('shrink-0')
   }
 
+  // Add hover effect for cards without bgColor
+  if (!bgColor.value) {
+    classes.push('group-hocus:text-white!')
+  }
+
   return classes
 })
 
 const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#1DA186', gold: '#ffffffaa' }
+
+const iconColor = computed(() => {
+  if (customIconColor.value) {
+    return customIconColor.value
+  }
+  return colors[bgColor.value!]
+})
 </script>
 
 <template>
@@ -66,7 +79,7 @@ const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#1
   >
     <template v-if="layout === 'row'">
       <div v-if="icon" class="flex-shrink-0">
-        <div :class="iconClasses" :style="`color: ${colors[bgColor!]}`" />
+        <div :class="iconClasses" :style="iconColor ? `color: ${iconColor}` : undefined" />
       </div>
       <div class="flex-1 flex flex-col">
         <span v-if="label" nq-label text-12 mb-4 text="neutral-700 data-inverted:white/50" data-inverted:mb-8>{{ label }}</span>
@@ -75,7 +88,7 @@ const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#1
       </div>
     </template>
     <template v-else>
-      <div v-if="icon" :class="iconClasses" :style="`color: ${colors[bgColor!]}`" />
+      <div v-if="icon" :class="iconClasses" :style="iconColor ? `color: ${iconColor}` : undefined" />
       <span v-if="label" nq-label text-12 mb-4 text="neutral-700 data-inverted:white/50" data-inverted:mb-8>{{ label }}</span>
       <h2 v-if="title" font-semibold f-text="xl data-inverted:2xl" data-inverted:text-white v-html="title" />
       <p v-if="description" text="data-inverted:white/60" data-inverted:f-text-lg data-inverted:mt-4 v-html="description" />

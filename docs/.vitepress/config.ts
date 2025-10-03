@@ -23,10 +23,10 @@ export default defineNimiqVitepressConfig({
           {
             label: 'Getting Started',
             items: [
-              { text: 'Getting started', link: '/nimiq-css/getting-started', icon: 'i-tabler:arrow-guide ' },
-              { text: 'Philosophy', link: '/nimiq-css/philosophy', icon: 'i-tabler:brain ' },
-              { text: 'Migrate from Nimiq Style', link: '/nimiq-css/migrate-from-nimiq-styles', icon: 'i-tabler:arrow-move-right-filled ' },
-              { text: 'Icons', link: '/nimiq-icons/', icon: 'i-tabler:icons ' },
+              { text: 'Introduction', link: '/nimiq-css/getting-started', icon: 'i-tabler:rocket' },
+              { text: 'Installation', link: '/nimiq-css/installation', icon: 'i-tabler:download' },
+              { text: 'Philosophy', link: '/nimiq-css/philosophy', icon: 'i-tabler:brain' },
+              { text: 'Migrate from Nimiq Style', link: '/nimiq-css/migrate-from-nimiq-styles', icon: 'i-tabler:arrow-move-right-filled' },
             ],
           },
           {
@@ -77,7 +77,7 @@ export default defineNimiqVitepressConfig({
           {
             label: 'Getting Started',
             items: [
-              { text: 'Getting started', link: '/frankenstein/getting-started', icon: 'i-tabler:arrow-guide ' },
+              { text: 'Introduction', link: '/frankenstein/getting-started', icon: 'i-tabler:rocket' },
             ],
           },
           {
