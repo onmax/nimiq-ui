@@ -1,7 +1,7 @@
 {
 	"name": "nimiq-flags",
 	"description": "The Nimiq Flags as an iconify icon set.",
-	"version": "1.0.0-beta.117",
+	"version": "1.0.0-beta.118",
 	"iconSetVersion": "1.0.0-beta.117",
 	"main": "index.js",
 	"module": "index.mjs",
