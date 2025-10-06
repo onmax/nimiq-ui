@@ -32,7 +32,7 @@ function handleItemClick(item: LogoContextMenuItem) {
     <ContextMenu.Trigger as-child>
       <a
         flex="~ items-center gap-8 shrink-0"
-        w-full
+        w-max
         relative
         text-neutral
         font-semibold
@@ -97,7 +97,7 @@ function handleItemClick(item: LogoContextMenuItem) {
   <a
     v-else
     flex="~ items-center gap-8 shrink-0"
-    w-full
+    w-max
     relative
     text-neutral
     font-semibold
