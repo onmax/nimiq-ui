@@ -65,7 +65,7 @@ const iconColor = computed(() => {
 <template>
   <component
     :is="hasLink ? 'a' : 'div'"
-    :href class="nq-raw" group relative
+    :href="hasLink ? href : undefined" class="nq-raw" group relative
     :style="`background-image: ${bgColor ? `var(--colors-${bgColor}-gradient)` : ''}`"
     :data-inverted="bgColor ? '' : undefined"
     :data-card="bgColor ? 'colored' : 'default'"
