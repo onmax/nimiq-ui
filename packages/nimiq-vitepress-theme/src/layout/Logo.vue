@@ -1,17 +1,13 @@
 <script setup lang="ts">
 import type { LogoContextMenuItem } from '../types'
+import { ContextMenuContent as Content, ContextMenuItem as Item, ContextMenuPortal as Portal, ContextMenuRoot as Root, ContextMenuSeparator as Separator, ContextMenuTrigger as Trigger } from 'reka-ui'
 import { useData, withBase } from 'vitepress'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 
 const { site, theme } = useData()
 
 const removeNimiqPrefix = (str: string) => str.toLocaleLowerCase().startsWith('nimiq') ? str.slice(6) : str
 const name = computed(() => removeNimiqPrefix(site.value.title))
-
-// Context menu state
-const showContextMenu = ref(false)
-const contextMenuX = ref(0)
-const contextMenuY = ref(0)
 
 // Get version from Vite config
 const version = (window as any).__NIMIQ_VITEPRESS_CONFIG__?.version
@@ -21,20 +17,6 @@ const showVersion = computed(() => theme.value.logoContextMenu?.showVersion !== 
 const customItems = computed<LogoContextMenuItem[]>(() => theme.value.logoContextMenu?.items || [])
 const hasContextMenu = computed(() => (showVersion.value && version) || customItems.value.length > 0)
 
-function handleContextMenu(event: MouseEvent) {
-  if (!hasContextMenu.value)
-    return
-
-  event.preventDefault()
-  contextMenuX.value = event.clientX
-  contextMenuY.value = event.clientY
-  showContextMenu.value = true
-}
-
-function closeContextMenu() {
-  showContextMenu.value = false
-}
-
 function handleItemClick(item: LogoContextMenuItem) {
   if (item.onClick) {
     item.onClick()
@@ -42,39 +24,29 @@ function handleItemClick(item: LogoContextMenuItem) {
   else if (item.href) {
     window.open(item.href, '_blank')
   }
-  closeContextMenu()
-}
-
-// Close context menu on click outside
-if (typeof window !== 'undefined') {
-  window.addEventListener('click', () => {
-    if (showContextMenu.value)
-      closeContextMenu()
-  })
 }
 </script>
 
 <template>
-  <div>
-    <a
-      flex="~ items-center gap-8 shrink-0"
-      w-full
-      relative
-      text-neutral
-      font-semibold
-      :href="withBase('/')"
-      @contextmenu="handleContextMenu"
-    >
-      <img v-if="theme.logo" class="logo" :src="theme.logo">
-      <div v-else i-nimiq:logos-nimiq-horizontal text-20 dark:i-nimiq:logos-nimiq-white-horizontal />
-      <span translate-y--1 text-16 font-light tracking-wide>{{ name }}</span>
-      <span v-if="theme.betaBadge" text-10 font-semibold absolute right-8 top-7 lh-none px-3 py-6 bg-gradient-blue text-white rounded-4 outline="1.5 ~ white/10 offset--1.5">BETA</span>
-    </a>
+  <Root v-if="hasContextMenu">
+    <Trigger as-child>
+      <a
+        flex="~ items-center gap-8 shrink-0"
+        w-full
+        relative
+        text-neutral
+        font-semibold
+        :href="withBase('/')"
+      >
+        <img v-if="theme.logo" class="logo" :src="theme.logo">
+        <div v-else i-nimiq:logos-nimiq-horizontal text-20 dark:i-nimiq:logos-nimiq-white-horizontal />
+        <span translate-y--1 text-16 font-light tracking-wide>{{ name }}</span>
+        <span v-if="theme.betaBadge" text-10 font-semibold absolute right-8 top-7 lh-none px-3 py-6 bg-gradient-blue text-white rounded-4 outline="1.5 ~ white/10 offset--1.5">BETA</span>
+      </a>
+    </Trigger>
 
-    <!-- Context Menu -->
-    <Teleport v-if="showContextMenu" to="body">
-      <div
-        fixed
+    <Portal>
+      <Content
         bg-white
         dark:bg-neutral-800
         border="1 solid neutral-200 dark:neutral-700"
@@ -82,10 +54,6 @@ if (typeof window !== 'undefined') {
         shadow-lg
         py-4
         min-w-150
-        z-9999
-        :style="{ left: `${contextMenuX}px`,
-                  top: `${contextMenuY}px` }"
-        @click.stop
       >
         <!-- Version -->
         <div
@@ -96,20 +64,18 @@ if (typeof window !== 'undefined') {
           text-neutral-700
           dark:text-neutral-400
           font-mono
-          :border-b="customItems.length > 0 ? '1 solid neutral-200 dark:neutral-700' : undefined"
-          :mb-4="customItems.length > 0"
         >
           v{{ version }}
         </div>
 
+        <Separator v-if="showVersion && version && customItems.length > 0" my-4 h-1 bg-neutral-200 dark:bg-neutral-700 />
+
         <!-- Custom Items -->
-        <button
+        <Item
           v-for="(item, index) in customItems"
           :key="index"
-          w-full
           px-12
           py-8
-          text-left
           text-14
           text-neutral-700
           dark:text-neutral-300
@@ -117,12 +83,28 @@ if (typeof window !== 'undefined') {
           transition-colors
           cursor-pointer
           flex="~ items-center gap-8"
+          outline-none
           @click="handleItemClick(item)"
         >
           <div v-if="item.icon" :class="item.icon" text-16 />
           <span>{{ item.label }}</span>
-        </button>
-      </div>
-    </Teleport>
-  </div>
+        </Item>
+      </Content>
+    </Portal>
+  </Root>
+
+  <a
+    v-else
+    flex="~ items-center gap-8 shrink-0"
+    w-full
+    relative
+    text-neutral
+    font-semibold
+    :href="withBase('/')"
+  >
+    <img v-if="theme.logo" class="logo" :src="theme.logo">
+    <div v-else i-nimiq:logos-nimiq-horizontal text-20 dark:i-nimiq:logos-nimiq-white-horizontal />
+    <span translate-y--1 text-16 font-light tracking-wide>{{ name }}</span>
+    <span v-if="theme.betaBadge" text-10 font-semibold absolute right-8 top-7 lh-none px-3 py-6 bg-gradient-blue text-white rounded-4 outline="1.5 ~ white/10 offset--1.5">BETA</span>
+  </a>
 </template>
