@@ -54,6 +54,7 @@ function handleItemClick(item: LogoContextMenuItem) {
         shadow-lg
         py-4
         min-w-150
+        z-200
       >
         <!-- Version -->
         <div
