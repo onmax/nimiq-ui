@@ -17,10 +17,10 @@ const { showSecondarySidebar } = useSecondarySidebar()
 
 const { showSourceCode, sourceCodeUrl, sourceCodeLabel } = useSourceCode()
 
-const { suggestChangesText, editUrl } = useFooter()
+const { pageFooterLeftText, editUrl } = useFooter()
 
-const parsedSuggestChanges = computed(() =>
-  suggestChangesText.value ? parseInlineMarkdown(suggestChangesText.value) : null,
+const parsedPageFooterLeftText = computed(() =>
+  pageFooterLeftText.value ? parseInlineMarkdown(pageFooterLeftText.value) : null,
 )
 </script>
 
@@ -67,8 +67,8 @@ const parsedSuggestChanges = computed(() =>
       <DocNavigation />
 
       <div flex="~ justify-between items-center" f-mt-lg f-text-xs>
-        <a v-if="parsedSuggestChanges" :href="editUrl" target="_blank" rel="noopener" op-70 hover:opacity-100 transition-opacity flex="~ items-center gap-3">
-          <span v-html="parsedSuggestChanges" />
+        <a v-if="parsedPageFooterLeftText" :href="editUrl" target="_blank" rel="noopener" op-70 hover:opacity-100 transition-opacity flex="~ items-center gap-3">
+          <span v-html="parsedPageFooterLeftText" />
           <div i-nimiq:arrow-right text="neutral-700 12" />
         </a>
         <div v-else />

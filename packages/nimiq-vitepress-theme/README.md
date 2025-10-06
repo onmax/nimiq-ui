@@ -78,12 +78,25 @@ interface NimiqVitepressThemeConfig {
   links?: {
     icon: string
     link: string
+    label: string
   }[]
   showLastUpdated?: boolean
   showEditContent?: boolean
   search?: { provider: 'local' }
+  outlineActions?: OutlineAction[]
+  pageFooterLeftText?: false | string
 }
 ```
+
+### Configuration Options
+
+- **`modules`** (required): Array of navigation modules for your documentation
+- **`links`**: Social and external links displayed in the navigation
+- **`showLastUpdated`**: Show last updated timestamp for pages (default: `true`)
+- **`showEditContent`**: Show "Edit this page" link (default: `true`)
+- **`search`**: Enable local search (set to `{ provider: 'local' }`)
+- **`outlineActions`**: Custom actions displayed in the page outline
+- **`pageFooterLeftText`**: Customize page footer text. Set to `false` to hide, or provide a string (supports markdown). Can be overridden per-page via frontmatter
 
 ## Layout Slots
 

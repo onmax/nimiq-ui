@@ -1,32 +1,31 @@
+import type { NimiqVitepressThemeConfig } from '../types'
 import { useData } from 'vitepress'
 import { computed } from 'vue'
-import { useNimiqConfig } from './useNimiqConfig'
 import { useSourceCode } from './useSourceCode'
 
 export function useFooter() {
-  const { page, frontmatter } = useData()
-  const nimiqConfig = useNimiqConfig()
+  const { theme, frontmatter, page } = useData<NimiqVitepressThemeConfig>()
   const { editUrl } = useSourceCode()
 
-  const suggestChangesText = computed(() => {
+  const pageFooterLeftText = computed(() => {
     // Frontmatter takes priority
-    const fmValue = frontmatter.value.suggestChanges
+    const fmValue = frontmatter.value.pageFooterLeftText
     if (fmValue === false)
       return null
 
     if (typeof fmValue === 'string')
       return fmValue
 
-    // Check global config
-    const configValue = nimiqConfig.suggestChanges
-    if (configValue === false)
+    // Check theme config
+    const themeValue = theme.value.pageFooterLeftText
+    if (themeValue === false)
       return null
 
-    if (typeof configValue === 'string')
-      return configValue
+    if (typeof themeValue === 'string')
+      return themeValue
 
-    if (typeof configValue === 'function') {
-      const result = configValue({ path: page.value.filePath })
+    if (typeof themeValue === 'function') {
+      const result = themeValue({ path: page.value.filePath })
       return result || null
     }
 
@@ -35,7 +34,7 @@ export function useFooter() {
   })
 
   return {
-    suggestChangesText,
+    pageFooterLeftText,
     editUrl,
   }
 }

@@ -47,16 +47,41 @@ export interface OutlineAction {
 }
 
 export interface NimiqVitepressThemeConfig {
+  /** Array of navigation modules for your documentation */
   modules: NimiqVitepressThemeNav[]
+  /** Social and external links displayed in the navigation */
   links?: {
     icon: string
     link: string
     label: string
   }[]
+  /**
+   * Show last updated timestamp for pages
+   * @default true
+   */
   showLastUpdated?: boolean
+  /**
+   * Show "Edit this page" link
+   * @default true
+   */
   showEditContent?: boolean
+  /**
+   * Enable local search functionality
+   * @example { provider: 'local' }
+   */
   search?: { provider: 'local' }
+  /** Custom actions displayed in the page outline */
   outlineActions?: OutlineAction[]
+  /**
+   * Customize the page footer left text
+   * - false: hide the footer link
+   * - string: use custom text (supports markdown)
+   * - function: dynamic text based on page path
+   * - undefined: show default "Suggest changes on this page"
+   *
+   * Can be overridden per-page via frontmatter
+   */
+  pageFooterLeftText?: false | string | ((options: { path: string }) => string)
 }
 
 export interface NimiqVitepressFrontmatter {
@@ -71,7 +96,7 @@ export interface NimiqVitepressFrontmatter {
   copyMarkdown?: boolean
   wide?: boolean
   inlineActions?: boolean
-  suggestChanges?: false | string
+  pageFooterLeftText?: false | string
 }
 
 export interface DefineThemeNqVpOptions {

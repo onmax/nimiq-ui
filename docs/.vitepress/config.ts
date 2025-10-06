@@ -12,6 +12,7 @@ export default defineNimiqVitepressConfig({
   ],
   themeConfig: {
     search: { provider: 'local' },
+    pageFooterLeftText: ctx => `Edit [${ctx.path}](https://github.com/onmax/nimiq-ui/blob/main/docs/${ctx.path})`,
     modules: [
       {
         subpath: 'nimiq-css',

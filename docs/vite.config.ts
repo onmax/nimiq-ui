@@ -26,7 +26,6 @@ export default defineConfig(() => ({
     ...NimiqVitepressVitePlugin({
       repoURL: 'https://github.com/onmax/nimiq-ui',
       contentPath: 'docs',
-      suggestChanges: ctx => `Edit [${ctx.path}](https://github.com/onmax/nimiq-ui/blob/main/docs/${ctx.path})`,
     }),
   ],
 }))

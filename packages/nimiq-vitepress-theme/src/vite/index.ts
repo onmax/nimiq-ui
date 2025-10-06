@@ -21,14 +21,6 @@ export interface NimiqVitepressVitePluginOptions {
   contentPath?: string
 
   /**
-   * Customize the "Suggest changes" footer text
-   * - false: hide the footer link
-   * - string: use custom text (supports markdown)
-   * - function: dynamic text based on page path
-   */
-  suggestChanges?: false | string | ((options: { path: string }) => string)
-
-  /**
    * Git changelog configuration
    * If not provided, will use repoURL as default
    * Set to false to disable changelog
@@ -39,7 +31,6 @@ export interface NimiqVitepressVitePluginOptions {
 export function NimiqVitepressVitePlugin({
   repoURL,
   contentPath = '',
-  suggestChanges,
   gitChangelog,
 }: NimiqVitepressVitePluginOptions): Plugin[] {
   const { resolveId, configureServer, load, transform } = groupIconVitePlugin()
@@ -58,7 +49,6 @@ export function NimiqVitepressVitePlugin({
   const nimiqConfig = {
     repoURL,
     contentPath,
-    suggestChanges,
   }
 
   const plugins: Plugin[] = [
