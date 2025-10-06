@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { NqCardProps } from '../components/NqCard.vue'
 import { motion } from 'motion-v'
-import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger } from 'reka-ui'
+import { PopoverContent, PopoverRoot, PopoverTrigger } from 'reka-ui'
 import { withBase } from 'vitepress'
 import { computed, ref } from 'vue'
 
@@ -46,8 +46,8 @@ const moduleCards = computed(() => {
       <CommandMenu w-full min-w-320 />
 
       <!-- Modules Dropdown -->
-      <CollapsibleRoot v-model:open="isModulesDropdownOpen" relative>
-        <CollapsibleTrigger
+      <PopoverRoot v-model:open="isModulesDropdownOpen">
+        <PopoverTrigger
           flex="~ items-center gap-8" f-px-2xs py-4 f-rounded-xs bg="transparent hocus:neutral-200"
           transition-colors group
         >
@@ -56,11 +56,12 @@ const moduleCards = computed(() => {
             i-nimiq:chevron-down text-12 transition-transform duration-200
             :class="{ 'rotate-180': isModulesDropdownOpen }"
           />
-        </CollapsibleTrigger>
+        </PopoverTrigger>
 
-        <CollapsibleContent
-          absolute top-full right-0 min-w-400 max-w-600 bg-neutral-0 border="1 neutral-400"
-          f-rounded-md shadow-lg z-50 un-animate="collapsible" class="modules-dropdown-content" of-clip
+        <PopoverContent
+          side="bottom" align="end" :side-offset="8"
+          min-w-400 max-w-600 bg-neutral-0 border="1 neutral-400"
+          f-rounded-md shadow-lg z-50 class="modules-dropdown-content" of-clip
         >
           <!-- eslint-disable -->
           <motion.div :initial="{ opacity: 0, y: -10 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.2 }"
@@ -83,8 +84,8 @@ const moduleCards = computed(() => {
             </ul>
           </motion.div>
           <!-- eslint-enable -->
-        </CollapsibleContent>
-      </CollapsibleRoot>
+        </PopoverContent>
+      </PopoverRoot>
 
       <!-- Social Media Links -->
       <SocialMediaLinks />
