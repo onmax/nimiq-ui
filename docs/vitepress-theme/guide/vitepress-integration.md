@@ -133,16 +133,19 @@ export const themeConfig = {
     items: [
       {
         label: 'View on GitHub',
+        icon: 'i-tabler:brand-github',
         href: 'https://github.com/your-org/your-repo'
       },
       {
         label: 'Report Issue',
+        icon: 'i-tabler:bug',
         onClick: () => {
           window.open('https://github.com/your-org/your-repo/issues/new', '_blank')
         }
       },
       {
         label: 'Documentation',
+        icon: 'i-tabler:book',
         href: 'https://docs.example.com'
       }
     ]
@@ -162,6 +165,7 @@ export const themeConfig = {
 - Custom menu items to display
 - Each item can have:
   - `label` (required): Text to display
+  - `icon` (optional): Icon class (e.g., `i-tabler:brand-github`, `i-nimiq:star`)
   - `href` (optional): URL to open in a new tab
   - `onClick` (optional): Function to execute when clicked
 

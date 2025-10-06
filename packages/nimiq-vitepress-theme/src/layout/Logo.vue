@@ -115,9 +115,11 @@ if (typeof window !== 'undefined') {
           hover="bg-neutral-100 dark:bg-neutral-700"
           transition-colors
           cursor-pointer
+          flex="~ items-center gap-8"
           @click="handleItemClick(item)"
         >
-          {{ item.label }}
+          <div v-if="item.icon" :class="item.icon" text-16 />
+          <span>{{ item.label }}</span>
         </button>
       </div>
     </Teleport>

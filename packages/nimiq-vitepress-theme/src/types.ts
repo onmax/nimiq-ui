@@ -48,6 +48,7 @@ export interface OutlineAction {
 
 export interface LogoContextMenuItem {
   label: string
+  icon?: string
   onClick?: () => void
   href?: string
 }
