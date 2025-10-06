@@ -10,7 +10,8 @@ const removeNimiqPrefix = (str: string) => str.toLocaleLowerCase().startsWith('n
 const name = computed(() => removeNimiqPrefix(site.value.title))
 
 // Get version from Vite config
-const version = (window as any).__NIMIQ_VITEPRESS_CONFIG__?.version
+declare const __NIMIQ_VITEPRESS_CONFIG__: { version?: string, repoURL?: string, contentPath?: string } | undefined
+const version = __NIMIQ_VITEPRESS_CONFIG__?.version
 
 // Context menu configuration
 const showVersion = computed(() => theme.value.logoContextMenu?.showVersion !== false)
@@ -41,7 +42,7 @@ function handleItemClick(item: LogoContextMenuItem) {
         <img v-if="theme.logo" class="logo" :src="theme.logo">
         <div v-else i-nimiq:logos-nimiq-horizontal text-20 dark:i-nimiq:logos-nimiq-white-horizontal />
         <span translate-y--1 text-16 font-light tracking-wide>{{ name }}</span>
-        <span v-if="theme.betaBadge" nq-label absolute right--2 top--8 lh-none px-4 py-3 bg-gradient-blue text-white rounded-4 outline="1.5 white/10 offset--1.5">BETA</span>
+        <span v-if="theme.betaBadge" nq-label absolute right--50 top--8 w-35 text-9 lh-none px-4 py-3 bg-gradient-blue text-white rounded-4 outline="1.5 white/10 offset--1.5">BETA</span>
       </a>
     </ContextMenu.Trigger>
 
@@ -54,7 +55,7 @@ function handleItemClick(item: LogoContextMenuItem) {
         shadow-lg
         py-4
         min-w-150
-        z-200
+        z-1000
       >
         <!-- Version -->
         <div
@@ -106,6 +107,6 @@ function handleItemClick(item: LogoContextMenuItem) {
     <img v-if="theme.logo" class="logo" :src="theme.logo">
     <div v-else i-nimiq:logos-nimiq-horizontal text-20 dark:i-nimiq:logos-nimiq-white-horizontal />
     <span translate-y--1 text-16 font-light tracking-wide>{{ name }}</span>
-    <span v-if="theme.betaBadge" text-10 font-semibold absolute right-8 top-7 lh-none px-3 py-6 bg-gradient-blue text-white rounded-4 outline="1.5 ~ white/10 offset--1.5">BETA</span>
+    <span v-if="theme.betaBadge" text-9 font-semibold absolute right--50 top-7 w-35 lh-none px-3 py-6 bg-gradient-blue text-white rounded-4 outline="1.5 ~ white/10 offset--1.5">BETA</span>
   </a>
 </template>
