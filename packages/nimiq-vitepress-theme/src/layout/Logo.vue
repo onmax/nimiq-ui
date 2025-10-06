@@ -42,12 +42,13 @@ function handleItemClick(item: LogoContextMenuItem) {
         <img v-if="theme.logo" class="logo" :src="theme.logo">
         <div v-else i-nimiq:logos-nimiq-horizontal text-20 dark:i-nimiq:logos-nimiq-white-horizontal />
         <span translate-y--1 text-16 font-light tracking-wide>{{ name }}</span>
-        <span v-if="theme.betaBadge" nq-label absolute right--50 top--8 w-35 text-9 lh-none px-4 py-3 bg-gradient-blue text-white rounded-4 outline="1.5 white/10 offset--1.5">BETA</span>
+        <span v-if="theme.betaBadge" nq-label absolute right--39 top--8 w-35 text-9 lh-none px-4 py-3 bg-gradient-blue text-white rounded-4 outline="1.5 white/10 offset--1.5">BETA</span>
       </a>
     </ContextMenu.Trigger>
 
     <ContextMenu.Portal>
       <ContextMenu.Content
+        nq-arrow
         bg-white
         dark:bg-neutral-800
         border="1 solid neutral-200 dark:neutral-700"
@@ -107,6 +108,6 @@ function handleItemClick(item: LogoContextMenuItem) {
     <img v-if="theme.logo" class="logo" :src="theme.logo">
     <div v-else i-nimiq:logos-nimiq-horizontal text-20 dark:i-nimiq:logos-nimiq-white-horizontal />
     <span translate-y--1 text-16 font-light tracking-wide>{{ name }}</span>
-    <span v-if="theme.betaBadge" text-9 font-semibold absolute right--50 top-7 w-35 lh-none px-3 py-6 bg-gradient-blue text-white rounded-4 outline="1.5 ~ white/10 offset--1.5">BETA</span>
+    <span v-if="theme.betaBadge" text-9 font-semibold absolute right--39 top-7 w-35 lh-none px-3 py-6 bg-gradient-blue text-white rounded-4 outline="1.5 ~ white/10 offset--1.5">BETA</span>
   </a>
 </template>
