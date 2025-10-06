@@ -114,7 +114,7 @@
   }
 
   /* Hide empty paragraphs. This is mostly for the markdown */
-  &:where(p, span):empty {
+  &:where(p, span):empty:not(.iconify, [class*='i-']) {
     display: none;
   }
 
