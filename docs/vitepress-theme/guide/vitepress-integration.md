@@ -105,6 +105,70 @@ export const themeConfig = {
 }
 ```
 
+## Logo Context Menu
+
+The theme includes a context menu (right-click) on the logo that displays your project version and custom menu items.
+
+### Version Display
+
+By default, the context menu automatically shows your project version from `package.json`. This feature is opt-out:
+
+```ts [themeConfig.ts]
+export const themeConfig = {
+  logoContextMenu: {
+    showVersion: false // Disable version display
+  }
+}
+```
+
+The version is automatically extracted from your project's `package.json` by the Nimiq VitePress Vite plugin.
+
+### Custom Menu Items
+
+Add custom menu items to the logo context menu:
+
+```ts [themeConfig.ts]
+export const themeConfig = {
+  logoContextMenu: {
+    items: [
+      {
+        label: 'View on GitHub',
+        href: 'https://github.com/your-org/your-repo'
+      },
+      {
+        label: 'Report Issue',
+        onClick: () => {
+          window.open('https://github.com/your-org/your-repo/issues/new', '_blank')
+        }
+      },
+      {
+        label: 'Documentation',
+        href: 'https://docs.example.com'
+      }
+    ]
+  }
+}
+```
+
+### Configuration Options
+
+**`logoContextMenu.showVersion`** (boolean, default: `true`)
+
+- Show the project version from `package.json` in the context menu
+- Set to `false` to hide the version
+
+**`logoContextMenu.items`** (array of objects)
+
+- Custom menu items to display
+- Each item can have:
+  - `label` (required): Text to display
+  - `href` (optional): URL to open in a new tab
+  - `onClick` (optional): Function to execute when clicked
+
+**Usage:**
+
+Right-click on the logo in the header to see the context menu with your version and custom items.
+
 ## Additional Configuration
 
 For a complete list of available VitePress options, refer to the [VitePress Default Theme Config](https://vitepress.dev/reference/default-theme-config) documentation.

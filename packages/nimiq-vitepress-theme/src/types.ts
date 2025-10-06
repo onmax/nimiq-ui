@@ -46,6 +46,12 @@ export interface OutlineAction {
   onClick: () => void | Promise<void>
 }
 
+export interface LogoContextMenuItem {
+  label: string
+  onClick?: () => void
+  href?: string
+}
+
 export interface NimiqVitepressThemeConfig {
   /** Array of navigation modules for your documentation */
   modules: NimiqVitepressThemeNav[]
@@ -87,6 +93,20 @@ export interface NimiqVitepressThemeConfig {
    * @default false
    */
   betaBadge?: boolean
+  /**
+   * Logo context menu configuration
+   */
+  logoContextMenu?: {
+    /**
+     * Show version from package.json in context menu
+     * @default true
+     */
+    showVersion?: boolean
+    /**
+     * Custom menu items to display
+     */
+    items?: LogoContextMenuItem[]
+  }
 }
 
 export interface NimiqVitepressFrontmatter {

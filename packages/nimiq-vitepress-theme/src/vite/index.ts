@@ -1,5 +1,8 @@
 import type { IncomingMessage } from 'node:http'
 import type { Plugin, PreviewServerHook, ServerHook } from 'vite'
+import fs from 'node:fs'
+import path from 'node:path'
+import process from 'node:process'
 import { viteHtmlToMarkdownPlugin } from '@mdream/vite'
 import { GitChangelog } from '@nolebase/vitepress-plugin-git-changelog/vite'
 import { groupIconVitePlugin } from '../code-groups/vite'
@@ -28,6 +31,20 @@ export interface NimiqVitepressVitePluginOptions {
   gitChangelog?: GitChangelogOptions | false
 }
 
+function getProjectVersion(rootDir: string = process.cwd()): string | undefined {
+  try {
+    const packageJsonPath = path.resolve(rootDir, 'package.json')
+    if (fs.existsSync(packageJsonPath)) {
+      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'))
+      return packageJson.version
+    }
+  }
+  catch (error) {
+    console.warn('Failed to read version from package.json:', error)
+  }
+  return undefined
+}
+
 export function NimiqVitepressVitePlugin({
   repoURL,
   contentPath = '',
@@ -45,10 +62,14 @@ export function NimiqVitepressVitePlugin({
     }
   }
 
+  // Get project version from package.json
+  const version = getProjectVersion()
+
   // Store configuration in Vite config for use in composables
   const nimiqConfig = {
     repoURL,
     contentPath,
+    version,
   }
 
   const plugins: Plugin[] = [
