@@ -82,6 +82,11 @@ export interface NimiqVitepressThemeConfig {
    * Can be overridden per-page via frontmatter
    */
   pageFooterLeftText?: false | string | ((options: { path: string }) => string)
+  /**
+   * Show a beta badge next to the logo
+   * @default false
+   */
+  betaBadge?: boolean
 }
 
 export interface NimiqVitepressFrontmatter {
