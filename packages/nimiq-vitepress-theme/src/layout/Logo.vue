@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { LogoContextMenuItem } from '../types'
-import { ContextMenuContent as Content, ContextMenuItem as Item, ContextMenuPortal as Portal, ContextMenuRoot as Root, ContextMenuSeparator as Separator, ContextMenuTrigger as Trigger } from 'reka-ui'
+import { ContextMenu } from 'reka-ui/namespaced'
 import { useData, withBase } from 'vitepress'
 import { computed } from 'vue'
 
@@ -28,8 +28,8 @@ function handleItemClick(item: LogoContextMenuItem) {
 </script>
 
 <template>
-  <Root v-if="hasContextMenu">
-    <Trigger as-child>
+  <ContextMenu.Root v-if="hasContextMenu">
+    <ContextMenu.Trigger as-child>
       <a
         flex="~ items-center gap-8 shrink-0"
         w-full
@@ -43,10 +43,10 @@ function handleItemClick(item: LogoContextMenuItem) {
         <span translate-y--1 text-16 font-light tracking-wide>{{ name }}</span>
         <span v-if="theme.betaBadge" text-10 font-semibold absolute right-8 top-7 lh-none px-3 py-6 bg-gradient-blue text-white rounded-4 outline="1.5 ~ white/10 offset--1.5">BETA</span>
       </a>
-    </Trigger>
+    </ContextMenu.Trigger>
 
-    <Portal>
-      <Content
+    <ContextMenu.Portal>
+      <ContextMenu.Content
         bg-white
         dark:bg-neutral-800
         border="1 solid neutral-200 dark:neutral-700"
@@ -68,10 +68,10 @@ function handleItemClick(item: LogoContextMenuItem) {
           v{{ version }}
         </div>
 
-        <Separator v-if="showVersion && version && customItems.length > 0" my-4 h-1 bg-neutral-200 dark:bg-neutral-700 />
+        <ContextMenu.Separator v-if="showVersion && version && customItems.length > 0" my-4 h-1 bg-neutral-200 dark:bg-neutral-700 />
 
         <!-- Custom Items -->
-        <Item
+        <ContextMenu.Item
           v-for="(item, index) in customItems"
           :key="index"
           px-12
@@ -88,10 +88,10 @@ function handleItemClick(item: LogoContextMenuItem) {
         >
           <div v-if="item.icon" :class="item.icon" text-16 />
           <span>{{ item.label }}</span>
-        </Item>
-      </Content>
-    </Portal>
-  </Root>
+        </ContextMenu.Item>
+      </ContextMenu.Content>
+    </ContextMenu.Portal>
+  </ContextMenu.Root>
 
   <a
     v-else
