@@ -1,11 +1,13 @@
 declare const __NIMIQ_VITEPRESS_CONFIG__: {
   repoURL?: string
   contentPath?: string
+  suggestChanges?: false | string | ((options: { path: string }) => string)
 } | undefined
 
 export interface NimiqVitepressConfig {
   repoURL?: string
   contentPath?: string
+  suggestChanges?: false | string | ((options: { path: string }) => string)
 }
 
 export function useNimiqConfig(): NimiqVitepressConfig {
@@ -18,5 +20,6 @@ export function useNimiqConfig(): NimiqVitepressConfig {
   return {
     repoURL: undefined,
     contentPath: '',
+    suggestChanges: undefined,
   }
 }

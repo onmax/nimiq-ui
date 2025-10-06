@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useBreadcrumbs } from '../composables/useBreadcrumbs'
+import { useFooter } from '../composables/useFooter'
 import { useSecondarySidebar } from '../composables/useSecondarySidebar'
 import { useSourceCode } from '../composables/useSourceCode'
+import { parseInlineMarkdown } from '../utils/markdownUtils'
 import { humanizeText } from '../utils/textUtils'
 import DocNavigation from './DocNavigation.vue'
 import '../assets/code-blocks.css'
@@ -12,7 +15,13 @@ const { breadcrumbs, showBreadcrumbs } = useBreadcrumbs()
 
 const { showSecondarySidebar } = useSecondarySidebar()
 
-const { showSourceCode, editUrl, sourceCodeUrl, sourceCodeLabel } = useSourceCode()
+const { showSourceCode, sourceCodeUrl, sourceCodeLabel } = useSourceCode()
+
+const { suggestChangesText, editUrl } = useFooter()
+
+const parsedSuggestChanges = computed(() =>
+  suggestChangesText.value ? parseInlineMarkdown(suggestChangesText.value) : null,
+)
 </script>
 
 <template>
@@ -58,10 +67,11 @@ const { showSourceCode, editUrl, sourceCodeUrl, sourceCodeLabel } = useSourceCod
       <DocNavigation />
 
       <div flex="~ justify-between items-center" f-mt-lg f-text-xs>
-        <a :href="editUrl" target="_blank" rel="noopener" op-70 hover:opacity-100 transition-opacity flex="~ items-center gap-3">
-          <span>Suggest changes on this page</span>
+        <a v-if="parsedSuggestChanges" :href="editUrl" target="_blank" rel="noopener" op-70 hover:opacity-100 transition-opacity flex="~ items-center gap-3">
+          <span v-html="parsedSuggestChanges" />
           <div i-nimiq:arrow-right text="neutral-700 12" />
         </a>
+        <div v-else />
         <span text-neutral-600 font-normal>Built with the <a href="https://onmax.github.io/nimiq-ui/vitepress-theme/" un-text-neutral-700 target="_blank" rel="noopener" underline hover:text-neutral-800 transition-colors>Nimiq Vitepress Theme</a></span>
       </div>
     </div>

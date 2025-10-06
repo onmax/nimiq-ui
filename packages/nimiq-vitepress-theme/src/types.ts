@@ -71,6 +71,7 @@ export interface NimiqVitepressFrontmatter {
   copyMarkdown?: boolean
   wide?: boolean
   inlineActions?: boolean
+  suggestChanges?: false | string
 }
 
 export interface DefineThemeNqVpOptions {
