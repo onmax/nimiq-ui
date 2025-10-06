@@ -308,7 +308,7 @@ Some components in the Nimiq Vitepress theme can consume data directly from fron
 
 ### Grid Component Example
 
-You can define card data in frontmatter and pass it to the [`NqGrid` component](./components/grid.md):
+You can define card data in frontmatter and pass it to the [`NqGrid` component](../components/grid):
 
 ```yaml
 ---
@@ -351,4 +351,4 @@ heroSection:
 ```
 
 > [!NOTE]
-> If you're using the `NqGrid` component, you can define cards directly in the frontmatter as shown in the [NqGrid component documentation](./components/grid#basic-grid-with-frontmatter).
+> If you're using the `NqGrid` component, you can define cards directly in the frontmatter as shown in the [NqGrid component documentation](../components/grid#basic-grid-with-frontmatter).

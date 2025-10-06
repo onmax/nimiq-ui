@@ -20,7 +20,7 @@ The component also supports using slots for custom content instead of props.
 The default column layout stacks everything neatly; flip to `row` when you want the icon leading on the left and the label sitting just above the title.
 
 > [!TIP]
-> Remember to [register `NqCard`](/vitepress-theme/#register-the-components) in your app.
+> Remember to [register `NqCard`](../getting-started/installation#_2-import-the-theme) in your app.
 
 ## Examples
 

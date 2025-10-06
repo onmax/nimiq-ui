@@ -16,7 +16,7 @@ A versatile headline component that makes your content stand out with style. Per
 > The component can automatically use frontmatter values as fallbacks. If `title` or `description` are not provided as props, it will use the page's frontmatter `title` and `description` values.
 
 > [!TIP]
-> Remember to [register `NqHeadline`](/vitepress-theme/#register-the-components) in your app.
+> Remember to [register `NqHeadline`](../getting-started/installation#_2-import-the-theme) in your app.
 
 ## Examples
 

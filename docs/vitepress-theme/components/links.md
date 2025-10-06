@@ -22,7 +22,7 @@ A component for displaying external links with consistent styling. Perfect for s
 All links automatically open in a new tab with `target="_blank"` and include `rel="noopener noreferrer"` for security.
 
 > [!TIP]
-> Remember to [register `NqLinks`](/vitepress-theme/#register-the-components) in your app.
+> Remember to [register `NqLinks`](../getting-started/installation#_2-import-the-theme) in your app.
 
 ## Examples
 
