@@ -41,7 +41,7 @@ function handleItemClick(item: LogoContextMenuItem) {
         <img v-if="theme.logo" class="logo" :src="theme.logo">
         <div v-else i-nimiq:logos-nimiq-horizontal text-20 dark:i-nimiq:logos-nimiq-white-horizontal />
         <span translate-y--1 text-16 font-light tracking-wide>{{ name }}</span>
-        <span v-if="theme.betaBadge" text-10 font-semibold absolute right-8 top-7 lh-none px-3 py-6 bg-gradient-blue text-white rounded-4 outline="1.5 ~ white/10 offset--1.5">BETA</span>
+        <span v-if="theme.betaBadge" nq-label absolute right--2 top--8 lh-none px-4 py-3 bg-gradient-blue text-white rounded-4 outline="1.5 white/10 offset--1.5">BETA</span>
       </a>
     </ContextMenu.Trigger>
 
