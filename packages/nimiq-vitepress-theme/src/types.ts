@@ -87,14 +87,15 @@ export interface NimiqVitepressThemeConfig {
 export interface NimiqVitepressFrontmatter {
   layout?: 'home' | 'docs' | 'overview'
   sidebar?: boolean
+  breadcrumbs?: boolean
   outline?: boolean
   secondarySidebar?: boolean
   widget?: boolean
+  changelog?: boolean
   sourceCode?: boolean | string
   sourceCodeLabel?: string
   sourceCodePathPrefix?: string
   copyMarkdown?: boolean
-  wide?: boolean
   inlineActions?: boolean
   pageFooterLeftText?: false | string
 }

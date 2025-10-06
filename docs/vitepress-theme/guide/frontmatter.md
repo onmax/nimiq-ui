@@ -8,8 +8,8 @@ Frontmatter is defined at the top of your markdown files, enclosed in triple das
 
 ```yaml
 ---
-title: My Page Title
-description: A brief description of the page
+layout: docs
+sidebar: true
 ---
 ```
 
@@ -17,82 +17,45 @@ description: A brief description of the page
 
 The Nimiq Vitepress theme supports the following frontmatter options:
 
-### General Options
-
-| Option        | Type     | Default | Description                                          |
-| ------------- | -------- | ------- | ---------------------------------------------------- |
-| `title`       | `string` | -       | Page title, shown in browser tabs and search results |
-| `description` | `string` | -       | Page description for SEO                             |
-
 ### Layout Options
 
-| Option                 | Type                             | Default                                         | Description                                                         |
-| ---------------------- | -------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------- |
-| `layout`               | `'home' \| 'docs' \| 'overview'` | `'docs'`                                        | Layout type to use for the page ([see layouts guide](./layouts.md)) |
-| `sidebar`              | `boolean`                        | `true` for docs layout                          | Whether to show the sidebar                                         |
-| `breadcrumbs`          | `boolean`                        | `true` for docs layout, `false` for home layout | Whether to show the breadcrumbs navigation                          |
-| `outline`              | `boolean`                        | `true` if headings exist                        | Whether to show the outline (table of contents)                     |
-| `secondarySidebar`     | `boolean`                        | `true` for docs layout, `false` for home layout | Whether to show the secondary sidebar                               |
-| `widget`               | `boolean`                        | `true` for docs layout, `false` for home layout | Whether to show the widget area in the secondary sidebar            |
-| `changelog`            | `boolean`                        | `true` for docs layout, `false` for home layout | Whether to show the changelog in the secondary sidebar              |
-| `sourceCode`           | `boolean \| string`              | `true` for docs layout, `false` for home layout | Show source code controls. Can be a custom URL or boolean           |
-| `sourceCodeLabel`      | `string`                         | `'View Source'`                                 | Label for the source code button                                    |
-| `sourceCodePathPrefix` | `string \| undefined`            | Auto-detected                                   | Path prefix for source code URLs (e.g., `'docs'` or `''`)           |
-| `copyMarkdown`         | `boolean`                        | Same as `sourceCode`                            | Show the copy markdown button independently                         |
-| `wide`                 | `boolean`                        | `false`, `true` if `secondarySidebar` is set    | Remove max-width constraint on prose content                        |
-
-## Wide Layout
-
-The `wide` option controls whether prose content should use the full available width or be constrained to a maximum width for better readability.
-
-**Default behavior:**
-
-- `wide: false` by default - content is constrained to approximately 78 characters per line for optimal reading
-- `wide: true` automatically when `secondarySidebar` is explicitly set - provides more space for complex content
-
-**Enable wide layout:**
-
-```yaml
----
-wide: true
----
-```
-
-**Disable wide layout (even when secondarySidebar is set):**
-
-```yaml
----
-secondarySidebar: true
-wide: false
----
-```
-
-**Use cases for wide layout:**
-
-- API documentation with long code examples
-- Tables that need more horizontal space
-- Technical content that benefits from wider presentation
-- Pages with complex diagrams or wide visual content
+| Option                 | Type                             | Default                                         | Description                                                            |
+| ---------------------- | -------------------------------- | ----------------------------------------------- | ---------------------------------------------------------------------- |
+| `layout`               | `'home' \| 'docs' \| 'overview'` | `'docs'`                                        | Layout type to use for the page ([see layouts guide](./layouts.md))    |
+| `sidebar`              | `boolean`                        | `true` for docs layout                          | Whether to show the sidebar                                            |
+| `breadcrumbs`          | `boolean`                        | `true` for docs layout, `false` for home layout | Whether to show the breadcrumbs navigation                             |
+| `outline`              | `boolean`                        | `true` if headings exist                        | Whether to show the outline (table of contents)                        |
+| `secondarySidebar`     | `boolean`                        | `true` for docs layout, `false` for home layout | Whether to show the secondary sidebar                                  |
+| `widget`               | `boolean`                        | `true` for docs layout, `false` for home layout | Whether to show the widget area in the secondary sidebar               |
+| `changelog`            | `boolean`                        | `true` for docs layout, `false` for home layout | Whether to show the changelog in the secondary sidebar                 |
+| `sourceCode`           | `boolean \| string`              | `true` for docs layout, `false` for home layout | Show source code controls. Can be a custom URL or boolean              |
+| `sourceCodeLabel`      | `string`                         | `'View Source'`                                 | Label for the source code button                                       |
+| `sourceCodePathPrefix` | `string \| undefined`            | Auto-detected                                   | Path prefix for source code URLs (e.g., `'docs'` or `''`)              |
+| `copyMarkdown`         | `boolean`                        | Same as `sourceCode`                            | Show the copy markdown button independently                            |
+| `inlineActions`        | `boolean`                        | `true`                                          | Show inline outline actions for overview pages or docs without outline |
+| `pageFooterLeftText`   | `boolean \| string`              | Theme config default                            | Custom footer text (supports markdown). Set to `false` to hide         |
 
 ### Navigation Options
 
-| Option | Type                                                             | Description                                                                               |
-| ------ | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `prev` | `string \| { text: string, link: string, description?: string }` | Link to the previous page. Can be a URL string or an object with text and link properties |
-| `next` | `string \| { text: string, link: string, description?: string }` | Link to the next page. Can be a URL string or an object with text and link properties     |
+| Option | Type      | Description                          |
+| ------ | --------- | ------------------------------------ |
+| `prev` | `boolean` | Set to `false` to hide previous link |
+| `next` | `boolean` | Set to `false` to hide next link     |
 
 ## Page Layouts
 
-The theme supports two types of layouts: `home` and `docs`.
+The theme supports three types of layouts: `home`, `docs`, and `overview`.
 
 ```yaml
 ---
 # Set the layout type
-layout: home # or 'docs' (default)
+layout: home # or 'docs' (default) or 'overview'
 ---
 ```
 
-The `docs` layout (default) shows the sidebar, outline, and widget by default, making it suitable for documentation pages. The `home` layout hides both the sidebar and secondary sidebar, creating a clean, full-width page that's ideal for landing pages.
+- **`docs`** (default) - Shows the sidebar, outline, and widget by default, suitable for documentation pages
+- **`home`** - Hides both the sidebar and secondary sidebar, creating a clean, full-width page ideal for landing pages
+- **`overview`** - Similar to docs but with inline actions enabled by default when outline is disabled
 
 ### Examples
 
@@ -124,27 +87,6 @@ layout: home
 secondarySidebar: true
 widget: true
 changelog: true
----
-```
-
-#### Wide Layout for Technical Documentation
-
-```yaml
----
-# Automatically uses wide layout since secondarySidebar is set
-secondarySidebar: true
-outline: true
-widget: false
----
-```
-
-#### Force Wide Layout Without Secondary Sidebar
-
-```yaml
----
-# Explicitly enable wide layout for full-width content
-wide: true
-secondarySidebar: false
 ---
 ```
 
@@ -301,6 +243,68 @@ If not set, both navigation links are shown by default, following the sidebar or
 
 > [!TIP]
 > Use `prev: false` or `next: false` in your page frontmatter to hide the respective navigation link for that page.
+
+## Page Footer Text
+
+The theme allows you to customize the footer text that appears at the bottom of each page. This can be configured globally in the theme config and overridden per-page using frontmatter.
+
+**Use custom footer text (supports markdown):**
+
+```yaml
+---
+pageFooterLeftText: Made with ❤️ by the Nimiq team
+---
+```
+
+**Hide the footer text on a specific page:**
+
+```yaml
+---
+pageFooterLeftText: false
+---
+```
+
+**Use markdown formatting:**
+
+```yaml
+---
+pageFooterLeftText: 'Edit this page on [GitHub](https://github.com/your-repo)'
+---
+```
+
+> [!NOTE]
+> The footer text supports inline markdown, allowing you to include links, emphasis, and other inline formatting.
+
+## Inline Actions
+
+For pages with the `overview` layout or `docs` layout with outline disabled, the theme can display inline outline actions within the content. This is useful for providing quick access to outline actions when the secondary sidebar is hidden.
+
+**Enable inline actions (default):**
+
+```yaml
+---
+layout: overview
+# inlineActions: true is the default
+---
+```
+
+**Disable inline actions:**
+
+```yaml
+---
+layout: overview
+inlineActions: false
+---
+```
+
+**Typical use cases:**
+
+- Overview pages where the outline would be redundant
+- Documentation pages with `outline: false` that still need outline actions
+- Landing pages that don't use the secondary sidebar
+
+> [!TIP]
+> Inline actions automatically appear on `overview` layouts and `docs` layouts with `outline: false`. Set `inlineActions: false` to disable this behavior.
 
 ## Using Frontmatter with Components
 

@@ -136,17 +136,6 @@ secondarySidebar: false # Hide the secondary sidebar only
 ---
 ```
 
-### Wide Content
-
-For documentation that needs more horizontal space:
-
-```yaml
----
-layout: docs
-wide: true # Expands content width
----
-```
-
 ## Static Content CSS
 
 The overview layout automatically imports the static-content CSS module which provides:
