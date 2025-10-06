@@ -59,6 +59,7 @@ if (typeof window !== 'undefined') {
     <a
       flex="~ items-center gap-8 shrink-0"
       w-full
+      relative
       text-neutral
       font-semibold
       :href="withBase('/')"
@@ -67,7 +68,7 @@ if (typeof window !== 'undefined') {
       <img v-if="theme.logo" class="logo" :src="theme.logo">
       <div v-else i-nimiq:logos-nimiq-horizontal text-20 dark:i-nimiq:logos-nimiq-white-horizontal />
       <span translate-y--1 text-16 font-light tracking-wide>{{ name }}</span>
-      <span v-if="theme.betaBadge" text-10 font-semibold px-6 py-2 bg-blue-500 text-white rounded-4 translate-y--1>BETA</span>
+      <span v-if="theme.betaBadge" text-10 font-semibold absolute right-8 top-7 lh-none px-3 py-6 bg-gradient-blue text-white rounded-4 outline="1.5 ~ white/10 offset--1.5">BETA</span>
     </a>
 
     <!-- Context Menu -->
@@ -92,11 +93,11 @@ if (typeof window !== 'undefined') {
           px-12
           py-6
           text-12
-          text-neutral-500
+          text-neutral-700
           dark:text-neutral-400
           font-mono
-          border-b="1 solid neutral-200 dark:neutral-700"
-          mb-4
+          :border-b="customItems.length > 0 ? '1 solid neutral-200 dark:neutral-700' : undefined"
+          :mb-4="customItems.length > 0"
         >
           v{{ version }}
         </div>
