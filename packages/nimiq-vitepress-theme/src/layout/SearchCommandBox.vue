@@ -17,7 +17,7 @@ import { LRUCache } from '../lib/lru'
 
 const emit = defineEmits<{ close: [] }>()
 
-const { localeIndex, theme, isDark } = useData<NimiqVitepressThemeConfig>()
+const { localeIndex, theme, isDark, frontmatter } = useData<NimiqVitepressThemeConfig>()
 
 const {
   copyMarkdownContent,
@@ -77,6 +77,12 @@ const searchIndex = computedAsync(async () =>
 
 const cache = new LRUCache(16) // 16 files
 
+// Check if current layout is docs (default layout or explicitly set to 'docs')
+const isDocsLayout = computed(() => {
+  const layout = frontmatter.value.layout
+  return !layout || layout === 'docs'
+})
+
 // Computed lists for better maintainability
 const moduleItems = computed(() =>
   theme.value.modules?.filter(m => !m.hidden) || [],
@@ -87,7 +93,8 @@ const socialItems = computed(() =>
 )
 
 const copyItems = computed(() => {
-  if (!showCopyMarkdown.value)
+  // Only show copy/AI actions on docs layout
+  if (!isDocsLayout.value || !showCopyMarkdown.value)
     return []
 
   const items = []
