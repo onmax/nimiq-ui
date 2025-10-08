@@ -24,10 +24,22 @@ const computedAlign = computed(() => {
     return align
   return frontmatter.value.layout === 'home' ? 'center' : 'left'
 })
+
+const headingId = computed(() => {
+  if (!title.value)
+    return undefined
+  return title.value
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim()
+})
 </script>
 
 <template>
   <div
+    :id="headingId"
     flex="~ col" nq-component="headline"
     :class="{ 'items-start': computedAlign === 'left',
               'items-center': computedAlign === 'center',
