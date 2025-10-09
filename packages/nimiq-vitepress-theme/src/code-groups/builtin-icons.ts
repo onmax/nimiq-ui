@@ -35,6 +35,7 @@ export const builtinIcons = {
   'tailwind.config': 'vscode-icons:file-type-tailwind',
   'uno.config': 'vscode-icons:file-type-unocss',
   'unocss.config': 'vscode-icons:file-type-unocss',
+  'vite.config': 'vscode-icons:file-type-vite',
   '.oxlintrc': 'vscode-icons:file-type-oxlint',
   // filename extensions
   'mts': 'vscode-icons:file-type-typescript',
