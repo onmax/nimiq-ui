@@ -182,6 +182,10 @@ body:not(.nq-raw) {
       align-items: center;
     }
 
+    &:is(.bg-darkblue, [bg-darkblue], .bg-darkerblue, [bg-darkerblue]) {
+      color-scheme: dark;
+    }
+
     padding: var(--pt, 0) var(--px, 0) var(--pb, 0) var(--px, 0);
 
     > * {
