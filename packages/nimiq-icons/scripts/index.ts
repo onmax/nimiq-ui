@@ -37,8 +37,7 @@ function getFigmaCredentials() {
   const token = env.FIGMA_API_TOKEN
 
   if (!file || !token) {
-    consola.error('Please provide FIGMA_FILE_ID and FIGMA_API_TOKEN environment variables.')
-    exit(1)
+    return null
   }
 
   return { file, token }
@@ -61,7 +60,11 @@ function getDeterministicId(prefix: string, name: string): string {
 }
 
 async function checkFigmaVariants() {
-  const { file, token } = getFigmaCredentials()
+  const credentials = getFigmaCredentials()
+  if (!credentials)
+    return
+
+  const { file, token } = credentials
 
   const figma = await importFromFigma({
     file,
@@ -92,7 +95,11 @@ async function checkFigmaVariants() {
 }
 
 async function getFigma(frameName: string) {
-  const { file, token } = getFigmaCredentials()
+  const credentials = getFigmaCredentials()
+  if (!credentials)
+    return null
+
+  const { file, token } = credentials
 
   try {
     const cacheDir = `.figma-cache/${frameName}` // Separate cache directory for each variant
@@ -349,6 +356,13 @@ function setIconInfo(iconSet: IconSet, packageInfo: any): void {
 // ====== MAIN EXECUTION ======
 
 async function main() {
+  // Skip icon build if Figma credentials are not available
+  const credentials = getFigmaCredentials()
+  if (!credentials) {
+    consola.info('Skipping Figma icon build: FIGMA_FILE_ID and FIGMA_API_TOKEN not found in environment')
+    return
+  }
+
   await checkFigmaVariants()
   consola.start('Processing icon variants...')
 
@@ -360,6 +374,12 @@ async function main() {
   for (const variant of Object.values(IconVariant)) {
     const figma = await getFigma(variant)
     const variantName = sanitizeName(variant)
+
+    // Skip if no credentials available
+    if (figma === null) {
+      consola.info(`Skipping variant ${variantName}: no Figma credentials`)
+      continue
+    }
 
     if (figma === 'not_modified') {
       // If using cached data, try to load from the cache directory
