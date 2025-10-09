@@ -354,6 +354,7 @@ async function main() {
 
   // Object to store all icon sets
   const results: Array<{ variant: string, iconSet: IconSet, package: string }> = []
+  let hasAnyChanges = false
 
   // Process all icon variants sequentially to properly handle caching
   for (const variant of Object.values(IconVariant)) {
@@ -400,6 +401,7 @@ async function main() {
     }
     else {
       // Process newly fetched icons
+      hasAnyChanges = true
       const iconList = figma.iconSet.list()
       consola.info(`Fetched ${iconList.length} icons for ${variantName}`)
 
@@ -412,6 +414,12 @@ async function main() {
         package: variant === IconVariant.Flags ? 'nimiq-flags' : 'nimiq-icons',
       })
     }
+  }
+
+  // Skip package generation if no changes detected
+  if (!hasAnyChanges) {
+    consola.success('No icon changes detected. Skipping package generation.')
+    return
   }
 
   // Group icon sets by package
