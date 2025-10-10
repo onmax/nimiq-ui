@@ -18,13 +18,30 @@ You can preview the icons in the `apps/icons-ui` directory. This directory conta
 
 ## Environment Variables
 
-The package requires the following environment variables:
+The package uses the following environment variables for Figma integration:
 
 ```bash
-FIGMA_FILE_ID: The ID of the Figma file.
-FIGMA_API_TOKEN: The API token for Figma.
+FIGMA_FILE_ID: The ID of the Figma file
+FIGMA_API_TOKEN: The API token for Figma
 ```
+
+**Important:** These are ONLY required if you're actively working on updating icons from Figma. Most developers can ignore this - the icon build will automatically skip if credentials are not configured.
+
+### Setup for Icon Development
+
+1. Copy `.env.example` to `.env` in the `packages/nimiq-icons` directory
+2. Get a Figma API token from https://www.figma.com/developers/api#access-tokens
+3. Get the File ID from the Nimiq Figma file URL
+4. Fill in the values in your `.env` file
+5. Ensure you have access permissions to the Nimiq Figma file
+
+### Troubleshooting
+
+If you encounter a 404 error when running `pnpm dev`:
+
+- **Don't need to update icons?** Delete the `.env` file - the build will skip automatically
+- **Need to update icons?** Verify your credentials are correct and you have access to the Figma file
 
 ## Scripts
 
-The package provides a dev script that you can run with npm run dev. This script uses bun to compile the TypeScript source code.
+The package provides a dev script that you can run with `pnpm dev`. This script processes icons from Figma and generates the icon packages.
