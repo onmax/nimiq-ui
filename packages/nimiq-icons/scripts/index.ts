@@ -66,32 +66,40 @@ async function checkFigmaVariants() {
 
   const { file, token } = credentials
 
-  const figma = await importFromFigma({
-    file,
-    pages: ['Main'],
-    token,
-    prefix: 'nimiq',
-    depth: 2,
-    ifModifiedSince: '2021-01-01T00:00:00Z', // Force fetch to ensure variants exist
-    iconNameForNode: node => node.name.startsWith('_') ? null : node.name,
-    simplifyStroke: true,
-  })
+  try {
+    const figma = await importFromFigma({
+      file,
+      pages: ['Main'],
+      token,
+      prefix: 'nimiq',
+      depth: 2,
+      ifModifiedSince: '2021-01-01T00:00:00Z', // Force fetch to ensure variants exist
+      iconNameForNode: node => node.name.startsWith('_') ? null : node.name,
+      simplifyStroke: true,
+    })
 
-  if (figma === 'not_modified') {
-    consola.info('Figma file has not been modified since last check. Will use cached data.')
-    return
+    if (figma === 'not_modified') {
+      consola.info('Figma file has not been modified since last check. Will use cached data.')
+      return
+    }
+
+    const iconSetVariants = figma.iconSet.list().map(sanitizeName)
+    const ourVariants = Object.values(IconVariant)
+
+    const missingVariants = ourVariants.filter(variant => !iconSetVariants.includes(variant))
+    const extraUnknownVariants = iconSetVariants.filter(v => !ourVariants.includes(v as IconVariant))
+
+    if (missingVariants.length > 0 || extraUnknownVariants.length > 0)
+      throw new Error(`There is an unknown variant or a missing variant: ${JSON.stringify({ extraUnknownVariants, missingVariants })}`)
+
+    consola.success('Figma variants are correct.')
   }
-
-  const iconSetVariants = figma.iconSet.list().map(sanitizeName)
-  const ourVariants = Object.values(IconVariant)
-
-  const missingVariants = ourVariants.filter(variant => !iconSetVariants.includes(variant))
-  const extraUnknownVariants = iconSetVariants.filter(v => !ourVariants.includes(v as IconVariant))
-
-  if (missingVariants.length > 0 || extraUnknownVariants.length > 0)
-    throw new Error(`There is an unknown variant or a missing variant: ${JSON.stringify({ extraUnknownVariants, missingVariants })}`)
-
-  consola.success('Figma variants are correct.')
+  catch {
+    consola.warn('Could not access Figma file. This might be due to invalid credentials or insufficient permissions.')
+    consola.warn('Icon build will be skipped. If you need to update icons, please check your FIGMA_FILE_ID and FIGMA_API_TOKEN in .env')
+    consola.info('Tip: If you don\'t need to modify icons, you can delete the .env file to skip this check entirely.')
+    return null
+  }
 }
 
 async function getFigma(frameName: string) {
@@ -363,7 +371,11 @@ async function main() {
     return
   }
 
-  await checkFigmaVariants()
+  const variantsCheck = await checkFigmaVariants()
+  if (variantsCheck === null) {
+    consola.info('Skipping Figma icon build due to credential issues')
+    return
+  }
   consola.start('Processing icon variants...')
 
   // Object to store all icon sets
