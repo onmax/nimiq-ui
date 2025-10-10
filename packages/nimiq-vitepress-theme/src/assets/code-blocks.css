@@ -1,7 +1,7 @@
 .vp-code-group,
 [class*='language-'] {
   margin: 1lh 0;
-  margin-left: 0 !important;
+  margin-left: 0;
   outline: 1.5px solid color-mix(in oklch, var(--colors-neutral) 8%, transparent);
 
   .tabs {
