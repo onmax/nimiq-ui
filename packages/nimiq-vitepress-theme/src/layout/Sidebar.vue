@@ -128,7 +128,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
                     <div :class="subitem.text" op="80 group-hocus:100" transition-opacity />
                     <span flex-1 text-left v-html="renderMarkdown(subitem.text)" />
                     <div
-                      i-nimiq:chevron-down aria-hidden text="9 neutral-700 group-hocus:neutral-800"
+                      i-nimiq:chevron-down aria-hidden text="9 neutral-700/70 group-hocus:neutral-700"
                       transition="[color,transform]" :class="{ 'rotate--90': !open }"
                     />
                   </CollapsibleTrigger>
