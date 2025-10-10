@@ -1,7 +1,6 @@
 .vp-code-group,
 [class*='language-'] {
   margin: 1lh 0;
-  margin-left: 0;
   outline: 1.5px solid color-mix(in oklch, var(--colors-neutral) 8%, transparent);
 
   .tabs {
@@ -144,6 +143,20 @@ div[class*='language-lh-1'] {
     justify-content: flex-start;
   }
 
+  .tabs {
+    overflow-x: auto;
+    max-width: calc(100% - 48px);
+    margin-left: 0;
+    mask-image: linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 20px,
+      black calc(100% - 20px),
+      transparent 100%
+    );
+  }
+
   .tabs label {
     padding: 8px 0;
   }
@@ -261,6 +274,9 @@ div[class*='language-lh-1'] {
 }
 
 .vp-code-group {
+  margin-left: 0;
+  width: initial;
+
   .blocks > div[class*='language-'] {
     margin: 0;
     padding-top: 16px;
