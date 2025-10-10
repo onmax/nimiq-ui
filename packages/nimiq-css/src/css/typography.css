@@ -348,7 +348,6 @@
     &:where(img, video, iframe, table),
     /* Select code and pre that are not child of p,ul,ol... */
     &:where(code, pre):not(:where(:where(p, ul, ol, pre, code, table) :where(pre, code))) {
-      margin-left: -1.5rem;
       width: min(calc(100% + 3rem), 700px);
 
       @media (min-width: 768px) {
@@ -367,14 +366,6 @@
         display: block;
         position: relative;
         margin: 16px 0 16px 20px;
-
-        @media screen and (min-width: 769px) {
-          margin-left: 32px;
-        }
-
-        @media screen and (min-width: 1153px) {
-          margin-left: 40px;
-        }
 
         > ol li {
           margin-left: 0;
@@ -407,26 +398,6 @@
         position: relative;
         margin: 16px 0 16px 20px;
 
-        @media screen and (min-width: 769px) {
-          margin-left: 32px;
-        }
-
-        @media screen and (min-width: 1153px) {
-          margin-left: 40px;
-        }
-
-        &::before {
-          content: counters(item, '.');
-          font-weight: 700;
-          display: inline-block;
-          margin-right: 12px;
-          position: absolute;
-          left: -20px;
-          color: currentColor;
-          opacity: 0.5;
-          top: 2px;
-        }
-
         > ol {
           counter-reset: subitem;
 
@@ -439,6 +410,18 @@
               left: -32px;
             }
           }
+        }
+
+        &::before {
+          content: counters(item, '.');
+          font-weight: 700;
+          display: inline-block;
+          margin-right: 12px;
+          position: absolute;
+          left: -20px;
+          color: currentColor;
+          opacity: 0.5;
+          top: 2px;
         }
       }
     }
