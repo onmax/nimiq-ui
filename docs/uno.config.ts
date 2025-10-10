@@ -16,7 +16,6 @@ export default defineConfig({
       utilities: true,
       attributifyUtilities: true,
       typography: true,
-      outputCSSLayer: false,
     }),
     presetIcons({
       collections: {
@@ -26,5 +25,4 @@ export default defineConfig({
       },
     }),
   ],
-  outputToCssLayers: true,
 })
