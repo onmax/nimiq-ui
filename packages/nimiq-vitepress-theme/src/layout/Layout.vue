@@ -80,7 +80,7 @@ const isMobileOrTablet = breakpoints.smaller('lg')
     </div>
     <template v-else>
       <div flex="~ col" size-full>
-        <main dark:bg-neutral-1100 min-h-screen w-full mb-56 style="padding-top: calc(env(safe-area-inset-top, 0px) + 112px);">
+        <main dark:bg-neutral-1100 min-h-screen w-full mb-56 pt="[calc(env(safe-area-inset-top)+112px)]">
           <PageContent />
         </main>
       </div>

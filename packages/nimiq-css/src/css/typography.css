@@ -348,6 +348,7 @@
     &:where(img, video, iframe, table),
     /* Select code and pre that are not child of p,ul,ol... */
     &:where(code, pre):not(:where(:where(p, ul, ol, pre, code, table) :where(pre, code))) {
+      margin-left: -1.5rem;
       width: min(calc(100% + 3rem), 700px);
 
       @media (min-width: 768px) {
