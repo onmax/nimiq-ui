@@ -42,23 +42,28 @@ pre {
     position: relative;
     display: inline-block;
     border-radius: 0;
+    line-height: 0;
+
+    > .line {
+      line-height: 1.5;
+    }
 
     .highlighted,
     .diff {
       transition: background-color 0.5s;
       margin: 0 -2rem;
       padding: 0 2rem;
-      width: calc(100% + 4rem);
+      width: calc(100% + 6rem);
       display: inline-block;
-      border-top-width: 1px;
-      border-bottom-width: 1px;
       background-color: var(--bg-color);
-      border-color: var(--border-color);
+      vertical-align: top;
     }
 
     .highlighted {
       --bg-color: var(--colors-neutral-200);
       --border-color: var(--colors-neutral-300);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
     }
 
     .highlighted:has(+ .highlighted) {
@@ -74,21 +79,31 @@ pre {
     .diff.remove {
       --bg-color: var(--colors-red-400);
       --border-color: var(--colors-red-500);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
     }
 
     .diff.add {
       --bg-color: var(--colors-green-400);
       --border-color: var(--colors-green-500);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
     }
 
-    .diff:has(+ .diff) {
+    .diff:has(+ .diff),
+    .diff:has(+ .line:empty + .diff) {
       border-bottom-width: 0;
       position: relative;
       bottom: -1px;
     }
 
-    .diff + .diff {
+    .diff + .diff,
+    .diff + .line:empty + .diff {
       border-top-width: 0;
+    }
+
+    .line:empty {
+      display: none;
     }
   }
 }
@@ -102,6 +117,8 @@ pre {
     padding-left: 2rem;
     padding-right: 2rem;
     background-color: var(--colors-neutral-50);
+    margin-left: 0;
+    width: 100%;
 
     code {
       color: var(--colors-neutral-900);
@@ -279,10 +296,22 @@ div[class*='language-lh-1'] {
 
   .blocks > div[class*='language-'] {
     margin: 0;
-    padding-top: 16px;
     background-color: var(--colors-neutral-50);
     border-radius: 0 0 0.5em 0.5em;
     outline: none;
+
+    pre {
+      margin-left: 0;
+      width: 100%;
+      padding-right: 0;
+      box-sizing: border-box;
+
+      code {
+        width: fit-content;
+        min-width: 100%;
+        padding-right: 2rem;
+      }
+    }
   }
 
   /* We only apply the active styles if there are more than one tab */
