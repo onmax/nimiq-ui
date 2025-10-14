@@ -52,7 +52,7 @@ const iconClasses = computed(() => {
   return classes
 })
 
-const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#1DA186', gold: '#ffffffaa' }
+const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#0a7765', gold: '#ffffffaa' }
 
 const iconColor = computed(() => {
   if (customIconColor.value) {
@@ -72,7 +72,7 @@ const iconColor = computed(() => {
     :target="hasLink && href?.startsWith('http') ? '_blank' : undefined"
     :class="[
       hasLink ? 'nq-hoverable' : 'nq-card',
-      layout === 'row' ? 'flex items-start gap-16' : '',
+      layout === 'row' ? 'flex flex-row items-start gap-16' : 'flex flex-col',
       { 'children:max-w-[max(50%,240px)]': bgColor },
     ]"
     p-16
@@ -88,10 +88,10 @@ const iconColor = computed(() => {
       </div>
     </template>
     <template v-else>
-      <div v-if="icon" :class="iconClasses" :style="iconColor ? `color: ${iconColor}` : undefined" />
       <span v-if="label" nq-label text-12 mb-4 text="neutral-700 data-inverted:white/50" data-inverted:mb-8>{{ label }}</span>
       <h2 v-if="title" font-semibold f-text="xl data-inverted:2xl" data-inverted:text-white v-html="title" />
       <p v-if="description" text="data-inverted:white/60" data-inverted:f-text-lg data-inverted:mt-4 v-html="description" />
+      <div v-if="icon" :class="iconClasses" :style="iconColor ? `color: ${iconColor}` : undefined" />
     </template>
   </component>
 </template>

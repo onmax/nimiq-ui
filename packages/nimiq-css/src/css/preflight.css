@@ -88,6 +88,7 @@
   &:where(h1) {
     --font-size-min: 24;
     --font-size-max: 32;
+    margin-top: 0;
   }
 
   &:where(h2) {

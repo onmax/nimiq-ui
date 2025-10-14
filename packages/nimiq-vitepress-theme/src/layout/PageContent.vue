@@ -32,7 +32,7 @@ const parsedPageFooterLeftText = computed(() =>
     }" f-pt-sm f="$px $px-min-32 $px-max-64" pb="f-xl xl:sm" flex="~ gap-16" relative h-full max-xl:f-px-lg
   >
     <div flex="~ col" size-full flex-1>
-      <div v-if="showBreadcrumbs || showSourceCode" f-pb-lg flex="~ items-center justify-between">
+      <div v-if="showBreadcrumbs || showSourceCode" f-pb-sm flex="~ items-center justify-between">
         <ul v-if="showBreadcrumbs" flex="~ items-center gap-12">
           <li v-for="({ text, icon }, i) in breadcrumbs" :key="text" contents w-max>
             <div v-if="icon" :class="icon" />

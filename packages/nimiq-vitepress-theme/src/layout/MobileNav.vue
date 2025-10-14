@@ -31,7 +31,7 @@ function handleSearchClose() {
 <template>
   <div>
     <!-- Widget still stays at bottom -->
-    <div v-if="showWidget" id="widget" fixed bottom-64 rounded-4 bg-neutral-50 shadow w="[calc(100vw-16px)]" inset-x-8 />
+    <div v-if="showWidget" id="widget" fixed bottom-64 rounded-4 bg-neutral-50 shadow w="[calc(100vw-16px)]" inset-x-8 f-pt-sm />
 
     <!-- Top navigation header -->
     <header
@@ -81,6 +81,11 @@ function handleSearchClose() {
 </template>
 
 <style scoped>
+/* Hide widget when empty */
+#widget:empty {
+  display: none;
+}
+
 /* Widget styling when it has content */
 #widget:not(:empty) {
   --uno: 'max-h-20vh outline outline-1.5 outline-offset--1.5 outline-neutral-400';

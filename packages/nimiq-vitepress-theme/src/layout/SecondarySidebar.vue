@@ -11,7 +11,7 @@ const { headingTree, isHeadingActive, showOutline, showWidget } = useSecondarySi
   <div
     f-text-xs sticky f="$h $h-min-60 $h-max-88" h-screen top-0 f-px-sm of-y-auto f-pb-xs flex="~ col"
   >
-    <div v-if="withWidget && showWidget" id="widget" max-w-full h-max />
+    <div v-if="withWidget && showWidget" id="widget" max-w-full h-max f-pt-sm />
 
     <div v-if="showOutline" text-neutral-700 flex="~ gap-8 items-center" :class="{ 'f-mt-md': withWidget && showWidget }">
       <div i-tabler:align-left />
@@ -38,3 +38,10 @@ const { headingTree, isHeadingActive, showOutline, showWidget } = useSecondarySi
     <OutlineActions />
   </div>
 </template>
+
+<style scoped>
+/* Hide widget when empty */
+#widget:empty {
+  display: none;
+}
+</style>
