@@ -63,7 +63,7 @@ catalogs:
     unocss: ^66.5.2
     unocss-preset-animations: ^1.2.1
     unocss-preset-light-dark: ^1.0.0-beta.43
-    unocss-preset-onmax: ^1.0.0-beta.45
+    unocss-preset-onmax: ^1.0.0-beta.48
   syntax:
     shiki: ^3.13.0
   test:
