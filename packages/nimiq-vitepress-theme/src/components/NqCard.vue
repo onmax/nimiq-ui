@@ -52,7 +52,7 @@ const iconClasses = computed(() => {
   return classes
 })
 
-const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#0a7765', gold: '#ffffffaa' }
+const colors: Partial<Record<CardColor, string>> = { blue: '#0E65C9', green: '#128370', gold: '#ffffffaa' }
 
 const iconColor = computed(() => {
   if (customIconColor.value) {

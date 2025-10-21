@@ -79,4 +79,7 @@
   --colors-gold-gradient-darkened-from: light-dark(oklab(0.7143 0.0695 0.1390), oklab(0.8163 0.0458 0.1479));
   --colors-gold-gradient-darkened-to: light-dark(oklab(0.7575 0.0315 0.1515), oklab(0.8221 0.0167 0.1498));
   --colors-gold-gradient-darkened: radial-gradient(at 100% 100% in oklab, var(--colors-gold-gradient-darkened-from), var(--colors-gold-gradient-darkened-to));
+  --colors-purple-gradient-from: light-dark(oklab(0.3356 0.0227 -0.0760), oklab(0.3356 0.0227 -0.0760));
+  --colors-purple-gradient-to: light-dark(oklab(0.3414 0.0439 -0.0787), oklab(0.3414 0.0439 -0.0787));
+  --colors-purple-gradient: radial-gradient(at 100% 100% in oklab, var(--colors-purple-gradient-from), var(--colors-purple-gradient-to));
 }
