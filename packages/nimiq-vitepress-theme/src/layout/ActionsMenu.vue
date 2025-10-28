@@ -39,7 +39,7 @@ const { allActions, nativeOptions, externalOptions, hasDropdown, variant = 'outl
             :side-offset="4"
             :avoid-collisions="true"
             min-w-200
-            bg-white
+            bg-neutral
             rounded-8
             shadow-lg
             border="1 neutral-200"
@@ -104,7 +104,7 @@ const { allActions, nativeOptions, externalOptions, hasDropdown, variant = 'outl
           :side-offset="4"
           :avoid-collisions="true"
           min-w-200
-          bg-white
+          bg-neutral
           rounded-8
           shadow-lg
           border="1 neutral-200"
@@ -167,7 +167,7 @@ const { allActions, nativeOptions, externalOptions, hasDropdown, variant = 'outl
             :side-offset="4"
             :avoid-collisions="true"
             min-w-200
-            bg-white
+            bg-neutral
             rounded-8
             shadow-lg
             border="1 neutral-200"
