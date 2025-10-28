@@ -99,6 +99,7 @@
     "unbuild": "catalog:build",
     "unocss": "catalog:style",
     "unocss-preset-animations": "catalog:style",
-    "unocss-preset-onmax": "catalog:style"
+    "unocss-preset-onmax": "catalog:style",
+    "vitepress-plugin-llms": "^1.8.1"
   }
 }

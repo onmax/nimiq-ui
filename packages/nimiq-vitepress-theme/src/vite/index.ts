@@ -5,9 +5,11 @@ import path from 'node:path'
 import process from 'node:process'
 import { viteHtmlToMarkdownPlugin } from '@mdream/vite'
 import { GitChangelog } from '@nolebase/vitepress-plugin-git-changelog/vite'
+import llmstxt from 'vitepress-plugin-llms'
 import { groupIconVitePlugin } from '../code-groups/vite'
 
 type GitChangelogOptions = Parameters<typeof GitChangelog>[0]
+type LlmsPluginOptions = Parameters<typeof llmstxt>[0]
 
 export interface NimiqVitepressVitePluginOptions {
   /**
@@ -29,6 +31,14 @@ export interface NimiqVitepressVitePluginOptions {
    * Set to false to disable changelog
    */
   gitChangelog?: GitChangelogOptions | false
+
+  /**
+   * LLMs.txt plugin configuration
+   * Automatically generates llms.txt and llms-full.txt during build
+   * Set to false to disable (only mdream markdown generation will be used)
+   * @default true
+   */
+  llms?: LlmsPluginOptions | boolean
 }
 
 function getProjectVersion(rootDir: string = process.cwd()): string | undefined {
@@ -49,6 +59,7 @@ export function NimiqVitepressVitePlugin({
   repoURL,
   contentPath = '',
   gitChangelog,
+  llms = true,
 }: NimiqVitepressVitePluginOptions): Plugin[] {
   const { resolveId, configureServer, load, transform } = groupIconVitePlugin()
 
@@ -60,6 +71,12 @@ export function NimiqVitepressVitePlugin({
     if (Object.keys(changelogConfig).length > 0) {
       externalPlugins.push(GitChangelog(changelogConfig))
     }
+  }
+
+  // Configure LLMs.txt plugin for automatic llms.txt generation
+  if (llms !== false) {
+    const llmsConfig = typeof llms === 'object' ? llms : {}
+    externalPlugins.push(llmstxt(llmsConfig))
   }
 
   // Get project version from package.json

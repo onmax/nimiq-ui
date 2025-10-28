@@ -27,13 +27,25 @@ All options are enabled by default but can be controlled per-page using frontmat
 
 ## Generating llms.txt Files
 
-To generate `llms.txt` and `llms-full.txt` files in your repository root, use the mdream CLI after building your docs:
+The theme automatically generates `llms.txt` and `llms-full.txt` files during build when using `vitepress-plugin-llms` (enabled by default in `NimiqVitepressVitePlugin`).
+
+After building your docs:
 
 ```bash
-# Build the documentation
 pnpm docs:build
+```
 
-# Generate llms.txt files in the root
+This automatically creates in `.vitepress/dist/`:
+
+- `llms.txt` - A sitemap of all documentation pages
+- `llms-full.txt` - Complete markdown content of all pages
+- `markdown/` directory - Individual markdown files for each page
+
+### Manual Generation (Alternative)
+
+You can also generate llms.txt files manually using the mdream CLI:
+
+```bash
 pnpm dlx mdream llms "docs/.vitepress/dist/**/*.html" \
   --site-name "My Docs" \
   --description "My awesome documentation" \
@@ -41,15 +53,9 @@ pnpm dlx mdream llms "docs/.vitepress/dist/**/*.html" \
   -o .
 ```
 
-This will create:
-
-- `llms.txt` - A sitemap of all documentation pages
-- `llms-full.txt` - Complete markdown content of all pages
-- `markdown/` directory - Individual markdown files for each page
-
 ## Configuration
 
-The markdown generation is automatically configured when you use the `NimiqVitepressVitePlugin`:
+The llms.txt generation is automatically configured when you use the `NimiqVitepressVitePlugin`:
 
 ```ts [vite.config.ts]
 import { NimiqVitepressVitePlugin } from 'nimiq-vitepress-theme/vite'
@@ -59,13 +65,13 @@ export default defineConfig({
     NimiqVitepressVitePlugin({
       repoURL: 'https://github.com/your-org/your-repo',
 
-      // LLM-friendly markdown generation
+      // LLMs.txt automatic generation (enabled by default)
       llms: {
-        domain: 'https://docs.example.com',
-        injectLLMHint: false
+        // Pass options to vitepress-plugin-llms
+        // See: https://github.com/okineadev/vitepress-plugin-llms#options
       }
 
-      // Or disable it entirely
+      // Or disable automatic llms.txt generation
       // llms: false
     })
   ]
@@ -74,9 +80,9 @@ export default defineConfig({
 
 ### Plugin Options
 
-| Option | Type                | Default | Description                                                    |
-| ------ | ------------------- | ------- | -------------------------------------------------------------- |
-| `llms` | `object \| boolean` | `true`  | LLM-friendly markdown generation options or `false` to disable |
+| Option | Type                | Default | Description                                                                                                                                                                                               |
+| ------ | ------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `llms` | `object \| boolean` | `true`  | Automatic llms.txt generation via `vitepress-plugin-llms`. Pass config object or `false` to disable. See [plugin docs](https://github.com/okineadev/vitepress-plugin-llms#options) for available options. |
 
 ## Per-Page Control
 
