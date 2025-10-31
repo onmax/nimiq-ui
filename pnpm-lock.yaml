@@ -407,6 +407,9 @@ importers:
       '@iconify-json/vscode-icons':
         specifier: catalog:icons
         version: 1.2.30
+      '@mdream/vite':
+        specifier: ^0.13.3
+        version: 0.13.3(vite@7.1.7(@types/node@24.5.2)(jiti@2.6.0)(less@4.4.1)(tsx@4.20.5)(yaml@2.8.1))
       '@nolebase/vitepress-plugin-git-changelog':
         specifier: catalog:build
         version: 2.18.2(vitepress@2.0.0-alpha.12(@types/node@24.5.2)(axios@1.12.2)(change-case@5.4.4)(jiti@2.6.0)(less@4.4.1)(postcss@8.5.6)(tsx@4.20.5)(typescript@5.9.2)(yaml@2.8.1))(vue@3.5.21(typescript@5.9.2))
@@ -450,9 +453,6 @@ importers:
       '@iconify/utils':
         specifier: catalog:icons
         version: 3.0.2
-      '@mdream/vite':
-        specifier: ^0.12.3
-        version: 0.12.3(vite@7.1.7(@types/node@24.5.2)(jiti@2.6.0)(less@4.4.1)(tsx@4.20.5)(yaml@2.8.1))
       '@types/mark.js':
         specifier: ^8.11.12
         version: 8.11.12
@@ -1099,8 +1099,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.30':
     resolution: {integrity: sha512-GQ7Nw5G2lTu/BtHTKfXhKHok2WGetd4XYcVKGx00SjAk8GMwgJM3zr6zORiPGuOE+/vkc90KtTosSSvaCjKb2Q==}
 
-  '@mdream/vite@0.12.3':
-    resolution: {integrity: sha512-/qEiRma4K/6lzFSFwK63enBQ+pHr4zV03aEsyMCwRuZEQtM97EmBweedw/GEZL51QTrRu7h2QeIVEeKCd4mGGA==}
+  '@mdream/vite@0.13.3':
+    resolution: {integrity: sha512-hZSPmOpgbbvnYhcfJGCgDsadrZIm17QU+wQI899i1LOem9NehDp42pv+ydTEqQdZVcTqE6+qpHaZ9NeeQVqekQ==}
     peerDependencies:
       vite: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
 
@@ -3280,8 +3280,8 @@ packages:
   mdn-data@2.12.2:
     resolution: {integrity: sha512-IEn+pegP1aManZuckezWCO+XZQDplx1366JoVhTpMpBB1sPey/SbveZQUosKiKiGYjg1wH4pMlNgXbCiYgihQA==}
 
-  mdream@0.12.3:
-    resolution: {integrity: sha512-HMw+1sp8zhemA6UGOehhKSEyNDWaOfxQ3IgkUYHZat69ZOwMN4YJ2AY1To+qg8CYC9yx30Ymsz09gqnfg6W1Gg==}
+  mdream@0.13.3:
+    resolution: {integrity: sha512-etByUQNgLPxQ78zYimGZV12RJ83u56vBsSlbIeHsA3ZSHqmiYXBK8T8OPT5ON/KLxY3QTEFSgmXozBrW0NeBvg==}
     hasBin: true
 
   mdurl@2.0.0:
@@ -5501,9 +5501,9 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@mdream/vite@0.12.3(vite@7.1.7(@types/node@24.5.2)(jiti@2.6.0)(less@4.4.1)(tsx@4.20.5)(yaml@2.8.1))':
+  '@mdream/vite@0.13.3(vite@7.1.7(@types/node@24.5.2)(jiti@2.6.0)(less@4.4.1)(tsx@4.20.5)(yaml@2.8.1))':
     dependencies:
-      mdream: 0.12.3
+      mdream: 0.13.3
       vite: 7.1.7(@types/node@24.5.2)(jiti@2.6.0)(less@4.4.1)(tsx@4.20.5)(yaml@2.8.1)
 
   '@nodelib/fs.scandir@2.1.5':
@@ -8068,7 +8068,7 @@ snapshots:
 
   mdn-data@2.12.2: {}
 
-  mdream@0.12.3:
+  mdream@0.13.3:
     dependencies:
       cac: 6.7.14
       pathe: 2.0.3
