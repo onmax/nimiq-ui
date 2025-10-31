@@ -71,7 +71,6 @@
   "dependencies": {
     "@iconify-json/tabler": "catalog:icons",
     "@iconify-json/vscode-icons": "catalog:icons",
-    "@mdream/vite": "^0.12.2",
     "@nolebase/vitepress-plugin-git-changelog": "catalog:build",
     "@vueuse/core": "catalog:utils",
     "@vueuse/motion": "^3.0.3",
@@ -87,6 +86,7 @@
   },
   "devDependencies": {
     "@iconify/utils": "catalog:icons",
+    "@mdream/vite": "^0.12.3",
     "@types/mark.js": "^8.11.12",
     "@types/markdown-it": "catalog:types",
     "@unocss/cli": "catalog:style",
