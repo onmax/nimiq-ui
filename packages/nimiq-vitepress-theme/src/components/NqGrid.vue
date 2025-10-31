@@ -42,18 +42,18 @@ ul.nq-grid {
   li {
     --uno: 'mt-0 flex';
   }
+}
 
-  &[data-span='2'] li {
-    --uno: 'col-span-2';
-  }
+:global(ul.nq-grid[data-span='2'] li) {
+  --uno: 'col-span-2';
+}
 
-  &[data-span='3'] li {
-    --uno: 'col-span-2 md:col-span-3';
-  }
+:global(ul.nq-grid[data-span='3'] li) {
+  --uno: 'col-span-2 md:col-span-3';
+}
 
-  &[data-span='6'] li {
-    --uno: 'col-span-2 md:col-span-6';
-  }
+:global(ul.nq-grid[data-span='6'] li) {
+  --uno: 'col-span-2 md:col-span-6';
 }
 
 :global(ul.nq-grid li > *) {
