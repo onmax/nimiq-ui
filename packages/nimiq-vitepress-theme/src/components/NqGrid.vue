@@ -3,7 +3,7 @@ import type { NqCardProps } from './NqCard.vue'
 import NqCard from './NqCard.vue'
 import NqLargeCard from './NqLargeCard.vue'
 
-const { cards = [], largeCards = false } = defineProps<{ cards?: NqCardInGrid[], largeCards?: boolean }>()
+const { cards = [], largeCards = false, span } = defineProps<{ cards?: NqCardInGrid[], largeCards?: boolean, span?: CardSpan | '2' | '3' | '6' }>()
 
 type CardSpan = 'full' | 'half' | 'default'
 type NqCardInGrid = NqCardProps & { span?: CardSpan }
@@ -16,7 +16,7 @@ function getSpan({ span, bgColor }: NqCardInGrid): CardSpan | undefined {
 </script>
 
 <template>
-  <ul v-if="cards.length > 0 || $slots.default" grid="~ cols-2 md:cols-6 gap-8 md:gap-16" class="nq-grid nq-raw" f-my-md>
+  <ul v-if="cards.length > 0 || $slots.default" grid="~ cols-2 md:cols-6 gap-8 md:gap-16" class="nq-grid nq-raw" f-my-md :data-span="span">
     <slot>
       <li v-for="(card, index) in cards" :key="index" :data-span="getSpan(card)">
         <component :is="largeCards ? NqLargeCard : NqCard" v-bind="card" />
@@ -41,6 +41,18 @@ ul.nq-grid {
 
   li {
     --uno: 'mt-0 flex';
+  }
+
+  &[data-span='2'] li {
+    --uno: 'col-span-2';
+  }
+
+  &[data-span='3'] li {
+    --uno: 'col-span-2 md:col-span-3';
+  }
+
+  &[data-span='6'] li {
+    --uno: 'col-span-2 md:col-span-6';
   }
 }
 
