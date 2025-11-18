@@ -83,7 +83,7 @@ const iconColor = computed(() => {
           <div :class="iconClasses" :style="iconColor ? `color: ${iconColor}` : undefined" />
         </div>
       </slot>
-      <div class="flex-1 flex flex-col">
+      <div class="flex-1 flex flex-col relative">
         <span v-if="label" nq-label text-12 mb-4 text="neutral-700 data-inverted:white/50" data-inverted:mb-8>{{ label }}</span>
         <h2 v-if="title" font-semibold f-text="xl data-inverted:2xl" data-inverted:text-white v-html="title" />
         <p v-if="description" text="data-inverted:white/60" data-inverted:f-text-lg data-inverted:mt-4 v-html="description" />
