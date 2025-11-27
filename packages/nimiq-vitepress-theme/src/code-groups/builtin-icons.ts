@@ -68,6 +68,7 @@ export const builtinIcons = {
   'sh': 'vscode-icons:file-type-shell',
   'bash': 'vscode-icons:file-type-shell',
   'shell': 'vscode-icons:file-type-shell',
+  'curl': 'vscode-icons:file-type-shell',
   'dockerfile': 'vscode-icons:file-type-docker',
   'docker': 'vscode-icons:file-type-docker',
   'rust': 'vscode-icons:file-type-rust',
