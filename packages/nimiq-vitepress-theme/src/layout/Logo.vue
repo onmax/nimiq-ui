@@ -48,7 +48,6 @@ function handleItemClick(item: LogoContextMenuItem) {
 
     <ContextMenu.Portal>
       <ContextMenu.Content
-        nq-arrow
         bg-white
         dark:bg-neutral-800
         border="1 solid neutral-200 dark:neutral-700"

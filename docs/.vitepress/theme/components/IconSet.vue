@@ -129,7 +129,10 @@ function selectColor(c: Color) {
           w-max bg-transparent op="70 dark:60 hocus:100" transition-opacity :style="`--c: var(--colors-${activeColor})`"
           @click="() => selectedIcon = icon"
         >
-          <Icon :icon text="$c" :class="[classes, { 'w-auto !h-24': icon.includes('horizontal') }]" />
+          <Icon
+            :icon text="$c" :class="[classes, { 'w-auto !h-24': icon.includes('horizontal'),
+                                                'animate-spin': icon === 'nimiq:spinner' }]"
+          />
         </button>
       </li>
     </ul>
@@ -180,7 +183,7 @@ function selectColor(c: Color) {
                 '!bg-neutral dark:!bg-neutral-0 outline-neutral-900 dark:outline-neutral-100': isLogo && !isMono && isWhite,
               }"
             >
-              <Icon :icon="selectedIcon" text="$c" />
+              <Icon :icon="selectedIcon" text="$c" :class="{ 'animate-spin': selectedIcon === 'nimiq:spinner' }" />
             </div>
             <div>
               <div flex="~ items-center wrap gap-12" f-mt-sm>
@@ -219,8 +222,8 @@ function selectColor(c: Color) {
             <span block text-orange-1100 f-text-xs font-semibold>Missing logo variant</span>
           </div>
 
-          <div v-if="selectedIcon === 'nimiq:spinner'" bg-orange-400 outline="~ 1 offset--1 orange-500" f-px-xs f-py-4 rounded-6 f-mt-md>
-            <span block text-orange-1100 f-text-xs font-semibold>Uses SVG <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate" target="_blank"><code bg-orange-500 px-4 rounded-2 text-current>animate</code> tag</a></span>
+          <div v-if="selectedIcon === 'nimiq:spinner'" bg-blue-400 outline="~ 1 offset--1 blue-500" f-px-xs f-py-4 rounded-6 f-mt-md>
+            <span block text-blue-1100 f-text-xs font-semibold>Uses CSS <code bg-blue-500 px-4 rounded-2 text-current>animate-spin</code> class</span>
           </div>
 
           <a v-if="selectedIcon.includes('staking') || selectedIcon.includes('leaf')" mt-auto href="/frankenstein/components/animated-staking-ripple" py-4 text-green-1100 outline="~ 1 offset--1 green-500" f-px-xs f-py-4 rounded-6 f-mt-md nq-arrow>
