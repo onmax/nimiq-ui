@@ -58,6 +58,9 @@ export function getNimiqIcons(_options: NimiqIconsOptions): { rules: Rule<Preset
             'height': height,
           }
         }
+        if (name === 'spinner')
+          cssObject.animation = 'spin 1s linear infinite'
+
         yield {
           [symbols.layer]: 'icons',
           ...cssObject,

@@ -15,9 +15,8 @@ import {
   runSVGO,
   SVG,
 } from '@iconify/tools'
-import { compareColors, iconToHTML, replaceIDs, stringToColor } from '@iconify/utils'
+import { compareColors, replaceIDs, stringToColor } from '@iconify/utils'
 import consola from 'consola'
-import { JSDOM } from 'jsdom'
 import { resolve } from 'pathe'
 import { author, license, version } from '../package.json'
 import 'dotenv/config'
@@ -176,12 +175,9 @@ function processIcon(iconSet: IconSet, variant: IconVariant, name: string, optio
   if (newName !== name)
     iconSet.rename(name, newName)
 
-  let svg = iconSet.toSVG(newName)
+  const svg = iconSet.toSVG(newName)
   if (!svg)
     throw new Error(`Icon ${newName} is not an SVG in the ${iconSet.prefix} icon set.`)
-
-  if (newName === 'spinner')
-    svg = addSpinnerAnimation(svg)
 
   cleanupSVG(svg)
   removeFigmaClipPathFromSVG(svg)
@@ -234,30 +230,6 @@ function handleColors(_: ColorAttributes, colorStr: string, color: Color | null)
     return 'currentColor'
 
   return color
-}
-
-function addSpinnerAnimation(_svg: SVG) {
-  consola.info(`Adding spinner animation to spinner`)
-
-  const html = iconToHTML(_svg.getBody(), {
-    height: `${_svg.viewBox.height}`,
-    width: `${_svg.viewBox.width}`,
-    viewBox: `0 0 ${_svg.viewBox.width} ${_svg.viewBox.height}`,
-  })
-
-  const svg = new JSDOM(html).window.document.querySelector('svg')!
-  const doc = new JSDOM(html).window.document
-
-  const animateTransform = doc.createElementNS('http://www.w3.org/2000/svg', 'animateTransform')
-  animateTransform.setAttribute('attributeName', 'transform')
-  animateTransform.setAttribute('dur', '1s')
-  animateTransform.setAttribute('type', 'rotate')
-  animateTransform.setAttribute('from', '0 0 0')
-  animateTransform.setAttribute('to', '360 0 0')
-  animateTransform.setAttribute('repeatCount', 'indefinite')
-
-  svg.appendChild(animateTransform)
-  return new SVG(svg.outerHTML)
 }
 
 async function prepareNpmPackage(iconSet: IconSet, options: { target?: string, packageName?: string } = {}) {
