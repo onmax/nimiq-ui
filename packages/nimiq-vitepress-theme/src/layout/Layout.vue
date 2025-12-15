@@ -64,11 +64,8 @@ const isMobileOrTablet = breakpoints.smaller('lg')
       </div>
       <main
         of-hidden dark:bg-neutral-1100 min-h-screen flex-1 min-w-0 :class="{
-          'ml-[$nq-sidebar-width]': showSidebar,
+          'ml-$nq-sidebar-width': showSidebar,
           'ml-0': !showSidebar,
-          'max-w-1400 mx-auto': !showSidebar && !showSecondarySidebar,
-          'max-w-1200 mx-auto': showSidebar && !showSecondarySidebar,
-          'max-w-1000 mx-auto': showSidebar && showSecondarySidebar,
         }"
       >
         <PageContent />
