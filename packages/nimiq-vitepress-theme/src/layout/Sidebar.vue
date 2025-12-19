@@ -122,7 +122,7 @@ function openAccordionInitialState(items: NimiqVitepressSidebar['items'][number]
                 {{ item.label }}
               </span>
               <div v-for="subitem in item.items.filter(i => !i.hidden)" :key="subitem.text">
-                <CollapsibleRoot v-if="subitem.items?.length" v-slot="{ open }" :default-open="openAccordionInitialState(subitem.items)">
+                <CollapsibleRoot v-if="subitem.items?.length" v-slot="{ open }" :default-open="openAccordionInitialState(subitem.items)" :unmount-on-hide="false">
                   <CollapsibleTrigger class="sidebar-item" group pr-12 pl-8 bg-transparent>
                     <div v-if="subitem.icon" :class="subitem.icon" f-text-sm text-neutral op="70 group-hocus:100" mr-8 />
                     <div :class="subitem.text" op="80 group-hocus:100" transition-opacity />
