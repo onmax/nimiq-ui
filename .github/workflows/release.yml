@@ -36,4 +36,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to npm (OIDC)
-        run: pnpm -r publish --access public --no-git-checks --provenance
+        run: |
+          cd packages/nimiq-css && npm publish --access public --provenance
+          cd ../nimiq-theme && npm publish --access public --provenance
+          cd ../nimiq-vitepress-theme && npm publish --access public --provenance
+          cd ../nimiq-icons/src/icons && npm publish --access public --provenance
+          cd ../../src/flags && npm publish --access public --provenance
