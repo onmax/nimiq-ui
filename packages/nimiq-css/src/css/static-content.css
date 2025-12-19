@@ -291,26 +291,5 @@ body:not(.nq-raw) {
       --f-pb-min: 32;
       --f-pb-max: 48;
     }
-
-    &:where(.nq-overlaps, [nq-overlaps]) {
-      --pb: 0;
-
-      > * {
-        position: relative;
-        z-index: 2;
-
-        --f-mb-min: 48;
-        --f-mb-max: 64;
-        --f-mb-range: calc(var(--f-mb-max) - var(--f-mb-min));
-        --f-mb-fluid: calc(1px * var(--f-mb-min) + var(--f-mb-range) * var(--f-space-scale-factor));
-        --f-mb: clamp(calc(1px * var(--f-mb-min)), var(--f-mb-fluid), calc(var(--f-mb-max) * 1px));
-        bottom: calc(var(--f-mb) * -1);
-      }
-
-      + :where(section, [data-section]) {
-        --f-pt-min: 224;
-        --f-pt-max: 272;
-      }
-    }
   }
 }
