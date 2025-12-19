@@ -1,7 +1,7 @@
 {
   "name": "nimiq-icons-builder",
   "type": "module",
-  "version": "1.0.0-beta.158",
+  "version": "1.0.0-beta.159",
   "private": true,
   "packageManager": "pnpm@10.4.1",
   "description": "",
