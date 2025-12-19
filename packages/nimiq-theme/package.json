@@ -4,6 +4,7 @@
   "description": "",
   "author": "",
   "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/onmax/nimiq-ui.git" },
   "keywords": [],
   "exports": {
     "./*": "./*"

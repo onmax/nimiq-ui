@@ -3,6 +3,7 @@
   "type": "module",
   "version": "1.0.0-beta.159",
   "description": "Nimiq's Design System in CSS",
+  "repository": { "type": "git", "url": "git+https://github.com/onmax/nimiq-ui.git" },
   "sideEffects": false,
   "exports": {
     "./css/animations.css": "./dist/css/animations.css",
