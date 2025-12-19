@@ -11,37 +11,31 @@ jobs:
       id-token: write
       contents: write
     runs-on: ubuntu-latest
-    environment: Dev
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
 
-      - name: Set node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: 22
           cache: pnpm
           registry-url: 'https://registry.npmjs.org'
 
-      - run: npx changelogithub
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-      - name: Install Dependencies
-        run: pnpm i
-
-      - name: PNPM build
-        run: pnpm run build
+      - run: pnpm install
+      - run: pnpm build
         env:
           FIGMA_FILE_ID: ${{ secrets.FIGMA_FILE_ID }}
           FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
 
-      - name: Publish to NPM
-        run: pnpm -r publish --access public --no-git-checks
+      - name: GitHub Release
+        run: npx changelogithub
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-          NPM_CONFIG_PROVENANCE: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to npm
+        run: pnpm -r publish --access public --no-git-checks --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
