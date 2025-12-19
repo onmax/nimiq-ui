@@ -20,8 +20,9 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
 
       - run: pnpm install
       - run: pnpm build
@@ -35,9 +36,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to npm (OIDC)
-        run: |
-          cd packages/nimiq-css && npm publish --access public --provenance
-          cd ../nimiq-theme && npm publish --access public --provenance
-          cd ../nimiq-vitepress-theme && npm publish --access public --provenance
-          cd ../nimiq-icons/src/icons && npm publish --access public --provenance
-          cd ../../src/flags && npm publish --access public --provenance
+        run: pnpm -r publish --access public --no-git-checks --provenance
