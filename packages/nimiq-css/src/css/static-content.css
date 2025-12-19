@@ -188,7 +188,7 @@ body:not(.nq-raw) {
 
     padding: var(--pt, 0) var(--px, 0) var(--pb, 0) var(--px, 0);
 
-    > * {
+    > :where(*) {
       max-width: var(--nq-max-width);
     }
 
