@@ -25,7 +25,7 @@ body:not(.nq-raw) {
     --f-font-size: clamp(calc(1px * var(--font-size-min)), var(--f-font-size-fluid), calc(var(--font-size-max) * 1px));
 
     &:where(h1) {
-      font-weight: 700;
+      font-weight: 600;
       max-width: 26ch;
       text-align: left;
       margin: 0;
@@ -60,7 +60,7 @@ body:not(.nq-raw) {
     }
 
     &:where(h2) {
-      font-weight: 700;
+      font-weight: 600;
 
       *:not(.nq-no-color):not([nq-no-color]):not(.nq-no-color *):not([nq-no-color] *) & {
         color: var(--colors-neutral);
@@ -103,7 +103,7 @@ body:not(.nq-raw) {
     }
 
     &:where(h3) {
-      font-weight: 700;
+      font-weight: 600;
       line-height: 1.3;
       --font-size-min: 26;
       --font-size-max: 30;
@@ -124,7 +124,7 @@ body:not(.nq-raw) {
     }
 
     &:where(h4) {
-      font-weight: 700;
+      font-weight: 600;
       line-height: 1.3;
       --font-size-min: 22;
       --font-size-max: 26;
