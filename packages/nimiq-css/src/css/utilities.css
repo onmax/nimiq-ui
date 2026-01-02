@@ -1,14 +1,17 @@
 .nq-subline {
-  font-size: 1.25em;
+  font-size: 1.375rem;
   line-height: 1.2;
   margin-bottom: 2.75rem;
   color: var(--colors-neutral-800);
+
+  @media (min-width: 769px) {
+    font-size: 1.5rem;
+  }
 }
 
 .nq-label {
   text-transform: uppercase;
   letter-spacing: 0.17em;
-  font-size: 0.75em;
   font-weight: 700;
   line-height: 1;
   color: var(--colors-neutral-800);
