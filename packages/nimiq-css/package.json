@@ -1,7 +1,7 @@
 {
   "name": "nimiq-css",
   "type": "module",
-  "version": "1.0.0-beta.161",
+  "version": "1.0.0-beta.162",
   "description": "Nimiq's Design System in CSS",
   "repository": { "type": "git", "url": "git+https://github.com/onmax/nimiq-ui.git" },
   "sideEffects": false,
